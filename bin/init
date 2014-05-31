@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd $1
+bundle install --binstubs=vendor/bin --path vendor/bin
+rake db:setup
