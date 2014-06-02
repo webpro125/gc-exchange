@@ -17,3 +17,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore junit export
+/results.xml
+
+# Ignore vendor/bin
+/vendor/bin
