@@ -7,7 +7,6 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
 gem 'foundation-rails', '~> 5.2'
-gem 'jbuilder', '~> 2.0'
 gem 'simple_form', '~> 3.0'
 
 group :doc do
@@ -21,13 +20,12 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'rspec', '~> 3.0.0'
+  gem 'rspec-rails', '~> 2.0'
+  gem 'yarjuf'
   gem 'rubocop', '~> 0.23.0', require: false
   gem 'brakeman', '~> 2.5.0', :require => false
 end
 
 group :test do
-  gem 'yarjuf'
   gem 'factory_girl_rails', '~> 4.4'
 end
