@@ -14,16 +14,21 @@ group :doc do
 end
 
 group :development do
+  gem 'guard-rspec', '~> 4.2.9', require: false
+  gem 'guard-spring', '~> 0.0.4', require: false
+  gem 'guard-brakeman', '~> 0.8.1', require: false
+
   gem 'spring', '~> 1.1.3'
   gem 'better_errors', '~> 1.1'
   gem 'quiet_assets', '~> 1.0'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 2.99'
+  gem 'capybara', '~> 2.3.0', require: false
   gem 'yarjuf'
   gem 'rubocop', '~> 0.23.0', require: false
-  gem 'brakeman', '~> 2.5.0', :require => false
+  gem 'brakeman', '~> 2.5.0', require: false
 end
 
 group :test do

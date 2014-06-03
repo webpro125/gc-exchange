@@ -2,4 +2,5 @@
 
 cd $1
 bundle install --binstubs --path=vendor/bin
+bundle exec spring binstub --all
 rake db:setup
