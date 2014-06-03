@@ -6,6 +6,7 @@
 
 # Ignore idea
 /.idea
+/atlassian-ide-plugin.xml
 
 # Ignore bundler config.
 /.bundle
