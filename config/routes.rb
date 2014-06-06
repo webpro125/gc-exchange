@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :consultants, path: '/', path_names: { sign_in: 'login',
+                                                    sign_out: 'logout',
+                                                    registration: 'register' }
+
   root 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

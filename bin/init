@@ -1,6 +1,5 @@
 #!/bin/bash
 
 cd $1
-bundle install --binstubs --path=vendor/bin
-bundle exec spring binstub --all
+bundle install --path=vendor/bin
 rake db:setup
