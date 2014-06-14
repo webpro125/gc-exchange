@@ -6,6 +6,7 @@ running.
 Make sure that you have your dependencies installed.
 
 * Ruby 2.1
+* Rails 4.1.1
 * PostegreSQL 9.3
 * Mailcatcher gem
 
