@@ -32,27 +32,27 @@ describe DeviseController do
     end
 
     it 'routes to registrations#cancel' do
-      get('/register/cancel').should route_to('devise/registrations#cancel')
+      get('/register/cancel').should route_to('registrations#cancel')
     end
 
     it 'routes to registrations#create' do
-      post('/register').should route_to('devise/registrations#create')
+      post('/register').should route_to('registrations#create')
     end
 
     it 'routes to registrations#new' do
-      get('/register/sign_up').should route_to('devise/registrations#new')
+      get('/register/sign_up').should route_to('registrations#new')
     end
 
     it 'routes to registrations#edit' do
-      get('/register/edit').should route_to('devise/registrations#edit')
+      get('/register/edit').should route_to('registrations#edit')
     end
 
     it 'routes to registrations#update' do
-      put('/register').should route_to('devise/registrations#update')
+      put('/register').should route_to('registrations#update')
     end
 
     it 'routes to registrations#destroy' do
-      delete('/register').should route_to('devise/registrations#destroy')
+      delete('/register').should route_to('registrations#destroy')
     end
 
     it 'routes to confirmations#create' do

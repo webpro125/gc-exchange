@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :consultants, path: '/', path_names: { sign_in: 'login',
                                                     sign_out: 'logout',
-                                                    registration: 'register' }
+                                                    registration: 'register' },
+                                      controllers: { registrations: "registrations" }
 
   root 'pages#home'
 

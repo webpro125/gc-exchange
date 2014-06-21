@@ -20,12 +20,14 @@
 
     <!-- Right Nav Section -->
     <ul class="right">
-      <li>
-        <%= link_to 'Login', new_consultant_session_path %>
-      </li>
-      <li>
-        <%= link_to 'Register', new_consultant_registration_path %>
-      </li>
+      <% unless consultant_signed_in? %>
+        <li>
+          <%= link_to 'Login', new_consultant_session_path %>
+        </li>
+        <li>
+          <%= link_to 'Register', new_consultant_registration_path %>
+        </li>
+      <% end %>
     </ul>
   </section>
 </nav>
