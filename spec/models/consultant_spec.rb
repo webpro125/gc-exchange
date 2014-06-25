@@ -30,6 +30,14 @@ describe Consultant do
       @consultant.first_name = nil
       expect(@consultant).not_to be_valid
     end
+
+    it 'should allow only characters' do
+      @consultant.first_name = '123567'
+      expect(@consultant).not_to be_valid
+
+      @consultant.first_name = '!@#$'
+      expect(@consultant).not_to be_valid
+    end
   end
 
   describe 'last_name' do
@@ -45,6 +53,14 @@ describe Consultant do
 
     it 'should be present' do
       @consultant.last_name = nil
+      expect(@consultant).not_to be_valid
+    end
+
+    it 'should allow only characters' do
+      @consultant.last_name = '123567'
+      expect(@consultant).not_to be_valid
+
+      @consultant.last_name = '!@#$'
       expect(@consultant).not_to be_valid
     end
   end
