@@ -9,6 +9,7 @@ gem 'jquery-rails', '~> 3.1.0'
 gem 'foundation-rails', '~> 5.2'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
+gem 'rake', '~> 10.3.2'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
