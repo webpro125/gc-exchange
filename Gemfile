@@ -8,6 +8,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
 gem 'foundation-rails', '~> 5.2'
 gem 'simple_form', '~> 3.0'
+gem 'devise', '~> 3.2'
 gem 'rake', '~> 10.3.2'
 
 group :doc do
@@ -15,6 +16,7 @@ group :doc do
 end
 
 group :development do
+  gem 'terminal-notifier-guard'
   gem 'guard-rspec', '~> 4.2.9', require: false
   gem 'guard-spring', '~> 0.0.4', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false

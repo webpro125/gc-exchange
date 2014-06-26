@@ -20,6 +20,18 @@
 
     <!-- Right Nav Section -->
     <ul class="right">
+      <% unless consultant_signed_in? %>
+        <li>
+          <%= link_to 'Login', new_consultant_session_path %>
+        </li>
+        <li>
+          <%= link_to 'Register', new_consultant_registration_path %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
+        </li>
+      <% end %>
     </ul>
   </section>
 </nav>

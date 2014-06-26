@@ -9,13 +9,17 @@ Make sure that you have your dependencies installed.
 * Rails 4.1.1
 * PostegreSQL 9.3
 * Mailcatcher gem
+* Foreman gem
 
-Mailcatcher 
+Mailcatcher & Foreman
 
 ```
 gem install mailcatcher
-mailcatcher
+gem install foreman
+foreman
 ```
+Foreman will launch and monitor all the processes needed to run GCES
+
 Go to http://localhost:1080/
 Send mail through smtp://localhost:1025
 
