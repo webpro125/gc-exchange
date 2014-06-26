@@ -1,0 +1,17 @@
+<div id="debug-modal" class="reveal-modal" data-reveal>
+  <dl class="accordion" data-accordion>
+    <dd class="accordion-navigation">
+      <a href="#params-pane">Params</a>
+      <div id="params-pane" class="content active">
+        <%= debug(params) %>
+      </div>
+    </dd>
+    <dd class="accordion-navigation">
+      <a href="#flash-pane">Flash</a>
+      <div id="flash-pane" class="content">
+        <%= debug(flash) %>
+      </div>
+    </dd>
+  </dl>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
