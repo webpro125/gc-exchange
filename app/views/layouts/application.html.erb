@@ -7,16 +7,16 @@
     <title><%= content_for?(:title) ? yield(:title) : "Global Consultant Exchange" %></title>
 
     <%= stylesheet_link_tag    "application" %>
-    <%= stylesheet_link_tag    controller_name %>
+    <%= stylesheet_link_tag    controller_name if GlobalConsultantExchange::Application.assets
+    .find_asset("#{controller_name}.js") %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-    <% end %>
+    <%= render 'layouts/flash' %>
+
     <%= yield %>
     <%= javascript_include_tag "application" %>
 
