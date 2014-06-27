@@ -9,7 +9,7 @@ require 'simplecov'
 require 'simplecov-bamboo'
 
 SimpleCov.coverage_dir('spec/results/coverage')
-if ENV['SIMPLE_COV_FORMATTER'] == 'clover'
+if ENV['bamboo_SIMPLE_COV_FORMATTER'] == 'clover'
   SimpleCov.formatter = SimpleCov::Formatter::BambooFormatter
 end
 SimpleCov.start 'rails' do
