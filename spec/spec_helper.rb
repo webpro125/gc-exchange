@@ -5,6 +5,16 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'yarjuf'
+require 'simplecov'
+require 'simplecov-bamboo'
+
+SimpleCov.coverage_dir('spec/results/coverage')
+if ENV['SIMPLE_COV_FORMATTER'] == 'clover'
+  SimpleCov.formatter = SimpleCov::Formatter::BambooFormatter
+end
+SimpleCov.start 'rails' do
+  add_filter '/vendor/'
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -22,6 +32,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
