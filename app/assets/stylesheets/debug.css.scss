@@ -1,0 +1,22 @@
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin pre_wrap {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.debug_dump {
+  width: 100%;
+  margin-top: 45px;
+  border: 1px darkgray solid;
+  border-left-width: 5px;
+  padding: 10px;
+  @include box_sizing;
+}
