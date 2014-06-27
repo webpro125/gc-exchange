@@ -36,4 +36,5 @@ end
 
 group :test do
   gem 'factory_girl_rails', '~> 4.4'
+  gem 'simplecov-bamboo', '~> 0.1.0', require: false
 end

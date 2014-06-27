@@ -19,8 +19,10 @@
 /log/*.log
 /tmp
 
-# Ignore junit export
+# Ignore junit export & coverage
 /results.xml
+/spec/results/coverage
+/target/
 
 # Ignore vendor/bin
 /vendor/bin
