@@ -9,6 +9,7 @@ require 'simplecov'
 require 'simplecov-bamboo'
 
 SimpleCov.coverage_dir('spec/results/coverage')
+SimpleCov.minimum_coverage 85
 if ENV['bamboo_SIMPLE_COV_FORMATTER'] == 'clover'
   SimpleCov.formatter = SimpleCov::Formatter::BambooFormatter
 end
