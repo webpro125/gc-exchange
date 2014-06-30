@@ -20,8 +20,7 @@
 /tmp
 
 # Ignore junit export & coverage
-/results.xml
-/spec/results/coverage
+/spec/results
 /target/
 
 # Ignore vendor/bin

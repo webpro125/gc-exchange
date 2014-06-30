@@ -7,7 +7,7 @@ guard 'brakeman', run_on_start: true do
   watch('Gemfile')
 end
 
-guard :rspec, cmd: 'spring rspec', all_after_pass: true, notification: true do
+guard :rspec, cmd: 'spring rspec', all_after_pass: true do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -23,7 +23,11 @@ guard :rspec, cmd: 'spring rspec', all_after_pass: true, notification: true do
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml|slim)$})     { |m| "spec/features/#{m[1]}_spec.rb" }
 
-  # Turnip features and steps
-  watch(%r{^spec/acceptance/(.+)\.feature$})
-  watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
+  # Factories
+  watch(%r{^spec/factories/(.+)\.rb$}) { |m| ["app/models/#{m[1].singularize}.rb", "spec/models/#{m[1].singularize}_spec.rb"] }
 end
+
+guard :bundler do
+  watch('Gemfile')
+end
+

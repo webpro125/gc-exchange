@@ -36,4 +36,20 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Geocoder.configure(lookup: :test)
+
+  Geocoder::Lookup::Test.set_default_stub(
+      [
+          {
+              'latitude'     => 40.7143528,
+              'longitude'    => -74.0059731,
+              'address'      => '1619 3rd Ave New York, NY 10128',
+              'state'        => 'New York',
+              'state_code'   => 'NY',
+              'country'      => 'United States',
+              'country_code' => 'US'
+          }
+      ]
+  )
 end
