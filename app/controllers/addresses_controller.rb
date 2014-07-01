@@ -5,6 +5,7 @@ class AddressesController < ApplicationController
   end
 
   def new
+    redirect_to edit_address_path if current_consultant.address
     @address = Address.new
   end
 
@@ -12,7 +13,8 @@ class AddressesController < ApplicationController
     @address = current_consultant.build_address(address_params)
 
     if @address.save
-      redirect_to consultant_root_path, info: t('controllers.address.create_success')
+      flash[:success] = t('controllers.address.create.success')
+      redirect_to consultant_root_path
     else
       render :new
     end
@@ -23,7 +25,8 @@ class AddressesController < ApplicationController
 
   def update
     if @address.update(address_params)
-      redirect_to consultant_root_path, info: t('controllers.address.update_success')
+      flash[:success] = t('controllers.address.update.success')
+      redirect_to consultant_root_path
     else
       render :edit
     end
@@ -36,5 +39,6 @@ class AddressesController < ApplicationController
 
     def load_address
       @address = current_consultant.address
+      redirect_to new_address_path unless @address
     end
 end

@@ -10,31 +10,49 @@ describe AddressesController do
     end
 
     describe 'GET "new"' do
-      before do
-        get :new
-      end
-
       it 'renders #new' do
+        get :new
         expect(response).to render_template :new
       end
 
       it 'assigns address' do
+        get :new
         expect(assigns(:address)).to be_a_new(Address)
+      end
+
+      describe 'with existing address' do
+        it 'should redirect to edit' do
+          @address = FactoryGirl.create(:address, consultant: consultant)
+          get :new
+          expect(response).to redirect_to edit_address_path
+        end
       end
     end
 
     describe 'GET "show"' do
       before do
         @address = FactoryGirl.create(:address, consultant: consultant)
-        get :show
       end
 
       it 'renders #show' do
+        get :show
         expect(response).to render_template :show
       end
 
       it 'assigns address' do
+        get :show
         expect(assigns(:address)).to eq(@address)
+      end
+
+      describe 'with nil address' do
+        before do
+          consultant.address.destroy
+        end
+
+        it 'redirects to "new_password"' do
+          get :show
+          expect(response).to redirect_to(new_address_path)
+        end
       end
     end
 
@@ -48,6 +66,11 @@ describe AddressesController do
         it 'persists the record' do
           Address.any_instance.should_receive(:save).and_return(true)
           post :create, address: @address
+        end
+
+        it 'sends a flash message' do
+          post :create, address: @address
+          expect(flash[:success]).to eq(I18n.t('controllers.address.create.success'))
         end
       end
 
@@ -71,15 +94,27 @@ describe AddressesController do
     describe 'GET "edit"' do
       before do
         @address = FactoryGirl.create(:address, consultant: consultant)
-        get :edit
       end
 
       it 'renders #edit' do
+        get :edit
         expect(response).to render_template :edit
       end
 
       it 'assigns address' do
+        get :edit
         expect(assigns(:address)).to eq(@address)
+      end
+
+      describe 'with nil address' do
+        before do
+          consultant.address.destroy
+        end
+
+        it 'redirects to "new_password"' do
+          get :edit
+          expect(response).to redirect_to(new_address_path)
+        end
       end
     end
 
@@ -99,6 +134,11 @@ describe AddressesController do
           Address.any_instance.should_receive(:update).and_return(true)
           put :update, address: @address
         end
+
+        it 'sends a flash message' do
+          put :update, address: @address
+          expect(flash[:success]).to eq(I18n.t('controllers.address.update.success'))
+        end
       end
 
       describe 'with invalid parameters' do
@@ -114,6 +154,17 @@ describe AddressesController do
         it 'does not persist the record' do
           Address.any_instance.should_receive(:update).and_return(false)
           put :update, address: @address
+        end
+      end
+
+      describe 'with nil address' do
+        before do
+          consultant.address.destroy
+        end
+
+        it 'redirects to "new_password"' do
+          put :update, address: @address
+          expect(response).to redirect_to(new_address_path)
         end
       end
     end

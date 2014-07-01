@@ -5,10 +5,7 @@ Rails.application.routes.draw do
                                       controllers: { registrations: "registrations" }
 
   root 'pages#home'
-
-  namespace :consultant do
-    root 'pages#consultant'
-  end
+  get '/profile', to: 'pages#consultant', as: :consultant_root
 
   resource :address, except: :destroy
   # The priority is based upon order of creation: first created -> highest priority.

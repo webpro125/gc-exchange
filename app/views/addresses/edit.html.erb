@@ -1,2 +1,13 @@
-<h1>Addresses#edit</h1>
-<p>Find me in app/views/addresses/edit.html.erb</p>
+<h2>Address</h2>
+
+<%= simple_form_for @address, url: address_path do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :address1 %>
+    <%= f.input :address2 %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :zipcode %>
+
+    <%= f.button :submit, t('views.address.edit.save') %>
+<% end %>
