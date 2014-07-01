@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  controllers:
+    address:
+      create_success: 'Address saved successfully'
+      update_success: 'Address saved successfully'
