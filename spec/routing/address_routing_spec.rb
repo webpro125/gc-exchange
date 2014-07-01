@@ -3,8 +3,8 @@ require 'spec_helper'
 describe AddressesController do
   describe 'routing' do
 
-    it 'routes to addresses#show' do
-      get('/address').should route_to('addresses#show')
+    it 'should not route to addresses#show' do
+      get('/address').should_not route_to('addresses#show')
     end
 
     it 'routes to addresses#create' do
@@ -23,7 +23,7 @@ describe AddressesController do
       put('/address').should route_to('addresses#update')
     end
 
-    it 'should not route to addresses#show' do
+    it 'should not route to addresses#destroy' do
       delete('/address').should_not route_to('addresses#destroy')
     end
   end

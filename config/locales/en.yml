@@ -27,7 +27,13 @@ en:
       update:
         success: 'Address saved successfully'
   views:
+    password:
+      actions:
+        change_password: 'Change Password'
     address:
+      actions:
+        add: 'Add Your Address'
+        edit: 'Edit Address'
       new:
         save: 'Save Address'
       edit:

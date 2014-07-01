@@ -4,10 +4,18 @@ Rails.application.routes.draw do
                                                     registration: 'register' },
                                       controllers: { registrations: "registrations" }
 
-  root 'pages#home'
-  get '/profile', to: 'pages#consultant', as: :consultant_root
+  # Root Paths
+  authenticated :consultant do
+    root 'pages#consultant', as: :consultant_root
+  end
 
-  resource :address, except: :destroy
+  root 'pages#home'
+
+  # Resources
+  resource :address, except: [:destroy, :show]
+
+  # Non resource
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

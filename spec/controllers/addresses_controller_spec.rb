@@ -29,33 +29,6 @@ describe AddressesController do
       end
     end
 
-    describe 'GET "show"' do
-      before do
-        @address = FactoryGirl.create(:address, consultant: consultant)
-      end
-
-      it 'renders #show' do
-        get :show
-        expect(response).to render_template :show
-      end
-
-      it 'assigns address' do
-        get :show
-        expect(assigns(:address)).to eq(@address)
-      end
-
-      describe 'with nil address' do
-        before do
-          consultant.address.destroy
-        end
-
-        it 'redirects to "new_password"' do
-          get :show
-          expect(response).to redirect_to(new_address_path)
-        end
-      end
-    end
-
     describe 'POST "create"' do
       describe 'with valid paramaters' do
         it 'redirects to consultant_root_path' do
@@ -176,7 +149,7 @@ describe AddressesController do
     end
 
     it 'should redirect to login for "GET" requests' do
-      [:show, :edit, :new].each do |method|
+      [:edit, :new].each do |method|
         get method
         expect(response).to redirect_to(new_consultant_session_path)
       end

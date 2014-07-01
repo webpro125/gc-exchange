@@ -1,0 +1,5 @@
+<aside>
+  <% unless current_consultant.address %>
+      <%= link_to t('views.address.actions.add'), new_address_path, class: [:button, :secondary] %>
+  <% end %>
+</aside>

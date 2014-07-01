@@ -1,8 +1,5 @@
 class AddressesController < ApplicationController
-  before_filter :load_address, only: [:show, :edit, :update]
-
-  def show
-  end
+  before_filter :load_address, only: [:edit, :update]
 
   def new
     redirect_to edit_address_path if current_consultant.address

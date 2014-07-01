@@ -30,7 +30,20 @@
           <li>
             <%= link_to 'Register', new_consultant_registration_path %>
           </li>
-      <% else %>    
+      <% else %>
+          <li class="has-dropdown">
+            <a href="#">Profile</a>
+            <ul class="dropdown">
+              <% if current_consultant.address %>
+                <li><%= link_to t('views.address.actions.edit'), edit_address_path %></li>
+              <% else %>
+                <li><%= link_to t('views.address.actions.add'), new_address_path %></li>
+              <% end %>
+              <li class="divider"></li>
+              <li><%= link_to t('views.password.actions.change_password'),
+                              edit_consultant_registration_path %></li>
+            </ul>
+          </li>
           <li>
             <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
           </li>
