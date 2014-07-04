@@ -5,7 +5,7 @@ describe ApplicationHelper do
   describe 'development?' do
     it 'should return true in development' do
       Rails.env.stub(:development?) { true }
-      expect(development?).to be_true
+      expect(development?).to be true
     end
 
     it 'should return false in test' do

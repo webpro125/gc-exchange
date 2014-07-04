@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd $1
+cp config/secrets.yml.example config/secrets.yml
 bundle install --path=vendor/bin
 bundle exec spring binstub --all
 bundle exec rake db:setup

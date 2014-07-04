@@ -1,0 +1,13 @@
+<h2>Address</h2>
+
+<%= simple_form_for @address, url: address_path do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :address1 %>
+    <%= f.input :address2 %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :zipcode %>
+
+    <%= f.button :submit, t('views.address.new.save') %>
+<% end %>
