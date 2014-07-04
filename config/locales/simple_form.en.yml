@@ -23,4 +23,10 @@ en:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
+    options:
+      phone:
+        phone_type:
+          CELL: 'Cell Phone'
+          HOME: 'Home Phone'
+          WORK: 'Work Phone'
 

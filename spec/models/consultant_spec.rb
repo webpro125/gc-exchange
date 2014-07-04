@@ -14,6 +14,7 @@ describe Consultant do
   subject { @consultant }
 
   it { should be_valid }
+  it { should respond_to(:phones) }
 
   describe 'first_name' do
     it 'should have minimum length' do
@@ -68,6 +69,40 @@ describe Consultant do
 
       @consultant.last_name = '!@#$'
       expect(@consultant).not_to be_valid
+    end
+  end
+
+  describe 'association' do
+    describe 'address' do
+      before do
+        @consultant.save
+        FactoryGirl.create(:address, consultant: @consultant)
+      end
+
+      it 'should be destroyed on delete' do
+        address = @consultant.address.id
+        expect(address).not_to be_nil
+
+        @consultant.destroy
+        expect(Address.find_by_id(address)).to be_nil
+      end
+    end
+
+    describe 'phones' do
+      before do
+        @consultant.phones << FactoryGirl.create(:phone)
+        @consultant.save
+      end
+
+      it 'should destroy them on delete' do
+        phones = @consultant.phones.map(&:id)
+        expect(phones).not_to be_nil
+
+        @consultant.destroy
+        phones.each do |phone|
+          expect(Phone.find_by_id(phone)).to be_nil
+        end
+      end
     end
   end
 end

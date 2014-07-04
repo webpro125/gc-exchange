@@ -26,6 +26,11 @@ en:
         success: 'Address saved successfully'
       update:
         success: 'Address saved successfully'
+    phone:
+      create:
+        success: 'Phone saved successfully'
+      update:
+        success: 'Phone saved successfully'
   views:
     password:
       actions:
