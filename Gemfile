@@ -34,6 +34,7 @@ group :development, :test do
   gem 'growl', '~> 1.0.3'
 
   gem 'rspec-rails', '~> 2.99'
+  gem 'rspec-activemodel-mocks', '~> 1.0.1'
 
   gem 'capybara', '~> 2.3.0', require: false
   gem 'yarjuf'

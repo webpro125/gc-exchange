@@ -1,4 +1,8 @@
 
+guard :bundler do
+  watch('Gemfile')
+end
+
 guard 'brakeman', run_on_start: true do
   watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
   watch(%r{^config/.+\.rb$})
@@ -28,9 +32,5 @@ guard :rspec, cmd: 'spring rspec', all_after_pass: true do
     watch(%r{^spec/factories/(.+)\.rb$}) { |m| ["app/models/#{m[1].singularize}.rb", "spec/models/#{m[1].singularize}_spec.rb"] }
   rescue LoadError
   end
-end
-
-guard :bundler do
-  watch('Gemfile')
 end
 
