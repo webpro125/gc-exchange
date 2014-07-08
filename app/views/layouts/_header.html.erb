@@ -32,7 +32,7 @@
           </li>
       <% else %>
           <li class="has-dropdown">
-            <a href="#">Profile</a>
+            <%= link_to 'Profile', consultant_root_path %>
             <ul class="dropdown">
                 <li><%= link_to t('views.phone.actions.index'), phones_path %></li>
               <% if current_consultant.address %>

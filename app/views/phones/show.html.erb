@@ -17,6 +17,6 @@
 </div>
 <div class="row page-actions">
   <td><%= link_to t('views.phone.actions.edit'), edit_phone_path(@phone), class: 'button' %></td>
-  <td><%= link_to t('views.phone.actions.delete'),  @phone, class: 'button alert', method: :delete,
+  <td><%= link_to t('views.phone.actions.delete'),  phone_path(@phone), class: 'button alert', method: :delete,
                   data: { confirm: t('views.phone.confirmations.delete') } %></td>
 </div>
