@@ -47,9 +47,9 @@ describe PhonesController do
 
     describe "POST 'create'" do
       describe 'with valid paramaters' do
-        it 'redirects to consultant_root_path' do
+        it 'redirects to phones_path' do
           post :create, phone: @phone
-          expect(response).to redirect_to consultant_root_path
+          expect(response).to redirect_to phones_path
         end
 
         it 'persists the record' do
@@ -136,9 +136,9 @@ describe PhonesController do
       let(:phone) { consultant.phones.create!(@phone) }
 
       describe 'with valid parameters' do
-        it 'redirects to consultant_root_path' do
+        it 'redirects to phones_path' do
           put :update, { phone: @phone, id: phone.id }
-          expect(response).to redirect_to consultant_root_path
+          expect(response).to redirect_to phones_path
         end
 
         it 'persists the record' do

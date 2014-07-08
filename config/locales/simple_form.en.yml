@@ -11,22 +11,25 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     # Labels and hints examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
+    labels:
+      defaults:
+        password: 'Password'
+      user:
+        new:
+          email: 'E-mail to sign in.'
+        edit:
+          email: 'E-mail.'
+      phone:
+        number: 'Phone Number'
+        type: 'Type'
+
     # hints:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
     options:
-      phone:
-        phone_type:
-          CELL: 'Cell Phone'
-          HOME: 'Home Phone'
-          WORK: 'Work Phone'
+      phone_type:
+        cell: 'Cell Phone'
+        home: 'Home Phone'
+        work: 'Work Phone'
 

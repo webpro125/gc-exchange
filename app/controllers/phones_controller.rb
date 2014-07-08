@@ -7,14 +7,15 @@ class PhonesController < ApplicationController
 
   def new
     @phone = Phone.new
+    @phone_types = PhoneType.all
   end
 
   def create
-    @phone = Phone.new(phone_params)
+    @phone = current_consultant.phones.build(phone_params)
 
     if @phone.save
       flash[:success] = t('controllers.phone.create.success')
-      redirect_to consultant_root_path
+      redirect_to phones_path
     else
       render :new
     end
@@ -29,7 +30,7 @@ class PhonesController < ApplicationController
   def update
     if @phone.update(phone_params)
       flash[:success] = t('controllers.phone.update.success')
-      redirect_to consultant_root_path
+      redirect_to phones_path
     else
       render :edit
     end
@@ -37,7 +38,7 @@ class PhonesController < ApplicationController
 
   def destroy
     @phone.destroy
-    redirect_to consultant_root_path
+    redirect_to phones_path
   end
 
   protected

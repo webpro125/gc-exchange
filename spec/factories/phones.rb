@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :phone do
     number            { Faker::PhoneNumber.cell_phone }
     phone_type
+    association       :phoneable, factory: :consultant
   end
 end

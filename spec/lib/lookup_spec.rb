@@ -11,7 +11,8 @@ describe Lookup do
       type = PhoneType
       value = PhoneType::CELL
 
-      expect(Lookup.lookup_translation(type,value)).to eq(I18n.t("lookup.#{PhoneType.to_s
+      expect(Lookup.lookup_translation(type,value)).to eq(I18n.t("simple_form.options.#{PhoneType
+      .to_s
                                                                 .underscore}.#{value.underscore}"))
     end
   end

@@ -10,6 +10,6 @@ module Lookup
   # +value+:: the value of the lookup.  Valid values are in +Lookup::#{Type}+
   def self.lookup_translation(klass, value)
     raise 'Invalid class.  Please use Lookup::LOOKUPS' unless LOOKUPS.include? klass
-    I18n.t("lookup.#{klass.to_s.underscore}.#{value.underscore}")
+    I18n.t("simple_form.options.#{klass.to_s.underscore}.#{value.underscore}")
   end
 end

@@ -5,7 +5,9 @@ class Phone < ActiveRecord::Base
 
   before_validation :set_phone
 
-  validates :phone_type_id, presence: true
+  validates :phoneable_id, presence: true
+  validates :phoneable_type, presence: true
+  validates :phone_type, presence: true
   validates :number, presence: true
 
   protected
