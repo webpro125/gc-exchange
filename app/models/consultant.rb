@@ -4,7 +4,8 @@ class Consultant < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :address
+  has_one :address, dependent: :destroy
+  has_many :phones, as: :phoneable, dependent: :destroy
 
   validates :first_name, length: { in: 3..24 }, presence: true,
             format: { with: /\A[\w\s'-]+\z/,
