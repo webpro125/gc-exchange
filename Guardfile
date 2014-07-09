@@ -3,6 +3,11 @@ guard :bundler do
   watch('Gemfile')
 end
 
+guard 'migrate', seed: true, run_on_start: true do
+  watch(%r{^db/migrate/(\d+).+\.rb})
+  watch('db/seeds.rb')
+end
+
 guard 'brakeman', run_on_start: true do
   watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
   watch(%r{^config/.+\.rb$})

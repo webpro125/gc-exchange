@@ -97,6 +97,9 @@ GEM
     guard-bundler (2.0.0)
       bundler (~> 1.0)
       guard (~> 2.2)
+    guard-migrate (1.1.0)
+      activerecord (>= 4.1.0)
+      guard (>= 2.3.0)
     guard-rspec (4.2.10)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
@@ -276,6 +279,7 @@ DEPENDENCIES
   growl (~> 1.0.3)
   guard-brakeman (~> 0.8.1)
   guard-bundler
+  guard-migrate (~> 1.1.0)
   guard-rspec (~> 4.2.9)
   jquery-rails (~> 3.1.0)
   pg (~> 0.17)

@@ -9,6 +9,7 @@ gem 'jquery-rails', '~> 3.1.0'
 gem 'foundation-rails', '~> 5.2'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
+gem 'rake', '~> 10.3.2'
 gem 'geocoder', '~> 1.2.2'
 
 group :doc do
@@ -29,6 +30,7 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.2.9', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
   gem 'guard-bundler', require: false
+  gem 'guard-migrate', '~> 1.1.0', require: false
   gem 'rb-readline', '~> 0.5.1'
   gem 'ruby_gntp', '~> 0.3.4'
   gem 'growl', '~> 1.0.3'
@@ -43,8 +45,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner', '~> 1.3.0', require: false
   gem 'factory_girl_rails', '~> 4.4'
-  gem 'faker', '~> 1.3.0'
   gem 'simplecov-bamboo', '~> 0.1.0', require: false
 end
