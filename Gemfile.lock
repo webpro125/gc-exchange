@@ -285,6 +285,7 @@ DEPENDENCIES
   pg (~> 0.17)
   quiet_assets (~> 1.0)
   rails (= 4.1.1)
+  rake (~> 10.3.2)
   rb-readline (~> 0.5.1)
   rspec-activemodel-mocks (~> 1.0.1)
   rspec-rails (~> 2.99)

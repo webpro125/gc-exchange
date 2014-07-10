@@ -45,6 +45,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'database_cleaner', '~> 1.3.0', require: false
   gem 'factory_girl_rails', '~> 4.4'
+  gem 'faker', '~> 1.3.0'
   gem 'simplecov-bamboo', '~> 0.1.0', require: false
 end
