@@ -12,7 +12,7 @@
     <h4><%= t('simple_form.labels.phone.type') %></h4>
   </div>
   <div class="small-9 columns">
-    <span><%= Lookup.lookup_translation(PhoneType, @phone.phone_type.code) %></span>
+    <span><%= lookup_translation(PhoneType, @phone.phone_type.code) %></span>
   </div>
 </div>
 <div class="row page-actions">

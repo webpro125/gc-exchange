@@ -17,7 +17,7 @@
     <% @phones.each do |phone| %>
         <tr>
           <td><%= link_to phone.number, phone %></td>
-          <td><%= Lookup.lookup_translation(PhoneType, phone.phone_type.code) %></td>
+          <td><%= lookup_translation(PhoneType, phone.phone_type.code) %></td>
           <td><%= link_to t('views.phone.actions.edit'), edit_phone_path(phone),
                           class: 'button tiny secondary' %></td>
           <td><%= link_to t('views.phone.actions.delete'),  phone, class: 'button tiny alert',
