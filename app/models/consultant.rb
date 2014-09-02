@@ -6,6 +6,7 @@ class Consultant < ActiveRecord::Base
 
   has_one :address, dependent: :destroy
   has_many :phones, as: :phoneable, dependent: :destroy
+  has_many :project_histories, dependent: :destroy
 
   validates :first_name, length: { in: 3..24 }, presence: true,
             format: { with: /\A[\w\s'-]+\z/,

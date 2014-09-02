@@ -91,7 +91,7 @@ describe Consultant do
     describe 'phones' do
       before do
         @consultant.phones << FactoryGirl.create(:phone)
-        @consultant.save
+        @consultant.save!
       end
 
       it 'should destroy them on delete' do
@@ -101,6 +101,23 @@ describe Consultant do
         @consultant.destroy
         phones.each do |phone|
           expect(Phone.find_by_id(phone)).to be_nil
+        end
+      end
+    end
+
+    describe 'project_histories' do
+      before do
+        @consultant.save!
+        FactoryGirl.create_list(:project_history, 3, consultant: @consultant)
+      end
+
+      it 'should destroy them on delete' do
+        project_histories = @consultant.project_histories.map(&:id)
+        expect(project_histories).not_to be_nil
+
+        @consultant.destroy
+        project_histories.each do |project_history|
+          expect(ProjectHistory.find_by_id(project_histories)).to be_nil
         end
       end
     end

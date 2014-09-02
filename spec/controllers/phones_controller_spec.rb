@@ -185,6 +185,12 @@ describe PhonesController do
           expect { delete :destroy, { id: phone.id } }.to raise_exception ActiveRecord::RecordNotFound
         end
       end
+
+      describe 'with valid params' do
+        it 'deletes the phone' do
+          expect{ delete :destroy, id: @phone.id }.to change{ Phone.count }.from(1).to(0)
+        end
+      end
     end
   end
 

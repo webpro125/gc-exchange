@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709195201) do
+ActiveRecord::Schema.define(version: 20140902190951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(version: 20140709195201) do
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
 
+  create_table "disciplines", force: true do |t|
+    t.string "code", limit: 32
+  end
+
+  add_index "disciplines", ["code"], name: "index_disciplines_on_code", unique: true, using: :btree
+
   create_table "phone_types", force: true do |t|
     t.string "code", limit: 32, null: false
   end
@@ -79,5 +85,32 @@ ActiveRecord::Schema.define(version: 20140709195201) do
   end
 
   add_index "positions", ["code"], name: "index_positions_on_code", unique: true, using: :btree
+
+  create_table "project_histories", force: true do |t|
+    t.integer  "consultant_id",                null: false
+    t.string   "customer_name",    limit: 128
+    t.string   "client_company",   limit: 128
+    t.string   "client_poc_name",  limit: 64
+    t.string   "client_poc_email", limit: 128
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "position_id",                  null: false
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_histories", ["consultant_id"], name: "index_project_histories_on_consultant_id", using: :btree
+  add_index "project_histories", ["position_id"], name: "index_project_histories_on_position_id", using: :btree
+
+  create_table "project_history_disciplines", force: true do |t|
+    t.integer  "discipline_id",      null: false
+    t.integer  "project_history_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_history_disciplines", ["discipline_id"], name: "index_project_history_disciplines_on_discipline_id", using: :btree
+  add_index "project_history_disciplines", ["project_history_id"], name: "index_project_history_disciplines_on_project_history_id", using: :btree
 
 end
