@@ -16,6 +16,12 @@ group :doc do
 end
 
 group :development do
+  gem 'terminal-notifier-guard'
+  gem 'guard-rspec', '~> 4.2.9', require: false
+  gem 'spring-commands-rspec', '~> 1.0.2', require: false
+  gem 'guard-brakeman', '~> 0.8.1', require: false
+
+  gem 'spring', '~> 1.1.3'
   gem 'better_errors', '~> 1.1'
   gem 'quiet_assets', '~> 1.0'
 end
@@ -29,6 +35,7 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.2.9', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
   gem 'guard-bundler', require: false
+  gem 'guard-migrate', '~> 1.1.0', require: false
   gem 'rb-readline', '~> 0.5.1'
   gem 'ruby_gntp', '~> 0.3.4'
   gem 'growl', '~> 1.0.3'
