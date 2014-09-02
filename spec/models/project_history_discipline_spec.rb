@@ -5,7 +5,7 @@ describe ProjectHistoryDiscipline do
   let(:discipline) { FactoryGirl.create(:discipline) }
   before do
     @project_history_discipline = ProjectHistoryDiscipline.new(project_history: project_history,
-                                                    discipline: discipline)
+                                                               discipline: discipline)
   end
 
   subject { @project_history_discipline }
