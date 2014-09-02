@@ -8,7 +8,7 @@ class Consultant < ActiveRecord::Base
   has_many :phones, as: :phoneable, dependent: :destroy
 
   validates :first_name, length: { in: 3..24 }, presence: true,
-            format: { with: /\A[\w\s'-]+\z/,
+            format: { with: /\A[A-Za-z\s'-]+\z/,
                       message: 'only allows letters' }
   validates :last_name, length: { in: 3..24 }, presence: true,
             format: { with: /\A[\w\s'-]+\z/,
