@@ -4,11 +4,14 @@ class Consultant < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_one :address, dependent: :destroy
+  has_many :phones, as: :phoneable, dependent: :destroy
+
   validates :first_name, length: { in: 3..24 }, presence: true,
-            format: { with: /\A[a-zA-Z]+\z/,
+            format: { with: /\A[A-Za-z\s'-]+\z/,
                       message: 'only allows letters' }
   validates :last_name, length: { in: 3..24 }, presence: true,
-            format: { with: /\A[a-zA-Z]+\z/,
-                      message: 'only allows letters' }
+            format: { with: /\A[\w\s'-]+\z/,
+                      message: 'only allows letters and numbers' }
 
 end

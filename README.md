@@ -23,6 +23,22 @@ Foreman will launch and monitor all the processes needed to run GCES
 Go to http://localhost:1080/
 Send mail through smtp://localhost:1025
 
+Create a google geolocation key
+https://developers.google.com/maps/documentation/business/
+
+Create a bing maps api key
+http://www.bingmapsportal.com
+
+Generate a secret key and save your keys as ENV variables
+```
+rake secret
+vim ~/.bash_profile
+
+export SECRET_KEY_BASE=${secret_key}
+export GOOGLE_MAPS_API=${google_maps_api_key}
+export BING_MAPS_API=${bing_maps_api_key}
+```
+
 Initialize your application by running
 ```
 bin/init ./
