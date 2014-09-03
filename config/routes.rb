@@ -9,11 +9,6 @@ Rails.application.routes.draw do
     root 'pages#consultant', as: :consultant_root
   end
 
-  # Root Paths
-  authenticated :consultant do
-    root 'pages#consultant', as: :consultant_root
-  end
-
   root 'pages#home'
 
   # Resources
