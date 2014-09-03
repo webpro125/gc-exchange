@@ -33,14 +33,14 @@ describe Consultant do
     end
 
     it 'should allow only characters numbers and hyphens' do
-      @consultant.first_name = '123567'
-      expect(@consultant).to be_valid
-
       @consultant.first_name = 'james'
       expect(@consultant).to be_valid
 
       @consultant.first_name = 'billy-jean 2'
-      expect(@consultant).to be_valid
+      expect(@consultant).not_to be_valid
+
+      @consultant.first_name = '123567'
+      expect(@consultant).not_to be_valid
 
       @consultant.first_name = '!@#$'
       expect(@consultant).not_to be_valid
