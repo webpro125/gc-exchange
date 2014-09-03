@@ -1,0 +1,30 @@
+<h2 class="text-center">Phones</h2>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="page-actions right">
+      <%= link_to t('views.phone.actions.add'), new_phone_path, class: 'button' %>
+    </div>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th><%= t('views.phone.table.number') %></th>
+      <th><%= t('views.phone.table.type') %></th>
+      <th><%= t('views.phone.table.edit') %></th>
+      <th><%= t('views.phone.table.delete') %></th>
+    </tr>
+    </thead>
+    <% @phones.each do |phone| %>
+        <tr>
+          <td><%= link_to phone.number, phone %></td>
+          <td><%= lookup_translation(PhoneType, phone.phone_type.code) %></td>
+          <td><%= link_to t('views.phone.actions.edit'), edit_phone_path(phone),
+                          class: 'button tiny secondary' %></td>
+          <td><%= link_to t('views.phone.actions.delete'),  phone, class: 'button tiny alert',
+                          method: :delete,
+                          data: { confirm: t('views.phone.confirmations.delete') } %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
