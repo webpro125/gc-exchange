@@ -29,3 +29,7 @@ end
 group :test do
   gem 'factory_girl_rails', '~> 4.4'
 end
+
+group :production do
+  gem 'unicorn' '~> 4.8.2'
+end
