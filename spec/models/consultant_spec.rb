@@ -75,7 +75,7 @@ describe Consultant do
   describe 'association' do
     describe 'address' do
       before do
-        @consultant.save
+        @consultant.save!
         FactoryGirl.create(:address, consultant: @consultant)
       end
 
@@ -91,7 +91,7 @@ describe Consultant do
     describe 'phones' do
       before do
         @consultant.phones << FactoryGirl.create(:phone)
-        @consultant.save
+        @consultant.save!
       end
 
       it 'should destroy them on delete' do
@@ -108,8 +108,7 @@ describe Consultant do
     describe 'skills' do
       before do
         @consultant.skills << FactoryGirl.create(:skill)
-        @consultant.save
-        # skills = @consultant.skills.map(&:id)
+        @consultant.save!
       end
 
       it 'should not destroy them on delete' do
@@ -121,6 +120,13 @@ describe Consultant do
           expect(Skill.find_by_id(skill)).not_to be_nil
         end
       end
+    end
+
+    describe 'consultant_skills' do
+      before do
+        @consultant.skills << FactoryGirl.create(:skill)
+        @consultant.save!
+      end
 
       it 'should destroy them on delete' do
         id = @consultant.id
@@ -128,7 +134,6 @@ describe Consultant do
 
         @consultant.destroy
         skills.each do |skill|
-          # expect(ConsultantSkill.where(consultant_id: id, skill_id: skill)).to be_nil
           expect(ConsultantSkill.find_by(:consultant_id => id, :skill_id => skill)).to be_nil
         end
       end
