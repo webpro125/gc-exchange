@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :skill do
-    code Faker::Code.isbn[0..5]
+    code { Faker::Code.isbn[0..5] }
   end
 end

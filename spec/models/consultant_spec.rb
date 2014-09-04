@@ -104,5 +104,34 @@ describe Consultant do
         end
       end
     end
+
+    describe 'skills' do
+      before do
+        @consultant.skills << FactoryGirl.create(:skill)
+        @consultant.save
+        # skills = @consultant.skills.map(&:id)
+      end
+
+      it 'should not destroy them on delete' do
+        skills = @consultant.skills.map(&:id)
+        expect(skills).not_to be_nil
+
+        @consultant.destroy
+        skills.each do |skill|
+          expect(Skill.find_by_id(skill)).not_to be_nil
+        end
+      end
+
+      it 'should destroy them on delete' do
+        id = @consultant.id
+        skills = @consultant.skills.map(&:id)
+
+        @consultant.destroy
+        skills.each do |skill|
+          # expect(ConsultantSkill.where(consultant_id: id, skill_id: skill)).to be_nil
+          expect(ConsultantSkill.find_by(:consultant_id => id, :skill_id => skill)).to be_nil
+        end
+      end
+    end
   end
 end

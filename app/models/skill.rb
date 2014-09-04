@@ -3,6 +3,3 @@ class Skill < ActiveRecord::Base
 
   validates :code, length: { maximum: 32 }, uniqueness: true
 end
-
-
-

@@ -6,7 +6,7 @@ class Consultant < ActiveRecord::Base
 
   has_one :address, dependent: :destroy
   has_many :phones, as: :phoneable, dependent: :destroy
-  has_many :consultant_skills
+  has_many :consultant_skills, dependent: :destroy
   has_many :skills, through: :consultant_skills
 
   validates :first_name, length: { in: 3..24 }, presence: true,
