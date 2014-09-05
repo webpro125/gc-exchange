@@ -5,8 +5,8 @@ describe ConsultantSkill do
     @consultant_skill = ConsultantSkill.new(skill: skill, consultant: consultant)
   end
 
-  let(:consultant) { @consultant = FactoryGirl.create(:confirmed_consultant) }
-  let(:skill) { @skill = FactoryGirl.create(:skill) }
+  let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
+  let(:skill) { FactoryGirl.create(:skill) }
 
   subject { @consultant_skill }
 
