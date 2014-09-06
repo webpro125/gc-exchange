@@ -130,11 +130,11 @@ describe Consultant do
 
       it 'should destroy them on delete' do
         id = @consultant.id
-        skills = @consultant.skills.map(&:id)
+        @consultant.skills.map(&:id)
 
         @consultant.destroy
         skills.each do |skill|
-          expect(ConsultantSkill.find_by(:consultant_id => id, :skill_id => skill)).to be_nil
+          expect(ConsultantSkill.find_by(consultant_id: id, skill_id: skill)).to be_nil
         end
       end
     end

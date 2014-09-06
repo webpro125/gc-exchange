@@ -14,14 +14,14 @@ describe ConsultantSkill do
 
   describe 'skill_id' do
     it 'should not be valid' do
-      @consultant_skill.skill_id = nil
+      @consultant_skill.skill = nil
       expect(@consultant_skill).to_not be_valid
     end
   end
 
-  describe 'profile_id' do
+  describe 'consultant' do
     it 'should not be valid' do
-      @consultant_skill.consultant_id = nil
+      @consultant_skill.consultant = nil
       expect(@consultant_skill).to_not be_valid
     end
   end
