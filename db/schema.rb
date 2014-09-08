@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902190951) do
+ActiveRecord::Schema.define(version: 20140903003118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140902190951) do
   end
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
+
+  create_table "consultant_skills", force: true do |t|
+    t.integer  "consultant_id", null: false
+    t.integer  "skill_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultant_skills", ["consultant_id"], name: "index_consultant_skills_on_consultant_id", using: :btree
+  add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -79,6 +89,14 @@ ActiveRecord::Schema.define(version: 20140902190951) do
 
   add_index "phones", ["phone_type_id"], name: "index_phones_on_phone_type_id", using: :btree
   add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type", using: :btree
+
+  create_table "skills", force: true do |t|
+    t.string   "code",       limit: 32, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skills", ["code"], name: "index_skills_on_code", unique: true, using: :btree
 
   create_table "positions", force: true do |t|
     t.string "code", limit: 32, null: false

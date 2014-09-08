@@ -42,11 +42,12 @@ class PhonesController < ApplicationController
   end
 
   protected
-    def phone_params
-      params.require(:phone).permit(:phone_type_id, :number)
-    end
 
-    def load_phone
-      @phone = current_consultant.phones.find(params[:id])
-    end
+  def phone_params
+    params.require(:phone).permit(:phone_type_id, :number)
+  end
+
+  def load_phone
+    @phone = current_consultant.phones.find(params[:id])
+  end
 end
