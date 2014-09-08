@@ -1,2 +1,4 @@
 --color
 --require spec_helper
+--format progress
+--format JUnit --out spec/results/unit.xml
