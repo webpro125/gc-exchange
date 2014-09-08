@@ -24,6 +24,7 @@ end
 group :development, :test do
   # Debugger
   gem 'byebug', '~> 3.1.2', require: false
+  gem 'spring', '~> 1.1.3'
 
   # Guard
   gem 'spring-commands-rspec', '~> 1.0.2', require: false
@@ -34,6 +35,7 @@ group :development, :test do
   gem 'rb-readline', '~> 0.5.1'
   gem 'ruby_gntp', '~> 0.3.4'
   gem 'growl', '~> 1.0.3'
+  gem 'terminal-notifier-guard'
 
   gem 'rspec-rails', '~> 2.99'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'

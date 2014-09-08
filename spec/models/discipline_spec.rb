@@ -16,7 +16,7 @@ describe Discipline do
     end
 
     it 'should be unique' do
-      @discipline.save
+      @discipline.save!
       discipline = @discipline.dup
       expect(discipline).to_not be_valid
     end

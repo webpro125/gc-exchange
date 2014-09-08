@@ -16,7 +16,7 @@ describe Position do
     end
 
     it 'should be unique' do
-      @position.save
+      @position.save!
       position = @position.dup
       expect(position).to_not be_valid
     end
