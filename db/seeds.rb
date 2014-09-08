@@ -10,3 +10,5 @@
  {id: 3, code: PhoneType::HOME}].each do |type|
   PhoneType.find_or_create_by(type)
 end
+
+# TODO need a list of disciplines that our system allows

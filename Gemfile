@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.5'
 gem 'pg', '~> 0.17'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -9,6 +9,7 @@ gem 'jquery-rails', '~> 3.1.0'
 gem 'foundation-rails', '~> 5.2'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
+gem 'rake', '~> 10.3.2'
 gem 'geocoder', '~> 1.2.2'
 
 group :doc do
@@ -16,9 +17,6 @@ group :doc do
 end
 
 group :development do
-  gem 'terminal-notifier-guard'
-
-  gem 'spring', '~> 1.1.3'
   gem 'better_errors', '~> 1.1'
   gem 'quiet_assets', '~> 1.0'
 end
@@ -26,6 +24,7 @@ end
 group :development, :test do
   # Debugger
   gem 'byebug', '~> 3.1.2', require: false
+  gem 'spring', '~> 1.1.3'
 
   # Guard
   gem 'spring-commands-rspec', '~> 1.0.2', require: false
@@ -36,6 +35,7 @@ group :development, :test do
   gem 'rb-readline', '~> 0.5.1'
   gem 'ruby_gntp', '~> 0.3.4'
   gem 'growl', '~> 1.0.3'
+  gem 'terminal-notifier-guard'
 
   gem 'rspec-rails', '~> 2.99'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'
