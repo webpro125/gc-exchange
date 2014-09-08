@@ -130,7 +130,7 @@ describe Consultant do
 
       it 'should destroy them on delete' do
         id = @consultant.id
-        @consultant.skills.map(&:id)
+       skills = @consultant.skills.map(&:id)
 
         @consultant.destroy
         skills.each do |skill|
