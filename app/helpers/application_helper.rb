@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # Determines if we're in a development type environment
   #
   # Returns true for following environments
@@ -9,6 +8,6 @@ module ApplicationHelper
   # - test
   # - production
   def development?
-    return Rails.env.development?
+    Rails.env.development?
   end
 end
