@@ -11,6 +11,7 @@ gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
 gem 'rake', '~> 10.3.2'
 gem 'geocoder', '~> 1.2.2'
+gem 'pundit', '~> 0.3.0'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

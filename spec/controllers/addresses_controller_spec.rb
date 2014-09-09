@@ -84,7 +84,7 @@ describe AddressesController do
           consultant.address.destroy
         end
 
-        it 'redirects to "new_password"' do
+        it 'redirects to "new_address"' do
           get :edit
           expect(response).to redirect_to(new_address_path)
         end
@@ -135,7 +135,7 @@ describe AddressesController do
           consultant.address.destroy
         end
 
-        it 'redirects to "new_password"' do
+        it 'redirects to "new_address"' do
           put :update, address: @address
           expect(response).to redirect_to(new_address_path)
         end
