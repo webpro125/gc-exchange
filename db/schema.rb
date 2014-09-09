@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604215803) do
+ActiveRecord::Schema.define(version: 20140903003118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.string   "address1",      limit: 128, null: false
+    t.string   "address2",      limit: 128
+    t.string   "city",          limit: 64,  null: false
+    t.string   "state",         limit: 2,   null: false
+    t.string   "zipcode",       limit: 5,   null: false
+    t.float    "latitude",                  null: false
+    t.float    "longitude",                 null: false
+    t.integer  "consultant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
+
+  create_table "consultant_skills", force: true do |t|
+    t.integer  "consultant_id", null: false
+    t.integer  "skill_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultant_skills", ["consultant_id"], name: "index_consultant_skills_on_consultant_id", using: :btree
+  add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -40,5 +65,70 @@ ActiveRecord::Schema.define(version: 20140604215803) do
   add_index "consultants", ["confirmation_token"], name: "index_consultants_on_confirmation_token", unique: true, using: :btree
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
+
+  create_table "disciplines", force: true do |t|
+    t.string "code", limit: 32
+  end
+
+  add_index "disciplines", ["code"], name: "index_disciplines_on_code", unique: true, using: :btree
+
+  create_table "phone_types", force: true do |t|
+    t.string "code", limit: 32, null: false
+  end
+
+  add_index "phone_types", ["code"], name: "index_phone_types_on_code", unique: true, using: :btree
+
+  create_table "phones", force: true do |t|
+    t.integer  "phoneable_id"
+    t.string   "phoneable_type"
+    t.integer  "phone_type_id",             null: false
+    t.string   "number",         limit: 32, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phones", ["phone_type_id"], name: "index_phones_on_phone_type_id", using: :btree
+  add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type", using: :btree
+
+  create_table "skills", force: true do |t|
+    t.string   "code",       limit: 32, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skills", ["code"], name: "index_skills_on_code", unique: true, using: :btree
+
+  create_table "positions", force: true do |t|
+    t.string "code", limit: 32, null: false
+  end
+
+  add_index "positions", ["code"], name: "index_positions_on_code", unique: true, using: :btree
+
+  create_table "project_histories", force: true do |t|
+    t.integer  "consultant_id",                null: false
+    t.string   "customer_name",    limit: 128
+    t.string   "client_company",   limit: 128
+    t.string   "client_poc_name",  limit: 64
+    t.string   "client_poc_email", limit: 128
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "position_id",                  null: false
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_histories", ["consultant_id"], name: "index_project_histories_on_consultant_id", using: :btree
+  add_index "project_histories", ["position_id"], name: "index_project_histories_on_position_id", using: :btree
+
+  create_table "project_history_disciplines", force: true do |t|
+    t.integer  "discipline_id",      null: false
+    t.integer  "project_history_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_history_disciplines", ["discipline_id"], name: "index_project_history_disciplines_on_discipline_id", using: :btree
+  add_index "project_history_disciplines", ["project_history_id"], name: "index_project_history_disciplines_on_project_history_id", using: :btree
 
 end

@@ -20,4 +20,43 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  controllers:
+    address:
+      create:
+        success: 'Address saved successfully'
+      update:
+        success: 'Address saved successfully'
+    phone:
+      create:
+        success: 'Phone saved successfully'
+      update:
+        success: 'Phone saved successfully'
+  views:
+    password:
+      actions:
+        change_password: 'Change Password'
+    address:
+      actions:
+        add: 'Add Your Address'
+        edit: 'Edit Address'
+      new:
+        save: 'Save Address'
+      edit:
+        save: 'Update Address'
+    phone:
+      table:
+        number: 'Phone Number'
+        type: 'Phone Type'
+        edit: 'Edit Phone'
+        delete: 'Delete Phone'
+      confirmations:
+        delete: 'Are you sure you want to delete this phone number?'
+      actions:
+        index: 'Manage Phones'
+        add: 'New Phone'
+        edit: 'Edit'
+        delete: 'Delete'
+      new:
+        save: 'Save Phone'
+      edit:
+        save: 'Update Phone'

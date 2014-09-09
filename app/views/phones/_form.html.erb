@@ -1,0 +1,8 @@
+<%= simple_form_for @phone do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :number %>
+    <%= f.association :phone_type, build_simple_form_dropdown(PhoneType) %>
+
+    <%= f.button :submit, button_label %>
+<% end %>
