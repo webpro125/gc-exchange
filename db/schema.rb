@@ -79,10 +79,11 @@ ActiveRecord::Schema.define(version: 20140905142813) do
   add_index "disciplines", ["code"], name: "index_disciplines_on_code", unique: true, using: :btree
 
   create_table "militaries", force: true do |t|
-    t.integer  "rank_id",            null: false
-    t.integer  "clearance_level_id", null: false
-    t.integer  "consultant_id",      null: false
+    t.integer  "rank_id"
+    t.integer  "clearance_level_id"
+    t.integer  "consultant_id",             null: false
     t.date     "investigation_date"
+    t.date     "clearance_expiration_date"
     t.date     "service_start_date"
     t.date     "service_end_date"
     t.datetime "created_at"
@@ -116,7 +117,6 @@ ActiveRecord::Schema.define(version: 20140905142813) do
   end
 
   add_index "positions", ["code"], name: "index_positions_on_code", unique: true, using: :btree
-
 
   create_table "project_histories", force: true do |t|
     t.integer  "consultant_id",                null: false

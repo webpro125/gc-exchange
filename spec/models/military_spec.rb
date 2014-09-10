@@ -16,20 +16,6 @@ describe Military do
 
   it { should be_valid }
 
-  describe 'rank' do
-    it 'is not required' do
-      @military.rank_id = nil
-      expect(@military).to be_valid
-    end
-  end
-
-  describe 'clearance_level' do
-    it 'is not required' do
-      @military.clearance_level_id = nil
-      expect(@military).to be_valid
-    end
-  end
-
   describe 'service_start_date' do
     it 'is not required' do
       @military.service_start_date = nil
@@ -43,8 +29,8 @@ describe Military do
       expect(@military).to be_valid
     end
 
-    it 'should be greater than today' do
-      @military.service_end_date = DateTime.now
+    it 'should not be greater than today' do
+      @military.service_end_date = 1.day.from_now
       expect(@military).not_to be_valid
     end
 
@@ -61,17 +47,47 @@ describe Military do
     end
   end
 
+  describe 'clearance_expiration_date' do
+    it 'is not required' do
+      @military.clearance_expiration_date = nil
+      expect(@military).to be_valid
+    end
+  end
+
   describe 'associations' do
     describe 'rank' do
-      it 'should be valid' do
-        @military.rank_id= nil
+      it 'is not required' do
+        @military.rank = nil
         expect(@military).to be_valid
+      end
+
+      it 'should not be destroyed on delete' do
+        @military.save!
+        rank_id = @military.rank_id
+
+        @military.destroy
+        expect(Rank.find_by_id(rank_id)).not_to be_nil
+      end
+    end
+
+    describe 'clearance_level' do
+      it 'is not required' do
+        @military.clearance_level = nil
+        expect(@military).to be_valid
+      end
+
+      it 'should not be destroyed on delete' do
+        @military.save!
+        clearance_level_id = @military.clearance_level_id
+
+        @military.destroy
+        expect(ClearanceLevel.find_by_id(clearance_level_id)).not_to be_nil
       end
     end
 
     describe 'consultant' do
       it 'should be present' do
-        @military.consultant_id = nil
+        @military.consultant = nil
         expect(@military).to_not be_valid
       end
 

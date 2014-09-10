@@ -149,8 +149,8 @@ describe ProjectHistory do
       expect(@project_history).to be_valid
     end
 
-    it 'should be greater than today' do
-      @project_history.end_date = DateTime.now
+    it 'should not be greater than today' do
+      @project_history.end_date = 3.months.from_now
       expect(@project_history).not_to be_valid
     end
 
