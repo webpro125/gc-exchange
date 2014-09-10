@@ -1,5 +1,5 @@
 module ApplicationHelper
-  LOOKUPS = [PhoneType].freeze
+  LOOKUPS = [PhoneType].freeze, [ClearanceLevel].freeze
 
   # Determines if we're in a development type environment
   #
