@@ -35,10 +35,8 @@ guard :rspec, cmd: 'spring rspec', all_after_pass: true do
   watch(%r{^app/views/(.+)/.*\.(erb|haml|slim)$})     { |m| "spec/features/#{m[1]}_spec.rb" }
 
   # Factories
-  begin
-    require 'active_support/inflector'
-    watch(%r{^spec/factories/(.+)\.rb$}) { |m| ["app/models/#{m[1].singularize}.rb", "spec/models/#{m[1].singularize}_spec.rb"] }
-  rescue LoadError
+  require 'active_support/inflector'
+  watch(%r{^spec/factories/(.+)\.rb$}) do |m|
+    ["app/models/#{m[1].singularize}.rb", "spec/models/#{m[1].singularize}_spec.rb"]
   end
 end
-

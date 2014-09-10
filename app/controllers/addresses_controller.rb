@@ -30,12 +30,13 @@ class AddressesController < ApplicationController
   end
 
   private
-    def address_params
-      params.require(:address).permit(:address1, :address2, :city, :state, :zipcode)
-    end
 
-    def load_address
-      @address = current_consultant.address
-      redirect_to new_address_path unless @address
-    end
+  def address_params
+    params.require(:address).permit(:address1, :address2, :city, :state, :zipcode)
+  end
+
+  def load_address
+    @address = current_consultant.address
+    redirect_to new_address_path unless @address
+  end
 end

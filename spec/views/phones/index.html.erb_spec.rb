@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe "phones/index.html.erb" do
+describe 'phones/index.html.erb' do
   before do
     @phones = [mock_model(Phone, phone_type: mock_model(PhoneType)),
-              mock_model(Phone, phone_type: mock_model(PhoneType))]
+               mock_model(Phone, phone_type: mock_model(PhoneType))]
     assign(:phones, @phones)
-    assign(:phone_types, [{id: 1, code: 'CELL'}])
+    assign(:phone_types, [{ id: 1, code: 'CELL' }])
     view.stub(:lookup_translation).and_return('hi')
     render
   end

@@ -110,14 +110,14 @@ describe ProjectHistory do
     end
 
     it 'should allow only valid email' do
-      emails = %w[test@test.com an-email@an-email.com 3email@some.weird.email.org]
+      emails = %w[(test@test.com) (an-email@an-email.com) (3email@some.weird.email.org)]
 
       emails.each do |email|
         @project_history.client_poc_email = email
         expect(@project_history).to be_valid
       end
 
-      emails = %w[not.an.email not.an@email needavalid@12!@$#.com]
+      emails = %w[(not.an.email) (not.an@email) (needavalid@12!@$#.com)]
 
       emails.each do |email|
         @project_history.client_poc_email = email
@@ -167,7 +167,7 @@ describe ProjectHistory do
     end
 
     it 'should have maximum length' do
-      @project_history.description = 'a' * 10001
+      @project_history.description = 'a' * 10_001
       expect(@project_history).not_to be_valid
     end
 

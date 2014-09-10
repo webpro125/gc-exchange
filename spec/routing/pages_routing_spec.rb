@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe PagesController do
-  describe "routing" do
-    describe "root" do
+  describe 'routing' do
+    describe 'root' do
 
       it 'routes to pages#home' do
         allow_message_expectations_on_nil

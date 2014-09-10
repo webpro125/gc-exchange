@@ -7,16 +7,18 @@ describe PhonesController do
     before do
       sign_in consultant
       @phone = FactoryGirl.attributes_for(:phone).merge(
-                                                phone_type_id: FactoryGirl.create(:phone_type).id)
+          phone_type_id: FactoryGirl.create(:phone_type).id)
     end
 
     describe "GET 'index'" do
       before do
-        @phones = FactoryGirl.create_list(:phone, 4, phoneable_type: 'Consultant',
-                                phoneable_id: consultant.id)
+        @phones = FactoryGirl.create_list(:phone,
+                                          4,
+                                          phoneable_type: 'Consultant',
+                                          phoneable_id: consultant.id)
       end
 
-      it "returns http success" do
+      it 'returns http success' do
         get :index
         expect(response).to be_success
       end
@@ -137,30 +139,30 @@ describe PhonesController do
 
       describe 'with valid parameters' do
         it 'redirects to phones_path' do
-          put :update, { phone: @phone, id: phone.id }
+          put :update, phone: @phone, id: phone.id
           expect(response).to redirect_to phones_path
         end
 
         it 'persists the record' do
           Phone.any_instance.should_receive(:update).and_return(true)
-          put :update, { phone: @phone, id: phone.id }
+          put :update, phone: @phone, id: phone.id
         end
 
         it 'sends a flash message' do
-          put :update, { phone: @phone, id: phone.id }
+          put :update, phone: @phone, id: phone.id
           expect(flash[:success]).to eq(I18n.t('controllers.phone.update.success'))
         end
       end
 
       describe 'with invalid parameters' do
         it 'renders "edit"' do
-          put :update, { phone: { number: nil }, id: phone.id }
+          put :update, phone: { number: nil }, id: phone.id
           expect(response).to render_template :edit
         end
 
         it 'does not persist the record' do
           Phone.any_instance.should_receive(:update).and_return(false)
-          put :update, { phone: { number: nil }, id: phone.id }
+          put :update, phone: { number: nil }, id: phone.id
         end
       end
 
@@ -168,12 +170,14 @@ describe PhonesController do
         let(:phone1) { FactoryGirl.create(:phone) }
 
         it 'raises ActiveRecord::RecordNotFound' do
-          expect { put :update, { phone: phone1, id: phone1.id } }.to raise_exception ActiveRecord::RecordNotFound
+          expect do
+            put :update, phone: phone1, id: phone1.id
+          end.to raise_exception ActiveRecord::RecordNotFound
         end
       end
     end
 
-    describe "DELETE 'destroy'" do
+    describe 'DELETE "destroy"' do
       before do
         @phone = consultant.phones.create(@phone)
       end
@@ -182,13 +186,15 @@ describe PhonesController do
         let(:phone) { FactoryGirl.create(:phone) }
 
         it 'raises ActiveRecord::RecordNotFound' do
-          expect { delete :destroy, { id: phone.id } }.to raise_exception ActiveRecord::RecordNotFound
+          expect do
+            delete :destroy, id: phone.id
+          end.to raise_exception ActiveRecord::RecordNotFound
         end
       end
 
       describe 'with valid params' do
         it 'deletes the phone' do
-          expect{ delete :destroy, id: @phone.id }.to change{ Phone.count }.from(1).to(0)
+          expect { delete :destroy, id: @phone.id }.to change { Phone.count }.from(1).to(0)
         end
       end
     end
@@ -207,7 +213,7 @@ describe PhonesController do
 
       phone = FactoryGirl.create(:phone)
       [:show, :edit].each do |method|
-        get method, { id: phone.id }
+        get method, id: phone.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
@@ -216,7 +222,7 @@ describe PhonesController do
       phone = FactoryGirl.attributes_for(:phone)
 
       [:create].each do |method|
-        post method, { phone: phone }
+        post method, phone: phone
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
@@ -225,7 +231,7 @@ describe PhonesController do
       phone = FactoryGirl.create(:phone)
 
       [:update].each do |method|
-        put method, { id: phone.id }
+        put method, id: phone.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
@@ -234,7 +240,7 @@ describe PhonesController do
       phone = FactoryGirl.create(:phone)
 
       [:destroy].each do |method|
-        delete method, { id: phone.id }
+        delete method, id: phone.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end

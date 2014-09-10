@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "phones/edit.html.erb" do
+describe 'phones/edit.html.erb' do
   before do
     assign(:phone, FactoryGirl.build(:phone))
-    assign(:phone_types, [{id: 1, code: 'CELL'}])
+    assign(:phone_types, [{ id: 1, code: 'CELL' }])
     render
   end
 

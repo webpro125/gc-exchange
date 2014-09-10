@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "addresses/new.html.erb" do
+describe 'addresses/new.html.erb' do
   before do
     assign(:address, FactoryGirl.build(:address))
     render
