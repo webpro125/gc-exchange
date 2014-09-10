@@ -1,492 +1,521 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites errors="0" failures="1" skipped="0" tests="209" time="3.098023" timestamp="2014-09-10T10:15:03-04:00">
-  <testsuite name="Phone" tests="7" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="Phone should be valid" time="0.035645">
-    </testcase>
-    <testcase name="Phone number is required" time="0.246409">
-    </testcase>
-    <testcase name="Phone number should format the number" time="0.003954">
-    </testcase>
-    <testcase name="Phone phoneable phoneable_id is required" time="0.003689">
-    </testcase>
-    <testcase name="Phone phoneable phoneable_type is required" time="0.003762">
-    </testcase>
-    <testcase name="Phone associations phone_type is required" time="0.003367">
-    </testcase>
-    <testcase name="Phone associations phone_type should not be destroyed" time="0.006096">
-    </testcase>
-  </testsuite>
-  <testsuite name="ProjectHistoryDiscipline" tests="5" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="ProjectHistoryDiscipline should be valid" time="0.262124">
-    </testcase>
-    <testcase name="ProjectHistoryDiscipline association project_history should be present" time="0.022857">
-    </testcase>
-    <testcase name="ProjectHistoryDiscipline association project_history should not be destroyed on delete" time="0.027144">
-    </testcase>
-    <testcase name="ProjectHistoryDiscipline association discipline should be present" time="0.024093">
-    </testcase>
-    <testcase name="ProjectHistoryDiscipline association discipline should not be destroyed on delete" time="0.025995">
-    </testcase>
-  </testsuite>
-  <testsuite name="phones/show.html.erb" tests="4" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="phones/show.html.erb should have a link to delete" time="0.008445">
-    </testcase>
-    <testcase name="phones/show.html.erb should have a link to edit" time="0.0049">
-    </testcase>
-    <testcase name="phones/show.html.erb should have phone_type" time="0.004397">
-    </testcase>
-    <testcase name="phones/show.html.erb should have number" time="0.004803">
-    </testcase>
-  </testsuite>
-  <testsuite name="ConsultantSkill" tests="3" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="ConsultantSkill should be valid" time="0.015346">
-    </testcase>
-    <testcase name="ConsultantSkill skill_id should not be valid" time="0.00935">
-    </testcase>
-    <testcase name="ConsultantSkill consultant should not be valid" time="0.006659">
-    </testcase>
-  </testsuite>
-  <testsuite name="phones/edit.html.erb" tests="2" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="phones/edit.html.erb should have number" time="0.065543">
-    </testcase>
-    <testcase name="phones/edit.html.erb should have phone_type" time="0.029852">
-    </testcase>
-  </testsuite>
-  <testsuite name="PagesController" tests="6" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="PagesController not logged in GET &quot;home&quot; renders &quot;home&quot;" time="0.01097">
-    </testcase>
-    <testcase name="PagesController not logged in GET &quot;consultant&quot; redirects to new_consultant_session" time="0.004908">
-    </testcase>
-    <testcase name="PagesController logged in as consultant GET &quot;home&quot; renders &quot;consultant&quot;" time="0.009375">
-    </testcase>
-    <testcase name="PagesController logged in as consultant GET &quot;consultant&quot; renders &quot;consultant&quot;" time="0.007613">
-    </testcase>
-    <testcase name="PagesController routing root routes to pages#home" time="0.002325">
-    </testcase>
-    <testcase name="PagesController routing root routes to pages#consultant" time="0.001904">
-    </testcase>
-  </testsuite>
-  <testsuite name="AddressesController" tests="26" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="AddressesController when logged in PUT &quot;update&quot; with valid parameters redirects to consultant_root_path" time="0.026698">
-    </testcase>
-    <testcase name="AddressesController when logged in PUT &quot;update&quot; with valid parameters persists the record" time="0.014785">
-    </testcase>
-    <testcase name="AddressesController when logged in PUT &quot;update&quot; with valid parameters sends a flash message" time="0.02502">
-    </testcase>
-    <testcase name="AddressesController when logged in PUT &quot;update&quot; with invalid parameters renders &quot;edit&quot;" time="0.016749">
-    </testcase>
-    <testcase name="AddressesController when logged in PUT &quot;update&quot; with invalid parameters does not persist the record" time="0.015095">
-    </testcase>
-    <testcase name="AddressesController when logged in PUT &quot;update&quot; with nil address redirects to &quot;new_password&quot;" time="0.016958">
-    </testcase>
-    <testcase name="AddressesController when logged in GET &quot;edit&quot; renders #edit" time="0.011919">
-    </testcase>
-    <testcase name="AddressesController when logged in GET &quot;edit&quot; assigns address" time="0.012098">
-    </testcase>
-    <testcase name="AddressesController when logged in GET &quot;edit&quot; with nil address redirects to &quot;new_password&quot;" time="0.012321">
-    </testcase>
-    <testcase name="AddressesController when logged in POST &quot;create&quot; with valid paramaters redirects to consultant_root_path" time="0.012287">
-    </testcase>
-    <testcase name="AddressesController when logged in POST &quot;create&quot; with valid paramaters persists the record" time="0.00928">
-    </testcase>
-    <testcase name="AddressesController when logged in POST &quot;create&quot; with valid paramaters sends a flash message" time="0.011676">
-    </testcase>
-    <testcase name="AddressesController when logged in POST &quot;create&quot; with invalid paramaters renders &quot;new&quot;" time="0.013595">
-    </testcase>
-    <testcase name="AddressesController when logged in POST &quot;create&quot; with invalid paramaters does not persist the record" time="0.011197">
-    </testcase>
-    <testcase name="AddressesController when logged in GET &quot;new&quot; renders #new" time="0.012385">
-    </testcase>
-    <testcase name="AddressesController when logged in GET &quot;new&quot; assigns address" time="0.010686">
-    </testcase>
-    <testcase name="AddressesController when logged in GET &quot;new&quot; with existing address should redirect to edit" time="0.010859">
-    </testcase>
-    <testcase name="AddressesController when not logged in should redirect to login for &quot;GET&quot; requests" time="0.008696">
-    </testcase>
-    <testcase name="AddressesController when not logged in should redirect to login for &quot;POST&quot; requests" time="0.00726">
-    </testcase>
-    <testcase name="AddressesController when not logged in should redirect to login for &quot;PUT&quot; requests" time="0.007386">
-    </testcase>
-    <testcase name="AddressesController routing routes to addresses#create" time="0.002104">
-    </testcase>
-    <testcase name="AddressesController routing should not route to addresses#show" time="0.001873">
-    </testcase>
-    <testcase name="AddressesController routing routes to addresses#update" time="0.001461">
-    </testcase>
-    <testcase name="AddressesController routing routes to addresses#edit" time="0.001327">
-    </testcase>
-    <testcase name="AddressesController routing should not route to addresses#destroy" time="0.001341">
-    </testcase>
-    <testcase name="AddressesController routing routes to addresses#new" time="0.001255">
-    </testcase>
-  </testsuite>
-  <testsuite name="PhonesController" tests="35" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="PhonesController routing should routes to phones#new" time="0.005997">
-    </testcase>
-    <testcase name="PhonesController routing should routes to phones#create" time="0.001908">
-    </testcase>
-    <testcase name="PhonesController routing should route to addresses#destroy" time="0.002545">
-    </testcase>
-    <testcase name="PhonesController routing should routes to phones#update" time="0.001943">
-    </testcase>
-    <testcase name="PhonesController routing should routes to phones#edit" time="0.002004">
-    </testcase>
-    <testcase name="PhonesController routing should route to phones#show" time="0.001983">
-    </testcase>
-    <testcase name="PhonesController routing should route to phones#index" time="0.001876">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'show' with consultants phone renders #show" time="0.027022">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'show' with consultants phone assigns phone" time="0.016261">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'show' with different users phone raises ActiveRecord::RecordNotFound" time="0.043403">
-    </testcase>
-    <testcase name="PhonesController when logged in POST 'create' with valid paramaters redirects to phones_path" time="0.012452">
-    </testcase>
-    <testcase name="PhonesController when logged in POST 'create' with valid paramaters persists the record" time="0.012033">
-    </testcase>
-    <testcase name="PhonesController when logged in POST 'create' with valid paramaters sends a flash message" time="0.015656">
-    </testcase>
-    <testcase name="PhonesController when logged in POST 'create' with invalid paramaters renders &quot;new&quot;" time="0.017658">
-    </testcase>
-    <testcase name="PhonesController when logged in POST 'create' with invalid paramaters does not persist the record" time="0.013204">
-    </testcase>
-    <testcase name="PhonesController when logged in DELETE &quot;destroy&quot; with different users phone raises ActiveRecord::RecordNotFound" time="0.036274">
-    </testcase>
-    <testcase name="PhonesController when logged in DELETE &quot;destroy&quot; with valid params deletes the phone" time="0.019141">
-    </testcase>
-    <testcase name="PhonesController when logged in PUT 'update' with valid parameters redirects to phones_path" time="0.024219">
-    </testcase>
-    <testcase name="PhonesController when logged in PUT 'update' with valid parameters persists the record" time="0.013569">
-    </testcase>
-    <testcase name="PhonesController when logged in PUT 'update' with valid parameters sends a flash message" time="0.01542">
-    </testcase>
-    <testcase name="PhonesController when logged in PUT 'update' with invalid parameters renders &quot;edit&quot;" time="0.016758">
-    </testcase>
-    <testcase name="PhonesController when logged in PUT 'update' with invalid parameters does not persist the record" time="0.015852">
-    </testcase>
-    <testcase name="PhonesController when logged in PUT 'update' with different users phone raises ActiveRecord::RecordNotFound" time="0.032138">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'edit' with consultants phone renders #edit" time="0.016174">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'edit' with consultants phone assigns phone" time="0.014433">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'edit' with different users phone raises ActiveRecord::RecordNotFound" time="0.039173">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'new' renders #new" time="0.012571">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'new' assigns phone" time="0.011817">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'index' returns http success" time="0.025405">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'index' assigns phones" time="0.036815">
-    </testcase>
-    <testcase name="PhonesController when logged in GET 'index' does not include other consultants phones" time="0.076464">
-    </testcase>
-    <testcase name="PhonesController when not logged in should redirect to login for &quot;DELETE&quot; requests" time="0.027333">
-    </testcase>
-    <testcase name="PhonesController when not logged in should redirect to login for &quot;PUT&quot; requests" time="0.028092">
-    </testcase>
-    <testcase name="PhonesController when not logged in should redirect to login for &quot;POST&quot; requests" time="0.009269">
-    </testcase>
-    <testcase name="PhonesController when not logged in should redirect to login for &quot;GET&quot; requests" time="0.031595">
-    </testcase>
-  </testsuite>
-  <testsuite name="ApplicationHelper" tests="5" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="ApplicationHelper#development? should return true in development" time="0.00341">
-    </testcase>
-    <testcase name="ApplicationHelper#development? should return false in test" time="0.001694">
-    </testcase>
-    <testcase name="ApplicationHelper#development? should return false in production" time="0.001939">
-    </testcase>
-    <testcase name="ApplicationHelper#build_simple_form_dropdown return hash returns &quot;:id&quot; for value_method" time="0.001917">
-    </testcase>
-    <testcase name="ApplicationHelper#build_simple_form_dropdown return hash contains &quot;label_method&quot;" time="0.002394">
-    </testcase>
-  </testsuite>
-  <testsuite name="phones/new.html.erb" tests="2" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="phones/new.html.erb should have number" time="0.032519">
-    </testcase>
-    <testcase name="phones/new.html.erb should have phone_type" time="0.02975">
-    </testcase>
-  </testsuite>
-  <testsuite name="Discipline" tests="3" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="Discipline should be valid" time="0.001975">
-    </testcase>
-    <testcase name="Discipline code should have a max length" time="0.002227">
-    </testcase>
-    <testcase name="Discipline code should be unique" time="0.00392">
-    </testcase>
-  </testsuite>
-  <testsuite name="addresses/edit.html.erb" tests="5" errors="0" failures="1" skipped="0">
-    <properties/>
-    <testcase name="addresses/edit.html.erb should have address2" time="0.032857">
-    </testcase>
-    <testcase name="addresses/edit.html.erb should have address1" time="0.009535">
-      <failure message="failed addresses/edit.html.erb should have address1" type="failed">
-        <![CDATA[Validation failed: First name is too short (minimum is 3 characters)
-./spec/views/addresses/edit.html.erb_spec.rb:5:in `block (2 levels) in <top (required)>'
--e:1:in `<main>']]>
-      </failure>
-    </testcase>
-    <testcase name="addresses/edit.html.erb should have state" time="0.030126">
-    </testcase>
-    <testcase name="addresses/edit.html.erb should have city" time="0.030853">
-    </testcase>
-    <testcase name="addresses/edit.html.erb should have zipcode" time="0.032038">
-    </testcase>
-  </testsuite>
-  <testsuite name="PhoneType" tests="3" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="PhoneType should be valid" time="0.002127">
-    </testcase>
-    <testcase name="PhoneType code should have a max length" time="0.002334">
-    </testcase>
-    <testcase name="PhoneType code should be unique" time="0.004033">
-    </testcase>
-  </testsuite>
-  <testsuite name="addresses/new.html.erb" tests="5" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="addresses/new.html.erb should have address2" time="0.031015">
-    </testcase>
-    <testcase name="addresses/new.html.erb should have address1" time="0.038129">
-    </testcase>
-    <testcase name="addresses/new.html.erb should have state" time="0.043659">
-    </testcase>
-    <testcase name="addresses/new.html.erb should have city" time="0.035769">
-    </testcase>
-    <testcase name="addresses/new.html.erb should have zipcode" time="0.033912">
-    </testcase>
-  </testsuite>
-  <testsuite name="ProjectHistory" tests="31" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="ProjectHistory should be valid" time="0.009907">
-    </testcase>
-    <testcase name="ProjectHistory should respond to #project_history_disciplines" time="0.008101">
-    </testcase>
-    <testcase name="ProjectHistory should respond to #disciplines" time="0.009145">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_email should allow only valid email" time="0.009266">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_email should be present" time="0.01175">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_email should have maximum length" time="0.008308">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_email should have minimum length" time="0.007972">
-    </testcase>
-    <testcase name="ProjectHistory description should have minimum length" time="0.009958">
-    </testcase>
-    <testcase name="ProjectHistory description should have maximum length" time="0.007893">
-    </testcase>
-    <testcase name="ProjectHistory description should be required" time="0.007657">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_name should allow only characters numbers and hyphens" time="0.007893">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_name should be present" time="0.011984">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_name should have maximum length" time="0.008408">
-    </testcase>
-    <testcase name="ProjectHistory client_poc_name should have minimum length" time="0.009424">
-    </testcase>
-    <testcase name="ProjectHistory association consultant should not be destroyed on delete" time="0.019116">
-    </testcase>
-    <testcase name="ProjectHistory association position should be present" time="0.008234">
-    </testcase>
-    <testcase name="ProjectHistory association position should not be destroyed on delete" time="0.012754">
-    </testcase>
-    <testcase name="ProjectHistory association project_history_disciplines should destroy them on delete" time="0.025929">
-    </testcase>
-    <testcase name="ProjectHistory start_date is not required" time="0.007894">
-    </testcase>
-    <testcase name="ProjectHistory start_date should not be greater than today" time="0.007853">
-    </testcase>
-    <testcase name="ProjectHistory start_date should not be less than start_date" time="0.007437">
-    </testcase>
-    <testcase name="ProjectHistory start_date should be present" time="0.007855">
-    </testcase>
-    <testcase name="ProjectHistory start_date should not be greater than today" time="0.007435">
-    </testcase>
-    <testcase name="ProjectHistory start_date should not be greater than end_date" time="0.009861">
-    </testcase>
-    <testcase name="ProjectHistory client_company should allow only characters and numbers" time="0.007607">
-    </testcase>
-    <testcase name="ProjectHistory client_company should be present" time="0.008454">
-    </testcase>
-    <testcase name="ProjectHistory client_company should have maximum length" time="0.008161">
-    </testcase>
-    <testcase name="ProjectHistory client_company should have minimum length" time="0.009408">
-    </testcase>
-    <testcase name="ProjectHistory customer_name should have minimum length" time="0.007446">
-    </testcase>
-    <testcase name="ProjectHistory customer_name should have maximum length" time="0.008355">
-    </testcase>
-    <testcase name="ProjectHistory customer_name should be present" time="0.008269">
-    </testcase>
-  </testsuite>
-  <testsuite name="Consultant" tests="14" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="Consultant should be valid" time="0.003798">
-    </testcase>
-    <testcase name="Consultant should respond to #phones" time="0.002477">
-    </testcase>
-    <testcase name="Consultant first_name should allow only characters numbers and hyphens" time="0.006071">
-    </testcase>
-    <testcase name="Consultant first_name should be present" time="0.00439">
-    </testcase>
-    <testcase name="Consultant first_name should have maximum length" time="0.004032">
-    </testcase>
-    <testcase name="Consultant first_name should have minimum length" time="0.003873">
-    </testcase>
-    <testcase name="Consultant last_name should allow only characters and numbers" time="0.004667">
-    </testcase>
-    <testcase name="Consultant last_name should be present" time="0.005294">
-    </testcase>
-    <testcase name="Consultant last_name should have maximum length" time="0.003927">
-    </testcase>
-    <testcase name="Consultant last_name should have minimum length" time="0.003627">
-    </testcase>
-    <testcase name="Consultant association consultant_skills should destroy them on delete" time="0.045367">
-    </testcase>
-    <testcase name="Consultant association skills should not destroy them on delete" time="0.039276">
-    </testcase>
-    <testcase name="Consultant association phones should destroy them on delete" time="0.04496">
-    </testcase>
-    <testcase name="Consultant association address should be destroyed on delete" time="0.025039">
-    </testcase>
-  </testsuite>
-  <testsuite name="Address" tests="22" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="Address should be valid" time="0.006506">
-    </testcase>
-    <testcase name="Address state should only contain letters" time="0.009874">
-    </testcase>
-    <testcase name="Address state should be present" time="0.009628">
-    </testcase>
-    <testcase name="Address state should have a maximum length" time="0.006514">
-    </testcase>
-    <testcase name="Address state should have a minimum length" time="0.005733">
-    </testcase>
-    <testcase name="Address latitude should set latitude on validation" time="0.007545">
-    </testcase>
-    <testcase name="Address city should only contain letters with spaces" time="0.013776">
-    </testcase>
-    <testcase name="Address city should be present" time="0.008454">
-    </testcase>
-    <testcase name="Address city should have a maximum length" time="0.007877">
-    </testcase>
-    <testcase name="Address city should have a minimum length" time="0.005837">
-    </testcase>
-    <testcase name="Address longitude should set longutude on validation" time="0.006587">
-    </testcase>
-    <testcase name="Address consultant should be present" time="0.007733">
-    </testcase>
-    <testcase name="Address zipcode should only contain numbers" time="0.007284">
-    </testcase>
-    <testcase name="Address zipcode should be present" time="0.006241">
-    </testcase>
-    <testcase name="Address zipcode should have a maximum length" time="0.006778">
-    </testcase>
-    <testcase name="Address zipcode should have a minimum length" time="0.008242">
-    </testcase>
-    <testcase name="Address address2 should have a minimum length" time="0.006187">
-    </testcase>
-    <testcase name="Address address2 should have a maximum length" time="0.008115">
-    </testcase>
-    <testcase name="Address address2 can be nil" time="0.005181">
-    </testcase>
-    <testcase name="Address address1 should have a minimum length" time="0.010642">
-    </testcase>
-    <testcase name="Address address1 should have a maximum length" time="0.007618">
-    </testcase>
-    <testcase name="Address address1 should be present" time="0.008819">
-    </testcase>
-  </testsuite>
+<testsuites errors="0" failures="0" skipped="0" tests="223" time="3.420601" timestamp="2014-09-10T11:05:34-04:00">
   <testsuite name="layouts/_header.html.erb" tests="3" errors="0" failures="0" skipped="0">
     <properties/>
-    <testcase name="layouts/_header.html.erb logged in should render &quot;Login&quot;" time="0.004494">
+    <testcase name="layouts/_header.html.erb logged in should render &quot;Login&quot;" time="0.021651">
     </testcase>
-    <testcase name="layouts/_header.html.erb logged in should render &quot;Register&quot;" time="0.003595">
+    <testcase name="layouts/_header.html.erb logged in should render &quot;Register&quot;" time="0.0041">
     </testcase>
-    <testcase name="layouts/_header.html.erb not logged in should render &quot;Global Consultant Exchange&quot; in the header" time="0.003221">
-    </testcase>
-  </testsuite>
-  <testsuite name="DeviseController" tests="16" errors="0" failures="0" skipped="0">
-    <properties/>
-    <testcase name="DeviseController routing routes to registrations#create" time="0.006996">
-    </testcase>
-    <testcase name="DeviseController routing routes to confirmations#new" time="0.004473">
-    </testcase>
-    <testcase name="DeviseController routing routes to #logout" time="0.004502">
-    </testcase>
-    <testcase name="DeviseController routing routes to passwords#update" time="0.004436">
-    </testcase>
-    <testcase name="DeviseController routing routes to passwords#edit" time="0.001772">
-    </testcase>
-    <testcase name="DeviseController routing routes to passwords#new" time="0.001344">
-    </testcase>
-    <testcase name="DeviseController routing routes to sessiosn#new" time="0.001172">
-    </testcase>
-    <testcase name="DeviseController routing routes to sessions#create" time="0.001482">
-    </testcase>
-    <testcase name="DeviseController routing routes to confirmations#create" time="0.001503">
-    </testcase>
-    <testcase name="DeviseController routing routes to passwords#create" time="0.001359">
-    </testcase>
-    <testcase name="DeviseController routing routes to registrations#new" time="0.00125">
-    </testcase>
-    <testcase name="DeviseController routing routes to registrations#cancel" time="0.001574">
-    </testcase>
-    <testcase name="DeviseController routing routes to confirmations#show" time="0.00142">
-    </testcase>
-    <testcase name="DeviseController routing routes to registrations#update" time="0.001451">
-    </testcase>
-    <testcase name="DeviseController routing routes to registrations#edit" time="0.001327">
-    </testcase>
-    <testcase name="DeviseController routing routes to registrations#destroy" time="0.001591">
+    <testcase name="layouts/_header.html.erb not logged in should render &quot;Global Consultant Exchange&quot; in the header" time="0.003686">
     </testcase>
   </testsuite>
   <testsuite name="Position" tests="3" errors="0" failures="0" skipped="0">
     <properties/>
-    <testcase name="Position should be valid" time="0.001993">
+    <testcase name="Position should be valid" time="0.014994">
     </testcase>
-    <testcase name="Position code should have a max length" time="0.003049">
+    <testcase name="Position code should have a max length" time="0.25128">
     </testcase>
-    <testcase name="Position code should be unique" time="0.003479">
+    <testcase name="Position code should be unique" time="0.004792">
     </testcase>
   </testsuite>
-  <testsuite name="phones/index.html.erb" tests="6" errors="0" failures="0" skipped="0">
+  <testsuite name="PhonesController" tests="35" errors="0" failures="0" skipped="0">
     <properties/>
-    <testcase name="phones/index.html.erb should have phone_type" time="0.010928">
+    <testcase name="PhonesController routing should routes to phones#update" time="0.005136">
     </testcase>
-    <testcase name="phones/index.html.erb should have number" time="0.007874">
+    <testcase name="PhonesController routing should routes to phones#new" time="0.001787">
     </testcase>
-    <testcase name="phones/index.html.erb should have a link to add" time="0.009313">
+    <testcase name="PhonesController routing should route to phones#index" time="0.001947">
     </testcase>
-    <testcase name="phones/index.html.erb should have a link to edit" time="0.008714">
+    <testcase name="PhonesController routing should routes to phones#create" time="0.001282">
     </testcase>
-    <testcase name="phones/index.html.erb should have a link to delete" time="0.009291">
+    <testcase name="PhonesController routing should routes to phones#edit" time="0.001163">
     </testcase>
-    <testcase name="phones/index.html.erb should have a link to show" time="0.013611">
+    <testcase name="PhonesController routing should route to phones#show" time="0.001111">
+    </testcase>
+    <testcase name="PhonesController routing should route to addresses#destroy" time="0.001143">
+    </testcase>
+    <testcase name="PhonesController when logged in PUT 'update' with different users phone raises ActiveRecord::RecordNotFound" time="0.037225">
+    </testcase>
+    <testcase name="PhonesController when logged in PUT 'update' with invalid parameters renders &quot;edit&quot;" time="0.023796">
+    </testcase>
+    <testcase name="PhonesController when logged in PUT 'update' with invalid parameters does not persist the record" time="0.01638">
+    </testcase>
+    <testcase name="PhonesController when logged in PUT 'update' with valid parameters sends a flash message" time="0.016641">
+    </testcase>
+    <testcase name="PhonesController when logged in PUT 'update' with valid parameters persists the record" time="0.018783">
+    </testcase>
+    <testcase name="PhonesController when logged in PUT 'update' with valid parameters redirects to phones_path" time="0.020327">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'show' with consultants phone renders #show" time="0.015336">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'show' with consultants phone assigns phone" time="0.016577">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'show' with different users phone raises ActiveRecord::RecordNotFound" time="0.037116">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'index' does not include other consultants phones" time="0.073554">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'index' assigns phones" time="0.030452">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'index' returns http success" time="0.042118">
+    </testcase>
+    <testcase name="PhonesController when logged in POST 'create' with valid paramaters sends a flash message" time="0.012855">
+    </testcase>
+    <testcase name="PhonesController when logged in POST 'create' with valid paramaters persists the record" time="0.010888">
+    </testcase>
+    <testcase name="PhonesController when logged in POST 'create' with valid paramaters redirects to phones_path" time="0.014762">
+    </testcase>
+    <testcase name="PhonesController when logged in POST 'create' with invalid paramaters renders &quot;new&quot;" time="0.014461">
+    </testcase>
+    <testcase name="PhonesController when logged in POST 'create' with invalid paramaters does not persist the record" time="0.012928">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'edit' with consultants phone renders #edit" time="0.0161">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'edit' with consultants phone assigns phone" time="0.014819">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'edit' with different users phone raises ActiveRecord::RecordNotFound" time="0.037817">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'new' renders #new" time="0.013721">
+    </testcase>
+    <testcase name="PhonesController when logged in GET 'new' assigns phone" time="0.016575">
+    </testcase>
+    <testcase name="PhonesController when logged in DELETE &quot;destroy&quot; with different users phone raises ActiveRecord::RecordNotFound" time="0.032667">
+    </testcase>
+    <testcase name="PhonesController when logged in DELETE &quot;destroy&quot; with valid params deletes the phone" time="0.016605">
+    </testcase>
+    <testcase name="PhonesController when not logged in should redirect to login for &quot;DELETE&quot; requests" time="0.025763">
+    </testcase>
+    <testcase name="PhonesController when not logged in should redirect to login for &quot;PUT&quot; requests" time="0.026439">
+    </testcase>
+    <testcase name="PhonesController when not logged in should redirect to login for &quot;GET&quot; requests" time="0.054022">
+    </testcase>
+    <testcase name="PhonesController when not logged in should redirect to login for &quot;POST&quot; requests" time="0.016984">
+    </testcase>
+  </testsuite>
+  <testsuite name="phones/new.html.erb" tests="2" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="phones/new.html.erb should have number" time="0.280679">
+    </testcase>
+    <testcase name="phones/new.html.erb should have phone_type" time="0.028289">
+    </testcase>
+  </testsuite>
+  <testsuite name="Discipline" tests="3" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="Discipline should be valid" time="0.004963">
+    </testcase>
+    <testcase name="Discipline code should have a max length" time="0.002899">
+    </testcase>
+    <testcase name="Discipline code should be unique" time="0.003814">
+    </testcase>
+  </testsuite>
+  <testsuite name="PagesController" tests="6" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="PagesController not logged in GET &quot;home&quot; renders &quot;home&quot;" time="0.007169">
+    </testcase>
+    <testcase name="PagesController not logged in GET &quot;consultant&quot; redirects to new_consultant_session" time="0.005659">
+    </testcase>
+    <testcase name="PagesController logged in as consultant GET &quot;home&quot; renders &quot;consultant&quot;" time="0.008877">
+    </testcase>
+    <testcase name="PagesController logged in as consultant GET &quot;consultant&quot; renders &quot;consultant&quot;" time="0.008049">
+    </testcase>
+    <testcase name="PagesController routing root routes to pages#home" time="0.002568">
+    </testcase>
+    <testcase name="PagesController routing root routes to pages#consultant" time="0.001938">
+    </testcase>
+  </testsuite>
+  <testsuite name="PhoneType" tests="3" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="PhoneType should be valid" time="0.002462">
+    </testcase>
+    <testcase name="PhoneType code should have a max length" time="0.003679">
+    </testcase>
+    <testcase name="PhoneType code should be unique" time="0.003868">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProjectHistoryDiscipline" tests="5" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="ProjectHistoryDiscipline should be valid" time="0.03961">
+    </testcase>
+    <testcase name="ProjectHistoryDiscipline association project_history should be present" time="0.03502">
+    </testcase>
+    <testcase name="ProjectHistoryDiscipline association project_history should not be destroyed on delete" time="0.036526">
+    </testcase>
+    <testcase name="ProjectHistoryDiscipline association discipline should be present" time="0.025429">
+    </testcase>
+    <testcase name="ProjectHistoryDiscipline association discipline should not be destroyed on delete" time="0.028526">
+    </testcase>
+  </testsuite>
+  <testsuite name="DeviseController" tests="16" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="DeviseController routing routes to passwords#edit" time="0.005016">
+    </testcase>
+    <testcase name="DeviseController routing routes to confirmations#new" time="0.003628">
+    </testcase>
+    <testcase name="DeviseController routing routes to registrations#edit" time="0.005879">
+    </testcase>
+    <testcase name="DeviseController routing routes to registrations#cancel" time="0.001762">
+    </testcase>
+    <testcase name="DeviseController routing routes to #logout" time="0.003964">
+    </testcase>
+    <testcase name="DeviseController routing routes to sessions#create" time="0.001441">
+    </testcase>
+    <testcase name="DeviseController routing routes to registrations#update" time="0.001506">
+    </testcase>
+    <testcase name="DeviseController routing routes to registrations#new" time="0.001589">
+    </testcase>
+    <testcase name="DeviseController routing routes to passwords#update" time="0.001738">
+    </testcase>
+    <testcase name="DeviseController routing routes to confirmations#show" time="0.001635">
+    </testcase>
+    <testcase name="DeviseController routing routes to registrations#create" time="0.001437">
+    </testcase>
+    <testcase name="DeviseController routing routes to passwords#create" time="0.001524">
+    </testcase>
+    <testcase name="DeviseController routing routes to registrations#destroy" time="0.001751">
+    </testcase>
+    <testcase name="DeviseController routing routes to passwords#new" time="0.001602">
+    </testcase>
+    <testcase name="DeviseController routing routes to sessiosn#new" time="0.001224">
+    </testcase>
+    <testcase name="DeviseController routing routes to confirmations#create" time="0.001305">
+    </testcase>
+  </testsuite>
+  <testsuite name="addresses/edit.html.erb" tests="5" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="addresses/edit.html.erb should have state" time="0.044063">
+    </testcase>
+    <testcase name="addresses/edit.html.erb should have zipcode" time="0.030386">
+    </testcase>
+    <testcase name="addresses/edit.html.erb should have address1" time="0.030633">
+    </testcase>
+    <testcase name="addresses/edit.html.erb should have city" time="0.042062">
+    </testcase>
+    <testcase name="addresses/edit.html.erb should have address2" time="0.03122">
+    </testcase>
+  </testsuite>
+  <testsuite name="PhonePolicy" tests="7" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="PhonePolicy for a user should permit :destroy" time="0.022944">
+    </testcase>
+    <testcase name="PhonePolicy for a user should permit :update" time="0.010123">
+    </testcase>
+    <testcase name="PhonePolicy for a user should permit :new" time="0.012769">
+    </testcase>
+    <testcase name="PhonePolicy for a user should permit :show" time="0.013551">
+    </testcase>
+    <testcase name="PhonePolicy for a user should permit :edit" time="0.012594">
+    </testcase>
+    <testcase name="PhonePolicy for a user should permit :create" time="0.011313">
+    </testcase>
+    <testcase name="PhonePolicy for a visitor raises an error" time="0.002251">
+    </testcase>
+  </testsuite>
+  <testsuite name="Phone" tests="7" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="Phone should be valid" time="0.003507">
+    </testcase>
+    <testcase name="Phone associations phone_type is required" time="0.003777">
+    </testcase>
+    <testcase name="Phone associations phone_type should not be destroyed" time="0.004858">
+    </testcase>
+    <testcase name="Phone phoneable phoneable_id is required" time="0.003803">
+    </testcase>
+    <testcase name="Phone phoneable phoneable_type is required" time="0.00324">
+    </testcase>
+    <testcase name="Phone number is required" time="0.003115">
+    </testcase>
+    <testcase name="Phone number should format the number" time="0.003648">
+    </testcase>
+  </testsuite>
+  <testsuite name="ApplicationHelper" tests="5" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="ApplicationHelper#development? should return false in production" time="0.002341">
+    </testcase>
+    <testcase name="ApplicationHelper#development? should return false in test" time="0.001462">
+    </testcase>
+    <testcase name="ApplicationHelper#development? should return true in development" time="0.001576">
+    </testcase>
+    <testcase name="ApplicationHelper#build_simple_form_dropdown return hash returns &quot;:id&quot; for value_method" time="0.003766">
+    </testcase>
+    <testcase name="ApplicationHelper#build_simple_form_dropdown return hash contains &quot;label_method&quot;" time="0.002261">
+    </testcase>
+  </testsuite>
+  <testsuite name="phones/show.html.erb" tests="4" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="phones/show.html.erb should have a link to delete" time="0.007436">
+    </testcase>
+    <testcase name="phones/show.html.erb should have a link to edit" time="0.00613">
+    </testcase>
+    <testcase name="phones/show.html.erb should have number" time="0.007267">
+    </testcase>
+    <testcase name="phones/show.html.erb should have phone_type" time="0.005606">
+    </testcase>
+  </testsuite>
+  <testsuite name="addresses/new.html.erb" tests="5" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="addresses/new.html.erb should have state" time="0.042811">
+    </testcase>
+    <testcase name="addresses/new.html.erb should have zipcode" time="0.031228">
+    </testcase>
+    <testcase name="addresses/new.html.erb should have address1" time="0.031481">
+    </testcase>
+    <testcase name="addresses/new.html.erb should have city" time="0.032252">
+    </testcase>
+    <testcase name="addresses/new.html.erb should have address2" time="0.033908">
+    </testcase>
+  </testsuite>
+  <testsuite name="AddressesController" tests="26" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="AddressesController routing should not route to addresses#destroy" time="0.002453">
+    </testcase>
+    <testcase name="AddressesController routing routes to addresses#edit" time="0.001496">
+    </testcase>
+    <testcase name="AddressesController routing routes to addresses#new" time="0.001796">
+    </testcase>
+    <testcase name="AddressesController routing should not route to addresses#show" time="0.001726">
+    </testcase>
+    <testcase name="AddressesController routing routes to addresses#update" time="0.001745">
+    </testcase>
+    <testcase name="AddressesController routing routes to addresses#create" time="0.001639">
+    </testcase>
+    <testcase name="AddressesController when logged in PUT &quot;update&quot; with nil address redirects to &quot;new_address&quot;" time="0.01545">
+    </testcase>
+    <testcase name="AddressesController when logged in PUT &quot;update&quot; with invalid parameters renders &quot;edit&quot;" time="0.018828">
+    </testcase>
+    <testcase name="AddressesController when logged in PUT &quot;update&quot; with invalid parameters does not persist the record" time="0.013728">
+    </testcase>
+    <testcase name="AddressesController when logged in PUT &quot;update&quot; with valid parameters sends a flash message" time="0.013836">
+    </testcase>
+    <testcase name="AddressesController when logged in PUT &quot;update&quot; with valid parameters persists the record" time="0.013246">
+    </testcase>
+    <testcase name="AddressesController when logged in PUT &quot;update&quot; with valid parameters redirects to consultant_root_path" time="0.013397">
+    </testcase>
+    <testcase name="AddressesController when logged in GET &quot;edit&quot; renders #edit" time="0.013432">
+    </testcase>
+    <testcase name="AddressesController when logged in GET &quot;edit&quot; assigns address" time="0.013822">
+    </testcase>
+    <testcase name="AddressesController when logged in GET &quot;edit&quot; with nil address redirects to &quot;new_address&quot;" time="0.022768">
+    </testcase>
+    <testcase name="AddressesController when logged in GET &quot;new&quot; renders #new" time="0.01052">
+    </testcase>
+    <testcase name="AddressesController when logged in GET &quot;new&quot; assigns address" time="0.012384">
+    </testcase>
+    <testcase name="AddressesController when logged in GET &quot;new&quot; with existing address should redirect to edit" time="0.012639">
+    </testcase>
+    <testcase name="AddressesController when logged in POST &quot;create&quot; with valid paramaters sends a flash message" time="0.013122">
+    </testcase>
+    <testcase name="AddressesController when logged in POST &quot;create&quot; with valid paramaters persists the record" time="0.010968">
+    </testcase>
+    <testcase name="AddressesController when logged in POST &quot;create&quot; with valid paramaters redirects to consultant_root_path" time="0.011941">
+    </testcase>
+    <testcase name="AddressesController when logged in POST &quot;create&quot; with invalid paramaters renders &quot;new&quot;" time="0.015247">
+    </testcase>
+    <testcase name="AddressesController when logged in POST &quot;create&quot; with invalid paramaters does not persist the record" time="0.014282">
+    </testcase>
+    <testcase name="AddressesController when not logged in should redirect to login for &quot;PUT&quot; requests" time="0.009095">
+    </testcase>
+    <testcase name="AddressesController when not logged in should redirect to login for &quot;POST&quot; requests" time="0.00701">
+    </testcase>
+    <testcase name="AddressesController when not logged in should redirect to login for &quot;GET&quot; requests" time="0.009891">
+    </testcase>
+  </testsuite>
+  <testsuite name="ConsultantSkill" tests="3" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="ConsultantSkill should be valid" time="0.020957">
+    </testcase>
+    <testcase name="ConsultantSkill skill_id should not be valid" time="0.010004">
+    </testcase>
+    <testcase name="ConsultantSkill consultant should not be valid" time="0.007809">
     </testcase>
   </testsuite>
   <testsuite name="Skill" tests="3" errors="0" failures="0" skipped="0">
     <properties/>
-    <testcase name="Skill should be valid" time="0.004571">
+    <testcase name="Skill should be valid" time="0.004468">
     </testcase>
-    <testcase name="Skill code should have a max length" time="0.004294">
+    <testcase name="Skill code should have a max length" time="0.005574">
     </testcase>
-    <testcase name="Skill code should be unique" time="0.005122">
+    <testcase name="Skill code should be unique" time="0.00477">
+    </testcase>
+  </testsuite>
+  <testsuite name="Consultant" tests="14" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="Consultant should be valid" time="0.004705">
+    </testcase>
+    <testcase name="Consultant should respond to #phones" time="0.004918">
+    </testcase>
+    <testcase name="Consultant association consultant_skills should destroy them on delete" time="0.070985">
+    </testcase>
+    <testcase name="Consultant association skills should not destroy them on delete" time="0.032829">
+    </testcase>
+    <testcase name="Consultant association address should be destroyed on delete" time="0.035473">
+    </testcase>
+    <testcase name="Consultant association phones should destroy them on delete" time="0.080931">
+    </testcase>
+    <testcase name="Consultant last_name should allow only characters and numbers" time="0.005131">
+    </testcase>
+    <testcase name="Consultant last_name should be present" time="0.004522">
+    </testcase>
+    <testcase name="Consultant last_name should have minimum length" time="0.003921">
+    </testcase>
+    <testcase name="Consultant last_name should have maximum length" time="0.003832">
+    </testcase>
+    <testcase name="Consultant first_name should allow only characters numbers and hyphens" time="0.006631">
+    </testcase>
+    <testcase name="Consultant first_name should be present" time="0.004886">
+    </testcase>
+    <testcase name="Consultant first_name should have minimum length" time="0.004068">
+    </testcase>
+    <testcase name="Consultant first_name should have maximum length" time="0.004165">
+    </testcase>
+  </testsuite>
+  <testsuite name="AddressPolicy" tests="7" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="AddressPolicy for a user should not permit :destroy" time="0.007138">
+    </testcase>
+    <testcase name="AddressPolicy for a user should permit :update" time="0.011477">
+    </testcase>
+    <testcase name="AddressPolicy for a user should permit :new" time="0.011824">
+    </testcase>
+    <testcase name="AddressPolicy for a user should permit :show" time="0.021456">
+    </testcase>
+    <testcase name="AddressPolicy for a user should permit :edit" time="0.01005">
+    </testcase>
+    <testcase name="AddressPolicy for a user should permit :create" time="0.010343">
+    </testcase>
+    <testcase name="AddressPolicy for a visitor raises an error" time="0.00212">
+    </testcase>
+  </testsuite>
+  <testsuite name="phones/index.html.erb" tests="6" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="phones/index.html.erb should have a link to delete" time="0.010411">
+    </testcase>
+    <testcase name="phones/index.html.erb should have a link to edit" time="0.008731">
+    </testcase>
+    <testcase name="phones/index.html.erb should have a link to show" time="0.010422">
+    </testcase>
+    <testcase name="phones/index.html.erb should have number" time="0.009291">
+    </testcase>
+    <testcase name="phones/index.html.erb should have a link to add" time="0.009081">
+    </testcase>
+    <testcase name="phones/index.html.erb should have phone_type" time="0.008269">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProjectHistory" tests="31" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="ProjectHistory should respond to #disciplines" time="0.007884">
+    </testcase>
+    <testcase name="ProjectHistory should respond to #project_history_disciplines" time="0.007875">
+    </testcase>
+    <testcase name="ProjectHistory should be valid" time="0.008194">
+    </testcase>
+    <testcase name="ProjectHistory start_date should not be less than start_date" time="0.008511">
+    </testcase>
+    <testcase name="ProjectHistory start_date should not be greater than today" time="0.007767">
+    </testcase>
+    <testcase name="ProjectHistory start_date is not required" time="0.007499">
+    </testcase>
+    <testcase name="ProjectHistory association project_history_disciplines should destroy them on delete" time="0.025191">
+    </testcase>
+    <testcase name="ProjectHistory association position should be present" time="0.00899">
+    </testcase>
+    <testcase name="ProjectHistory association position should not be destroyed on delete" time="0.010392">
+    </testcase>
+    <testcase name="ProjectHistory association consultant should not be destroyed on delete" time="0.011883">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_email should allow only valid email" time="0.010392">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_email should be present" time="0.008546">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_email should have minimum length" time="0.010739">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_email should have maximum length" time="0.011228">
+    </testcase>
+    <testcase name="ProjectHistory start_date should not be greater than end_date" time="0.011825">
+    </testcase>
+    <testcase name="ProjectHistory start_date should not be greater than today" time="0.012711">
+    </testcase>
+    <testcase name="ProjectHistory start_date should be present" time="0.017674">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_name should allow only characters numbers and hyphens" time="0.022917">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_name should be present" time="0.011031">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_name should have minimum length" time="0.009135">
+    </testcase>
+    <testcase name="ProjectHistory client_poc_name should have maximum length" time="0.008009">
+    </testcase>
+    <testcase name="ProjectHistory customer_name should be present" time="0.011533">
+    </testcase>
+    <testcase name="ProjectHistory customer_name should have maximum length" time="0.008022">
+    </testcase>
+    <testcase name="ProjectHistory customer_name should have minimum length" time="0.008307">
+    </testcase>
+    <testcase name="ProjectHistory client_company should allow only characters and numbers" time="0.009198">
+    </testcase>
+    <testcase name="ProjectHistory client_company should be present" time="0.009892">
+    </testcase>
+    <testcase name="ProjectHistory client_company should have minimum length" time="0.008836">
+    </testcase>
+    <testcase name="ProjectHistory client_company should have maximum length" time="0.007937">
+    </testcase>
+    <testcase name="ProjectHistory description should be required" time="0.008737">
+    </testcase>
+    <testcase name="ProjectHistory description should have maximum length" time="0.00884">
+    </testcase>
+    <testcase name="ProjectHistory description should have minimum length" time="0.008475">
+    </testcase>
+  </testsuite>
+  <testsuite name="Address" tests="22" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="Address should be valid" time="0.005926">
+    </testcase>
+    <testcase name="Address consultant should be present" time="0.005728">
+    </testcase>
+    <testcase name="Address longitude should set longutude on validation" time="0.006571">
+    </testcase>
+    <testcase name="Address state should only contain letters" time="0.007829">
+    </testcase>
+    <testcase name="Address state should be present" time="0.006889">
+    </testcase>
+    <testcase name="Address state should have a minimum length" time="0.006375">
+    </testcase>
+    <testcase name="Address state should have a maximum length" time="0.005998">
+    </testcase>
+    <testcase name="Address zipcode should only contain numbers" time="0.006972">
+    </testcase>
+    <testcase name="Address zipcode should be present" time="0.006812">
+    </testcase>
+    <testcase name="Address zipcode should have a minimum length" time="0.006487">
+    </testcase>
+    <testcase name="Address zipcode should have a maximum length" time="0.006548">
+    </testcase>
+    <testcase name="Address city should only contain letters with spaces" time="0.00778">
+    </testcase>
+    <testcase name="Address city should be present" time="0.006771">
+    </testcase>
+    <testcase name="Address city should have a minimum length" time="0.006211">
+    </testcase>
+    <testcase name="Address city should have a maximum length" time="0.005414">
+    </testcase>
+    <testcase name="Address address1 should be present" time="0.005545">
+    </testcase>
+    <testcase name="Address address1 should have a maximum length" time="0.005738">
+    </testcase>
+    <testcase name="Address address1 should have a minimum length" time="0.006633">
+    </testcase>
+    <testcase name="Address address2 can be nil" time="0.007179">
+    </testcase>
+    <testcase name="Address address2 should have a maximum length" time="0.006539">
+    </testcase>
+    <testcase name="Address address2 should have a minimum length" time="0.005164">
+    </testcase>
+    <testcase name="Address latitude should set latitude on validation" time="0.006768">
+    </testcase>
+  </testsuite>
+  <testsuite name="phones/edit.html.erb" tests="2" errors="0" failures="0" skipped="0">
+    <properties/>
+    <testcase name="phones/edit.html.erb should have number" time="0.031153">
+    </testcase>
+    <testcase name="phones/edit.html.erb should have phone_type" time="0.030631">
     </testcase>
   </testsuite>
 </testsuites>
