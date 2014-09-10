@@ -16,7 +16,8 @@ Rails.application.configure do
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
-  # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
+  # For large-scale production use, consider using a
+  # caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
@@ -65,7 +66,6 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'globalconsultantexchange.com' }
-
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

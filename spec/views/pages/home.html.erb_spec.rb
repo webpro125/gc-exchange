@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "pages/home.html.erb" do
+describe 'pages/home.html.erb' do
 
 end

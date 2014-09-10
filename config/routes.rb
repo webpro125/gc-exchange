@@ -2,9 +2,20 @@ Rails.application.routes.draw do
   devise_for :consultants, path: '/', path_names: { sign_in: 'login',
                                                     sign_out: 'logout',
                                                     registration: 'register' },
-                                      controllers: { registrations: "registrations" }
+                                      controllers: { registrations: 'registrations' }
+
+  # Root Paths
+  authenticated :consultant do
+    root 'pages#consultant', as: :consultant_root
+  end
 
   root 'pages#home'
+
+  # Resources
+  resource :address, except: [:destroy, :show]
+  resources :phones
+
+  # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

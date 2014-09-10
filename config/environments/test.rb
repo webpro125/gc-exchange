@@ -30,10 +30,28 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: 'localhost',
+                                               port: 3000 }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Geocoder.configure(lookup: :test)
+
+  Geocoder::Lookup::Test.set_default_stub(
+    [
+      {
+        'latitude'     => 40.7143528,
+        'longitude'    => -74.0059731,
+        'address'      => '1619 3rd Ave New York, NY 10128',
+        'state'        => 'New York',
+        'state_code'   => 'NY',
+        'country'      => 'United States',
+        'country_code' => 'US'
+      }
+    ]
+  )
 end

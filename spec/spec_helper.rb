@@ -1,12 +1,13 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'yarjuf'
 require 'simplecov'
 require 'simplecov-bamboo'
+require 'database_cleaner'
 
 SimpleCov.coverage_dir('spec/results/coverage')
 SimpleCov.minimum_coverage 85
@@ -24,7 +25,7 @@ end
 # run twice. It is recommended that you do not name files matching this glob to
 # end with _spec.rb. You can configure this pattern with with the --pattern
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -33,6 +34,27 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation, { except: ['phone_types'] }
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   # ## Mock Framework
   #
@@ -59,7 +81,7 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
+  config.order = 'random'
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
