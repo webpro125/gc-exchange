@@ -20,6 +20,10 @@ guard :rspec, cmd: 'spring rspec', all_after_pass: true do
   watch('spec/spec_helper.rb')  { "spec" }
 
   # Rails example
+  watch(%r{^spec/support/(.+)\.rb$})                { "spec" }
+  watch('config/routes.rb')                         { "spec/routing" }
+  watch('app/controllers/application_controller.rb'){ "spec/controllers" }
+  watch('app/controllers/consultant_controller.rb') { "spec/controllers" }
   watch(%r{^app/(.+)\.rb$})                         {|m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^app/(.*)(\.erb|\.haml|\.slim)$})        {|m| "spec/#{m[1]}#{m[2]}_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$}){|m| ["spec/routing/#{m[1]}_routing_spec.rb",
@@ -27,11 +31,6 @@ guard :rspec, cmd: 'spring rspec', all_after_pass: true do
                                                           "spec/acceptance/#{m[1]}_spec.rb"] }
   watch(%r{^app/policies/(.+)_(policy)\.rb$})       {|m| ["spec/policies/#{m[1]}_#{m[2]}_spec.rb",
                                                           "spec/controllers/#{m[1]}s_controller_spec.rb"] }
-
-  watch(%r{^spec/support/(.+)\.rb$})                { "spec" }
-  watch('config/routes.rb')                         { "spec/routing" }
-  watch('app/controllers/application_controller.rb'){ "spec/controllers" }
-  watch('app/controllers/consultant_controller.rb') { "spec/controllers" }
 
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml|slim)$})     { |m| "spec/features/#{m[1]}_spec.rb" }
