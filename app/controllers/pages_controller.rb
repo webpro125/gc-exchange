@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_filter :authenticate_consultant!, only: :home
+  before_action :authenticate_consultant!, except: :home
 
   def home
     render :consultant if current_consultant

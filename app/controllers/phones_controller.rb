@@ -1,17 +1,20 @@
-class PhonesController < ApplicationController
+class PhonesController < ConsultantController
   before_filter :load_phone, only: [:show, :edit, :update, :destroy]
 
   def index
-    @phones = current_consultant.phones
+    @phones = policy_scope(current_consultant.phones)
   end
 
   def new
-    @phone = Phone.new
+    @phone = current_consultant.phones.build
     @phone_types = PhoneType.all
+
+    authorize @phone
   end
 
   def create
     @phone = current_consultant.phones.build(phone_params)
+    authorize @phone
 
     if @phone.save
       flash[:success] = t('controllers.phone.create.success')
@@ -49,5 +52,6 @@ class PhonesController < ApplicationController
 
   def load_phone
     @phone = current_consultant.phones.find(params[:id])
+    authorize @phone
   end
 end
