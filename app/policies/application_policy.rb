@@ -51,4 +51,3 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 end
-

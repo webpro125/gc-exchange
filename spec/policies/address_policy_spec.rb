@@ -8,12 +8,13 @@ describe AddressPolicy do
   describe 'for a user' do
     let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
 
-    it { should         permit(:show)    }
-    it { should         permit(:create)  }
-    it { should         permit(:new)     }
-    it { should         permit(:update)  }
-    it { should         permit(:edit)    }
-    it { should_not     permit(:destroy) }
+    it { should permit(:show)    }
+    it { should permit(:create)  }
+    it { should permit(:new)     }
+    it { should permit(:update)  }
+    it { should permit(:edit)    }
+
+    it { should_not permit(:destroy) }
   end
 
   describe 'for a visitor' do

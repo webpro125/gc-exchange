@@ -1,5 +1,4 @@
 class Phone < ActiveRecord::Base
-
   belongs_to :phone_type
   belongs_to :phoneable, polymorphic: true
 
@@ -13,6 +12,6 @@ class Phone < ActiveRecord::Base
   protected
 
   def set_phone
-    self.number = ApplicationController.helpers.number_to_phone(self.number)
+    self.number = ApplicationController.helpers.number_to_phone(number)
   end
 end
