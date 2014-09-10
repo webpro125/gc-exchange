@@ -3,9 +3,9 @@ require 'spec_helper'
 describe ProjectHistoriesController do
   let!(:position) { FactoryGirl.create(:position) }
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
-  let(:valid_attributes) { FactoryGirl.attributes_for(:project_history,
-                                                      consultant: consultant,
-                                                      position_id: position.id) }
+  let(:valid_attributes) do
+    FactoryGirl.attributes_for(:project_history, consultant: consultant, position_id: position.id)
+  end
 
   describe 'when logged in' do
     before do
@@ -15,7 +15,7 @@ describe ProjectHistoriesController do
     describe "GET 'index'" do
       let!(:projects) { FactoryGirl.create_list(:project_history, 4, consultant: consultant) }
 
-      it "returns http success" do
+      it 'returns http success' do
         get :index
         expect(response).to be_success
       end
@@ -74,7 +74,9 @@ describe ProjectHistoriesController do
         end
 
         it 'does not persist the record' do
-          expect { post :create, project_history: valid_attributes }.not_to change { ProjectHistory.count }
+          expect do
+            post :create, project_history: valid_attributes
+          end.not_to change { ProjectHistory.count }
         end
       end
     end
@@ -133,17 +135,17 @@ describe ProjectHistoriesController do
         let(:project_history) { consultant.project_histories.create!(valid_attributes) }
 
         it 'redirects to project_histories_path' do
-          put :update, { project_history: valid_attributes, id: project_history.id }
+          put :update, project_history: valid_attributes, id: project_history.id
           expect(response).to redirect_to project_histories_path
         end
 
         it 'persists the record' do
           ProjectHistory.any_instance.should_receive(:update).and_return(true)
-          put :update, { project_history: valid_attributes, id: project_history.id }
+          put :update, project_history: valid_attributes, id: project_history.id
         end
 
         it 'sends a flash message' do
-          put :update, { project_history: valid_attributes, id: project_history.id }
+          put :update, project_history: valid_attributes, id: project_history.id
           expect(flash[:success]).to eq(I18n.t('controllers.project_history.update.success'))
         end
       end
@@ -152,13 +154,13 @@ describe ProjectHistoriesController do
         let(:project_history) { consultant.project_histories.create!(valid_attributes) }
 
         it 'renders "edit"' do
-          put :update, { project_history: { customer_name: nil }, id: project_history.id }
+          put :update, project_history: { customer_name: nil }, id: project_history.id
           expect(response).to render_template :edit
         end
 
         it 'does not persist the record' do
           ProjectHistory.any_instance.should_receive(:update).and_return(false)
-          put :update, { project_history: { customer_name: nil }, id: project_history.id }
+          put :update, project_history: { customer_name: nil }, id: project_history.id
         end
       end
 
@@ -166,8 +168,9 @@ describe ProjectHistoriesController do
         let!(:project_history) { FactoryGirl.create(:project_history) }
 
         it 'raises ActiveRecord::RecordNotFound' do
-          expect { put :update, { project_history: valid_attributes,
-                                  id: project_history.id } }.to raise_exception Pundit::NotAuthorizedError
+          expect do
+            put :update, project_history: valid_attributes, id: project_history.id
+          end.to raise_exception Pundit::NotAuthorizedError
         end
       end
     end
@@ -177,7 +180,9 @@ describe ProjectHistoriesController do
 
       describe 'with valid params' do
         it 'deletes the project_history' do
-          expect{ delete :destroy, id: project.id }.to change{ ProjectHistory.count }.from(1).to(0)
+          expect do
+            delete :destroy, id: project.id
+          end.to change { ProjectHistory.count }.from(1).to(0)
         end
       end
 
@@ -185,7 +190,7 @@ describe ProjectHistoriesController do
         let(:other_project) { FactoryGirl.create(:project_history) }
 
         it 'raises ActiveRecord::RecordNotFound' do
-          expect { delete :destroy, { id: other_project.id } }.to raise_exception
+          expect { delete :destroy, id: other_project.id }.to raise_exception
           ActiveRecord::RecordNotFound
         end
       end
@@ -205,14 +210,14 @@ describe ProjectHistoriesController do
 
       project_history = FactoryGirl.create(:project_history)
       [:show, :edit].each do |method|
-        get method, { id: project_history.id }
+        get method, id: project_history.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
 
     it 'should redirect to login for "POST" requests' do
       [:create].each do |method|
-        post method, { project_history: valid_attributes }
+        post method, project_history: valid_attributes
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
@@ -221,7 +226,7 @@ describe ProjectHistoriesController do
       project_history = FactoryGirl.create(:project_history)
 
       [:update].each do |method|
-        put method, { id: project_history.id }
+        put method, id: project_history.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
@@ -230,7 +235,7 @@ describe ProjectHistoriesController do
       project_history = FactoryGirl.create(:project_history)
 
       [:destroy].each do |method|
-        delete method, { id: project_history.id }
+        delete method, id: project_history.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
