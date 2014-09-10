@@ -2,9 +2,7 @@ class PagesController < ApplicationController
   before_action :authenticate_consultant!, except: :home
 
   def home
-    if current_consultant
-      render :consultant
-    end
+    render :consultant if current_consultant
   end
 
   def consultant

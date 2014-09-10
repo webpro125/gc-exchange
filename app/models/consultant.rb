@@ -16,5 +16,4 @@ class Consultant < ActiveRecord::Base
   validates :last_name, length: { in: 3..24 }, presence: true,
             format: { with: /\A[\w\s'-]+\z/,
                       message: 'only allows letters and numbers' }
-
 end

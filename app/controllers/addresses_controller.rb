@@ -34,14 +34,14 @@ class AddressesController < ConsultantController
 
   private
 
-    def address_params
-      params.require(:address).permit(:address1, :address2, :city, :state, :zipcode)
-    end
+  def address_params
+    params.require(:address).permit(:address1, :address2, :city, :state, :zipcode)
+  end
 
-    def load_address
-      @address = current_consultant.address || current_consultant.build_address
-      authorize @address
+  def load_address
+    @address = current_consultant.address || current_consultant.build_address
+    authorize @address
 
-      redirect_to new_address_path if @address.new_record?
-    end
+    redirect_to new_address_path if @address.new_record?
+  end
 end

@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :phone do
-    number            { Faker::PhoneNumber.cell_phone }
+    number { Faker::PhoneNumber.cell_phone }
+    association :phoneable, factory: :consultant
     phone_type
-    association       :phoneable, factory: :consultant
   end
 end
