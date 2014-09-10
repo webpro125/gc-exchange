@@ -13,14 +13,16 @@ class Address < ActiveRecord::Base
 
   # Geocoder
   geocoded_by :full_street_address
-  after_validation :geocode, if: lambda do |obj|
-    obj.address1_changed? || obj.address2_changed? || obj.city_changed? || obj.state_changed? ||
-      obj.zipcode_changed?
-  end
+  after_validation :geocode, if: :address_changed?
 
   private
 
   def full_street_address
     [address1, address2, city, state, zipcode].join(', ')
+  end
+
+  def address_changed?
+    address1_changed? || address2_changed? || city_changed? || state_changed? ||
+      zipcode_changed?
   end
 end

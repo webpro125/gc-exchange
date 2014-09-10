@@ -103,6 +103,9 @@ GEM
     guard-rspec (4.2.10)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    guard-rubocop (1.1.0)
+      guard (~> 2.0)
+      rubocop (~> 0.20)
     haml (4.0.5)
       tilt
     highline (1.6.21)
@@ -282,6 +285,7 @@ DEPENDENCIES
   guard-bundler
   guard-migrate (~> 1.1.0)
   guard-rspec (~> 4.2.9)
+  guard-rubocop (~> 1.1.0)
   jquery-rails (~> 3.1.0)
   pg (~> 0.17)
   quiet_assets (~> 1.0)

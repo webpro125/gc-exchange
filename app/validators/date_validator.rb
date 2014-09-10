@@ -43,7 +43,7 @@ class DateValidator < ActiveModel::EachValidator
       if val.respond_to?(:lambda?) && val.lambda?
         val = val.call
       elsif val.is_a? Symbol
-        val = call_options(record, val)
+        val = call_record_method(record, val)
       end
       result[key] = val.to_date
     end
@@ -57,13 +57,13 @@ class DateValidator < ActiveModel::EachValidator
     compute_options(record) # do not cache this
     # otherwise all the 'compute' thing is useless... #
     computed_options.each do |key, val|
-      next unless send(key, value, val)
+      next if send(key, value, val)
       record.errors[attribute] << (computed_options[:message] || message_limits)
       return
     end
   end
 
-  def call_options(record, val)
+  def call_record_method(record, val)
     if record.respond_to?(val)
       record.send(val)
     elsif record.class.respond_to?(val)
