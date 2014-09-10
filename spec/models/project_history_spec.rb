@@ -143,14 +143,14 @@ describe ProjectHistory do
     end
   end
 
-  describe 'start_date' do
+  describe 'end_date' do
     it 'is not required' do
       @project_history.end_date = nil
       expect(@project_history).to be_valid
     end
 
     it 'should not be greater than today' do
-      @project_history.end_date = DateTime.now
+      @project_history.end_date = 3.months.from_now
       expect(@project_history).not_to be_valid
     end
 
