@@ -1,0 +1,30 @@
+# Be sure to restart your server when you modify this file.
+common: &default_settings
+  storage: :fog
+  fog_directory: ''
+  fog_host: 'http://global_consultant_exchange.dev'
+  fog_credentials:
+    provider: 'Local'
+    local_root: <%= Rails.root %>/public/uploads
+
+development:
+  <<: *default_settings
+
+test:
+  <<: *default_settings
+  fog_credentials:
+      provider: 'Local'
+      local_root: <%= Rails.root %>/public/test/uploads
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  <<: *default_settings
+  fog_host: nil
+  fog_directory: 'gces_production'
+  path: ':class/:attachment/:id/resume.:extension'
+  fog_credentials:
+    provider: 'AWS'
+    region: 'us-east-1'
+    aws_access_key_id: <%= Rails.application.secrets.aws_access_key_id %>
+    aws_secret_access_key: <%= Rails.application.secrets.aws_secret_access_key %>
