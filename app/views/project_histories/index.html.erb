@@ -11,7 +11,7 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Edit', edit_project_history_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -20,4 +20,4 @@
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_project_history_path %>
