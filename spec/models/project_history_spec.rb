@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe ProjectHistory do
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
+  let(:customer_name) { FactoryGirl.create(:customer_name) }
   before do
     @project_history = ProjectHistory.new(consultant: consultant,
-                                          customer_name: 'A customer',
+                                          customer_name: customer_name,
                                           client_company: 'Client company',
                                           client_poc_name: 'POC Name',
                                           client_poc_email: 'poc@email.com',
@@ -19,23 +20,6 @@ describe ProjectHistory do
   it { should be_valid }
   it { should respond_to(:project_history_disciplines) }
   it { should respond_to(:disciplines) }
-
-  describe 'customer_name' do
-    it 'should have minimum length' do
-      @project_history.customer_name = 'a' * 2
-      expect(@project_history).not_to be_valid
-    end
-
-    it 'should have maximum length' do
-      @project_history.customer_name = 'a' * 129
-      expect(@project_history).not_to be_valid
-    end
-
-    it 'should be present' do
-      @project_history.customer_name = nil
-      expect(@project_history).not_to be_valid
-    end
-  end
 
   describe 'client_company' do
     it 'should have minimum length' do
@@ -178,6 +162,12 @@ describe ProjectHistory do
   end
 
   describe 'association' do
+    describe 'customer_name' do
+      it 'should not be required' do
+        expect(subject).not_to validate_presence_of :customer_name
+      end
+    end
+
     describe 'consultant' do
       before do
         @project_history.save!

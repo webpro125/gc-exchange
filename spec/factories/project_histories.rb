@@ -3,7 +3,6 @@
 FactoryGirl.define do
   factory :project_history do
     consultant
-    customer_name 'MyString'
     client_company 'MyString'
     client_poc_name 'MyString'
     client_poc_email 'MyString@email.com'

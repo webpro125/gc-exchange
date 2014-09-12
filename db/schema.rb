@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911012633) do
+ActiveRecord::Schema.define(version: 20140912135507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,12 @@ ActiveRecord::Schema.define(version: 20140911012633) do
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
 
+  create_table "customer_names", force: true do |t|
+    t.string "code", limit: 32, null: false
+  end
+
+  add_index "customer_names", ["code"], name: "index_customer_names_on_code", unique: true, using: :btree
+
   create_table "disciplines", force: true do |t|
     t.string "code", limit: 32
   end
@@ -124,7 +130,6 @@ ActiveRecord::Schema.define(version: 20140911012633) do
 
   create_table "project_histories", force: true do |t|
     t.integer  "consultant_id",                null: false
-    t.string   "customer_name",    limit: 128
     t.string   "client_company",   limit: 128
     t.string   "client_poc_name",  limit: 64
     t.string   "client_poc_email", limit: 128
@@ -134,9 +139,11 @@ ActiveRecord::Schema.define(version: 20140911012633) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_name_id"
   end
 
   add_index "project_histories", ["consultant_id"], name: "index_project_histories_on_consultant_id", using: :btree
+  add_index "project_histories", ["customer_name_id"], name: "index_project_histories_on_customer_name_id", using: :btree
   add_index "project_histories", ["position_id"], name: "index_project_histories_on_position_id", using: :btree
 
   create_table "project_history_disciplines", force: true do |t|

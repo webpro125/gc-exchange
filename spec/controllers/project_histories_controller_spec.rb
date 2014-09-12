@@ -154,13 +154,13 @@ describe ProjectHistoriesController do
         let(:project_history) { consultant.project_histories.create!(valid_attributes) }
 
         it 'renders "edit"' do
-          put :update, project_history: { customer_name: nil }, id: project_history.id
+          put :update, project_history: { client_company: nil }, id: project_history.id
           expect(response).to render_template :edit
         end
 
         it 'does not persist the record' do
           ProjectHistory.any_instance.should_receive(:update).and_return(false)
-          put :update, project_history: { customer_name: nil }, id: project_history.id
+          put :update, project_history: { client_company: nil }, id: project_history.id
         end
       end
 

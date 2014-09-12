@@ -9,23 +9,23 @@ describe ProjectHistoryPolicy do
     describe 'for valid project_history' do
       let(:project_history) { FactoryGirl.create(:project_history, consultant: consultant) }
 
-      it { should permit(:show)    }
-      it { should permit(:create)  }
-      it { should permit(:new)     }
-      it { should permit(:update)  }
-      it { should permit(:edit)    }
-      it { should permit(:destroy) }
+      it { should permit_action(:show)    }
+      it { should permit_action(:create)  }
+      it { should permit_action(:new)     }
+      it { should permit_action(:update)  }
+      it { should permit_action(:edit)    }
+      it { should permit_action(:destroy) }
     end
 
     describe 'for another project_history' do
       let(:project_history) { FactoryGirl.create(:project_history) }
 
-      it { should_not permit(:show)    }
-      it { should_not permit(:create)  }
-      it { should_not permit(:new)     }
-      it { should_not permit(:update)  }
-      it { should_not permit(:edit)    }
-      it { should_not permit(:destroy) }
+      it { should_not permit_action(:show)    }
+      it { should_not permit_action(:create)  }
+      it { should_not permit_action(:new)     }
+      it { should_not permit_action(:update)  }
+      it { should_not permit_action(:edit)    }
+      it { should_not permit_action(:destroy) }
     end
   end
 
@@ -33,7 +33,7 @@ describe ProjectHistoryPolicy do
     let(:consultant) { nil }
 
     it 'raises an error' do
-      expect { permit(:show) }.to_not raise_error
+      expect { permit_action(:show) }.to_not raise_error
     end
   end
 end

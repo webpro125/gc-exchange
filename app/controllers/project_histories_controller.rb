@@ -61,7 +61,7 @@ class ProjectHistoriesController < ConsultantController
 
   # Only allow a trusted parameter "white list" through.
   def project_params
-    params.require(:project_history).permit(:customer_name, :client_company, :client_poc_name,
+    params.require(:project_history).permit(:customer_name_id, :client_company, :client_poc_name,
                                             :client_poc_email, :start_date, :end_date,
                                             :description, :position_id)
   end
