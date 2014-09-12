@@ -16,7 +16,8 @@ class Consultant < ActiveRecord::Base
   has_many :consultant_skills, dependent: :destroy
   has_many :skills, through: :consultant_skills
 
-  validates :first_name, length: { in: 2..24 }, presence: true,
+  validate :phone_length
+  validates :first_name, length: { in: 3..24 }, presence: true,
             format: { with: /\A[A-Za-z\s'-]+\z/,
                       message: 'only allows letters' }
   validates :last_name, length: { in: 2..24 }, presence: true,
@@ -27,4 +28,10 @@ class Consultant < ActiveRecord::Base
                        size: { less_than: 10.megabytes },
                        file_name: { matches: [/doc\Z/, /docx\Z/, /pdf\Z/] },
                        if: -> { resume.present? }
+
+  private
+
+  def phone_length
+    errors.add(:phones, :too_long, count: 3) if phones.size > 3
+  end
 end
