@@ -2,6 +2,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
+require 'shoulda/matchers'
+require 'paperclip/matchers'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'yarjuf'
@@ -35,6 +37,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
   config.include FactoryGirl::Syntax::Methods
+  config.include Paperclip::Shoulda::Matchers
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -54,6 +57,10 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.after(:suite) do
+    FileUtils.rm_rf(Rails.root + 'public/test')
   end
 
   # ## Mock Framework

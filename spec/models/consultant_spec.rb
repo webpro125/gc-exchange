@@ -3,12 +3,25 @@ require 'spec_helper'
 describe Consultant do
   before do
     @consultant = Consultant.new(
-        first_name: 'Freddy',
-        last_name: 'Kreuger',
-        email: 'freddy.kreuger@globalconsultantexchange.com',
-        password: 'password',
-        password_confirmation: 'password'
+      first_name: 'Freddy',
+      last_name: 'Kreuger',
+      email: 'freddy.kreuger@globalconsultantexchange.com',
+      password: 'password',
+      password_confirmation: 'password'
     )
+  end
+
+  let(:mime_types) do
+    [
+      'application/msword',
+      'application/vnd.ms-word',
+      'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
+      'application/pdf'
+    ]
+  end
+
+  let(:reject) do
+    ['text/plain', 'text/xml']
   end
 
   subject { @consultant }
@@ -70,6 +83,18 @@ describe Consultant do
       @consultant.last_name = '!@#$'
       expect(@consultant).not_to be_valid
     end
+  end
+
+  describe 'resume' do
+    before do
+      @consultant.resume = File.new(Rails.root + 'spec/files/a_pdf.pdf')
+    end
+
+    it { should have_attached_file(:resume) }
+    it { should validate_attachment_size(:resume).less_than(10.megabytes) }
+    it { should validate_attachment_content_type(:resume).allowing(mime_types).rejecting(reject) }
+
+    it { should_not validate_attachment_presence(:resume) }
   end
 
   describe 'association' do
