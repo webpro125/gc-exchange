@@ -11,6 +11,8 @@ gem 'devise', '~> 3.2'
 gem 'rake', '~> 10.3.2'
 gem 'geocoder', '~> 1.2.2'
 gem 'pundit', '~> 0.3.0'
+gem 'paperclip', '~> 4.2'
+gem 'fog', '~> 1.23.0'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -19,7 +21,7 @@ end
 group :development do
   gem 'guard-rspec', '~> 4.2.9', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
-  gem 'guard-bundler', require: false
+  gem 'guard-bundler', '~> 2.0.0', require: false
   gem 'guard-migrate', '~> 1.1.0', require: false
   gem 'guard-rubocop', '~> 1.1.0', require: false
   gem 'rubocop', '~> 0.23.0', require: false
@@ -46,6 +48,7 @@ group :development, :test do
 
   gem 'capybara', '~> 2.3.0', require: false
   gem 'yarjuf'
+  gem 'shoulda-matchers', '~> 2.7.0', require: false
 end
 
 group :test do

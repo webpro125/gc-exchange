@@ -14,6 +14,11 @@ guard 'brakeman', run_on_start: true do
   watch('Gemfile')
 end
 
+guard :rubocop do
+  watch(/.+\.rb$/)
+  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
+end
+
 guard :rspec, cmd: 'spring rspec', all_after_pass: true do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
@@ -44,9 +49,4 @@ guard :rspec, cmd: 'spring rspec', all_after_pass: true do
   watch(%r{^spec/factories/(.+)\.rb$}) do |m|
     ["app/models/#{m[1].singularize}.rb", "spec/models/#{m[1].singularize}_spec.rb"]
   end
-end
-
-guard :rubocop do
-  watch(/.+\.rb$/)
-  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
