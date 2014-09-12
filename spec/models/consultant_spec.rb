@@ -103,6 +103,11 @@ describe Consultant do
           expect(Phone.find_by_id(phone)).to be_nil
         end
       end
+
+      it 'should not allow more than 3' do
+        @consultant.phones << FactoryGirl.build_list(:phone, 3)
+        expect(@consultant).not_to be_valid
+      end
     end
 
     describe 'skills' do

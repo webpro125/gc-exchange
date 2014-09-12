@@ -16,4 +16,11 @@ class Consultant < ActiveRecord::Base
   validates :last_name, length: { in: 3..24 }, presence: true,
             format: { with: /\A[\w\s'-]+\z/,
                       message: 'only allows letters and numbers' }
+  validate :phone_length
+
+  private
+
+  def phone_length
+    errors.add(:phones, :too_long, count: 3) if phones.size > 3
+  end
 end
