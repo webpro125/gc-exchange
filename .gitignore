@@ -24,6 +24,9 @@
 spec/results
 /target/
 
+/public/uploads
+/public/test/
+
 # Ignore vendor/bin
 /vendor/bin
 /config/secrets.yml
