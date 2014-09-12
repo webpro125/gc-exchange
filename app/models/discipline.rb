@@ -1,5 +1,9 @@
 class Discipline < ActiveRecord::Base
-  DISCIPLINE_TYPES = [].freeze
+  SHIPLEY = 'SHIPLEY'
+  SMA = 'SMA'
+  OTHER = 'OTHER'
 
-  validates :code, length: { maximum: 32 }, uniqueness: true
+  DISCIPLINE_TYPES = [SHIPLEY, SMA, OTHER].freeze
+
+  validates :code, length: { maximum: 32 }, uniqueness: true, presence: true
 end

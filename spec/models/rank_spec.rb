@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Rank do
   before do
-    @rank = FactoryGirl.create(:rank)
+    @rank = Rank.new(code: 'MY_RANK')
   end
 
   subject { @rank }
@@ -11,14 +11,15 @@ describe Rank do
 
   describe 'code' do
     it 'should have a max length' do
-      @rank.code = 'a' * 11
-      expect(@rank).to_not be_valid
+      expect(subject).to ensure_length_of(:code).is_at_most(32)
     end
 
     it 'should be unique' do
-      @rank.save
-      rank = @rank.dup
-      expect(rank).to_not be_valid
+      expect(subject).to validate_uniqueness_of :code
+    end
+
+    it 'should be required' do
+      expect(subject).to validate_presence_of :code
     end
   end
 end
