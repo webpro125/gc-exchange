@@ -57,9 +57,8 @@ describe Military do
   end
 
   describe 'clearance_status' do
-    it 'is not required' do
-      @military.clearance_status = nil
-      expect(@military).to be_valid
+    it 'is required' do
+      expect(@military.clearance_status).to be_false
     end
   end
 
@@ -110,8 +109,7 @@ describe Military do
     end
 
     describe 'service_branch' do
-      it 'is not required' do
-        @military.branch = nil
+      it 'is defaulted to false' do
         expect(@military).to be_valid
       end
 

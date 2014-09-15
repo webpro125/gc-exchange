@@ -25,7 +25,10 @@ class MilitariesController < ConsultantController
     params.require(:military).permit(:investigation_date,
                                      :clearance_expiration_date,
                                      :service_start_date,
-                                     :service_end_date)
+                                     :service_end_date,
+                                     :rank_id,
+                                     :branch_id,
+                                     :clearance_level_id)
   end
 
   def load_military

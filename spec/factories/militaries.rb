@@ -3,6 +3,8 @@
 FactoryGirl.define do
   factory :military do
     consultant
+    rank
+    branch
     investigation_date    { 1.years.ago }
     service_start_date    { 6.months.ago }
   end
