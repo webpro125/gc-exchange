@@ -68,6 +68,10 @@ en:
       edit:
         save: 'Update Phone'
     project:
+      table:
+        company_name: 'Company'
+        edit: 'Edit Project'
+        delete: 'Delete Project'
       actions:
         add: 'New Project'
         edit: 'Edit'
