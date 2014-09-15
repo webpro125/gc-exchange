@@ -57,14 +57,6 @@ en:
         save: 'Save Address'
       edit:
         save: 'Update Address'
-    military:
-      actions:
-         add: 'Add Your Military Info'
-         edit: 'Edit Military Info'
-      new:
-         save: 'Save Military Info'
-      edit:
-         save: 'Update Military Info'
     phone:
       table:
         number: 'Phone Number'
@@ -82,12 +74,3 @@ en:
         save: 'Save Phone'
       edit:
         save: 'Update Phone'
-    military:
-      actions:
-        add: 'Add Your Military'
-        edit: 'Edit Military'
-      table:
-        investigation_date: 'Investigation Date'
-        clearance_expiration_date: 'Clearance Expiration Date'
-        service_start_date: 'Service Start Date'
-        service_end_date: 'Service End Date'

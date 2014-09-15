@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912144706) do
+ActiveRecord::Schema.define(version: 20140912135507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,8 +96,6 @@ ActiveRecord::Schema.define(version: 20140912144706) do
     t.date     "service_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "clearance_status"
-    t.string   "service_branch"
   end
 
   add_index "militaries", ["clearance_level_id"], name: "index_militaries_on_clearance_level_id", using: :btree
