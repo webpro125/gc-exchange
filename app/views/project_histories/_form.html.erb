@@ -2,6 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :customer_name, build_simple_form_dropdown(CustomerName) %>
+    <%= f.input :client_company %>
+    <%= f.input :client_poc_name %>
+    <%= f.input :client_poc_email %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.association :position, build_simple_form_dropdown(Position) %>
+    <%= f.input :description %>
   </div>
 
   <div class="form-actions">

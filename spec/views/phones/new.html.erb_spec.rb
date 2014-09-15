@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe 'phones/new.html.erb' do
+  let(:phone) { FactoryGirl.build_stubbed(:phone) }
+  let(:phone_types) { FactoryGirl.build_stubbed_list(:phone_type, 3) }
+
   before do
-    assign(:phone, FactoryGirl.build(:phone))
-    assign(:phone_types, [{ id: 1, code: 'CELL' }])
+    assign(:phone, phone)
+    assign(:phone_types, phone_types)
     render
   end
 
