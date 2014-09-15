@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Position do
   before do
-    @position = Position.new(code: 'OTHER')
+    @position = Position.new(code: 'MY_POSITION')
   end
 
   subject { @position }
@@ -11,14 +11,15 @@ describe Position do
 
   describe 'code' do
     it 'should have a max length' do
-      @position.code = 'a' * 33
-      expect(@position).to_not be_valid
+      expect(subject).to ensure_length_of(:code).is_at_most(32)
     end
 
     it 'should be unique' do
-      @position.save!
-      position = @position.dup
-      expect(position).to_not be_valid
+      expect(subject).to validate_uniqueness_of :code
+    end
+
+    it 'should be required' do
+      expect(subject).to validate_presence_of :code
     end
   end
 end

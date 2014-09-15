@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20140912144706) do
   add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
-    t.string   "email",                             default: "", null: false
-    t.string   "encrypted_password",                default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20140912144706) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first_name",             limit: 24,              null: false
-    t.string   "last_name",              limit: 24,              null: false
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_file_name"
@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(version: 20140912144706) do
   add_index "consultants", ["confirmation_token"], name: "index_consultants_on_confirmation_token", unique: true, using: :btree
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
+
+  create_table "customer_names", force: true do |t|
+    t.string "code", limit: 32, null: false
+  end
+
+  add_index "customer_names", ["code"], name: "index_customer_names_on_code", unique: true, using: :btree
 
   create_table "disciplines", force: true do |t|
     t.string "code", limit: 32
@@ -126,7 +132,6 @@ ActiveRecord::Schema.define(version: 20140912144706) do
 
   create_table "project_histories", force: true do |t|
     t.integer  "consultant_id",                null: false
-    t.string   "customer_name",    limit: 128
     t.string   "client_company",   limit: 128
     t.string   "client_poc_name",  limit: 64
     t.string   "client_poc_email", limit: 128
@@ -136,9 +141,11 @@ ActiveRecord::Schema.define(version: 20140912144706) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_name_id"
   end
 
   add_index "project_histories", ["consultant_id"], name: "index_project_histories_on_consultant_id", using: :btree
+  add_index "project_histories", ["customer_name_id"], name: "index_project_histories_on_customer_name_id", using: :btree
   add_index "project_histories", ["position_id"], name: "index_project_histories_on_position_id", using: :btree
 
   create_table "project_history_disciplines", force: true do |t|

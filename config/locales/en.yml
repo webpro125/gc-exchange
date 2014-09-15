@@ -36,6 +36,13 @@ en:
         success: 'Military saved successfully'
       update:
         success: 'Military saved successfully'
+    project_history:
+      create:
+        success: 'Project saved successfully'
+      update:
+        success: 'Project saved successfully'
+      destroy:
+        success: 'Project destroyed successfully'
   views:
     password:
       actions:

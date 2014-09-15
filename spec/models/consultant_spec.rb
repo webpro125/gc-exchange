@@ -31,7 +31,7 @@ describe Consultant do
 
   describe 'first_name' do
     it 'should have minimum length' do
-      @consultant.first_name = 'a' * 2
+      @consultant.first_name = 'a' * 1
       expect(@consultant).not_to be_valid
     end
 
@@ -62,7 +62,7 @@ describe Consultant do
 
   describe 'last_name' do
     it 'should have minimum length' do
-      @consultant.last_name = 'a' * 2
+      @consultant.last_name = 'a' * 1
       expect(@consultant).not_to be_valid
     end
 

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Discipline do
+describe CustomerName do
   before do
-    @discipline = Discipline.new(code: 'MY_DISCIPLINE')
+    @customer_name = CustomerName.new(code: 'MY_CUSTOMER')
   end
 
-  subject { @discipline }
+  subject { @customer_name }
 
   it { should be_valid }
 

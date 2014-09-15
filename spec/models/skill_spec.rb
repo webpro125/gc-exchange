@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Skill do
   before do
-    @skill = FactoryGirl.create(:skill)
+    @skill = Skill.new(code: 'MY_SKILL')
   end
 
   subject { @skill }
@@ -11,14 +11,15 @@ describe Skill do
 
   describe 'code' do
     it 'should have a max length' do
-      @skill.code = 'a' * 33
-      expect(@skill).to_not be_valid
+      expect(subject).to ensure_length_of(:code).is_at_most(32)
     end
 
     it 'should be unique' do
-      @skill.save
-      skill = @skill.dup
-      expect(skill).to_not be_valid
+      expect(subject).to validate_uniqueness_of :code
+    end
+
+    it 'should be required' do
+      expect(subject).to validate_presence_of :code
     end
   end
 end

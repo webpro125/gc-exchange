@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ClearanceLevel do
   before do
-    @clearance_level = FactoryGirl.create(:clearance_level)
+    @clearance_level = ClearanceLevel.new(code: 'MY_LEVEL')
   end
 
   subject { @clearance_level }
@@ -11,14 +11,15 @@ describe ClearanceLevel do
 
   describe 'code' do
     it 'should have a max length' do
-      @clearance_level.code = 'a' * 11
-      expect(@clearance_level).to_not be_valid
+      expect(subject).to ensure_length_of(:code).is_at_most(32)
     end
 
     it 'should be unique' do
-      @clearance_level.save
-      clearance_level = @clearance_level.dup
-      expect(clearance_level).to_not be_valid
+      expect(subject).to validate_uniqueness_of :code
+    end
+
+    it 'should be required' do
+      expect(subject).to validate_presence_of :code
     end
   end
 end
