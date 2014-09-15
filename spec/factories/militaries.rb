@@ -5,6 +5,5 @@ FactoryGirl.define do
     consultant
     investigation_date    { 1.years.ago }
     service_start_date    { 6.months.ago }
-    service_end_date
   end
 end

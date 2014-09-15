@@ -36,6 +36,8 @@ en:
         success: 'Military saved successfully'
       update:
         success: 'Military saved successfully'
+      destroy:
+        success: 'Military destroyed successfully'
     project_history:
       create:
         success: 'Project saved successfully'
