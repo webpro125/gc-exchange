@@ -1,5 +1,5 @@
 module ApplicationHelper
-  LOOKUPS = [PhoneType, ClearanceLevel, CustomerName, Position].freeze
+  LOOKUPS = [PhoneType, ClearanceLevel, Branch, Rank].freeze
 
   # Determines if we're in a development type environment
   #

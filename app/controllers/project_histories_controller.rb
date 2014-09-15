@@ -46,7 +46,7 @@ class ProjectHistoriesController < ConsultantController
   # DELETE /projects/1
   def destroy
     @project.destroy
-    flash[:success] = t('controllers.phone.destroy.success')
+    flash[:success] = t('controllers.project_history.destroy.success')
 
     redirect_to project_histories_path
   end

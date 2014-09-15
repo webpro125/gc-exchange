@@ -33,3 +33,6 @@ Skill::SKILL_TYPES.each do |type|
   Skill.find_or_create_by(code: type)
 end
 
+Branch::BRANCH_TYPES.each do |type|
+  Branch.find_or_create_by(code: type)
+end
