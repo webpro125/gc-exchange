@@ -41,8 +41,8 @@ describe ProjectHistory do
       @project_history.client_company = 'John 123567'
       expect(@project_history).to be_valid
 
-      @project_history.client_company = '!@#$'
-      expect(@project_history).not_to be_valid
+      @project_history.client_company = 'Mr. Edgardo Langworth'
+      expect(@project_history).to be_valid
     end
   end
 

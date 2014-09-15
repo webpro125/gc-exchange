@@ -1,4 +1,42 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_project_history_path(@project) %> |
-<%= link_to 'Back', project_histories_path %>
+<h2 class="text-center">Project</h2>
+<div class="row">
+  <div class="small-3 columns">
+    <h4><%= @project.client_company %></h4>
+  </div>
+  <div class="small-9 columns">
+    <span class="right">
+      <%= @project.start_date.to_formatted_s(:long) %> -
+      <%= @project.end_date.to_formatted_s(:long) || 'Present' %>
+    </span>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <h5><%= lookup_translation(Position, @project.position.code) %></h5>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 columns">
+    <%= lookup_translation(CustomerName, @project.customer_name.code) %>
+  </div>
+  <div class="small-3 columns">
+    <%= @project.client_poc_name %>
+  </div>
+  <div class="small-3 columns">
+    <%= @project.client_poc_email %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <p>
+      <%= @project.description %>
+    </p>
+  </div>
+</div>
+<div class="row page-actions">
+  <td><%= link_to t('views.project.actions.edit'), edit_project_history_path(@project),
+                  class: 'button' if policy(@project).edit? %></td>
+  <td><%= link_to t('views.project.actions.delete'),  project_history_path(@project), class: 'button alert',
+                  method: :delete, data: { confirm: t('views.project.confirmations.delete') } if
+                  policy(@project).destroy? %></td>
+</div>

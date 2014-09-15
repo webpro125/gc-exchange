@@ -1,23 +1,29 @@
-<h1>Listing projects</h1>
-
-<table>
-  <thead>
+<h2 class="text-center">Projects</h2>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="page-actions right">
+      <%= link_to t('views.project.actions.add'), new_project_history_path, class: 'button' %>
+    </div>
+  </div>
+  <table>
+    <thead>
     <tr>
-      <th colspan="3"></th>
+      <th><%= t('views.project.table.number') %></th>
+      <th><%= t('views.project.table.edit') %></th>
+      <th><%= t('views.project.table.delete') %></th>
     </tr>
-  </thead>
-
-  <tbody>
+    </thead>
     <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_history_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <tr>
+          <td><%= link_to project.client_company, project %></td>
+          <td><%= link_to t('views.project.actions.edit'), edit_project_history_path(project),
+                          class: 'button tiny secondary' if policy(project).edit? %></td>
+          <td><%= link_to t('views.project.actions.delete'),  project, class: 'button tiny alert',
+                          method: :delete,
+                          data: { confirm: t('views.project.confirmations.delete') } if
+                          policy(project).destroy? %></td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
+  </table>
+</div>
 
-<br>
-
-<%= link_to 'New Project', new_project_history_path %>

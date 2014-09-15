@@ -67,3 +67,11 @@ en:
         save: 'Save Phone'
       edit:
         save: 'Update Phone'
+    project:
+      actions:
+        add: 'New Project'
+        edit: 'Edit'
+        delete: 'Delete'
+        index: 'Manage Projects'
+      confirmations:
+        delete: 'Are you sure you want to delete this project?'
