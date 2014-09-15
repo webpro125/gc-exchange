@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   resources :phones
   resources :project_histories, path: 'projects'
 
-
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.
