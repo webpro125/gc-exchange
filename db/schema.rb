@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912135507) do
+ActiveRecord::Schema.define(version: 20140915180152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20140912135507) do
   end
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
+
+  create_table "branches", force: true do |t|
+    t.string   "code",       limit: 10, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "branches", ["code"], name: "index_branches_on_code", unique: true, using: :btree
 
   create_table "clearance_levels", force: true do |t|
     t.string "code", limit: 32, null: false
@@ -89,15 +97,18 @@ ActiveRecord::Schema.define(version: 20140912135507) do
   create_table "militaries", force: true do |t|
     t.integer  "rank_id"
     t.integer  "clearance_level_id"
-    t.integer  "consultant_id",             null: false
+    t.integer  "consultant_id",                             null: false
     t.date     "investigation_date"
     t.date     "clearance_expiration_date"
     t.date     "service_start_date"
     t.date     "service_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "clearance_status",          default: false, null: false
+    t.integer  "branch_id"
   end
 
+  add_index "militaries", ["branch_id"], name: "index_militaries_on_branch_id", using: :btree
   add_index "militaries", ["clearance_level_id"], name: "index_militaries_on_clearance_level_id", using: :btree
   add_index "militaries", ["consultant_id"], name: "index_militaries_on_consultant_id", using: :btree
   add_index "militaries", ["rank_id"], name: "index_militaries_on_rank_id", using: :btree
