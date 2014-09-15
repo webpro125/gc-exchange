@@ -2,6 +2,7 @@ class Military < ActiveRecord::Base
   belongs_to :consultant
   belongs_to :clearance_level
   belongs_to :rank
+  belongs_to :branch
 
   validates :consultant, presence: true, uniqueness: true
   validates :service_end_date, date: { after: :service_start_date, before: DateTime.now },

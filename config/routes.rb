@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # Resources
   resource :address, except: [:destroy, :show]
+  resource :military, except: [:new, :edit, :show, :index]
   resources :phones
   resources :project_histories, path: 'projects'
 
