@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   # Resources
   resource :address, except: [:destroy, :show]
+  resources :military, except: [:show, :index]
   resources :phones
+
 
   # Non resource
 

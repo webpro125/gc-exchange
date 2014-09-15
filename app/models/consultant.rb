@@ -11,6 +11,7 @@ class Consultant < ActiveRecord::Base
   has_attached_file :resume
 
   has_one :address, dependent: :destroy
+  has_one :military, dependent: :destroy
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
   has_many :consultant_skills, dependent: :destroy

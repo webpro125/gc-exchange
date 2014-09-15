@@ -54,6 +54,20 @@ describe Military do
     end
   end
 
+  describe 'clearance_status' do
+    it 'is not required' do
+      @military.clearance_status = nil
+      expect(@military).to be_valid
+    end
+  end
+
+  describe 'service_branch' do
+    it 'is not required' do
+      @military.service_branch = nil
+      expect(@military).to be_valid
+    end
+  end
+
   describe 'associations' do
     describe 'rank' do
       it 'is not required' do
