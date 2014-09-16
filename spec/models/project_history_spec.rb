@@ -151,7 +151,7 @@ describe ProjectHistory do
     end
 
     it 'should have maximum length' do
-      @project_history.description = 'a' * 10_001
+      @project_history.description = 'a' * 1_501
       expect(@project_history).not_to be_valid
     end
 
