@@ -37,6 +37,7 @@
   <td><%= link_to t('views.project.actions.edit'), edit_project_history_path(@project),
                   class: 'button' if policy(@project).edit? %></td>
   <td><%= link_to t('views.project.actions.delete'),  project_history_path(@project), class: 'button alert',
-                  method: :delete, data: { confirm: t('views.project.confirmations.delete') } if
+                  method: :delete,
+                  data: { confirm: t('views.project.confirmations.delete') } if
                   policy(@project).destroy? %></td>
 </div>

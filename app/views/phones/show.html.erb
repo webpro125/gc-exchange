@@ -19,6 +19,7 @@
   <td><%= link_to t('views.phone.actions.edit'), edit_phone_path(@phone),
                   class: 'button' if policy(@phone).edit? %></td>
   <td><%= link_to t('views.phone.actions.delete'),  phone_path(@phone), class: 'button alert',
-                  method: :delete, data: { confirm: t('views.phone.confirmations.delete') } if
+                  method: :delete,
+                  data: { confirm: t('views.phone.confirmations.delete') } if
                   policy(@phone).destroy? %></td>
 </div>
