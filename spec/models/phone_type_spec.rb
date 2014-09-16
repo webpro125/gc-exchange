@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PhoneType do
   before do
-    @phone_type = PhoneType.new(code: 'OTHER')
+    @phone_type = PhoneType.new(code: 'MY_PHONE_TYPE')
   end
 
   subject { @phone_type }
@@ -11,14 +11,15 @@ describe PhoneType do
 
   describe 'code' do
     it 'should have a max length' do
-      @phone_type.code = 'a' * 33
-      expect(@phone_type).to_not be_valid
+      expect(subject).to ensure_length_of(:code).is_at_most(32)
     end
 
     it 'should be unique' do
-      @phone_type.save
-      phone_type = @phone_type.dup
-      expect(phone_type).to_not be_valid
+      expect(subject).to validate_uniqueness_of :code
+    end
+
+    it 'should be required' do
+      expect(subject).to validate_presence_of :code
     end
   end
 end

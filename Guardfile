@@ -14,7 +14,7 @@ guard 'brakeman', run_on_start: true do
   watch('Gemfile')
 end
 
-guard :rubocop do
+guard :rubocop, all_on_start: false do
   watch(/.+\.rb$/)
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end

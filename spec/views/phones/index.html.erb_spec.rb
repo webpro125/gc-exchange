@@ -1,17 +1,18 @@
 require 'spec_helper'
 
 describe 'phones/index.html.erb' do
+  let(:phones) { FactoryGirl.build_stubbed_list(:phone, 3) }
+  let(:phone_types) { FactoryGirl.build_stubbed_list(:phone_type, 3) }
+
   before do
-    @phones = [mock_model(Phone, phone_type: mock_model(PhoneType)),
-               mock_model(Phone, phone_type: mock_model(PhoneType))]
-    assign(:phones, @phones)
-    assign(:phone_types, [{ id: 1, code: 'CELL' }])
+    assign(:phones, phones)
+    assign(:phone_types, phone_types)
     view.stub(:lookup_translation).and_return('hi')
     render
   end
 
   it 'should have number' do
-    @phones.each do |phone|
+    phones.each do |phone|
       expect(rendered).to have_text(phone.number)
     end
   end
@@ -21,7 +22,7 @@ describe 'phones/index.html.erb' do
   end
 
   it 'should have a link to show' do
-    @phones.each do |phone|
+    phones.each do |phone|
       expect(rendered).to have_link(phone.number)
     end
   end

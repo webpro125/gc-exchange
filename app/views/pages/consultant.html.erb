@@ -15,6 +15,11 @@
             <%= link_to t('views.phone.actions.index'), phones_path %>
           </li>
       <% end %>
+      <% if current_consultant.project_histories.empty? %>
+          <li>
+            <%= link_to t('views.project.actions.index'), project_histories_path %>
+          </li>
+      <% end %>
     </ul>
   </div>
 </div>

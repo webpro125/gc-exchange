@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe Military do
   before do
-    @military = Military.new(rank: rank,
+    @military = Military.new(branch: branch,
+                             rank: rank,
                              clearance_level: clearance_level,
                              consultant: consultant,
                              service_start_date: 1.month.ago)
   end
 
+  let(:branch) { FactoryGirl.create(:branch) }
   let(:rank) { FactoryGirl.create(:rank) }
   let(:clearance_level) { FactoryGirl.create(:clearance_level) }
   let(:consultant) { FactoryGirl.create(:consultant) }
@@ -54,6 +56,12 @@ describe Military do
     end
   end
 
+  describe 'clearance_status' do
+    it 'is required' do
+      expect(@military.clearance_status).to be_false
+    end
+  end
+
   describe 'associations' do
     describe 'rank' do
       it 'is not required' do
@@ -97,6 +105,20 @@ describe Military do
 
         @military.destroy
         expect(Consultant.find_by_id(consultant_id)).not_to be_nil
+      end
+    end
+
+    describe 'service_branch' do
+      it 'is defaulted to false' do
+        expect(@military).to be_valid
+      end
+
+      it 'should not be destroyed on delete' do
+        @military.save!
+        branch_id = @military.branch_id
+
+        @military.destroy
+        expect(Branch.find_by_id(branch_id)).not_to be_nil
       end
     end
   end

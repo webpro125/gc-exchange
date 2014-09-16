@@ -11,16 +11,17 @@ class Consultant < ActiveRecord::Base
   has_attached_file :resume
 
   has_one :address, dependent: :destroy
+  has_one :military, dependent: :destroy
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
   has_many :consultant_skills, dependent: :destroy
   has_many :skills, through: :consultant_skills
 
   validate :phone_length
-  validates :first_name, length: { in: 3..24 }, presence: true,
+  validates :first_name, length: { in: 2..24 }, presence: true,
             format: { with: /\A[A-Za-z\s'-]+\z/,
                       message: 'only allows letters' }
-  validates :last_name, length: { in: 3..24 }, presence: true,
+  validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: /\A[\w\s'-]+\z/,
                       message: 'only allows letters and numbers' }
   validates_attachment :resume,
