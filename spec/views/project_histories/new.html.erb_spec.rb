@@ -43,4 +43,8 @@ describe 'project_histories/new.html.erb' do
   it 'should have description' do
     expect(rendered).to have_field('project_history_description')
   end
+
+  it 'should have project_type' do
+    expect(rendered).to have_field('project_history_project_type_id')
+  end
 end

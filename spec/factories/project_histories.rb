@@ -9,6 +9,7 @@ FactoryGirl.define do
     start_date { 3.years.ago }
     end_date { 6.months.ago }
     description { Faker::Lorem.paragraph(10) }
+    project_type
     position
   end
 end

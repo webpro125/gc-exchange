@@ -12,6 +12,7 @@ describe ProjectHistory do
                                           start_date: 2.years.ago,
                                           end_date: 1.year.ago,
                                           position: FactoryGirl.create(:position),
+                                          project_type: FactoryGirl.create(:project_type),
                                           description: 'A short little quip of a description')
   end
 
@@ -210,6 +211,21 @@ describe ProjectHistory do
         project_history_disciplines.each do |project_history_discipline|
           expect(ProjectHistoryDiscipline.find_by_id(project_history_discipline)).to be_nil
         end
+      end
+    end
+
+    describe 'project_type' do
+      it 'should be present' do
+        @project_history.project_type = nil
+        expect(@project_history).to_not be_valid
+      end
+
+      it 'should not be destroyed on delete' do
+        @project_history.save!
+        project_type_id = @project_history.project_type_id
+
+        @project_history.destroy
+        expect(ProjectType.find_by_id(project_type_id)).to_not be_nil
       end
     end
   end
