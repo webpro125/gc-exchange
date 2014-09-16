@@ -34,7 +34,5 @@ class MilitariesController < ConsultantController
   def load_military
     @military = current_consultant.military
     authorize @military
-
-    redirect_to new_military_path if @military.new_record?
   end
 end
