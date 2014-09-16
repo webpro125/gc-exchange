@@ -40,9 +40,7 @@ ActiveRecord::Schema.define(version: 20140916183441) do
   add_index "branches", ["code"], name: "index_branches_on_code", unique: true, using: :btree
 
   create_table "clearance_levels", force: true do |t|
-    t.string   "code",       limit: 10, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "code", limit: 32, null: false
   end
 
   create_table "consultant_skills", force: true do |t|
@@ -70,8 +68,8 @@ ActiveRecord::Schema.define(version: 20140916183441) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",             limit: 24,              null: false
+    t.string   "last_name",              limit: 24,              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_file_name"
@@ -176,15 +174,11 @@ ActiveRecord::Schema.define(version: 20140916183441) do
   add_index "project_types", ["code"], name: "index_project_types_on_code", unique: true, using: :btree
 
   create_table "ranks", force: true do |t|
-    t.string   "code",       limit: 10, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "code",       limit: 32, null: false
   end
 
   create_table "skills", force: true do |t|
     t.string   "code",       limit: 32, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "skills", ["code"], name: "index_skills_on_code", unique: true, using: :btree
