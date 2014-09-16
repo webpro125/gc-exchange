@@ -2,9 +2,11 @@ require 'spec_helper'
 
 describe ProjectHistoriesController do
   let!(:position) { FactoryGirl.create(:position) }
+  let!(:project_type) { FactoryGirl.create(:project_type) }
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
   let(:valid_attributes) do
-    FactoryGirl.attributes_for(:project_history, consultant: consultant, position_id: position.id)
+    FactoryGirl.attributes_for(:project_history, consultant: consultant,
+                               position_id: position.id, project_type_id: project_type.id)
   end
 
   describe 'when logged in' do

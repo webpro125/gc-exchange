@@ -3,6 +3,7 @@
 
   <div class="form-inputs">
     <%= f.association :customer_name, build_simple_form_dropdown(CustomerName) %>
+    <%= f.association :project_type, build_simple_form_dropdown(ProjectType) %>
     <%= f.input :client_company %>
     <%= f.input :client_poc_name %>
     <%= f.input :client_poc_email %>
