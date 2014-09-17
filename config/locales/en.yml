@@ -20,6 +20,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      models:
+        project_history:
+          attributes:
+            project_history_positions:
+              too_short:
+                one: "must have at least %{count} position"
+                other: "must have at least %{count} positions"
+              too_long:
+                one: "must have at most %{count} position"
+                other: "must have at most %{count} positions"
   controllers:
     address:
       create:
