@@ -32,6 +32,7 @@ en:
               too_long:
                 one: "must have at most %{count} position"
                 other: "must have at most %{count} positions"
+              total: 'percentages must add up to 100%'
   controllers:
     address:
       create:

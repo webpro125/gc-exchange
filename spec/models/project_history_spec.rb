@@ -3,7 +3,9 @@ require 'spec_helper'
 describe ProjectHistory do
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
   let(:customer_name) { FactoryGirl.create(:customer_name) }
-  let(:project_history_position_list) { FactoryGirl.create_list(:project_history_position, 2) }
+  let(:project_history_position_list) do
+    FactoryGirl.build_list(:project_history_position, 2, percentage: 50)
+  end
 
   before do
     @project_history = ProjectHistory.new(consultant: consultant,
@@ -201,6 +203,15 @@ describe ProjectHistory do
     describe 'project_history_positions' do
       it 'should be required' do
         @project_history.project_history_positions.clear
+        expect(@project_history).not_to be_valid
+      end
+
+      it 'should be invalid if not 100%' do
+        @project_history.project_history_positions << FactoryGirl.build(:project_history_position)
+        @project_history.project_history_positions.each do |project_history_position|
+          project_history_position.percentage = 90
+        end
+
         expect(@project_history).not_to be_valid
       end
 
