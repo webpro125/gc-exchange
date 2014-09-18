@@ -36,7 +36,3 @@ end
 Branch::BRANCH_TYPES.each do |type|
   Branch.find_or_create_by(code: type)
 end
-
-State::STATE_TYPES.each do |type|
-  State.find_or_create_by(code: type)
-end
