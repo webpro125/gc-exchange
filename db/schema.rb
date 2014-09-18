@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916183441) do
+ActiveRecord::Schema.define(version: 20140917142010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 20140916183441) do
   add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -144,7 +144,6 @@ ActiveRecord::Schema.define(version: 20140916183441) do
     t.string   "client_poc_email", limit: 128
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "position_id",                  null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -154,7 +153,6 @@ ActiveRecord::Schema.define(version: 20140916183441) do
 
   add_index "project_histories", ["consultant_id"], name: "index_project_histories_on_consultant_id", using: :btree
   add_index "project_histories", ["customer_name_id"], name: "index_project_histories_on_customer_name_id", using: :btree
-  add_index "project_histories", ["position_id"], name: "index_project_histories_on_position_id", using: :btree
   add_index "project_histories", ["project_type_id"], name: "index_project_histories_on_project_type_id", using: :btree
 
   create_table "project_history_disciplines", force: true do |t|
@@ -167,6 +165,15 @@ ActiveRecord::Schema.define(version: 20140916183441) do
   add_index "project_history_disciplines", ["discipline_id"], name: "index_project_history_disciplines_on_discipline_id", using: :btree
   add_index "project_history_disciplines", ["project_history_id"], name: "index_project_history_disciplines_on_project_history_id", using: :btree
 
+  create_table "project_history_positions", force: true do |t|
+    t.integer "project_history_id"
+    t.integer "position_id"
+    t.integer "percentage"
+  end
+
+  add_index "project_history_positions", ["position_id"], name: "index_project_history_positions_on_position_id", using: :btree
+  add_index "project_history_positions", ["project_history_id"], name: "index_project_history_positions_on_project_history_id", using: :btree
+
   create_table "project_types", force: true do |t|
     t.string "code", limit: 32, null: false
   end
@@ -174,11 +181,11 @@ ActiveRecord::Schema.define(version: 20140916183441) do
   add_index "project_types", ["code"], name: "index_project_types_on_code", unique: true, using: :btree
 
   create_table "ranks", force: true do |t|
-    t.string   "code",       limit: 32, null: false
+    t.string "code", limit: 32, null: false
   end
 
   create_table "skills", force: true do |t|
-    t.string   "code",       limit: 32, null: false
+    t.string "code", limit: 32, null: false
   end
 
   add_index "skills", ["code"], name: "index_skills_on_code", unique: true, using: :btree

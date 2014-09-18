@@ -10,6 +10,12 @@ FactoryGirl.define do
     end_date { 6.months.ago }
     description { Faker::Lorem.paragraph(10) }
     project_type
-    position
+
+    before(:create) do |project_history|
+      unless project_history.project_history_positions.size > 1
+        position = FactoryGirl.build(:project_history_position, project_history: project_history)
+        project_history.project_history_positions << position
+      end
+    end
   end
 end

@@ -36,10 +36,6 @@ describe 'project_histories/new.html.erb' do
     expect(rendered).to have_field('project_history_end_date_3i')
   end
 
-  it 'should have position' do
-    expect(rendered).to have_field('project_history_position_id')
-  end
-
   it 'should have description' do
     expect(rendered).to have_field('project_history_description')
   end

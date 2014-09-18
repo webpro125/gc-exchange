@@ -3,6 +3,10 @@ require 'spec_helper'
 describe ProjectHistory do
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
   let(:customer_name) { FactoryGirl.create(:customer_name) }
+  let(:project_history_position_list) do
+    FactoryGirl.build_list(:project_history_position, 2, percentage: 50)
+  end
+
   before do
     @project_history = ProjectHistory.new(consultant: consultant,
                                           customer_name: customer_name,
@@ -11,8 +15,8 @@ describe ProjectHistory do
                                           client_poc_email: 'poc@email.com',
                                           start_date: 2.years.ago,
                                           end_date: 1.year.ago,
-                                          position: FactoryGirl.create(:position),
                                           project_type: FactoryGirl.create(:project_type),
+                                          project_history_positions: project_history_position_list,
                                           description: 'A short little quip of a description')
   end
 
@@ -49,7 +53,7 @@ describe ProjectHistory do
 
   describe 'client_poc_name' do
     it 'should have minimum length' do
-      @project_history.client_poc_name = 'a' * 2
+      @project_history.client_poc_name = 'a' * 1
       expect(@project_history).not_to be_valid
     end
 
@@ -156,7 +160,7 @@ describe ProjectHistory do
       expect(@project_history).not_to be_valid
     end
 
-    it 'should be required' do
+    it 'should not be required' do
       @project_history.description = nil
       expect(@project_history).to be_valid
     end
@@ -182,28 +186,10 @@ describe ProjectHistory do
       end
     end
 
-    describe 'position' do
-      it 'should be present' do
-        @project_history.position = nil
-        expect(@project_history).to_not be_valid
-      end
-
-      it 'should not be destroyed on delete' do
-        @project_history.save!
-        position_id = @project_history.position_id
-
-        @project_history.destroy
-        expect(Position.find_by_id(position_id)).to_not be_nil
-      end
-    end
-
     describe 'project_history_disciplines' do
-      before do
-        @project_history.save!
-        FactoryGirl.create_list(:project_history_discipline, 3, project_history: @project_history)
-      end
-
       it 'should destroy them on delete' do
+        @project_history.save!
+
         project_history_disciplines = @project_history.project_history_disciplines.map(&:id)
         expect(project_history_disciplines).not_to be_nil
 
@@ -212,6 +198,41 @@ describe ProjectHistory do
           expect(ProjectHistoryDiscipline.find_by_id(project_history_discipline)).to be_nil
         end
       end
+    end
+
+    describe 'project_history_positions' do
+      it 'should be required' do
+        @project_history.project_history_positions.clear
+        expect(@project_history).not_to be_valid
+      end
+
+      it 'should be invalid if not 100%' do
+        @project_history.project_history_positions << FactoryGirl.build(:project_history_position)
+        @project_history.project_history_positions.each do |project_history_position|
+          project_history_position.percentage = 90
+        end
+
+        expect(@project_history).not_to be_valid
+      end
+
+      it 'should destroy them on delete' do
+        @project_history.save!
+        project_history_positions = @project_history.project_history_positions.map(&:id)
+        expect(project_history_positions).not_to be_nil
+
+        @project_history.destroy
+        project_history_positions.each do |project_history_position|
+          expect(ProjectHistoryPosition.find_by_id(project_history_position)).to be_nil
+        end
+      end
+
+      it 'should have maximum size' do
+        position_list = FactoryGirl.build_list(:project_history_position, 3)
+        @project_history.project_history_positions << position_list
+        expect(subject).not_to be_valid
+      end
+
+      it { should accept_nested_attributes_for(:project_history_positions).allow_destroy(true) }
     end
 
     describe 'project_type' do

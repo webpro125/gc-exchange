@@ -21,8 +21,6 @@ end
 group :development do
   gem 'guard-rspec', '~> 4.2.9', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
-  gem 'guard-bundler', '~> 2.0.0', require: false
-  gem 'guard-migrate', '~> 1.1.0', require: false
   gem 'guard-rubocop', '~> 1.1.0', require: false
   gem 'rubocop', '~> 0.23.0', require: false
   gem 'brakeman', '~> 2.5.0', require: false
@@ -42,6 +40,8 @@ group :development, :test do
   gem 'ruby_gntp', '~> 0.3.4'
   gem 'growl', '~> 1.0.3'
   gem 'terminal-notifier-guard'
+  gem 'guard-bundler', '~> 2.0.0', require: false
+  gem 'guard-migrate', '~> 1.1.0', require: false
 
   gem 'rspec-rails', '~> 2.99'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'
