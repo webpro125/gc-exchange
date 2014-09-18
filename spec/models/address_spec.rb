@@ -103,6 +103,11 @@ describe Address do
         expect(@address).not_to be_valid
       end
     end
+
+    it 'should only have fixed list values' do
+      @address.state = nil
+      expect(@address).to_not be_valid
+    end
   end
 
   describe 'zipcode' do

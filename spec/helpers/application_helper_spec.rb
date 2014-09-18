@@ -21,10 +21,6 @@ describe ApplicationHelper do
     let(:klass) { PhoneType }
 
     describe 'return hash' do
-      it 'returns ":id" for value_method' do
-        expect(build_simple_form_dropdown(klass)[:value_method]).to eq(:id)
-      end
-
       it 'contains "label_method"' do
         expect(build_simple_form_dropdown(klass)[:label_method]).to be_a(Proc)
       end

@@ -4,7 +4,7 @@
     <%= f.input :address1 %>
     <%= f.input :address2 %>
     <%= f.input :city %>
-    <%= f.input :state %>
+    <%= f.input :state, build_simple_form_dropdown(State).merge(collection:State::STATE_TYPES) %>
     <%= f.input :zipcode %>
 
     <%= f.button :submit, button_label %>

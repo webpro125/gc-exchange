@@ -1,4 +1,5 @@
 class Address < ActiveRecord::Base
+  includes :state
   belongs_to :consultant
 
   validates :address1, presence: true, length: { in: 4..128 }
@@ -10,6 +11,7 @@ class Address < ActiveRecord::Base
   validates :zipcode, presence: true, length: { is: 5 }, format: { with: /\A[\d]+\z/,
                                                                    message: 'must be zipcode' }
   validates :consultant_id, presence: true
+  validate :validate_state
 
   # Geocoder
   geocoded_by :full_street_address
@@ -23,6 +25,11 @@ class Address < ActiveRecord::Base
 
   def address_changed?
     address1_changed? || address2_changed? || city_changed? || state_changed? ||
-      zipcode_changed?
+    zipcode_changed?
+  end
+
+  def validate_state
+    return if State::STATE_TYPES.include?(state)
+    errors.add(:state, I18n.t('activerecord.errors.models.address.attributes.state.match_fail'))
   end
 end

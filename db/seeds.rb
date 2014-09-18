@@ -36,3 +36,7 @@ end
 Branch::BRANCH_TYPES.each do |type|
   Branch.find_or_create_by(code: type)
 end
+
+UsState::US_STATE_TYPES.each do |type|
+  UsState.find_or_create_by(code: type)
+end

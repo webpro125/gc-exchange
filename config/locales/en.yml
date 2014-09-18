@@ -20,6 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      models:
+        address:
+          attributes:
+            state:
+              match_fail: "must be a US state"
   controllers:
     address:
       create:
