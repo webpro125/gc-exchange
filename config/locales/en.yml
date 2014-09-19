@@ -23,6 +23,19 @@ en:
   activerecord:
     errors:
       models:
+        project_history:
+          attributes:
+            project_history_positions:
+              too_short:
+                one: "must have at least %{count} position"
+                other: "must have at least %{count} positions"
+              too_long:
+                one: "must have at most %{count} position"
+                other: "must have at most %{count} positions"
+              total: 'percentages must add up to 100%'
+  activerecord:
+    errors:
+      models:
         address:
           attributes:
             state:

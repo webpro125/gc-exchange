@@ -3,19 +3,15 @@ require 'spec_helper'
 describe 'project_histories/show.html.erb' do
   let(:customer_name) { 'MAH NAME' }
   let(:customer) { FactoryGirl.build_stubbed(:customer_name) }
-  let(:pos) { FactoryGirl.build_stubbed(:position) }
   let(:policy) { allow(view).to receive(:policy) }
-  let(:position) { 'my position' }
   let(:project) do
     FactoryGirl.build_stubbed(:project_history,
-                              customer_name: customer,
-                              position: pos)
+                              customer_name: customer)
   end
 
   before do
     assign(:project, project)
     view.stub(:lookup_translation).with(CustomerName, customer.code).and_return(customer_name)
-    view.stub(:lookup_translation).with(Position, pos.code).and_return(position)
   end
 
   describe 'with access' do
@@ -46,10 +42,6 @@ describe 'project_histories/show.html.erb' do
 
     it 'should have end_date' do
       expect(rendered).to have_text(project.end_date.to_formatted_s(:long))
-    end
-
-    it 'should have position' do
-      expect(rendered).to have_text(position)
     end
 
     it 'should have description' do
@@ -96,10 +88,6 @@ describe 'project_histories/show.html.erb' do
         expect(rendered).to have_text(project.end_date.to_formatted_s(:long))
       end
 
-      it 'should have position' do
-        expect(rendered).to have_text(position)
-      end
-
       it 'should have description' do
         expect(rendered).to have_text(project.description)
       end
@@ -141,10 +129,6 @@ describe 'project_histories/show.html.erb' do
 
       it 'should have end_date' do
         expect(rendered).to have_text(project.end_date.to_formatted_s(:long))
-      end
-
-      it 'should have position' do
-        expect(rendered).to have_text(position)
       end
 
       it 'should have description' do
