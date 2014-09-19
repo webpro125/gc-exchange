@@ -33,6 +33,10 @@ en:
                 one: "must have at most %{count} position"
                 other: "must have at most %{count} positions"
               total: 'percentages must add up to 100%'
+        address:
+          attributes:
+            state:
+              match_fail: "must be a US state"
   controllers:
     address:
       create:

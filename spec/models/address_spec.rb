@@ -96,12 +96,9 @@ describe Address do
       expect(@address).not_to be_valid
     end
 
-    it 'should only contain letters' do
-      input = %w(12 b2 !4 @#)
-      input.each do |i|
-        @address.state = i
-        expect(@address).not_to be_valid
-      end
+    it 'should only contain valid states' do
+      @address.state = 'ZZ'
+      expect(@address).not_to be_valid
     end
   end
 
