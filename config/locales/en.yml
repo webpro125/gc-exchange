@@ -33,9 +33,6 @@ en:
                 one: "must have at most %{count} position"
                 other: "must have at most %{count} positions"
               total: 'percentages must add up to 100%'
-  activerecord:
-    errors:
-      models:
         address:
           attributes:
             state:
