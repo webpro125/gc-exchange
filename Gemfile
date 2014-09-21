@@ -13,6 +13,7 @@ gem 'geocoder', '~> 1.2.2'
 gem 'pundit', '~> 0.3.0'
 gem 'paperclip', '~> 4.2'
 gem 'fog', '~> 1.23.0'
+gem 'newrelic_rpm', '~> 3.9.4.245'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
