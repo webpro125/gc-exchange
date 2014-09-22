@@ -10,6 +10,7 @@ Make sure that you have your dependencies installed.
 * PostegreSQL 9.3
 * Mailcatcher gem
 * Foreman gem
+* Elasticsearch
 
 Mailcatcher & Foreman
 

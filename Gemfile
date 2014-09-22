@@ -13,6 +13,8 @@ gem 'geocoder', '~> 1.2.2'
 gem 'pundit', '~> 0.3.0'
 gem 'paperclip', '~> 4.2'
 gem 'fog', '~> 1.23.0'
+gem 'elasticsearch-model', '~> 0.1.5'
+gem 'elasticsearch-rails', '~> 0.1.5'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

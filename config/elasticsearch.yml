@@ -1,0 +1,23 @@
+# Be sure to restart your server when you modify this file.
+common: &default_settings
+  hosts:
+    - host: localhost
+  log: true
+
+development:
+  <<: *default_settings
+
+test:
+  <<: *default_settings
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  <<: *default_settings
+  log: false
+  hosts:
+    - host: <%= ENV['ELASTICSEARCH_HOST'] %>
+      port: <%= ENV['ELASTICSEARCH_PORT'] %>
+      user: <%= ENV['ELASTICSEARCH_USER'] %>
+      password: <%= ENV['ELASTICSEARCH_PASSWORD'] %>
+      scheme: <% ENV['ELASTICSEARCH_SCHEME'] %>
