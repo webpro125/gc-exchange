@@ -57,3 +57,7 @@ group :test do
   gem 'faker', '~> 1.4.3'
   gem 'simplecov-bamboo', '~> 0.1.0', require: false
 end
+
+group :production, :staging do
+  gem 'unicorn', '~> 4.8.3'
+end
