@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p><%= @company_request.first_name %> <%= @company_request.last_name %> from
+  <%= @company_request.company_name %> is requesting access.
+
+  Their reply to email is <%= @company_request.email %></p>
+
+<p><%= @company_request.message %></p>
+
+</body>
+</html>

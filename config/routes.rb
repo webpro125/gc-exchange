@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resource :military, except: [:new, :edit, :show, :index]
   resources :phones
   resources :project_histories, path: 'projects'
+  resources :company_registration_requests, only: [:new, :create]
 
   # Non resource
 
