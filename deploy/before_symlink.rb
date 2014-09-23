@@ -16,5 +16,4 @@ execute 'rake db:seed' do
   cwd current_release
   command 'rake db:seed'
   environment 'RAILS_ENV' => rails_env
-  environment 'SECRET_KEY_BASE' => secret_key_base
 end
