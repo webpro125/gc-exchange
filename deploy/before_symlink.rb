@@ -13,6 +13,6 @@ end
 
 execute 'rake db:seed' do
   cwd current_release
-  command 'bundle exec rake assets:precompile'
+  command 'rake db:seed'
   environment 'RAILS_ENV' => rails_env
 end
