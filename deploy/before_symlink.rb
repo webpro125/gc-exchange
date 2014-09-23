@@ -8,7 +8,6 @@ execute 'rake assets:precompile' do
   cwd current_release
   command 'bundle exec rake assets:precompile'
   environment 'RAILS_ENV' => rails_env
-  environment 'SECRET_KEY_BASE' => secret_key_base
 end
 
 Chef::Log.info("Seeding database for #{rails_env}...")
