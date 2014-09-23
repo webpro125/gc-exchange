@@ -16,7 +16,7 @@ test:
       provider: 'Local'
       local_root: <%= Rails.root %>/public/test/uploads
 
-production:
+staging:
   <<: *default_settings
   fog_host: nil
   fog_directory: 'gces-staging'

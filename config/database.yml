@@ -61,7 +61,7 @@ test:
 
 staging:
   <<: *default
-  database: global_consultant_exchange_production
+  database: global_consultant_exchange_staging
   username: global_consultant_exchange
   password: <%= ENV['GLOBAL_CONSULTANT_EXCHANGE_DATABASE_PASSWORD'] %>
 
