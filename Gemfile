@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.5'
+gem 'rails', '4.1.6'
 gem 'pg', '~> 0.17'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
-gem 'foundation-rails', '~> 5.2'
+gem 'foundation-rails', '~> 5.2.3'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
 gem 'rake', '~> 10.3.2'
@@ -22,13 +22,11 @@ end
 group :development do
   gem 'guard-rspec', '~> 4.2.9', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
-  gem 'guard-bundler', '~> 2.0.0', require: false
-  gem 'guard-migrate', '~> 1.1.0', require: false
   gem 'guard-rubocop', '~> 1.1.0', require: false
-  gem 'rubocop', '~> 0.23.0', require: false
-  gem 'brakeman', '~> 2.5.0', require: false
+  gem 'rubocop', '~> 0.26.1', require: false
+  gem 'brakeman', '~> 2.6.2', require: false
 
-  gem 'better_errors', '~> 1.1'
+  gem 'better_errors', '~> 2.0.0'
   gem 'quiet_assets', '~> 1.0'
 end
 
@@ -43,6 +41,8 @@ group :development, :test do
   gem 'ruby_gntp', '~> 0.3.4'
   gem 'growl', '~> 1.0.3'
   gem 'terminal-notifier-guard'
+  gem 'guard-bundler', '~> 2.0.0', require: false
+  gem 'guard-migrate', '~> 1.1.0', require: false
 
   gem 'rspec-rails', '~> 2.99'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'
@@ -55,6 +55,10 @@ end
 group :test do
   gem 'database_cleaner', '~> 1.3.0', require: false
   gem 'factory_girl_rails', '~> 4.4'
-  gem 'faker', '~> 1.3.0'
+  gem 'faker', '~> 1.4.3'
   gem 'simplecov-bamboo', '~> 0.1.0', require: false
+end
+
+group :production, :staging do
+  gem 'unicorn', '~> 4.8.3'
 end

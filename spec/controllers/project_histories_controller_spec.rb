@@ -1,12 +1,18 @@
 require 'spec_helper'
 
 describe ProjectHistoriesController do
-  let!(:position) { FactoryGirl.create(:position) }
   let!(:project_type) { FactoryGirl.create(:project_type) }
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
+  let(:position) { FactoryGirl.create(:position) }
+  let(:project_history_positions) do
+    FactoryGirl.attributes_for(:project_history_position, position_id: position.id)
+  end
+
   let(:valid_attributes) do
-    FactoryGirl.attributes_for(:project_history, consultant: consultant,
-                               position_id: position.id, project_type_id: project_type.id)
+    FactoryGirl.attributes_for(:project_history,
+                               consultant: consultant,
+                               project_type_id: project_type.id,
+                               project_history_positions_attributes: [project_history_positions])
   end
 
   describe 'when logged in' do
@@ -137,17 +143,17 @@ describe ProjectHistoriesController do
         let(:project_history) { consultant.project_histories.create!(valid_attributes) }
 
         it 'redirects to project_histories_path' do
-          put :update, project_history: valid_attributes, id: project_history.id
+          put :update, project_history: project_history.attributes, id: project_history.id
           expect(response).to redirect_to project_histories_path
         end
 
         it 'persists the record' do
           ProjectHistory.any_instance.should_receive(:update).and_return(true)
-          put :update, project_history: valid_attributes, id: project_history.id
+          put :update, project_history: project_history.attributes, id: project_history.id
         end
 
         it 'sends a flash message' do
-          put :update, project_history: valid_attributes, id: project_history.id
+          put :update, project_history: project_history.attributes, id: project_history.id
           expect(flash[:success]).to eq(I18n.t('controllers.project_history.update.success'))
         end
       end

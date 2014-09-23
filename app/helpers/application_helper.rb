@@ -1,6 +1,6 @@
 module ApplicationHelper
   LOOKUPS = [PhoneType, ClearanceLevel, Branch, Rank, ClearanceLevel, CustomerName, Position,
-             ProjectType].freeze
+             ProjectType, State].freeze
 
   # Determines if we're in a development type environment
   #
@@ -35,8 +35,11 @@ module ApplicationHelper
   # Returns a hash { value_method: :id, label_method: label }
   #
   def build_simple_form_dropdown(klass)
-    label = ->(type) { lookup_translation(klass, type.code) }
+    label = lambda do |type|
+      value = type.is_a?(String) ? type : type.code
+      lookup_translation(klass, value)
+    end
 
-    { value_method: :id, label_method: label }
+    { label_method: label }
   end
 end

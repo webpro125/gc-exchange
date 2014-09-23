@@ -63,6 +63,10 @@ class ProjectHistoriesController < ConsultantController
   def project_params
     params.require(:project_history).permit(:customer_name_id, :client_company, :client_poc_name,
                                             :client_poc_email, :start_date, :end_date,
-                                            :project_type_id, :description, :position_id)
+                                            :project_type_id, :description, :position_id,
+                                            project_history_positions_attributes: [:_destroy,
+                                                                                   :id,
+                                                                                   :percentage,
+                                                                                   :position_id])
   end
 end
