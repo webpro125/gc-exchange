@@ -29,4 +29,3 @@ spec/results
 
 # Ignore vendor/bin
 /vendor/bin
-/config/secrets.yml
