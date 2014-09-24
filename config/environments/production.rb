@@ -68,6 +68,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'email-smtp.us-east-1.amazonaws.com',
                                          port: 25,
+                                         authentication: :login,
                                          domain: 'globalconsultantexchange.com',
                                          user_name: Rails.application.secrets.email_username,
                                          password: Rails.application.secrets.email_password
