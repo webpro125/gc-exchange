@@ -103,6 +103,7 @@ en:
         index: 'Manage Projects'
       confirmations:
         delete: 'Are you sure you want to delete this project?'
-    company_registration_request:
+    sales_lead:
       new:
         save: 'Send Request'
+        title: 'Company Registration Request'

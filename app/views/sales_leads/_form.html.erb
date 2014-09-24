@@ -1,9 +1,10 @@
-<%= simple_form_for @company_registration_request do |f| %>
+<%= simple_form_for @sales_lead do |f| %>
     <%= f.error_notification %>
 
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :company_name %>
+    <%= f.input :phone_number %>
     <%= f.input :email %>
     <%= f.input :message %>
 
