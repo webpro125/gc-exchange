@@ -36,3 +36,7 @@ end
 Branch::BRANCH_TYPES.each do |type|
   Branch.find_or_create_by(code: type)
 end
+
+ProjectType::PROJECT_TYPE_TYPES.each do |type|
+  ProjectType.find_or_create_by(code: type)
+end

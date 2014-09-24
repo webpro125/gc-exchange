@@ -97,6 +97,16 @@ describe Consultant do
     it { should_not validate_attachment_presence(:resume) }
   end
 
+  describe 'full_name' do
+    it 'should container first_name' do
+      expect(subject.full_name).to include(subject.first_name)
+    end
+
+    it 'should container last_name' do
+      expect(subject.full_name).to include(subject.last_name)
+    end
+  end
+
   describe 'association' do
     describe 'address' do
       before do
