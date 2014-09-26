@@ -31,18 +31,13 @@ describe SalesLeadsController do
 
       it 'sends a flash message' do
         post :create, sales_lead: @sales_lead
-        expect(flash[:success]).to eq(I18n.t('controllers.sales_lead.create.success'))
+        expect(flash[:success]).to eq('Message was successfully sent')
       end
     end
 
     describe 'with invalid paramaters' do
       before do
         @sales_lead[:email] = nil
-      end
-
-      it 'renders "new"' do
-        post :create, sales_lead: @sales_lead
-        expect(response).to render_template :new
       end
 
       it 'does not persist the record' do
