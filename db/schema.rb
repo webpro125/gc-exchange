@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(version: 20140924154251) do
     t.datetime "updated_at"
   end
 
+  add_index "sales_leads", ["email"], name: "index_sales_leads_on_email", unique: true, using: :btree
+
   create_table "skills", force: true do |t|
     t.string "code", limit: 32, null: false
   end
