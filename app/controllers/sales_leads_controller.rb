@@ -7,7 +7,7 @@ class SalesLeadsController < ApplicationController
     @sales_lead = SalesLead.new(sales_lead_params)
 
     if @sales_lead.save
-      CompanyMailer.company_registration_request(@sales_lead.id).deliver
+      CompanyMailer.company_registration_request(@sales_lead).deliver
       flash[:success] = 'Message was successfully sent'
       redirect_to root_path
     else
