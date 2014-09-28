@@ -9,6 +9,8 @@ class Consultant < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
+
   has_attached_file :resume
 
   has_one :address, dependent: :destroy
@@ -35,5 +37,9 @@ class Consultant < ActiveRecord::Base
 
   def phone_length
     errors.add(:phones, :too_long, count: 3) if phones.size > 3
+  end
+
+  def skip_confirmation_in_staging
+    skip_confirmation!
   end
 end
