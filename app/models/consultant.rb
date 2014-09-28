@@ -1,4 +1,5 @@
 class Consultant < ActiveRecord::Base
+  include RegexLibrary
   RESUME_MIME_TYPES = ['application/msword',
                        'application/vnd.ms-word',
                        'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
@@ -19,15 +20,15 @@ class Consultant < ActiveRecord::Base
 
   validate :phone_length
   validates :first_name, length: { in: 2..24 }, presence: true,
-            format: { with: /\A[A-Za-z\s'-]+\z/,
+            format: { with: LETTERS['and dashes'],
                       message: 'only allows letters' }
   validates :last_name, length: { in: 2..24 }, presence: true,
-            format: { with: /\A[\w\s'-]+\z/,
+            format: { with: WORDS['and special'],
                       message: 'only allows letters and numbers' }
   validates_attachment :resume,
                        content_type: { content_type: RESUME_MIME_TYPES },
                        size: { less_than: 10.megabytes },
-                       file_name: { matches: [/doc\Z/, /docx\Z/, /pdf\Z/] },
+                       file_name: { matches: FILE_TYPES['as documents'] },
                        if: -> { resume.present? }
 
   private

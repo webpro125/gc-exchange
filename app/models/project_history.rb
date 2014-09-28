@@ -1,4 +1,5 @@
 class ProjectHistory < ActiveRecord::Base
+  include RegexLibrary
   belongs_to :position
   belongs_to :consultant
   belongs_to :customer_name
@@ -19,9 +20,9 @@ class ProjectHistory < ActiveRecord::Base
             allow_blank: true, if: ->() { start_date.present? }
   validates :client_company, length: { in: 3..24 }, presence: true
   validates :client_poc_name, length: { in: 2..24 }, presence: true,
-            format: { with: /\A[\w\s\.-]+\z/, message: 'only allows letters and numbers' }
+            format: { with: WORDS['only'], message: 'only allows letters and numbers' }
   validates :client_poc_email, length: { in: 3..128 }, presence: true,
-            format: { with: Devise.email_regexp, message: 'must be valid email' }
+            format: { with: EMAIL['only'], message: 'must be valid email' }
 
   private
 
