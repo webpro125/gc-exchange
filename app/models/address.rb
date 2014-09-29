@@ -1,16 +1,16 @@
+require 'regex_constants'
 class Address < ActiveRecord::Base
-  include RegexLibary
   includes :state
   belongs_to :consultant
 
   validates :address1, presence: true, length: { in: 4..128 }
   validates :address2, length: { in: 4..128 }, allow_blank: true
-  validates :city, presence: true, length: { in: 3..64 }, format: { with: LETTERS['and spaces'],
-                                                                    message: 'only allows letters' }
-  validates :state, presence: true, length: { is: 2 }, format: { with: LETTERS['only'],
-                                                                 message: 'only allows letters' }
-  validates :zipcode, presence: true, length: { is: 5 }, format: { with: NUMBERS['as a zipcode'],
-                                                                   message: 'must be zipcode' }
+  validates :city, presence: true, length: { in: 3..64 },
+  format: {  with: RegexConstants::Letters::AND_SPECIAL, message: 'only allows letters' }
+  validates :state, presence: true, length: { is: 2 },
+  format: { with: RegexConstants::Letters::ONLY, message: 'only allows letters' }
+  validates :zipcode, presence: true, length: { is: 5 },
+  format: { with: RegexConstants::Numbers::AS_ZIPCODE, message: 'must be zipcode' }
   validates :consultant_id, presence: true
   validate :validate_state
 

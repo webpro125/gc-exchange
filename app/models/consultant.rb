@@ -1,5 +1,5 @@
+require 'regex_constants'
 class Consultant < ActiveRecord::Base
-  include RegexLibrary
   RESUME_MIME_TYPES = ['application/msword',
                        'application/vnd.ms-word',
                        'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
@@ -22,15 +22,15 @@ class Consultant < ActiveRecord::Base
 
   validate :phone_length
   validates :first_name, length: { in: 2..24 }, presence: true,
-            format: { with: LETTERS['and dashes'],
+            format: { with: RegexConstants::Letters::AND_DASHES,
                       message: 'only allows letters' }
   validates :last_name, length: { in: 2..24 }, presence: true,
-            format: { with: WORDS['and special'],
+            format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: 'only allows letters and numbers' }
   validates_attachment :resume,
                        content_type: { content_type: RESUME_MIME_TYPES },
                        size: { less_than: 10.megabytes },
-                       file_name: { matches: FILE_TYPES['as documents'] },
+                       file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
                        if: -> { resume.present? }
 
   private
