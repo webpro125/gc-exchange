@@ -1,4 +1,3 @@
-require 'regex_constants'
 class ProjectHistory < ActiveRecord::Base
   belongs_to :position
   belongs_to :consultant
@@ -20,9 +19,8 @@ class ProjectHistory < ActiveRecord::Base
             allow_blank: true, if: ->() { start_date.present? }
   validates :client_company, length: { in: 3..24 }, presence: true
   validates :client_poc_name, length: { in: 2..24 }, presence: true,
-  format: {  with: RegexConstants::Words::ONLY,
-             message: 'only allows letters and numbers'
-          }
+            format: {  with: RegexConstants::Words::ONLY,
+             message: 'only allows letters and numbers' }
   validates :client_poc_email, length: { in: 3..128 }, presence: true,
             format: { with: RegexConstants::EMAIL, message: 'must be valid email' }
 

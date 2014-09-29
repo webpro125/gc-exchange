@@ -1,4 +1,3 @@
-require 'regex_constants'
 class Consultant < ActiveRecord::Base
   RESUME_MIME_TYPES = ['application/msword',
                        'application/vnd.ms-word',
