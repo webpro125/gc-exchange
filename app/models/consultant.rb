@@ -10,7 +10,11 @@ class Consultant < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  scope :approved, -> { where(approved: true) }
+
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
+  after_commit :update_consultant_index, on: [:update]
+  after_commit :destroy_consultant_index, on: [:destroy]
 
   has_attached_file :resume
 
@@ -46,5 +50,13 @@ class Consultant < ActiveRecord::Base
 
   def skip_confirmation_in_staging
     skip_confirmation!
+  end
+
+  def destroy_consultant_index
+    delete_document
+  end
+
+  def update_consultant_index
+    ConsultantIndexer.perform_async(:update, id) if approved?
   end
 end

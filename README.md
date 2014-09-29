@@ -17,7 +17,7 @@ Mailcatcher & Foreman
 ```
 gem install mailcatcher
 gem install foreman
-foreman
+foreman start
 ```
 Foreman will launch and monitor all the processes needed to run GCES
 

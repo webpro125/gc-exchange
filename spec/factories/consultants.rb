@@ -7,6 +7,7 @@ FactoryGirl.define do
     email                 { "#{first_name}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
+    approved true
   end
 
   factory :confirmed_consultant, parent: :consultant do
