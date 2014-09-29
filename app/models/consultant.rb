@@ -27,15 +27,15 @@ class Consultant < ActiveRecord::Base
 
   validate :phone_length
   validates :first_name, length: { in: 2..24 }, presence: true,
-            format: { with: /\A[A-Za-z\s'-]+\z/,
+            format: { with: RegexConstants::Letters::AND_DASHES,
                       message: 'only allows letters' }
   validates :last_name, length: { in: 2..24 }, presence: true,
-            format: { with: /\A[\w\s'-]+\z/,
+            format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: 'only allows letters and numbers' }
   validates_attachment :resume,
                        content_type: { content_type: RESUME_MIME_TYPES },
                        size: { less_than: 10.megabytes },
-                       file_name: { matches: [/doc\Z/, /docx\Z/, /pdf\Z/] },
+                       file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
                        if: -> { resume.present? }
 
   def full_name
