@@ -20,7 +20,7 @@ class ProjectHistory < ActiveRecord::Base
   validates :client_company, length: { in: 3..24 }, presence: true
   validates :client_poc_name, length: { in: 2..24 }, presence: true,
             format: {  with: RegexConstants::Words::ONLY,
-             message: 'only allows letters and numbers' }
+                       message: 'only allows letters and numbers' }
   validates :client_poc_email, length: { in: 3..128 }, presence: true,
             format: { with: RegexConstants::EMAIL, message: 'must be valid email' }
 
