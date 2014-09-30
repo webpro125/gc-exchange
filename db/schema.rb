@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917142010) do
+ActiveRecord::Schema.define(version: 20140924154251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,6 +183,19 @@ ActiveRecord::Schema.define(version: 20140917142010) do
   create_table "ranks", force: true do |t|
     t.string "code", limit: 32, null: false
   end
+
+  create_table "sales_leads", force: true do |t|
+    t.string   "first_name",   limit: 24,  null: false
+    t.string   "last_name",    limit: 24,  null: false
+    t.string   "company_name", limit: 128, null: false
+    t.string   "phone_number",             null: false
+    t.string   "email",        limit: 128, null: false
+    t.text     "message",                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sales_leads", ["email"], name: "index_sales_leads_on_email", unique: true, using: :btree
 
   create_table "skills", force: true do |t|
     t.string "code", limit: 32, null: false
