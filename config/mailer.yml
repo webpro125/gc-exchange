@@ -1,0 +1,46 @@
+# ActionMailer Configuration
+common: &default_settings
+  default_url_options:
+    host: 'localhost'
+    port: 3000
+  delivery_method: :smtp
+  raise_delivery_errors: true
+  default_options:
+    from: 'info@globalconsultantexchange.com'
+    to: 'kcopel@globalconsultantexchange.com, bmills@globalconsultantexchange.com,
+         VLakhwara@globalconsultantexchange.com'
+
+development:
+  <<: *default_settings
+  smtp_settings:
+    address: 'localhost'
+    port: 1025
+
+test:
+  <<: *default_settings
+  delivery_method: :test
+
+staging:
+  <<: *default_settings
+  default_url_options:
+      host: 'staging.globalconsultantexchange.com'
+  smtp_settings:
+    address: 'email-smtp.us-east-1.amazonaws.com'
+    port: 25
+    authentication: login
+    domain: 'staging.globalconsultantexchange.com'
+    user_name: <%= Rails.application.secrets.email_username %>
+    password: <%= Rails.application.secrets.email_password %>
+
+production:
+  <<: *default_settings
+  raise_delivery_errors: false
+  default_url_options:
+    host: 'globalconsultantexchange.com'
+  smtp_settings:
+    address: 'email-smtp.us-east-1.amazonaws.com'
+    port: 25
+    authentication: login
+    domain: 'globalconsultantexchange.com'
+    user_name: <%= Rails.application.secrets.email_username %>
+    password: <%= Rails.application.secrets.email_password %>

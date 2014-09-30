@@ -31,6 +31,9 @@ module GlobalConsultantExchange
     # config.i18n.default_locale = :de
 
     # Action Mailer
-    config.action_mailer.default_options = { from: 'info@globalconsultantexchange.com' }
+    loaded_file = ERB.new(File.read("#{Rails.root}/config/mailer.yml")).result
+    email_config = YAML.load(loaded_file)[Rails.env].deep_symbolize_keys
+
+    config.action_mailer.merge! email_config
   end
 end

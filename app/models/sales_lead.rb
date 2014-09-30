@@ -5,7 +5,7 @@ class SalesLead < ActiveRecord::Base
                                                                       message:
                                                                             'only allows letters' }
   validates :company_name, length: { in: 2..128 }, presence: true
-  validates :message, length: { in: 2..10_000 }, presence: true
+  validates :message, length: { in: 2..5_000 }, presence: true
   validates :email, presence: true, uniqueness: true
   validates :phone_number, presence: true
 

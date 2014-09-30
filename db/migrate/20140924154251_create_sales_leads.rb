@@ -6,7 +6,7 @@ class CreateSalesLeads < ActiveRecord::Migration
       t.string :company_name,     null: false, limit: 128
       t.string :phone_number,     null: false
       t.string :email,            null: false, limit: 128
-      t.string :message,          null: false, limit: 10000
+      t.text   :message,          null: false, limit: 5000
 
       t.timestamps
     end

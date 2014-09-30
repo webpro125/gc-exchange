@@ -30,6 +30,6 @@ class ProjectHistory < ActiveRecord::Base
     return if 100 == project_history_positions.reduce(0) { |a, e| a + e.percentage }
     errors.add(:project_history_positions,
                I18n.t('activerecord.errors.models.project_history.attributes' \
-                        '.project_history_positions.total'))
+                      '.project_history_positions.total'))
   end
 end

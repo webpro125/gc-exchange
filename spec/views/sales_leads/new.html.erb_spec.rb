@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe 'sales_leads/new.html.erb' do
-  let(:sales_lead) { FactoryGirl.build(:sales_lead) }
-
   before do
     assign(:sales_lead, FactoryGirl.build(:sales_lead))
     render

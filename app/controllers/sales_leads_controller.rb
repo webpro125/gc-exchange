@@ -8,7 +8,9 @@ class SalesLeadsController < ApplicationController
 
     if @sales_lead.save
       CompanyMailer.company_registration_request(@sales_lead).deliver
-      flash[:success] = 'Message was successfully sent'
+      flash[:success] = I18n.t('controllers.sales_lead.create.success')
+
+      # 'Message was successfully sent'
       redirect_to root_path
     else
       render :new

@@ -5,9 +5,10 @@
 </head>
 <body>
 <p><%= @sales_lead.first_name %> <%= @sales_lead.last_name %> from
-  <%= @sales_lead.company_name %> is requesting access.
+  <%= @sales_lead.company_name %> is requesting access.</p>
 
-  Their reply to email is <%= @sales_lead.email %></p>
+<p>Their provided contact number is <%= @sales_lead.phone_number %>. Their reply to email is <%=
+    @sales_lead.email%></p>
 
 <p><%= @sales_lead.message %></p>
 
