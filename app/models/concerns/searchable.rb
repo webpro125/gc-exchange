@@ -25,7 +25,7 @@ module Searchable
           project_histories: {
             methods: [:position_name],
             only: [:description, :start_date, :end_date, :position_name, :client_company],
-            include: [:disciplines, project_history_positions: {
+            include: [:disciplines, :customer_name, :project_type, project_history_positions: {
               only: [:percentage, :position_id],
               include: :position
             }]
