@@ -5,29 +5,29 @@ module Searchable
     include Elasticsearch::Model
 
     index_name [Rails.env, model_name.collection.gsub(%r{/}, '-')].join('_')
-  end
 
-  def mapping
-    indexes :address, type: 'geo_point'
-  end
+    mapping dynamic: 'strict' do
+      indexes :address, type: 'geo_point'
+    end
 
-  # Customize the JSON serialization for Elasticsearch
-  def as_indexed_json(options = {})
-    as_json(
-      {
-        methods: [:full_name],
-        only: [:full_name, :last_sign_in_at],
-        include: {
-          skills: {},
-          address: {
-            methods: [:lat, :lon],
-            only: [:lat, :lon]
-          },
-          project_histories: project_histories_as_json,
-          military: military_as_json
-        }
-      }.merge(options)
-    )
+    # Customize the JSON serialization for Elasticsearch
+    def as_indexed_json(options = {})
+      as_json(
+        {
+          methods: [:full_name],
+          only: [:full_name, :last_sign_in_at],
+          include: {
+            skills: {},
+            address: {
+              methods: [:lat, :lon],
+              only: [:lat, :lon]
+            },
+            project_histories: project_histories_as_json,
+            military: military_as_json
+          }
+        }.merge(options)
+      )
+    end
   end
 
   private
