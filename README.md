@@ -11,6 +11,7 @@ Make sure that you have your dependencies installed.
 * Mailcatcher gem
 * Foreman gem
 * Elasticsearch
+* Redis
 
 Mailcatcher & Foreman
 
@@ -50,6 +51,13 @@ in your working directory.  This will install your gems as well as load your DB.
 Run guard to execute tests, brakeman and start spring.
 
 ```
-bin/guard
+guard
 ```
 
+
+Run rails s to start the server on localhost:3000
+```
+rails s
+```
+
+Or alternatively use something like pow http://pow.cx/
