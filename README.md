@@ -13,6 +13,15 @@ Make sure that you have your dependencies installed.
 * Elasticsearch
 * Redis
 
+Redis
+
+Set your redis ENV variable.  Only neccessary in Production/Staging or if your redis isn't hosted
+ with defaults.
+
+```
+set REDIS_URL='your_url'
+```
+
 Mailcatcher & Foreman
 
 ```
