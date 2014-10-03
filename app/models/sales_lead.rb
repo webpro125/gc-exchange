@@ -1,9 +1,9 @@
 class SalesLead < ActiveRecord::Base
   before_validation :set_phone
 
-  validates :first_name, :last_name, length: { in: 2..24 }, format: { with: /\A[a-zA-Z\s]+\z/,
-                                                                      message:
-                                                                            'only allows letters' }
+  validates :first_name, :last_name, length: { in: 2..24 },
+                                     format: { with: RegexConstants::Letters::AND_DASHES,
+                                               message: 'only allows letters' }
   validates :company_name, length: { in: 2..128 }, presence: true
   validates :message, length: { in: 2..5_000 }, presence: true
   validates :email, presence: true, uniqueness: true

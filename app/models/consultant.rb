@@ -24,7 +24,7 @@ class Consultant < ActiveRecord::Base
             format: { with: RegexConstants::Letters::AND_DASHES,
                       message: 'only allows letters' }
   validates :last_name, length: { in: 2..24 }, presence: true,
-            format: { with: RegexConstants::Words::AND_SPECIAL,
+            format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: 'only allows letters and numbers' }
   validates_attachment :resume,
                        content_type: { content_type: RESUME_MIME_TYPES },

@@ -5,6 +5,7 @@ module RegexConstants
     ONLY          = /\A[a-zA-Z]+\z/
     AND_SPECIAL   = /\A[a-zA-Z\s]+\z/
     AND_DASHES    = /\A[A-Za-z\s'-]+\z/
+    AND_NUMBERS   = /\A[a-zA-Z0-9\s'-]+\z/
   end
 
   module Words
@@ -13,7 +14,7 @@ module RegexConstants
   end
 
   module Numbers
-    AS_ZIPCODE    = /\A[\d]+\z/
+    AS_ZIPCODE = /\A[\d]+\z/
   end
 
   module FileTypes
