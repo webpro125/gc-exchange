@@ -1,4 +1,6 @@
 class Consultant < ActiveRecord::Base
+  include Searchable
+
   RESUME_MIME_TYPES = ['application/msword',
                        'application/vnd.ms-word',
                        'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
@@ -31,6 +33,10 @@ class Consultant < ActiveRecord::Base
                        size: { less_than: 10.megabytes },
                        file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
                        if: -> { resume.present? }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   private
 
