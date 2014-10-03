@@ -186,6 +186,19 @@ ActiveRecord::Schema.define(version: 20140925151925) do
     t.string "code", limit: 32, null: false
   end
 
+  create_table "sales_leads", force: true do |t|
+    t.string   "first_name",   limit: 24,  null: false
+    t.string   "last_name",    limit: 24,  null: false
+    t.string   "company_name", limit: 128, null: false
+    t.string   "phone_number",             null: false
+    t.string   "email",        limit: 128, null: false
+    t.text     "message",                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sales_leads", ["email"], name: "index_sales_leads_on_email", unique: true, using: :btree
+
   create_table "skills", force: true do |t|
     t.string "code", limit: 32, null: false
   end
