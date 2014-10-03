@@ -1,5 +1,5 @@
 class ProjectType < ActiveRecord::Base
-  PROJECT_TYPE = [].freeze
+  include Lookup
 
-  validates :code, length: { maximum: 32 }, uniqueness: true, presence: true
+  PROJECT_TYPE = [].freeze
 end
