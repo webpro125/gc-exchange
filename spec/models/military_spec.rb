@@ -56,9 +56,9 @@ describe Military do
     end
   end
 
-  describe 'clearance_status' do
+  describe 'clearance_active' do
     it 'is required' do
-      expect(@military.clearance_status).to be false
+      expect(@military.clearance_active).to be false
     end
   end
 
