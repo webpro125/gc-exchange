@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003152938) do
+ActiveRecord::Schema.define(version: 20141003160006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20141003152938) do
     t.date     "service_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "clearance_status",          default: false, null: false
+    t.boolean  "clearance_active",          default: false, null: false
     t.integer  "branch_id"
   end
 
