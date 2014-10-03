@@ -1,4 +1,6 @@
 class CustomerName < ActiveRecord::Base
+  include Lookup
+
   NASA = 'NASA'
   USTD = 'USTD'
   DOS = 'DOS'
@@ -20,6 +22,4 @@ class CustomerName < ActiveRecord::Base
   OTHER_STATE = 'OTHER_STATE'
   CUSTOMER_NAME_TYPES = [NASA, USTD, DOS, FBI, DOA, DOI, DOT, DOE, DHS, CIA, NSA, DOD, DIA,
                          HHS, HUD, EPA, USPS, OTHER_FED, OTHER_STATE].freeze
-
-  validates :code, length: { maximum: 32 }, uniqueness: true, presence: true
 end
