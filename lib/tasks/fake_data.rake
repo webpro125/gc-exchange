@@ -3,7 +3,7 @@ require 'faker'
 
 namespace :db do
   desc 'Seed database with fake data'
-  task :fake_data => :environment do
+  task fake_data: :environment do
     100.times do
       consultant = FactoryGirl.create(:confirmed_consultant)
 
