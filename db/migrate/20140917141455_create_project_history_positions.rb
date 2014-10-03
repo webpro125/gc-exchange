@@ -5,7 +5,5 @@ class CreateProjectHistoryPositions < ActiveRecord::Migration
       t.references :position, index: true
       t.integer :percentage
     end
-
-    add_index :project_history_positions, [:project_history_id, :position], unique: true
   end
 end
