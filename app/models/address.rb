@@ -27,7 +27,6 @@ class Address < ActiveRecord::Base
   public
 
   def validate_geocode
-    # return unless latitude >= 99.0 || longitude >= 181.0
     errors.add(:address1, I18n.t('activerecord.errors.models.address.attributes.geocode_fail'))
   end
 

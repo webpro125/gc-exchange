@@ -9,6 +9,13 @@ describe Address do
         state: 'NY',
         zipcode: '10128'
     )
+    @invalid_address = Address.new(
+        consultant: FactoryGirl.create(:confirmed_consultant),
+        address1: 'vaweoijawoiefewaef',
+        city: 'awojeioivawefea',
+        state: 'NJ',
+        zipcode: '99999'
+    )
   end
 
   subject { @address }
@@ -147,6 +154,16 @@ describe Address do
       expect(@address.longitude).to be_nil
       @address.valid?
       expect(@address.longitude).to_not be_nil
+    end
+  end
+
+  subject { @invalid_address }
+
+  it { should be_valid }
+
+  describe 'validate_geocode' do
+    it 'should correctly throw an error state' do
+      expect(@invalid_address.validate_geocode).to eql(['must be a valid physical address'])
     end
   end
 end
