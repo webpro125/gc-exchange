@@ -1,4 +1,6 @@
 class Rank < ActiveRecord::Base
+  include Lookup
+
   O1 = 'O1'
   O2 = 'O2'
   O3 = 'O3'
@@ -20,6 +22,4 @@ class Rank < ActiveRecord::Base
   E9 = 'E9'
 
   RANK_TYPES = [O1, O2, O3, O4, O5, O6, O7, O8, O9, O10, E1, E2, E3, E4, E5, E6, E7, E8, E9].freeze
-
-  validates :code, length: { maximum: 32 }, uniqueness: true, presence: true
 end

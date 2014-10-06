@@ -11,11 +11,11 @@ describe MilitariesController do
       post('/military').should route_to('militaries#create')
     end
 
-    it 'routes to military#new' do
+    it 'should not route to military#new' do
       get('/military/new').should_not route_to('militaries#new')
     end
 
-    it 'routes to military#edit' do
+    it 'should not route to military#edit' do
       get('/military/edit').should_not route_to('militaries#edit')
     end
 

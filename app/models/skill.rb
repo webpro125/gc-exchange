@@ -1,5 +1,5 @@
 class Skill < ActiveRecord::Base
   SKILL_TYPES = [].freeze
 
-  validates :code, length: { maximum: 32 }, uniqueness: true, presence: true
+  validates :code, length: { maximum: 128 }, uniqueness: { case_sensitive: false }, presence: true
 end
