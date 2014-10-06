@@ -14,8 +14,22 @@ class Address < ActiveRecord::Base
   validate :validate_state
 
   # Geocoder
-  geocoded_by :full_street_address
+  geocoded_by :full_street_address do |obj, results|
+    results.each do |geo|
+      obj.latitude = geo.latitude
+      obj.longitude = geo.longitude
+    end
+    obj.validate_geocode if results.length == 0
+  end
+
   after_validation :geocode, if: :address_changed?
+
+  public
+
+  def validate_geocode
+    # return unless latitude >= 99.0 || longitude >= 181.0
+    errors.add(:address1, I18n.t('activerecord.errors.models.address.attributes.geocode_fail'))
+  end
 
   private
 
