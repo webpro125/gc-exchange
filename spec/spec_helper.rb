@@ -15,7 +15,7 @@ require 'rake'
 require 'elasticsearch/extensions/test/cluster/tasks'
 
 SimpleCov.coverage_dir('spec/results/coverage')
-SimpleCov.minimum_coverage 85
+SimpleCov.minimum_coverage 95
 if ENV['bamboo_SIMPLE_COV_FORMATTER'] == 'clover'
   SimpleCov.formatter = SimpleCov::Formatter::BambooFormatter
 end

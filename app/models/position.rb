@@ -1,4 +1,6 @@
 class Position < ActiveRecord::Base
+  include Lookup
+
   CAPTURE_MANAGER = 'CAPTURE_MANAGER'
   CAPTURE_SUPPORT = 'CAPTURE_SUPPORT'
   PROPOSAL_MANAGER = 'PROPOSAL_MANAGER'
@@ -61,6 +63,4 @@ class Position < ActiveRecord::Base
                     PRICE_TO_WIN_ANALYSIS,  REQUIREMENTS_ANALYIS, DESKTOP_PUBLISHER,
                     IMP_IMS_SPECIALIST, SCHEDULER, PROPOSAL_WRITER,  PROPOSAL_EDITOR,
                     RESUME_WRITER, DOLLAR_VALUE].freeze
-
-  validates :code, length: { maximum: 32 }, uniqueness: true, presence: true
 end
