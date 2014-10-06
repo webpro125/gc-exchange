@@ -1,6 +1,5 @@
 class AddApprovedToConsultants < ActiveRecord::Migration
   def change
-    add_column :consultants, :approved, :boolean, default: false, null: false
-    add_index :consultants, :approved
+    add_reference :consultants, :approved_status, index: true, null: false, default: 1
   end
 end

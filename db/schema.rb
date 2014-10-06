@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003160006) do
+ActiveRecord::Schema.define(version: 20141006174142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20141003160006) do
   end
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
+
+  create_table "approved_statuses", force: true do |t|
+    t.string "code", limit: 32
+  end
+
+  add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
 
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10, null: false
@@ -76,10 +82,10 @@ ActiveRecord::Schema.define(version: 20141003160006) do
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
-    t.boolean  "approved",                          default: false, null: false
+    t.integer  "approved_status_id",                default: 1,     null: false
   end
 
-  add_index "consultants", ["approved"], name: "index_consultants_on_approved", using: :btree
+  add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
   add_index "consultants", ["confirmation_token"], name: "index_consultants_on_confirmation_token", unique: true, using: :btree
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree

@@ -28,7 +28,7 @@ describe Consultant do
 
   it { should be_valid }
   it { should respond_to(:phones) }
-  it { should respond_to(:approved) }
+  it { should respond_to(:approved_status) }
   it { should respond_to(:approved?) }
 
   describe 'first_name' do
@@ -180,17 +180,27 @@ describe Consultant do
         end
       end
     end
+
+    describe 'approved_status' do
+      it 'should not destroy them on delete' do
+        subject.save!
+        approved_status = subject.approved_status.id
+
+        subject.destroy
+        expect(ApprovedStatus.find(approved_status)).not_to be_nil
+      end
+    end
   end
 
   describe 'indexing' do
     describe 'approved' do
       before do
-        subject.approved = true
+        subject.save!
+        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED)
       end
 
       describe '#update' do
         before do
-          subject.save!
           ConsultantIndexer.jobs.clear
         end
 
@@ -206,10 +216,6 @@ describe Consultant do
       end
 
       describe '#destroy' do
-        before do
-          subject.save!
-        end
-
         it 'should delete document' do
           expect(subject).to receive(:delete_document)
           subject.destroy!
@@ -219,7 +225,7 @@ describe Consultant do
 
     describe 'not approved' do
       before do
-        subject.approved = false
+        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED)
         subject.save!
       end
 

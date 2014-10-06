@@ -5,7 +5,7 @@ describe Address do
 
   let(:address) do
     Address.new(
-        consultant: FactoryGirl.create(:confirmed_consultant, approved: true),
+        consultant: FactoryGirl.create(:confirmed_consultant, :approved),
         address1: '1619 3rd Ave',
         city: 'New York',
         state: 'NY',

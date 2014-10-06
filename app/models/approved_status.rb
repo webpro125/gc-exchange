@@ -1,0 +1,10 @@
+class ApprovedStatus < ActiveRecord::Base
+  include Lookup
+
+  PENDING = 'PENDING'
+  IN_PROGRESS = 'IN_PROGRESS'
+  APPROVED = 'APPROVED'
+  REJECTED = 'REJECTED'
+
+  APPROVED_STATUS_TYPES = [PENDING, IN_PROGRESS, APPROVED, REJECTED].freeze
+end

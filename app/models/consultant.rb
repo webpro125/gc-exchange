@@ -13,6 +13,7 @@ class Consultant < ActiveRecord::Base
   scope :approved, -> { where(approved: true) }
 
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
+  before_create :set_approved_status
   after_commit :update_consultant_index, on: [:update]
   after_commit :destroy_consultant_index, on: [:destroy]
 
@@ -20,6 +21,7 @@ class Consultant < ActiveRecord::Base
 
   has_one :address, dependent: :destroy
   has_one :military, dependent: :destroy
+  belongs_to :approved_status
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
   has_many :consultant_skills, dependent: :destroy
@@ -42,6 +44,10 @@ class Consultant < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def approved?
+    approved_status.code == ApprovedStatus::APPROVED
+  end
+
   private
 
   def phone_length
@@ -58,5 +64,9 @@ class Consultant < ActiveRecord::Base
 
   def update_consultant_index
     ConsultantIndexer.perform_async(:update, id) if approved?
+  end
+
+  def set_approved_status
+    self.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS)
   end
 end

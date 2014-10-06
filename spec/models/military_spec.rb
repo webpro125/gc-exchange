@@ -6,7 +6,7 @@ describe Military do
   let!(:branch) { FactoryGirl.create(:branch) }
   let!(:rank) { FactoryGirl.create(:rank) }
   let!(:clearance_level) { FactoryGirl.create(:clearance_level) }
-  let!(:consultant) { FactoryGirl.create(:consultant, approved: true) }
+  let!(:consultant) { FactoryGirl.create(:consultant, :approved) }
 
   subject do
     Military.new(branch: branch,
@@ -58,7 +58,7 @@ describe Military do
 
   describe 'clearance_active' do
     it 'is required' do
-      expect(@military.clearance_active).to be false
+      expect(subject.clearance_active).to be false
     end
   end
 

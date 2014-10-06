@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ProjectHistory do
   it_behaves_like 'indexable', :client_poc_name=, 'Alvinseraph'
 
-  let!(:consultant) { FactoryGirl.create(:confirmed_consultant, approved: true) }
+  let!(:consultant) { FactoryGirl.create(:confirmed_consultant, :approved) }
   let!(:customer_name) { FactoryGirl.create(:customer_name) }
   let!(:project_history_position_list) do
     FactoryGirl.build_list(:project_history_position, 2, percentage: 50)
