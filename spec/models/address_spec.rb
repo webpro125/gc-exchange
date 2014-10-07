@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe Address do
   before do
+    @consultant = FactoryGirl.create(:confirmed_consultant)
+
     @address = Address.new(
-        consultant: FactoryGirl.create(:confirmed_consultant),
         address1: '1619 3rd Ave',
         city: 'New York',
         state: 'NY',
-        zipcode: '10128'
+        zipcode: '10128',
+        addressable: @consultant
     )
   end
 

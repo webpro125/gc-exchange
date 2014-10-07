@@ -6,7 +6,7 @@ describe AddressesController do
   describe 'when logged in' do
     before do
       sign_in consultant
-      @address = FactoryGirl.attributes_for(:address)
+      @address = FactoryGirl.attributes_for(:address, :as_consultant)
     end
 
     describe 'GET "new"' do
@@ -22,7 +22,7 @@ describe AddressesController do
 
       describe 'with existing address' do
         it 'should redirect to edit' do
-          @address = FactoryGirl.create(:address, consultant: consultant)
+          @address = FactoryGirl.create(:address, :as_consultant)
           get :new
           expect(response).to redirect_to edit_address_path
         end

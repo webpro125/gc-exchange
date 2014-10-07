@@ -53,6 +53,18 @@ describe MilitariesController do
           expect(flash[:success]).to eq(I18n.t('controllers.military.update.success'))
         end
       end
+
+      #   describe 'with invalid parameters' do
+      #     before do
+      #       @military = FactoryGirl.attributes_for(:military)
+      #       Military.create(@military.merge(consultant_id: consultant.id))
+      #     end
+      #
+      #   it 'renders "update"' do
+      #     put :update, military: { service_end_date: 6.months.ago }
+      #     expect(response).to render_template :update
+      #   end
+      # end
     end
   end
 

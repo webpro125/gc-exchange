@@ -3,7 +3,8 @@ require 'spec_helper'
 describe AddressPolicy do
   subject { AddressPolicy.new(consultant, address) }
 
-  let(:address) { FactoryGirl.create(:address, consultant: consultant) }
+  # let(:consultant) { FactoryGirl.create(:consultant) }
+  let(:address) { FactoryGirl.create(:address, :as_consultant) }
 
   describe 'for a user' do
     let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
