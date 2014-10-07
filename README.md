@@ -11,13 +11,23 @@ Make sure that you have your dependencies installed.
 * Mailcatcher gem
 * Foreman gem
 * Elasticsearch
+* Redis
+
+Redis
+
+Set your redis ENV variable.  Only neccessary in Production/Staging or if your redis isn't hosted
+ with defaults.
+
+```
+set REDIS_URL='your_url'
+```
 
 Mailcatcher & Foreman
 
 ```
 gem install mailcatcher
 gem install foreman
-foreman
+foreman start
 ```
 Foreman will launch and monitor all the processes needed to run GCES
 
@@ -50,6 +60,13 @@ in your working directory.  This will install your gems as well as load your DB.
 Run guard to execute tests, brakeman and start spring.
 
 ```
-bin/guard
+guard
 ```
 
+
+Run rails s to start the server on localhost:3000
+```
+rails s
+```
+
+Or alternatively use something like pow http://pow.cx/

@@ -17,7 +17,7 @@ module Searchable
           methods: [:full_name],
           only: [:full_name, :last_sign_in_at],
           include: {
-            skills: {},
+            skills: { only: :code },
             address: {
               methods: [:lat, :lon],
               only: [:lat, :lon]
@@ -37,7 +37,7 @@ module Searchable
       methods: [:position_name],
       only: [:description, :start_date, :end_date, :position_name, :client_company],
       include: [:disciplines, project_history_positions: {
-        only: [:percentage, :position_id],
+        only: [:percentage],
         include: :position
       }]
     }

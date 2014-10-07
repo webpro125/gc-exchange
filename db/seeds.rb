@@ -40,3 +40,7 @@ end
 ProjectType::PROJECT_TYPE_TYPES.each do |type|
   ProjectType.find_or_create_by(code: type)
 end
+
+ApprovedStatus::APPROVED_STATUS_TYPES.each do |type|
+  ApprovedStatus.find_or_create_by(code: type)
+end
