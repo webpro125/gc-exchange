@@ -1,13 +1,7 @@
-require 'spec_helper'
-
-describe Skill do
-  subject { Skill.new(code: 'MY_SKILL') }
-
-  it { should be_valid }
-
+shared_examples 'lookup' do
   describe 'code' do
     it 'should have a max length' do
-      expect(subject).to ensure_length_of(:code).is_at_most(128)
+      expect(subject).to ensure_length_of(:code).is_at_most(32)
     end
 
     it 'should be unique' do

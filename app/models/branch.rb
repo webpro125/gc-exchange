@@ -1,4 +1,6 @@
 class Branch < ActiveRecord::Base
+  include Lookup
+
   USAF = 'USAF'
   USN = 'USN'
   USA = 'USA'
@@ -6,6 +8,4 @@ class Branch < ActiveRecord::Base
   USCG = 'USCG'
 
   BRANCH_TYPES = [USAF, USN, USA, USMC, USCG].freeze
-
-  validates :code, length: { maximum: 10 }, uniqueness: true, presence: true
 end

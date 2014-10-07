@@ -11,7 +11,19 @@ class MilitaryPolicy < LoggedInPolicy
 
   alias_method :update?, :create?
 
-  def destroy
+  def new?
+    false
+  end
+
+  def show?
+    false
+  end
+
+  def edit?
+    false
+  end
+
+  def destroy?
     false
   end
 end

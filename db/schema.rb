@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002205949) do
+ActiveRecord::Schema.define(version: 20141006183511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20141002205949) do
     t.datetime "updated_at"
   end
 
+  add_index "consultant_skills", ["consultant_id", "skill_id"], name: "index_consultant_skills_on_consultant_id_and_skill_id", unique: true, using: :btree
   add_index "consultant_skills", ["consultant_id"], name: "index_consultant_skills_on_consultant_id", using: :btree
   add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
@@ -115,7 +116,7 @@ ActiveRecord::Schema.define(version: 20141002205949) do
     t.date     "service_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "clearance_status",          default: false, null: false
+    t.boolean  "clearance_active",          default: false, null: false
     t.integer  "branch_id"
   end
 
@@ -209,7 +210,7 @@ ActiveRecord::Schema.define(version: 20141002205949) do
   add_index "sales_leads", ["email"], name: "index_sales_leads_on_email", unique: true, using: :btree
 
   create_table "skills", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code", limit: 128, null: false
   end
 
   add_index "skills", ["code"], name: "index_skills_on_code", unique: true, using: :btree

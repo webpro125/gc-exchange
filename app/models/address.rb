@@ -1,8 +1,6 @@
 class Address < ActiveRecord::Base
   includes :state
-  belongs_to :addressable, polymorphic: true
-  # belongs_to :consultant
-  # belongs_to :company
+  belongs_to :consultant
 
   validates :address1, presence: true, length: { in: 4..128 }
   validates :address2, length: { in: 4..128 }, allow_blank: true
