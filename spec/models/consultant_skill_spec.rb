@@ -1,28 +1,30 @@
 require 'spec_helper'
 
 describe ConsultantSkill do
-  before do
-    @consultant_skill = ConsultantSkill.new(skill: skill, consultant: consultant)
-  end
-
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
   let(:skill) { FactoryGirl.create(:skill) }
 
-  subject { @consultant_skill }
+  subject { ConsultantSkill.new(skill: skill, consultant: consultant) }
 
   it { should be_valid }
 
   describe 'skill_id' do
     it 'should not be valid' do
-      @consultant_skill.skill = nil
-      expect(@consultant_skill).to_not be_valid
+      subject.skill = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be unique' do
+      subject.save!
+      duplicate = subject.dup
+      expect(duplicate).to_not be_valid
     end
   end
 
   describe 'consultant' do
     it 'should not be valid' do
-      @consultant_skill.consultant = nil
-      expect(@consultant_skill).to_not be_valid
+      subject.consultant = nil
+      expect(subject).to_not be_valid
     end
   end
 end

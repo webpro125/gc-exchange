@@ -4,4 +4,5 @@ class ConsultantSkill < ActiveRecord::Base
 
   validates :skill, presence: true
   validates :consultant, presence: true
+  validates :skill, presence: true, uniqueness: { scope: :consultant }
 end
