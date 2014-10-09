@@ -32,6 +32,15 @@ en:
         cell: 'Cell Phone'
         home: 'Home Phone'
         work: 'Work Phone'
+      clearance_level:
+        secret: 'Secret'
+        ts: 'Top Secret'
+        ts/sci: 'Top Secret/SCI'
+        other: 'Other'
+      discipline:
+        shipley: 'Shipley'
+        sma: 'SMA'
+        other: 'Other'
       customer_name:
         nasa: 'NASA'
         ustd: 'US Department of Treasury'

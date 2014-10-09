@@ -10,7 +10,9 @@ class Consultant < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  scope :approved, -> { where(approved: true) }
+  scope :approved, (lambda do
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED))
+  end)
 
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
   before_create :set_approved_status
@@ -46,6 +48,10 @@ class Consultant < ActiveRecord::Base
 
   def approved?
     approved_status.code == ApprovedStatus::APPROVED
+  end
+
+  def skills_list
+    skills.pluck(:code)
   end
 
   private

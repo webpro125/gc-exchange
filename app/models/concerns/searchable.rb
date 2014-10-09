@@ -6,18 +6,30 @@ module Searchable
 
     index_name [Rails.env, model_name.collection.gsub(%r{/}, '-')].join('_')
 
-    mapping dynamic: 'strict' do
-      indexes :address, type: 'geo_point'
+    mapping do
+      indexes :address, type: :geo_point
+      indexes :military do
+        indexes :clearance_level_id, null_value: 0
+      end
+      indexes :project_histories do
+        indexes :disciplines do
+          indexes :id
+          indexes :code
+        end
+        indexes :customer_name do
+          indexes :id
+          indexes :code
+        end
+      end
     end
 
     # Customize the JSON serialization for Elasticsearch
     def as_indexed_json(options = {})
       as_json(
         {
-          methods: [:full_name],
-          only: [:full_name, :last_sign_in_at],
+          methods: [:full_name, :skills_list],
+          only: [:full_name, :last_sign_in_at, :skills_list],
           include: {
-            skills: { only: :code },
             address: {
               methods: [:lat, :lon],
               only: [:lat, :lon]
@@ -36,7 +48,7 @@ module Searchable
     {
       methods: [:position_name],
       only: [:description, :start_date, :end_date, :position_name, :client_company],
-      include: [:disciplines, project_history_positions: {
+      include: [:disciplines, :customer_name, project_history_positions: {
         only: [:percentage],
         include: :position
       }]
@@ -45,7 +57,7 @@ module Searchable
 
   def military_as_json
     {
-      only: [:branch, :clearance_status, :clearance_level]
+      only: [:branch, :clearance_active, :clearance_level_id]
     }
   end
 end

@@ -1,0 +1,27 @@
+<%= simple_form_for @search, url: search_path do |f| %>
+    <%= f.input :position_ids, build_simple_form_dropdown(Position).merge(
+            {collection: Position.all,
+             input_html: {
+                     multiple: true
+             }}) %>
+    <%= f.input :clearance_level_ids, build_simple_form_dropdown(ClearanceLevel).merge(
+            {collection: ClearanceLevel.all,
+             input_html: {
+                     multiple: true
+             }}) %>
+    <%= f.input :customer_name_ids, build_simple_form_dropdown(CustomerName).merge(
+            {collection: CustomerName.all,
+             input_html: {
+                     multiple: true
+             }}) %>
+    <%= f.input :discipline_ids, build_simple_form_dropdown(Discipline).merge(
+            {collection: Discipline.all,
+             input_html: {
+                     multiple: true
+             }}) %>
+    <%= f.input :clearance_active %>
+    <%= f.input :address %>
+    <%= f.input :distance %>
+
+    <%= f.button :submit, 'Search' %>
+<% end %>
