@@ -12,25 +12,25 @@ class Address < ActiveRecord::Base
             format: { with: RegexConstants::Numbers::AS_ZIPCODE, message: 'must be zipcode' }
   validates :consultant_id, presence: true
   validate :validate_state
+  validate :validate_geocode
+
+  before_validation :reset_lat_and_lon, if: :address_changed?
+  before_validation :geocode, if: :address_changed?
 
   # Geocoder
-  geocoded_by :full_street_address do |obj, results|
-    results.each do |geo|
-      obj.latitude = geo.latitude
-      obj.longitude = geo.longitude
-    end
-    obj.validate_geocode if results.length == 0
-  end
+  geocoded_by :full_street_address
 
-  after_validation :geocode, if: :address_changed?
-
-  public
+  private
 
   def validate_geocode
+    return unless latitude.nil? && longitude.nil?
     errors.add(:address1, I18n.t('activerecord.errors.models.address.attributes.geocode_fail'))
   end
 
-  private
+  def reset_lat_and_lon
+    self.latitude = nil
+    self.longitude = nil
+  end
 
   def full_street_address
     [address1, address2, city, state, zipcode].join(', ')

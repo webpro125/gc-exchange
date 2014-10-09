@@ -9,13 +9,6 @@ describe Address do
         state: 'NY',
         zipcode: '10128'
     )
-    @invalid_address = Address.new(
-        consultant: FactoryGirl.create(:confirmed_consultant),
-        address1: 'vaweoijawoiefewaef',
-        city: 'awojeioivawefea',
-        state: 'NJ',
-        zipcode: '99999'
-    )
   end
 
   subject { @address }
@@ -157,13 +150,26 @@ describe Address do
     end
   end
 
-  subject { @invalid_address }
-
-  it { should be_valid }
-
-  describe 'validate_geocode' do
-    it 'should correctly throw an error state' do
-      expect(@invalid_address.validate_geocode).to eql(['must be a valid physical address'])
+  describe 'invalid address' do
+    def invalid_address
+      Address.new(
+          consultant: FactoryGirl.create(:confirmed_consultant),
+          address1: 'oaiwjevoiajwefaw',
+          city: 'bjbjbj',
+          state: 'AZ',
+          zipcode: '99999'
+        )
+    end
+    it 'should be invalid' do
+      current = invalid_address
+      current.valid?
+      expect(current).not_to be_valid
+    end
+    it 'should correctly throw geocode error' do
+      current = invalid_address
+      current.valid?
+      expect(current.errors['address1']).to include(I18n.t(
+        'activerecord.errors.models.address.attributes.geocode_fail'))
     end
   end
 end
