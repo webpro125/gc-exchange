@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20141006183511) do
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
-    t.integer  "approved_status_id",                default: 1,     null: false
+    t.integer  "approved_status_id",                default: 1,  null: false
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree

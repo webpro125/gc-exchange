@@ -7,7 +7,8 @@ class Search
   VALID_ATTRIBUTES = [:position_ids, :clearance_level_ids, :customer_name_ids, :clearance_active,
                       :discipline_ids, :address, :distance, :lat, :lon].freeze
 
-  validates :distance, presence: true, if: ->() { address.present? }
+  validates :distance, presence: true, numericality: { greater_than: 0 },
+            if: ->() { address.present? }
   validates :address, presence: true, if: ->() { distance.present? }
   validate :at_least_one_attribute
 
