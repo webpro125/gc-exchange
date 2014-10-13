@@ -1,0 +1,19 @@
+<h1>Search</h1>
+<dl class="accordion" data-accordion>
+  <dd class="accordion-navigation">
+    <a href="#search">Search</a>
+    <div id="search" class="content active">
+      <%= render 'searches/form' %>
+    </div>
+  </dd>
+  <dd class="accordion-navigation">
+    <a href="#results">Results</a>
+    <div id="results" class="content">
+      <% @consultants.each do |consultant| %>
+          <div class="row">
+            <%= consultant.full_name %>
+          </div>
+      <% end %>
+    </div>
+  </dd>
+</dl>
