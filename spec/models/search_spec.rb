@@ -22,7 +22,7 @@ describe Search do
   end
 
   describe 'one field' do
-    let(:params) { { clearance_active: true } }
+    let(:params) { { clearance_level_ids: [1] } }
 
     it { should be_valid }
   end

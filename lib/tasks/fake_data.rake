@@ -9,7 +9,7 @@ namespace :db do
     skills = FactoryGirl.create_list(:skill, 100)
 
     100.times do
-      consultant = FactoryGirl.create(:confirmed_consultant)
+      consultant = FactoryGirl.create(:confirmed_consultant, :approved)
 
       consultant.skills << skills.sample(5)
       FactoryGirl.create(:military, consultant: consultant)

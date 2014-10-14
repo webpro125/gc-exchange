@@ -1,11 +1,12 @@
 class Search
   include ActiveModel::Model
 
-  attr_accessor :position_ids, :clearance_level_ids, :customer_name_ids, :clearance_active,
-                :discipline_ids, :address, :distance
-  attr_reader :lat, :lon, :attributes
   VALID_ATTRIBUTES = [:position_ids, :clearance_level_ids, :customer_name_ids, :clearance_active,
-                      :discipline_ids, :address, :distance, :lat, :lon].freeze
+                      :project_type_ids, :address, :distance, :lat, :lon].freeze
+
+  attr_accessor :position_ids, :clearance_level_ids, :customer_name_ids, :project_type_ids,
+                :address, :distance
+  attr_reader :lat, :lon, :attributes, :clearance_active
 
   validates :distance, presence: true, numericality: { greater_than: 0 },
             if: ->() { address.present? }
@@ -22,6 +23,7 @@ class Search
 
     super
 
+    @clearance_active = true unless clearance_level_ids.nil? || clearance_level_ids.empty?
     lat_and_long if distance.present? && address.present?
   end
 

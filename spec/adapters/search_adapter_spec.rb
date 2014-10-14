@@ -41,7 +41,7 @@ describe SearchAdapter do
   describe 'must_params' do
     let(:must) { subject.to_query[:filter][:and].first[:bool][:must][:terms] }
     let(:params) do
-      { position_ids: [1, 2, 3], clearance_level_ids: [4, 5, 6], clearance_active: true }
+      { position_ids: [1, 2, 3], clearance_level_ids: [4, 5, 6] }
     end
 
     it 'adds position_ids' do
@@ -63,12 +63,12 @@ describe SearchAdapter do
   describe 'should_params' do
     let(:should) { subject.to_query[:filter][:and].first[:bool][:should][:terms] }
     let(:params) do
-      { discipline_ids: [1, 2, 3], customer_name_ids: [7, 8, 9] }
+      { project_type_ids: [1, 2, 3], customer_name_ids: [7, 8, 9] }
     end
 
-    it 'adds discipline_ids' do
-      expect(should).to have_key('project_histories.disciplines.id')
-      expect(should['project_histories.disciplines.id']).to eq([1, 2, 3])
+    it 'adds project_type' do
+      expect(should).to have_key('project_histories.project_type.id')
+      expect(should['project_histories.project_type.id']).to eq([1, 2, 3])
     end
 
     it 'adds customer_name_ids' do

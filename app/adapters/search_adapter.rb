@@ -1,7 +1,7 @@
 class SearchAdapter
   GEO_PARAMS = [:address, :distance]
   MUST_PARAMS = [:position_ids, :clearance_level_ids, :clearance_active]
-  SHOULD_PARAMS = [:discipline_ids, :customer_name_ids]
+  SHOULD_PARAMS = [:project_type_ids, :customer_name_ids]
 
   def initialize(params)
     fail ArgumentError unless params.is_a?(Search)
@@ -20,8 +20,8 @@ class SearchAdapter
   private
 
   def build_bool
-    must_params = @params.attributes.select { |k, v| MUST_PARAMS.include?(k) && !v.blank? }
-    should_params = @params.attributes.select { |k, v| SHOULD_PARAMS.include?(k) && !v.blank? }
+    must_params = build MUST_PARAMS
+    should_params = build SHOULD_PARAMS
 
     bool = {}
     bool[:must] = build_terms(must_params) unless must_params.empty?
@@ -63,10 +63,19 @@ class SearchAdapter
       'military.clearance_level_id'
     when :clearance_active
       'military.clearance_active'
-    when :discipline_ids
-      'project_histories.disciplines.id'
+    when :project_type_ids
+      'project_histories.project_type.id'
     when :customer_name_ids
       'project_histories.customer_name.id'
+    end
+  end
+
+  def build(list)
+    list.each_with_object({}) do |k, obj|
+      if @params.respond_to?(k) && !@params.send(k).nil?
+        obj[k] = @params.send(k)
+      end
+      obj
     end
   end
 end

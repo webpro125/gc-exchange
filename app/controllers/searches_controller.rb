@@ -20,14 +20,13 @@ class SearchesController < ApplicationController
   def search_params
     sanitize_array_param :position_ids
     sanitize_array_param :clearance_level_ids
+    sanitize_array_param :project_type_ids
     sanitize_array_param :customer_name_ids
-    sanitize_array_param :discipline_ids
     sanitize_param :distance
     sanitize_param :address
 
-    params.permit(search: [:clearance_active, :distance, :address, position_ids: [],
-                           clearance_level_ids: [], customer_name_ids: [],
-                           discipline_ids: []])[:search]
+    params.permit(search: [:distance, :address, position_ids: [], clearance_level_ids: [],
+                           customer_name_ids: [], project_type_ids: []])[:search]
   end
 
   def sanitize_array_param(key)
