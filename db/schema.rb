@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006183511) do
+ActiveRecord::Schema.define(version: 20141014201336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20141006183511) do
     t.integer  "consultant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "addressable_id"
-    t.string   "addressable_type"
   end
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
@@ -46,13 +44,13 @@ ActiveRecord::Schema.define(version: 20141006183511) do
   end
 
   create_table "companies", force: true do |t|
-    t.string   "company_name",  limit: 128
-    t.integer  "company_owner",             null: false
+    t.string   "company_name",     limit: 128
+    t.integer  "company_owner_id",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "companies", ["company_owner"], name: "index_companies_on_company_owner", unique: true, using: :btree
+  add_index "companies", ["company_owner_id"], name: "index_companies_on_company_owner_id", using: :btree
 
   create_table "consultant_skills", force: true do |t|
     t.integer  "consultant_id", null: false
@@ -214,6 +212,16 @@ ActiveRecord::Schema.define(version: 20141006183511) do
   end
 
   add_index "skills", ["code"], name: "index_skills_on_code", unique: true, using: :btree
+
+  create_table "user_companies", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_companies", ["company_id"], name: "index_user_companies_on_company_id", using: :btree
+  add_index "user_companies", ["user_id"], name: "index_user_companies_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                             default: "", null: false
