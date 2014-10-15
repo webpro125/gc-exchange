@@ -23,6 +23,8 @@ en:
   activerecord:
     errors:
       models:
+        user:
+          attempt_owner_delete: 'cannot delete company owner'
         project_history:
           attributes:
             project_history_positions:

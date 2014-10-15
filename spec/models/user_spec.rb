@@ -1,16 +1,17 @@
 require 'spec_helper'
 
 describe User do
-  let(:company) { FactoryGirl.build(:company) }
+  let(:company) { FactoryGirl.attributes_for(:company) }
 
   subject do
-    User.new(first_name: 'Freddy II',
-             last_name: 'Kreuger',
-             email: 'freddy2.kreuger@globalconsultantexchange.com',
-             password: 'password',
-             password_confirmation: 'password',
-             company: company
+    user = User.new(first_name: 'Freddy II',
+                    last_name: 'Kreuger',
+                    email: 'freddy2.kreuger@globalconsultantexchange.com',
+                    password: 'password',
+                    password_confirmation: 'password'
     )
+    user.build_owned_company(company)
+    user
   end
 
   it { should be_valid }
@@ -79,22 +80,27 @@ describe User do
   end
 
   describe 'associations' do
-    describe 'companies' do
+    before do
+      subject.save!
+    end
+
+    describe 'company' do
       before do
-        subject.save!
+        subject.company.users << FactoryGirl.build_list(:user, 3)
       end
 
-      it 'should not delete companies on destroy' do
-        company_id = subject
-        subject.destroy
+      it 'should not delete company on destroy' do
+        company_id = subject.company_id
+        user = subject.company.users.last
+        user.destroy
         expect(Company.find(company_id)).not_to be_nil
       end
+    end
 
-      #   it 'should delete user groups' do
-      #     group_id = @user.user_groups.first.id
-      #     @user.destroy
-      #     expect(UserGroup.find_by_id(group_id)).to be_nil
-      #   end
+    describe 'as owner' do
+      it 'should not be deleted' do
+        expect { subject.destroy }.not_to change { User.count }
+      end
     end
   end
 end

@@ -35,13 +35,15 @@ describe Company do
 
   describe 'associations' do
     before do
+      subject.users << FactoryGirl.build_list(:user, 5)
       subject.save!
     end
 
     it 'should delete users' do
-      user_id = subject.users.pluck(:id)
+      user_ids = subject.users.pluck(:id)
       subject.destroy
-      user_id.each do |id|
+
+      user_ids.each do |id|
         expect(User.find_by_id(id)).to be_nil
       end
     end

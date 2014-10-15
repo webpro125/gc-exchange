@@ -7,7 +7,6 @@ FactoryGirl.define do
     email                 { "#{first_name}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
-    company nil
   end
 
   factory :confirmed_user, parent: :user do
