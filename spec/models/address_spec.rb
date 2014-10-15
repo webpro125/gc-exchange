@@ -151,7 +151,7 @@ describe Address do
   end
 
   describe 'invalid address' do
-    def invalid_address
+    let(:invalid_address) do
       Address.new(
           consultant: FactoryGirl.create(:confirmed_consultant),
           address1: 'oaiwjevoiajwefaw',
@@ -160,11 +160,13 @@ describe Address do
           zipcode: '99999'
         )
     end
+
     it 'should be invalid' do
       current = invalid_address
       current.valid?
       expect(current).not_to be_valid
     end
+
     it 'should correctly throw geocode error' do
       current = invalid_address
       current.valid?
