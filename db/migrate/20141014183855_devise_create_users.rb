@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :first_name,       null: false, limit: 24
       t.string :last_name,        null: false, limit: 24
 
-      t.references :company, index: true, null: false
+      t.references :company, index: true
 
       t.timestamps
     end

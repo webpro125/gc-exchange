@@ -8,7 +8,9 @@ describe User do
              last_name: 'Kreuger',
              email: 'freddy2.kreuger@globalconsultantexchange.com',
              password: 'password',
-             password_confirmation: 'password')
+             password_confirmation: 'password',
+             company: company
+    )
   end
 
   it { should be_valid }
@@ -79,7 +81,7 @@ describe User do
   describe 'associations' do
     describe 'companies' do
       before do
-        company_user = FactoryGirl.create(:user, :as_part_of_company, company: company)
+        subject.save!
       end
 
       it 'should not delete companies on destroy' do

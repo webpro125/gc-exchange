@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 20141014183901) do
   end
 
   create_table "companies", force: true do |t|
-    t.string   "company_name",     limit: 128
-    t.integer  "company_owner_id",             null: false
+    t.string   "company_name", limit: 128
+    t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "companies", ["company_owner_id"], name: "index_companies_on_company_owner_id", using: :btree
+  add_index "companies", ["owner_id"], name: "index_companies_on_owner_id", using: :btree
 
   create_table "consultant_skills", force: true do |t|
     t.integer  "consultant_id", null: false
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 20141014183901) do
     t.datetime "locked_at"
     t.string   "first_name",             limit: 24,              null: false
     t.string   "last_name",              limit: 24,              null: false
-    t.integer  "company_id",                                     null: false
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

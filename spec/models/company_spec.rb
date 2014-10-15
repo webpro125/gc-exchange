@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Company do
   let(:owner) { FactoryGirl.build(:user) }
+
   subject do
-    Company.new(company_name: 'My Test Company', company_owner: owner)
+    Company.new(company_name: 'My Test Company', owner: owner)
   end
 
   it { should be_valid }
@@ -25,16 +26,16 @@ describe Company do
     end
   end
 
-  describe 'company_owner' do
+  describe 'owner' do
     it 'should be present' do
-      subject.company_owner = nil
+      subject.owner = nil
       expect(subject).to_not be_valid
     end
   end
 
   describe 'associations' do
     before do
-       subject.company_owner.save!
+      subject.save!
     end
 
     it 'should delete users' do
