@@ -18,6 +18,8 @@ class Consultant < ActiveRecord::Base
   has_many :project_histories, dependent: :destroy
   has_many :consultant_skills, dependent: :destroy
   has_many :skills, through: :consultant_skills
+  has_many :consultant_certifications, dependent: :destroy
+  has_many :certifications, through: :consultant_certifications
 
   validate :phone_length
   validates :first_name, length: { in: 2..24 }, presence: true,
@@ -26,6 +28,9 @@ class Consultant < ActiveRecord::Base
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: 'only allows letters and numbers' }
+  validates :consultant_certifications, length: { maximum: 10 }
+  validates :consultant_skills, length: { maximum: 20 }
+  validates :rate, numericality: { greater_than: 0 }, allow_blank: true
   validates_attachment :resume,
                        content_type: { content_type: RESUME_MIME_TYPES },
                        size: { less_than: 10.megabytes },

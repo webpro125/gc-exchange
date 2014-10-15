@@ -11,12 +11,9 @@ class MilitariesController < ConsultantController
   end
 
   def update
-    if @military.update(military_params)
-      flash[:success] = t('controllers.military.update.success')
-      redirect_to consultant_root_path
-    else
-      render :update
-    end
+    @military.update(military_params)
+    flash[:success] = t('controllers.military.update.success')
+    redirect_to consultant_root_path
   end
 
   protected
