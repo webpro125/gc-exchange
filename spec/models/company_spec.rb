@@ -36,7 +36,7 @@ describe Company do
   describe 'associations' do
     before do
       subject.users << FactoryGirl.build_list(:user, 5)
-      subject.save!
+      subject.save
     end
 
     it 'should delete users' do

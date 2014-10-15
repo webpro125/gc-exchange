@@ -81,7 +81,7 @@ describe User do
 
   describe 'associations' do
     before do
-      subject.save!
+      subject.save
     end
 
     describe 'company' do
