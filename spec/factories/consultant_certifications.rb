@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :consultant_certification do
-    consultant nil
-    certification nil
+    consultant
+    certification
   end
 end
