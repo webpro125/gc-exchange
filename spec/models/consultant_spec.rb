@@ -85,6 +85,10 @@ describe Consultant do
     end
   end
 
+  describe 'rate' do
+    it { should validate_numericality_of(:rate). is_greater_than(0).allow_nil }
+  end
+
   describe 'resume' do
     before do
       @consultant.resume = File.new(Rails.root + 'spec/files/a_pdf.pdf')
@@ -159,12 +163,54 @@ describe Consultant do
       end
 
       it 'should destroy them on delete' do
-        id = @consultant.id
-        skills = @consultant.skills.map(&:id)
+        consultant_skills = @consultant.consultant_skills.map(&:id)
 
         @consultant.destroy
-        skills.each do |skill|
-          expect(ConsultantSkill.find_by(consultant_id: id, skill_id: skill)).to be_nil
+        consultant_skills.each do |skill|
+          expect(ConsultantSkill.find_by_id(skill)).to be_nil
+        end
+      end
+
+      it 'should not allow more than 20' do
+        @consultant.skills << FactoryGirl.build_list(:skill, 21)
+        expect(@consultant).not_to be_valid
+      end
+    end
+
+    describe 'certifications' do
+      before do
+        @consultant.certifications << FactoryGirl.create(:certification)
+        @consultant.save!
+      end
+
+      it 'should not destroy them on delete' do
+        certifications = @consultant.certifications.map(&:id)
+        expect(certifications).not_to be_nil
+
+        @consultant.destroy
+        certifications.each do |certification|
+          expect(Certification.find_by_id(certification)).not_to be_nil
+        end
+      end
+
+      it 'should not allow more than 10' do
+        @consultant.certifications << FactoryGirl.build_list(:certification, 11)
+        expect(@consultant).not_to be_valid
+      end
+    end
+
+    describe 'consultant_certifications' do
+      before do
+        @consultant.certifications << FactoryGirl.create(:certification)
+        @consultant.save!
+      end
+
+      it 'should destroy them on delete' do
+        consultant_certifications = @consultant.consultant_certifications.map(&:id)
+
+        @consultant.destroy
+        consultant_certifications.each do |consultant_certification|
+          expect(ConsultantCertification.find_by_id(consultant_certification)).to be_nil
         end
       end
     end
