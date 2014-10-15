@@ -10,8 +10,7 @@ class Address < ActiveRecord::Base
             format: { with: RegexConstants::Letters::ONLY, message: 'only allows letters' }
   validates :zipcode, presence: true, length: { is: 5 },
             format: { with: RegexConstants::Numbers::AS_ZIPCODE, message: 'must be zipcode' }
-  validates :addressable_id, presence: true
-  validates :addressable_type, presence: true
+  validates :consultant_id, presence: true
   validate :validate_state
 
   # Geocoder
