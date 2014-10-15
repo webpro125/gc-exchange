@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20141014183901) do
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
 
+  create_table "approved_statuses", force: true do |t|
+    t.string "code", limit: 32
+  end
+
+  add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
+
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10, null: false
     t.datetime "created_at"
@@ -38,6 +44,12 @@ ActiveRecord::Schema.define(version: 20141014183901) do
   end
 
   add_index "branches", ["code"], name: "index_branches_on_code", unique: true, using: :btree
+
+  create_table "certifications", force: true do |t|
+    t.string "code", limit: 32, null: false
+  end
+
+  add_index "certifications", ["code"], name: "index_certifications_on_code", unique: true, using: :btree
 
   create_table "clearance_levels", force: true do |t|
     t.string "code", limit: 32, null: false
@@ -51,6 +63,15 @@ ActiveRecord::Schema.define(version: 20141014183901) do
   end
 
   add_index "companies", ["owner_id"], name: "index_companies_on_owner_id", using: :btree
+
+  create_table "consultant_certifications", force: true do |t|
+    t.integer "consultant_id",    null: false
+    t.integer "certification_id", null: false
+  end
+
+  add_index "consultant_certifications", ["certification_id"], name: "index_consultant_certifications_on_certification_id", using: :btree
+  add_index "consultant_certifications", ["consultant_id", "certification_id"], name: "consultant_certifications_uniqueness", unique: true, using: :btree
+  add_index "consultant_certifications", ["consultant_id"], name: "index_consultant_certifications_on_consultant_id", using: :btree
 
   create_table "consultant_skills", force: true do |t|
     t.integer  "consultant_id", null: false
@@ -86,8 +107,11 @@ ActiveRecord::Schema.define(version: 20141014183901) do
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
+    t.integer  "approved_status_id",                                        default: 1,  null: false
+    t.decimal  "rate",                              precision: 8, scale: 2
   end
 
+  add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
   add_index "consultants", ["confirmation_token"], name: "index_consultants_on_confirmation_token", unique: true, using: :btree
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
