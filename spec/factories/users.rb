@@ -7,6 +7,15 @@ FactoryGirl.define do
     email                 { "#{first_name}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
+
+    trait :as_owner do
+
+
+    end
+
+    trait :as_part_of_company do
+      company
+    end
   end
 
   factory :confirmed_user, parent: :user do

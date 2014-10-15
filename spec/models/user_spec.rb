@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+  let(:company) { FactoryGirl.build(:company) }
+
   subject do
     User.new(first_name: 'Freddy II',
              last_name: 'Kreuger',
@@ -75,22 +77,22 @@ describe User do
   end
 
   describe 'associations' do
-    # describe 'companies' do
-    #   before do
-    #     subject.save!
-    #   end
-    #
-    #   it 'should not delete companies on destroy' do
-    #     company_id = subject
-    #     subject.destroy
-    #     expect(Company.find(company_id)).not_to be_nil
-    #   end
+    describe 'companies' do
+      before do
+        company_user = FactoryGirl.create(:user, :as_part_of_company, company: company)
+      end
 
-    #   it 'should delete user groups' do
-    #     group_id = @user.user_groups.first.id
-    #     @user.destroy
-    #     expect(UserGroup.find_by_id(group_id)).to be_nil
-    #   end
-    #  end
+      it 'should not delete companies on destroy' do
+        company_id = subject
+        subject.destroy
+        expect(Company.find(company_id)).not_to be_nil
+      end
+
+      #   it 'should delete user groups' do
+      #     group_id = @user.user_groups.first.id
+      #     @user.destroy
+      #     expect(UserGroup.find_by_id(group_id)).to be_nil
+      #   end
+    end
   end
 end

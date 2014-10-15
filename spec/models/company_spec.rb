@@ -25,23 +25,23 @@ describe Company do
     end
   end
 
-  describe 'company_owner_id' do
+  describe 'company_owner' do
     it 'should be present' do
       subject.company_owner = nil
-      expect(subject).not_to be_valid
+      expect(subject).to_not be_valid
     end
   end
 
   describe 'associations' do
     before do
-      subject.save!
+       subject.company_owner.save!
     end
 
-    it 'should not delete users' do
+    it 'should delete users' do
       user_id = subject.users.pluck(:id)
       subject.destroy
       user_id.each do |id|
-        expect(User.find_by_id(id)).not_to be_nil
+        expect(User.find_by_id(id)).to be_nil
       end
     end
   end

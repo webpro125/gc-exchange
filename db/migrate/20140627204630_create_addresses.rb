@@ -13,6 +13,6 @@ class CreateAddresses < ActiveRecord::Migration
       t.timestamps
     end
 
-    # add_index :addresses, :consultant_id, unique: true
+    add_index :addresses, :consultant_id, unique: true
   end
 end
