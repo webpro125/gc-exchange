@@ -36,3 +36,7 @@ end
 Branch::BRANCH_TYPES.each do |type|
   Branch.find_or_create_by(code: type)
 end
+
+Certification::CERTIFICATION_TYPES.each do |type|
+  Certification.find_or_create_by(code: type)
+end

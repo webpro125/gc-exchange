@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe ConsultantSkill do
+describe ConsultantCertification do
   let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
-  let(:skill) { FactoryGirl.create(:skill) }
+  let(:certification) { FactoryGirl.create(:certification) }
 
-  subject { ConsultantSkill.new(skill: skill, consultant: consultant) }
+  subject { ConsultantCertification.new(certification: certification, consultant: consultant) }
 
   it { should be_valid }
 
-  describe 'skill_id' do
+  describe 'certification' do
     it 'should not be valid' do
-      subject.skill = nil
+      subject.certification = nil
       expect(subject).to_not be_valid
     end
 
