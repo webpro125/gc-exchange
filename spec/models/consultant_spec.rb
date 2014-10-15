@@ -175,52 +175,52 @@ describe Consultant do
       end
 
       it 'should destroy them on delete' do
-        consultant_skills = @consultant.consultant_skills.map(&:id)
+        consultant_skills = subject.consultant_skills.map(&:id)
 
-        @consultant.destroy
+        subject.destroy
         consultant_skills.each do |skill|
           expect(ConsultantSkill.find_by_id(skill)).to be_nil
         end
       end
 
       it 'should not allow more than 20' do
-        @consultant.skills << FactoryGirl.build_list(:skill, 21)
-        expect(@consultant).not_to be_valid
+        subject.skills << FactoryGirl.build_list(:skill, 21)
+        expect(subject).not_to be_valid
       end
     end
 
     describe 'certifications' do
       before do
-        @consultant.certifications << FactoryGirl.create(:certification)
-        @consultant.save!
+        subject.certifications << FactoryGirl.create(:certification)
+        subject.save!
       end
 
       it 'should not destroy them on delete' do
-        certifications = @consultant.certifications.map(&:id)
+        certifications = subject.certifications.map(&:id)
         expect(certifications).not_to be_nil
 
-        @consultant.destroy
+        subject.destroy
         certifications.each do |certification|
           expect(Certification.find_by_id(certification)).not_to be_nil
         end
       end
 
       it 'should not allow more than 10' do
-        @consultant.certifications << FactoryGirl.build_list(:certification, 11)
-        expect(@consultant).not_to be_valid
+        subject.certifications << FactoryGirl.build_list(:certification, 11)
+        expect(subject).not_to be_valid
       end
     end
 
     describe 'consultant_certifications' do
       before do
-        @consultant.certifications << FactoryGirl.create(:certification)
-        @consultant.save!
+        subject.certifications << FactoryGirl.create(:certification)
+        subject.save!
       end
 
       it 'should destroy them on delete' do
-        consultant_certifications = @consultant.consultant_certifications.map(&:id)
+        consultant_certifications = subject.consultant_certifications.map(&:id)
 
-        @consultant.destroy
+        subject.destroy
         consultant_certifications.each do |consultant_certification|
           expect(ConsultantCertification.find_by_id(consultant_certification)).to be_nil
         end
