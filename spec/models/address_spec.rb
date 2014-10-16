@@ -151,4 +151,29 @@ describe Address do
       expect(subject.longitude).to_not be_nil
     end
   end
+
+  describe 'invalid address' do
+    let(:invalid_address) do
+      Address.new(
+          consultant: FactoryGirl.create(:confirmed_consultant),
+          address1: 'oaiwjevoiajwefaw',
+          city: 'bjbjbj',
+          state: 'AZ',
+          zipcode: '99999'
+        )
+    end
+
+    it 'should be invalid' do
+      current = invalid_address
+      current.valid?
+      expect(current).not_to be_valid
+    end
+
+    it 'should correctly throw geocode error' do
+      current = invalid_address
+      current.valid?
+      expect(current.errors['address1']).to include(I18n.t(
+        'activerecord.errors.models.address.attributes.geocode_fail'))
+    end
+  end
 end

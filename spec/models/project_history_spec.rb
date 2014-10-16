@@ -33,7 +33,7 @@ describe ProjectHistory do
     end
 
     it 'should have maximum length' do
-      subject.client_company = 'a' * 25
+      subject.client_company = 'a' * 520
       expect(subject).not_to be_valid
     end
 
@@ -58,7 +58,7 @@ describe ProjectHistory do
     end
 
     it 'should have maximum length' do
-      subject.client_poc_name = 'a' * 64
+      subject.client_poc_name = 'a' * 300
       expect(subject).not_to be_valid
     end
 
