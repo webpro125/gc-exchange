@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20141016000943) do
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
 
+  create_table "approved_statuses", force: true do |t|
+    t.string "code", limit: 32
+  end
+
+  add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code"
+
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10, null: false
     t.datetime "created_at"
