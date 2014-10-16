@@ -31,12 +31,6 @@ ActiveRecord::Schema.define(version: 20141014183901) do
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
 
-  create_table "approved_statuses", force: true do |t|
-    t.string "code", limit: 32
-  end
-
-  add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
-
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10, null: false
     t.datetime "created_at"
@@ -56,7 +50,7 @@ ActiveRecord::Schema.define(version: 20141014183901) do
   end
 
   create_table "companies", force: true do |t|
-    t.string   "company_name", limit: 128
+    t.string   "company_name", limit: 512
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,12 +79,12 @@ ActiveRecord::Schema.define(version: 20141014183901) do
   add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
-    t.string   "email",                             default: "", null: false
-    t.string   "encrypted_password",                default: "", null: false
+    t.string   "email",                                                     default: "", null: false
+    t.string   "encrypted_password",                                        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,  null: false
+    t.integer  "sign_in_count",                                             default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -99,19 +93,17 @@ ActiveRecord::Schema.define(version: 20141014183901) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first_name",             limit: 24,              null: false
-    t.string   "last_name",              limit: 24,              null: false
+    t.string   "first_name",             limit: 24,                                      null: false
+    t.string   "last_name",              limit: 24,                                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_file_name"
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
-    t.integer  "approved_status_id",                                        default: 1,  null: false
     t.decimal  "rate",                              precision: 8, scale: 2
   end
 
-  add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
   add_index "consultants", ["confirmation_token"], name: "index_consultants_on_confirmation_token", unique: true, using: :btree
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree

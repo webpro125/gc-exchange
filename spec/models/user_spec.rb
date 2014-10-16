@@ -17,72 +17,35 @@ describe User do
   it { should be_valid }
 
   describe 'first_name' do
-    it 'should have minimum length' do
-      subject.first_name = 'a' * 1
-      expect(subject).not_to be_valid
-    end
 
-    it 'should have maximum length' do
-      subject.first_name = 'a' * 25
-      expect(subject).not_to be_valid
-    end
-
-    it 'should be present' do
-      subject.first_name = nil
-      expect(subject).not_to be_valid
-    end
-
-    it 'should allow only characters numbers and hyphens' do
-      subject.first_name = 'james'
-      expect(subject).to be_valid
-
-      subject.first_name = 'billy-jean 2'
-      expect(subject).not_to be_valid
-
-      subject.first_name = '123567'
-      expect(subject).not_to be_valid
-
-      subject.first_name = '!@#$'
-      expect(subject).not_to be_valid
-    end
+    it { expect(subject).to validate_presence_of(:first_name) }
+    it { should ensure_length_of(:first_name).is_at_least(2) }
+    it { should ensure_length_of(:first_name).is_at_most(24) }
+    it { expect(subject).to allow_value('james').for(:first_name) }
+    it { expect(subject).to_not allow_value('billy-jean 2').for(:first_name) }
+    it { expect(subject).to_not allow_value('1234567').for(:first_name) }
+    it { expect(subject).to_not allow_value('!@#$').for(:first_name) }
   end
 
   describe 'last_name' do
-    it 'should have minimum length' do
-      subject.last_name = 'a' * 1
-      expect(subject).not_to be_valid
-    end
-
-    it 'should have maximum length' do
-      subject.last_name = 'a' * 25
-      expect(subject).not_to be_valid
-    end
-
-    it 'should be present' do
-      subject.last_name = nil
-      expect(subject).not_to be_valid
-    end
-
-    it 'should allow only characters and numbers' do
-      subject.last_name = 'John 123567'
-      expect(subject).to be_valid
-
-      subject.last_name = '!@#$'
-      expect(subject).not_to be_valid
-    end
+    it { expect(subject).to validate_presence_of(:last_name) }
+    it { should ensure_length_of(:last_name).is_at_least(2) }
+    it { should ensure_length_of(:last_name).is_at_most(24) }
+    it { expect(subject).to allow_value('John 123567').for(:last_name) }
+    it { expect(subject).to_not allow_value('!@#$').for(:last_name) }
   end
 
   describe 'email' do
-    it 'should be present' do
-      subject.email = nil
-      expect(subject).not_to be_valid
-    end
+    it { expect(subject).to validate_presence_of(:email) }
   end
 
   describe 'associations' do
     before do
       subject.save
     end
+
+    it { expect(subject).to belong_to(:company) }
+    it { expect(subject).to have_one(:owned_company) }
 
     describe 'company' do
       before do

@@ -22,6 +22,10 @@
 en:
   activerecord:
     errors:
+      messages:
+        regex:
+          only_letters: 'only allows letters'
+          only_letters_numbers: 'only allows letters and numbers'
       models:
         user:
           attempt_owner_delete: 'cannot delete company owner'

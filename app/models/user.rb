@@ -7,16 +7,16 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 
-  before_destroy :validate_company_owner
-  before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
   before_validation :company_present
+  before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
+  before_destroy :validate_company_owner
 
   validates :first_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Letters::AND_DASHES,
-                      message: 'only allows letters' }
+                      message: I18n.t('activerecord.errors.messages.regex.only_letters') }
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Words::AND_SPECIAL,
-                      message: 'only allows letters and numbers' }
+                      message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
   validates :email, presence: true
   validates :company, presence: true
 

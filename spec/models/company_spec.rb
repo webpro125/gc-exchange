@@ -10,27 +10,13 @@ describe Company do
   it { should be_valid }
 
   describe 'company_name' do
-    it 'should have a minimum length' do
-      subject.company_name = 'a' * 1
-      expect(subject).not_to be_valid
-    end
-
-    it 'should have a maximum length' do
-      subject.company_name = 'a' * 129
-      expect(subject).not_to be_valid
-    end
-
-    it 'should be present' do
-      subject.company_name = nil
-      expect(subject).not_to be_valid
-    end
+    it { expect(subject).to validate_presence_of(:company_name) }
+    it { should ensure_length_of(:company_name).is_at_least(2) }
+    it { should ensure_length_of(:company_name).is_at_most(512) }
   end
 
   describe 'owner' do
-    it 'should be present' do
-      subject.owner = nil
-      expect(subject).to_not be_valid
-    end
+    it { expect(subject).to validate_presence_of(:owner) }
   end
 
   describe 'associations' do
@@ -38,6 +24,9 @@ describe Company do
       subject.users << FactoryGirl.build_list(:user, 5)
       subject.save
     end
+
+    it { expect(subject).to belong_to(:owner) }
+    it { expect(subject).to have_many(:users) }
 
     it 'should delete users' do
       user_ids = subject.users.pluck(:id)

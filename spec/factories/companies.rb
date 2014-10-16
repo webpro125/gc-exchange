@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :company do
     company_name { Faker::Name.name }
 
-    trait :as_owner do
+    trait :with_owner do
       owner  { FactoryGirl.build(:user) }
     end
   end
