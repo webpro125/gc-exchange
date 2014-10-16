@@ -33,7 +33,7 @@ describe ProjectHistory do
     end
 
     it 'should have maximum length' do
-      @project_history.client_company = 'a' * 25
+      @project_history.client_company = 'a' * 520
       expect(@project_history).not_to be_valid
     end
 
@@ -58,7 +58,7 @@ describe ProjectHistory do
     end
 
     it 'should have maximum length' do
-      @project_history.client_poc_name = 'a' * 64
+      @project_history.client_poc_name = 'a' * 300
       expect(@project_history).not_to be_valid
     end
 
