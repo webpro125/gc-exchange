@@ -43,6 +43,7 @@ en:
           attributes:
             state:
               match_fail: "must be a US state"
+            geocode_fail: "must be a valid physical address"
   controllers:
     address:
       create:
