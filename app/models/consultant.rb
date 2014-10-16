@@ -1,4 +1,6 @@
 class Consultant < ActiveRecord::Base
+  include Searchable
+
   RESUME_MIME_TYPES = ['application/msword',
                        'application/vnd.ms-word',
                        'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
@@ -8,12 +10,20 @@ class Consultant < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  scope :approved, (lambda do
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED))
+  end)
+
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
+  before_create :set_approved_status
+  after_commit :update_consultant_index, on: [:update]
+  after_commit :destroy_consultant_index, on: [:destroy]
 
   has_attached_file :resume
 
   has_one :address, dependent: :destroy
   has_one :military, dependent: :destroy
+  belongs_to :approved_status
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
   has_many :consultant_skills, dependent: :destroy
@@ -37,6 +47,18 @@ class Consultant < ActiveRecord::Base
                        file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
                        if: -> { resume.present? }
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def approved?
+    approved_status.code == ApprovedStatus::APPROVED
+  end
+
+  def skills_list
+    skills.pluck(:code)
+  end
+
   private
 
   def phone_length
@@ -45,5 +67,17 @@ class Consultant < ActiveRecord::Base
 
   def skip_confirmation_in_staging
     skip_confirmation!
+  end
+
+  def destroy_consultant_index
+    delete_document
+  end
+
+  def update_consultant_index
+    ConsultantIndexer.perform_async(:update, id) if approved?
+  end
+
+  def set_approved_status
+    self.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS)
   end
 end

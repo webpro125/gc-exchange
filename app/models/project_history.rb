@@ -1,4 +1,6 @@
 class ProjectHistory < ActiveRecord::Base
+  include Indexable
+
   belongs_to :position
   belongs_to :consultant
   belongs_to :customer_name

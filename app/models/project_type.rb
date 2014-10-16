@@ -1,5 +1,6 @@
 class ProjectType < ActiveRecord::Base
   include Lookup
 
-  PROJECT_TYPE = [].freeze
+  OTHER = 'OTHER'
+  PROJECT_TYPE_TYPES = [OTHER].freeze
 end
