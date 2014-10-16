@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20141016000943) do
     t.string "code", limit: 32
   end
 
-  add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code"
+  add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
 
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10, null: false
