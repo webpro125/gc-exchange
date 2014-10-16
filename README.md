@@ -29,7 +29,8 @@ https://developers.google.com/maps/documentation/business/
 Create a bing maps api key
 http://www.bingmapsportal.com
 
-Generate a secret key and save your keys as ENV variables
+Generate a secret key and save your keys as ENV variables.
+Generate a password for the company superuser password.
 ```
 rake secret
 vim ~/.bash_profile
@@ -37,8 +38,8 @@ vim ~/.bash_profile
 export SECRET_KEY_BASE=${secret_key}
 export GOOGLE_MAPS_API=${google_maps_api_key}
 export BING_MAPS_API=${bing_maps_api_key}
+export COMPANY_SUPERUSER_PASS=${company_superuser_pass}
 ```
-
 Initialize your application by running
 ```
 bin/init ./

@@ -52,11 +52,13 @@ describe User do
         subject.company.users << FactoryGirl.build_list(:user, 3)
       end
 
-      it 'should not delete company on destroy' do
-        company_id = subject.company_id
-        user = subject.company.users.last
-        user.destroy
-        expect(Company.find(company_id)).not_to be_nil
+      describe 'as user' do
+        it 'should not delete company on destroy' do
+          company_id = subject.company_id
+          user = subject.company.users.last
+          user.destroy
+          expect(Company.find(company_id)).not_to be_nil
+        end
       end
     end
 

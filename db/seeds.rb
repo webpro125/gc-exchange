@@ -5,6 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+unless Company.find_by_company_name('Global Consultant Exchange')
+  user = User.create(first_name: 'James',
+                     last_name: 'Stoup',
+                     email: 'jstoup@thoriumllc.com',
+                     password: ENV['COMPANY_SUPERUSER_PASS'],
+                     password_confirmation: ENV['COMPANY_SUPERUSER_PASS'])
+
+  Company.find_or_create_by(company_name: 'Global Consultant Exchange', owner: user)
+end
+
 PhoneType::PHONE_TYPES.each do |type|
   PhoneType.find_or_create_by(code: type)
 end
