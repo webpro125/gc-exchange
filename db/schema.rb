@@ -98,9 +98,11 @@ ActiveRecord::Schema.define(version: 20141016000943) do
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
+    t.integer  "approved_status_id",                                        default: 1,  null: false
     t.decimal  "rate",                              precision: 8, scale: 2
   end
 
+  add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
   add_index "consultants", ["confirmation_token"], name: "index_consultants_on_confirmation_token", unique: true, using: :btree
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
