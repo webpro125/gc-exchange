@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014161418) do
+ActiveRecord::Schema.define(version: 20141016000943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,8 +156,8 @@ ActiveRecord::Schema.define(version: 20141014161418) do
 
   create_table "project_histories", force: true do |t|
     t.integer  "consultant_id",                null: false
-    t.string   "client_company",   limit: 128
-    t.string   "client_poc_name",  limit: 64
+    t.string   "client_company",   limit: 512
+    t.string   "client_poc_name",  limit: 256
     t.string   "client_poc_email", limit: 128
     t.date     "start_date"
     t.date     "end_date"
