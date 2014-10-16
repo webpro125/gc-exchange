@@ -33,7 +33,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   Geocoder.configure(lookup: :test)
-
+  Geocoder::Lookup::Test::INVALID_ADDRESS = 'oaiwjevoiajwefaw, , bjbjbj, AZ, 99999'
+  Geocoder::Lookup::Test.add_stub(Geocoder::Lookup::Test::INVALID_ADDRESS, [{}])
   Geocoder::Lookup::Test.set_default_stub(
     [
       {
