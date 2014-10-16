@@ -13,7 +13,7 @@ unless Company.find_by_company_name('Global Consultant Exchange')
                      password: ENV['COMPANY_SUPERUSER_PASS'],
                      password_confirmation: ENV['COMPANY_SUPERUSER_PASS'])
 
-  Company.find_or_create_by(company_name: 'Global Consultant Exchange', owner: user)
+  Company.create(company_name: 'Global Consultant Exchange', owner: user)
 end
 
 PhoneType::PHONE_TYPES.each do |type|
