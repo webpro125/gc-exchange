@@ -22,3 +22,13 @@ production:
       user: <%= ENV['ELASTICSEARCH_USER'] %>
       password: <%= ENV['ELASTICSEARCH_PASSWORD'] %>
       scheme: <% ENV['ELASTICSEARCH_SCHEME'] %>
+
+staging:
+  <<: *default_settings
+  log: false
+  hosts:
+    - host: <%= ENV['ELASTICSEARCH_HOST'] %>
+      port: <%= ENV['ELASTICSEARCH_PORT'] %>
+      user: <%= ENV['ELASTICSEARCH_USER'] %>
+      password: <%= ENV['ELASTICSEARCH_PASSWORD'] %>
+      scheme: <% ENV['ELASTICSEARCH_SCHEME'] %>
