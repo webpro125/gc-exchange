@@ -33,7 +33,7 @@ describe ProjectHistoryPolicy do
     let(:consultant) { nil }
 
     it 'raises an error' do
-      expect { permit_action(:show) }.to_not raise_error
+      expect { subject }.to raise_error
     end
   end
 end

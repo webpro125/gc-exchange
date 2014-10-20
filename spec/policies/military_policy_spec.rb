@@ -4,7 +4,7 @@ describe MilitaryPolicy do
   subject { MilitaryPolicy.new(consultant, military) }
 
   describe 'for a user' do
-    let!(:consultant) { FactoryGirl.create(:confirmed_consultant) }
+    let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
 
     describe 'for valid military' do
       let(:military) { FactoryGirl.create(:military, consultant: consultant) }
@@ -22,10 +22,11 @@ describe MilitaryPolicy do
   end
 
   describe 'for a visitor' do
+    let(:military) { FactoryGirl.create(:military) }
     let(:consultant) { nil }
 
     it 'raises an error' do
-      expect { permit_action(:show) }.to_not raise_error
+      expect { subject }.to raise_error
     end
   end
 end

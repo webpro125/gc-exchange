@@ -6,14 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-unless Company.find_by_company_name('Global Consultant Exchange')
+unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
   user = User.create(first_name: 'James',
                      last_name: 'Stoup',
-                     email: 'jstoup@thoriumllc.com',
-                     password: ENV['COMPANY_SUPERUSER_PASS'],
-                     password_confirmation: ENV['COMPANY_SUPERUSER_PASS'])
+                     email: 'jstoup@thoriumllc.com')
 
-  Company.create(company_name: 'Global Consultant Exchange', owner: user)
+  Company.create(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE, owner: user)
 end
 
 PhoneType::PHONE_TYPES.each do |type|

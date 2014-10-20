@@ -6,9 +6,7 @@ describe User do
   subject do
     user = User.new(first_name: 'Freddy II',
                     last_name: 'Kreuger',
-                    email: 'freddy2.kreuger@globalconsultantexchange.com',
-                    password: 'password',
-                    password_confirmation: 'password'
+                    email: 'freddy2.kreuger@globalconsultantexchange.com'
     )
     user.build_owned_company(company)
     user
@@ -17,7 +15,6 @@ describe User do
   it { should be_valid }
 
   describe 'first_name' do
-
     it { expect(subject).to validate_presence_of(:first_name) }
     it { should ensure_length_of(:first_name).is_at_least(2) }
     it { should ensure_length_of(:first_name).is_at_most(24) }
@@ -37,6 +34,20 @@ describe User do
 
   describe 'email' do
     it { expect(subject).to validate_presence_of(:email) }
+  end
+
+  describe 'gces?' do
+    it 'returns false' do
+      subject.owned_company = nil
+      subject.company = FactoryGirl.build(:company)
+      expect(subject.gces?).to eq false
+    end
+
+    it 'returns true' do
+      subject.owned_company = nil
+      subject.company = Company.new(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE)
+      expect(subject.gces?).to eq true
+    end
   end
 
   describe 'associations' do

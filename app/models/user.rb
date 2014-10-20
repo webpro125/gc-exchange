@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 
   before_validation :company_present
+  before_validation :set_password, on: :create
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
   before_destroy :validate_company_owner
 
@@ -23,6 +24,11 @@ class User < ActiveRecord::Base
     self.company = owned_company if owned_company.present?
   end
 
+  def gces?
+    c = owned_company || company
+    c.company_name == Company::GLOBAL_CONSULTANT_EXCHANGE
+  end
+
   private
 
   def validate_company_owner
@@ -34,5 +40,9 @@ class User < ActiveRecord::Base
 
   def skip_confirmation_in_staging
     skip_confirmation!
+  end
+
+  def set_password
+    self.password = self.password_confirmation = Devise.friendly_token.first(8)
   end
 end
