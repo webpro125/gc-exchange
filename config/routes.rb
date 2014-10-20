@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # Resources
   resource :address, except: [:destroy, :show]
   resource :military, except: [:new, :edit, :show, :index]
+  resource :search, only: [:new, :create]
   resources :phones
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]

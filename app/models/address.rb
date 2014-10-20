@@ -1,5 +1,6 @@
 class Address < ActiveRecord::Base
-  includes :state
+  include Indexable
+
   belongs_to :consultant
 
   validates :address1, presence: true, length: { in: 4..128 }
@@ -19,6 +20,14 @@ class Address < ActiveRecord::Base
 
   # Geocoder
   geocoded_by :full_street_address
+
+  def lat
+    latitude
+  end
+
+  def lon
+    longitude
+  end
 
   private
 
