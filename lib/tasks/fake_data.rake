@@ -1,3 +1,4 @@
+begin
 require 'factory_girl_rails'
 require 'faker'
 
@@ -28,4 +29,8 @@ namespace :db do
       end
     end
   end
+end
+
+rescue LoadError
+  puts 'factory_girl_rails not found'
 end

@@ -19,7 +19,6 @@ gem 'elasticsearch-model', '~> 0.1.5'
 gem 'elasticsearch-rails', '~> 0.1.5'
 gem 'sidekiq', '~> 3.2.5'
 gem 'sidekiq-unique-jobs', '~> 3.0.2'
-gem 'factory_girl_rails', '~> 4.4', require: false
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -60,6 +59,7 @@ end
 
 group :test do
   gem 'database_cleaner', '~> 1.3.0', require: false
+  gem 'factory_girl_rails', '~> 4.4'
   gem 'faker', '~> 1.4.3'
   gem 'simplecov-bamboo', '~> 0.1.0', require: false
   gem 'test_after_commit', '~> 0.3.0'

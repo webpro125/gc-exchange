@@ -13,9 +13,6 @@ require 'database_cleaner'
 require 'sidekiq/testing'
 require 'rake'
 require 'elasticsearch/extensions/test/cluster/tasks'
-require 'factory_girl_rails'
-# FactoryGirl.find_definitions
-
 
 SimpleCov.coverage_dir('spec/results/coverage')
 SimpleCov.minimum_coverage 95
