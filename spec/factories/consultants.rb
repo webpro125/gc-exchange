@@ -7,6 +7,12 @@ FactoryGirl.define do
     email                 { "#{first_name}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
+
+    trait :approved do
+      after(:create) do |c|
+        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED)
+      end
+    end
   end
 
   factory :confirmed_consultant, parent: :consultant do

@@ -14,6 +14,11 @@ gem 'pundit', '~> 0.3.0'
 gem 'paperclip', '~> 4.2'
 gem 'fog', '~> 1.23.0'
 gem 'newrelic_rpm', '~> 3.9.4.245'
+gem 'kaminari', '~> 0.16.1'
+gem 'elasticsearch-model', '~> 0.1.5'
+gem 'elasticsearch-rails', '~> 0.1.5'
+gem 'sidekiq', '~> 3.2.5'
+gem 'sidekiq-unique-jobs', '~> 3.0.2'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -57,6 +62,9 @@ group :test do
   gem 'factory_girl_rails', '~> 4.4'
   gem 'faker', '~> 1.4.3'
   gem 'simplecov-bamboo', '~> 0.1.0', require: false
+  gem 'test_after_commit', '~> 0.3.0'
+  gem 'elasticsearch-extensions', '~> 0.0.15'
+  gem 'fakeredis', '~> 0.5.0'
 end
 
 group :production, :staging do

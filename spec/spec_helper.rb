@@ -10,6 +10,9 @@ require 'yarjuf'
 require 'simplecov'
 require 'simplecov-bamboo'
 require 'database_cleaner'
+require 'sidekiq/testing'
+require 'rake'
+require 'elasticsearch/extensions/test/cluster/tasks'
 
 SimpleCov.coverage_dir('spec/results/coverage')
 SimpleCov.minimum_coverage 95
@@ -41,6 +44,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
+    Rails.application.load_seed
   end
 
   config.before(:each) do
@@ -61,6 +65,34 @@ RSpec.configure do |config|
 
   config.after(:suite) do
     FileUtils.rm_rf(Rails.root + 'public/test')
+  end
+
+  config.before :each, elasticsearch: true do
+    Consultant.__elasticsearch__.client = Elasticsearch::Client.new host: 'http://localhost:9250'
+    Consultant.__elasticsearch__.create_index!(force: true)
+    Consultant.__elasticsearch__.refresh_index!
+    Elasticsearch::Extensions::Test::Cluster.start(port: 9250) unless
+      Elasticsearch::Extensions::Test::Cluster.running?
+  end
+
+  config.after :suite do
+    Elasticsearch::Extensions::Test::Cluster.stop(port: 9250) if
+      Elasticsearch::Extensions::Test::Cluster.running?
+  end
+
+  config.before(:each) do |example|
+    # Clears out the jobs for tests using the fake testing
+    Sidekiq::Worker.clear_all
+
+    if example.metadata[:sidekiq] == :fake
+      Sidekiq::Testing.fake!
+    elsif example.metadata[:sidekiq] == :inline
+      Sidekiq::Testing.inline!
+    elsif example.metadata[:type] == :acceptance
+      Sidekiq::Testing.inline!
+    else
+      Sidekiq::Testing.fake!
+    end
   end
 
   # ## Mock Framework
