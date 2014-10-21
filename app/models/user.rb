@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  #  :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   belongs_to :company
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
@@ -27,6 +28,10 @@ class User < ActiveRecord::Base
   def gces?
     c = owned_company || company
     c.company_name == Company::GLOBAL_CONSULTANT_EXCHANGE
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   private

@@ -12,3 +12,4 @@ if [ -f "${rvm_path}/scripts/rvm" ]; then
 
 fi
 export RUBY_DEBUG_PORT=10007
+export POW_WORKERS=3

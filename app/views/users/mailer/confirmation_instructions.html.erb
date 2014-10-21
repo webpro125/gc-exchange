@@ -1,0 +1,8 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>We are glad you've created an account with Global Consultant Exchange. To get
+  started on your profile, please click the confirmation link below.
+</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>Your password is <%= @resource.password %></p>

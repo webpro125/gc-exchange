@@ -10,9 +10,10 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to company.company_name, company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company), class: 'button tiny secondary' %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' },
+                        class: 'button tiny alert' %></td>
       </tr>
     <% end %>
   </tbody>

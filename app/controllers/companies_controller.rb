@@ -17,6 +17,7 @@ class CompaniesController < CompanyController
   # GET /companies/new
   def new
     @company = Company.new
+    @company.build_owner
     authorize @company
   end
 

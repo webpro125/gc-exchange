@@ -13,10 +13,8 @@ FactoryGirl.define do
         user.company = build(:company)
       end
     end
-  end
 
-  factory :confirmed_user, parent: :user do
-    before(:create) { |user| user.skip_confirmation! }
+    after(:build) { |user| user.skip_confirmation! }
   end
 
   factory :gces_user, parent: :user do
