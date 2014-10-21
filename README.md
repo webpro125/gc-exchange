@@ -42,6 +42,7 @@ http://www.bingmapsportal.com
 
 Generate a secret key and save your keys as ENV variables.
 Generate a password for the company superuser password.
+Generate elastic search ENV variables.
 ```
 rake secret
 vim ~/.bash_profile
@@ -50,7 +51,13 @@ export SECRET_KEY_BASE=${secret_key}
 export GOOGLE_MAPS_API=${google_maps_api_key}
 export BING_MAPS_API=${bing_maps_api_key}
 export COMPANY_SUPERUSER_PASS=${company_superuser_pass}
+export ELASTICSEARCH_HOST=${elasticsearch_host}
+export ELASTICSEARCH_PORT=${elasticsearch_port}
+export ELASTICSEARCH_USER=${elasticsearch_user}
+export ELASTICSEARCH_PASSWORD=${elasticsearch_password}
+export ELASTICSEARCH_SCHEME=${elasticsearch_scheme}
 ```
+
 Initialize your application by running
 ```
 bin/init ./
