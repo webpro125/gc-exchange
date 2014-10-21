@@ -172,7 +172,10 @@ Style/CommentAnnotation:
 
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
-  Max: 6
+  Max: 8
+
+Metrics/PerceivedComplexity:
+  Enabled: true
 
 Style/Documentation:
   Enabled: false

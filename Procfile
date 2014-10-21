@@ -1,1 +1,2 @@
-mailcatcher: mailcatcher
+mailcatcher: mailcatcher --foreground
+sidekiq: bundle exec sidekiq
