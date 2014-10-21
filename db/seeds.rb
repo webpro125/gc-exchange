@@ -11,6 +11,7 @@ unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
                      last_name: 'Stoup',
                      email: 'jstoup@thoriumllc.com')
 
+  user.skip_confirmation!
   Company.create(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE, owner: user)
 end
 
