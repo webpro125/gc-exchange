@@ -7,9 +7,19 @@ FactoryGirl.define do
     email                 { "#{first_name}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
+
+    trait :with_company do
+      after(:build) do |user|
+        user.company = build(:company)
+      end
+    end
+
+    after(:build) { |user| user.skip_confirmation! }
   end
 
-  factory :confirmed_user, parent: :user do
-    before(:create) { |user| user.skip_confirmation! }
+  factory :gces_user, parent: :user do
+    after(:build) do |user|
+      user.build_owned_company(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE)
+    end
   end
 end

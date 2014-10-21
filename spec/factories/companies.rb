@@ -8,4 +8,8 @@ FactoryGirl.define do
       owner  { FactoryGirl.build(:user) }
     end
   end
+
+  factory :gces_company, parent: :company do
+    company_name { Company::GLOBAL_CONSULTANT_EXCHANGE }
+  end
 end

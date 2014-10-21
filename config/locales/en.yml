@@ -72,6 +72,13 @@ en:
     sales_lead:
       create:
         success: 'Message was successfully sent'
+    company:
+      create:
+        success: 'Company was successfully created.'
+      update:
+        success: 'Company was successfully updated.'
+      destroy:
+        success: 'Company was successfully destroyed.'
   views:
     password:
       actions:
