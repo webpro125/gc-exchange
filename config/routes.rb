@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :phones
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]
+  resources :companies
 
   # Non resource
 
