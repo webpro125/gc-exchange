@@ -11,10 +11,14 @@
   <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.full_name, company_user_path(@company, user) %></td>
-        <td><%= link_to 'Edit', edit_company_user_path(@company, user),
-                        class: 'button tiny secondary' %></td>
-        <td><%= link_to 'Destroy', company_user_path(@company, user), method: :delete,
-                data: { confirm: 'Are you sure?' }, class: 'button tiny alert' %></td>
+        <td><%= link_to 'Edit',
+                        edit_company_user_path(@company, user),
+                        class: 'button tiny secondary' if policy(user).edit? %></td>
+        <td><%= link_to 'Destroy',
+                        company_user_path(@company, user),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        class: 'button tiny alert' if policy(user).destroy? %></td>
       </tr>
   <% end %>
   </tbody>
