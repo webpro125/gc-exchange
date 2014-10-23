@@ -1,7 +1,7 @@
 class SearchAdapter
   GEO_PARAMS = [:address, :distance]
-  MUST_PARAMS = [:position_ids, :clearance_level_ids, :clearance_active]
-  SHOULD_PARAMS = [:project_type_ids, :customer_name_ids]
+  MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids]
+  SHOULD_PARAMS = [:certification_ids, :clearance_level_ids, :clearance_active]
 
   def initialize(params)
     fail ArgumentError unless params.is_a?(Search)
@@ -67,6 +67,8 @@ class SearchAdapter
       'project_histories.project_type.id'
     when :customer_name_ids
       'project_histories.customer_name.id'
+    when :certification_ids
+      'consultant.certification.id'
     end
   end
 

@@ -41,39 +41,43 @@ describe SearchAdapter do
   describe 'must_params' do
     let(:must) { subject.to_query[:filter][:and].first[:bool][:must][:terms] }
     let(:params) do
-      { position_ids: [1, 2, 3], clearance_level_ids: [4, 5, 6] }
+      { project_type_ids: [1, 2, 3], position_ids: [4, 5, 6], customer_name_ids: [7, 8, 9] }
+    end
+    it 'adds project_type' do
+      expect(must).to have_key('project_histories.project_type.id')
+      expect(must['project_histories.project_type.id']).to eq([1, 2, 3])
     end
 
     it 'adds position_ids' do
       expect(must).to have_key('project_histories.project_history_positions.position.id')
-      expect(must['project_histories.project_history_positions.position.id']).to eq([1, 2, 3])
+      expect(must['project_histories.project_history_positions.position.id']).to eq([4, 5, 6])
     end
 
-    it 'adds clearance_level_ids' do
-      expect(must).to have_key('military.clearance_level_id')
-      expect(must['military.clearance_level_id']).to eq([4, 5, 6])
-    end
-
-    it 'adds clearance_active' do
-      expect(must).to have_key('military.clearance_active')
-      expect(must['military.clearance_active']).to eq true
+    it 'adds customer_name_ids' do
+      expect(must).to have_key('project_histories.customer_name.id')
+      expect(must['project_histories.customer_name.id']).to eq([7, 8, 9])
     end
   end
 
   describe 'should_params' do
     let(:should) { subject.to_query[:filter][:and].first[:bool][:should][:terms] }
     let(:params) do
-      { project_type_ids: [1, 2, 3], customer_name_ids: [7, 8, 9] }
+      { project_type_ids: [1, 2, 3], certification_ids: [4, 5, 6], clearance_level_ids: [7, 8, 9] }
     end
 
-    it 'adds project_type' do
-      expect(should).to have_key('project_histories.project_type.id')
-      expect(should['project_histories.project_type.id']).to eq([1, 2, 3])
+    it 'adds certification' do
+      expect(should).to have_key('consultant.certification.id')
+      expect(should['consultant.certification.id']).to eq([4, 5, 6])
     end
 
-    it 'adds customer_name_ids' do
-      expect(should).to have_key('project_histories.customer_name.id')
-      expect(should['project_histories.customer_name.id']).to eq([7, 8, 9])
+    it 'adds clearance_level_ids' do
+      expect(should).to have_key('military.clearance_level_id')
+      expect(should['military.clearance_level_id']).to eq([7, 8, 9])
+    end
+
+    it 'adds clearance_active' do
+      expect(should).to have_key('military.clearance_active')
+      expect(should['military.clearance_active']).to eq true
     end
   end
 end
