@@ -79,6 +79,13 @@ en:
         success: 'Company was successfully updated.'
       destroy:
         success: 'Company was successfully destroyed.'
+    user:
+      create:
+        success: 'User was successfully created.'
+      update:
+        success: 'User was successfully updated.'
+      destroy:
+        success: 'User was successfully destroyed.'
   views:
     password:
       actions:
