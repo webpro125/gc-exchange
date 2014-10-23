@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   devise_for :consultants, path: '/', path_names: { sign_in: 'login',
@@ -13,6 +15,9 @@ Rails.application.routes.draw do
   end
   authenticated :user do
     root 'pages#user', as: :user_root
+  end
+  authenticate :user, ->(u) { u.gces? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   root 'pages#home'
