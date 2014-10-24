@@ -3,9 +3,8 @@ require 'spec_helper'
 describe AddressPolicy do
   subject { AddressPolicy.new(consultant, address) }
 
-  let(:address) { FactoryGirl.create(:address, consultant: consultant) }
-
   describe 'for a user' do
+    let(:address) { FactoryGirl.create(:address, consultant: consultant) }
     let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
 
     it { should permit_action(:show)    }
@@ -18,10 +17,11 @@ describe AddressPolicy do
   end
 
   describe 'for a visitor' do
+    let(:address) { FactoryGirl.create(:address) }
     let(:consultant) { nil }
 
     it 'raises an error' do
-      expect { permit_action(:show) }.to_not raise_error
+      expect { subject }.to raise_error
     end
   end
 end
