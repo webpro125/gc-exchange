@@ -22,7 +22,13 @@
 en:
   activerecord:
     errors:
+      messages:
+        regex:
+          only_letters: 'only allows letters'
+          only_letters_numbers: 'only allows letters and numbers'
       models:
+        user:
+          attempt_owner_delete: 'cannot delete company owner'
         project_history:
           attributes:
             project_history_positions:
@@ -66,6 +72,13 @@ en:
     sales_lead:
       create:
         success: 'Message was successfully sent'
+    company:
+      create:
+        success: 'Company was successfully created.'
+      update:
+        success: 'Company was successfully updated.'
+      destroy:
+        success: 'Company was successfully destroyed.'
   views:
     password:
       actions:

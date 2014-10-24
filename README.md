@@ -54,6 +54,7 @@ export COMPANY_SUPERUSER_PASS=${company_superuser_pass}
 export ELASTICSEARCH_HOST=${elasticsearch_host}
 
 ```
+
 Initialize your application by running
 ```
 bin/init ./
