@@ -7,8 +7,8 @@ Rails.application.routes.draw do
                                                     registration: 'register' },
              controllers: { registrations: 'registrations' }
 
-  devise_for :users, path: '/users/', path_names: { sign_in: 'login',
-                                                    sign_out: 'logout' }
+  devise_for :users, path_names: { sign_in: 'login',
+                                   sign_out: 'logout' }
   # Root Paths
   authenticated :consultant do
     root 'pages#consultant', as: :consultant_root
