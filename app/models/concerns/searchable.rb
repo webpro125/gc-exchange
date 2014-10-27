@@ -12,10 +12,6 @@ module Searchable
         indexes :clearance_level_id, null_value: 0
       end
       indexes :project_histories do
-        indexes :disciplines do
-          indexes :id
-          indexes :code
-        end
         indexes :customer_name do
           indexes :id
           indexes :code
@@ -48,7 +44,7 @@ module Searchable
     {
       methods: [:position_name],
       only: [:description, :start_date, :end_date, :position_name, :client_company],
-      include: [:disciplines, :customer_name, :project_type, project_history_positions: {
+      include: [:customer_name, :project_type, project_history_positions: {
         only: [:percentage],
         include: :position
       }]
