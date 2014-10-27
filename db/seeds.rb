@@ -35,10 +35,6 @@ Position::POSITION_TYPES.each do |type|
   Position.find_or_create_by(code: type)
 end
 
-Discipline::DISCIPLINE_TYPES.each do |type|
-  Discipline.find_or_create_by(code: type)
-end
-
 Skill::SKILL_TYPES.each do |type|
   Skill.find_or_create_by(code: type)
 end

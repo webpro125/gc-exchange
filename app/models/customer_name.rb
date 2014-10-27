@@ -1,25 +1,25 @@
 class CustomerName < ActiveRecord::Base
   include Lookup
 
-  NASA = 'NASA'
-  USTD = 'USTD'
   DOS = 'DOS'
-  FBI = 'FBI'
-  DOA = 'DOA'
+  USDT = 'USDT'
+  DOD = 'DOD'
+  DOJ = 'DOJ'
   DOI = 'DOI'
+  DOA = 'DOA'
+  DOC = 'DOC'
+  DOL = 'DOL'
+  DHHS = 'DHHS'
+  HUD = 'HUD'
   DOT = 'DOT'
   DOE = 'DOE'
+  DOED = 'DOED'
+  DVA = 'DVA'
   DHS = 'DHS'
-  CIA = 'CIA'
-  NSA = 'NSA'
-  DOD = 'DOD'
-  DIA = 'DIA'
-  HHS = 'HHS'
-  HUD = 'HUD'
+  INTEL = 'INTEL'
+  OMB = 'OMB'
   EPA = 'EPA'
-  USPS = 'USPS'
-  OTHER_FED = 'OTHER_FED'
-  OTHER_STATE = 'OTHER_STATE'
-  CUSTOMER_NAME_TYPES = [NASA, USTD, DOS, FBI, DOA, DOI, DOT, DOE, DHS, CIA, NSA, DOD, DIA,
-                         HHS, HUD, EPA, USPS, OTHER_FED, OTHER_STATE].freeze
+  SBA = 'SBA'
+  CUSTOMER_NAME_TYPES = [DOS, USDT, DOD, DOJ, DOI, DOA, DOC, DOL, DHHS, HUD, DOT, DOE, DOED, DVA,
+                         DHS, INTEL, OMB, EPA, SBA].freeze
 end

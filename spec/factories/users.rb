@@ -14,6 +14,12 @@ FactoryGirl.define do
       end
     end
 
+    trait :as_owner do
+      after(:build) do |user|
+        user.owned_company = build(:company, owner: user)
+      end
+    end
+
     after(:build) { |user| user.skip_confirmation! }
   end
 
