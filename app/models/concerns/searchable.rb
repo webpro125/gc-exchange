@@ -32,7 +32,7 @@ module Searchable
             },
             project_histories: project_histories_as_json,
             military: military_as_json,
-            certifications: { only: [:id, :code] }
+            certifications: {}
           }
         }.merge(options)
       )

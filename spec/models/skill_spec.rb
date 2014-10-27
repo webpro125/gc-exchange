@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Skill do
-  it_behaves_like 'lookup'
-
   subject { Skill.new(code: 'MY_SKILL') }
 
   it { should be_valid }

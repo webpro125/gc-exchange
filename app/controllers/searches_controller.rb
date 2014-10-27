@@ -23,7 +23,6 @@ class SearchesController < ApplicationController
     sanitize_array_param :project_type_ids
     sanitize_array_param :customer_name_ids
     sanitize_array_param :certification_ids
-    # sanitize_array_param :skill_ids
     sanitize_param :distance
     sanitize_param :address
 
