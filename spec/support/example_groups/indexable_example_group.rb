@@ -5,6 +5,7 @@ shared_examples 'indexable' do |method, value|
     before do
       subject.consultant.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED)
       ConsultantIndexer.jobs.clear
+      SidekiqUniqueJobs.redis_mock.flushdb
     end
 
     describe '#create' do

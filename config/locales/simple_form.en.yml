@@ -178,3 +178,8 @@ en:
         lawyer: 'Bar Certified Lawyer'
         certified_professional_systems_engineer: 'Certified Professional Systems Engineer'
         certified_professional_logistician: 'Certified Professional Logistician'
+      approved_status:
+        approved: 'Approved'
+        pending_approval: 'Pending Approval'
+        in_progress: 'In Progress'
+        rejected: 'Rejected'
