@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   devise_for :consultants, path: '/', path_names: { sign_in: 'login',
                                                     sign_out: 'logout',
                                                     registration: 'register' },
-                                      controllers: { registrations: 'registrations' }
+             controllers: { registrations: 'registrations' }
 
-  devise_for :users, path: '/users/', path_names: { sign_in: 'login',
-                                                    sign_out: 'logout' }
+  devise_for :users, path_names: { sign_in: 'login',
+                                   sign_out: 'logout' }
   # Root Paths
   authenticated :consultant do
     root 'pages#consultant', as: :consultant_root
@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   resources :phones
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]
-  resources :companies
+  resources :companies do
+    resources :users
+  end
 
   # Non resource
 

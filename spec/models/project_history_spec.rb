@@ -23,8 +23,6 @@ describe ProjectHistory do
   end
 
   it { should be_valid }
-  it { should respond_to(:project_history_disciplines) }
-  it { should respond_to(:disciplines) }
 
   describe 'client_company' do
     it 'should have minimum length' do
@@ -183,20 +181,6 @@ describe ProjectHistory do
 
         subject.destroy
         expect(Consultant.find_by_id(consultant_id)).not_to be_nil
-      end
-    end
-
-    describe 'project_history_disciplines' do
-      it 'should destroy them on delete' do
-        subject.save!
-
-        project_history_disciplines = subject.project_history_disciplines.map(&:id)
-        expect(project_history_disciplines).not_to be_nil
-
-        subject.destroy
-        project_history_disciplines.each do |project_history_discipline|
-          expect(ProjectHistoryDiscipline.find_by_id(project_history_discipline)).to be_nil
-        end
       end
     end
 
