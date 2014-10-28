@@ -249,9 +249,11 @@ describe CompaniesController do
         end
 
         describe 'another users company' do
+          let(:another_company) { FactoryGirl.create(:company, :with_owner) }
+
           it 'raises error' do
             expect do
-              get :new
+              get :edit, id: another_company.to_param
             end.to raise_exception Pundit::NotAuthorizedError
           end
         end

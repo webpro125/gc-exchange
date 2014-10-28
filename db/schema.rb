@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023144330) do
+ActiveRecord::Schema.define(version: 20141027143909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,12 +122,6 @@ ActiveRecord::Schema.define(version: 20141023144330) do
 
   add_index "customer_names", ["code"], name: "index_customer_names_on_code", unique: true, using: :btree
 
-  create_table "disciplines", force: true do |t|
-    t.string "code", limit: 32
-  end
-
-  add_index "disciplines", ["code"], name: "index_disciplines_on_code", unique: true, using: :btree
-
   create_table "militaries", force: true do |t|
     t.integer  "rank_id"
     t.integer  "clearance_level_id"
@@ -188,16 +182,6 @@ ActiveRecord::Schema.define(version: 20141023144330) do
   add_index "project_histories", ["consultant_id"], name: "index_project_histories_on_consultant_id", using: :btree
   add_index "project_histories", ["customer_name_id"], name: "index_project_histories_on_customer_name_id", using: :btree
   add_index "project_histories", ["project_type_id"], name: "index_project_histories_on_project_type_id", using: :btree
-
-  create_table "project_history_disciplines", force: true do |t|
-    t.integer  "discipline_id",      null: false
-    t.integer  "project_history_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "project_history_disciplines", ["discipline_id"], name: "index_project_history_disciplines_on_discipline_id", using: :btree
-  add_index "project_history_disciplines", ["project_history_id"], name: "index_project_history_disciplines_on_project_history_id", using: :btree
 
   create_table "project_history_positions", force: true do |t|
     t.integer "project_history_id"
