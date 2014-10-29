@@ -24,7 +24,7 @@ class Search
 
     super
 
-    @clearance_active ||=[]
+    @clearance_active ||= []
     @clearance_active[0] = true unless clearance_level_ids.nil? || clearance_level_ids.empty?
     lat_and_long if distance.present? && address.present?
   end

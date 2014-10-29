@@ -82,7 +82,7 @@ describe SearchAdapter do
 
     it 'adds clearance_active' do
       expect(should).to have_key('military.clearance_active')
-      expect(should['military.clearance_active']).to eq true
+      expect(should['military.clearance_active'].first).to eq true
     end
   end
 end
