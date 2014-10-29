@@ -1,16 +1,6 @@
 require 'spec_helper'
 
 describe Consultant do
-  let(:consultant) do
-    Consultant.new(
-      first_name: 'Freddy',
-      last_name: 'Kreuger',
-      email: 'freddy.kreuger@globalconsultantexchange.com',
-      password: 'password',
-      password_confirmation: 'password'
-    )
-  end
-
   let(:mime_types) do
     [
       'application/msword',
@@ -24,12 +14,23 @@ describe Consultant do
     ['text/plain', 'text/xml']
   end
 
-  subject { consultant }
+  subject do
+    Consultant.new(
+      first_name: 'Freddy',
+      last_name: 'Kreuger',
+      email: 'freddy.kreuger@globalconsultantexchange.com',
+      password: 'password',
+      password_confirmation: 'password'
+    )
+  end
 
   it { should be_valid }
   it { should respond_to(:phones) }
   it { should respond_to(:approved_status) }
   it { should respond_to(:approved?) }
+  it { should respond_to(:rejected?) }
+  it { should respond_to(:in_progress?) }
+  it { should respond_to(:pending_approval?) }
 
   describe 'first_name' do
     it 'should have minimum length' do
