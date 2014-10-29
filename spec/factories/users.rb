@@ -10,13 +10,13 @@ FactoryGirl.define do
 
     trait :with_company do
       after(:build) do |user|
-        user.company = build(:company)
+        user.company = create(:company, :with_owner)
       end
     end
 
     trait :as_owner do
       after(:build) do |user|
-        user.owned_company = build(:company, owner: user)
+        user.owned_company = create(:company, owner: user)
       end
     end
 

@@ -1,6 +1,6 @@
 module ApplicationHelper
   LOOKUPS = [PhoneType, ClearanceLevel, Branch, Rank, ClearanceLevel, CustomerName, Position,
-             ProjectType, State, Certification].freeze
+             ProjectType, State, Certification, ApprovedStatus].freeze
 
   # Determines if we're in a development type environment
   #
