@@ -12,6 +12,7 @@ class Search
             if: ->() { address.present? }
   validates :address, presence: true, if: ->() { distance.present? }
   validate :at_least_one_attribute
+  validate :clearance_id_default, if: ->() { clearance_level_ids.present? }
 
   def initialize(params = {})
     params ||= {}
@@ -23,7 +24,8 @@ class Search
 
     super
 
-    @clearance_active = true unless clearance_level_ids.nil? || clearance_level_ids.empty?
+    @clearance_active ||=[]
+    @clearance_active[0] = true unless clearance_level_ids.nil? || clearance_level_ids.empty?
     lat_and_long if distance.present? && address.present?
   end
 
@@ -31,6 +33,15 @@ class Search
     return unless VALID_ATTRIBUTES.map { |v| send(v) }.reject(&:blank?).size == 0
 
     errors[:base] << ('One field must be entered to search')
+  end
+
+  def clearance_id_default
+    if clearance_level_ids[0] == '1'
+      clearance_level_ids[1] = '2'
+      clearance_level_ids[2] = '3'
+    elsif clearance_level_ids[0] == '2'
+      clearance_level_ids[1] = '3'
+    end
   end
 
   private

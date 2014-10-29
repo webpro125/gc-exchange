@@ -2,6 +2,12 @@ class SearchAdapter
   GEO_PARAMS = [:address, :distance]
   MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids]
   SHOULD_PARAMS = [:certification_ids, :clearance_level_ids, :clearance_active]
+  PARAM_ID_LOCATION = { position_ids: 'project_histories.project_history_positions.position.id',
+                        clearance_level_ids: 'military.clearance_level_id',
+                        clearance_active: 'military.clearance_active',
+                        project_type_ids: 'project_histories.project_type.id',
+                        customer_name_ids: 'project_histories.customer_name.id',
+                        certification_ids: 'certification.id' }
 
   def initialize(params)
     fail ArgumentError unless params.is_a?(Search)
@@ -56,25 +62,12 @@ class SearchAdapter
   end
 
   def get_name_from_key(key)
-    case key
-    when :position_ids
-      'project_histories.project_history_positions.position.id'
-    when :clearance_level_ids
-      'military.clearance_level_id'
-    when :clearance_active
-      'military.clearance_active'
-    when :project_type_ids
-      'project_histories.project_type.id'
-    when :customer_name_ids
-      'project_histories.customer_name.id'
-    when :certification_ids
-      'consultant.certification.id'
-    end
+    PARAM_ID_LOCATION[key]
   end
 
   def build(list)
     list.each_with_object({}) do |k, obj|
-      if @params.respond_to?(k) && !@params.send(k).nil?
+      if @params.respond_to?(k) && !@params.send(k).blank?
         obj[k] = @params.send(k)
       end
       obj
