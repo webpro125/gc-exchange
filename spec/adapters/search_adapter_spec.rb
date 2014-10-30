@@ -88,9 +88,7 @@ describe SearchAdapter do
     it 'adds clearance_level_ids' do
       expect(should_query).to have_key('military.clearance_level_id')
       expect(should_query['military.clearance_level_id']).to eq([4, 5, 6])
-    end
 
-    it 'adds clearance_active' do
       expect(should_query).to have_key('military.clearance_active')
       expect(should_query['military.clearance_active'].first).to eq true
     end
@@ -98,6 +96,7 @@ describe SearchAdapter do
     it 'allows empty clearance_level_id' do
       params[:clearance_level_ids] = []
       expect(should_query).to_not have_key('military.clearance_level_id')
+      expect(should_query).to_not have_key('military.clearance_active')
     end
 
     it 'allows empty certification' do
