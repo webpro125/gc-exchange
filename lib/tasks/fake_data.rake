@@ -8,11 +8,13 @@
 #       positions = Position.all
 #       project_types = ProjectType.all
 #       skills = FactoryGirl.create_list(:skill, 100)
+#       certifications = FactoryGirl.create_list(:certification, 10)
 #
 #       100.times do
 #         consultant = FactoryGirl.create(:confirmed_consultant, :approved)
 #
 #         consultant.skills << skills.sample(5)
+#         consultant.certifications << certifications.sample(3)
 #         FactoryGirl.create(:military, consultant: consultant)
 #         FactoryGirl.create(:address, consultant: consultant)
 #

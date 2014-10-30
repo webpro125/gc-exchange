@@ -5,6 +5,7 @@ FactoryGirl.define do
     consultant
     rank
     branch
+    clearance_level
     investigation_date    { 1.years.ago }
     service_start_date    { 6.months.ago }
   end
