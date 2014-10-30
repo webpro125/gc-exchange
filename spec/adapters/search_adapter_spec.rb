@@ -58,31 +58,51 @@ describe SearchAdapter do
       expect(must['project_histories.customer_name.id']).to eq([7, 8, 9])
     end
 
+    it 'allows empty project_type' do
+      params[:project_type_ids] = []
+      expect(must).to_not have_key('project_histories.project_type.id')
+    end
+
+    it 'allows empty position_id' do
+      params[:position_ids] = []
+      expect(must).to_not have_key('project_histories.project_history_positions.position.id')
+    end
+
     it 'allows empty customer_name' do
       params[:customer_name_ids] = []
       expect(must).to_not have_key('project_histories.customer_name.id')
     end
   end
 
-  describe 'should_params' do
-    let(:should) { subject.to_query[:filter][:and].first[:bool][:should][:terms] }
+  describe 'should_query_params' do
+    let(:should_query) { subject.to_query[:filter][:and].first[:bool][:should][:terms] }
     let(:params) do
       { certification_ids: [1, 2, 3], clearance_level_ids: [4, 5, 6] }
     end
 
     it 'adds certification' do
-      expect(should).to have_key('certification.id')
-      expect(should['certification.id']).to eq([1, 2, 3])
+      expect(should_query).to have_key('certification.id')
+      expect(should_query['certification.id']).to eq([1, 2, 3])
     end
 
     it 'adds clearance_level_ids' do
-      expect(should).to have_key('military.clearance_level_id')
-      expect(should['military.clearance_level_id']).to eq([4, 5, 6])
+      expect(should_query).to have_key('military.clearance_level_id')
+      expect(should_query['military.clearance_level_id']).to eq([4, 5, 6])
     end
 
     it 'adds clearance_active' do
-      expect(should).to have_key('military.clearance_active')
-      expect(should['military.clearance_active'].first).to eq true
+      expect(should_query).to have_key('military.clearance_active')
+      expect(should_query['military.clearance_active'].first).to eq true
+    end
+
+    it 'allows empty clearance_level_id' do
+      params[:clearance_level_ids] = []
+      expect(should_query).to_not have_key('military.clearance_level_id')
+    end
+
+    it 'allows empty certification' do
+      params[:certification_ids] = []
+      expect(should_query).to_not have_key('certification.id')
     end
   end
 end

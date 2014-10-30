@@ -24,8 +24,9 @@ class Search
 
     super
 
-    @clearance_active ||= []
-    @clearance_active[0] = true unless clearance_level_ids.nil? || clearance_level_ids.empty?
+    # @clearance_active ||= []
+    # @clearance_active[0] = true unless clearance_level_ids.nil? || clearance_level_ids.empty?
+    @clearance_active = [true] unless clearance_level_ids.nil? || clearance_level_ids.empty?
     lat_and_long if distance.present? && address.present?
   end
 
@@ -36,11 +37,11 @@ class Search
   end
 
   def clearance_id_default
-    if clearance_level_ids[0] == '1'
-      clearance_level_ids[1] = '2'
-      clearance_level_ids[2] = '3'
-    elsif clearance_level_ids[0] == '2'
-      clearance_level_ids[1] = '3'
+    if clearance_level_ids[0] == ClearanceLevel.find_by_code(ClearanceLevel::SECRET).id.to_s
+      clearance_level_ids[1] = ClearanceLevel.find_by_code(ClearanceLevel::TS).id.to_s
+      clearance_level_ids[2] = ClearanceLevel.find_by_code(ClearanceLevel::TSSCI).id.to_s
+    elsif clearance_level_ids[0] == ClearanceLevel.find_by_code(ClearanceLevel::TS).id.to_s
+      clearance_level_ids[1] = ClearanceLevel.find_by_code(ClearanceLevel::TSSCI).id.to_s
     end
   end
 
