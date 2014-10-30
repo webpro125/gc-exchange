@@ -12,7 +12,6 @@ class Search
             if: ->() { address.present? }
   validates :address, presence: true, if: ->() { distance.present? }
   validate :at_least_one_attribute
-  validate :clearance_id_default, if: ->() { clearance_level_ids.present? }
 
   def initialize(params = {})
     params ||= {}
@@ -26,6 +25,7 @@ class Search
 
     @clearance_active = [true] unless clearance_level_ids.nil? || clearance_level_ids.empty?
     lat_and_long if distance.present? && address.present?
+    cascade_clearance_levels
   end
 
   def at_least_one_attribute
@@ -34,10 +34,12 @@ class Search
     errors[:base] << ('One field must be entered to search')
   end
 
-  def clearance_id_default
-    if @clearance_level_ids.include?(ClearanceLevel.find_by_code(ClearanceLevel::SECRET).id.to_s)
+  def cascade_clearance_levels
+    if @clearance_level_ids && @clearance_level_ids.include?(
+        ClearanceLevel.find_by_code(ClearanceLevel::SECRET).id.to_s)
       @clearance_level_ids = ClearanceLevel.pluck(:id).uniq
-    elsif @clearance_level_ids.include?(ClearanceLevel.find_by_code(ClearanceLevel::TS).id.to_s)
+    elsif @clearance_level_ids &&  @clearance_level_ids.include?(
+        ClearanceLevel.find_by_code(ClearanceLevel::TS).id.to_s)
       @clearance_level_ids.push(ClearanceLevel.find_by_code(ClearanceLevel::TSSCI).id.to_s)
     end
   end
