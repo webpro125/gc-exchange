@@ -55,7 +55,7 @@ describe PhonesController do
         end
 
         it 'persists the record' do
-          Phone.any_instance.should_receive(:save).and_return(true)
+          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(true)
           post :create, phone: @phone
         end
 
@@ -76,7 +76,7 @@ describe PhonesController do
         end
 
         it 'does not persist the record' do
-          Phone.any_instance.should_receive(:save).and_return(false)
+          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(false)
           post :create, phone: @phone
         end
       end
@@ -144,7 +144,7 @@ describe PhonesController do
         end
 
         it 'persists the record' do
-          Phone.any_instance.should_receive(:update).and_return(true)
+          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(true)
           put :update, phone: @phone, id: phone.id
         end
 
@@ -161,7 +161,7 @@ describe PhonesController do
         end
 
         it 'does not persist the record' do
-          Phone.any_instance.should_receive(:update).and_return(false)
+          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(false)
           put :update, phone: { number: nil }, id: phone.id
         end
       end

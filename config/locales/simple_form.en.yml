@@ -22,6 +22,7 @@ en:
       phone:
         number: 'Phone Number'
         type: 'Type'
+        primary: 'Primary'
 
     # hints:
     #   defaults:
