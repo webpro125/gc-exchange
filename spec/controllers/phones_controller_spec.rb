@@ -75,8 +75,8 @@ describe PhonesController do
           expect(response).to render_template :new
         end
 
-        it 'persists the record' do
-          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(true)
+        it 'does not persist the record' do
+          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(false)
           post :create, phone: @phone
         end
       end

@@ -1,7 +1,6 @@
 # Be sure to restart your server when you modify this file.
 common: &default_settings
-  hosts:
-    - host: localhost
+  host: localhost
   log: true
 
 development:
@@ -16,9 +15,9 @@ test:
 production:
   <<: *default_settings
   log: false
-  hosts:
-    - host: <%= ENV['ELASTICSEARCH_HOST'] %>
-      port: <%= ENV['ELASTICSEARCH_PORT'] %>
-      user: <%= ENV['ELASTICSEARCH_USER'] %>
-      password: <%= ENV['ELASTICSEARCH_PASSWORD'] %>
-      scheme: <% ENV['ELASTICSEARCH_SCHEME'] %>
+  host: <%= ENV['ELASTICSEARCH_HOST'] %>
+
+staging:
+  <<: *default_settings
+  log: false
+  host: <%= ENV['ELASTICSEARCH_HOST'] %>

@@ -1,11 +1,7 @@
 <%= simple_form_for @address, url: address_path do |f| %>
     <%= f.error_notification %>
 
-    <%= f.input :address1 %>
-    <%= f.input :address2 %>
-    <%= f.input :city %>
-    <%= f.input :state, build_simple_form_dropdown(State).merge(collection: State::STATE_TYPES) %>
-    <%= f.input :zipcode %>
+    <%= f.input :address %>
 
     <%= f.button :submit, button_label %>
 <% end %>

@@ -1,13 +1,23 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   devise_for :consultants, path: '/', path_names: { sign_in: 'login',
                                                     sign_out: 'logout',
                                                     registration: 'register' },
-                                      controllers: { registrations: 'registrations' }
+             controllers: { registrations: 'registrations' }
 
+  devise_for :users, path_names: { sign_in: 'login',
+                                   sign_out: 'logout' }
   # Root Paths
   authenticated :consultant do
     root 'pages#consultant', as: :consultant_root
+  end
+  authenticated :user do
+    root 'pages#user', as: :user_root
+  end
+  authenticate :user, ->(u) { u.gces? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   root 'pages#home'
@@ -16,9 +26,19 @@ Rails.application.routes.draw do
   resource :address, except: [:destroy, :show]
   resource :military, except: [:new, :edit, :show, :index]
   resource :search, only: [:new, :create]
+  resources :profiles, only: [:show]
   resources :phones
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]
+  resources :companies do
+    resources :users
+  end
+  resources :consultants, only: [:index] do
+    member do
+      put :approve
+      put :reject
+    end
+  end
 
   # Non resource
 

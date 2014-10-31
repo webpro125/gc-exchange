@@ -3,9 +3,6 @@
 FactoryGirl.define do
   factory :address do
     consultant
-    address1 '1619 3rd Ave'
-    city 'New York'
-    state 'NY'
-    zipcode '10128'
+    address '1619 3rd Ave New York, NY 10128'
   end
 end

@@ -35,7 +35,7 @@ class AddressesController < ConsultantController
   private
 
   def address_params
-    params.require(:address).permit(:address1, :address2, :city, :state, :zipcode)
+    params.require(:address).permit(:address)
   end
 
   def load_address

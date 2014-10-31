@@ -5,8 +5,6 @@ class ProjectHistory < ActiveRecord::Base
   belongs_to :consultant
   belongs_to :customer_name
   belongs_to :project_type
-  has_many :project_history_disciplines, dependent: :destroy
-  has_many :disciplines, through: :project_history_disciplines
   has_many :project_history_positions, dependent: :destroy, inverse_of: :project_history
   has_many :positions, through: :project_history_positions
 

@@ -49,7 +49,7 @@ describe AddressesController do
 
       describe 'with invalid paramaters' do
         before do
-          @address[:zipcode] = nil
+          @address[:address] = nil
         end
 
         it 'renders "new"' do
@@ -116,7 +116,7 @@ describe AddressesController do
 
       describe 'with invalid parameters' do
         before do
-          @address[:zipcode] = nil
+          @address[:address] = nil
         end
 
         it 'renders "edit"' do
