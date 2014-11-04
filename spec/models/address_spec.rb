@@ -14,11 +14,6 @@ describe Address do
 
   it { should be_valid }
 
-  describe 'address' do
-    it { should validate_presence_of(:address) }
-    it { should ensure_length_of(:address).is_at_least(3).is_at_most(512) }
-  end
-
   describe 'consultant' do
     it 'should be present' do
       subject.consultant = nil

@@ -12,6 +12,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -21,6 +23,8 @@ describe ConsultantPolicy do
       it { should permit_action(:index)  }
       it { should permit_action(:approve) }
       it { should permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -30,6 +34,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -39,6 +45,19 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
+      it { should permit_action(:show) }
+    end
+
+    describe 'for the consultant' do
+      let(:user) { consultant }
+
+      it { should_not permit_action(:index)  }
+      it { should_not permit_action(:approve) }
+      it { should_not permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
       it { should permit_action(:show) }
     end
   end
@@ -52,6 +71,19 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
+      it { should permit_action(:show) }
+    end
+
+    describe 'for the consultant' do
+      let(:user) { consultant }
+
+      it { should_not permit_action(:index)  }
+      it { should_not permit_action(:approve) }
+      it { should_not permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -61,6 +93,8 @@ describe ConsultantPolicy do
       it { should permit_action(:index)  }
       it { should permit_action(:approve) }
       it { should permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -70,6 +104,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -79,6 +115,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should permit_action(:show) }
     end
   end
@@ -92,7 +130,20 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should_not permit_action(:show) }
+    end
+
+    describe 'for the consultant' do
+      let(:user) { consultant }
+
+      it { should_not permit_action(:index)  }
+      it { should_not permit_action(:approve) }
+      it { should_not permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
+      it { should permit_action(:show) }
     end
 
     describe 'for GCES user' do
@@ -101,6 +152,8 @@ describe ConsultantPolicy do
       it { should permit_action(:index)  }
       it { should permit_action(:approve) }
       it { should permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -110,6 +163,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should_not permit_action(:show) }
     end
 
@@ -119,6 +174,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should_not permit_action(:show) }
     end
   end
@@ -132,7 +189,20 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should_not permit_action(:show) }
+    end
+
+    describe 'for the consultant' do
+      let(:user) { consultant }
+
+      it { should_not permit_action(:index)  }
+      it { should_not permit_action(:approve) }
+      it { should_not permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
+      it { should permit_action(:show) }
     end
 
     describe 'for GCES user' do
@@ -141,6 +211,8 @@ describe ConsultantPolicy do
       it { should permit_action(:index)  }
       it { should permit_action(:approve) }
       it { should permit_action(:reject) }
+      it { should permit_action(:edit) }
+      it { should permit_action(:update) }
       it { should permit_action(:show) }
     end
 
@@ -150,6 +222,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should_not permit_action(:show) }
     end
 
@@ -159,6 +233,8 @@ describe ConsultantPolicy do
       it { should_not permit_action(:index)  }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
+      it { should_not permit_action(:edit) }
+      it { should_not permit_action(:update) }
       it { should_not permit_action(:show) }
     end
   end

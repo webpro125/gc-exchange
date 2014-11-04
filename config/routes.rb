@@ -23,17 +23,15 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # Resources
-  resource :address, except: [:destroy, :show]
-  resource :military, except: [:new, :edit, :show, :index]
   resource :search, only: [:new, :create]
-  resources :profiles, only: [:show]
-  resources :phones
+  resource :profile, only: [:edit, :update, :show]
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]
+  resources :phones, only: [:new, :create, :destroy]
   resources :companies do
     resources :users
   end
-  resources :consultants, only: [:index] do
+  resources :consultants, only: [:index, :show] do
     member do
       put :approve
       put :reject

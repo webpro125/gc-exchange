@@ -19,8 +19,8 @@ describe ConsultantsController do
       get('/consultants/new').should_not route_to('consultants#new')
     end
 
-    it 'does not route to #show' do
-      get('/consultants/1').should_not route_to('consultants#show', id: '1')
+    it 'does route to #show' do
+      get('/consultants/1').should route_to('consultants#show', id: '1')
     end
 
     it 'does not route to #edit' do

@@ -27,13 +27,7 @@
           <li class="has-dropdown">
             <%= link_to 'Profile', consultant_root_path %>
             <ul class="dropdown">
-              <li><%= link_to t('views.phone.actions.index'), phones_path %></li>
               <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
-              <% if current_consultant.address %>
-                  <li><%= link_to t('views.address.actions.edit'), edit_address_path %></li>
-              <% else %>
-                  <li><%= link_to t('views.address.actions.add'), new_address_path %></li>
-              <% end %>
               <li class="divider"></li>
               <li><%= link_to t('views.password.actions.change_password'),
                               edit_consultant_registration_path %></li>

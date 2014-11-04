@@ -1,0 +1,106 @@
+<%= simple_form_for @form, url: profile_path do |f| %>
+    <%= f.error_notification %>
+
+    <div class="row">
+      <div class="small-8 columns">
+        <div class="row">
+          <div class="small-4 columns">
+            <%= link_to root_path do %>
+                <%= image_tag('fav.ico', class: 'th') %>
+                <div class="button small"><%= t('views.profile.actions.upload_photo') %></div>
+            <% end %>
+          </div>
+          <div class="small-8 columns">
+            <div class="row">
+              <div class="small-6 columns">
+                <%= f.input :first_name %>
+              </div>
+              <div class="small-6 columns">
+                <%= f.input :last_name %>
+              </div>
+            </div>
+            <%= f.input :rate %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="row">
+              <div class="small-12 columns">
+                <h3><%= t('views.profile.headers.contact') %></h3>
+                <%= f.simple_fields_for :address do |a| %>
+                    <%= a.input :address %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <%= f.simple_fields_for :phones do |p| %>
+                  <div class="phone-form">
+                    <div class="small-8 columns">
+                      <%= p.input :number %>
+                    </div>
+                    <div class="small-4 columns">
+                      <%= p.input :phone_type_id,
+                                  build_simple_form_dropdown(PhoneType,
+                                                             collection: PhoneType.all) %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            <div class="row">
+              <div class="small-12 column">
+                <%= link_to t('views.profile.actions.new_phone') , new_phone_path %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="small-4 columns">
+        <div class="row">
+          <div class="small-12 columns">
+            <h3><%= t('views.profile.headers.education') %></h3>
+            TODO eduction form
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <h3><%= t('views.profile.headers.certification') %></h3>
+            <%= f.input :certifications_list %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <h3><%= t('views.profile.headers.expertise') %></h3>
+            <%= f.input :skills_list %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <%= f.simple_fields_for :military do |m| %>
+                <h3><%= t('views.profile.headers.clearance') %></h3>
+                <%= m.input :clearance_active %>
+                <div id="security">
+                  <%= m.input :clearance_level_id,
+                              build_simple_form_dropdown(ClearanceLevel,
+                                                         collection: ClearanceLevel.all)%>
+                  <%= m.input :investigation_date %>
+                  <%= m.input :clearance_expiration_date %>
+
+                </div>
+
+                <h3><%= t('views.profile.headers.military') %></h3>
+                <div id="military">
+                  <%= m.input :rank_id, build_simple_form_dropdown(Rank,
+                                                                   collection: Rank.all)%>
+                  <%= m.input :branch_id, build_simple_form_dropdown(Branch,
+                                                                     collection: Branch.all)%>
+                  <%= m.input :service_start_date %>
+                  <%= m.input :service_end_date %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= f.button :submit, t('views.profile.actions.save') %>
+<% end %>
