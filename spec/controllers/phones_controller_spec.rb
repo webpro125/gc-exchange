@@ -56,6 +56,28 @@ describe PhonesController do
         end
       end
     end
+
+    describe 'DELETE "destroy"' do
+      before do
+        @phone = consultant.phones.create(@phone)
+      end
+
+      describe 'with different users phone' do
+        let(:phone) { FactoryGirl.create(:phone) }
+
+        it 'raises ActiveRecord::RecordNotFound' do
+          expect do
+            delete :destroy, id: phone.id
+          end.to raise_exception ActiveRecord::RecordNotFound
+        end
+      end
+
+      describe 'with valid params' do
+        it 'deletes the phone' do
+          expect { delete :destroy, id: @phone.id }.to change { Phone.count }.from(1).to(0)
+        end
+      end
+    end
   end
 
   describe 'when not logged in' do

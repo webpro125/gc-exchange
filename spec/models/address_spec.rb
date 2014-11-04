@@ -19,6 +19,11 @@ describe Address do
       subject.consultant = nil
       expect(subject).not_to be_valid
     end
+
+    it 'should be eq to lon' do
+      subject.save
+      expect(subject.lon).to eq(subject.longitude)
+    end
   end
 
   describe 'latitude' do
@@ -26,6 +31,11 @@ describe Address do
       expect(subject.latitude).to be_nil
       subject.valid?
       expect(subject.latitude).to_not be_nil
+    end
+
+    it 'should be eq to lat' do
+      subject.save
+      expect(subject.lat).to eq(subject.latitude)
     end
   end
 

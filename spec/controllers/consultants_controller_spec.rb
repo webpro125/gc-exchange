@@ -88,7 +88,7 @@ describe ConsultantsController do
           it 'does not allow approve' do
             expect do
               put :approve, id: consultant.id
-            end.not_to change { consultant.reload.approved? }.from true
+            end.not_to change { consultant.reload.approved? }
           end
 
           describe do
