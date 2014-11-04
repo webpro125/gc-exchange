@@ -12,11 +12,26 @@ class PhonesController < ConsultantController
     @phone = current_consultant.phones.build(phone_params)
     authorize @phone
 
-    if @phone.save
+    if PhoneUnsetPrimaries.new(@phone).save
       flash[:success] = t('controllers.phone.create.success')
       redirect_to phones_path
     else
       render :new
+    end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @phone.update(phone_params)
+      flash[:success] = t('controllers.phone.update.success')
+      redirect_to phones_path
+    else
+      render :edit
     end
   end
 
@@ -28,7 +43,7 @@ class PhonesController < ConsultantController
   protected
 
   def phone_params
-    params.require(:phone).permit(:phone_type_id, :number)
+    params.require(:phone).permit(:phone_type_id, :number, :primary)
   end
 
   def load_phone
