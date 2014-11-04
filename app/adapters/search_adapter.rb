@@ -1,7 +1,8 @@
 class SearchAdapter
   GEO_PARAMS = [:address, :distance]
-  MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids]
   SHOULD_PARAMS = [:certification_ids, :clearance_level_ids, :clearance_active]
+  MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids]
+  KEYWORD_PARAMS = [:q]
   PARAM_ID_LOCATION = { position_ids: 'project_histories.project_history_positions.position.id',
                         clearance_level_ids: 'military.clearance_level_id',
                         clearance_active: 'military.clearance_active',
@@ -15,12 +16,21 @@ class SearchAdapter
   end
 
   def to_query
-    query = { filter: { and: [] } }
+    build_query
 
-    query[:filter][:and] << build_bool unless build_bool.nil?
-    query[:filter][:and] << build_geo unless build_geo.nil?
+    @query[:filter][:and] << build_bool unless build_bool.nil?
+    @query[:filter][:and] << build_geo unless build_geo.nil?
+    @query[:query] = build_q unless build_q.nil?
 
-    query
+    @query
+  end
+
+  def build_query
+    if !(build_bool.nil? && build_geo.nil?)
+      @query = { filter: { and: [] } }
+    elsif !build_q.nil?
+      @query = { query: {} }
+    end
   end
 
   private
@@ -34,6 +44,16 @@ class SearchAdapter
     bool[:should] = build_terms(should_params) unless should_params.empty?
 
     bool.empty? ? nil : { bool: bool }
+  end
+
+  def build_q
+    keyword_params = build KEYWORD_PARAMS
+    return nil unless @params.q
+    { fuzzy_like_this: { fields: [%w(skills_list abstract full_name address description
+                                     position_name branch)],
+                         like_text: keyword_params[:q],
+                         max_query_terms: 20 }
+    }
   end
 
   def build_geo

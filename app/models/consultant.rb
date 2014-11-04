@@ -49,6 +49,7 @@ class Consultant < ActiveRecord::Base
                        size: { less_than: 10.megabytes },
                        file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
                        if: -> { resume.present? }
+  validates :abstract, length: { in: 2..1500 }
 
   def full_name
     "#{first_name} #{last_name}"

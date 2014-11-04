@@ -23,7 +23,7 @@ module Searchable
     def as_indexed_json(options = {})
       as_json(
         {
-          methods: [:full_name, :skills_list],
+          methods: [:full_name, :skills_list, :abstract],
           only: [:full_name, :last_sign_in_at, :skills_list],
           include: {
             address: {

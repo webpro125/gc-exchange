@@ -20,7 +20,8 @@ describe Consultant do
       last_name: 'Kreuger',
       email: 'freddy.kreuger@globalconsultantexchange.com',
       password: 'password',
-      password_confirmation: 'password'
+      password_confirmation: 'password',
+      abstract: 'Testing the abstract'
     )
   end
 
