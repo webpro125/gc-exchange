@@ -65,7 +65,7 @@ group :test do
   gem 'simplecov-bamboo', '~> 0.1.0', require: false
   gem 'test_after_commit', '~> 0.4.0'
   gem 'elasticsearch-extensions', '~> 0.0.15'
-  gem 'fakeredis', '~> 0.5.0'
+  gem 'mock_redis', '~> 0.13.2'
 end
 
 group :production, :staging do
