@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027143909) do
+ActiveRecord::Schema.define(version: 20141105182416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20141027143909) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                        default: 1,  null: false
     t.decimal  "rate",                              precision: 8, scale: 2
+    t.string   "wizard_step"
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree

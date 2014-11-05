@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   # Resources
   resource :search, only: [:new, :create]
   resource :profile, only: [:edit, :update, :show]
+  resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]
   resources :phones, only: [:new, :create, :destroy]

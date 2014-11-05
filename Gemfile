@@ -23,6 +23,7 @@ gem 'sinatra', '~> 1.4.5'
 gem 'reform', '~> 1.1.1'
 gem 'file_validators', '~> 1.2.0'
 gem 'virtus', '~> 1.0.3'
+gem 'wicked', '~> 1.1.0'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
