@@ -1,9 +1,5 @@
 class PhonesController < ConsultantController
-  before_filter :load_phone, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @phones = policy_scope(current_consultant.phones)
-  end
+  before_filter :load_phone, only: [:destroy]
 
   def new
     @phone = current_consultant.phones.build
@@ -31,9 +27,7 @@ class PhonesController < ConsultantController
   end
 
   def update
-    @phone.assign_attributes(phone_params)
-
-    if PhoneUnsetPrimaries.new(@phone).save
+    if @phone.update(phone_params)
       flash[:success] = t('controllers.phone.update.success')
       redirect_to phones_path
     else

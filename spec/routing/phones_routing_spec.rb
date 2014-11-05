@@ -4,11 +4,11 @@ describe PhonesController do
   describe 'routing' do
 
     it 'should route to phones#index' do
-      get('/phones/').should route_to('phones#index')
+      get('/phones/').should_not route_to('phones#index')
     end
 
     it 'should route to phones#show' do
-      get('/phones/5').should route_to('phones#show', id: '5')
+      get('/phones/5').should_not route_to('phones#show', id: '5')
     end
 
     it 'should routes to phones#create' do
@@ -20,11 +20,11 @@ describe PhonesController do
     end
 
     it 'should routes to phones#edit' do
-      get('/phones/5/edit').should route_to('phones#edit', id: '5')
+      get('/phones/5/edit').should_not route_to('phones#edit', id: '5')
     end
 
     it 'should routes to phones#update' do
-      put('/phones/5').should route_to('phones#update', id: '5')
+      put('/phones/5').should_not route_to('phones#update', id: '5')
     end
 
     it 'should route to addresses#destroy' do

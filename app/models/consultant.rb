@@ -35,15 +35,8 @@ class Consultant < ActiveRecord::Base
   has_many :certifications, through: :consultant_certifications
 
   validate :phone_length
-  validates :first_name, length: { in: 2..24 }, presence: true,
-            format: { with: RegexConstants::Letters::AND_DASHES,
-                      message: 'only allows letters' }
-  validates :last_name, length: { in: 2..24 }, presence: true,
-            format: { with: RegexConstants::Letters::AND_NUMBERS,
-                      message: 'only allows letters and numbers' }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
-  validates :rate, numericality: { greater_than: 0 }, allow_blank: true
   validates_attachment :resume,
                        content_type: { content_type: RESUME_MIME_TYPES },
                        size: { less_than: 10.megabytes },
@@ -71,7 +64,23 @@ class Consultant < ActiveRecord::Base
   end
 
   def skills_list
-    skills.pluck(:code)
+    skills.pluck(:code).join(', ')
+  end
+
+  def skills_list=(skills)
+    self.skills = skills.split(',').map do |n|
+      Skill.where(code: n.downcase.strip).first_or_create!
+    end
+  end
+
+  def certifications_list
+    certifications.pluck(:code).join(', ')
+  end
+
+  def certifications_list=(certifications)
+    self.certifications = certifications.split(',').map do |n|
+      Certification.find(n)
+    end
   end
 
   private

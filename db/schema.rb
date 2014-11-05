@@ -17,16 +17,12 @@ ActiveRecord::Schema.define(version: 20141027143909) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: true do |t|
-    t.string   "address1",      limit: 128, null: false
-    t.string   "address2",      limit: 128
-    t.string   "city",          limit: 64,  null: false
-    t.string   "state",         limit: 2,   null: false
-    t.string   "zipcode",       limit: 5,   null: false
-    t.float    "latitude",                  null: false
-    t.float    "longitude",                 null: false
+    t.float    "latitude",      null: false
+    t.float    "longitude",     null: false
     t.integer  "consultant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "address",       null: false
   end
 
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
