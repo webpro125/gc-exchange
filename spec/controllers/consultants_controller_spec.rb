@@ -29,6 +29,22 @@ describe ConsultantsController do
         end
       end
 
+      describe 'GET show' do
+        let(:consultant) { FactoryGirl.create(:consultant, :approved) }
+
+        before do
+          get :show, id: consultant.id
+        end
+
+        it { should_not redirect_to(new_user_session_path) }
+        it { should render_template(:show) }
+        it { should respond_with(200) }
+
+        it 'assigns consultant' do
+          assigns(:consultant).should eq(consultant)
+        end
+      end
+
       describe 'PUT approve' do
         describe 'pending_approval status' do
           let!(:consultant) { FactoryGirl.create(:consultant, :pending_approval) }
@@ -72,7 +88,7 @@ describe ConsultantsController do
           it 'does not allow approve' do
             expect do
               put :approve, id: consultant.id
-            end.not_to change { consultant.reload.approved? }.from true
+            end.not_to change { consultant.reload.approved? }
           end
 
           describe do
@@ -80,7 +96,7 @@ describe ConsultantsController do
               put :approve, id: consultant.id
             end
 
-            it { should redirect_to(profile_path(consultant)) }
+            it { should redirect_to(consultant_path(consultant)) }
           end
         end
 
@@ -98,7 +114,7 @@ describe ConsultantsController do
               put :approve, id: consultant.id
             end
 
-            it { should redirect_to(profile_path(consultant)) }
+            it { should redirect_to(consultant_path(consultant)) }
           end
         end
       end
@@ -136,7 +152,7 @@ describe ConsultantsController do
               put :reject, id: consultant.id
             end
 
-            it { should redirect_to(profile_path(consultant)) }
+            it { should redirect_to(consultant_path(consultant)) }
           end
         end
 
@@ -154,7 +170,7 @@ describe ConsultantsController do
               put :reject, id: consultant.id
             end
 
-            it { should redirect_to(profile_path(consultant)) }
+            it { should redirect_to(consultant_path(consultant)) }
           end
         end
 
@@ -189,6 +205,22 @@ describe ConsultantsController do
         end
       end
 
+      describe 'GET show' do
+        let(:consultant) { FactoryGirl.create(:consultant, :approved) }
+
+        before do
+          get :show, id: consultant.id
+        end
+
+        it { should_not redirect_to(new_user_session_path) }
+        it { should render_template(:show) }
+        it { should respond_with(200) }
+
+        it 'assigns consultant' do
+          assigns(:consultant).should eq(consultant)
+        end
+      end
+
       describe 'PUT approve' do
         let(:consultant) { FactoryGirl.create(:consultant) }
 
@@ -218,6 +250,22 @@ describe ConsultantsController do
           expect do
             get :index
           end.to raise_error Pundit::NotAuthorizedError
+        end
+      end
+
+      describe 'GET show' do
+        let(:consultant) { FactoryGirl.create(:consultant, :approved) }
+
+        before do
+          get :show, id: consultant.id
+        end
+
+        it { should_not redirect_to(new_user_session_path) }
+        it { should render_template(:show) }
+        it { should respond_with(200) }
+
+        it 'assigns consultant' do
+          assigns(:consultant).should eq(consultant)
         end
       end
 

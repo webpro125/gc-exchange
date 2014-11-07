@@ -3,32 +3,28 @@ require 'spec_helper'
 describe ProfilesController do
   describe 'routing' do
 
-    it 'routes to #index' do
-      get('/profiles').should_not route_to('profiles#index')
+    it 'routes to #show' do
+      get('/profile').should route_to('profiles#show')
     end
 
     it 'routes to #new' do
-      get('/profiles/new').should_not route_to('profiles#new')
-    end
-
-    it 'routes to #show' do
-      get('/profiles/1').should route_to('profiles#show', id: '1')
+      get('/profile/new').should_not route_to('profiles#new')
     end
 
     it 'routes to #edit' do
-      get('/profiles/1/edit').should_not route_to('profiles#edit', id: '1')
+      get('/profile/edit').should route_to('profiles#edit')
     end
 
     it 'routes to #create' do
-      post('/profiles').should_not route_to('profiles#create')
+      post('/profile').should_not route_to('profiles#create')
     end
 
     it 'routes to #update' do
-      put('/profiles/1').should_not route_to('profiles#update', id: '1')
+      put('/profile').should route_to('profiles#update')
     end
 
     it 'routes to #destroy' do
-      delete('/profiles/1').should_not route_to('profiles#destroy', id: '1')
+      delete('/profile').should_not route_to('profiles#destroy')
     end
   end
 end

@@ -3,6 +3,8 @@
 
     <%= f.input :number %>
     <%= f.association :phone_type, build_simple_form_dropdown(PhoneType) %>
+    <%= f.check_box :primary %>
+    <%= f.label :primary, I18n.t('simple_form.labels.phone.primary'), {class: "checkbox inline"} %>
 
     <%= f.button :submit, button_label %>
 <% end %>

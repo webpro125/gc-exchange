@@ -3,7 +3,6 @@ class Address < ActiveRecord::Base
 
   belongs_to :consultant
 
-  validates :address, presence: true, length: { in: 3..512 }
   validates :consultant, presence: true
   validate :validate_geocode
 

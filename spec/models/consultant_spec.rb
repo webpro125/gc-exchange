@@ -33,66 +33,6 @@ describe Consultant do
   it { should respond_to(:in_progress?) }
   it { should respond_to(:pending_approval?) }
 
-  describe 'first_name' do
-    it 'should have minimum length' do
-      subject.first_name = 'a' * 1
-      expect(subject).not_to be_valid
-    end
-
-    it 'should have maximum length' do
-      subject.first_name = 'a' * 25
-      expect(subject).not_to be_valid
-    end
-
-    it 'should be present' do
-      subject.first_name = nil
-      expect(subject).not_to be_valid
-    end
-
-    it 'should allow only characters numbers and hyphens' do
-      subject.first_name = 'james'
-      expect(subject).to be_valid
-
-      subject.first_name = 'billy-jean 2'
-      expect(subject).not_to be_valid
-
-      subject.first_name = '123567'
-      expect(subject).not_to be_valid
-
-      subject.first_name = '!@#$'
-      expect(subject).not_to be_valid
-    end
-  end
-
-  describe 'last_name' do
-    it 'should have minimum length' do
-      subject.last_name = 'a' * 1
-      expect(subject).not_to be_valid
-    end
-
-    it 'should have maximum length' do
-      subject.last_name = 'a' * 25
-      expect(subject).not_to be_valid
-    end
-
-    it 'should be present' do
-      subject.last_name = nil
-      expect(subject).not_to be_valid
-    end
-
-    it 'should allow only characters and numbers' do
-      subject.last_name = 'John 123567'
-      expect(subject).to be_valid
-
-      subject.last_name = '!@#$'
-      expect(subject).not_to be_valid
-    end
-  end
-
-  describe 'rate' do
-    it { should validate_numericality_of(:rate). is_greater_than(0).allow_nil }
-  end
-
   describe 'resume' do
     before do
       subject.resume = File.new(Rails.root + 'spec/files/a_pdf.pdf')
