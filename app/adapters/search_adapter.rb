@@ -16,24 +16,18 @@ class SearchAdapter
   end
 
   def to_query
-    build_query
-
-    @query[:filter][:and] << build_bool unless build_bool.nil?
-    @query[:filter][:and] << build_geo unless build_geo.nil?
-    @query[:query] = build_q unless build_q.nil?
+    build_bool
+    build_geo
+    build_q
 
     @query
   end
 
-  def build_query
-    if !(build_bool.nil? && build_geo.nil?)
-      @query = { filter: { and: [] } }
-    elsif !build_q.nil?
-      @query = { query: {} }
-    end
-  end
-
   private
+
+  def initalize_query
+    @query = { filter: { and: [] } } if @query.nil?
+  end
 
   def build_bool
     must_params = build MUST_PARAMS
@@ -43,27 +37,37 @@ class SearchAdapter
     bool[:must] = build_terms(must_params) unless must_params.empty?
     bool[:should] = build_terms(should_params) unless should_params.empty?
 
-    bool.empty? ? nil : { bool: bool }
+    if bool.empty?
+      return nil
+    else
+      initalize_query
+      @query[:filter][:and] << { bool: bool }
+    end
   end
 
   def build_q
     keyword_params = build KEYWORD_PARAMS
     return nil unless @params.q
-    { fuzzy_like_this: { fields: [%w(skills_list abstract full_name address description
-                                     position_name branch)],
-                         like_text: keyword_params[:q],
-                         max_query_terms: 20 }
-    }
+    @query = { query: {} } if @query.nil?
+
+    @query[:query] =
+        { fuzzy_like_this: { fields: [%w(skills_list abstract full_name address
+                                         project_history.description project_history.position_name
+                                         military.branch)],
+                             like_text: keyword_params[:q],
+                             max_query_terms: 20 }
+        }
   end
 
   def build_geo
     return nil unless @params.address && @params.distance
 
+    initalize_query
     geo = { geo_distance: { address: {} } }
     geo[:geo_distance][:address] = { lat: @params.lat, lon: @params.lon }
     geo[:geo_distance][:distance] = "#{@params.distance}mi"
 
-    geo
+    @query[:filter][:and] << geo
   end
 
   def build_sort

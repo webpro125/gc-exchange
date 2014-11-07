@@ -41,6 +41,7 @@ class Consultant < ActiveRecord::Base
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: 'only allows letters and numbers' }
+  validates :abstract, length: { in: 2..1500 }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
   validates :rate, numericality: { greater_than: 0 }, allow_blank: true
@@ -49,7 +50,6 @@ class Consultant < ActiveRecord::Base
                        size: { less_than: 10.megabytes },
                        file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
                        if: -> { resume.present? }
-  validates :abstract, length: { in: 2..1500 }
 
   def full_name
     "#{first_name} #{last_name}"
