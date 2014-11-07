@@ -27,6 +27,7 @@
             <div class="row">
               <div class="small-12 columns">
                 <h3><%= t('views.profile.headers.contact') %></h3>
+                <%= f.input :abstract %>
                 <%= f.simple_fields_for :address do |a| %>
                     <%= a.input :address %>
                 <% end %>

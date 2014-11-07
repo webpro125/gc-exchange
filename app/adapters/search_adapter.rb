@@ -12,6 +12,7 @@ class SearchAdapter
 
   def initialize(params)
     fail ArgumentError unless params.is_a?(Search)
+    @query = {}
     @params = params
   end
 
@@ -26,7 +27,6 @@ class SearchAdapter
   private
 
   def initalize_filter_query
-    @query = {}
     @query[:filter] = { and: [] } unless @query.key?(:filter) && @query[:filter].key?(:and)
   end
 
@@ -38,27 +38,27 @@ class SearchAdapter
     bool[:must] = build_terms(must_params) unless must_params.empty?
     bool[:should] = build_terms(should_params) unless should_params.empty?
 
-    if bool.empty?
-      return nil
-    else
+    unless bool.empty?
       initalize_filter_query
       @query[:filter][:and] << { bool: bool }
     end
+
+    @query
   end
 
   def build_q
     keyword_params = build KEYWORD_PARAMS
     return nil unless @params.q
 
-    @query = { query: {} } if @query.nil?
-
-    @query[:query] =
-        { fuzzy_like_this: { fields: [%w(skills_list abstract full_name address
+    @query[:query] = { fuzzy_like_this:
+                           { fields: [%w(skills_list abstract full_name address
                                          project_history.description project_history.position_name
                                          military.branch)],
                              like_text: keyword_params[:q],
                              max_query_terms: 20 }
         }
+
+    @query
   end
 
   def build_geo
@@ -70,6 +70,7 @@ class SearchAdapter
     geo[:geo_distance][:distance] = "#{@params.distance}mi"
 
     @query[:filter][:and] << geo
+    @query
   end
 
   def build_sort
