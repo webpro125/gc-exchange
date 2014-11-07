@@ -25,8 +25,9 @@ class SearchAdapter
 
   private
 
-  def initalize_query
-    @query = { filter: { and: [] } } if @query.nil?
+  def initalize_filter_query
+    @query = {}
+    @query[:filter] = { and: [] } unless @query.key?(:filter) && @query[:filter].key?(:and)
   end
 
   def build_bool
@@ -40,7 +41,7 @@ class SearchAdapter
     if bool.empty?
       return nil
     else
-      initalize_query
+      initalize_filter_query
       @query[:filter][:and] << { bool: bool }
     end
   end
@@ -63,7 +64,7 @@ class SearchAdapter
   def build_geo
     return nil unless @params.address && @params.distance
 
-    initalize_query
+    initalize_filter_query
     geo = { geo_distance: { address: {} } }
     geo[:geo_distance][:address] = { lat: @params.lat, lon: @params.lon }
     geo[:geo_distance][:distance] = "#{@params.distance}mi"
