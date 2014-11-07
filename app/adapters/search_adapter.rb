@@ -1,7 +1,7 @@
 class SearchAdapter
   GEO_PARAMS = [:address, :distance]
-  SHOULD_PARAMS = [:certification_ids, :clearance_level_ids, :clearance_active]
   MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids]
+  SHOULD_PARAMS = [:certification_ids, :clearance_level_ids, :clearance_active]
   KEYWORD_PARAMS = [:q]
   PARAM_ID_LOCATION = { position_ids: 'project_histories.project_history_positions.position.id',
                         clearance_level_ids: 'military.clearance_level_id',
@@ -48,6 +48,7 @@ class SearchAdapter
   def build_q
     keyword_params = build KEYWORD_PARAMS
     return nil unless @params.q
+
     @query = { query: {} } if @query.nil?
 
     @query[:query] =

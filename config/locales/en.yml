@@ -111,3 +111,6 @@ en:
       new:
         save: 'Send Request'
         title: 'Company Registration Request'
+    searches:
+      form:
+        keyword: 'Skills, Expertise, and Experience'
