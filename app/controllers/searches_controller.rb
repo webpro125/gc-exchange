@@ -25,9 +25,10 @@ class SearchesController < ApplicationController
     sanitize_array_param :certification_ids
     sanitize_param :distance
     sanitize_param :address
+    sanitize_param :q
 
-    params.permit(search: [:distance, :address, position_ids: [], clearance_level_ids: [],
-                           customer_name_ids: [], project_type_ids: [],
+    params.permit(search: [:distance, :address, :q, position_ids: [],
+                           clearance_level_ids: [], customer_name_ids: [], project_type_ids: [],
                            certification_ids: []])[:search]
   end
 
