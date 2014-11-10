@@ -48,4 +48,12 @@ class EditConsultantForm < Reform::Form
     validates :service_end_date, date: { after: :service_start_date, before: DateTime.now },
               allow_blank: true, if: ->() { service_start_date }
   end
+
+  def self.reflect_on_association(association)
+    Consultant.reflect_on_association(association)
+  end
+
+  def new_record?
+    @model.new_record?
+  end
 end

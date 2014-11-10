@@ -51,7 +51,10 @@
         // using its formatResult renderer - that way the repository name is shown preselected
         var data = [];
         $(element.val().split(',')).each(function () {
-          data.push({id: this, text: this});
+          data.push({
+            id: $.trim(this),
+            text: $.trim(this)
+          });
         });
 
         callback(data);

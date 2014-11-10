@@ -1,1 +1,1 @@
-//= require widgets/select2
+//= require widgets/select2Dropdown

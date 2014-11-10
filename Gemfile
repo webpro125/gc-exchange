@@ -37,9 +37,6 @@ group :development do
   gem 'guard-rubocop', '~> 1.1.0', require: false
   gem 'rubocop', '~> 0.27', require: false
   gem 'brakeman', '~> 2.6.2', require: false
-
-  gem 'better_errors', '~> 2.0.0'
-  gem 'quiet_assets', '~> 1.0'
 end
 
 group :development, :test do
@@ -72,6 +69,12 @@ group :test do
   gem 'test_after_commit', '~> 0.4.0'
   gem 'elasticsearch-extensions', '~> 0.0.15'
   gem 'mock_redis', '~> 0.13.2'
+end
+
+group :development, :staging do
+  gem 'better_errors', '~> 2.0.0'
+  gem 'binding_of_caller', '~> 0.7.2'
+  gem 'quiet_assets', '~> 1.0'
 end
 
 group :production, :staging do

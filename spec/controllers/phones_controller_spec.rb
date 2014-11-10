@@ -26,7 +26,7 @@ describe PhonesController do
       describe 'with valid paramaters' do
         it 'redirects to phones_path' do
           post :create, phone: @phone
-          expect(response).to redirect_to phones_path
+          expect(response).to redirect_to edit_profile_path
         end
 
         it 'persists the record' do
