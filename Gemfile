@@ -5,7 +5,7 @@ gem 'pg', '~> 0.17'
 gem 'sass-rails', '~> 4.0.4'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
-gem 'foundation-rails', '~> 5.4'
+gem 'foundation-rails', '~> 5.3.1'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
 gem 'rake', '~> 10.3.2'
@@ -32,9 +32,9 @@ group :doc do
 end
 
 group :development do
-  gem 'guard-rspec', '~> 4.2.9', require: false
+  gem 'guard-rspec', '~> 4.3', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
-  gem 'guard-rubocop', '~> 1.1.0', require: false
+  gem 'guard-rubocop', '~> 1.2.0', require: false
   gem 'rubocop', '~> 0.27', require: false
   gem 'brakeman', '~> 2.6.2', require: false
 end
@@ -51,7 +51,7 @@ group :development, :test do
   gem 'growl', '~> 1.0.3'
   gem 'terminal-notifier-guard'
   gem 'guard-bundler', '~> 2.0.0', require: false
-  gem 'guard-migrate', '~> 1.1.0', require: false
+  gem 'guard-migrate', '~> 1.2.0', require: false
 
   gem 'rspec-rails', '~> 2.99'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'
