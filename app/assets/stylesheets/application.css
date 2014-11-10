@@ -12,6 +12,11 @@
  *
  *= require_self
  *= require foundation_and_overrides
+ *= require select2
+ *= require select2-bootstrap
  *= require common
 
  */
+select[multiple] {
+    height: 400px;
+}

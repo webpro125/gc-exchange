@@ -20,9 +20,12 @@ gem 'elasticsearch-rails', '~> 0.1.5'
 gem 'sidekiq', '~> 3.2.5'
 gem 'sidekiq-unique-jobs', '~> 3.0.2'
 gem 'sinatra', '~> 1.4.5'
-gem 'reform', '~> 1.1.1'
+gem 'reform', '~> 1.2.1'
 gem 'file_validators', '~> 1.2.0'
 gem 'virtus', '~> 1.0.3'
+gem 'select2-rails', '~> 3.5'
+gem 'jquery-ui-rails', '~> 5.0'
+gem 'migration_data', '~> 0.0.4'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

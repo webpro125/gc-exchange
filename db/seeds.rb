@@ -16,41 +16,61 @@ unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
 end
 
 PhoneType::PHONE_TYPES.each do |type|
-  PhoneType.find_or_create_by(code: type)
+  PhoneType.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 ClearanceLevel::CLEARANCE_LEVEL_TYPES.each do |type|
-  ClearanceLevel.find_or_create_by(code: type)
+  ClearanceLevel.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 Rank::RANK_TYPES.each do |type|
-  Rank.find_or_create_by(code: type)
+  Rank.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 CustomerName::CUSTOMER_NAME_TYPES.each do |type|
-  CustomerName.find_or_create_by(code: type)
+  CustomerName.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 Position::POSITION_TYPES.each do |type|
-  Position.find_or_create_by(code: type)
+  Position.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 Skill::SKILL_TYPES.each do |type|
-  Skill.find_or_create_by(code: type)
+  Skill.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 Branch::BRANCH_TYPES.each do |type|
-  Branch.find_or_create_by(code: type)
+  Branch.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 ProjectType::PROJECT_TYPE_TYPES.each do |type|
-  ProjectType.find_or_create_by(code: type)
+  ProjectType.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 ApprovedStatus::APPROVED_STATUS_TYPES.each do |type|
-  ApprovedStatus.find_or_create_by(code: type)
+  ApprovedStatus.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end
 
 Certification::CERTIFICATION_TYPES.each do |type|
-  Certification.find_or_create_by(code: type)
+  Certification.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
 end

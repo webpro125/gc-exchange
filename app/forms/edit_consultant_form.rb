@@ -1,11 +1,15 @@
 require 'reform/form/coercion'
 
 class EditConsultantForm < Reform::Form
+  include Reform::Form::ModelReflections
+
+  model :consultant
+
   property :first_name
   property :last_name
   property :rate
   property :skills_list
-  property :certifications_list
+  property :certification_ids
 
   validates :rate, numericality: { greater_than: 0 }, presence: true
   validates :first_name, length: { in: 2..24 }, presence: true,

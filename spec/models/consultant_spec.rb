@@ -183,7 +183,7 @@ describe Consultant do
     describe 'approved' do
       before do
         subject.save!
-        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED)
+        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code])
       end
 
       describe '#update' do
@@ -212,7 +212,7 @@ describe Consultant do
 
     describe 'not approved' do
       before do
-        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED)
+        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code])
         subject.save!
       end
 

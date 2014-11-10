@@ -36,11 +36,11 @@ class Search
 
   def cascade_clearance_levels
     if @clearance_level_ids && @clearance_level_ids.include?(
-        ClearanceLevel.find_by_code(ClearanceLevel::SECRET).id.to_s)
+        ClearanceLevel.find_by_code(ClearanceLevel::SECRET[:code]).id.to_s)
       @clearance_level_ids = ClearanceLevel.pluck(:id).uniq
     elsif @clearance_level_ids &&  @clearance_level_ids.include?(
-        ClearanceLevel.find_by_code(ClearanceLevel::TS).id.to_s)
-      @clearance_level_ids.push(ClearanceLevel.find_by_code(ClearanceLevel::TSSCI).id.to_s)
+        ClearanceLevel.find_by_code(ClearanceLevel::TS[:code]).id.to_s)
+      @clearance_level_ids.push(ClearanceLevel.find_by_code(ClearanceLevel::TSSCI[:code]).id.to_s)
     end
   end
 

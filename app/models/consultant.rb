@@ -11,10 +11,10 @@ class Consultant < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   scope :approved, (lambda do
-    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED))
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code]))
   end)
   scope :pending_approval, (lambda do
-    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL))
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
   end)
 
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
@@ -48,19 +48,19 @@ class Consultant < ActiveRecord::Base
   end
 
   def approved?
-    approved_status.code == ApprovedStatus::APPROVED
+    approved_status.code == ApprovedStatus::APPROVED[:code]
   end
 
   def rejected?
-    approved_status.code == ApprovedStatus::REJECTED
+    approved_status.code == ApprovedStatus::REJECTED[:code]
   end
 
   def pending_approval?
-    approved_status.code == ApprovedStatus::PENDING_APPROVAL
+    approved_status.code == ApprovedStatus::PENDING_APPROVAL[:code]
   end
 
   def in_progress?
-    approved_status.code == ApprovedStatus::IN_PROGRESS
+    approved_status.code == ApprovedStatus::IN_PROGRESS[:code]
   end
 
   def skills_list
@@ -74,7 +74,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def certifications_list
-    certifications.pluck(:code).join(', ')
+    certifications.pluck(:id).join(', ')
   end
 
   def certifications_list=(certifications)
@@ -102,6 +102,6 @@ class Consultant < ActiveRecord::Base
   end
 
   def set_approved_status
-    self.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS)
+    self.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code])
   end
 end
