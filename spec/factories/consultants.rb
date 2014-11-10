@@ -7,6 +7,7 @@ FactoryGirl.define do
     email                 { "#{first_name}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
+    abstract              { Faker::Lorem.characters(150) }
 
     trait :approved do
       after(:create) do |c|

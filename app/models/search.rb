@@ -2,10 +2,11 @@ class Search
   include ActiveModel::Model
 
   VALID_ATTRIBUTES = [:position_ids, :clearance_level_ids, :customer_name_ids, :clearance_active,
-                      :project_type_ids, :address, :distance, :lat, :lon, :certification_ids].freeze
+                      :project_type_ids, :address, :distance, :lat, :lon, :certification_ids,
+                      :q].freeze
 
   attr_accessor :position_ids, :clearance_level_ids, :customer_name_ids, :project_type_ids,
-                :address, :distance, :certification_ids
+                :address, :distance, :certification_ids, :q
   attr_reader :lat, :lon, :attributes, :clearance_active
 
   validates :distance, presence: true, numericality: { greater_than: 0 },

@@ -10,6 +10,7 @@ class EditConsultantForm < Reform::Form
   property :rate
   property :skills_list
   property :certification_ids
+  property :abstract
 
   validates :rate, numericality: { greater_than: 0 }, presence: true
   validates :first_name, length: { in: 2..24 }, presence: true,
@@ -18,7 +19,7 @@ class EditConsultantForm < Reform::Form
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: 'only allows letters and numbers' }
-
+  validates :abstract, length: { maximum: 1500 }
   property :address, populate_if_empty: Address do
     property :address
 

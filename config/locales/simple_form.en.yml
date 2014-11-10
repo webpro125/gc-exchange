@@ -23,6 +23,8 @@ en:
         number: 'Phone Number'
         type: 'Type'
         primary: 'Primary'
+      consultant:
+        abstract: 'Background and Experience'
 
     # hints:
     #   defaults:

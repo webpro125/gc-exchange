@@ -77,7 +77,7 @@ describe SearchAdapter do
   describe 'should_query_params' do
     let(:should_query) { subject.to_query[:filter][:and].first[:bool][:should][:terms] }
     let(:params) do
-      { certification_ids: [1, 2, 3], clearance_level_ids: [4, 5, 6] }
+      { certification_ids: [1, 2, 3], clearance_level_ids: [4, 5, 6], q: ['testing'] }
     end
 
     it 'adds certification' do
@@ -102,6 +102,22 @@ describe SearchAdapter do
     it 'allows empty certification' do
       params[:certification_ids] = []
       expect(should_query).to_not have_key('certification.id')
+    end
+  end
+
+  describe 'keyword_query_params' do
+    let(:keyword_query) { subject.to_query[:query] }
+    let(:params) do
+      { q: ['testing'] }
+    end
+
+    it 'adds q' do
+      expect(keyword_query[:fuzzy_like_this][:like_text]).to eq(['testing'])
+    end
+
+    it 'allows empty q' do
+      params[:q] = []
+      expect(keyword_query[:fuzzy_like_this][:like_text]).to be_nil
     end
   end
 end

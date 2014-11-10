@@ -2,6 +2,7 @@ class SearchAdapter
   GEO_PARAMS = [:address, :distance]
   MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids]
   SHOULD_PARAMS = [:certification_ids, :clearance_level_ids, :clearance_active]
+  KEYWORD_PARAMS = [:q]
   PARAM_ID_LOCATION = { position_ids: 'project_histories.project_history_positions.position.id',
                         clearance_level_ids: 'military.clearance_level_id',
                         clearance_active: 'military.clearance_active',
@@ -11,19 +12,23 @@ class SearchAdapter
 
   def initialize(params)
     fail ArgumentError unless params.is_a?(Search)
+    @query = {}
     @params = params
   end
 
   def to_query
-    query = { filter: { and: [] } }
+    build_bool
+    build_geo
+    build_q
 
-    query[:filter][:and] << build_bool unless build_bool.nil?
-    query[:filter][:and] << build_geo unless build_geo.nil?
-
-    query
+    @query
   end
 
   private
+
+  def initalize_filter_query
+    @query[:filter] = { and: [] } unless @query.key?(:filter) && @query[:filter].key?(:and)
+  end
 
   def build_bool
     must_params = build MUST_PARAMS
@@ -33,17 +38,39 @@ class SearchAdapter
     bool[:must] = build_terms(must_params) unless must_params.empty?
     bool[:should] = build_terms(should_params) unless should_params.empty?
 
-    bool.empty? ? nil : { bool: bool }
+    unless bool.empty?
+      initalize_filter_query
+      @query[:filter][:and] << { bool: bool }
+    end
+
+    @query
+  end
+
+  def build_q
+    keyword_params = build KEYWORD_PARAMS
+    return nil unless @params.q
+
+    @query[:query] = { fuzzy_like_this:
+                           { fields: [%w(skills_list abstract full_name address
+                                         project_history.description project_history.position_name
+                                         military.branch)],
+                             like_text: keyword_params[:q],
+                             max_query_terms: 20 }
+        }
+
+    @query
   end
 
   def build_geo
     return nil unless @params.address && @params.distance
 
+    initalize_filter_query
     geo = { geo_distance: { address: {} } }
     geo[:geo_distance][:address] = { lat: @params.lat, lon: @params.lon }
     geo[:geo_distance][:distance] = "#{@params.distance}mi"
 
-    geo
+    @query[:filter][:and] << geo
+    @query
   end
 
   def build_sort
