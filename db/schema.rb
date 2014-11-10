@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031174101) do
+ActiveRecord::Schema.define(version: 20141105182416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,8 +103,9 @@ ActiveRecord::Schema.define(version: 20141031174101) do
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
-    t.integer  "approved_status_id",                                          default: 1,  null: false
-    t.decimal  "rate",                                precision: 8, scale: 2
+    t.integer  "approved_status_id",                                        default: 1,  null: false
+    t.decimal  "rate",                              precision: 8, scale: 2
+    t.string   "wizard_step"
     t.string   "abstract",               limit: 1500
   end
 
