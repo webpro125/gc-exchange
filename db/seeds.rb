@@ -15,6 +15,12 @@ unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
   Company.create(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE, owner: user)
 end
 
+# Skills are set up differently
+Skill::SKILL_TYPES.each do |type|
+  Skill.find_or_create_by(code: type)
+end
+
+# All of the lookups
 PhoneType::PHONE_TYPES.each do |type|
   PhoneType.find_or_create_by(code: type[:code]) do |t|
     t.label = type[:label]
@@ -41,12 +47,6 @@ end
 
 Position::POSITION_TYPES.each do |type|
   Position.find_or_create_by(code: type[:code]) do |t|
-    t.label = type[:label]
-  end
-end
-
-Skill::SKILL_TYPES.each do |type|
-  Skill.find_or_create_by(code: type[:code]) do |t|
     t.label = type[:label]
   end
 end
