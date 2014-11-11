@@ -18,6 +18,6 @@
 //= require jquery-ui/mouse
 //= require jquery-ui/position
 //= require select2
-//= require_tree .
+//= require widgets
 
 $(function(){ $(document).foundation(); });

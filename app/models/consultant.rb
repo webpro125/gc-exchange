@@ -94,7 +94,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def destroy_consultant_index
-    delete_document
+    __elasticsearch__.delete_document
   end
 
   def update_consultant_index

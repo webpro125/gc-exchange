@@ -205,7 +205,7 @@ describe Consultant do
 
       describe '#destroy' do
         it 'should delete document' do
-          expect(subject).to receive(:delete_document)
+          expect(subject.__elasticsearch__).to receive(:delete_document)
           subject.destroy!
         end
       end
@@ -241,7 +241,7 @@ describe Consultant do
         end
 
         it 'should delete document' do
-          expect(subject).to receive(:delete_document)
+          expect(subject.__elasticsearch__).to receive(:delete_document)
           subject.destroy!
         end
       end
