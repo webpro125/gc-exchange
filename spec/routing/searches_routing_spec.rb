@@ -26,5 +26,9 @@ describe SearchesController do
     it 'should not route to searches#destroy' do
       delete('/search').should_not route_to('searches#destroy')
     end
+
+    it 'should route to searches#skills' do
+      get('/search/skills').should route_to('searches#skills')
+    end
   end
 end

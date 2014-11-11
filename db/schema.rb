@@ -28,27 +28,31 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
 
   create_table "approved_statuses", force: true do |t|
-    t.string "code", limit: 32
+    t.string "code",  limit: 32
+    t.string "label", limit: 256, null: false
   end
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
 
   create_table "branches", force: true do |t|
-    t.string   "code",       limit: 10, null: false
+    t.string   "code",       limit: 10,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "label",      limit: 256, null: false
   end
 
   add_index "branches", ["code"], name: "index_branches_on_code", unique: true, using: :btree
 
   create_table "certifications", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "certifications", ["code"], name: "index_certifications_on_code", unique: true, using: :btree
 
   create_table "clearance_levels", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   create_table "companies", force: true do |t|
@@ -114,7 +118,8 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
 
   create_table "customer_names", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "customer_names", ["code"], name: "index_customer_names_on_code", unique: true, using: :btree
@@ -139,7 +144,8 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   add_index "militaries", ["rank_id"], name: "index_militaries_on_rank_id", using: :btree
 
   create_table "phone_types", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "phone_types", ["code"], name: "index_phone_types_on_code", unique: true, using: :btree
@@ -158,7 +164,8 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type", using: :btree
 
   create_table "positions", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "positions", ["code"], name: "index_positions_on_code", unique: true, using: :btree
@@ -191,13 +198,15 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   add_index "project_history_positions", ["project_history_id"], name: "index_project_history_positions_on_project_history_id", using: :btree
 
   create_table "project_types", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "project_types", ["code"], name: "index_project_types_on_code", unique: true, using: :btree
 
   create_table "ranks", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   create_table "sales_leads", force: true do |t|
