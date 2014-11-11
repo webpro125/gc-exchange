@@ -2,6 +2,7 @@ class ProfilesController < ConsultantController
   before_filter :load_and_authorize_consultant
 
   def show
+    @consultant = current_consultant
   end
 
   def update
