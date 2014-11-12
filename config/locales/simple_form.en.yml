@@ -1,5 +1,6 @@
 en:
   simple_form:
+    now: 'Present'
     "yes": 'Yes'
     "no": 'No'
     required:
@@ -34,6 +35,8 @@ en:
         clearance_level: 'Clearance Level'
         branch: 'Branch'
         rank: 'Rank'
+      project_history:
+        project_type: 'Area of Focus'
 
     # hints:
     #   defaults:
