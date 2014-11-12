@@ -21,6 +21,10 @@
 
 en:
   activerecord:
+    models:
+      attributes:
+        military:
+          date: 'Date Active'
     errors:
       messages:
         regex:
@@ -91,7 +95,7 @@ en:
         certification: 'Certifications'
         expertise: 'Expertise'
         clearance: 'Security Clearance'
-        military: 'Military'
+        military: 'Military Status'
     phone:
       new:
         save: 'Save'
