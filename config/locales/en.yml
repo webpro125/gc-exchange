@@ -98,6 +98,7 @@ en:
       actions:
         upload_photo: 'Upload Profile Photo'
         new_phone: '+ Add Phone'
+        new_education: '+ Add Another Degree'
         save: 'Save'
         remove_education: 'X'
       headers:
@@ -107,6 +108,9 @@ en:
         expertise: 'Expertise'
         clearance: 'Security Clearance'
         military: 'Military Status'
+    education:
+      new:
+        save: 'Save'
     phone:
       new:
         save: 'Save'

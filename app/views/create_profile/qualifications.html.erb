@@ -7,19 +7,7 @@
       </div>
     </div>
     <%= f.simple_fields_for :educations do |e| %>
-        <div class="row">
-          <div class="small-12 columns">
-            <%= e.input :school %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-8 columns">
-            <%= e.input :field_of_study %>
-          </div>
-          <div class="small-4 columns">
-            <%= e.input :degree_id, build_simple_form_dropdown(Degree, collection: Degree.all) %>
-          </div>
-        </div>
+        <%= render 'educations/education_fields', f: e %>
     <% end %>
     <div class="row">
       <div class="small-8 columns">

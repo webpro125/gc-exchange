@@ -61,7 +61,14 @@
         <div class="row">
           <div class="small-12 columns">
             <h3><%= t('views.profile.headers.education') %></h3>
-            TODO eduction form
+            <%= f.simple_fields_for :educations do |e| %>
+                <%= render 'educations/education_fields', f: e %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 column">
+            <%= link_to t('views.profile.actions.new_education') , new_education_path %>
           </div>
         </div>
         <div class="row">

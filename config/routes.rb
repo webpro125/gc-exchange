@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]
   resources :phones, only: [:new, :create, :destroy]
+  resources :educations, only: [:new, :create, :destroy]
   resources :companies do
     resources :users
   end
