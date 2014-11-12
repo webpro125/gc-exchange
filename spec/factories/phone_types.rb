@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :phone_type do
     code      { Faker::Code.isbn[0..5] }
+    label { Faker::Lorem.characters(256) }
   end
 end

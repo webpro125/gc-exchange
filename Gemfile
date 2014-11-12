@@ -5,7 +5,7 @@ gem 'pg', '~> 0.17'
 gem 'sass-rails', '~> 4.0.4'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
-gem 'foundation-rails', '~> 5.4'
+gem 'foundation-rails', '~> 5.3.1'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
 gem 'rake', '~> 10.3.2'
@@ -20,9 +20,12 @@ gem 'elasticsearch-rails', '~> 0.1.5'
 gem 'sidekiq', '~> 3.2.5'
 gem 'sidekiq-unique-jobs', '~> 3.0.2'
 gem 'sinatra', '~> 1.4.5'
-gem 'reform', '~> 1.1.1'
+gem 'reform', '~> 1.2.1'
 gem 'file_validators', '~> 1.2.0'
 gem 'virtus', '~> 1.0.3'
+gem 'select2-rails', '~> 3.5'
+gem 'jquery-ui-rails', '~> 5.0'
+gem 'migration_data', '~> 0.0.4'
 gem 'wicked', '~> 1.1.0'
 
 group :doc do
@@ -30,14 +33,11 @@ group :doc do
 end
 
 group :development do
-  gem 'guard-rspec', '~> 4.2.9', require: false
+  gem 'guard-rspec', '~> 4.3', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
-  gem 'guard-rubocop', '~> 1.1.0', require: false
+  gem 'guard-rubocop', '~> 1.2.0', require: false
   gem 'rubocop', '~> 0.27', require: false
   gem 'brakeman', '~> 2.6.2', require: false
-
-  gem 'better_errors', '~> 2.0.0'
-  gem 'quiet_assets', '~> 1.0'
 end
 
 group :development, :test do
@@ -52,7 +52,7 @@ group :development, :test do
   gem 'growl', '~> 1.0.3'
   gem 'terminal-notifier-guard'
   gem 'guard-bundler', '~> 2.0.0', require: false
-  gem 'guard-migrate', '~> 1.1.0', require: false
+  gem 'guard-migrate', '~> 1.2.0', require: false
 
   gem 'rspec-rails', '~> 2.99'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'
@@ -70,6 +70,12 @@ group :test do
   gem 'test_after_commit', '~> 0.4.0'
   gem 'elasticsearch-extensions', '~> 0.0.15'
   gem 'mock_redis', '~> 0.13.2'
+end
+
+group :development, :staging do
+  gem 'better_errors', '~> 2.0.0'
+  gem 'binding_of_caller', '~> 0.7.2'
+  gem 'quiet_assets', '~> 1.0'
 end
 
 group :production, :staging do

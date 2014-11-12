@@ -13,6 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require_tree .
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/mouse
+//= require jquery-ui/position
+//= require select2
+//= require widgets
 
 $(function(){ $(document).foundation(); });

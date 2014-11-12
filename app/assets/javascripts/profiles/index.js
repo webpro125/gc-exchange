@@ -10,7 +10,7 @@
   }
 
   $(document).ready(function(){
-    $('#edit_consultant_military_attributes_clearance_active').on('click', function(){
+    $('#consultant_military_attributes_clearance_active').on('click', function(){
       toggleClearance($(this).is(':checked'));
     });
 

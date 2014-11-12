@@ -76,6 +76,9 @@ en:
       reject:
         success: 'Consultant rejected.'
         fail: 'Consultant was not able to be rejected.'
+    phone:
+      create:
+        success: 'Phone created successfully.'
   views:
     profile:
       actions:
