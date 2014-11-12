@@ -33,8 +33,10 @@ class Consultant < ActiveRecord::Base
   has_many :skills, through: :consultant_skills
   has_many :consultant_certifications, dependent: :destroy
   has_many :certifications, through: :consultant_certifications
+  has_many :educations, dependent: :destroy
 
   validate :phone_length
+  validates :educations, length: { maximum: 3 }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
   validates_attachment :resume,
