@@ -43,4 +43,12 @@ module ApplicationHelper
 
     { label_method: label }.merge(opts)
   end
+
+  def boolean_to_human(boolean)
+    boolean ? I18n.t('simple_form.yes') : I18n.t('simple_form.no')
+  end
+
+  def date_in_words(start_date, end_date = nil)
+    distance_of_time_in_words(start_date, end_date || DateTime.now)
+  end
 end

@@ -19,7 +19,16 @@
                 <%= f.input :last_name %>
               </div>
             </div>
-            <%= f.input :rate %>
+            <div class="row">
+              <div class="small-12 columns">
+                <%= f.input :willing_to_travel %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <%= f.input :rate %>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -36,7 +45,7 @@
             <div class="row">
               <div class="small-12 columns">
                 <%= f.simple_fields_for :phones do |p| %>
-                    <%= render 'phone_fields', f: p %>
+                    <%= render 'phones/phone_fields', f: p %>
                 <% end %>
               </div>
             </div>
