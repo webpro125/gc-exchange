@@ -1,11 +1,15 @@
 require 'reform/form/coercion'
 
 class EditConsultantForm < Reform::Form
+  include Reform::Form::ModelReflections
+
+  model :consultant
+
   property :first_name
   property :last_name
   property :rate
   property :skills_list
-  property :certifications_list
+  property :certification_ids
   property :abstract
 
   validates :rate, numericality: { greater_than: 0 }, presence: true
@@ -44,5 +48,13 @@ class EditConsultantForm < Reform::Form
     validates :branch_id, presence: true, if: ->() { rank_id.present? }
     validates :service_end_date, date: { after: :service_start_date, before: DateTime.now },
               allow_blank: true, if: ->() { service_start_date }
+  end
+
+  def self.reflect_on_association(association)
+    Consultant.reflect_on_association(association)
+  end
+
+  def new_record?
+    @model.new_record?
   end
 end

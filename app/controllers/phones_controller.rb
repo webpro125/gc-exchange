@@ -14,30 +14,15 @@ class PhonesController < ConsultantController
 
     if PhoneUnsetPrimaries.new(@phone).save
       flash[:success] = t('controllers.phone.create.success')
-      redirect_to phones_path
+      redirect_to edit_profile_path
     else
       render :new
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
-
-  def update
-    if @phone.update(phone_params)
-      flash[:success] = t('controllers.phone.update.success')
-      redirect_to phones_path
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @phone.destroy
-    redirect_to phones_path
+    redirect_to edit_profile_path
   end
 
   protected

@@ -28,6 +28,6 @@ class ProfilesController < ConsultantController
   end
 
   def consultant_params
-    params.require(:edit_consultant)
+    params.require(:consultant)
   end
 end

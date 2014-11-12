@@ -1,0 +1,16 @@
+<div class="nested-fields">
+  <div class="small-8 columns">
+    <%= f.input :number %>
+  </div>
+  <div class="small-3 columns">
+    <%= f.input :phone_type_id,
+                build_simple_form_dropdown(PhoneType,
+                                           collection: PhoneType.all) %>
+  </div>
+  <div class="small-1 columns">
+    <%= link_to 'x',
+                phone_path(f.object),
+                method: :delete,
+                data: { confirm: 'Do you want to delete me?' } %>
+  </div>
+</div>

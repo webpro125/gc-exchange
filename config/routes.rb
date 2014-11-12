@@ -23,8 +23,13 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # Resources
-  resource :search, only: [:new, :create]
   resource :profile, only: [:edit, :update, :show]
+  resource :search, only: [:new, :create] do
+    collection do
+      get :skills
+    end
+  end
+
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects'
   resources :sales_leads, only: [:new, :create]

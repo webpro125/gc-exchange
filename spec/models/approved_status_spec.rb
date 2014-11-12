@@ -9,19 +9,20 @@ describe ApprovedStatus do
     subject { ApprovedStatus }
 
     it 'approved' do
-      expect(subject.approved).to eq(subject.find_by_code(ApprovedStatus::APPROVED))
+      expect(subject.approved).to eq(subject.find_by_code(ApprovedStatus::APPROVED[:code]))
     end
 
     it 'in_progress' do
-      expect(subject.in_progress).to eq(subject.find_by_code(ApprovedStatus::IN_PROGRESS))
+      expect(subject.in_progress).to eq(subject.find_by_code(ApprovedStatus::IN_PROGRESS[:code]))
     end
 
     it 'rejected' do
-      expect(subject.rejected).to eq(subject.find_by_code(ApprovedStatus::REJECTED))
+      expect(subject.rejected).to eq(subject.find_by_code(ApprovedStatus::REJECTED[:code]))
     end
 
     it 'pending approval' do
-      expect(subject.pending_approval).to eq(subject.find_by_code(ApprovedStatus::PENDING_APPROVAL))
+      expect(subject.pending_approval).to eq(subject.find_by_code(
+                                               ApprovedStatus::PENDING_APPROVAL[:code]))
     end
   end
 end

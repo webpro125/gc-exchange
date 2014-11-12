@@ -35,9 +35,10 @@ module ApplicationHelper
   # Returns a hash { value_method: :id, label_method: label }
   #
   def build_simple_form_dropdown(klass, opts = {})
+    fail 'Invalid class.  Please use Lookup::LOOKUPS' unless LOOKUPS.include? klass
+
     label = lambda do |type|
-      value = type.is_a?(String) ? type : type.code
-      lookup_translation(klass, value)
+      type.is_a?(String) ? type : type.label
     end
 
     { label_method: label }.merge(opts)

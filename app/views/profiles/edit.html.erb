@@ -33,20 +33,12 @@
                 <% end %>
               </div>
             </div>
-
             <div class="row">
-              <%= f.simple_fields_for :phones do |p| %>
-                  <div class="phone-form">
-                    <div class="small-8 columns">
-                      <%= p.input :number %>
-                    </div>
-                    <div class="small-4 columns">
-                      <%= p.input :phone_type_id,
-                                  build_simple_form_dropdown(PhoneType,
-                                                             collection: PhoneType.all) %>
-                    </div>
-                  </div>
-              <% end %>
+              <div class="small-12 columns">
+                <%= f.simple_fields_for :phones do |p| %>
+                    <%= render 'phone_fields', f: p %>
+                <% end %>
+              </div>
             </div>
             <div class="row">
               <div class="small-12 column">
@@ -66,13 +58,19 @@
         <div class="row">
           <div class="small-12 columns">
             <h3><%= t('views.profile.headers.certification') %></h3>
-            <%= f.input :certifications_list %>
+            <%= f.input :certification_ids,
+                        build_simple_form_dropdown(Certification,
+                                                   collection: Certification.all,
+                                                   input_html: { multiple: true })
+            %>
           </div>
         </div>
         <div class="row">
           <div class="small-12 columns">
             <h3><%= t('views.profile.headers.expertise') %></h3>
-            <%= f.input :skills_list %>
+            <%= f.input :skills_list, input_html: { class: 'select2',
+                                                    data: { tags: true,
+                                                            url: skills_search_path } } %>
           </div>
         </div>
         <div class="row">

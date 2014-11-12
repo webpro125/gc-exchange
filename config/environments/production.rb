@@ -1,3 +1,5 @@
+require 'uglifier'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -24,7 +26,7 @@ Rails.application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(output: { ascii_only: true, quote_keys: true })
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -60,7 +62,25 @@ Rails.application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  # config.assets.precompile += %w( search.js )
+  config.assets.precompile << proc do |path|
+    if path =~ /\.(css|js)\z/
+      full_path = Rails.application.assets.resolve(path).to_path
+      app_assets_path = Rails.root.join('app', 'assets').to_path
+      vendor_assets_path = Rails.root.join('vendor', 'assets').to_path
+
+      if ((full_path.starts_with? app_assets_path) ||
+         (full_path.starts_with? vendor_assets_path)) &&
+         (!path.starts_with? '_') && (path =~ /index/)
+
+        puts "\t" + full_path.slice(Rails.root.to_path.size..-1)
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105182416) do
+ActiveRecord::Schema.define(version: 20141111205943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,27 +28,31 @@ ActiveRecord::Schema.define(version: 20141105182416) do
   add_index "addresses", ["consultant_id"], name: "index_addresses_on_consultant_id", unique: true, using: :btree
 
   create_table "approved_statuses", force: true do |t|
-    t.string "code", limit: 32
+    t.string "code",  limit: 32
+    t.string "label", limit: 256, null: false
   end
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
 
   create_table "branches", force: true do |t|
-    t.string   "code",       limit: 10, null: false
+    t.string   "code",       limit: 10,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "label",      limit: 256, null: false
   end
 
   add_index "branches", ["code"], name: "index_branches_on_code", unique: true, using: :btree
 
   create_table "certifications", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "certifications", ["code"], name: "index_certifications_on_code", unique: true, using: :btree
 
   create_table "clearance_levels", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   create_table "companies", force: true do |t|
@@ -81,12 +85,12 @@ ActiveRecord::Schema.define(version: 20141105182416) do
   add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
-    t.string   "email",                                                       default: "", null: false
-    t.string   "encrypted_password",                                          default: "", null: false
+    t.string   "email",                                                     default: "", null: false
+    t.string   "encrypted_password",                                        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                               default: 0,  null: false
+    t.integer  "sign_in_count",                                             default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -95,8 +99,8 @@ ActiveRecord::Schema.define(version: 20141105182416) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first_name",             limit: 24,                                        null: false
-    t.string   "last_name",              limit: 24,                                        null: false
+    t.string   "first_name",             limit: 24,                                      null: false
+    t.string   "last_name",              limit: 24,                                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_file_name"
@@ -104,9 +108,9 @@ ActiveRecord::Schema.define(version: 20141105182416) do
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                        default: 1,  null: false
+    t.text     "abstract"
     t.decimal  "rate",                              precision: 8, scale: 2
     t.string   "wizard_step"
-    t.string   "abstract",               limit: 1500
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
@@ -115,7 +119,8 @@ ActiveRecord::Schema.define(version: 20141105182416) do
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
 
   create_table "customer_names", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "customer_names", ["code"], name: "index_customer_names_on_code", unique: true, using: :btree
@@ -140,7 +145,8 @@ ActiveRecord::Schema.define(version: 20141105182416) do
   add_index "militaries", ["rank_id"], name: "index_militaries_on_rank_id", using: :btree
 
   create_table "phone_types", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "phone_types", ["code"], name: "index_phone_types_on_code", unique: true, using: :btree
@@ -159,7 +165,8 @@ ActiveRecord::Schema.define(version: 20141105182416) do
   add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type", using: :btree
 
   create_table "positions", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "positions", ["code"], name: "index_positions_on_code", unique: true, using: :btree
@@ -192,13 +199,15 @@ ActiveRecord::Schema.define(version: 20141105182416) do
   add_index "project_history_positions", ["project_history_id"], name: "index_project_history_positions_on_project_history_id", using: :btree
 
   create_table "project_types", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   add_index "project_types", ["code"], name: "index_project_types_on_code", unique: true, using: :btree
 
   create_table "ranks", force: true do |t|
-    t.string "code", limit: 32, null: false
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
   end
 
   create_table "sales_leads", force: true do |t|

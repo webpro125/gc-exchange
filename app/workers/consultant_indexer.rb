@@ -9,9 +9,9 @@ class ConsultantIndexer
 
     case operation.to_s
     when /update/
-      record.index_document
+      record.__elasticsearch__.index_document
     when /destroy/
-      record.delete_document
+      record.__elasticsearch__.delete_document
     else fail ArgumentError, "Unknown operation '#{operation}'"
     end
   end

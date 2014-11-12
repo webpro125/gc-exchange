@@ -11,28 +11,28 @@ FactoryGirl.define do
 
     trait :approved do
       after(:create) do |c|
-        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED)
+        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code])
         c.save
       end
     end
 
     trait :in_progress do
       after(:create) do |c|
-        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS)
+        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code])
         c.save
       end
     end
 
     trait :rejected do
       after(:create) do |c|
-        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED)
+        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code])
         c.save
       end
     end
 
     trait :pending_approval do
       after(:create) do |c|
-        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL)
+        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code])
         c.save
       end
     end
