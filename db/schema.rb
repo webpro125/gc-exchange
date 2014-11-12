@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111205943) do
+ActiveRecord::Schema.define(version: 20141112020617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,16 +73,6 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   add_index "consultant_certifications", ["consultant_id", "certification_id"], name: "consultant_certifications_uniqueness", unique: true, using: :btree
   add_index "consultant_certifications", ["consultant_id"], name: "index_consultant_certifications_on_consultant_id", using: :btree
 
-  create_table "consultant_educations", force: true do |t|
-    t.integer  "consultant_id", null: false
-    t.integer  "education_id",  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consultant_educations", ["consultant_id"], name: "index_consultant_educations_on_consultant_id", using: :btree
-  add_index "consultant_educations", ["education_id"], name: "index_consultant_educations_on_education_id", using: :btree
-
   create_table "consultant_skills", force: true do |t|
     t.integer  "consultant_id", null: false
     t.integer  "skill_id",      null: false
@@ -121,7 +111,6 @@ ActiveRecord::Schema.define(version: 20141111205943) do
     t.decimal  "rate",                              precision: 8, scale: 2
     t.boolean  "willing_to_travel",                                         default: true
     t.text     "abstract"
-    t.decimal  "rate",                              precision: 8, scale: 2
     t.string   "wizard_step"
   end
 

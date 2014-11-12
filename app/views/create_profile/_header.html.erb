@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="small-12 columns">
+    <ul class="breadcrumbs">
+      <li class="
+      <%= wizard_path == create_profile_path(:basic_information) ? 'current' : 'unavailable' %>">
+        <%= t('views.wizard.header.basic') %>
+      </li>
+      <li class="
+      <%= wizard_path == create_profile_path(:qualifications) ? 'current' : 'unavailable' %>">
+        <%= t('views.wizard.header.qualifications') %>
+      </li>
+      <li class="
+      <%= wizard_path == create_profile_path(:other_information) ? 'current' : 'unavailable' %>">
+        <%= t('views.wizard.header.other_info') %>
+      </li>
+      <li class="
+      <%= wizard_path == create_profile_path(:background_information) ? 'current' : 'unavailable'%>">
+        <%= t('views.wizard.header.background_information') %>
+      </li>
+      <li class="
+      <%= wizard_path == create_profile_path(:project_history) ? 'current' : 'unavailable' %>">
+        <%= t('views.wizard.header.project_history') %>
+      </li>
+    </ul>
+  </div>
+</div>

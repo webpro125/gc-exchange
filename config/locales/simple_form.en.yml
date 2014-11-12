@@ -27,6 +27,8 @@ en:
         abstract: 'Background and Experience'
         willing_to_travel: 'Willing to Travel'
         rate: 'Hourly Rate'
+        certification_ids: 'Professional Certifications'
+        skills_list: 'Expertise'
       military:
         clearance_active: 'Clearance Active'
         investigation_date: 'Investigation Date'

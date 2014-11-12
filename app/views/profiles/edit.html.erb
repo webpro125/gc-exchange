@@ -67,19 +67,13 @@
         <div class="row">
           <div class="small-12 columns">
             <h3><%= t('views.profile.headers.certification') %></h3>
-            <%= f.input :certification_ids,
-                        build_simple_form_dropdown(Certification,
-                                                   collection: Certification.all,
-                                                   input_html: { multiple: true })
-            %>
+            <%= render 'certifications', f: f %>
           </div>
         </div>
         <div class="row">
           <div class="small-12 columns">
             <h3><%= t('views.profile.headers.expertise') %></h3>
-            <%= f.input :skills_list, input_html: { class: 'select2',
-                                                    data: { tags: true,
-                                                            url: skills_search_path } } %>
+            <%= render 'profiles/skills', f: f %>
           </div>
         </div>
         <div class="row">
