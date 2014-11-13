@@ -26,6 +26,7 @@ en:
       consultant:
         abstract: 'Background and Experience'
     hints:
+      consultant:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'

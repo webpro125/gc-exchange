@@ -1,9 +1,27 @@
 (function() {
   $(':input').on('focus', function() {
-    $(this).siblings('.hint').removeClass('hide');
+    $(this).siblings('.hint').transition({
+      opacity: 100,
+      x: 0
+    }, 500, 'in');
   });
 
   $(':input').on('blur', function() {
-    $(this).siblings('.hint').addClass('hide');
+    var ele = $(this);
+
+    ele.siblings('.hint')
+        .transition({
+          opacity: 0,
+          x: ele.width()
+        }, 500, 'out');
+  });
+
+  $(':input').each(function(i, e) {
+    var ele = $(e);
+
+    ele.siblings('.hint').transition({
+      opacity: 0,
+      x: ele.width()
+    }, 500, 'out');
   });
 })();
