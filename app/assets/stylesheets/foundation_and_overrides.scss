@@ -87,7 +87,7 @@ $include-html-global-classes: $include-html-classes;
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We use these to define default font stacks
-// $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 // $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
@@ -126,13 +126,11 @@ $gces-blue		: #2A5E89;
 
 // We use these to control various global styles
 // $body-bg: $white;
-<<<<<<< Updated upstream:app/assets/stylesheets/foundation_and_overrides.scss
-// $body-font-color: $jet;
+$body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
 =======
 $body-font-color: $jet;
 $body-font-family: $font-family-sans-serif;
->>>>>>> Stashed changes:app/assets/stylesheets/foundation_and_overrides.css.scss
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
