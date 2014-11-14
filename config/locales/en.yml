@@ -21,6 +21,10 @@
 
 en:
   activerecord:
+    models:
+      attributes:
+        military:
+          date: 'Date Active'
     errors:
       messages:
         regex:
@@ -85,14 +89,17 @@ en:
         upload_photo: 'Upload Profile Photo'
         new_phone: '+ Add Phone'
         save: 'Save'
+        download_resume: 'Download Resume >>'
       headers:
         contact: 'Contact Information'
         education: 'Education'
         certification: 'Certifications'
         expertise: 'Expertise'
         clearance: 'Security Clearance'
-        military: 'Military'
+        military: 'Military Status'
     phone:
+      confirmations:
+        delete: 'Are you sure you want to delete this phone?'
       new:
         save: 'Save'
     password:

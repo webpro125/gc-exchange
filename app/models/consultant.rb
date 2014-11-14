@@ -76,7 +76,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def certifications_list
-    certifications.pluck(:id).join(', ')
+    certifications.pluck(:label).join(', ')
   end
 
   def certifications_list=(certifications)

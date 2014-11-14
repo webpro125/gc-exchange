@@ -50,6 +50,10 @@ describe EditConsultantForm do
       it { should validate_presence_of(:rate) }
       it { should validate_numericality_of(:rate).is_greater_than(0) }
     end
+
+    describe 'willing_to_travel' do
+      it { should validate_presence_of(:willing_to_travel) }
+    end
   end
 
   describe 'address' do
