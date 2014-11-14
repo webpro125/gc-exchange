@@ -18,8 +18,9 @@
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
-
-    <%= yield %>
+    <div id="container">
+        <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
     .find_asset("#{controller_name}.js") %>

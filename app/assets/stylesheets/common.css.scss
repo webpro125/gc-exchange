@@ -1,3 +1,80 @@
 table {
   width: 100%
 }
+
+/*** GLOBAL ***/
+#container {
+	background: $white;
+	margin: 0 auto;
+	max-width: 95%;
+	width: 1040px;
+}
+
+/*** TYPOGRAPHY ***/
+
+h3 {
+	color: $gces-red;
+	border-bottom: 1px solid #DDD;
+	font-weight: 200;
+}
+
+/*** FORMS ***/
+
+.select2-container {
+	margin: 0 0 1rem 0;
+	font-size: 14px;
+
+	.select2-choice {
+		height: 2.3125rem;
+		line-height: 2.3125rem;
+		border-color: #CCC;
+		background: $snow;
+		border-radius: 2px;
+
+		.select2-arrow {
+			border-left: none;
+			background: none;
+			b {
+				background-position: 0 6px;
+			}
+		}
+	}
+}
+.select2-container-multi {
+	.select2-choices {
+		border: 1px solid #CCC;
+		border-radius: 2px;
+
+		.select2-search-choice {
+			font-size: 14px;
+			line-height: 1.2em;
+			background: #F9F9F9;
+		}
+	}
+	&.select2-container-active {
+		.select2-choices {
+			border: 1px solid $gces-blue;
+		}
+	}
+}
+.select2-container-active {
+	.select2-choice {
+		border-color: $gces-blue;
+	}
+}
+.select2-drop-active {
+	border-color: $gces-blue;
+}
+.select2-drop.select2-drop-above.select2-drop-active, .select2-dropdown-open.select2-drop-above .select2-choice {
+	border-color: $gces-blue;
+}
+.select2-results {
+	font-size: 14px;
+	line-height: 1.3em;
+}
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea {
+	border-radius: 2px;
+	&:focus {
+		border-color: $gces-blue;
+	}
+}
