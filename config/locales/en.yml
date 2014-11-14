@@ -25,6 +25,9 @@ en:
       attributes:
         military:
           date: 'Date Active'
+        phone:
+          number: 'Phone Number'
+          phone_type_id: ''
     errors:
       messages:
         regex:

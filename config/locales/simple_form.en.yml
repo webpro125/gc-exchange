@@ -21,7 +21,13 @@ en:
           email: 'E-mail.'
       phone:
         number: 'Phone Number'
-        type: 'Type'
+        phone_type: 'Type'
+        phone_type_id: 'Type'
+        primary: 'Primary'
+      phones:
+        number: 'Phone Number'
+        phone_type: 'Type'
+        phone_type_id: 'Type'
         primary: 'Primary'
       consultant:
         abstract: 'Background and Experience'
@@ -30,6 +36,9 @@ en:
         certification_ids: 'Professional Certifications'
         skills_list: 'Expertise'
       education:
+        school: 'Institution Name'
+        field_of_study: 'Field of Study'
+      educations:
         school: 'Institution Name'
         field_of_study: 'Field of Study'
       military:

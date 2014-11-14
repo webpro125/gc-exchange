@@ -2,7 +2,7 @@
 
 <%= simple_form_for @form, url: create_profile_path(:qualifications), method: :put do |f| %>
     <div class="row">
-      <div class="small-12 columns">
+      <div class="large-12 columns">
         <%= f.error_notification %>
       </div>
     </div>
@@ -10,21 +10,14 @@
         <%= render 'educations/education_fields', f: e %>
     <% end %>
     <div class="row">
-      <div class="small-8 columns">
+      <div class="large-8 columns">
         <%= render 'profiles/certifications', f: f %>
       </div>
     </div>
     <div class="row">
-      <div class="small-8 columns">
+      <div class="large-8 columns">
         <%= render 'profiles/skills', f: f %>
       </div>
     </div>
-    <div class="row">
-      <div class="small-12 columns">
-        <%= link_to t('views.wizard.actions.previous'),
-                    previous_wizard_path,
-                    class: 'button secondary small' %>
-        <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary small' %>
-      </div>
-    </div>
+    <%= render 'footer', f: f %>
 <% end %>
