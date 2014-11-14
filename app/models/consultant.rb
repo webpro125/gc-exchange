@@ -33,8 +33,12 @@ class Consultant < ActiveRecord::Base
   has_many :skills, through: :consultant_skills
   has_many :consultant_certifications, dependent: :destroy
   has_many :certifications, through: :consultant_certifications
+  has_many :educations, dependent: :destroy
+
+  accepts_nested_attributes_for :educations
 
   validate :phone_length
+  validates :educations, length: { maximum: 3 }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
   validates_attachment :resume,
@@ -74,7 +78,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def certifications_list
-    certifications.pluck(:id).join(', ')
+    certifications.pluck(:label).join(', ')
   end
 
   def certifications_list=(certifications)

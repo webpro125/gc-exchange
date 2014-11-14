@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111205943) do
+ActiveRecord::Schema.define(version: 20141112020617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,12 +85,12 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
-    t.string   "email",                                                     default: "", null: false
-    t.string   "encrypted_password",                                        default: "", null: false
+    t.string   "email",                                                     default: "",   null: false
+    t.string   "encrypted_password",                                        default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                             default: 0,  null: false
+    t.integer  "sign_in_count",                                             default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -99,18 +99,19 @@ ActiveRecord::Schema.define(version: 20141111205943) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first_name",             limit: 24,                                      null: false
-    t.string   "last_name",              limit: 24,                                      null: false
+    t.string   "first_name",             limit: 24,                                        null: false
+    t.string   "last_name",              limit: 24,                                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_file_name"
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
-    t.integer  "approved_status_id",                                        default: 1,  null: false
+    t.integer  "approved_status_id",                                        default: 1,    null: false
     t.decimal  "rate",                              precision: 8, scale: 2
-    t.string   "wizard_step"
+    t.boolean  "willing_to_travel",                                         default: true
     t.text     "abstract"
+    t.string   "wizard_step"
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
@@ -124,6 +125,26 @@ ActiveRecord::Schema.define(version: 20141111205943) do
   end
 
   add_index "customer_names", ["code"], name: "index_customer_names_on_code", unique: true, using: :btree
+
+  create_table "degrees", force: true do |t|
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
+  end
+
+  add_index "degrees", ["code"], name: "index_degrees_on_code", unique: true, using: :btree
+  add_index "degrees", ["label"], name: "index_degrees_on_label", unique: true, using: :btree
+
+  create_table "educations", force: true do |t|
+    t.integer  "consultant_id",              null: false
+    t.integer  "degree_id",                  null: false
+    t.string   "school",         limit: 256
+    t.string   "field_of_study", limit: 256
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "educations", ["consultant_id"], name: "index_educations_on_consultant_id", using: :btree
+  add_index "educations", ["degree_id"], name: "index_educations_on_degree_id", using: :btree
 
   create_table "militaries", force: true do |t|
     t.integer  "rank_id"

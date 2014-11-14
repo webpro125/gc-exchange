@@ -21,6 +21,10 @@
 
 en:
   activerecord:
+    models:
+      attributes:
+        military:
+          date: 'Date Active'
     errors:
       messages:
         regex:
@@ -80,18 +84,33 @@ en:
       create:
         success: 'Phone created successfully.'
   views:
+    wizard:
+      actions:
+        previous: '< Previous'
+        save_and_next: 'Save & Continue >'
+      header:
+        basic: '1. Basic Information'
+        qualifications: '2. Qualifications'
+        other_info: '3. Other Information'
+        background_information: '4. Background Information'
+        project_history: '5. Project History'
     profile:
       actions:
         upload_photo: 'Upload Profile Photo'
         new_phone: '+ Add Phone'
+        new_education: '+ Add Another Degree'
         save: 'Save'
+        remove_education: 'X'
       headers:
         contact: 'Contact Information'
         education: 'Education'
         certification: 'Certifications'
         expertise: 'Expertise'
         clearance: 'Security Clearance'
-        military: 'Military'
+        military: 'Military Status'
+    education:
+      new:
+        save: 'Save'
     phone:
       new:
         save: 'Save'

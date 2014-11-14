@@ -1,18 +1,19 @@
 require 'reform/form/coercion'
 
 class EditConsultantForm < Reform::Form
-  include Reform::Form::ModelReflections
+  include Reform::Form::ModelReflections, Qualifications
 
   model :consultant
 
   property :first_name
   property :last_name
   property :rate
-  property :skills_list
-  property :certification_ids
   property :abstract
+  property :willing_to_travel
 
+  validates :willing_to_travel, presence: true
   validates :rate, numericality: { greater_than: 0 }, presence: true
+  validates :abstract, length: { maximum: 1500 }
   validates :first_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Letters::AND_DASHES,
                       message: 'only allows letters' }
@@ -20,6 +21,7 @@ class EditConsultantForm < Reform::Form
             format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: 'only allows letters and numbers' }
   validates :abstract, length: { maximum: 1500 }
+
   property :address, populate_if_empty: Address do
     property :address
 

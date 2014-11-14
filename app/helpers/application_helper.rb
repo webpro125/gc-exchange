@@ -1,6 +1,6 @@
 module ApplicationHelper
   LOOKUPS = [PhoneType, ClearanceLevel, Branch, Rank, ClearanceLevel, CustomerName, Position,
-             ProjectType, State, Certification, ApprovedStatus].freeze
+             ProjectType, State, Certification, ApprovedStatus, Degree].freeze
 
   # Determines if we're in a development type environment
   #
@@ -42,5 +42,13 @@ module ApplicationHelper
     end
 
     { label_method: label }.merge(opts)
+  end
+
+  def boolean_to_human(boolean)
+    boolean ? 'Yes' : 'No'
+  end
+
+  def date_in_words(start_date, end_date = nil)
+    distance_of_time_in_words(start_date, end_date || DateTime.now)
   end
 end

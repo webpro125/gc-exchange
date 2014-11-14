@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <%= project_history.positions.pluck(:label).join(', ') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-6 columns">
+        <span>
+          <%= project_history.client_company %>
+        </span>
+      </div>
+      <div class="small-6 columns">
+        <span class="right">
+          <%= project_history.customer_name.label %>
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        Area of Focus: <%= project_history.project_type.label %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= project_history.start_date.to_s(:month_and_year) %> -
+        <%= project_history.end_date.to_s(:month_and_year) || 'Present' %>
+        (<%= date_in_words(project_history.start_date, project_history.end_date) %>)
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <p><%= project_history.description %></p>
+      </div>
+    </div>
+  </div>
+</div>

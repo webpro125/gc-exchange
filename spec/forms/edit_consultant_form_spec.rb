@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe EditConsultantForm do
+  it_behaves_like 'qualifications'
+
   let(:mime_types) do
     [
       'application/msword',
@@ -21,7 +23,8 @@ describe EditConsultantForm do
       rate: 100,
       address: FactoryGirl.build(:address),
       military: FactoryGirl.build(:military),
-      phones: FactoryGirl.build_list(:phone, 2)
+      phones: FactoryGirl.build_list(:phone, 2),
+      educations: FactoryGirl.build_list(:education, 2)
     )
   end
   let(:form) { EditConsultantForm.new(consultant) }
@@ -49,6 +52,10 @@ describe EditConsultantForm do
     describe 'rate' do
       it { should validate_presence_of(:rate) }
       it { should validate_numericality_of(:rate).is_greater_than(0) }
+    end
+
+    describe 'willing_to_travel' do
+      it { should validate_presence_of(:willing_to_travel) }
     end
   end
 
