@@ -83,9 +83,12 @@ h3 {
 		height: 2.3125rem;
 		line-height: 2.3125rem;
 		border-color: #CCC;
+		background: $snow;
+		border-radius: 2px;
 
 		.select2-arrow {
 			border-left: none;
+			background: none;
 			b {
 				background-position: 0 6px;
 			}
@@ -96,6 +99,12 @@ h3 {
 	.select2-choices {
 		border: 1px solid #CCC;
 		border-radius: 2px;
+
+		.select2-search-choice {
+			font-size: 14px;
+			line-height: 1.2em;
+			background: #F9F9F9;
+		}
 	}
 	&.select2-container-active {
 		.select2-choices {
