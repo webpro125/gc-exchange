@@ -33,6 +33,8 @@ group :doc do
 end
 
 group :development do
+  gem 'better_errors', '~> 2.0.0'
+  gem 'binding_of_caller', '~> 0.7.2'
   gem 'guard-rspec', '~> 4.3', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
   gem 'guard-rubocop', '~> 1.2.0', require: false
@@ -73,8 +75,6 @@ group :test do
 end
 
 group :development, :staging do
-  gem 'better_errors', '~> 2.0.0'
-  gem 'binding_of_caller', '~> 0.7.2'
   gem 'quiet_assets', '~> 1.0'
 end
 

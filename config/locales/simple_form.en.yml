@@ -1,5 +1,6 @@
 en:
   simple_form:
+    now: 'Present'
     "yes": 'Yes'
     "no": 'No'
     required:
@@ -39,8 +40,10 @@ en:
         clearance_level: 'Clearance Level'
         branch: 'Branch'
         rank: 'Rank'
-
-    # hints:
+      project_history:
+        project_type: 'Area of Focus'
+    hints:
+      consultant:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'

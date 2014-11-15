@@ -101,6 +101,7 @@ en:
         new_education: '+ Add Another Degree'
         save: 'Save'
         remove_education: 'X'
+        download_resume: 'Download Resume >>'
       headers:
         contact: 'Contact Information'
         education: 'Education'
@@ -112,6 +113,8 @@ en:
       new:
         save: 'Save'
     phone:
+      confirmations:
+        delete: 'Are you sure you want to delete this phone?'
       new:
         save: 'Save'
     password:
