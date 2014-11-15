@@ -45,7 +45,7 @@ module ApplicationHelper
   end
 
   def boolean_to_human(boolean)
-    boolean ? 'Yes' : 'No'
+    boolean ? I18n.t('simple_form.yes') : I18n.t('simple_form.no')
   end
 
   def date_in_words(start_date, end_date = nil)

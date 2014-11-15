@@ -1,5 +1,6 @@
 en:
   simple_form:
+    now: 'Present'
     "yes": 'Yes'
     "no": 'No'
     required:
@@ -53,7 +54,9 @@ en:
         customer_name_id: 'Government Agency'
         client_poc_name: 'Reference Name'
         client_poc_email: 'Reference Email'
-    # hints:
+        project_type: 'Area of Focus'
+    hints:
+      consultant:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
