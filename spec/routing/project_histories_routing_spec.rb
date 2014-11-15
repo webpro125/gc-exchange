@@ -4,7 +4,7 @@ describe ProjectHistoriesController do
   describe 'routing' do
 
     it 'routes to #index' do
-      get('/projects').should route_to('project_histories#index')
+      get('/projects').should_not route_to('project_histories#index')
     end
 
     it 'routes to #new' do
@@ -12,7 +12,7 @@ describe ProjectHistoriesController do
     end
 
     it 'routes to #show' do
-      get('/projects/1').should route_to('project_histories#show', id: '1')
+      get('/projects/1').should_not route_to('project_histories#show', id: '1')
     end
 
     it 'routes to #edit' do

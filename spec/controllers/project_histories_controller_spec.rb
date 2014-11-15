@@ -20,26 +20,6 @@ describe ProjectHistoriesController do
       sign_in consultant
     end
 
-    describe "GET 'index'" do
-      let!(:projects) { FactoryGirl.create_list(:project_history, 4, consultant: consultant) }
-
-      it 'returns http success' do
-        get :index
-        expect(response).to be_success
-      end
-
-      it 'assigns projects' do
-        get :index
-        expect(assigns(:projects)).to match_array(projects)
-      end
-
-      it 'does not include other consultants project_history' do
-        unfound_projects = FactoryGirl.create_list(:project_history, 2)
-        get :index
-        expect(assigns(:projects)).not_to match_array(unfound_projects)
-      end
-    end
-
     describe "GET 'new'" do
       it 'renders #new' do
         get :new
@@ -85,31 +65,6 @@ describe ProjectHistoriesController do
           expect do
             post :create, project_history: valid_attributes
           end.not_to change { ProjectHistory.count }
-        end
-      end
-    end
-
-    describe "GET 'show'" do
-      describe 'with consultants project_history' do
-        let!(:project_history) { consultant.project_histories.create!(valid_attributes) }
-
-        it 'renders #show' do
-          get :show, id: project_history.id
-          expect(response).to render_template :show
-        end
-
-        it 'assigns project' do
-          get :show, id: project_history.id
-          expect(assigns(:project)).to eq(project_history)
-        end
-      end
-
-      describe 'with different users project_history' do
-        let!(:project_history) { FactoryGirl.create(:project_history) }
-
-        it 'raises ActiveRecord::RecordNotFound' do
-          expect { get :show, id: project_history.id }.to raise_exception
-          ActiveRecord::RecordNotFound
         end
       end
     end
@@ -211,13 +166,13 @@ describe ProjectHistoriesController do
     end
 
     it 'should redirect to login for "GET" requests' do
-      [:index, :new].each do |method|
+      [:new].each do |method|
         get method
         expect(response).to redirect_to(new_consultant_session_path)
       end
 
       project_history = FactoryGirl.create(:project_history)
-      [:show, :edit].each do |method|
+      [:edit].each do |method|
         get method, id: project_history.id
         expect(response).to redirect_to(new_consultant_session_path)
       end

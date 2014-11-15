@@ -17,8 +17,14 @@ class CreateProfileController < ConsultantController
     current_consultant.wizard_step = next_step
     generate_update_form
 
-    if @form.validate(consultant_params)
-      render_wizard(@form)
+    if @form.validate(form_params(step))
+      if params[:save_and_new] && step == :project_history
+        @form.save
+        current_consultant.save
+        redirect_to new_project_history_path
+      else
+        render_wizard(@form)
+      end
     else
       render_wizard
     end
@@ -30,8 +36,13 @@ class CreateProfileController < ConsultantController
     consultant_root_path
   end
 
-  def consultant_params
-    params.require(:consultant)
+  def form_params(sym)
+    if sym == :project_history
+      params[sym][:position_ids].reject!(&:blank?)
+      params.require(sym)
+    else
+      params.require(:consultant)
+    end
   end
 
   def generate_update_form
@@ -45,7 +56,7 @@ class CreateProfileController < ConsultantController
     when :background_information
       @form = BackgroundInformationForm.new current_consultant
     when :project_history
-      @form = ProjectHistoryForm.new current_consultant
+      @form = ProjectHistoryForm.new current_consultant.project_histories.build
     end
   end
 
@@ -63,7 +74,7 @@ class CreateProfileController < ConsultantController
     when :background_information
       @form = BackgroundInformationForm.new current_consultant
     when :project_history
-      @form = ProjectHistoryForm.new current_consultant
+      @form = ProjectHistoryForm.new current_consultant.project_histories.build
     end
   end
 end

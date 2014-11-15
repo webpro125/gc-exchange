@@ -5,6 +5,13 @@
                     previous_wizard_path,
                     class: 'button secondary small' %>
     <% end %>
-    <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary small' %>
+    <% if wizard_path == create_profile_path(:project_history) %>
+        <%= f.button :submit, t('views.wizard.actions.save_and_new'),
+                     class: 'secondary small',
+                     name:'save_and_new'%>
+        <%= f.button :submit, t('views.wizard.actions.finish'), class: 'secondary small' %>
+    <% else %>
+        <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary small' %>
+    <% end %>
   </div>
 </div>

@@ -48,7 +48,11 @@ en:
         clearance_level: 'Clearance Level'
         branch: 'Branch'
         rank: 'Rank'
-
+      project_history:
+        position_ids: 'Position(s)'
+        customer_name_id: 'Government Agency'
+        client_poc_name: 'Reference Name'
+        client_poc_email: 'Reference Email'
     # hints:
     #   defaults:
     #     username: 'User name to sign in.'

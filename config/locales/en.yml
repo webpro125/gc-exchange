@@ -90,7 +90,9 @@ en:
     wizard:
       actions:
         previous: '< Previous'
+        finish: 'Finish >'
         save_and_next: 'Save & Continue >'
+        save_and_new: 'Save & New >'
       header:
         basic: '1. Basic Information'
         qualifications: '2. Qualifications'
