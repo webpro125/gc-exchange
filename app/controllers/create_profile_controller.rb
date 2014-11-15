@@ -38,7 +38,7 @@ class CreateProfileController < ConsultantController
 
   def form_params(sym)
     if sym == :project_history
-      params[sym][:position_ids].reject!(&:blank?)
+      params[sym][:position_ids].reject!(&:blank?) if params[sym][:position_ids]
       params.require(sym)
     else
       params.require(:consultant)

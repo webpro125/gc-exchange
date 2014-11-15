@@ -12,7 +12,7 @@ describe ProjectHistoriesController do
     FactoryGirl.attributes_for(:project_history,
                                consultant: consultant,
                                project_type_id: project_type.id,
-                               project_history_positions_attributes: [project_history_positions])
+                               position_ids: [position.id])
   end
 
   describe 'when logged in' do
@@ -26,9 +26,9 @@ describe ProjectHistoriesController do
         expect(response).to render_template :new
       end
 
-      it 'assigns project' do
+      it 'assigns form' do
         get :new
-        expect(assigns(:project)).to be_a_new(ProjectHistory)
+        expect(assigns(:form)).to be_a(ProjectHistoryForm)
       end
     end
 
@@ -53,7 +53,7 @@ describe ProjectHistoriesController do
 
       describe 'with invalid paramaters' do
         before do
-          allow_any_instance_of(ProjectHistory).to receive(:save) { false }
+          allow_any_instance_of(ProjectHistoryForm).to receive(:validate) { false }
         end
 
         it 'renders "new"' do
@@ -103,7 +103,7 @@ describe ProjectHistoriesController do
         end
 
         it 'persists the record' do
-          ProjectHistory.any_instance.should_receive(:update).and_return(true)
+          ProjectHistoryForm.any_instance.should_receive(:save)
           put :update, project_history: project_history.attributes, id: project_history.id
         end
 
@@ -122,7 +122,7 @@ describe ProjectHistoriesController do
         end
 
         it 'does not persist the record' do
-          ProjectHistory.any_instance.should_receive(:update).and_return(false)
+          ProjectHistoryForm.any_instance.should_receive(:validate).and_return(false)
           put :update, project_history: { client_company: nil }, id: project_history.id
         end
       end

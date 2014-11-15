@@ -1,3 +1,5 @@
+require 'reform/form/coercion'
+
 class ProjectHistoryForm < Reform::Form
   model :project_history
 
