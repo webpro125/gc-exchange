@@ -11,6 +11,6 @@
     <%= link_to 'x',
                 phone_path(f.object),
                 method: :delete,
-                data: { confirm: 'Do you want to delete me?' } if f.object.id %>
+                data: { confirm: t('views.phone.confirmations.delete') } if f.object.id %>
   </div>
 </div>

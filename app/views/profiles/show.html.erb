@@ -35,7 +35,9 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <%= link_to 'Download Resume >>', @consultant.resume.url, class: 'button small secondary' %>
+        <%= link_to t('views.profile.actions.download_resume'),
+                    @consultant.resume.url,
+                    class: 'button small secondary' %>
       </div>
     </div>
     <div class="row">
