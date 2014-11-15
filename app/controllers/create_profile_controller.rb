@@ -57,6 +57,8 @@ class CreateProfileController < ConsultantController
       current_consultant.educations.build
       @form = QualificationsForm.new current_consultant
     when :other_information
+      current_consultant.phones.build
+      current_consultant.build_address unless current_consultant.address.present?
       @form = OtherInformationForm.new current_consultant
     when :background_information
       @form = BackgroundInformationForm.new current_consultant

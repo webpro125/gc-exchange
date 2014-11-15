@@ -3,17 +3,17 @@
 
   function toggleClearance(toggle) {
     if(toggle.toLowerCase() === 'true') {
-      $('#security').show();
+      $('.clearance-hidden').show();
     }else{
-      $('#security').hide();
+      $('.clearance-hidden').hide();
     }
   }
 
   function toggleMilitary(toggle) {
     if(toggle.toLowerCase() === 'true') {
-      $('#military').show();
+      $('.military-hidden').show();
     }else{
-      $('#military').hide();
+      $('.military-hidden').hide();
     }
   }
 
