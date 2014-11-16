@@ -5,6 +5,7 @@ describe 'project_histories/new.html.erb' do
 
   before do
     assign(:project, project)
+    assign(:form, ProjectHistoryForm.new(project))
     render
   end
 
@@ -25,15 +26,11 @@ describe 'project_histories/new.html.erb' do
   end
 
   it 'should have start_date' do
-    expect(rendered).to have_field('project_history_start_date_1i')
-    expect(rendered).to have_field('project_history_start_date_2i')
-    expect(rendered).to have_field('project_history_start_date_3i')
+    expect(rendered).to have_field('project_history_start_date')
   end
 
   it 'should have end_date' do
-    expect(rendered).to have_field('project_history_end_date_1i')
-    expect(rendered).to have_field('project_history_end_date_2i')
-    expect(rendered).to have_field('project_history_end_date_3i')
+    expect(rendered).to have_field('project_history_end_date')
   end
 
   it 'should have description' do

@@ -1,19 +1,12 @@
 class ProjectHistoriesController < ConsultantController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
-
-  # GET /projects
-  def index
-    @projects = policy_scope(current_consultant.project_histories)
-  end
-
-  # GET /projects/1
-  def show
-  end
+  before_action :set_project, only: [:edit, :update, :destroy]
 
   # GET /projects/new
   def new
-    @project = current_consultant.project_histories.build
-    authorize @project
+    project = current_consultant.project_histories.build
+    authorize project
+
+    @form = ProjectHistoryForm.new(project)
   end
 
   # GET /projects/1/edit
@@ -22,10 +15,12 @@ class ProjectHistoriesController < ConsultantController
 
   # POST /projects
   def create
-    @project = current_consultant.project_histories.build(project_params)
-    authorize @project
+    project = current_consultant.project_histories.build
+    authorize project
 
-    if @project.save
+    @form = ProjectHistoryForm.new(project)
+
+    if @form.validate(project_params) && @form.save
       flash[:success] = t('controllers.project_history.create.success')
       redirect_to project_histories_path
     else
@@ -35,7 +30,7 @@ class ProjectHistoriesController < ConsultantController
 
   # PATCH/PUT /projects/1
   def update
-    if @project.update(project_params)
+    if @form.validate(project_params) && @form.save
       flash[:success] = t('controllers.project_history.update.success')
       redirect_to project_histories_path
     else
@@ -57,16 +52,12 @@ class ProjectHistoriesController < ConsultantController
   def set_project
     @project = ProjectHistory.find(params[:id])
     authorize @project
+
+    @form = ProjectHistoryForm.new(@project)
   end
 
   # Only allow a trusted parameter "white list" through.
   def project_params
-    params.require(:project_history).permit(:customer_name_id, :client_company, :client_poc_name,
-                                            :client_poc_email, :start_date, :end_date,
-                                            :project_type_id, :description, :position_id,
-                                            project_history_positions_attributes: [:_destroy,
-                                                                                   :id,
-                                                                                   :percentage,
-                                                                                   :position_id])
+    params.require(:project_history)
   end
 end

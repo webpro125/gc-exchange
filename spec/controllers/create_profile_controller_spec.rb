@@ -25,15 +25,23 @@ describe CreateProfileController do
       end
 
       describe "PUT #{m}" do
+        let(:valid_attributes) do
+          if m == :project_history
+            { id: m, project_history: { client_poc_name: 'Bob Saget' } }
+          else
+            { id: m, consultant: { first_name: 'first_name' } }
+          end
+        end
+
         it 'should change wizard step' do
           expect_any_instance_of(Consultant).to receive(:wizard_step=)
-          put :update, id: m, consultant: { first_name: 'first_name' }
+          put :update, valid_attributes
         end
 
         describe do
           before do
             allow_any_instance_of(Reform::Form).to receive(:validate) { true }
-            put :update, id: m, consultant: { first_name: 'first_name' }
+            put :update, valid_attributes
           end
 
           it 'assigns @form' do

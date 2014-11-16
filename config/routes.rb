@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :create_profile, only: [:show, :update]
-  resources :project_histories, path: 'projects'
+  resources :project_histories, path: 'projects', except: [:index, :show]
   resources :sales_leads, only: [:new, :create]
   resources :phones, only: [:new, :create, :destroy]
   resources :educations, only: [:new, :create, :destroy]
