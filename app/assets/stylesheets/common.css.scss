@@ -1,3 +1,9 @@
+.datetimepicker {
+  .prev, .next {font-style:normal;}
+  .prev:after {content:"«";}
+  .next:after {content:"»";}
+}
+
 .hint {
   opacity: 0;
 }
