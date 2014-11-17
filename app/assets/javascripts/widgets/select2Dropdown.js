@@ -87,6 +87,7 @@
         width: 'element',
         minimumResultsForSearch: 10,
         closeOnSelect: false,
+        dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
         tokenSeparators: [',']
       };
 
