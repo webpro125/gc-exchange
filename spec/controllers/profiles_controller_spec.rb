@@ -76,5 +76,29 @@ describe ProfilesController do
         it { should render_template(:edit) }
       end
     end
+
+    describe 'GET upload' do
+      before do
+        get :upload
+      end
+
+      it { should_not redirect_to(new_user_session_path) }
+      it { should render_template(:upload) }
+      it { should respond_with(200) }
+
+      it 'assigns @form' do
+        expect(assigns(:form)).to be_a_kind_of(UploadImageForm)
+      end
+    end
+
+    describe 'PUT upload_image' do
+      describe 'successful' do
+        it 'should call validate' do
+          UploadImageForm.any_instance.should_receive(:validate)
+          put :upload_image,
+              consultant: { profile_image: fixture_file_upload('default_profile.png', 'image/png') }
+        end
+      end
+    end
   end
 end

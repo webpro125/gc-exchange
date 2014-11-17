@@ -21,4 +21,6 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   alias_method :update?, :edit?
+  alias_method :upload?, :edit?
+  alias_method :upload_image?, :edit?
 end

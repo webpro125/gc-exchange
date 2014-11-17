@@ -20,4 +20,9 @@ module RegexConstants
   module FileTypes
     AS_DOCUMENTS  = [/doc\Z/, /docx\Z/, /pdf\Z/]
   end
+
+  module ImageTypes
+    # AS_IMAGES = %r{/\Aimage\/.*\Z/}
+    AS_IMAGES = %r{/\Ajpg\/.*\Z/, /\Ajpeg\/.*\Z/, /\Apng\/.*\Z/}
+  end
 end

@@ -120,4 +120,10 @@ describe SearchAdapter do
       expect(keyword_query[:fuzzy_like_this][:like_text]).to be_nil
     end
   end
+
+  describe 'and queries' do
+    it 'are not overwritten' do
+
+    end
+  end
 end

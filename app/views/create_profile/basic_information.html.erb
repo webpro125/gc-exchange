@@ -1,11 +1,27 @@
 <%= render 'header' %>
 
-<%= simple_form_for @form, url: create_profile_path(:qualifications), method: :put do |f| %>
+<%= simple_form_for @form, url: create_profile_path(:basic_information), method: :put do |f| %>
     <div class="row">
       <div class="small-12 columns">
         <%= f.error_notification %>
       </div>
     </div>
-    <%= render 'project_histories/project_history_fields', f: f %>
+    <%= f.simple_fields_for :consultant do |b| %>
+        <div class="row">
+          <div class="large-10 columns">
+            <%= b.input :resume, as: :file %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-10 columns">
+            <%= b.input :abstract, as: :text %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-10 columns">
+            <%= b.input :profile_image, as: :file %>
+          </div>
+        </div>
+    <% end %>
     <%= render 'footer',f: f %>
 <% end %>
