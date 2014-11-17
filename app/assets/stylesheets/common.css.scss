@@ -13,6 +13,11 @@ table {
 	padding-top: 2rem;
 }
 
+/*** BUTTON ***/
+.button, input[type="submit"] {
+	border-radius: 2px;
+}
+
 /*** TYPOGRAPHY ***/
 
 h3 {
@@ -20,6 +25,37 @@ h3 {
 	border-bottom: 1px solid #DDD;
 	font-weight: 200;
 }
+
+/*** ALERTS ***/
+
+.error label, .error label.error {
+	color: $gces-red;
+}
+
+.error small.error, .alert-box.alert {
+	color: $gces-red;
+	border: 1px solid $gces-red;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.error small.error {
+	
+}
+.alert-box.alert {
+	margin: 0 auto rem-calc(20);
+	width: 98%;
+}
+.alert-box.notice {
+	background: scale-color($gces-blue, $lightness: 80%);
+	color: $gces-blue;
+} 
+.alert-box.success {
+	background-color: #abc1b2;
+	border-color: #5d7b67;
+	color: #5d7b67;
+}
+
 
 /*** FORMS ***/
 
@@ -47,6 +83,8 @@ h3 {
 	.select2-choices {
 		border: 1px solid #CCC;
 		border-radius: 2px;
+		background: $white;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 
 		.select2-search-choice {
 			font-size: 14px;
@@ -68,9 +106,13 @@ h3 {
 .select2-drop-active {
 	border-color: $gces-blue;
 }
-.select2-drop.select2-drop-above.select2-drop-active, .select2-dropdown-open.select2-drop-above .select2-choice {
-	border-color: $gces-blue;
+.select2-dropdown-open.select2-drop-above {
 	background: $white;
+
+	&.select2-drop-active, .select2-choice, .select2-choices {
+		border-color: $gces-blue;
+		background: $white;
+	}
 }
 .select2-results {
 	font-size: 14px;
