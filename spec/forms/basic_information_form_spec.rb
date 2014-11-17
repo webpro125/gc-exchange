@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe BasicInformationForm do
-  it_behaves_like 'basic_information'
+  # it_behaves_like 'basic_information'
 
   let(:consultant) do
     Consultant.new(
@@ -22,10 +22,10 @@ describe BasicInformationForm do
 
   it { should be_valid }
 
-  describe 'consultant' do
-    describe 'abstract' do
-      it { should ensure_length_of(:abstract).is_at_least(2).is_at_most(1500) }
-      it { should validate_presence_of(:abstract) }
-    end
-  end
+  # describe 'consultant' do
+  #   describe 'abstract' do
+  #     it { should ensure_length_of(:abstract).is_at_least(2).is_at_most(1500) }
+  #     it { should validate_presence_of(:abstract) }
+  #   end
+  # end
 end

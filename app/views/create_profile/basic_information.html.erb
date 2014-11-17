@@ -9,7 +9,17 @@
     <%= f.simple_fields_for :consultant do |b| %>
         <div class="row">
           <div class="large-10 columns">
+            <%= b.input :resume, as: :file %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-10 columns">
             <%= b.input :abstract, as: :text %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-10 columns">
+            <%= b.input :profile_image, as: :file %>
           </div>
         </div>
     <% end %>
