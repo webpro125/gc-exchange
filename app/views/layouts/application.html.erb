@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,300' rel='stylesheet' type='text/css'>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -18,8 +17,9 @@
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
-
-    <%= yield %>
+    <div id="container">
+        <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
     .find_asset("#{controller_name}.js") %>

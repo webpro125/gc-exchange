@@ -123,9 +123,10 @@ $oil         	: #324046;
 $jet         	: #273634;
 $black       	: #1c2b32;
 $gces-blue		: #2A5E89;
+$gces-red		: #96413D;
 
 // We use these to control various global styles
-// $body-bg: $white;
+$body-bg: #C1CDC9 image-url("body-bg.png");
 $body-font-color: $jet;
 $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -141,7 +142,7 @@ $body-font-family: $font-family-sans-serif;
 // $last-child-float: $opposite-direction;
 
 // We use these to make sure border radius matches unless we want it different.
-// $global-radius: 3px;
+$global-radius: 3px;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
@@ -365,7 +366,7 @@ $alert-border-color: scale-color($primary-color, $lightness: $alert-function-fac
 // $alert-close-padding: 9px 6px 4px;
 
 // We use this to control border radius
-// $alert-radius: $global-radius;
+$alert-radius: $global-radius;
 
 // We use this to control transition effects
 // $alert-transition-speed: 300ms;
@@ -402,7 +403,7 @@ $alert-border-color: scale-color($primary-color, $lightness: $alert-function-fac
 // $crumb-border-size: 1px;
 // $crumb-border-style: solid;
 // $crumb-border-color: scale-color($crumb-bg, $lightness: $crumb-function-factor);
-// $crumb-radius: $global-radius;
+$crumb-radius: $global-radius;
 
 // We use these to set various text styles for breadcrumbs.
 // $crumb-font-size: rem-calc(11);
@@ -459,7 +460,7 @@ $button-bg-color: $primary-color;
 // $alert-button-border-color: $alert-button-bg-hover;
 
 // We use this to set the default radius used throughout the core.
-// $button-radius: $global-radius;
+$button-radius: $global-radius;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity and cursor for disabled buttons.
@@ -553,7 +554,7 @@ $button-bg-color: $primary-color;
 // $f-dropdown-content-padding: rem-calc(20);
 
 // Default radius for dropdown.
-// $f-dropdown-radius: $global-radius;
+$f-dropdown-radius: $global-radius;
 
 
 // 09. Dropdown Buttons
@@ -632,7 +633,7 @@ $form-label-font-color: $aluminum;
 // $input-focus-border-color: scale-color($white, $lightness: -40%);
 // $input-border-style: solid;
 // $input-border-width: 1px;
-// $input-border-radius: $global-radius;
+$input-border-radius: $global-radius;
 // $input-disabled-bg: $gainsboro;
 // $input-disabled-cursor: $cursor-default-value;
 // $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
@@ -772,7 +773,7 @@ $icon-bar-active-color: $primary-color;
 // $keystroke-border-style: solid;
 // $keystroke-border-width: 1px;
 // $keystroke-border-color: scale-color($keystroke-bg, $lightness: $keystroke-function-factor);
-// $keystroke-radius: $global-radius;
+$keystroke-radius: $global-radius;
 
 // 16. Labels
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -781,7 +782,7 @@ $icon-bar-active-color: $primary-color;
 
 // We use these to style the labels
 // $label-padding: rem-calc(4 8 4);
-// $label-radius: $global-radius;
+$label-radius: $global-radius;
 
 // We use these to style the label text
 // $label-font-sizing: rem-calc(11);
@@ -1036,7 +1037,7 @@ $pagination-link-current-active-bg: $primary-color;
 // $progress-bar-border-color: scale-color($white, $lightness: 20%);
 // $progress-bar-border-size: 1px;
 // $progress-bar-border-style: solid;
-// $progress-bar-border-radius: $global-radius;
+$progress-bar-border-radius: $global-radius;
 
 // We use these to control the margin & padding
 // $progress-bar-pad: rem-calc(2);
