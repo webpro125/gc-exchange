@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114130712) do
+ActiveRecord::Schema.define(version: 20141117132919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 20141114130712) do
   end
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
+
+  create_table "backgrounds", force: true do |t|
+    t.integer  "consultant_id"
+    t.boolean  "citizen",              null: false
+    t.boolean  "convicted",            null: false
+    t.boolean  "parole",               null: false
+    t.boolean  "illegal_drug_use",     null: false
+    t.boolean  "illegal_purchase",     null: false
+    t.boolean  "illegal_prescription", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "backgrounds", ["consultant_id"], name: "index_backgrounds_on_consultant_id", using: :btree
 
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10,  null: false
