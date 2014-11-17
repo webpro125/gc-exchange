@@ -19,7 +19,16 @@
                 <%= f.input :last_name %>
               </div>
             </div>
-            <%= f.input :rate %>
+            <div class="row">
+              <div class="small-12 columns">
+                <%= f.input :willing_to_travel %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <%= f.input :rate %>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -36,7 +45,7 @@
             <div class="row">
               <div class="large-12 columns">
                 <%= f.simple_fields_for :phones do |p| %>
-                    <%= render 'phone_fields', f: p %>
+                    <%= render 'phones/phone_fields', f: p %>
                 <% end %>
               </div>
             </div>
@@ -82,8 +91,8 @@
                   <%= m.input :clearance_level_id,
                               build_simple_form_dropdown(ClearanceLevel,
                                                          collection: ClearanceLevel.all)%>
-                  <%= m.input :investigation_date %>
-                  <%= m.input :clearance_expiration_date %>
+                  <%= m.input :investigation_date, format: :month_and_year %>
+                  <%= m.input :clearance_expiration_date, format: :month_and_year %>
 
                 </div>
 
@@ -93,8 +102,8 @@
                                                                    collection: Rank.all)%>
                   <%= m.input :branch_id, build_simple_form_dropdown(Branch,
                                                                      collection: Branch.all)%>
-                  <%= m.input :service_start_date %>
-                  <%= m.input :service_end_date %>
+                  <%= m.input :service_start_date, format: :month_and_year %>
+                  <%= m.input :service_end_date, format: :month_and_year %>
                 </div>
             <% end %>
           </div>

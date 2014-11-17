@@ -26,12 +26,15 @@ gem 'virtus', '~> 1.0.3'
 gem 'select2-rails', '~> 3.5'
 gem 'jquery-ui-rails', '~> 5.0'
 gem 'migration_data', '~> 0.0.4'
+gem 'foundation-datetimepicker-rails', '~> 0.1.3'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
 group :development do
+  gem 'better_errors', '~> 2.0.0'
+  gem 'binding_of_caller', '~> 0.7.2'
   gem 'guard-rspec', '~> 4.3', require: false
   gem 'guard-brakeman', '~> 0.8.1', require: false
   gem 'guard-rubocop', '~> 1.2.0', require: false
@@ -72,8 +75,6 @@ group :test do
 end
 
 group :development, :staging do
-  gem 'better_errors', '~> 2.0.0'
-  gem 'binding_of_caller', '~> 0.7.2'
   gem 'quiet_assets', '~> 1.0'
 end
 

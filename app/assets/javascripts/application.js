@@ -18,6 +18,14 @@
 //= require jquery-ui/mouse
 //= require jquery-ui/position
 //= require select2
+//= require foundation-datetimepicker
 //= require widgets
 
 $(function(){ $(document).foundation(); });
+$('.form-datepicker').fdatetimepicker({
+  format: 'MM yyyy',
+  startView: 4,
+  viewMode: 3,
+  minView: 3,
+  forceParse: true
+});

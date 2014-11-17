@@ -1,13 +1,19 @@
 @import "variables";
 
-table {
-  width: 100%
+.datetimepicker {
+  .prev, .next {font-style:normal;}
+  .prev:after {content:"«";}
+  .next:after {content:"»";}
 }
 
 /*** GLOBAL ***/
+
+.hint {
+	margin: 0 auto;
+  opacity: 0;
+}
 #container {
 	background: $white;
-	margin: 0 auto;
 	max-width: 95%;
 	width: 1040px;
 	padding-top: 2rem;
