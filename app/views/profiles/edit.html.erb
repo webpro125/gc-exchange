@@ -2,20 +2,20 @@
     <%= f.error_notification %>
 
     <div class="row">
-      <div class="small-8 columns">
+      <div class="large-8 columns">
         <div class="row">
-          <div class="small-4 columns">
+          <div class="large-4 columns">
             <%= link_to root_path do %>
                 <%= image_tag('fav.ico', class: 'th') %>
                 <div class="button small"><%= t('views.profile.actions.upload_photo') %></div>
             <% end %>
           </div>
-          <div class="small-8 columns">
+          <div class="large-8 columns">
             <div class="row">
-              <div class="small-6 columns">
+              <div class="large-6 columns">
                 <%= f.input :first_name %>
               </div>
-              <div class="small-6 columns">
+              <div class="large-6 columns">
                 <%= f.input :last_name %>
               </div>
             </div>
@@ -32,9 +32,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="small-12 columns">
+          <div class="large-12 columns">
             <div class="row">
-              <div class="small-12 columns">
+              <div class="large-12 columns">
                 <h3><%= t('views.profile.headers.contact') %></h3>
                 <%= f.input :abstract %>
                 <%= f.simple_fields_for :address do |a| %>
@@ -43,29 +43,29 @@
               </div>
             </div>
             <div class="row">
-              <div class="small-12 columns">
+              <div class="large-12 columns">
                 <%= f.simple_fields_for :phones do |p| %>
                     <%= render 'phones/phone_fields', f: p %>
                 <% end %>
               </div>
             </div>
             <div class="row">
-              <div class="small-12 column">
+              <div class="large-12 columns">
                 <%= link_to t('views.profile.actions.new_phone') , new_phone_path %>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="small-4 columns">
+      <div class="large-4 columns">
         <div class="row">
-          <div class="small-12 columns">
+          <div class="large-12 columns">
             <h3><%= t('views.profile.headers.education') %></h3>
             TODO eduction form
           </div>
         </div>
         <div class="row">
-          <div class="small-12 columns">
+          <div class="large-12 columns">
             <h3><%= t('views.profile.headers.certification') %></h3>
             <%= f.input :certification_ids,
                         build_simple_form_dropdown(Certification,
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="small-12 columns">
+          <div class="large-12 columns">
             <h3><%= t('views.profile.headers.expertise') %></h3>
             <%= f.input :skills_list, input_html: { class: 'select2',
                                                     data: { tags: true,
@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="small-12 columns">
+          <div class="large-12 columns">
             <%= f.simple_fields_for :military do |m| %>
                 <h3><%= t('views.profile.headers.clearance') %></h3>
                 <%= m.input :clearance_active %>
