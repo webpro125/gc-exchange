@@ -55,6 +55,26 @@ en:
         client_poc_name: 'Reference Name'
         client_poc_email: 'Reference Email'
         project_type: 'Area of Focus'
+      background:
+        citizen: 'Are you a citizen of the United States?'
+        convicted: 'In the past seven (7) years have you been convicted or sentenced of a crime
+        in any court? (Including all qualifying charges convictions or sentences in any Federal,
+        state, local, military, or non-U.S. court).'
+        parole: 'In the past seven (7) years have you been or are you currently on probation or
+        parole?'
+        illegal_drug_use: 'In the last seven (7) years, have you illegally used any drugs or
+        controlled substances? Use of a drug or controlled substance includes injecting, snorting,
+        inhaling, swallowing, experimenting with or otherwise consuming any drug or controlled
+        substance.'
+        illegal_purchase: 'In the last seven (7) years, have you been involved in the illegal
+        purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving,
+         handling or sale of any drug or controlled substance?'
+        illegal_prescription: 'In the last seven (7) years have you intentionally engaged in the
+        misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you
+         or someone else?'
+        information_is_correct: 'I certify that, to the best of my knowledge and belief,
+        all of the information provided by me is true and correct as the date I provided the
+        information.'
     hints:
       consultant:
     #   defaults:
