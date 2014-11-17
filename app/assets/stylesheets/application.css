@@ -19,8 +19,3 @@
 *= require common
 */
 
-
-select[multiple] {
-    height: 400px;
-}
-
