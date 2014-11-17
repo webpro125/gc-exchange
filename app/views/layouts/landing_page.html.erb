@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Global Consultant Exchange" %></title>
+
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag 'debug' if development? %>
+    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets
+    .find_asset("#{controller_name}.css") %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <%= render 'layouts/flash' %>
+    <div id="container">
+        <%= yield %>
+    </div>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
+    .find_asset("#{controller_name}.js") %>
+    <%= render 'layouts/debug' if development? %>
+  </body>
+</html>

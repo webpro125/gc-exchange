@@ -18,6 +18,7 @@
 	width: 1040px;
 	padding-top: 2rem;
 	margin: 0 auto;
+	box-shadow: 0 0 30px rgba(193,205,201,1);
 }
 
 /*** BUTTON ***/
@@ -27,12 +28,13 @@
 
 /*** TYPOGRAPHY ***/
 
+
+
 h3 {
 	color: $gces-red;
 	border-bottom: 1px solid #DDD;
 	font-weight: 200;
 }
-
 /*** ALERTS ***/
 
 .error label, .error label.error {
@@ -142,3 +144,12 @@ span.optional {
 	letter-spacing: 1px;
 	margin-left: 5px;
 }
+
+
+/*** LOGIN ***/
+.new_consultant, .new_user {
+	span.optional {
+		display: none;
+	}
+}
+
