@@ -1,55 +1,4 @@
-/*** VARIABLES ***/
-
-// Here we define the lower and upper bounds for each media size
-$small-range: (0em, 40em); /* 0, 640px */
-$medium-range: (40.063em, 64em); /* 641px, 1024px */
-$large-range: (64.063em, 90em); /* 1025px, 1440px */
-$xlarge-range: (90.063em, 120em); /* 1441px, 1920px */
-$xxlarge-range: (120.063em); /* 1921px */
-
-// Media Queries
-$screen: "only screen" !default;
-
-$landscape: "#{$screen} and (orientation: landscape)" !default;
-$portrait: "#{$screen} and (orientation: portrait)" !default;
-
-$small-up: $screen !default;
-$small-only: "#{$screen} and (max-width: #{upper-bound($small-range)})" !default;
-
-$medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})" !default;
-$medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})" !default;
-
-$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})" !default;
-$large-only: "#{$screen} and (min-width:#{lower-bound($large-range)}) and (max-width:#{upper-bound($large-range)})" !default;
-
-$xlarge-up: "#{$screen} and (min-width:#{lower-bound($xlarge-range)})" !default;
-$xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max-width:#{upper-bound($xlarge-range)})" !default;
-
-$xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})" !default;
-$xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})" !default;
-
-
-$white       	: #FFFFFF;
-$ghost       	: #FBFBFB;
-$snow        	: #F9F9F9;
-$vapor       	: #F7F7F7;
-$white-smoke 	: #F5F5F5;
-$silver      	: #F0F0F0;
-$smoke       	: #e8e9ea;
-$gainsboro   	: #d1d4d6;
-$iron        	: #babfc1;
-$base        	: #a4aaad;
-$aluminum    	: #8d9598;
-$jumbo       	: #767f84;
-$monsoon     	: #606a6f;
-$steel       	: #5c6069;
-$charcoal    	: #49555a;
-$tuatara     	: #404750;
-$oil         	: #324046;
-$jet         	: #273634;
-$black       	: #1c2b32;
-$gces-blue		: #2A5E89;
-$gces-red		: #96413D;
+@import "variables";
 
 table {
   width: 100%
@@ -61,6 +10,12 @@ table {
 	margin: 0 auto;
 	max-width: 95%;
 	width: 1040px;
+	padding-top: 2rem;
+}
+
+/*** BUTTON ***/
+.button, input[type="submit"] {
+	border-radius: 2px;
 }
 
 /*** TYPOGRAPHY ***/
@@ -70,6 +25,37 @@ h3 {
 	border-bottom: 1px solid #DDD;
 	font-weight: 200;
 }
+
+/*** ALERTS ***/
+
+.error label, .error label.error {
+	color: $gces-red;
+}
+
+.error small.error, .alert-box.alert {
+	color: $gces-red;
+	border: 1px solid $gces-red;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.error small.error {
+	
+}
+.alert-box.alert {
+	margin: 0 auto rem-calc(20);
+	width: 98%;
+}
+.alert-box.notice {
+	background: scale-color($gces-blue, $lightness: 80%);
+	color: $gces-blue;
+} 
+.alert-box.success {
+	background-color: #abc1b2;
+	border-color: #5d7b67;
+	color: #5d7b67;
+}
+
 
 /*** FORMS ***/
 
@@ -97,6 +83,8 @@ h3 {
 	.select2-choices {
 		border: 1px solid #CCC;
 		border-radius: 2px;
+		background: $white;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 
 		.select2-search-choice {
 			font-size: 14px;
@@ -118,8 +106,13 @@ h3 {
 .select2-drop-active {
 	border-color: $gces-blue;
 }
+.select2-dropdown-open.select2-drop-above {
+	background: $white;
+
 .select2-drop.select2-drop-above.select2-drop-active, .select2-dropdown-open.select2-drop-above .select2-choice {
 	border-color: $gces-blue;
+		background: $white;
+	}
 }
 .select2-results {
 	font-size: 14px;

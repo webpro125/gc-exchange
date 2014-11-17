@@ -98,7 +98,7 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial
 // We use these as default colors throughout
 $primary-color: #2A5E89;
 // $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
+$alert-color: scale-color(#96413D, $lightness: 80%);
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
@@ -126,7 +126,7 @@ $gces-blue		: #2A5E89;
 $gces-red		: #96413D;
 
 // We use these to control various global styles
-$body-bg: #C1CDC9 image-url("body-bg.png");
+$body-bg: #DEE1DF image-url("body-bg.png");
 $body-font-color: $jet;
 $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
@@ -344,7 +344,7 @@ $anchor-font-color: $primary-color;
 // We use these to control text style.
 // $alert-font-weight: $font-weight-normal;
 // $alert-font-size: rem-calc(13);
-// $alert-font-color: $white;
+$alert-font-color: $gces-red;
 // $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
 
 // We use this for close hover effect.
@@ -353,7 +353,7 @@ $alert-function-factor: -14%;
 // We use these to control border styles.
 // $alert-border-style: solid;
 // $alert-border-width: 1px;
-$alert-border-color: scale-color($primary-color, $lightness: $alert-function-factor);
+$alert-border-color: $gces-red;
 // $alert-bottom-margin: rem-calc(20);
 
 // We use these to style the close buttons
@@ -447,7 +447,7 @@ $crumb-font-color: $primary-color;
 // $button-function-factor: -20%;
 
 // We use these to control button border and hover styles.
-// $button-border-width: 0px;
+$button-border-width: 1px;
 // $button-border-style: solid;
 $button-bg-color: $primary-color;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
@@ -460,7 +460,7 @@ $button-bg-color: $primary-color;
 // $alert-button-border-color: $alert-button-bg-hover;
 
 // We use this to set the default radius used throughout the core.
-$button-radius: $global-radius;
+$button-radius: 3px;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity and cursor for disabled buttons.
