@@ -1,6 +1,20 @@
 @import "variables";
 
 #one, #two, #three {
+	ul {
+		margin-left: 0;
+		padding-left: 0;
+		list-style: none;
+
+		li {
+			&:before {
+				content: '•';
+				margin-right: 5px;
+				color: $gces-blue;
+				text-indent: -12px;
+			}
+		}
+	}
 	padding: 0 40px;
 
 	input[type="submit"] {
@@ -28,6 +42,7 @@
 
 #one {
 	text-align: center;
+
 
 	ul {
 		margin: 0 auto;

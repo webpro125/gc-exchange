@@ -35,22 +35,6 @@ h3 {
 	border-bottom: 1px solid #DDD;
 	font-weight: 200;
 }
-#container {
-	ul {
-		margin-left: 0;
-		padding-left: 0;
-		list-style: none;
-
-		li {
-			&:before {
-				content: '•';
-				margin-right: 5px;
-				color: $gces-blue;
-				text-indent: -12px;
-			}
-		}
-	}
-}
 /*** ALERTS ***/
 
 .error label, .error label.error {
