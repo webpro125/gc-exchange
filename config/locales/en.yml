@@ -122,6 +122,8 @@ en:
         delete: 'Are you sure you want to delete this phone?'
       new:
         save: 'Save'
+      destroy:
+        failure: 'You must have one phone number available'
     password:
       actions:
         change_password: 'Change Password'

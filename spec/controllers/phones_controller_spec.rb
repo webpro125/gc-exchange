@@ -59,6 +59,7 @@ describe PhonesController do
 
     describe 'DELETE "destroy"' do
       before do
+        consultant.phones.create(@phone)
         @phone = consultant.phones.create(@phone)
       end
 

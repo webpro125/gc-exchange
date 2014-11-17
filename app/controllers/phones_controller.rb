@@ -21,7 +21,11 @@ class PhonesController < ConsultantController
   end
 
   def destroy
-    @phone.destroy
+    if current_consultant.phones > 1
+      @phone.destroy
+    else
+      flash[:error] = t('controllers.phone.destroy.failure')
+    end
     redirect_to edit_profile_path
   end
 
