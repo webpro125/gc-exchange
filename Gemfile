@@ -26,6 +26,7 @@ gem 'virtus', '~> 1.0.3'
 gem 'select2-rails', '~> 3.5'
 gem 'jquery-ui-rails', '~> 5.0'
 gem 'migration_data', '~> 0.0.4'
+gem 'foundation-datetimepicker-rails', '~> 0.1.3'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
