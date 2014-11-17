@@ -20,6 +20,8 @@ en:
           email: 'E-mail to sign in.'
         edit:
           email: 'E-mail.'
+      address:
+        address: 'Home Address'
       phone:
         number: 'Phone Number'
         phone_type: 'Type'
@@ -27,8 +29,8 @@ en:
         primary: 'Primary'
       phones:
         number: 'Phone Number'
-        phone_type: 'Type'
-        phone_type_id: 'Type'
+        phone_type: 'Phone Type'
+        phone_type_id: 'Phone Type'
         primary: 'Primary'
       consultant:
         abstract: 'Background and Experience'
@@ -54,7 +56,9 @@ en:
         customer_name_id: 'Government Agency'
         client_poc_name: 'Reference Name'
         client_poc_email: 'Reference Email'
-        project_type: 'Area of Focus'
+        project_type: 'Functional Area of Focus'
+        project_type_id: 'Functional Area of Focus'
+        description: 'Description of Role Performed'
       background:
         citizen: 'Are you a citizen of the United States?'
         convicted: 'In the past seven (7) years have you been convicted or sentenced of a crime
