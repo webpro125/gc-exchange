@@ -1,10 +1,12 @@
 class Consultant < ActiveRecord::Base
   include Searchable
 
-  RESUME_MIME_TYPES = ['application/msword',
-                       'application/vnd.ms-word',
-                       'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
-                       'application/pdf']
+  RESUME_MIME_TYPES = ['application/msword', 'application/vnd.ms-word', 'application/pdf',
+                       'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document']
+  PROFILE_IMAGE_TYPES = ['image/jpg',
+                         'image/png',
+                         'image/jpeg']
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -22,7 +24,8 @@ class Consultant < ActiveRecord::Base
   after_commit :update_consultant_index, on: [:update]
   after_commit :destroy_consultant_index, on: [:destroy]
 
-  has_attached_file :resume
+  mount_uploader :resume, ResumeUploader, mount_on: :resume_file_name
+  mount_uploader :profile_image, ProfileImageUploader, mount_on: :profile_image_file_name
 
   has_one :address, dependent: :destroy
   has_one :military, dependent: :destroy
@@ -42,11 +45,15 @@ class Consultant < ActiveRecord::Base
   validates :educations, length: { maximum: 3 }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
-  validates_attachment :resume,
-                       content_type: { content_type: RESUME_MIME_TYPES },
-                       size: { less_than: 10.megabytes },
-                       file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
-                       if: -> { resume.present? }
+  # validates_attachment :profile_image,
+  #                      file_name: { matches: RegexConstants::ImageTypes::AS_IMAGES },
+  #                      content_type: { content_type: PROFILE_IMAGE_TYPES },
+  #                      if: -> { profile_image.present? }
+  # validates_attachment :resume,
+  #                      content_type: { content_type: RESUME_MIME_TYPES },
+  #                      size: { less_than: 10.megabytes },
+  #                      file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
+  #                      if: -> { resume.present? }
 
   def full_name
     "#{first_name} #{last_name}"
