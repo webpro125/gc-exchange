@@ -23,13 +23,6 @@ describe PagesController do
       sign_in FactoryGirl.create(:confirmed_consultant)
     end
 
-    describe 'GET "home"' do
-      it 'renders "consultant"' do
-        get :home
-        expect(response).to render_template :consultant
-      end
-    end
-
     describe 'GET "consultant"' do
       it 'renders "consultant"' do
         get :consultant
