@@ -447,7 +447,7 @@ $crumb-font-color: $primary-color;
 // $button-function-factor: -20%;
 
 // We use these to control button border and hover styles.
-// $button-border-width: 0px;
+$button-border-width: 1px;
 // $button-border-style: solid;
 $button-bg-color: $primary-color;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
@@ -460,7 +460,7 @@ $button-bg-color: $primary-color;
 // $alert-button-border-color: $alert-button-bg-hover;
 
 // We use this to set the default radius used throughout the core.
-$button-radius: $global-radius;
+$button-radius: 3px;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity and cursor for disabled buttons.

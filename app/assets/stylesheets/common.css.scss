@@ -10,6 +10,7 @@ table {
 	margin: 0 auto;
 	max-width: 95%;
 	width: 1040px;
+	padding-top: 2rem;
 }
 
 /*** TYPOGRAPHY ***/
@@ -69,6 +70,7 @@ h3 {
 }
 .select2-drop.select2-drop-above.select2-drop-active, .select2-dropdown-open.select2-drop-above .select2-choice {
 	border-color: $gces-blue;
+	background: $white;
 }
 .select2-results {
 	font-size: 14px;
