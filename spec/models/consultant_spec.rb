@@ -26,6 +26,7 @@ describe Consultant do
   end
 
   it { should be_valid }
+  it { should respond_to(:background) }
   it { should respond_to(:phones) }
   it { should respond_to(:educations) }
   it { should respond_to(:approved_status) }
@@ -69,6 +70,21 @@ describe Consultant do
 
         subject.destroy
         expect(Address.find_by_id(address)).to be_nil
+      end
+    end
+
+    describe 'background' do
+      before do
+        subject.save!
+        FactoryGirl.create(:background, consultant: subject)
+      end
+
+      it 'should be destroyed on delete' do
+        background = subject.background.id
+        expect(background).not_to be_nil
+
+        subject.destroy
+        expect(Background.find_by_id(background)).to be_nil
       end
     end
 

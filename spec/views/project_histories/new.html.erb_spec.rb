@@ -5,6 +5,7 @@ describe 'project_histories/new.html.erb' do
 
   before do
     assign(:project, project)
+    assign(:form, ProjectHistoryForm.new(project))
     render
   end
 

@@ -99,6 +99,10 @@
         self._buildAjax(opts);
       }
 
+      if(self.ele.data('maximumselectionsize')) {
+        opts.maximumSelectionSize = self.ele.data('maximumselectionsize');
+      }
+
       return opts;
     }
   });
