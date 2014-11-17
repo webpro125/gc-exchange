@@ -33,6 +33,9 @@ class Certification < ActiveRecord::Base
                                               label: 'Certified Professional Systems Engineer' }
   CERTIFIED_PROFESSIONAL_LOGISTICIAN      = { code: 'CERTIFIED_PROFESSIONAL_LOGISTICIAN',
                                               label: 'Certified Professional Logistician' }
+  ITIL                                    = { code: 'IT_INFRASTRUCTURE_LIBRARY',
+                                              label: 'Information Technology Infrastructure
+Library (ITIL)' }
   CERTIFICATION_TYPES = [SIX_SIGMA, PROFESSIONAL_ENGINEER_CIVIL,
                          PROFESSIONAL_ENGINEER_MECHANICAL, PROFESSIONAL_ENGINEER_ELECTRICAL,
                          PROFESSIONAL_ENGINEER_SYSTEMS, PMI_SCHEDULING_PROFESSIONAL,
@@ -41,5 +44,5 @@ class Certification < ActiveRecord::Base
                          KNOWLEDGE_MANAGER_PROFESSIONAL, EMERGENCY_MANAGEMENT_PROFESSIONAL,
                          CERTIFIED_ETHICAL_HACKER, INFORMATION_SYSTEMS_AUDITOR, LAWYER,
                          CERTIFIED_PROFESSIONAL_SYSTEMS_ENGINEER,
-                         CERTIFIED_PROFESSIONAL_LOGISTICIAN].freeze
+                         CERTIFIED_PROFESSIONAL_LOGISTICIAN, ITIL].freeze
 end
