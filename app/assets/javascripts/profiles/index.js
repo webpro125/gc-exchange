@@ -2,18 +2,34 @@
   'use strict';
 
   function toggleClearance(toggle) {
-    if(toggle) {
+    if(toggle.toLowerCase() === 'true') {
       $('#security').show();
     }else{
       $('#security').hide();
     }
   }
 
+  function toggleMilitary(toggle) {
+    if(toggle.toLowerCase() === 'true') {
+      $('#military').show();
+    }else{
+      $('#military').hide();
+    }
+  }
+
   $(document).ready(function(){
-    $('#consultant_military_attributes_clearance_active').on('click', function(){
-      toggleClearance($(this).is(':checked'));
+    var clearance = $('#consultant_military_attributes_clearance_active');
+    var military = $('#consultant_military_attributes_military');
+
+    clearance.on('change', function(){
+      toggleClearance($(this).val());
     });
 
-    toggleClearance($(this).is(':checked'));
+    military.on('change', function(){
+      toggleMilitary($(this).val());
+    });
+
+    toggleClearance(clearance.val());
+    toggleMilitary(military.val());
   });
 })();

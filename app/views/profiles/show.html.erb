@@ -65,7 +65,7 @@
     <div class="row">
       <div class="small-12 columns">
         <h3><%= t('views.profile.headers.education') %></h3>
-        TODO eduction form
+        <%= render @consultant.educations %>
       </div>
     </div>
     <div class="row">
@@ -103,21 +103,22 @@
                 </div>
             <% end %>
 
-            <h3><%= t('views.profile.headers.military') %></h3>
-            <div id="military">
-              <% if @consultant.military.branch %>
-                  <%= t('simple_form.labels.military.branch') %>:
-                  <%= @consultant.military.branch.label %>
-              <% end %>
-              <% if @consultant.military.rank %>
-                  <%= t('simple_form.labels.military.rank') %>:
-                  <%= @consultant.military.rank.label %>
-              <% end %>
-              <% if @consultant.military.service_start_date %>
-                  <%= t('activerecord.models.attributes.military.date') %>:
-                  <%=  @consultant.military.service_start_date.to_s(:month_and_year) %> -
-                  <%= @consultant.military.service_end_date.to_s(:month_and_year) %>
-              <% end %>
+            <% if @consultant.military.military? %>
+                <h3><%= t('views.profile.headers.military') %></h3>
+                <div id="military">
+                  <% if @consultant.military.branch %>
+                      <%= t('simple_form.labels.military.branch') %>:
+                      <%= @consultant.military.branch.label %>
+                  <% end %>
+                  <% if @consultant.military.rank %>
+                      <%= t('simple_form.labels.military.rank') %>:
+                      <%= @consultant.military.rank.label %>
+                  <% end %>
+                  <% if @consultant.military.service_start_date %>
+                      <%= t('activerecord.models.attributes.military.date') %>:
+                      <%=  @consultant.military.service_start_date.to_s(:month_and_year) %> -
+                      <%= @consultant.military.service_end_date.to_s(:month_and_year) %>
+                  <% end %>
         <% end %>
         </div>
       </div>

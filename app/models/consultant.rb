@@ -29,6 +29,7 @@ class Consultant < ActiveRecord::Base
 
   has_one :address, dependent: :destroy
   has_one :military, dependent: :destroy
+  has_one :background, dependent: :destroy
   belongs_to :approved_status
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
@@ -37,6 +38,8 @@ class Consultant < ActiveRecord::Base
   has_many :consultant_certifications, dependent: :destroy
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
+
+  accepts_nested_attributes_for :educations
 
   validate :phone_length
   validates :educations, length: { maximum: 3 }
