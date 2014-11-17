@@ -15,12 +15,20 @@ describe ProfilesController do
       get('/profile/edit').should route_to('profiles#edit')
     end
 
+    it 'routes to #upload' do
+      get('/profile/upload').should route_to('profiles#upload')
+    end
+
     it 'routes to #create' do
       post('/profile').should_not route_to('profiles#create')
     end
 
     it 'routes to #update' do
       put('/profile').should route_to('profiles#update')
+    end
+
+    it 'routes to #upload' do
+      put('/profile/upload').should route_to('profiles#upload')
     end
 
     it 'routes to #destroy' do

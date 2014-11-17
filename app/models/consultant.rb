@@ -1,10 +1,12 @@
 class Consultant < ActiveRecord::Base
   include Searchable
 
-  RESUME_MIME_TYPES = ['application/msword',
-                       'application/vnd.ms-word',
-                       'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
-                       'application/pdf']
+  RESUME_MIME_TYPES = ['application/msword', 'application/vnd.ms-word', 'application/pdf',
+                       'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document']
+  PROFILE_IMAGE_TYPES = ['image/jpg',
+                         'image/png',
+                         'image/jpeg']
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -23,6 +25,12 @@ class Consultant < ActiveRecord::Base
   after_commit :destroy_consultant_index, on: [:destroy]
 
   has_attached_file :resume
+  has_attached_file :profile_image,
+                    path: 'profile_images/:class/:attachment/:id/:style_profile_image.:extension',
+                    default_url: '/assets/images/default_profile.png',
+                    default_style: :medium,
+                    styles: { thumb: '80x80>',
+                              medium: '200x200>' }
 
   has_one :address, dependent: :destroy
   has_one :military, dependent: :destroy
@@ -39,6 +47,10 @@ class Consultant < ActiveRecord::Base
   validates :educations, length: { maximum: 3 }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
+  validates_attachment :profile_image,
+                       file_name: { matches: RegexConstants::ImageTypes::AS_IMAGES },
+                       content_type: { content_type: PROFILE_IMAGE_TYPES },
+                       if: -> { profile_image.present? }
   validates_attachment :resume,
                        content_type: { content_type: RESUME_MIME_TYPES },
                        size: { less_than: 10.megabytes },

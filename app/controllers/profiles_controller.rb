@@ -19,6 +19,20 @@ class ProfilesController < ConsultantController
     @form = EditConsultantForm.new(current_consultant)
   end
 
+  def upload_image
+    @form = UploadImageConsultantForm.new(current_consultant)
+
+    if @form.validate(consultant_params) && @form.save
+      redirect_to consultant_root_path
+    else
+      render :upload
+    end
+  end
+
+  def upload
+    @form = UploadImageConsultantForm.new(current_consultant)
+  end
+
   private
 
   def load_and_authorize_consultant

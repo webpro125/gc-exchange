@@ -10,8 +10,16 @@ describe Consultant do
     ]
   end
 
+  let(:image_types) do
+    [
+      'image/jpg',
+      'image/png',
+      'image/gif'
+    ]
+  end
+
   let(:reject) do
-    ['text/plain', 'text/xml']
+    ['text/plain', 'text/xml', 'image/tiff']
   end
 
   subject do
@@ -42,8 +50,21 @@ describe Consultant do
     it { should have_attached_file(:resume) }
     it { should validate_attachment_size(:resume).less_than(10.megabytes) }
     it { should validate_attachment_content_type(:resume).allowing(mime_types).rejecting(reject) }
-
     it { should_not validate_attachment_presence(:resume) }
+  end
+
+  describe 'profile_image' do
+    before do
+      subject.profile_image = File.new(Rails.root + 'app/assets/images/default_profile.png')
+    end
+
+    it { should have_attached_file(:profile_image) }
+    it { should_not validate_attachment_presence(:profile_image) }
+
+    it do
+      expect(subject).to validate_attachment_content_type(:profile_image)
+        .allowing(image_types).rejecting(reject)
+    end
   end
 
   describe 'full_name' do

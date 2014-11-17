@@ -12,7 +12,6 @@ class EditConsultantForm < Reform::Form
   property :certification_ids
   property :abstract
   property :willing_to_travel
-
   validates :willing_to_travel, presence: true
   validates :rate, numericality: { greater_than: 0 }, presence: true
   validates :abstract, length: { maximum: 1500 }

@@ -6,7 +6,7 @@
         <div class="row">
           <div class="small-4 columns">
             <%= link_to root_path do %>
-                <%= image_tag('fav.ico', class: 'th') %>
+                <div ><%= image_tag(current_consultant.profile_image.url(:medium))%></div>
                 <div class="button small"><%= t('views.profile.actions.upload_photo') %></div>
             <% end %>
           </div>
