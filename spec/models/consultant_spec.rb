@@ -27,6 +27,7 @@ describe Consultant do
 
   it { should be_valid }
   it { should respond_to(:phones) }
+  it { should respond_to(:educations) }
   it { should respond_to(:approved_status) }
   it { should respond_to(:approved?) }
   it { should respond_to(:rejected?) }
@@ -166,6 +167,28 @@ describe Consultant do
         consultant_certifications.each do |consultant_certification|
           expect(ConsultantCertification.find_by_id(consultant_certification)).to be_nil
         end
+      end
+    end
+
+    describe 'educations' do
+      before do
+        subject.educations << FactoryGirl.create(:education)
+        subject.save!
+      end
+
+      it 'should destroy them on delete' do
+        educations = subject.educations.map(&:id)
+        expect(educations).not_to be_nil
+
+        subject.destroy
+        educations.each do |education|
+          expect(Education.find_by_id(education)).to be_nil
+        end
+      end
+
+      it 'should not allow more than 3' do
+        subject.educations << FactoryGirl.build_list(:education, 4)
+        expect(subject).not_to be_valid
       end
     end
 

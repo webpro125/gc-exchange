@@ -74,3 +74,9 @@ Certification::CERTIFICATION_TYPES.each do |type|
     t.label = type[:label]
   end
 end
+
+Degree::DEGREE_TYPES.each do |type|
+  Degree.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
+end
