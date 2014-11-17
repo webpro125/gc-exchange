@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UploadImageConsultantForm do
+describe UploadImageForm do
   let(:image_types) do
     [
       'image/jpg',
@@ -24,8 +24,7 @@ describe UploadImageConsultantForm do
     )
   end
 
-  let(:form) { UploadImageConsultantForm.new(consultant) }
-  subject { form }
+  subject { UploadImageForm.new(consultant) }
 
   it { should be_valid }
 
@@ -35,14 +34,7 @@ describe UploadImageConsultantForm do
         subject.profile_image = File.new(Rails.root + 'app/assets/images/default_profile.png')
       end
 
-      it { should have_attached_file(:profile_image) }
-      it { should validate_attachment_size(:profile_image).less_than(1.megabytes) }
-      it { should_not validate_attachment_presence(:profile_image) }
-
-      it do
-        expect(subject).to(
-          validate_attachment_content_type(:profile_image).allowing(image_types).rejecting(reject))
-      end
+      it { should respond_to(:profile_image) }
     end
   end
 end

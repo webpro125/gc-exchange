@@ -27,8 +27,9 @@ describe ProfilesController do
       put('/profile').should route_to('profiles#update')
     end
 
-    it 'routes to #upload' do
-      put('/profile/upload').should route_to('profiles#upload')
+    it 'routes to #upload_image' do
+      put('/profile/upload_image').should route_to('profiles#upload_image')
+      patch('/profile/upload_image').should route_to('profiles#upload_image')
     end
 
     it 'routes to #destroy' do

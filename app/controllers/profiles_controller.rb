@@ -20,7 +20,7 @@ class ProfilesController < ConsultantController
   end
 
   def upload_image
-    @form = UploadImageConsultantForm.new(current_consultant)
+    @form = UploadImageForm.new(current_consultant)
 
     if @form.validate(consultant_params) && @form.save
       redirect_to consultant_root_path
@@ -30,7 +30,7 @@ class ProfilesController < ConsultantController
   end
 
   def upload
-    @form = UploadImageConsultantForm.new(current_consultant)
+    @form = UploadImageForm.new(current_consultant)
   end
 
   private

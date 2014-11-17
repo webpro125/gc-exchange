@@ -47,10 +47,7 @@ describe Consultant do
       subject.resume = File.new(Rails.root + 'spec/files/a_pdf.pdf')
     end
 
-    it { should have_attached_file(:resume) }
-    it { should validate_attachment_size(:resume).less_than(10.megabytes) }
-    it { should validate_attachment_content_type(:resume).allowing(mime_types).rejecting(reject) }
-    it { should_not validate_attachment_presence(:resume) }
+    it { should respond_to(:resume) }
   end
 
   describe 'profile_image' do
@@ -58,13 +55,7 @@ describe Consultant do
       subject.profile_image = File.new(Rails.root + 'app/assets/images/default_profile.png')
     end
 
-    it { should have_attached_file(:profile_image) }
-    it { should_not validate_attachment_presence(:profile_image) }
-
-    it do
-      expect(subject).to validate_attachment_content_type(:profile_image)
-        .allowing(image_types).rejecting(reject)
-    end
+    it { should respond_to(:profile_image) }
   end
 
   describe 'full_name' do

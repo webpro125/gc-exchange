@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113220320) do
+ActiveRecord::Schema.define(version: 20141117132919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 20141113220320) do
   end
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
+
+  create_table "backgrounds", force: true do |t|
+    t.integer  "consultant_id"
+    t.boolean  "citizen",              null: false
+    t.boolean  "convicted",            null: false
+    t.boolean  "parole",               null: false
+    t.boolean  "illegal_drug_use",     null: false
+    t.boolean  "illegal_purchase",     null: false
+    t.boolean  "illegal_prescription", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "backgrounds", ["consultant_id"], name: "index_backgrounds_on_consultant_id", using: :btree
 
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10,  null: false
@@ -109,8 +123,9 @@ ActiveRecord::Schema.define(version: 20141113220320) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                            default: 1,    null: false
     t.decimal  "rate",                                  precision: 8, scale: 2
-    t.text     "abstract"
     t.boolean  "willing_to_travel",                                             default: true
+    t.text     "abstract"
+    t.string   "wizard_step"
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
@@ -161,6 +176,7 @@ ActiveRecord::Schema.define(version: 20141113220320) do
     t.datetime "updated_at"
     t.boolean  "clearance_active",          default: false, null: false
     t.integer  "branch_id"
+    t.boolean  "military",                  default: false
   end
 
   add_index "militaries", ["branch_id"], name: "index_militaries_on_branch_id", using: :btree
