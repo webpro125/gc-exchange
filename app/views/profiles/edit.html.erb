@@ -8,7 +8,7 @@
             <%= link_to root_path do %>
                 <%= image_tag(current_consultant.profile_image.url, class: 'th') %>
                 <%= link_to t('views.profile.actions.upload_photo'),
-                            upload_image_profile_path,
+                            upload_profile_path,
                             class: 'button small' %>
             <% end %>
           </div>
