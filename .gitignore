@@ -25,6 +25,8 @@ spec/results
 /target/
 
 /public/uploads
+/public/images
+/public/consultants
 /public/test/
 
 # Ignore vendor/bin
