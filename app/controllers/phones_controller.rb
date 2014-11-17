@@ -21,7 +21,7 @@ class PhonesController < ConsultantController
   end
 
   def destroy
-    if current_consultant.phones > 1
+    if current_consultant.phones.size > 1
       @phone.destroy
     else
       flash[:error] = t('controllers.phone.destroy.failure')
