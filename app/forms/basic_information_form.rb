@@ -1,11 +1,11 @@
 class BasicInformationForm < Reform::Form
-  include Reform::Form::ModelReflections
+  include Reform::Form::ModelReflections, ProfileImage, Resume
 
   model :consultant
 
   property :abstract
 
-  validates :abstract, presence: true, length: { in: 2..1500 }
+  # validates :abstract, presence: true, length: { in: 2..1500 }
 
   def self.reflect_on_association(association)
     Consultant.reflect_on_association(association)
