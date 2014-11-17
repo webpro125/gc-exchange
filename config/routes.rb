@@ -23,7 +23,13 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # Resources
-  resource :profile, only: [:edit, :update, :show]
+  resource :profile, only: [:edit, :update, :show] do
+    collection do
+      patch :upload_image
+      put :upload_image
+      get :upload
+    end
+  end
   resource :search, only: [:new, :create] do
     collection do
       get :skills
