@@ -39,17 +39,9 @@ describe CreateProfileController do
         end
 
         describe do
-          before do
-            allow_any_instance_of(Reform::Form).to receive(:validate) { true }
-            put :update, valid_attributes
-          end
-
           it 'assigns @form' do
-            if m == :project_history
-              expect(true).to eq true
-            else
-              expect(assigns(:form)).to be_a_kind_of Reform::Form
-            end
+            expect_any_instance_of(Reform::Form).to receive(:validate) { true }
+            put :update, valid_attributes
           end
         end
       end
