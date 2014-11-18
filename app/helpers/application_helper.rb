@@ -57,6 +57,6 @@ module ApplicationHelper
   end
 
   def create_profile_helper(wizard_step)
-   wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
+    wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
   end
 end
