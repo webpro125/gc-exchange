@@ -3,8 +3,9 @@ class PagesController < ApplicationController
   before_action :authenticate_user!, only: :user
 
   def home
-  	@sales_lead = SalesLead.new
-  	@consultant = Consultant.new
+    @sales_lead = SalesLead.new
+    @consultant = Consultant.new
+
     render layout: 'landing_page'
   end
 
