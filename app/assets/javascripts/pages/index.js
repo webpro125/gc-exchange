@@ -5,6 +5,7 @@ window.onresize = function(event) {
 resizeDiv();
 }
 
+// Scrolling to anchor links
 $(function() {
   $('a[href*=#]:not([href=#])').click(function() {
 
