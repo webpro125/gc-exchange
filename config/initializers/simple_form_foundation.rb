@@ -15,7 +15,7 @@ SimpleForm.setup do |config|
       # Uncomment the following line to enable hints.
       # The line is commented out by default since Foundation does't provide styles for hints. You
       # will need to provide your own CSS styles for hints.
-      ba.use :hint,  wrap_with: { tag: :div, class: [:hint] }
+      ba.use :hint,  wrap_with: { tag: :small, class: [:hint] }
     end
   end
 

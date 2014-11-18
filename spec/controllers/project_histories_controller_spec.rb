@@ -12,32 +12,12 @@ describe ProjectHistoriesController do
     FactoryGirl.attributes_for(:project_history,
                                consultant: consultant,
                                project_type_id: project_type.id,
-                               project_history_positions_attributes: [project_history_positions])
+                               position_ids: [position.id])
   end
 
   describe 'when logged in' do
     before do
       sign_in consultant
-    end
-
-    describe "GET 'index'" do
-      let!(:projects) { FactoryGirl.create_list(:project_history, 4, consultant: consultant) }
-
-      it 'returns http success' do
-        get :index
-        expect(response).to be_success
-      end
-
-      it 'assigns projects' do
-        get :index
-        expect(assigns(:projects)).to match_array(projects)
-      end
-
-      it 'does not include other consultants project_history' do
-        unfound_projects = FactoryGirl.create_list(:project_history, 2)
-        get :index
-        expect(assigns(:projects)).not_to match_array(unfound_projects)
-      end
     end
 
     describe "GET 'new'" do
@@ -46,9 +26,9 @@ describe ProjectHistoriesController do
         expect(response).to render_template :new
       end
 
-      it 'assigns project' do
+      it 'assigns form' do
         get :new
-        expect(assigns(:project)).to be_a_new(ProjectHistory)
+        expect(assigns(:form)).to be_a(ProjectHistoryForm)
       end
     end
 
@@ -73,7 +53,7 @@ describe ProjectHistoriesController do
 
       describe 'with invalid paramaters' do
         before do
-          allow_any_instance_of(ProjectHistory).to receive(:save) { false }
+          allow_any_instance_of(ProjectHistoryForm).to receive(:validate) { false }
         end
 
         it 'renders "new"' do
@@ -85,31 +65,6 @@ describe ProjectHistoriesController do
           expect do
             post :create, project_history: valid_attributes
           end.not_to change { ProjectHistory.count }
-        end
-      end
-    end
-
-    describe "GET 'show'" do
-      describe 'with consultants project_history' do
-        let!(:project_history) { consultant.project_histories.create!(valid_attributes) }
-
-        it 'renders #show' do
-          get :show, id: project_history.id
-          expect(response).to render_template :show
-        end
-
-        it 'assigns project' do
-          get :show, id: project_history.id
-          expect(assigns(:project)).to eq(project_history)
-        end
-      end
-
-      describe 'with different users project_history' do
-        let!(:project_history) { FactoryGirl.create(:project_history) }
-
-        it 'raises ActiveRecord::RecordNotFound' do
-          expect { get :show, id: project_history.id }.to raise_exception
-          ActiveRecord::RecordNotFound
         end
       end
     end
@@ -148,7 +103,7 @@ describe ProjectHistoriesController do
         end
 
         it 'persists the record' do
-          ProjectHistory.any_instance.should_receive(:update).and_return(true)
+          ProjectHistoryForm.any_instance.should_receive(:save)
           put :update, project_history: project_history.attributes, id: project_history.id
         end
 
@@ -167,7 +122,7 @@ describe ProjectHistoriesController do
         end
 
         it 'does not persist the record' do
-          ProjectHistory.any_instance.should_receive(:update).and_return(false)
+          ProjectHistoryForm.any_instance.should_receive(:validate).and_return(false)
           put :update, project_history: { client_company: nil }, id: project_history.id
         end
       end
@@ -211,13 +166,13 @@ describe ProjectHistoriesController do
     end
 
     it 'should redirect to login for "GET" requests' do
-      [:index, :new].each do |method|
+      [:new].each do |method|
         get method
         expect(response).to redirect_to(new_consultant_session_path)
       end
 
       project_history = FactoryGirl.create(:project_history)
-      [:show, :edit].each do |method|
+      [:edit].each do |method|
         get method, id: project_history.id
         expect(response).to redirect_to(new_consultant_session_path)
       end

@@ -1,9 +1,9 @@
 class PhoneType < ActiveRecord::Base
   include Lookup
 
-  HOME = { code: 'HOME', label: 'Home Phone' }
-  WORK = { code: 'WORK', label: 'Work Phone' }
-  CELL = { code: 'CELL', label: 'Cell Phone' }
+  HOME = { code: 'HOME', label: 'Home' }
+  WORK = { code: 'WORK', label: 'Work' }
+  CELL = { code: 'CELL', label: 'Cell' }
 
   PHONE_TYPES = [HOME, WORK, CELL].freeze
 end
