@@ -21,11 +21,11 @@
           <div class="large-7 columns clearance-hidden">
             <div class="row">
               <div class="large-6 columns">
-                <%= m.input :investigation_date %>
+                <%= m.input :investigation_date, date_options %>
 
               </div>
               <div class="large-6 columns">
-                <%= m.input :clearance_expiration_date %>
+                <%= m.input :clearance_expiration_date, date_options %>
               </div>
             </div>
           </div>
@@ -46,10 +46,10 @@
           <div class="large-5 columns military-hidden">
             <div class="row">
               <div class="large-6 columns">
-                <%= m.input :service_start_date %>
+                <%= m.input :service_start_date, date_options %>
               </div>
               <div class="large-6 columns">
-                <%= m.input :service_end_date %>
+                <%= m.input :service_end_date, date_options %>
               </div>
             </div>
           </div>

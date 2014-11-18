@@ -51,4 +51,8 @@ module ApplicationHelper
   def date_in_words(start_date, end_date = nil)
     distance_of_time_in_words(start_date, end_date || DateTime.now)
   end
+
+  def date_options
+    { format: :month_and_year, as: :date }
+  end
 end
