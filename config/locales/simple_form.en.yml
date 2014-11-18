@@ -81,7 +81,6 @@ en:
         information.'
     hints:
       consultant:
-        first_name: 'Here is a hint'
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
