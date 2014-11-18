@@ -5,16 +5,7 @@
       </div>
     </div>
 
-  <div class="form-inputs">
-    <%= f.association :customer_name, build_simple_form_dropdown(CustomerName) %>
-    <%= f.association :project_type, build_simple_form_dropdown(ProjectType) %>
-    <%= f.input :client_company %>
-    <%= f.input :client_poc_name %>
-    <%= f.input :client_poc_email %>
-    <%= f.input :start_date, as: :date  %>
-    <%= f.input :end_date, as: :date  %>
-    <%= f.input :description %>
-  </div>
+    <%= render 'project_history_fields', f: f %>
 
     <div class="row">
       <div class="large-12 columns">
