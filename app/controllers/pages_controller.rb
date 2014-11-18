@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   def home
     @sales_lead = SalesLead.new
     @consultant = Consultant.new
+
     render layout: 'landing_page'
   end
 

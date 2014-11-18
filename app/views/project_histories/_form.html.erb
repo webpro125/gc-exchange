@@ -1,5 +1,9 @@
-<%= simple_form_for(@project) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(@form) do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.error_notification %>
+      </div>
+    </div>
 
   <div class="form-inputs">
     <%= f.association :customer_name, build_simple_form_dropdown(CustomerName) %>
@@ -12,11 +16,9 @@
     <%= f.input :description %>
   </div>
 
-  <div class="form-actions">
     <div class="row">
-      <div class="small-8 small-centered columns">
+      <div class="large-12 columns">
         <%= f.button :submit %>
       </div>
     </div>
-  </div>
 <% end %>

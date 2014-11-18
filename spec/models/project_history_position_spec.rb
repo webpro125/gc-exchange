@@ -17,13 +17,6 @@ describe ProjectHistoryPosition do
   it { should respond_to(:position) }
   it { should respond_to(:percentage) }
 
-  describe 'percentage' do
-    it { should validate_presence_of :percentage }
-    it do
-      should validate_numericality_of(:percentage).is_less_than_or_equal_to(100).is_greater_than(0)
-    end
-  end
-
   describe 'associations' do
     describe 'position' do
       it { should validate_presence_of :position }

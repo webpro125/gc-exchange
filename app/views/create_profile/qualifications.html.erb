@@ -1,0 +1,23 @@
+<%= render 'header' %>
+
+<%= simple_form_for @form, url: create_profile_path(:qualifications), method: :put do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.error_notification %>
+      </div>
+    </div>
+    <%= f.simple_fields_for :educations do |e| %>
+        <%= render 'educations/education_fields', f: e %>
+    <% end %>
+    <div class="row">
+      <div class="large-8 columns">
+        <%= render 'profiles/certifications', f: f %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-8 columns">
+        <%= render 'profiles/skills', f: f %>
+      </div>
+    </div>
+    <%= render 'footer', f: f %>
+<% end %>

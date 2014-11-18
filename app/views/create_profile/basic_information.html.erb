@@ -1,0 +1,25 @@
+<%= render 'header' %>
+
+<%= simple_form_for @form, url: create_profile_path(:basic_information), method: :put do |f| %>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.error_notification %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-10 columns">
+        <%= f.input :resume, as: :file %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-10 columns">
+        <%= f.input :abstract, as: :text %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-10 columns">
+        <%= f.input :profile_image, as: :file %>
+      </div>
+    </div>
+    <%= render 'footer',f: f %>
+<% end %>
