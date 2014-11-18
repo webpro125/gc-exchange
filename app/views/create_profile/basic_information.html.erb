@@ -6,22 +6,20 @@
         <%= f.error_notification %>
       </div>
     </div>
-    <%= f.simple_fields_for :consultant do |b| %>
-        <div class="row">
-          <div class="large-10 columns">
-            <%= b.input :resume, as: :file %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-10 columns">
-            <%= b.input :abstract, as: :text %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-10 columns">
-            <%= b.input :profile_image, as: :file %>
-          </div>
-        </div>
-    <% end %>
+    <div class="row">
+      <div class="large-10 columns">
+        <%= f.input :resume, as: :file %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-10 columns">
+        <%= f.input :abstract, as: :text %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-10 columns">
+        <%= f.input :profile_image, as: :file %>
+      </div>
+    </div>
     <%= render 'footer',f: f %>
 <% end %>

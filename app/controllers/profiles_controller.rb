@@ -29,17 +29,30 @@ class ProfilesController < ConsultantController
     end
   end
 
+  def upload_resume
+    @form = UploadResumeForm.new(current_consultant)
+
+    byebug
+    if @form.validate(consultant_params) && @form.save
+      redirect_to consultant_root_path
+    else
+      render :resume
+    end
+  end
+
   def upload
     @form = UploadImageForm.new(current_consultant)
+  end
+
+  def resume
+    @form = UploadResumeForm.new(current_consultant)
   end
 
   private
 
   def load_and_authorize_consultant
     authorize current_consultant
-    current_consultant.build_address unless current_consultant.address.present?
     current_consultant.build_military unless current_consultant.military.present?
-    current_consultant.phones.build unless current_consultant.phones.size > 0
   end
 
   def consultant_params

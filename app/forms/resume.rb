@@ -1,8 +1,9 @@
 module Resume
   include Reform::Form::Module
 
-  RESUME_MIME_TYPES = ['application/msword', 'application/vnd.ms-word', 'application/pdf',
-                       'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document']
+  RESUME_MIME_TYPES = ['application/pdf',
+                       'application/msword',
+                       'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
 
   property :resume
 

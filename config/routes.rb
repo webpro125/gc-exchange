@@ -25,9 +25,13 @@ Rails.application.routes.draw do
   # Resources
   resource :profile, only: [:edit, :update, :show] do
     collection do
-      patch :upload_image
-      put :upload_image
       get :upload
+      put :upload_image
+      patch :upload_image
+
+      get :resume
+      put :upload_resume
+      patch :upload_resume
     end
   end
   resource :search, only: [:new, :create] do

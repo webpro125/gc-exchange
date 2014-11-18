@@ -1,3 +1,5 @@
+require 'reform/form/coercion'
+
 module OtherInformation
   include Reform::Form::Module
 

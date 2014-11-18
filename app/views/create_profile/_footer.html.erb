@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 columns">
-    <% unless wizard_path == create_profile_path(Wicked::FIRST_STEP) %>
+    <% unless wizard_path == create_profile_path(:basic_information) %>
         <%= link_to t('views.wizard.actions.previous'),
                     previous_wizard_path,
                     class: 'button secondary small' %>
