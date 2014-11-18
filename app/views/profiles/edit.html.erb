@@ -91,8 +91,8 @@
                   <%= m.input :clearance_level_id,
                               build_simple_form_dropdown(ClearanceLevel,
                                                          collection: ClearanceLevel.all)%>
-                  <%= m.input :investigation_date, format: :month_and_year %>
-                  <%= m.input :clearance_expiration_date, format: :month_and_year %>
+                  <%= m.input :investigation_date.to_s, format: :month_and_year, as: :date  %>
+                  <%= m.input :clearance_expiration_date.to_s, format: :month_and_year, as: :date  %>
 
                 </div>
 
@@ -102,8 +102,8 @@
                                                                    collection: Rank.all)%>
                   <%= m.input :branch_id, build_simple_form_dropdown(Branch,
                                                                      collection: Branch.all)%>
-                  <%= m.input :service_start_date, format: :month_and_year %>
-                  <%= m.input :service_end_date, format: :month_and_year %>
+                  <%= m.input :service_start_date.to_s, format: :month_and_year, as: :date  %>
+                  <%= m.input :service_end_date.to_s, format: :month_and_year, as: :date  %>
                 </div>
             <% end %>
           </div>
