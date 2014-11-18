@@ -22,7 +22,6 @@ module RegexConstants
   end
 
   module ImageTypes
-    # AS_IMAGES = %r{/\Aimage\/.*\Z/}
     AS_IMAGES = %r{/\Ajpg\/.*\Z/, /\Ajpeg\/.*\Z/, /\Apng\/.*\Z/}
   end
 end
