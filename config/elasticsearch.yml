@@ -16,8 +16,12 @@ production:
   <<: *default_settings
   log: false
   host: <%= ENV['ELASTICSEARCH_HOST'] %>
+  user: <%= ENV['ELASTICSEARCH_USER'] %>
+  password: <%= ENV['ELASTICSEARCH_PASSWORD'] %>
 
 staging:
   <<: *default_settings
   log: false
   host: <%= ENV['ELASTICSEARCH_HOST'] %>
+  user: <%= ENV['ELASTICSEARCH_USER'] %>
+  password: <%= ENV['ELASTICSEARCH_PASSWORD'] %>
