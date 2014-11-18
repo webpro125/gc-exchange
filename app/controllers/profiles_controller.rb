@@ -32,7 +32,6 @@ class ProfilesController < ConsultantController
   def upload_resume
     @form = UploadResumeForm.new(current_consultant)
 
-    byebug
     if @form.validate(consultant_params) && @form.save
       redirect_to consultant_root_path
     else

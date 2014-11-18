@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UploadImageForm do
+  it_behaves_like 'upload_image'
+
   let(:image_types) do
     [
       'image/jpg',
@@ -20,7 +22,8 @@ describe UploadImageForm do
       rate: 100,
       address: FactoryGirl.build(:address),
       military: FactoryGirl.build(:military),
-      phones: FactoryGirl.build_list(:phone, 2)
+      phones: FactoryGirl.build_list(:phone, 2),
+      profile_image: File.new(Rails.root + 'spec/fixtures/default_profile.png')
     )
   end
 
@@ -28,13 +31,5 @@ describe UploadImageForm do
 
   it { should be_valid }
 
-  describe 'consultant' do
-    describe 'profile_image' do
-      before do
-        subject.profile_image = File.new(Rails.root + 'app/assets/images/default_profile.png')
-      end
-
-      it { should respond_to(:profile_image) }
-    end
-  end
+  it { should validate_presence_of(:profile_image) }
 end

@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe BasicInformationForm do
-  # it_behaves_like 'basic_information'
+  it_behaves_like 'basic_information'
+  it_behaves_like 'upload_image'
+  it_behaves_like 'upload_resume'
 
   let(:consultant) do
     Consultant.new(
@@ -14,7 +16,9 @@ describe BasicInformationForm do
       military: FactoryGirl.build(:military),
       address: FactoryGirl.build(:address),
       phones: FactoryGirl.build_list(:phone, 2),
-      abstract: Faker::Lorem.characters(150)
+      abstract: Faker::Lorem.characters(150),
+      profile_image: File.new(Rails.root + 'spec/fixtures/default_profile.png'),
+      resume: File.new(Rails.root + 'spec/files/a_pdf.pdf')
     )
   end
 
@@ -22,10 +26,5 @@ describe BasicInformationForm do
 
   it { should be_valid }
 
-  # describe 'consultant' do
-  #   describe 'abstract' do
-  #     it { should ensure_length_of(:abstract).is_at_least(2).is_at_most(1500) }
-  #     it { should validate_presence_of(:abstract) }
-  #   end
-  # end
+  it { should_not validate_presence_of(:profile_image) }
 end
