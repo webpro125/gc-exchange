@@ -25,6 +25,9 @@ en:
       attributes:
         military:
           date: 'Date Active'
+        phone:
+          number: 'Phone Number'
+          phone_type_id: ''
     errors:
       messages:
         regex:
@@ -84,11 +87,25 @@ en:
       create:
         success: 'Phone created successfully.'
   views:
+    wizard:
+      actions:
+        previous: '< Previous'
+        finish: 'Finish >'
+        save_and_next: 'Save & Continue >'
+        save_and_new: 'Save & New >'
+      header:
+        basic: '1. Basic Information'
+        qualifications: '2. Qualifications'
+        other_info: '3. Other Information'
+        background_information: '4. Background Information'
+        project_history: '5. Project History'
     profile:
       actions:
         upload_photo: 'Upload Profile Photo'
         new_phone: '+ Add Phone'
+        new_education: '+ Add Another Degree'
         save: 'Save'
+        remove_education: 'X'
         download_resume: 'Download Resume >>'
       headers:
         contact: 'Contact Information'
@@ -97,11 +114,16 @@ en:
         expertise: 'Expertise'
         clearance: 'Security Clearance'
         military: 'Military Status'
+    education:
+      new:
+        save: 'Save'
     phone:
       confirmations:
         delete: 'Are you sure you want to delete this phone?'
       new:
         save: 'Save'
+      destroy:
+        failure: 'You must have one phone number available'
     password:
       actions:
         change_password: 'Change Password'

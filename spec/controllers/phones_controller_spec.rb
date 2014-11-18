@@ -59,6 +59,7 @@ describe PhonesController do
 
     describe 'DELETE "destroy"' do
       before do
+        consultant.phones.create(@phone)
         @phone = consultant.phones.create(@phone)
       end
 
@@ -74,7 +75,7 @@ describe PhonesController do
 
       describe 'with valid params' do
         it 'deletes the phone' do
-          expect { delete :destroy, id: @phone.id }.to change { Phone.count }.from(1).to(0)
+          expect { delete :destroy, id: @phone.id }.to change { Phone.count }.from(2).to(1)
         end
       end
     end

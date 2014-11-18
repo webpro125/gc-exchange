@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112020937) do
+ActiveRecord::Schema.define(version: 20141117132919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 20141112020937) do
   end
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
+
+  create_table "backgrounds", force: true do |t|
+    t.integer  "consultant_id"
+    t.boolean  "citizen",              null: false
+    t.boolean  "convicted",            null: false
+    t.boolean  "parole",               null: false
+    t.boolean  "illegal_drug_use",     null: false
+    t.boolean  "illegal_purchase",     null: false
+    t.boolean  "illegal_prescription", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "backgrounds", ["consultant_id"], name: "index_backgrounds_on_consultant_id", using: :btree
 
   create_table "branches", force: true do |t|
     t.string   "code",       limit: 10,  null: false
@@ -73,16 +87,6 @@ ActiveRecord::Schema.define(version: 20141112020937) do
   add_index "consultant_certifications", ["consultant_id", "certification_id"], name: "consultant_certifications_uniqueness", unique: true, using: :btree
   add_index "consultant_certifications", ["consultant_id"], name: "index_consultant_certifications_on_consultant_id", using: :btree
 
-  create_table "consultant_educations", force: true do |t|
-    t.integer  "consultant_id", null: false
-    t.integer  "education_id",  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consultant_educations", ["consultant_id"], name: "index_consultant_educations_on_consultant_id", using: :btree
-  add_index "consultant_educations", ["education_id"], name: "index_consultant_educations_on_education_id", using: :btree
-
   create_table "consultant_skills", force: true do |t|
     t.integer  "consultant_id", null: false
     t.integer  "skill_id",      null: false
@@ -95,12 +99,12 @@ ActiveRecord::Schema.define(version: 20141112020937) do
   add_index "consultant_skills", ["skill_id"], name: "index_consultant_skills_on_skill_id", using: :btree
 
   create_table "consultants", force: true do |t|
-    t.string   "email",                                                     default: "",   null: false
-    t.string   "encrypted_password",                                        default: "",   null: false
+    t.string   "email",                                                         default: "",   null: false
+    t.string   "encrypted_password",                                            default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                             default: 0,    null: false
+    t.integer  "sign_in_count",                                                 default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -109,18 +113,23 @@ ActiveRecord::Schema.define(version: 20141112020937) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first_name",             limit: 24,                                        null: false
-    t.string   "last_name",              limit: 24,                                        null: false
+    t.string   "first_name",                 limit: 24,                                        null: false
+    t.string   "last_name",                  limit: 24,                                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_file_name"
     t.string   "resume_content_type"
     t.integer  "resume_file_size"
     t.datetime "resume_updated_at"
-    t.integer  "approved_status_id",                                        default: 1,    null: false
-    t.decimal  "rate",                              precision: 8, scale: 2
-    t.boolean  "willing_to_travel",                                         default: true
+    t.integer  "approved_status_id",                                            default: 1,    null: false
+    t.decimal  "rate",                                  precision: 8, scale: 2
     t.text     "abstract"
+    t.string   "wizard_step"
+    t.boolean  "willing_to_travel",                                             default: true
+    t.string   "profile_image_file_name"
+    t.string   "profile_image_content_type"
+    t.integer  "profile_image_file_size"
+    t.datetime "profile_image_updated_at"
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
@@ -167,6 +176,7 @@ ActiveRecord::Schema.define(version: 20141112020937) do
     t.datetime "updated_at"
     t.boolean  "clearance_active",          default: false, null: false
     t.integer  "branch_id"
+    t.boolean  "military",                  default: false
   end
 
   add_index "militaries", ["branch_id"], name: "index_militaries_on_branch_id", using: :btree

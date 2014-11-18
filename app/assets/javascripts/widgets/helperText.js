@@ -1,8 +1,7 @@
-(function() {
+$(document).ready(function() {
   $(':input').on('focus', function() {
     $(this).siblings('.hint').transition({
-      opacity: 100,
-      x: 0
+      opacity: 100
     }, 500, 'in');
   });
 
@@ -11,8 +10,7 @@
 
     ele.siblings('.hint')
         .transition({
-          opacity: 0,
-          x: ele.width()
+          opacity: 0
         }, 500, 'out');
   });
 
@@ -20,8 +18,7 @@
     var ele = $(e);
 
     ele.siblings('.hint').transition({
-      opacity: 0,
-      x: ele.width()
+      opacity: 0
     }, 500, 'out');
   });
-})();
+});

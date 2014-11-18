@@ -1,6 +1,6 @@
 module ApplicationHelper
   LOOKUPS = [PhoneType, ClearanceLevel, Branch, Rank, ClearanceLevel, CustomerName, Position,
-             ProjectType, State, Certification, ApprovedStatus].freeze
+             ProjectType, State, Certification, ApprovedStatus, Degree].freeze
 
   # Determines if we're in a development type environment
   #
@@ -50,5 +50,13 @@ module ApplicationHelper
 
   def date_in_words(start_date, end_date = nil)
     distance_of_time_in_words(start_date, end_date || DateTime.now)
+  end
+
+  def date_options
+    { format: :month_and_year, as: :date }
+  end
+
+  def create_profile_helper(wizard_step)
+    wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
   end
 end
