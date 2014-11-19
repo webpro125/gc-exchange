@@ -26,6 +26,8 @@ Rails.application.configure do
   precompile = YAML.load(loaded_file).deep_symbolize_keys
 
   if precompile[:settings][:precompile]
+    config.assets.digest = true
+    config.assets.compile = false
     config.assets.debug = false
 
     config.assets.precompile << proc do |path|
