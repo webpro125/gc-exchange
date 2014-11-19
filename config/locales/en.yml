@@ -99,6 +99,10 @@ en:
         other_info: '3. Other Information'
         background_information: '4. Background Information'
         project_history: '5. Project History'
+      confirmations:
+        background_information:
+          save: 'Are you sure you entered the information correctly? Press ''OK'' to confirm or
+          ''Cancel'' to edit.'
     profile:
       actions:
         upload_photo: 'Upload Profile Photo'
