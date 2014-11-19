@@ -1,1 +1,14 @@
-<%= render 'searches/form' %>
+<div class="row">
+  <div class="large-4 columns">
+    <%= render 'searches/form' %>
+  </div>
+  <div class="large-8 columns">
+    <% unless @consultants.empty? %>
+        <% @consultants.each do |consultant| %>
+            <%= render 'searches/consultant', consultant: consultant %>
+        <% end %>
+        <%= paginate @consultants %>
+    <% end %>
+  </div>
+</div>
+

@@ -1,0 +1,54 @@
+<article class="row consultant-profile">
+  <div class="large-2 columns">
+    <%= link_to consultant_path(consultant) do %>
+        <div class="th profile-thumb"
+             style="background-image: url(<%= image_path consultant.profile_image.url(:thumb) %>)">
+        </div>
+    <% end %>
+  </div>
+  <div class="large-10 columns">
+    <div class="row">
+      <div class="large-12 columns">
+        <h5>
+          <%= link_to consultant.full_name, consultant_path(consultant) %>
+        </h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <strong>
+          <%= t('simple_form.labels.military.clearance_level') %>:
+        </strong>
+        <%= if consultant.military && consultant.military.clearance_level
+              consultant.military.clearance_level.label
+            else
+              t('activerecord.models.attributes.clearance_level.none')
+            end
+        %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <strong>
+          <%= t('simple_form.labels.consultant.willing_to_travel') %>:
+        </strong>
+        <%= boolean_to_human consultant.willing_to_travel %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="row">
+          <div class="large-12 columns">
+            <%= link_to 'More Information', '#' %>
+            <%= link_to 'Less Information', '#' %>
+          </div>
+        </div>
+        <div class="row" name="<%= consultant.id %>">
+          <div class="large-12 columns">
+            <p><%= consultant.abstract %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

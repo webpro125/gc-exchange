@@ -17,7 +17,7 @@ describe ConsultantIndexer do
 
   describe '#destroy' do
     it 'calls #delete_document' do
-      expect(consultant.__elasticsearch__).to receive(:delete_document)
+      expect(Consultant.__elasticsearch__.client).to receive(:delete)
       subject.perform(:destroy, consultant.id)
     end
   end

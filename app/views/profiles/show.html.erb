@@ -2,7 +2,9 @@
   <div class="small-8 columns">
     <div class="row">
       <div class="small-4 columns">
-        <%= image_tag(@consultant.profile_image.url, class: 'th') %>
+        <div class="th profile-medium"
+             style="background:
+                     url(<%= image_path current_consultant.profile_image.url(:medium) %>)"></div>
       </div>
       <div class="small-8 columns">
         <div class="row">
@@ -16,7 +18,8 @@
           <div class="small-12 columns">
             <% if @consultant.military.clearance_active %>
                 <%= t('simple_form.labels.military.clearance_level') %>:
-                <%= @consultant.military.clearance_level.label %>
+                <%= @consultant.military.clearance_level.label if @consultant.military
+                        .clearance_level %>
             <% end %>
           </div>
         </div>
@@ -94,11 +97,11 @@
                   <% end %>
                   <% if @consultant.military.investigation_date %>
                       <%= t('simple_form.labels.military.investigation_date') %>:
-                      <%= @consultant.military.investigation_date.to_s(:month_and_year) %>
+                      <%= @consultant.military.investigation_date.to_formatted_s(:month_and_year) %>
                   <% end %>
-                  <% if @consultant.military.clearance_expiration_date.to_s(:month_and_year) %>
+                  <% if @consultant.military.clearance_expiration_date %>
                       <%= t('simple_form.labels.military.clearance_expiration_date') %>:
-                      <%= @consultant.military.clearance_expiration_date.to_s(:month_and_year) %>
+                      <%= @consultant.military.clearance_expiration_date.to_formatted_s(:month_and_year) %>
                   <% end %>
                 </div>
             <% end %>

@@ -21,10 +21,6 @@
 		float: right;
 	}
 
-	.optional {
-		display: none;
-	}
-
 	> .columns {
 		padding: 4rem 0;
 	}
@@ -91,7 +87,7 @@
 		margin: 2rem 0 0.5rem 0;
 	}
 
-	#top {
+	#new_search {
 		input {
 			float: left;
 
@@ -105,7 +101,6 @@
 				font-size: 0.8rem;
 				text-transform: uppercase;
 				letter-spacing: 1px;
-				width: 9%;
 				background: #BBB;
 				border-color: #999;
 			}
