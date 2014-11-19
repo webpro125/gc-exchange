@@ -55,4 +55,8 @@ module ApplicationHelper
   def date_options
     { format: :month_and_year, as: :date }
   end
+
+  def create_profile_helper(wizard_step)
+    wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
+  end
 end

@@ -11,6 +11,10 @@ shared_examples 'qualifications' do
     it { should respond_to :educations }
 
     describe 'degree_id' do
+      # Add let statements for all tests
+      #
+      # let(:education) { subject.educations.first }
+      # expect(education).to validate_presence
       it do
         expect(subject.educations.first).to validate_presence_of(:degree_id)
       end

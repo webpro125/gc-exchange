@@ -18,11 +18,14 @@ module RegexConstants
   end
 
   module FileTypes
-    AS_DOCUMENTS  = [/doc\Z/, /docx\Z/, /pdf\Z/]
+    AS_DOCUMENTS  = ['application/pdf',
+                     'application/msword',
+                     'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
   end
 
   module ImageTypes
-    # AS_IMAGES = %r{/\Aimage\/.*\Z/}
-    AS_IMAGES = %r{/\Ajpg\/.*\Z/, /\Ajpeg\/.*\Z/, /\Apng\/.*\Z/}
+    AS_IMAGES = ['image/jpg',
+                 'image/png',
+                 'image/jpeg']
   end
 end

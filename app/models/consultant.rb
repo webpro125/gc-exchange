@@ -45,15 +45,6 @@ class Consultant < ActiveRecord::Base
   validates :educations, length: { maximum: 3 }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
-  # validates_attachment :profile_image,
-  #                      file_name: { matches: RegexConstants::ImageTypes::AS_IMAGES },
-  #                      content_type: { content_type: PROFILE_IMAGE_TYPES },
-  #                      if: -> { profile_image.present? }
-  # validates_attachment :resume,
-  #                      content_type: { content_type: RESUME_MIME_TYPES },
-  #                      size: { less_than: 10.megabytes },
-  #                      file_name: { matches: RegexConstants::FileTypes::AS_DOCUMENTS },
-  #                      if: -> { resume.present? }
 
   def full_name
     "#{first_name} #{last_name}"

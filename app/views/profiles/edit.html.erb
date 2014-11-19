@@ -43,7 +43,7 @@
                     <%= f.input :abstract %>
                   </div>
                 </div>
-                <%= render 'address', f: f %>
+                <%= render 'address_fields', f: f %>
               </div>
             </div>
             <div class="row">
@@ -63,7 +63,6 @@
                           </div>
                       <% end %>
                     </div>
-
                 <% end %>
               </div>
             </div>
@@ -92,13 +91,13 @@
         <div class="row">
           <div class="large-12 columns">
             <h3><%= t('views.profile.headers.certification') %></h3>
-            <%= render 'certifications', f: f %>
+            <%= render 'certifications_fields', f: f %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
             <h3><%= t('views.profile.headers.expertise') %></h3>
-            <%= render 'profiles/skills', f: f %>
+            <%= render 'profiles/skills_fields', f: f %>
           </div>
         </div>
         <div class="row">
@@ -112,9 +111,7 @@
                                                          collection: ClearanceLevel.all)%>
                   <%= m.input :investigation_date, date_options %>
                   <%= m.input :clearance_expiration_date, date_options %>
-
                 </div>
-
                 <h3><%= t('views.profile.headers.military') %></h3>
                 <%= m.input :military, as: :select %>
                 <div id="military">
