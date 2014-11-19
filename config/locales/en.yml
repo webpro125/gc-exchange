@@ -93,6 +93,8 @@ en:
         finish: 'Finish >'
         save_and_next: 'Save & Continue >'
         save_and_new: 'Save & New >'
+        save_info_confirmation: 'Are you sure you entered the information correctly? Press OK to
+        or Cancel to edit.'
       header:
         basic: '1. Basic Information'
         qualifications: '2. Qualifications'
