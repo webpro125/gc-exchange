@@ -49,7 +49,7 @@ h3 {
 	border-radius: 2px;
 }
 .error small.error {
-	
+
 }
 .alert-box.alert {
 	margin: 0 auto rem-calc(20);
@@ -58,7 +58,7 @@ h3 {
 .alert-box.notice {
 	background: scale-color($gces-blue, $lightness: 80%);
 	color: $gces-blue;
-} 
+}
 .alert-box.success {
 	background-color: #abc1b2;
 	border-color: #5d7b67;
@@ -145,6 +145,13 @@ span.optional {
 	margin-left: 5px;
 }
 
+/*** IMAGES ***/
+
+.profile-thumb {
+  height: 80px;
+  width: 80px;
+  background-repeat: no-repeat;
+}
 
 /*** LOGIN ***/
 .new_consultant, .new_user {

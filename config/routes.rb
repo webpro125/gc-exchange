@@ -34,11 +34,9 @@ Rails.application.routes.draw do
       patch :upload_resume
     end
   end
-  resource :search, only: [:new, :create] do
-    collection do
-      get :skills
-    end
-  end
+
+  get :search, to: 'searches#new'
+  get 'search/skills', to: 'searches#skills'
 
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects', except: [:index, :show]

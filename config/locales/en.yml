@@ -20,9 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  helpers:
+    submit:
+      search:
+        create: 'Search'
+        update: 'Search'
   activerecord:
     models:
       attributes:
+        clearance_level:
+          none: 'None'
         military:
           date: 'Date Active'
         phone:
@@ -143,6 +150,3 @@ en:
       new:
         save: 'Send Request'
         title: 'Company Registration Request'
-    searches:
-      form:
-        keyword: 'Skills, Expertise, and Experience'
