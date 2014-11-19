@@ -1,11 +1,10 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  sequence(:email) { |n| "first#{n}.last@fakeemail.com" }
   factory :consultant do
     first_name            { Faker::Name.first_name }
     last_name             { Faker::Name.last_name }
-    email
+    sequence(:email)      { |n| "#{first_name}#{n}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
 
