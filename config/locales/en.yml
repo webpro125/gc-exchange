@@ -103,6 +103,10 @@ en:
         background_information:
           save: 'Are you sure you entered the information correctly? Press ''OK'' to confirm or
           ''Cancel'' to edit.'
+      select2:
+        errors:
+          max_size: 'You can only select'
+          position: 'positions'
     profile:
       actions:
         upload_photo: 'Upload Profile Photo'
