@@ -21,6 +21,6 @@ class SalesLeadsController < ApplicationController
 
   def sales_lead_params
     params.require(:sales_lead).permit(:first_name, :last_name, :company_name,
-                                       :phone_number, :email, :message)
+     :phone_number, :email, :message)
   end
 end
