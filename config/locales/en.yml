@@ -87,6 +87,10 @@ en:
       create:
         success: 'Phone created successfully.'
   views:
+    page:
+      actions:
+        company: 'Company'
+        consultant: 'Consultant'
     wizard:
       actions:
         previous: '< Previous'

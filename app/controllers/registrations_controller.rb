@@ -4,6 +4,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  # Overwriting the confirmation redirect path method
+  def after_inactive_sign_up_path_for(resource)
+    consultant_welcome_path
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:username, :email, :password, :first_name, :last_name)
