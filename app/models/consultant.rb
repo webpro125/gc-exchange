@@ -68,6 +68,14 @@ class Consultant < ActiveRecord::Base
     approved_status.code == ApprovedStatus::IN_PROGRESS[:code]
   end
 
+  def approvable?
+    approved? || rejected?
+  end
+
+  def rejectable?
+    pending_approval? || approved?
+  end
+
   def skills_list
     skills.pluck(:code).join(', ')
   end

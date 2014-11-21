@@ -8,7 +8,7 @@ class ConsultantsController < CompanyController
   end
 
   def approve
-    if @consultant.pending_approval? || @consultant.rejected?
+    if @consultant.approvable?
       @consultant.approved_status = ApprovedStatus.approved
     end
 
@@ -23,7 +23,7 @@ class ConsultantsController < CompanyController
   end
 
   def reject
-    if @consultant.pending_approval? || @consultant.approved?
+    if @consultant.rejectable?
       @consultant.approved_status = ApprovedStatus.rejected
     end
 
