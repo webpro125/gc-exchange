@@ -4,8 +4,7 @@
                                                           collection: Position.all,
                                                           input_html: { multiple: true,
                                                           data: { maximumSelectionSize: 3,
-                                                                  maxSizeErrorText: I18n.t('views.wizard.select2.errors.max_size'),
-                                                                  maxSizeErrorType: I18n.t("views.wizard.select2.errors.#{Position.name.downcase}") } }) %>
+                                                                  maxSizeErrorMessage: I18n.t('activerecord.errors.models.project_history.attributes.project_history_positions.too_long.other') } }) %>
   </div>
 </div>
 <div class="row">
