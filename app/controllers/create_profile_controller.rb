@@ -65,7 +65,7 @@ class CreateProfileController < ConsultantController
     when :basic_information
       @form = BasicInformationForm.new current_consultant
     when :qualifications
-      current_consultant.educations.build
+      current_consultant.educations.build unless current_consultant.educations.present?
       @form = QualificationsForm.new current_consultant
     when :other_information
       generate_other_information
@@ -79,7 +79,7 @@ class CreateProfileController < ConsultantController
   end
 
   def generate_other_information
-    current_consultant.phones.build
+    current_consultant.phones.build unless current_consultant.phones.present?
     current_consultant.build_address unless current_consultant.address.present?
   end
 end
