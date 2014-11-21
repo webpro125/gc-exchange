@@ -6,11 +6,36 @@
   .next:after {content:"»";}
 }
 
+/*** HEADER ***/
+
+.top-bar {
+	.button, input {
+		height: 30px;
+		line-height: 15px;
+		top: 0;
+	}
+	.button {
+		font-size: 13px;
+		padding: 0 1rem;
+	}
+	.has-form {
+		padding: 7px 15px;
+		.columns {
+			padding: 0 0.2rem;
+		}
+		input[type="text"] {
+			width: 400px;
+			max-width: 100%;
+		}
+	}
+}
+
 /*** GLOBAL ***/
 
 .hint {
-	margin: 0 auto;
+	margin: -10px auto 10px auto;
   opacity: 0;
+  font-size: 13px;
 }
 #container {
 	background: $white;
@@ -22,13 +47,12 @@
 }
 
 /*** BUTTON ***/
+
 .button, input[type="submit"] {
 	border-radius: 2px;
 }
 
 /*** TYPOGRAPHY ***/
-
-
 
 h3 {
 	color: $gces-red;
@@ -67,6 +91,19 @@ h3 {
 
 
 /*** FORMS ***/
+
+#container {
+	form {
+		&.simple_form {
+			input[type="submit"] {
+				float: right;
+			}
+			span.optional {
+				display: none;
+			}
+		}
+	}
+}
 
 .select2-container {
 	margin: 0 0 1rem 0;
@@ -158,5 +195,21 @@ span.optional {
 	span.optional {
 		display: none;
 	}
+}
+
+/*** SEARCH ***/
+
+.row.consultant-profile {
+  border-bottom: 3px solid #EFEFEF;
+  margin-bottom: 2rem;
+  h5 {
+    margin: 0;
+  }
+  p {
+    font-size: 13px;
+  }
+  a {
+    display: block;
+  }
 }
 

@@ -61,7 +61,7 @@ en:
         description: 'Description of Role Performed'
       search:
         position_ids: 'Position'
-        q: 'Skills, Expertise, and Experience'
+        q: 'Expertise'
         customer_name_ids: 'Government Agency'
         project_type_ids: 'Functional Area of Focus'
         clearance_level_id: 'Clearance Level'
@@ -89,7 +89,7 @@ en:
         information.'
     hints:
       search:
-        address: 'Filling out this field will search within a 50 mile radius of the specificed
+        address: 'Filling out this field will search within a 50 mile radius of the specified
         location'
     #   defaults:
     #     username: 'User name to sign in.'
