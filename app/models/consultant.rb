@@ -69,7 +69,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def approvable?
-    approved? || rejected?
+    pending_approval? || rejected?
   end
 
   def rejectable?
