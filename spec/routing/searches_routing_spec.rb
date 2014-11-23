@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SearchesController do
   describe 'routing' do
 
-    it 'should route to searches#show' do
+    it 'should not route to searches#show' do
       get('/search').should_not route_to('searches#show')
     end
 
