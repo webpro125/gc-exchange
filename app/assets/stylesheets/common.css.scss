@@ -202,14 +202,23 @@ span.optional {
 .row.consultant-profile {
   border-bottom: 3px solid #EFEFEF;
   margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
   h5 {
     margin: 0;
   }
   p {
     font-size: 13px;
+    margin-bottom: 0;
+    word-wrap: break-word;
   }
   a {
     display: block;
+    font-size: 13px;
+  }
+  h5 {
+  	a {
+  		font-size: 1.125rem;
+  	}
   }
 }
 

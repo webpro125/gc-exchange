@@ -25,10 +25,8 @@
           <%= t('simple_form.labels.consultant.willing_to_travel') %>:
         </strong>
         <%= boolean_to_human consultant.willing_to_travel %>
-        <br />
-            <%= link_to 'More Information', '#' %>
-            <%= link_to 'Less Information', '#' %>
         </p>
-            <p><%= consultant.abstract %></p>
+        <a class="read-more-toggle" href="#">More information</a>
+        <div class="read-more-content"><p><%= consultant.abstract %></p></div>
   </div>
 </article>
