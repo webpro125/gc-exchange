@@ -94,6 +94,10 @@ en:
       create:
         success: 'Phone created successfully.'
   views:
+    search:
+      actions:
+        more_information: 'More Information'
+        less_information: 'Less Information'
     wizard:
       actions:
         previous: '< Previous'

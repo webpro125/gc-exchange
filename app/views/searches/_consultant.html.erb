@@ -7,26 +7,31 @@
     <% end %>
   </div>
   <div class="large-10 columns">
-        <h5>
-          <%= link_to consultant.full_name, consultant_path(consultant) %>
-        </h5>
-        <p>
-        <strong>
-          <%= t('simple_form.labels.military.clearance_level') %>:
-        </strong>
-        <%= if consultant.military && consultant.military.clearance_level
-              consultant.military.clearance_level.label
-            else
-              t('activerecord.models.attributes.clearance_level.none')
-            end
-        %>
-        <br />
-        <strong>
-          <%= t('simple_form.labels.consultant.willing_to_travel') %>:
-        </strong>
-        <%= boolean_to_human consultant.willing_to_travel %>
-        </p>
-        <a class="read-more-toggle" href="#">More information</a>
-        <div class="read-more-content"><p><%= consultant.abstract %></p></div>
+    <h5>
+      <%= link_to consultant.full_name, consultant_path(consultant) %>
+    </h5>
+    <p>
+      <strong>
+        <%= t('simple_form.labels.military.clearance_level') %>:
+      </strong>
+      <%= if consultant.military && consultant.military.clearance_level
+            consultant.military.clearance_level.label
+          else
+            t('activerecord.models.attributes.clearance_level.none')
+          end
+      %>
+      <br />
+      <strong>
+        <%= t('simple_form.labels.consultant.willing_to_travel') %>:
+      </strong>
+      <%= boolean_to_human consultant.willing_to_travel %>
+    </p>
+    <a class="read-more-toggle"
+       href="#"
+       data-more-text="<%= t('views.search.actions.more_information') %>"
+       data-less-text="<%= t('views.search.actions.less_information') %>"></a>
+    <div class="read-more-content">
+      <p><%= consultant.abstract %></p>
+    </div>
   </div>
 </article>
