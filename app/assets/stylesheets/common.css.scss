@@ -9,9 +9,10 @@
 /*** GLOBAL ***/
 
 .hint {
-	margin: -10px auto 10px auto;
+	margin: -10px 0 10px 0;
+	font-size: 13px;
   opacity: 0;
-  font-size: 13px;
+
 }
 #container {
 	background: $white;

@@ -102,6 +102,11 @@
 
       if(self.ele.data('maximumselectionsize')) {
         opts.maximumSelectionSize = self.ele.data('maximumselectionsize');
+        if(self.ele.data('maxsizeerrormessage')) {
+           opts.formatSelectionTooBig = function(maxSize) {
+             return self.ele.data('maxsizeerrormessage').replace('%{count}', maxSize);
+           }
+        }
       }
 
       return opts;
