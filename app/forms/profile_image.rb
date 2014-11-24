@@ -5,8 +5,5 @@ module ProfileImage
 
   validates :profile_image,
             file_size: { less_than: 1.megabytes },
-            file_content_type: { allow: RegexConstants::ImageTypes::AS_IMAGES,
-                                 message: I18n.t(
-                                 'activerecord.errors.models.'\
-                                 'consultant.attributes.profile_image.wrong_image_type') }
+            file_content_type: { allow: RegexConstants::ImageTypes::AS_IMAGES }
 end

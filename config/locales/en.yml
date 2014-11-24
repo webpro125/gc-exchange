@@ -49,9 +49,9 @@ en:
         consultant:
           attributes:
             resume:
-              wrong_document_type: 'only .doc, .docx, .pdf documents allowed'
+              allowed_file_content_types: 'only .doc, .docx, .pdf documents allowed'
             profile_image:
-              wrong_image_type: 'only .jpg, .jpeg, .png images allowed'
+              allowed_file_content_types: 'only .jpg, .jpeg, .png images allowed'
         address:
           attributes:
             state:
