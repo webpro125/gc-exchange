@@ -3,7 +3,8 @@
     <%= f.input :position_ids, build_simple_form_dropdown(Position,
                                                           collection: Position.all,
                                                           input_html: { multiple: true,
-                                                          data: { maximumSelectionSize: 3 } }) %>
+                                                          data: { maximumSelectionSize: 3,
+                                                                  maxSizeErrorMessage: I18n.t('activerecord.errors.models.project_history.attributes.project_history_positions.too_long.other') } }) %>
   </div>
 </div>
 <div class="row">

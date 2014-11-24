@@ -12,8 +12,10 @@
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 .hint {
-  margin: 0 auto;
+	margin: -10px 0 10px 0;
+	font-size: 13px;
   opacity: 0;
+
 }
 @media #{$large-up} {
   #container {
@@ -40,7 +42,6 @@ h3 {
   border-bottom: 1px solid #DDD;
   font-weight: 200;
 }
-
 /*** ALERTS ***/
 .error label, .error label.error {
   color: $gces-red;

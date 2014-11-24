@@ -46,5 +46,27 @@ describe CreateProfileController do
         end
       end
     end
+
+    describe 'GET qualifications' do
+      before do
+        user.educations << FactoryGirl.create(:education)
+        get :show, id: :qualifications
+      end
+
+      it 'should create only one education fill instance' do
+        expect(user.educations).not_to receive(:build)
+      end
+    end
+
+    describe 'GET other_information' do
+      before do
+        user.phones << FactoryGirl.build(:phone)
+        get :show, id: :other_information
+      end
+
+      it 'should create only one phone fill instance' do
+        expect(user.phones).not_to receive(:build)
+      end
+    end
   end
 end
