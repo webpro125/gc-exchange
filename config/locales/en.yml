@@ -101,9 +101,12 @@ en:
         success: 'Phone created successfully.'
   views:
     search:
+    page:
       actions:
         more_information: 'More Information'
         less_information: 'Less Information'
+        company: 'Company'
+        consultant: 'Consultant'
     wizard:
       actions:
         previous: '< Previous'

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   root 'pages#home'
+  get :consultant_welcome, to: 'pages#consultant_welcome'
+  get :company_welcome, to: 'pages#company_welcome'
 
   # Resources
   resource :profile, only: [:edit, :update, :show] do

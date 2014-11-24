@@ -2,49 +2,91 @@
   <div id="one" class="screen">
     <%= render 'layouts/search' %>
 	<%= image_tag('gces-logo.png', size: '400', alt: 'GCES-logo') %>
-    <h2 class="intro">We connect a community of independent consultants to companies needing skilled capture, proposal, and program support on Federal Government contracts. Our network uses secure automated tools to provide companies quick affordable consultant access to win new contracts and deliver successful programs.</h2>
+    <h2 class="intro">
+      We connect a community of independent consultants to companies needing skilled capture, 
+      proposal, and program support on Federal Government contracts. Our network uses secure 
+      automated tools to provide companies quick affordable consultant access to win new 
 
-    <h2>
+      contracts and deliver successful programs.
       <strong>Connect. Collaborate. Contract.</strong>
     </h2>
+    <h2><strong>Connect. Collaborate. Contract.</strong></h2>
     <p>
-      <a href="#company" class="button small">Company</a>
-      OR<a href="#consultant" class="button small">Consultant</a>
+      <a href="#company" class="button small"><%= t('views.page.actions.company') %></a>
+      OR
+      <a href="#consultant" class="button small"><%= t('views.page.actions.consultant') %></a>?
     </p>
     <ul>
       <li>
-        <a class="login" href="#" >Already a member? Login here</a>
-        <ul class="dropdown">
-          <li>
-            <h5>
+    <ul><li><a class="login" href="#" >Already a member? Login here</a>
+      <ul class="dropdown">
+       <li>
+        <h5><%= link_to t('views.page.actions.company'), new_user_session_path %></h5>
               <a href="/users/login">Company</a>
             </h5>
-          </li>
-          <li>
-            <h5>
+      </li>
+       <li>
+        <h5><%= link_to t('views.page.actions.consultant'), new_consultant_session_path %></h5>
               <a href="/login">Consultant</a>
             </h5>
           </li>
         </ul>
       </li>
+     </ul>
+   </li></ul>
+ </div>
+ <hr />
+ <div id="two" class="screen"><a name="company"></a>
+  <div class="small-12 large-6 columns">
+    <h1><%= t('views.page.actions.company') %></h1>
+    <ul><li>Find highly skilled consultants to support your project</li>
+      <li>Eliminate costly consulting company overhead fees</li>
+      <li>Gain control and reduce the time to access critical skills </li>
     </ul>
+    <a class="button" href="#">Learn More</a>
   </div>
   <hr />
-  <div id="two" class="screen">
-    <a name="company"></a>
-    <div class="small-12 large-6 columns">
-      <h1>Company</h1>
-      <ul>
-        <li>Find highly skilled consultants to support your project</li>
-        <li>Eliminate costly consulting company overhead fees</li>
-        <li>Gain control and reduce the time to access critical skills </li>
-      </ul>
-      <a class="button" href="#">Learn More</a>
+  <div class="small-12 large-6 columns">
+    <h2>Get Started</h2>
+
+    <%= render 'sales_leads/form' %>
+
+  </div>
+
+</div>   
+<hr />
+  <div id="three" class="screen">
+    <a name="consultant"></a>
+  <div class="small-12 large-6 columns">
+    <h1><%= t('views.page.actions.consultant') %></h1>
+    <ul>
+      <li>Find work and expand your corporate contacts</li>
+      <li>Use an integrated invoice and payment system </li>
+      <li>Connect and collaborate with other consultants </li>
+    </ul>
+    <a class="button" href="#">Learn More</a>
+
+  </div>   
+  <div class="small-12 large-6 columns">
+    <h2>Get Started</h2>
+    <%= simple_form_for(@consultant, url: registration_path(:consultant)) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :email, required: true %>
+      <%= f.input :first_name, required: true %>
+      <%= f.input :last_name, required: true %>
+      <%= f.input :password, required: true %>
+      <%= f.input :password_confirmation, required: true %>
     </div>
-    <div class="small-12 large-6 columns">
-      <h2>Get Started</h2>
-      <%= render 'sales_leads/form' %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up" %>
     </div>
+    <% end %>
+
+
+
   </div>
   <hr />
   <div id="three" class="screen"><a name="consultant"></a>
@@ -74,5 +116,5 @@
             <%= f.button :submit, "Sign up" %>
           </div>
       <% end %>
-    </div>
+</div>
 </div>
