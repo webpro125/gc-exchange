@@ -81,6 +81,11 @@ en:
         information.'
     hints:
       consultant:
+        abstract: 'Write an overview of your experience in the field'
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
+      address:
+        address: 'This is not shown publicly and is used for consultant search distance and billing 
+        purposes'
+
