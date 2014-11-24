@@ -99,7 +99,7 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial
 $primary-color: #2A5E89;
 $secondary-color: #e7e7e7;
 $alert-color: scale-color(#96413D, $lightness: 80%);
-// $success-color: #43AC6A;
+$success-color: #abc1b2;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 
@@ -1367,7 +1367,7 @@ $topbar-bg-color: $gces-blue;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-// $topbar-height: 45px;
+$topbar-height: 75px;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar

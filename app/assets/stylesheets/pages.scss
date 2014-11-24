@@ -25,6 +25,9 @@
   input[type="submit"] {
     float: right;
   }
+	span.optional {
+		display: none;
+	}
 
   > .columns {
     padding: 4rem 0;
