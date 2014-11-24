@@ -46,6 +46,11 @@ en:
                 one: "may only have at most %{count} position"
                 other: "may only have at most %{count} positions"
               total: 'percentages must add up to 100%'
+        consultant:
+          attributes:
+            upload:
+              wrong_document_type: 'only .doc, .docx, .pdf documents allowed'
+              wrong_image_type: 'only .jpg, .jpeg, .png images allowed'
         address:
           attributes:
             state:
