@@ -6,7 +6,10 @@
         <div class="row">
           <div class="large-4 columns">
             <%= link_to root_path do %>
-                <%= image_tag(current_consultant.profile_image.url, class: 'th') %>
+                <div class="th profile-medium"
+                     style="background:
+                             url(<%= image_path current_consultant.profile_image.url(:medium) %>)">
+                </div>
                 <%= link_to t('views.profile.actions.upload_photo'),
                             upload_profile_path,
                             class: 'button small' %>

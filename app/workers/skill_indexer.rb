@@ -1,4 +1,4 @@
-class ConsultantIndexer
+class SkillIndexer
   include Sidekiq::Worker
   sidekiq_options queue: 'elasticsearch', unique: true
 
@@ -7,12 +7,12 @@ class ConsultantIndexer
 
     case operation.to_s
     when /update/
-      record = Consultant.find(record_id)
+      record = Skill.find(record_id)
       record.__elasticsearch__.index_document
     when /destroy/
-      Consultant.__elasticsearch__.client.delete index: Consultant.index_name,
-                                                 type: Consultant.document_type,
-                                                 id: record_id
+      Skill.__elasticsearch__.client.delete index: Skill.index_name,
+                                            type: Skill.document_type,
+                                            id: record_id
     else fail ArgumentError, "Unknown operation '#{operation}'"
     end
   end

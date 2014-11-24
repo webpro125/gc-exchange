@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="small-4 columns">
+    <div class="th profile-medium"
+         style="background-image:
+                 url(<%= image_path @consultant.profile_image.url(:medium) %>)"></div>
+  </div>
+  <div class="small-8 columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1>
+          <%= @consultant.full_name %>
+        </h1>
+      </div>
+    </div>
+    <% if user_signed_in? || consultant_signed_in? %>
+        <div class="row">
+          <div class="small-12 columns">
+            <% if @consultant.military.clearance_active %>
+                <%= t('simple_form.labels.military.clearance_level') %>:
+                <%= @consultant.military.clearance_level.label if @consultant.military
+                        .clearance_level %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <%= t('simple_form.labels.consultant.willing_to_travel') %>:
+            <%= boolean_to_human @consultant.willing_to_travel? %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <%= t('simple_form.labels.consultant.rate') %>: <%= number_to_currency @consultant.rate %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

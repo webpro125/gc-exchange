@@ -8,9 +8,6 @@
 
 /*** GLOBAL ***/
 
-.top-bar {
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-}
 .hint {
 	margin: -10px 0 10px 0;
 	font-size: 13px;
@@ -31,9 +28,21 @@
   box-shadow: 0 0 30px rgba(193,205,201,1);
 }
 
+
+
+
 /*** BUTTON ***/
+
 .button, input[type="submit"] {
   border-radius: 2px;
+}
+
+/*** HEADER ***/
+
+.title-area {
+	img {
+		vertical-align: middle;
+	}
 }
 
 /*** TYPOGRAPHY ***/
@@ -69,6 +78,20 @@ h3 {
 }
 
 /*** FORMS ***/
+
+#container {
+	form {
+		&.simple_form {
+			input[type="submit"] {
+				float: right;
+			}
+			span.optional {
+				display: none;
+			}
+		}
+	}
+}
+
 .select2-container {
   margin: 0 0 1rem 0;
   font-size: 14px;
@@ -157,9 +180,48 @@ span.optional {
   margin-left: 5px;
 }
 
+/*** IMAGES ***/
+
+.profile-thumb {
+  height: 80px;
+  width: 80px;
+  background-repeat: no-repeat;
+}
+
+.profile-medium {
+  height: 200px;
+  width: 200px;
+  background-repeat: no-repeat;
+}
+
 /*** LOGIN ***/
 .new_consultant, .new_user {
-  span.optional {
-    display: none;
+	span.optional {
+		display: none;
+	}
+}
+
+/*** SEARCH ***/
+
+.row.consultant-profile {
+  border-bottom: 3px solid #EFEFEF;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  h5 {
+    margin: 0;
+  }
+  p {
+    font-size: 13px;
+    margin-bottom: 0;
+    word-wrap: break-word;
+  }
+  a {
+    display: block;
+    font-size: 13px;
+  }
+  h5 {
+  	a {
+  		font-size: 1.125rem;
+  	}
   }
 }

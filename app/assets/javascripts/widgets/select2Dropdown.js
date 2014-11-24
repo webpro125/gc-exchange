@@ -87,8 +87,9 @@
         width: 'element',
         minimumResultsForSearch: 10,
         closeOnSelect: false,
-        dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-        tokenSeparators: [',']
+        dropdownCssClass: 'bigdrop', // apply css that makes the dropdown taller
+        tokenSeparators: [','],
+        allowClear: $(self.ele).data('allowclear')
       };
 
       if(self.ele.data('tags')) {
