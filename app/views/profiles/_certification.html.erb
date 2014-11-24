@@ -1,0 +1,8 @@
+<% if @consultant.certifications.size > 0 %>
+    <div class="row">
+      <div class="small-12 columns">
+        <h3><%= t('views.profile.headers.certification') %></h3>
+        <%= @consultant.certifications_list %>
+      </div>
+    </div>
+<% end %>
