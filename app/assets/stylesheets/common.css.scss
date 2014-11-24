@@ -89,17 +89,14 @@ h3 {
   -moz-border-radius: 2px;
   border-radius: 2px;
 }
-.error small.error {
-
-}
 .alert-box.alert {
   margin: 0 auto rem-calc(20);
   width: 98%;
 }
 .alert-box.notice {
-	background: scale-color($gces-blue, $lightness: 80%);
-	color: $gces-blue;
-}
+  background: scale-color($gces-blue, $lightness: 80%);
+  color: $gces-blue;
+} 
 .alert-box.success {
   background-color: #abc1b2;
   border-color: #5d7b67;
