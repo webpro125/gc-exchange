@@ -29,7 +29,9 @@
       toggleMilitary($(this).val());
     });
 
-    toggleClearance(clearance.val());
-    toggleMilitary(military.val());
+    if(clearance.length > 0 && military.length > 0) {
+      toggleClearance(clearance.val());
+      toggleMilitary(military.val());
+    }
   });
 })();

@@ -7,17 +7,26 @@
 }
 
 /*** GLOBAL ***/
+
+.top-bar {
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
 .hint {
 	margin: -10px 0 10px 0;
 	font-size: 13px;
   opacity: 0;
 
 }
+@media #{$large-up} {
+  #container {
+    min-height: 800px;
+  }
+}
 #container {
   background: $white;
   max-width: 95%;
   width: 1040px;
-  padding-top: 2rem;
+  padding: 2rem;
   margin: 0 auto;
   box-shadow: 0 0 30px rgba(193,205,201,1);
 }
