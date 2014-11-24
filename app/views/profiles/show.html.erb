@@ -1,38 +1,6 @@
 <div class="row">
   <div class="small-8 columns">
-    <div class="row">
-      <div class="small-4 columns">
-        <%= image_tag(@consultant.profile_image.url, class: 'th') %>
-      </div>
-      <div class="small-8 columns">
-        <div class="row">
-          <div class="small-12 columns">
-            <h1>
-              <%= @consultant.full_name %>
-            </h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-            <% if @consultant.military.clearance_active %>
-                <%= t('simple_form.labels.military.clearance_level') %>:
-                <%= @consultant.military.clearance_level.label %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-            <%= t('simple_form.labels.consultant.willing_to_travel') %>:
-            <%= boolean_to_human @consultant.willing_to_travel? %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-            <%= t('simple_form.labels.consultant.rate') %>: <%= number_to_currency @consultant.rate %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render 'profiles/consultant_header' %>
     <div class="row">
       <div class="small-12 columns">
         <%= link_to t('views.profile.actions.download_resume'),
@@ -42,87 +10,16 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <h3><%= t('views.profile.headers.contact') %></h3>
-        <%= render @consultant.phones %>
-        <div class="row">
-          <div class="small-12 columns">
-            <%= Address.human_attribute_name(:address) %>: <%= @consultant.address.address %>
-          </div>
-        </div>
-        <h3><%= t('simple_form.labels.consultant.abstract') %></h3>
-        <div class="row">
-          <div class="small-12 columns">
-            <p>
-              <%= @consultant.abstract %>
-            </p>
-          </div>
-        </div>
+        <%= render 'profiles/contact_information' %>
+        <%= render 'profiles/background_and_history' %>
         <%= render @consultant.project_histories %>
       </div>
     </div>
   </div>
   <div class="small-4 columns">
-    <div class="row">
-      <div class="small-12 columns">
-        <h3><%= t('views.profile.headers.education') %></h3>
-        <%= render @consultant.educations %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
-        <h3><%= t('views.profile.headers.certification') %></h3>
-        <%= @consultant.certifications_list %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
-        <h3><%= t('views.profile.headers.expertise') %></h3>
-        <%= @consultant.skills_list %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
-        <% if @consultant.military.present? %>
-            <% if @consultant.military.clearance_active? %>
-                <h3><%= t('views.profile.headers.clearance') %></h3>
-                <%= t('simple_form.labels.military.clearance_active') %>:
-                <%= boolean_to_human @consultant.military.clearance_active? %>
-                <div id="security">
-                  <% if @consultant.military.clearance_level %>
-                      <%= t('simple_form.labels.military.clearance_level') %>:
-                      <%= @consultant.military.clearance_level.label %>
-                  <% end %>
-                  <% if @consultant.military.investigation_date %>
-                      <%= t('simple_form.labels.military.investigation_date') %>:
-                      <%= @consultant.military.investigation_date.to_s(:month_and_year) %>
-                  <% end %>
-                  <% if @consultant.military.clearance_expiration_date.to_s(:month_and_year) %>
-                      <%= t('simple_form.labels.military.clearance_expiration_date') %>:
-                      <%= @consultant.military.clearance_expiration_date.to_s(:month_and_year) %>
-                  <% end %>
-                </div>
-            <% end %>
-
-            <% if @consultant.military.military? %>
-                <h3><%= t('views.profile.headers.military') %></h3>
-                <div id="military">
-                  <% if @consultant.military.branch %>
-                      <%= t('simple_form.labels.military.branch') %>:
-                      <%= @consultant.military.branch.label %>
-                  <% end %>
-                  <% if @consultant.military.rank %>
-                      <%= t('simple_form.labels.military.rank') %>:
-                      <%= @consultant.military.rank.label %>
-                  <% end %>
-                  <% if @consultant.military.service_start_date %>
-                      <%= t('activerecord.models.attributes.military.date') %>:
-                      <%=  @consultant.military.service_start_date.to_s(:month_and_year) %> -
-                      <%= @consultant.military.service_end_date.to_s(:month_and_year) %>
-                  <% end %>
-            <% end %>
-        <% end %>
-        </div>
-      </div>
-    </div>
+    <%= render 'profiles/education' %>
+    <%= render 'profiles/certification' %>
+    <%= render 'profiles/expertise' %>
+    <%= render 'profiles/military_information' %> <!-- if logged_in -->
   </div>
 </div>

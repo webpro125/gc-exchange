@@ -8,12 +8,12 @@ describe SearchAdapter do
 
     describe 'valid' do
       let(:params) do
-        { distance: 30, address: 'New York City' }
+        { address: 'New York City' }
       end
 
       it 'adds distance' do
         expect(geo).to have_key(:distance)
-        expect(geo[:distance]).to eq('30mi')
+        expect(geo[:distance]).to eq('50mi')
       end
 
       it 'adds lat' do
@@ -77,7 +77,9 @@ describe SearchAdapter do
   describe 'should_query_params' do
     let(:should_query) { subject.to_query[:filter][:and].first[:bool][:should][:terms] }
     let(:params) do
-      { certification_ids: [1, 2, 3], clearance_level_ids: [4, 5, 6], q: ['testing'] }
+      { certification_ids: [1, 2, 3],
+        clearance_level_id: ClearanceLevel.ts_sci.id.to_s,
+        q: ['testing'] }
     end
 
     it 'adds certification' do
@@ -87,14 +89,14 @@ describe SearchAdapter do
 
     it 'adds clearance_level_ids' do
       expect(should_query).to have_key('military.clearance_level_id')
-      expect(should_query['military.clearance_level_id']).to eq([4, 5, 6])
+      expect(should_query['military.clearance_level_id']).to eq([ClearanceLevel.ts_sci.id.to_s])
 
       expect(should_query).to have_key('military.clearance_active')
       expect(should_query['military.clearance_active'].first).to eq true
     end
 
     it 'allows empty clearance_level_id' do
-      params[:clearance_level_ids] = []
+      params[:clearance_level_id] = nil
       expect(should_query).to_not have_key('military.clearance_level_id')
       expect(should_query).to_not have_key('military.clearance_active')
     end

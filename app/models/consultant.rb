@@ -7,6 +7,8 @@ class Consultant < ActiveRecord::Base
                          'image/png',
                          'image/jpeg']
 
+  paginates_per 15
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -64,6 +66,14 @@ class Consultant < ActiveRecord::Base
 
   def in_progress?
     approved_status.code == ApprovedStatus::IN_PROGRESS[:code]
+  end
+
+  def approvable?
+    pending_approval? || rejected?
+  end
+
+  def rejectable?
+    pending_approval? || approved?
   end
 
   def skills_list

@@ -97,7 +97,7 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial
 
 // We use these as default colors throughout
 $primary-color: #2A5E89;
-// $secondary-color: #e7e7e7;
+$secondary-color: #e7e7e7;
 $alert-color: scale-color(#96413D, $lightness: 80%);
 $success-color: #abc1b2;
 // $warning-color: #f08a24;
@@ -452,7 +452,7 @@ $button-border-width: 1px;
 $button-bg-color: $primary-color;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 // $button-border-color: $button-bg-hover;
-// $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
+$secondary-button-bg-hover: scale-color($secondary-color, $lightness: -10%);
 // $secondary-button-border-color: $secondary-button-bg-hover;
 // $success-button-bg-hover: scale-color($success-color, $lightness: $button-function-factor);
 // $success-button-border-color: $success-button-bg-hover;
@@ -1367,7 +1367,7 @@ $topbar-bg-color: $gces-blue;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-// $topbar-height: 45px;
+$topbar-height: 75px;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar

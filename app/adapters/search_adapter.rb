@@ -51,12 +51,13 @@ class SearchAdapter
     return nil unless @params.q
 
     @query[:query] = { fuzzy_like_this:
-                           { fields: [%w(skills_list abstract full_name address
-                                         project_history.description project_history.position_name
-                                         military.branch)],
-                             like_text: keyword_params[:q],
-                             max_query_terms: 20 }
-        }
+                         { fields: %w(skills_list abstract full_name address military.branch
+                                      project_histories.description
+                                      project_histories.project_type.label
+                                      project_histories.project_history_positions.position.label),
+                           like_text: keyword_params[:q],
+                           max_query_terms: 20 }
+    }
 
     @query
   end

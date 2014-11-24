@@ -59,6 +59,14 @@ en:
         project_type: 'Functional Area of Focus'
         project_type_id: 'Functional Area of Focus'
         description: 'Description of Role Performed'
+      search:
+        position_ids: 'Position'
+        q: 'Expertise'
+        customer_name_ids: 'Government Agency'
+        project_type_ids: 'Functional Area of Focus'
+        clearance_level_id: 'Clearance Level'
+        address: 'Location'
+        certification_ids: 'Certifications'
       background:
         citizen: 'Are you a citizen of the United States?'
         convicted: 'In the past seven (7) years have you been convicted or sentenced of a crime
@@ -82,9 +90,6 @@ en:
     hints:
       consultant:
         abstract: 'Write an overview of your experience in the field'
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
       address:
         address: 'This is not shown publicly and is used for consultant search distance and billing 
         purposes'
