@@ -29,4 +29,5 @@ class ConsultantPolicy < ApplicationPolicy
   alias_method :upload_image?, :upload?
   alias_method :resume?, :upload?
   alias_method :upload_resume?, :upload?
+  alias_method :consultant?, :upload?
 end

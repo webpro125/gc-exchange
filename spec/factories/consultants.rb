@@ -36,6 +36,13 @@ FactoryGirl.define do
         c.save
       end
     end
+
+    trait :wicked_finish do
+      after(:build) do |c|
+        c.wizard_step = 'wicked_finish'
+        c.save
+      end
+    end
   end
 
   factory :confirmed_consultant, parent: :consultant do

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
                                    sign_out: 'logout' }
   # Root Paths
   authenticated :consultant do
-    root 'pages#consultant', as: :consultant_root
+    root 'profiles#consultant', as: :consultant_root
   end
   authenticated :user do
     root 'pages#user', as: :user_root
