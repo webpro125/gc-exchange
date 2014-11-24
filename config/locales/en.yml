@@ -48,8 +48,9 @@ en:
               total: 'percentages must add up to 100%'
         consultant:
           attributes:
-            upload:
+            resume:
               wrong_document_type: 'only .doc, .docx, .pdf documents allowed'
+            profile_image:
               wrong_image_type: 'only .jpg, .jpeg, .png images allowed'
         address:
           attributes:

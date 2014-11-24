@@ -8,5 +8,5 @@ module ProfileImage
             file_content_type: { allow: RegexConstants::ImageTypes::AS_IMAGES,
                                  message: I18n.t(
                                  'activerecord.errors.models.'\
-                                 'consultant.attributes.upload.wrong_image_type') }
+                                 'consultant.attributes.profile_image.wrong_image_type') }
 end
