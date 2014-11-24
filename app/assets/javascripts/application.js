@@ -17,6 +17,7 @@
 //= require jquery-ui/widget
 //= require jquery-ui/mouse
 //= require jquery-ui/position
+//= require jquery.maxlength
 //= require select2
 //= require foundation-datetimepicker
 //= require widgets
@@ -34,4 +35,6 @@ $(document).ready(function() {
     minView: 3,
     forceParse: true
   });
+
+  $('textarea').maxlength();
 });
