@@ -1,6 +1,11 @@
 @import "variables";
 
 #one, #two, #three {
+  .button {
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+  }
   ul {
     margin-left: 0;
     padding-left: 0;
@@ -91,27 +96,32 @@
   }
 
   #new_search {
+    max-width: 450px;
+    text-align: center;
+    margin: 0 auto;
+    clear: both;
+    overflow: hidden;  
+
     input {
-      float: left;
-
       &[type="text"] {
-        width: 89%;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
       }
-
       &[type="submit"] {
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         height: 2.3125rem;
         font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        background: #BBB;
-        border-color: #999;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;        
       }
     }
   }
 
   .button {
     margin: 0 5px;
+    border-radius: 2px;
   }
 
   .login {

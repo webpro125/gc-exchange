@@ -45,7 +45,6 @@
     </ul>
     <a class="button" href="#">Learn More</a>
   </div>
-  <hr />
   <div class="small-12 large-6 columns">
     <h2>Get Started</h2>
 
@@ -55,40 +54,7 @@
 
 </div>   
 <hr />
-  <div id="three" class="screen">
-    <a name="consultant"></a>
-  <div class="small-12 large-6 columns">
-    <h1><%= t('views.page.actions.consultant') %></h1>
-    <ul>
-      <li>Find work and expand your corporate contacts</li>
-      <li>Use an integrated invoice and payment system </li>
-      <li>Connect and collaborate with other consultants </li>
-    </ul>
-    <a class="button" href="#">Learn More</a>
 
-  </div>   
-  <div class="small-12 large-6 columns">
-    <h2>Get Started</h2>
-    <%= simple_form_for(@consultant, url: registration_path(:consultant)) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :email, required: true %>
-      <%= f.input :first_name, required: true %>
-      <%= f.input :last_name, required: true %>
-      <%= f.input :password, required: true %>
-      <%= f.input :password_confirmation, required: true %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
-    </div>
-    <% end %>
-
-
-
-  </div>
-  <hr />
   <div id="three" class="screen"><a name="consultant"></a>
     <div class="small-12 large-6 columns">
       <h1>Consultant</h1>
@@ -97,7 +63,7 @@
         <li>Use an integrated invoice and payment system </li>
         <li>Connect and collaborate with other consultants </li>
       </ul>
-      <a class="button" href="#">Learn More</a>
+      <a class="button small" href="#">Learn More</a>
     </div>
     <div class="small-12 large-6 columns">
       <h2>Get Started</h2>

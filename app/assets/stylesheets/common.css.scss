@@ -6,36 +6,6 @@
   .next:after {content:"»";}
 }
 
-/*** HEADER ***/
-
-.top-bar {
-	.button, input {
-		height: 30px;
-		line-height: 15px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-	}
-  #logo {
-    background: image_url('gces-logo-white.png') 0 50% no-repeat;
-    height: 70px;
-    width: 220px;
-    margin-left: 15px;
-  }
-	.button {
-		font-size: 13px;
-		padding: 0 1rem;
-	}
-	.has-form {
-		padding: 22px 15px;
-		.columns {
-			padding: 0 0.2rem;
-		}
-		input[type="text"] {
-			width: 400px;
-			max-width: 100%;
-		}
-	}
-}
-
 /*** GLOBAL ***/
 
 .hint {
@@ -57,6 +27,9 @@
   margin: 0 auto;
   box-shadow: 0 0 30px rgba(193,205,201,1);
 }
+
+
+
 
 /*** BUTTON ***/
 
