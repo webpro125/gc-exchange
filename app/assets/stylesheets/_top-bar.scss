@@ -1,0 +1,25 @@
+/*** HEADER ***/
+
+.top-bar-section {
+  .button, input {
+    height: 30px;
+    line-height: 15px;
+    top: 0;
+  }
+  .button {
+    font-size: 13px;
+    padding: 0 1rem;
+    border-radius: 2px;
+  }
+  .has-form {
+    padding: 22px 15px;
+    .columns {
+      padding: 0 0.2rem;
+    }
+    input[type="text"] {
+      width: 400px;
+      max-width: 100%;
+      border-radius: 2px;
+    }
+  }
+}

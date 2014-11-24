@@ -6,36 +6,13 @@
   .next:after {content:"»";}
 }
 
-/*** HEADER ***/
-
-.top-bar {
-	.button, input {
-		height: 30px;
-		line-height: 15px;
-		top: 0;
-	}
-	.button {
-		font-size: 13px;
-		padding: 0 1rem;
-	}
-	.has-form {
-		padding: 7px 15px;
-		.columns {
-			padding: 0 0.2rem;
-		}
-		input[type="text"] {
-			width: 400px;
-			max-width: 100%;
-		}
-	}
-}
-
 /*** GLOBAL ***/
 
 .hint {
-	margin: -10px auto 10px auto;
+	margin: -10px 0 10px 0;
+	font-size: 13px;
   opacity: 0;
-  font-size: 13px;
+
 }
 #container {
 	background: $white;
@@ -45,6 +22,9 @@
 	margin: 0 auto;
 	box-shadow: 0 0 30px rgba(193,205,201,1);
 }
+
+
+
 
 /*** BUTTON ***/
 
