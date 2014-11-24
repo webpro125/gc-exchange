@@ -19,7 +19,7 @@
 		padding: 0 1rem;
 	}
 	.has-form {
-		padding: 7px 15px;
+		padding: 22px 15px;
 		.columns {
 			padding: 0 0.2rem;
 		}
@@ -51,6 +51,14 @@
 
 .button, input[type="submit"] {
 	border-radius: 2px;
+}
+
+/*** HEADER ***/
+
+.title-area {
+	img {
+		vertical-align: middle;
+	}
 }
 
 /*** TYPOGRAPHY ***/
