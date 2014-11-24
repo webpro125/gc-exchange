@@ -12,11 +12,4 @@ describe 'layouts/_header.html.erb' do
       rendered.should include('Register')
     end
   end
-
-  describe 'not logged in' do
-    it 'should render "Global Consultant Exchange" in the header' do
-      render
-      rendered.should include('Global Consultant Exchange')
-    end
-  end
 end
