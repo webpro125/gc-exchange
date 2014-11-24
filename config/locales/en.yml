@@ -43,9 +43,15 @@ en:
                 one: "must have at least %{count} position"
                 other: "must have at least %{count} positions"
               too_long:
-                one: "must have at most %{count} position"
-                other: "must have at most %{count} positions"
+                one: "may only have at most %{count} position"
+                other: "may only have at most %{count} positions"
               total: 'percentages must add up to 100%'
+        consultant:
+          attributes:
+            resume:
+              allowed_file_content_types: 'only .doc, .docx, .pdf documents allowed'
+            profile_image:
+              allowed_file_content_types: 'only .jpg, .jpeg, .png images allowed'
         address:
           attributes:
             state:
@@ -99,6 +105,10 @@ en:
         other_info: '3. Other Information'
         background_information: '4. Background Information'
         project_history: '5. Project History'
+      confirmations:
+        background_information:
+          save: 'Are you sure you entered the information correctly? Press ''OK'' to confirm or
+          ''Cancel'' to edit.'
     profile:
       actions:
         upload_photo: 'Upload Profile Photo'

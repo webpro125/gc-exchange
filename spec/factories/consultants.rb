@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :consultant do
     first_name            { Faker::Name.first_name }
     last_name             { Faker::Name.last_name }
-    email                 { "#{first_name}.#{last_name}@fakeemail.com" }
+    sequence(:email)      { |n| "#{first_name}#{n}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
     abstract              { Faker::Lorem.characters(150) }

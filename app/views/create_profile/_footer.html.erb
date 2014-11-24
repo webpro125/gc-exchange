@@ -10,6 +10,10 @@
                      class: 'secondary small',
                      name:'save_and_new'%>
         <%= f.button :submit, t('views.wizard.actions.finish'), class: 'secondary small' %>
+        <% elsif wizard_path == create_profile_path(:background_information) %>
+        <%= f.button :submit, t('views.wizard.actions.save_and_next'),
+                     data: { confirm: t('views.wizard.confirmations.background_information.save')},
+                     class: 'secondary small' %>
     <% else %>
         <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary small' %>
     <% end %>
