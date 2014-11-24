@@ -1,6 +1,5 @@
 class Skill < ActiveRecord::Base
   include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
 
   SKILL_TYPES = ['Accounting', 'Advertisement', 'Aerospace Engineering', 'Agile Development',
                  'Android', 'Artificial Intelligence', 'Availability Management', 'Big Data',
@@ -36,7 +35,11 @@ class Skill < ActiveRecord::Base
                  'Unified Communications', 'Unix', 'Urban Planning', 'Value Delivery System',
                  'Value Proposition', 'Weapons Systems', 'XML'].freeze
 
+  index_name [Rails.env, model_name.collection.gsub(%r{/}, '-')].join('_')
+
   before_create :lower_code
+  after_commit :update_index, on: [:create, :update]
+  after_commit :delete_index, on: [:destroy]
 
   validates :code, length: { maximum: 128 }, uniqueness: { case_sensitive: false }, presence: true
 
@@ -45,6 +48,14 @@ class Skill < ActiveRecord::Base
   end
 
   private
+
+  def update_index
+    SkillIndexer.perform_async(:update, id)
+  end
+
+  def delete_index
+    SkillIndexer.perform_async(:destroy, id)
+  end
 
   def lower_code
     code.downcase!

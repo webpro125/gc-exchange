@@ -6,11 +6,36 @@
   .next:after {content:"»";}
 }
 
+/*** HEADER ***/
+
+.top-bar {
+	.button, input {
+		height: 30px;
+		line-height: 15px;
+		top: 0;
+	}
+	.button {
+		font-size: 13px;
+		padding: 0 1rem;
+	}
+	.has-form {
+		padding: 7px 15px;
+		.columns {
+			padding: 0 0.2rem;
+		}
+		input[type="text"] {
+			width: 400px;
+			max-width: 100%;
+		}
+	}
+}
+
 /*** GLOBAL ***/
 
 .hint {
-	margin: 0 auto;
+	margin: -10px auto 10px auto;
   opacity: 0;
+  font-size: 13px;
 }
 #container {
 	background: $white;
@@ -22,13 +47,12 @@
 }
 
 /*** BUTTON ***/
+
 .button, input[type="submit"] {
 	border-radius: 2px;
 }
 
 /*** TYPOGRAPHY ***/
-
-
 
 h3 {
 	color: $gces-red;
@@ -49,7 +73,7 @@ h3 {
 	border-radius: 2px;
 }
 .error small.error {
-	
+
 }
 .alert-box.alert {
 	margin: 0 auto rem-calc(20);
@@ -58,7 +82,7 @@ h3 {
 .alert-box.notice {
 	background: scale-color($gces-blue, $lightness: 80%);
 	color: $gces-blue;
-} 
+}
 .alert-box.success {
 	background-color: #abc1b2;
 	border-color: #5d7b67;
@@ -67,6 +91,19 @@ h3 {
 
 
 /*** FORMS ***/
+
+#container {
+	form {
+		&.simple_form {
+			input[type="submit"] {
+				float: right;
+			}
+			span.optional {
+				display: none;
+			}
+		}
+	}
+}
 
 .select2-container {
 	margin: 0 0 1rem 0;
@@ -145,11 +182,43 @@ span.optional {
 	margin-left: 5px;
 }
 
+/*** IMAGES ***/
+
+.profile-thumb {
+  height: 80px;
+  width: 80px;
+  background-repeat: no-repeat;
+}
 
 /*** LOGIN ***/
 .new_consultant, .new_user {
 	span.optional {
 		display: none;
 	}
+}
+
+/*** SEARCH ***/
+
+.row.consultant-profile {
+  border-bottom: 3px solid #EFEFEF;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  h5 {
+    margin: 0;
+  }
+  p {
+    font-size: 13px;
+    margin-bottom: 0;
+    word-wrap: break-word;
+  }
+  a {
+    display: block;
+    font-size: 13px;
+  }
+  h5 {
+  	a {
+  		font-size: 1.125rem;
+  	}
+  }
 }
 

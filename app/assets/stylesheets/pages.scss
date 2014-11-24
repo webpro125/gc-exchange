@@ -1,138 +1,133 @@
 @import "variables";
 
 #one, #two, #three {
-	ul {
-		margin-left: 0;
-		padding-left: 0;
-		list-style: none;
+  ul {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
 
-		li {
-			&:before {
-				content: '•';
-				margin-right: 5px;
-				color: $gces-blue;
-				text-indent: -12px;
-			}
-		}
-	}
-	padding: 0 40px;
+    li {
+      &:before {
+        content: '•';
+        margin-right: 5px;
+        color: $gces-blue;
+        text-indent: -12px;
+      }
+    }
+  }
+  padding: 0 40px;
 
-	input[type="submit"] {
-		float: right;
-	}
+  input[type="submit"] {
+    float: right;
+  }
 
-	.optional {
-		display: none;
-	}
+  > .columns {
+    padding: 4rem 0;
+  }
 
-	> .columns {
-		padding: 4rem 0;
-	}
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75em;
+    line-height: 1.3em;
 
-	h2 {
-	font-size: 1.3rem;
-	margin-bottom: 0.75em;
-	line-height: 1.3em;
-
-		&.intro {
-			font-weight: 300;
-		}
-	}
+    &.intro {
+      font-weight: 300;
+    }
+  }
 }
 
 #one {
-	text-align: center;
+  text-align: center;
 
 
-	ul {
-		margin: 0 auto;
-		width: 260px;
+  ul {
+    margin: 0 auto;
+    width: 260px;
 
-		&.dropdown {
-			display: none;
-		}
+    &.dropdown {
+      display: none;
+    }
 
-		li {
-			&:before {
-				content: none;
-			}
-		}
-	}
+    li {
+      &:before {
+        content: none;
+      }
+    }
+  }
 
-	li:hover > ul.dropdown {
-		display: block;
-		background: #EEE;
+  li:hover > ul.dropdown {
+    display: block;
+    background: #EEE;
 
-		li {
-			width: auto;
-			margin: 0;
+    li {
+      width: auto;
+      margin: 0;
 
-			&:hover {
-				background: #CCC;
-			}
+      &:hover {
+        background: #CCC;
+      }
 
-			&:first-child {
-				border-bottom: 1px solid #CCC;
-			}
+      &:first-child {
+        border-bottom: 1px solid #CCC;
+      }
 
-			h5 {
-				font-size: 13px;
-				margin: 0;
+      h5 {
+        font-size: 13px;
+        margin: 0;
 
-				a {
-					padding: 10px 0;
-					display: block;
-				}
-			}
-		}
-	}
+        a {
+          padding: 10px 0;
+          display: block;
+        }
+      }
+    }
+  }
 
-	img {
-		margin: 2rem 0 0.5rem 0;
-	}
+  img {
+    margin: 2rem 0 0.5rem 0;
+  }
 
-	#top {
-		input {
-			float: left;
+  #new_search {
+    input {
+      float: left;
 
-			&[type="text"] {
-				width: 89%;
-			}
+      &[type="text"] {
+        width: 89%;
+      }
 
-			&[type="submit"] {
-				padding: 0.5rem;
-				height: 2.3125rem;
-				font-size: 0.8rem;
-				text-transform: uppercase;
-				letter-spacing: 1px;
-				width: 9%;
-				background: #BBB;
-				border-color: #999;
-			}
-		}
-	}
+      &[type="submit"] {
+        padding: 0.5rem;
+        height: 2.3125rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: #BBB;
+        border-color: #999;
+      }
+    }
+  }
 
-	.button {
-		margin: 0 5px;
-	}
+  .button {
+    margin: 0 5px;
+  }
 
-	.login {
-		position: relative;
-		display: inline-block;
+  .login {
+    position: relative;
+    display: inline-block;
 
-		&:after {
-			content: "";
-			display: block;
-			width: 0;
-			height: 0;
-			border: inset 5px;
-			border-color: $gces-blue transparent transparent transparent;
-			border-left-style: solid;
-			margin-right: -15px;
-			margin-top: -1px;
-			position: absolute;
-			top: 50%;
-			right: 0;
-		}
-	}
+    &:after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border: inset 5px;
+      border-color: $gces-blue transparent transparent transparent;
+      border-left-style: solid;
+      margin-right: -15px;
+      margin-top: -1px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+  }
 }

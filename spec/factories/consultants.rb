@@ -7,7 +7,7 @@ FactoryGirl.define do
     sequence(:email)      { |n| "#{first_name}#{n}.#{last_name}@fakeemail.com" }
     password              { 'password' }
     password_confirmation { 'password' }
-    abstract              { Faker::Lorem.characters(150) }
+    abstract              { Faker::Lorem.paragraph(4) }
 
     trait :approved do
       after(:create) do |c|

@@ -12,7 +12,7 @@ describe Search do
   describe 'just address' do
     let(:params) { { address: 'New York City' } }
 
-    it { should be_invalid }
+    it { should_not be_invalid }
   end
 
   describe 'just distance' do
@@ -22,7 +22,7 @@ describe Search do
   end
 
   describe 'one field' do
-    let(:params) { { clearance_level_ids: [1] } }
+    let(:params) { { clearance_level_id: 1 } }
 
     it { should be_valid }
   end

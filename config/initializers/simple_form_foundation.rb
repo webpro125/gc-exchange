@@ -15,12 +15,12 @@ SimpleForm.setup do |config|
       # Uncomment the following line to enable hints.
       # The line is commented out by default since Foundation does't provide styles for hints. You
       # will need to provide your own CSS styles for hints.
-      ba.use :hint,  wrap_with: { tag: :small, class: [:hint] }
+      ba.use :hint,  wrap_with: { tag: :p, class: [:hint] }
     end
   end
 
   # CSS class for buttons
-  config.button_class = 'button'
+  config.button_class = 'button small'
 
   # CSS class to add for error notification helper.
   config.error_notification_class = 'alert-box alert'

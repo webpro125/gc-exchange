@@ -15,6 +15,7 @@ module Searchable
         indexes :customer_name do
           indexes :id
           indexes :code
+          indexes :label
         end
       end
     end
@@ -43,8 +44,7 @@ module Searchable
 
   def project_histories_as_json
     {
-      methods: [:position_name],
-      only: [:description, :start_date, :end_date, :position_name, :client_company],
+      only: [:description, :start_date, :end_date, :client_company],
       include: [:customer_name, :project_type, project_history_positions: {
         only: [:percentage],
         include: :position
