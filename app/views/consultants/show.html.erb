@@ -60,7 +60,7 @@
                 <%= link_to t('views.consultant.actions.approve'),
                             approve_consultant_path(@consultant),
                             method: :put,
-                            class: 'button success' if @consultant.approvable? %>
+                            class: 'button success' if policy(@consultant).approvable? %>
               </div>
             </div>
             <div class="row">
@@ -68,7 +68,7 @@
                 <%= link_to t('views.consultant.actions.reject'),
                             reject_consultant_path(@consultant),
                             method: :put,
-                            class: 'button alert' if @consultant.rejectable? %>
+                            class: 'button alert' if policy(@consultant).rejectable? %>
               </div>
             </div>
           </div>

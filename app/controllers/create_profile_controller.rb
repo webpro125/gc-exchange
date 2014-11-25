@@ -25,7 +25,9 @@ class CreateProfileController < ConsultantController
         redirect_to new_project_history_path
       else
         render_wizard(@form)
-        current_consultant.save unless @form.model.is_a? Consultant
+        unless @form.model.is_a? Consultant
+          ConsultantSetStatus.new(current_consultant).pending_approval_and_save
+        end
       end
     else
       render_wizard

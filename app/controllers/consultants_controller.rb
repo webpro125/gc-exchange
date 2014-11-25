@@ -8,11 +8,7 @@ class ConsultantsController < CompanyController
   end
 
   def approve
-    if @consultant.approvable?
-      @consultant.approved_status = ApprovedStatus.approved
-    end
-
-    if @consultant.changed? && @consultant.save
+    if ConsultantSetStatus.new(@consultant).approve_and_save
       redirect_to consultants_path, notice: t('controllers.consultant.approve.success')
     else
       redirect_to consultant_path(@consultant), notice: t('controllers.consultant.approve.fail')
@@ -23,11 +19,7 @@ class ConsultantsController < CompanyController
   end
 
   def reject
-    if @consultant.rejectable?
-      @consultant.approved_status = ApprovedStatus.rejected
-    end
-
-    if @consultant.changed? && @consultant.save
+    if ConsultantSetStatus.new(@consultant).reject_and_save
       redirect_to consultants_path, notice: t('controllers.consultant.reject.success')
     else
       redirect_to consultant_path(@consultant), notice: t('controllers.consultant.reject.fail')

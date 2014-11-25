@@ -6,18 +6,23 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def approve?
-    user.present? && user.respond_to?(:gces?) && user.gces?
+    gces? && ConsultantSetStatus.new(record).approvable?
   end
 
-  alias_method :reject?, :approve?
-  alias_method :index?, :approve?
+  def reject?
+    gces? && ConsultantSetStatus.new(record).rejectable?
+  end
+
+  def index?
+    gces?
+  end
 
   def show?
-    edit? || (record.approved? || record.pending_approval?)
+    edit? || record.approved?
   end
 
   def edit?
-    approve? || user == record
+    gces? || user == record
   end
 
   alias_method :update?, :edit?
@@ -30,4 +35,10 @@ class ConsultantPolicy < ApplicationPolicy
   alias_method :resume?, :upload?
   alias_method :upload_resume?, :upload?
   alias_method :consultant?, :upload?
+
+  private
+
+  def gces?
+    user.present? && user.respond_to?(:gces?) && user.gces?
+  end
 end

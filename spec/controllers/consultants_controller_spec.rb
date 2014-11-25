@@ -88,15 +88,7 @@ describe ConsultantsController do
           it 'does not allow approve' do
             expect do
               put :approve, id: consultant.id
-            end.not_to change { consultant.reload.approved? }
-          end
-
-          describe do
-            before do
-              put :approve, id: consultant.id
-            end
-
-            it { should redirect_to(consultant_path(consultant)) }
+            end.to raise_error Pundit::NotAuthorizedError
           end
         end
 
@@ -106,15 +98,7 @@ describe ConsultantsController do
           it 'does not allow approve' do
             expect do
               put :approve, id: consultant.id
-            end.not_to change { consultant.reload.approved? }.from true
-          end
-
-          describe do
-            before do
-              put :approve, id: consultant.id
-            end
-
-            it { should redirect_to(consultant_path(consultant)) }
+            end.to raise_error Pundit::NotAuthorizedError
           end
         end
       end
@@ -144,15 +128,7 @@ describe ConsultantsController do
           it 'does not allow approve' do
             expect do
               put :reject, id: consultant.id
-            end.not_to change { consultant.reload.rejected? }.from true
-          end
-
-          describe do
-            before do
-              put :reject, id: consultant.id
-            end
-
-            it { should redirect_to(consultant_path(consultant)) }
+            end.to raise_error Pundit::NotAuthorizedError
           end
         end
 
@@ -162,15 +138,7 @@ describe ConsultantsController do
           it 'does not allow approve' do
             expect do
               put :reject, id: consultant.id
-            end.not_to change { consultant.reload.rejected? }.from false
-          end
-
-          describe do
-            before do
-              put :reject, id: consultant.id
-            end
-
-            it { should redirect_to(consultant_path(consultant)) }
+            end.to raise_error Pundit::NotAuthorizedError
           end
         end
 
