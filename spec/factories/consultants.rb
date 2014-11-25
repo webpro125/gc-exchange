@@ -39,7 +39,7 @@ FactoryGirl.define do
 
     trait :wicked_finish do
       after(:build) do |c|
-        c.wizard_step = 'wicked_finish'
+        c.wizard_step = Wicked::FINISH_STEP
         c.save
       end
     end

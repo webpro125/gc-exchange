@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get :company_welcome, to: 'pages#company_welcome'
 
   # Resources
-  resource :profile, only: [:edit, :update, :show, :consultant] do
+  resource :profile, only: [:edit, :update, :show] do
     collection do
       get :upload
       put :upload_image
