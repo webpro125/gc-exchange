@@ -69,4 +69,17 @@ describe CreateProfileController do
       end
     end
   end
+
+  describe 'logged in completed wizard' do
+    before do
+      sign_in user
+      get :show, id: :other_information
+    end
+
+    let(:user) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
+
+    it 'should redirect to root' do
+      expect(response).to redirect_to consultant_root_path
+    end
+  end
 end
