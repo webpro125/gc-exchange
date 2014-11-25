@@ -7,12 +7,12 @@ describe SearchesController do
       get('/search').should_not route_to('searches#show')
     end
 
-    it 'routes to searches#create' do
-      post('/search').should route_to('searches#create')
+    it 'should not routes to searches#create' do
+      post('/search').should_not route_to('searches#create')
     end
 
     it 'should route to searches#new' do
-      get('/search/new').should route_to('searches#new')
+      get('/search').should route_to('searches#new')
     end
 
     it 'should not route to searches#edit' do
@@ -25,6 +25,10 @@ describe SearchesController do
 
     it 'should not route to searches#destroy' do
       delete('/search').should_not route_to('searches#destroy')
+    end
+
+    it 'should route to searches#skills' do
+      get('/search/skills').should route_to('searches#skills')
     end
   end
 end

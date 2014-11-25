@@ -15,6 +15,7 @@ module Searchable
         indexes :customer_name do
           indexes :id
           indexes :code
+          indexes :label
         end
       end
     end
@@ -23,7 +24,7 @@ module Searchable
     def as_indexed_json(options = {})
       as_json(
         {
-          methods: [:full_name, :skills_list],
+          methods: [:full_name, :skills_list, :abstract],
           only: [:full_name, :last_sign_in_at, :skills_list],
           include: {
             address: {
@@ -31,7 +32,8 @@ module Searchable
               only: [:lat, :lon]
             },
             project_histories: project_histories_as_json,
-            military: military_as_json
+            military: military_as_json,
+            certifications: {}
           }
         }.merge(options)
       )
@@ -42,8 +44,7 @@ module Searchable
 
   def project_histories_as_json
     {
-      methods: [:position_name],
-      only: [:description, :start_date, :end_date, :position_name, :client_company],
+      only: [:description, :start_date, :end_date, :client_company],
       include: [:customer_name, :project_type, project_history_positions: {
         only: [:percentage],
         include: :position

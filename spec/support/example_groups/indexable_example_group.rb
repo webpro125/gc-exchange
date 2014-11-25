@@ -3,8 +3,10 @@ shared_examples 'indexable' do |method, value|
 
   describe 'approved' do
     before do
-      subject.consultant.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED)
+      subject.consultant.approved_status = ApprovedStatus.find_by_code(
+        ApprovedStatus::APPROVED[:code])
       ConsultantIndexer.jobs.clear
+      SidekiqUniqueJobs.redis_mock.flushdb
     end
 
     describe '#create' do
@@ -56,7 +58,8 @@ shared_examples 'indexable' do |method, value|
 
   describe 'not approved' do
     before do
-      subject.consultant.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED)
+      subject.consultant.approved_status = ApprovedStatus.find_by_code(
+        ApprovedStatus::REJECTED[:code])
       ConsultantIndexer.jobs.clear
       SidekiqUniqueJobs.redis_mock.flushdb
     end

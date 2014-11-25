@@ -9,18 +9,21 @@
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag 'debug' if development? %>
     <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets
-    .find_asset("#{controller_name}.js") %>
+    .find_asset("#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
+
     <%= csrf_meta_tags %>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <%= render 'layouts/flash' %>
-
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
-
+    <div id="container">
+        <%= render 'layouts/flash' %>
+        <%= yield %>
+    </div>
+    <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
+    .find_asset("#{controller_name}.js") %>
     <%= render 'layouts/debug' if development? %>
   </body>
 </html>

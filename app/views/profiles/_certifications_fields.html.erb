@@ -1,0 +1,4 @@
+<%= f.input :certification_ids,
+            build_simple_form_dropdown(Certification,
+                                       collection: Certification.all,
+                                       input_html: { multiple: true }) %>

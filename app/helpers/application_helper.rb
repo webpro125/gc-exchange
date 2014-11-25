@@ -1,6 +1,6 @@
 module ApplicationHelper
   LOOKUPS = [PhoneType, ClearanceLevel, Branch, Rank, ClearanceLevel, CustomerName, Position,
-             ProjectType, State, Certification].freeze
+             ProjectType, State, Certification, ApprovedStatus, Degree].freeze
 
   # Determines if we're in a development type environment
   #
@@ -35,11 +35,28 @@ module ApplicationHelper
   # Returns a hash { value_method: :id, label_method: label }
   #
   def build_simple_form_dropdown(klass, opts = {})
+    fail 'Invalid class.  Please use Lookup::LOOKUPS' unless LOOKUPS.include? klass
+
     label = lambda do |type|
-      value = type.is_a?(String) ? type : type.code
-      lookup_translation(klass, value)
+      type.is_a?(String) ? type : type.label
     end
 
     { label_method: label }.merge(opts)
+  end
+
+  def boolean_to_human(boolean)
+    boolean ? I18n.t('simple_form.yes') : I18n.t('simple_form.no')
+  end
+
+  def date_in_words(start_date, end_date = nil)
+    distance_of_time_in_words(start_date, end_date || DateTime.now)
+  end
+
+  def date_options
+    { format: :month_and_year, as: :date }
+  end
+
+  def create_profile_helper(wizard_step)
+    wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
   end
 end

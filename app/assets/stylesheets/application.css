@@ -9,9 +9,14 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require_self
- *= require foundation_and_overrides
- *= require common
 
  */
+
+/*
+*= require_self
+*= require select2
+*= require select2-bootstrap
+*= require common
+*= require _top-bar
+*/
+

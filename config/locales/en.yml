@@ -20,7 +20,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  helpers:
+    submit:
+      search:
+        create: 'Search'
+        update: 'Search'
   activerecord:
+    models:
+      attributes:
+        clearance_level:
+          none: 'None'
+        military:
+          date: 'Date Active'
+        phone:
+          number: 'Phone Number'
+          phone_type_id: ''
     errors:
       messages:
         regex:
@@ -36,32 +50,21 @@ en:
                 one: "must have at least %{count} position"
                 other: "must have at least %{count} positions"
               too_long:
-                one: "must have at most %{count} position"
-                other: "must have at most %{count} positions"
+                one: "may only have at most %{count} position"
+                other: "may only have at most %{count} positions"
               total: 'percentages must add up to 100%'
+        consultant:
+          attributes:
+            resume:
+              allowed_file_content_types: 'only .doc, .docx, .pdf documents allowed'
+            profile_image:
+              allowed_file_content_types: 'only .jpg, .jpeg, .png images allowed'
         address:
           attributes:
             state:
               match_fail: "must be a US state"
             geocode_fail: "must be a valid physical address"
   controllers:
-    address:
-      create:
-        success: 'Address saved successfully'
-      update:
-        success: 'Address saved successfully'
-    phone:
-      create:
-        success: 'Phone saved successfully'
-      update:
-        success: 'Phone saved successfully'
-    military:
-      create:
-        success: 'Military saved successfully'
-      update:
-        success: 'Military saved successfully'
-      destroy:
-        success: 'Military destroyed successfully'
     project_history:
       create:
         success: 'Project saved successfully'
@@ -86,35 +89,68 @@ en:
         success: 'User was successfully updated.'
       destroy:
         success: 'User was successfully destroyed.'
+    consultant:
+      approve:
+        success: 'Consultant approved.'
+        fail: 'Consultant was not able to be approved.'
+      reject:
+        success: 'Consultant rejected.'
+        fail: 'Consultant was not able to be rejected.'
+    phone:
+      create:
+        success: 'Phone created successfully.'
   views:
+    search:
+    page:
+      actions:
+        more_information: 'More Information'
+        less_information: 'Less Information'
+        company: 'Company'
+        consultant: 'Consultant'
+    wizard:
+      actions:
+        previous: '< Previous'
+        finish: 'Finish >'
+        save_and_next: 'Save & Continue >'
+        save_and_new: 'Save & New >'
+      header:
+        basic: '1. Basic Information'
+        qualifications: '2. Qualifications'
+        other_info: '3. Other Information'
+        background_information: '4. Background Information'
+        project_history: '5. Project History'
+      confirmations:
+        background_information:
+          save: 'Are you sure you entered the information correctly? Press ''OK'' to confirm or
+          ''Cancel'' to edit.'
+    profile:
+      actions:
+        upload_photo: 'Upload Profile Photo'
+        new_phone: '+ Add Phone'
+        new_education: '+ Add Another Degree'
+        save: 'Save'
+        remove_education: 'X'
+        download_resume: 'Download Resume >>'
+      headers:
+        contact: 'Contact Information'
+        education: 'Education'
+        certification: 'Certifications'
+        expertise: 'Expertise'
+        clearance: 'Security Clearance'
+        military: 'Military Status'
+    education:
+      new:
+        save: 'Save'
+    phone:
+      confirmations:
+        delete: 'Are you sure you want to delete this phone?'
+      new:
+        save: 'Save'
+      destroy:
+        failure: 'You must have one phone number available'
     password:
       actions:
         change_password: 'Change Password'
-    address:
-      actions:
-        add: 'Add Your Address'
-        edit: 'Edit Address'
-      new:
-        save: 'Save Address'
-      edit:
-        save: 'Update Address'
-    phone:
-      table:
-        number: 'Phone Number'
-        type: 'Phone Type'
-        edit: 'Edit Phone'
-        delete: 'Delete Phone'
-      confirmations:
-        delete: 'Are you sure you want to delete this phone number?'
-      actions:
-        index: 'Manage Phones'
-        add: 'New Phone'
-        edit: 'Edit'
-        delete: 'Delete'
-      new:
-        save: 'Save Phone'
-      edit:
-        save: 'Update Phone'
     project:
       table:
         company_name: 'Company'

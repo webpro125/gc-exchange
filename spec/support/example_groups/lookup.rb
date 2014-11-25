@@ -1,15 +1,13 @@
 shared_examples 'lookup' do
   describe 'code' do
-    it 'should have a max length' do
-      expect(subject).to ensure_length_of(:code).is_at_most(32)
-    end
+    it { should ensure_length_of(:code).is_at_most(32) }
+    it { should validate_uniqueness_of(:code).case_insensitive }
+    it { should validate_presence_of :code }
+  end
 
-    it 'should be unique' do
-      expect(subject).to validate_uniqueness_of(:code).case_insensitive
-    end
-
-    it 'should be required' do
-      expect(subject).to validate_presence_of :code
-    end
+  describe 'label' do
+    it { should ensure_length_of(:label).is_at_most(256) }
+    it { should validate_uniqueness_of(:label).case_insensitive }
+    it { should validate_presence_of(:label) }
   end
 end

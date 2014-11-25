@@ -1,16 +1,6 @@
 require 'spec_helper'
 
 describe Consultant do
-  let(:consultant) do
-    Consultant.new(
-      first_name: 'Freddy',
-      last_name: 'Kreuger',
-      email: 'freddy.kreuger@globalconsultantexchange.com',
-      password: 'password',
-      password_confirmation: 'password'
-    )
-  end
-
   let(:mime_types) do
     [
       'application/msword',
@@ -20,87 +10,53 @@ describe Consultant do
     ]
   end
 
-  let(:reject) do
-    ['text/plain', 'text/xml']
+  let(:image_types) do
+    [
+      'image/jpg',
+      'image/png',
+      'image/gif'
+    ]
   end
 
-  subject { consultant }
+  let(:reject) do
+    ['text/plain', 'text/xml', 'image/tiff']
+  end
+
+  subject do
+    Consultant.new(
+      first_name: 'Freddy',
+      last_name: 'Kreuger',
+      email: 'freddy.kreuger@globalconsultantexchange.com',
+      password: 'password',
+      password_confirmation: 'password',
+      abstract: 'Testing the abstract'
+    )
+  end
 
   it { should be_valid }
+  it { should respond_to(:background) }
   it { should respond_to(:phones) }
+  it { should respond_to(:educations) }
   it { should respond_to(:approved_status) }
   it { should respond_to(:approved?) }
-
-  describe 'first_name' do
-    it 'should have minimum length' do
-      subject.first_name = 'a' * 1
-      expect(subject).not_to be_valid
-    end
-
-    it 'should have maximum length' do
-      subject.first_name = 'a' * 25
-      expect(subject).not_to be_valid
-    end
-
-    it 'should be present' do
-      subject.first_name = nil
-      expect(subject).not_to be_valid
-    end
-
-    it 'should allow only characters numbers and hyphens' do
-      subject.first_name = 'james'
-      expect(subject).to be_valid
-
-      subject.first_name = 'billy-jean 2'
-      expect(subject).not_to be_valid
-
-      subject.first_name = '123567'
-      expect(subject).not_to be_valid
-
-      subject.first_name = '!@#$'
-      expect(subject).not_to be_valid
-    end
-  end
-
-  describe 'last_name' do
-    it 'should have minimum length' do
-      subject.last_name = 'a' * 1
-      expect(subject).not_to be_valid
-    end
-
-    it 'should have maximum length' do
-      subject.last_name = 'a' * 25
-      expect(subject).not_to be_valid
-    end
-
-    it 'should be present' do
-      subject.last_name = nil
-      expect(subject).not_to be_valid
-    end
-
-    it 'should allow only characters and numbers' do
-      subject.last_name = 'John 123567'
-      expect(subject).to be_valid
-
-      subject.last_name = '!@#$'
-      expect(subject).not_to be_valid
-    end
-  end
-
-  describe 'rate' do
-    it { should validate_numericality_of(:rate). is_greater_than(0).allow_nil }
-  end
+  it { should respond_to(:rejected?) }
+  it { should respond_to(:in_progress?) }
+  it { should respond_to(:pending_approval?) }
 
   describe 'resume' do
     before do
       subject.resume = File.new(Rails.root + 'spec/files/a_pdf.pdf')
     end
 
-    it { should have_attached_file(:resume) }
-    it { should validate_attachment_size(:resume).less_than(10.megabytes) }
-    it { should validate_attachment_content_type(:resume).allowing(mime_types).rejecting(reject) }
+    it { should respond_to(:resume) }
+  end
 
-    it { should_not validate_attachment_presence(:resume) }
+  describe 'profile_image' do
+    before do
+      subject.profile_image = File.new(Rails.root + 'app/assets/images/default_profile.png')
+    end
+
+    it { should respond_to(:profile_image) }
   end
 
   describe 'full_name' do
@@ -126,6 +82,21 @@ describe Consultant do
 
         subject.destroy
         expect(Address.find_by_id(address)).to be_nil
+      end
+    end
+
+    describe 'background' do
+      before do
+        subject.save!
+        FactoryGirl.create(:background, consultant: subject)
+      end
+
+      it 'should be destroyed on delete' do
+        background = subject.background.id
+        expect(background).not_to be_nil
+
+        subject.destroy
+        expect(Background.find_by_id(background)).to be_nil
       end
     end
 
@@ -227,6 +198,28 @@ describe Consultant do
       end
     end
 
+    describe 'educations' do
+      before do
+        subject.educations << FactoryGirl.create(:education)
+        subject.save!
+      end
+
+      it 'should destroy them on delete' do
+        educations = subject.educations.map(&:id)
+        expect(educations).not_to be_nil
+
+        subject.destroy
+        educations.each do |education|
+          expect(Education.find_by_id(education)).to be_nil
+        end
+      end
+
+      it 'should not allow more than 3' do
+        subject.educations << FactoryGirl.build_list(:education, 4)
+        expect(subject).not_to be_valid
+      end
+    end
+
     describe 'approved_status' do
       it 'should not destroy them on delete' do
         subject.save!
@@ -242,7 +235,7 @@ describe Consultant do
     describe 'approved' do
       before do
         subject.save!
-        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED)
+        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code])
       end
 
       describe '#update' do
@@ -263,7 +256,7 @@ describe Consultant do
 
       describe '#destroy' do
         it 'should delete document' do
-          expect(subject).to receive(:delete_document)
+          expect(subject.__elasticsearch__).to receive(:delete_document)
           subject.destroy!
         end
       end
@@ -271,7 +264,7 @@ describe Consultant do
 
     describe 'not approved' do
       before do
-        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED)
+        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code])
         subject.save!
       end
 
@@ -299,7 +292,7 @@ describe Consultant do
         end
 
         it 'should delete document' do
-          expect(subject).to receive(:delete_document)
+          expect(subject.__elasticsearch__).to receive(:delete_document)
           subject.destroy!
         end
       end

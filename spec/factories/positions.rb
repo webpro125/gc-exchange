@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :position do
     code          { Faker::Code.isbn }
+    label { Faker::Lorem.characters(256) }
   end
 end

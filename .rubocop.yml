@@ -307,6 +307,9 @@ Metrics/ParameterLists:
 Style/ParenthesesAroundCondition:
   AllowSafeAssignment: true
 
+Metrics/AbcSize:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%':  ()

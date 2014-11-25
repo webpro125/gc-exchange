@@ -7,8 +7,8 @@ Rails.application.routes.draw do
                                                     registration: 'register' },
              controllers: { registrations: 'registrations' }
 
-  devise_for :users, path: '/users/', path_names: { sign_in: 'login',
-                                                    sign_out: 'logout' }
+  devise_for :users, path_names: { sign_in: 'login',
+                                   sign_out: 'logout' }
   # Root Paths
   authenticated :consultant do
     root 'pages#consultant', as: :consultant_root
@@ -21,16 +21,38 @@ Rails.application.routes.draw do
   end
 
   root 'pages#home'
+  get :consultant_welcome, to: 'pages#consultant_welcome'
+  get :company_welcome, to: 'pages#company_welcome'
 
   # Resources
-  resource :address, except: [:destroy, :show]
-  resource :military, except: [:new, :edit, :show, :index]
-  resource :search, only: [:new, :create]
-  resources :phones
-  resources :project_histories, path: 'projects'
+  resource :profile, only: [:edit, :update, :show] do
+    collection do
+      get :upload
+      put :upload_image
+      patch :upload_image
+
+      get :resume
+      put :upload_resume
+      patch :upload_resume
+    end
+  end
+
+  get :search, to: 'searches#new'
+  get 'search/skills', to: 'searches#skills'
+
+  resources :create_profile, only: [:show, :update]
+  resources :project_histories, path: 'projects', except: [:index, :show]
   resources :sales_leads, only: [:new, :create]
+  resources :phones, only: [:new, :create, :destroy]
+  resources :educations, only: [:new, :create, :destroy]
   resources :companies do
     resources :users
+  end
+  resources :consultants, only: [:index, :show] do
+    member do
+      put :approve
+      put :reject
+    end
   end
 
   # Non resource

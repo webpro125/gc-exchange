@@ -19,7 +19,7 @@ describe SalesLeadsController do
     describe 'with valid paramaters' do
       it 'redirects to root_path' do
         post :create, sales_lead: sales_lead
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to company_welcome_path
       end
 
       it 'persists the record' do

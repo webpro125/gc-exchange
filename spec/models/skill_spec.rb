@@ -18,4 +18,11 @@ describe Skill do
       expect(subject).to validate_presence_of :code
     end
   end
+
+  describe 'self.search' do
+    it 'should call __elasticsearch__' do
+      expect(Skill.__elasticsearch__).to receive(:search)
+      Skill.search('oh yea!')
+    end
+  end
 end

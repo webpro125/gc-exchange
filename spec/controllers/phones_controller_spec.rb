@@ -10,31 +10,6 @@ describe PhonesController do
           phone_type_id: FactoryGirl.create(:phone_type).id)
     end
 
-    describe "GET 'index'" do
-      before do
-        @phones = FactoryGirl.create_list(:phone,
-                                          4,
-                                          phoneable_type: 'Consultant',
-                                          phoneable_id: consultant.id)
-      end
-
-      it 'returns http success' do
-        get :index
-        expect(response).to be_success
-      end
-
-      it 'assigns phones' do
-        get :index
-        expect(assigns(:phones)).to match_array(@phones)
-      end
-
-      it 'does not include other consultants phones' do
-        phones = FactoryGirl.create_list(:phone, 2)
-        get :index
-        expect(assigns(:phones)).not_to match_array(phones)
-      end
-    end
-
     describe "GET 'new'" do
       it 'renders #new' do
         get :new
@@ -51,11 +26,11 @@ describe PhonesController do
       describe 'with valid paramaters' do
         it 'redirects to phones_path' do
           post :create, phone: @phone
-          expect(response).to redirect_to phones_path
+          expect(response).to redirect_to edit_profile_path
         end
 
         it 'persists the record' do
-          Phone.any_instance.should_receive(:save).and_return(true)
+          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(true)
           post :create, phone: @phone
         end
 
@@ -76,109 +51,15 @@ describe PhonesController do
         end
 
         it 'does not persist the record' do
-          Phone.any_instance.should_receive(:save).and_return(false)
+          PhoneUnsetPrimaries.any_instance.should_receive(:save).and_return(false)
           post :create, phone: @phone
-        end
-      end
-    end
-
-    describe "GET 'show'" do
-      before do
-        @phone = consultant.phones.create!(@phone)
-      end
-
-      describe 'with consultants phone' do
-        it 'renders #show' do
-          get :show, id: @phone.id
-          expect(response).to render_template :show
-        end
-
-        it 'assigns phone' do
-          get :show, id: @phone.id
-          expect(assigns(:phone)).to eq(@phone)
-        end
-      end
-
-      describe 'with different users phone' do
-        let(:phone) { FactoryGirl.create(:phone) }
-
-        it 'raises ActiveRecord::RecordNotFound' do
-          expect { get :show, id: phone.id }.to raise_exception ActiveRecord::RecordNotFound
-        end
-      end
-    end
-
-    describe "GET 'edit'" do
-      before do
-        @phone = consultant.phones.create!(@phone)
-      end
-
-      describe 'with consultants phone' do
-        it 'renders #edit' do
-          get :edit, id: @phone.id
-          expect(response).to render_template :edit
-        end
-
-        it 'assigns phone' do
-          get :edit, id: @phone.id
-          expect(assigns(:phone)).to eq(@phone)
-        end
-      end
-
-      describe 'with different users phone' do
-        let(:phone) { FactoryGirl.create(:phone) }
-
-        it 'raises ActiveRecord::RecordNotFound' do
-          expect { get :edit, id: phone.id }.to raise_exception ActiveRecord::RecordNotFound
-        end
-      end
-    end
-
-    describe "PUT 'update'" do
-      let(:phone) { consultant.phones.create!(@phone) }
-
-      describe 'with valid parameters' do
-        it 'redirects to phones_path' do
-          put :update, phone: @phone, id: phone.id
-          expect(response).to redirect_to phones_path
-        end
-
-        it 'persists the record' do
-          Phone.any_instance.should_receive(:update).and_return(true)
-          put :update, phone: @phone, id: phone.id
-        end
-
-        it 'sends a flash message' do
-          put :update, phone: @phone, id: phone.id
-          expect(flash[:success]).to eq(I18n.t('controllers.phone.update.success'))
-        end
-      end
-
-      describe 'with invalid parameters' do
-        it 'renders "edit"' do
-          put :update, phone: { number: nil }, id: phone.id
-          expect(response).to render_template :edit
-        end
-
-        it 'does not persist the record' do
-          Phone.any_instance.should_receive(:update).and_return(false)
-          put :update, phone: { number: nil }, id: phone.id
-        end
-      end
-
-      describe 'with different users phone' do
-        let(:phone1) { FactoryGirl.create(:phone) }
-
-        it 'raises ActiveRecord::RecordNotFound' do
-          expect do
-            put :update, phone: phone1, id: phone1.id
-          end.to raise_exception ActiveRecord::RecordNotFound
         end
       end
     end
 
     describe 'DELETE "destroy"' do
       before do
+        consultant.phones.create(@phone)
         @phone = consultant.phones.create(@phone)
       end
 
@@ -194,7 +75,7 @@ describe PhonesController do
 
       describe 'with valid params' do
         it 'deletes the phone' do
-          expect { delete :destroy, id: @phone.id }.to change { Phone.count }.from(1).to(0)
+          expect { delete :destroy, id: @phone.id }.to change { Phone.count }.from(2).to(1)
         end
       end
     end
@@ -206,14 +87,8 @@ describe PhonesController do
     end
 
     it 'should redirect to login for "GET" requests' do
-      [:index, :new].each do |method|
+      [:new].each do |method|
         get method
-        expect(response).to redirect_to(new_consultant_session_path)
-      end
-
-      phone = FactoryGirl.create(:phone)
-      [:show, :edit].each do |method|
-        get method, id: phone.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end
@@ -223,15 +98,6 @@ describe PhonesController do
 
       [:create].each do |method|
         post method, phone: phone
-        expect(response).to redirect_to(new_consultant_session_path)
-      end
-    end
-
-    it 'should redirect to login for "PUT" requests' do
-      phone = FactoryGirl.create(:phone)
-
-      [:update].each do |method|
-        put method, id: phone.id
         expect(response).to redirect_to(new_consultant_session_path)
       end
     end

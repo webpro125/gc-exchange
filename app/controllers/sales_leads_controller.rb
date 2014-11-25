@@ -11,7 +11,7 @@ class SalesLeadsController < ApplicationController
       flash[:success] = I18n.t('controllers.sales_lead.create.success')
 
       # 'Message was successfully sent'
-      redirect_to root_path
+      redirect_to company_welcome_path
     else
       render :new
     end
