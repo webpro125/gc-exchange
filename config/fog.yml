@@ -16,7 +16,7 @@ test:
 staging:
   <<: *default_settings
   fog_host: nil
-  fog_directory: 'gces-staging'
+  fog_directory: 'gces_staging'
   path: ':class/:attachment/:id/resume.:extension'
   fog_credentials:
     provider: 'AWS'
@@ -29,7 +29,7 @@ staging:
 production:
   <<: *default_settings
   fog_host: nil
-  fog_directory: 'gces-production'
+  fog_directory: 'gces_production'
   path: ':class/:attachment/:id/resume.:extension'
   fog_credentials:
     provider: 'AWS'
