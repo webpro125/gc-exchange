@@ -5,12 +5,13 @@ class CreateProfileController < ConsultantController
   skip_after_action :verify_policy_scoped
   skip_before_action :consultant_wizard_redirect
 
+  before_action :redirect_after_wizard
+
   steps :basic_information, :qualifications, :other_information, :background_information,
         :project_history
 
   def show
     generate_show_form
-
     render_wizard
   end
 
@@ -84,5 +85,11 @@ class CreateProfileController < ConsultantController
     current_consultant.phones.build unless current_consultant.phones.size > 0
     current_consultant.build_address unless current_consultant.address.present?
     current_consultant.build_military unless current_consultant.military.present?
+  end
+
+  def redirect_after_wizard
+    return unless current_consultant.wizard_step == Wicked::FINISH_STEP
+    redirect_to consultant_root_path
+    false
   end
 end
