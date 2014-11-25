@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ProjectHistoriesController do
   let!(:project_type) { FactoryGirl.create(:project_type) }
-  let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
+  let(:consultant) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
   let(:position) { FactoryGirl.create(:position) }
   let(:project_history_positions) do
     FactoryGirl.attributes_for(:project_history_position, position_id: position.id)

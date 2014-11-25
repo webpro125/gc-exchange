@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PhonesController do
-  let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
+  let(:consultant) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
 
   describe 'when logged in' do
     before do

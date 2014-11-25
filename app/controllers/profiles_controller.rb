@@ -47,6 +47,9 @@ class ProfilesController < ConsultantController
     @form = UploadResumeForm.new(current_consultant)
   end
 
+  def consultant
+  end
+
   private
 
   def load_and_authorize_consultant

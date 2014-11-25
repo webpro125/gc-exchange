@@ -7,7 +7,20 @@ describe ProfilesController do
       sign_in user
     end
 
-    let(:user) { FactoryGirl.create(:confirmed_consultant) }
+    let(:user) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
+
+    describe 'GET "consultant"' do
+      it 'renders "consultant"' do
+        get :consultant
+        expect(response).to render_template :consultant
+      end
+    end
+
+    it 'routes to profiles#consultant' do
+      allow_message_expectations_on_nil
+      allow_any_instance_of(Object).to receive(:authenticate?).and_return(true)
+      get('consultant').should route_to(controller: 'profiles', action: 'consultant')
+    end
 
     describe 'GET show' do
       before do

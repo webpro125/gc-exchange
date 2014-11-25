@@ -11,7 +11,7 @@ Rails.application.routes.draw do
                                    sign_out: 'logout' }
   # Root Paths
   authenticated :consultant do
-    root 'pages#consultant', as: :consultant_root
+    root 'profiles#consultant', as: :consultant_root
   end
   authenticated :user do
     root 'pages#user', as: :user_root
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get :company_welcome, to: 'pages#company_welcome'
 
   # Resources
-  resource :profile, only: [:edit, :update, :show] do
+  resource :profile, only: [:edit, :update, :show, :consultant] do
     collection do
       get :upload
       put :upload_image

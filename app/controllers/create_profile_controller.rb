@@ -3,6 +3,7 @@ class CreateProfileController < ConsultantController
 
   skip_after_action :verify_authorized
   skip_after_action :verify_policy_scoped
+  skip_before_action :consultant_wizard_redirect
 
   steps :basic_information, :qualifications, :other_information, :background_information,
         :project_history
@@ -24,6 +25,7 @@ class CreateProfileController < ConsultantController
         redirect_to new_project_history_path
       else
         render_wizard(@form)
+        current_consultant.save unless @form.changed?
       end
     else
       render_wizard
@@ -81,5 +83,6 @@ class CreateProfileController < ConsultantController
   def generate_other_information
     current_consultant.phones.build unless current_consultant.phones.size > 0
     current_consultant.build_address unless current_consultant.address.present?
+    current_consultant.build_military unless current_consultant.military.present?
   end
 end
