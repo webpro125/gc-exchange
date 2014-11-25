@@ -9,8 +9,8 @@ class PagesController < ApplicationController
     render layout: 'landing_page'
   end
 
-  def consultant
-  end
+  # def consultant
+  # end
 
   def user
   end
