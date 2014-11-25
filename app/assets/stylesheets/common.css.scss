@@ -79,19 +79,6 @@ h3 {
 
 /*** FORMS ***/
 
-#container {
-	form {
-		&.simple_form {
-			input[type="submit"] {
-				float: right;
-			}
-			span.optional {
-				display: none;
-			}
-		}
-	}
-}
-
 .select2-container {
   margin: 0 0 1rem 0;
   font-size: 14px;
