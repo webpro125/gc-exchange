@@ -7,7 +7,14 @@ describe ProfilesController do
       sign_in user
     end
 
-    let(:user) { FactoryGirl.create(:confirmed_consultant) }
+    let(:user) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
+
+    describe 'GET "consultant"' do
+      it 'renders "consultant"' do
+        get :consultant
+        expect(response).to render_template :consultant
+      end
+    end
 
     describe 'GET show' do
       before do

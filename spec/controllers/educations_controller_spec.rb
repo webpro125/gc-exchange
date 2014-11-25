@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe EducationsController do
-  let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
+  let(:consultant) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
 
   describe 'when logged in' do
     before do
       sign_in consultant
       @education = FactoryGirl.attributes_for(:education).merge(
-          degree_id: FactoryGirl.create(:degree).id)
+        degree_id: FactoryGirl.create(:degree).id)
     end
 
     describe "GET 'new'" do
