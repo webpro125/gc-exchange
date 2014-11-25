@@ -20,6 +20,26 @@ describe ProjectHistoriesController do
       sign_in consultant
     end
 
+    describe "GET 'index'" do
+      let!(:projects) { FactoryGirl.create_list(:project_history, 4, consultant: consultant) }
+
+      it 'returns http success' do
+        get :index
+        expect(response).to be_success
+      end
+
+      it 'assigns projects' do
+        get :index
+        expect(assigns(:projects)).to match_array(projects)
+      end
+
+      it 'does not include other consultants project_history' do
+        unfound_projects = FactoryGirl.create_list(:project_history, 2)
+        get :index
+        expect(assigns(:projects)).not_to match_array(unfound_projects)
+      end
+    end
+
     describe "GET 'new'" do
       it 'renders #new' do
         get :new
