@@ -25,7 +25,7 @@ class CreateProfileController < ConsultantController
         redirect_to new_project_history_path
       else
         render_wizard(@form)
-        current_consultant.save unless @form.changed?
+        current_consultant.save unless @form.model == 'Consultant'
       end
     else
       render_wizard
