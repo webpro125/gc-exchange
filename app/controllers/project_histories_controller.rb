@@ -1,6 +1,11 @@
 class ProjectHistoriesController < ConsultantController
   before_action :set_project, only: [:edit, :update, :destroy]
 
+  # GET /projects
+  def index
+    @projects = policy_scope(current_consultant.project_histories)
+  end
+
   # GET /projects/new
   def new
     project = current_consultant.project_histories.build

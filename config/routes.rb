@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get 'search/skills', to: 'searches#skills'
 
   resources :create_profile, only: [:show, :update]
-  resources :project_histories, path: 'projects', except: [:index, :show]
+  resources :project_histories, path: 'projects', except: [:show]
   resources :sales_leads, only: [:new, :create]
   resources :phones, only: [:new, :create, :destroy]
   resources :educations, only: [:new, :create, :destroy]
