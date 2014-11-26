@@ -12,15 +12,16 @@ describe 'Editing project histories' do
     FactoryGirl.create(:project_history, consultant: consultant, project_type: project_type)
   end
 
-  def navigate_to_edit_page(options = {})
+  def navigate_to_page(options = {})
     options[:id] ||= project_history.id
+    options[:target_page] ||= "/projects/#{options[:id]}/edit"
 
     visit '/login'
     fill_in 'consultant[email]', with: consultant.email
     fill_in 'consultant[password]', with: consultant.password
     click_button 'Sign in'
     consultant.reload
-    visit "/projects/#{options[:id]}/edit"
+    visit options[:target_page]
     expect(page).to have_content('Editing project')
   end
 
@@ -29,12 +30,28 @@ describe 'Editing project histories' do
     project_history.end_date = nil
     project_history.save
 
-    navigate_to_edit_page
+    navigate_to_page
+    test_profile_page_loading
+  end
+
+  it 'does not throw an error with only valid start date' do
+    project_history.end_date = nil
+    project_history.save
+
+    navigate_to_page
+    test_profile_page_loading
+  end
+
+  it 'does not throw an error with only valid end date' do
+    project_history.start_date = nil
+    project_history.save
+
+    navigate_to_page
     test_profile_page_loading
   end
 
   it 'does not throw an error on profile#show with valid dates' do
-    navigate_to_edit_page
+    navigate_to_page
     test_profile_page_loading
   end
 
@@ -42,6 +59,7 @@ describe 'Editing project histories' do
     expect do
       # BUG: this catch is to prevent the missing /projects GET route bug from interfering
       # TODO: remove 'begin' and these comments when bug is fixed
+      # NOTE: routes to [GET] /projects only when dates are valid
       begin
         click_button 'Update Project history'
       rescue
