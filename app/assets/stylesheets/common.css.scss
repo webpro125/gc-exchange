@@ -160,11 +160,11 @@ input, textarea {
     background: #FFF image-url("required.png") right 50% no-repeat;
   }
 }
-span.optional {
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-left: 5px;
+.maxlength {
+  margin-top: -10px;
+  float: right;
+  font-size: 13px;
+  color: $gces-red;
 }
 
 /*** IMAGES ***/
