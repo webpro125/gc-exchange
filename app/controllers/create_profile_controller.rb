@@ -19,20 +19,7 @@ class CreateProfileController < ConsultantController
     current_consultant.wizard_step = next_step
     generate_update_form
 
-    if @form.validate(form_params(step))
-      if params[:save_and_new] && step == :project_history
-        @form.save
-        current_consultant.save
-        redirect_to new_project_history_path
-      else
-        render_wizard(@form)
-        unless @form.model.is_a? Consultant
-          ConsultantSetStatus.new(current_consultant).pending_approval_and_save
-        end
-      end
-    else
-      render_wizard
-    end
+    render_wizard_path
   end
 
   private
@@ -93,5 +80,20 @@ class CreateProfileController < ConsultantController
     return unless current_consultant.wizard_step == Wicked::FINISH_STEP
     redirect_to consultant_root_path
     false
+  end
+
+  def render_wizard_path
+    if @form.validate(form_params(step))
+      if params[:save_and_new] && step == :project_history
+        @form.save
+        current_consultant.save
+        redirect_to new_project_history_path
+      else
+        render_wizard(@form)
+        current_consultant.save unless @form.model.is_a? Consultant
+      end
+    else
+      render_wizard
+    end
   end
 end
