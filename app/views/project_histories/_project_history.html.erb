@@ -25,15 +25,10 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <% if project_history.start_date %>
-          <%= project_history.start_date.to_formatted_s(:month_and_year) %>
-        <% end %> -
-        <% if project_history.end_date %>
-          <%= project_history.end_date.to_formatted_s(:month_and_year) || t('simple_form.now') %>
-        <% end %>
-        <% if project_history.start_date && project_history.end_date %>
-          (<%= date_in_words(project_history.start_date, project_history.end_date) %>)
-        <% end %>
+        <%= project_history.start_date.try { |obj| obj.to_formatted_s(:month_and_year) } %> -
+        <%= project_history.end_date.try { |obj| obj.to_formatted_s(:month_and_year) } ||
+            t('simple_form.now') %>
+        (<%= date_in_words(project_history.start_date, project_history.end_date) %>)
       </div>
     </div>
     <div class="row">
