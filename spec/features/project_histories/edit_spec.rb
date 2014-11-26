@@ -25,7 +25,7 @@ describe 'Editing project histories' do
     expect(page).to have_content('Editing project')
   end
 
-  it 'does not throw an error on profile/show with nil dates' do
+  it 'does not throw an error on profile#show with nil dates' do
     project_history.start_date = nil
     project_history.end_date = nil
     project_history.save
@@ -34,7 +34,7 @@ describe 'Editing project histories' do
     test_profile_page_loading
   end
 
-  it 'does not throw an error with only valid start date' do
+  it 'does not throw an error on profile#show with only valid start date' do
     project_history.end_date = nil
     project_history.save
 
@@ -42,7 +42,7 @@ describe 'Editing project histories' do
     test_profile_page_loading
   end
 
-  it 'does not throw an error with only valid end date' do
+  it 'does not throw an error on profile#show with only valid end date' do
     project_history.start_date = nil
     project_history.save
 
@@ -50,7 +50,7 @@ describe 'Editing project histories' do
     test_profile_page_loading
   end
 
-  it 'does not throw an error on profile#show with valid dates' do
+  it 'does not throw an error on profile#show with all valid dates' do
     navigate_to_page
     test_profile_page_loading
   end
