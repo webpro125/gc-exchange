@@ -49,7 +49,12 @@ module ApplicationHelper
   end
 
   def date_in_words(start_date, end_date = nil)
+    return unless start_date
     distance_of_time_in_words(start_date, end_date || DateTime.now)
+  end
+
+  def date_to_formatted_s(date)
+    return nil unless date.try { |obj| obj.to_formatted_s(:month_and_year) }
   end
 
   def date_options
