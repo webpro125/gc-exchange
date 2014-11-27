@@ -54,7 +54,7 @@ module ApplicationHelper
   end
 
   def date_to_formatted_s(date)
-    return nil unless date.try { |obj| obj.to_formatted_s(:month_and_year) }
+    date.try { |obj| obj.to_formatted_s(:month_and_year) }
   end
 
   def date_options

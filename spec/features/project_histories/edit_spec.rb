@@ -63,6 +63,8 @@ describe 'Editing project histories' do
       begin
         click_button 'Update Project history'
       rescue
+        visit '/'
+      ensure
         visit '/profile'
       end
     end.to_not raise_error
