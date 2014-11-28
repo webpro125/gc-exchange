@@ -11,4 +11,7 @@ class PagesController < ApplicationController
 
   def user
   end
+
+  def terms_of_service
+  end
 end

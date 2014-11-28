@@ -8,7 +8,12 @@
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
   </div>
-
+<div class="row">
+  <div class="large-12 columns">
+    <p>By clicking "Sign up" you agree to our <%= link_to 'Terms of Service',
+                                                          terms_of_service_path %>.</p>
+  </div>
+</div>
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>
