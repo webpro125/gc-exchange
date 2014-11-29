@@ -19,7 +19,15 @@ class CreateProfileController < ConsultantController
     current_consultant.wizard_step = next_step
     generate_update_form
 
-    render_wizard_path
+    if @form.validate(form_params(step))
+      if params[:save_and_new] && step == :project_history
+        render_project_history
+      else
+        render_wizard_path
+      end
+    else
+      render_wizard
+    end
   end
 
   private
@@ -82,18 +90,15 @@ class CreateProfileController < ConsultantController
     false
   end
 
+  def render_project_history
+    @form.save
+    current_consultant.save
+    redirect_to new_project_history_path
+  end
+
   def render_wizard_path
-    if @form.validate(form_params(step))
-      if params[:save_and_new] && step == :project_history
-        @form.save
-        current_consultant.save
-        redirect_to new_project_history_path
-      else
-        render_wizard(@form)
-        current_consultant.save unless @form.model.is_a? Consultant
-      end
-    else
-      render_wizard
-    end
+    render_wizard(@form)
+    ConsultantSetStatus.new(current_consultant).pending_approval_and_save unless
+      @form.model.is_a? Consultant
   end
 end
