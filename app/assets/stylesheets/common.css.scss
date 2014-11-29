@@ -37,6 +37,10 @@
   border-radius: 2px;
 }
 
+input[type="submit"] {
+  clear: both;
+}
+
 /*** HEADER ***/
 
 .title-area {
@@ -161,9 +165,9 @@ input, textarea {
   }
 }
 .maxlength {
-  margin-top: -10px;
+  margin: -10px 0 10px 0;
   float: right;
-  font-size: 13px;
+  font-size: 11px;
   color: $gces-red;
 }
 
