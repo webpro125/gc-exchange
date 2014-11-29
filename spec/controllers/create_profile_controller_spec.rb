@@ -7,7 +7,7 @@ describe CreateProfileController do
       sign_in user
     end
 
-    let(:user) { FactoryGirl.create(:confirmed_consultant) }
+    let!(:user) { FactoryGirl.create(:confirmed_consultant) }
 
     [:basic_information, :qualifications, :other_information, :background_information,
      :project_history].each do |m|
