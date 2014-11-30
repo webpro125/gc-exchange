@@ -4,5 +4,4 @@ class ProjectHistoryPosition < ActiveRecord::Base
 
   validates :position, presence: true
   validates :project_history, presence: true, uniqueness: { scope: :position }
-
 end

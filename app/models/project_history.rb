@@ -7,5 +7,4 @@ class ProjectHistory < ActiveRecord::Base
   belongs_to :project_type
   has_many :project_history_positions, dependent: :destroy, inverse_of: :project_history
   has_many :positions, through: :project_history_positions
-
 end
