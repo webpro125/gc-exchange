@@ -8,11 +8,4 @@ class ProjectHistory < ActiveRecord::Base
   has_many :project_history_positions, dependent: :destroy, inverse_of: :project_history
   has_many :positions, through: :project_history_positions
 
-  def destroy
-    return if @_destroy_callback_already_called
-    @_destroy_callback_already_called = true
-    run_callbacks(:destroy) { super }
-    ensure
-      @_destroy_callback_already_called = false
-  end
 end

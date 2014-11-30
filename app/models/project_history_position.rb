@@ -5,11 +5,4 @@ class ProjectHistoryPosition < ActiveRecord::Base
   validates :position, presence: true
   validates :project_history, presence: true, uniqueness: { scope: :position }
 
-  def destroy
-    return if @_destroy_callback_already_called
-    @_destroy_callback_already_called = true
-    run_callbacks(:destroy) { super }
-    ensure
-      @_destroy_callback_already_called = false
-  end
 end

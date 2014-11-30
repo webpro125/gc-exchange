@@ -9,8 +9,8 @@ describe CreateProfileController do
 
     let(:user) { FactoryGirl.create(:confirmed_consultant) }
 
-    [:basic_information, :qualifications, :other_information, :background_information,
-     :project_history].each do |m|
+    [:project_history, :basic_information, :qualifications, :other_information,
+     :background_information].each do |m|
       describe "GET #{m}" do
         before do
           get :show, id: m
