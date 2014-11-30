@@ -38,11 +38,9 @@ describe CreateProfileController do
           put :update, valid_attributes
         end
 
-        describe do
-          it 'assigns @form' do
-            expect_any_instance_of(Reform::Form).to receive(:validate) { true }
-            put :update, valid_attributes
-          end
+        it 'assigns @form' do
+          expect_any_instance_of(Reform::Form).to receive(:validate).once { true }
+          put :update, valid_attributes
         end
       end
     end
