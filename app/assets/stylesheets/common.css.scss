@@ -46,11 +46,37 @@
 }
 
 /*** TYPOGRAPHY ***/
+#container h1 {
+  font-weight: 300;
+}
 h3 {
   color: $gces-red;
   border-bottom: 1px solid #DDD;
   font-weight: 200;
 }
+
+ol {
+  >li {
+    margin-bottom: 1rem;
+    line-height: 1.45rem;
+  }  
+  ol { 
+    list-style-type: upper-roman;
+    margin-top: 0.5rem;
+
+    >li {
+      margin-bottom: 0.5rem;
+    }
+    ol {
+      list-style-type: lower-alpha;
+
+      ol {
+        list-style-type: lower-roman;
+      }
+    }
+  }
+}
+
 /*** ALERTS ***/
 
 .error label, .error label.error {
