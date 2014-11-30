@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get :consultant_welcome, to: 'pages#consultant_welcome'
   get :company_welcome, to: 'pages#company_welcome'
+  get :terms_of_service, to: 'pages#terms_of_service'
 
   # Resources
   resource :profile, only: [:edit, :update, :show] do
