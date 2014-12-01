@@ -26,8 +26,7 @@
     <div class="row">
       <div class="small-12 columns">
         <%= date_to_formatted_s(project_history.start_date) %> -
-        <%= date_to_formatted_s(project_history.end_date) ||
-            (project_history.start_date ? t('simple_form.now') : nil) %>
+        <%= date_to_formatted_s(project_history.end_date) || t('simple_form.now') %>
           (<%= date_in_words(project_history.start_date, project_history.end_date) %>)
       </div>
     </div>

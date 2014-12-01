@@ -57,16 +57,8 @@ describe 'Editing project histories' do
 
   def test_profile_page_loading
     expect do
-      # BUG: this catch is to prevent the missing /projects GET route bug from interfering
-      # TODO: remove 'begin' and these comments when bug is fixed
-      # NOTE: routes to [GET] /projects only when dates are valid
-      begin
-        click_button 'Update Project history'
-      rescue
-        visit '/'
-      ensure
-        visit '/profile'
-      end
+      click_button 'Update Project history'
+      visit '/profile'
     end.to_not raise_error
   end
 end
