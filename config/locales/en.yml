@@ -126,6 +126,7 @@ en:
           ''Cancel'' to edit.'
     profile:
       actions:
+        show: 'Profile'
         edit: 'Edit Profile'
         upload_resume: 'Upload Resume'
         upload_photo: 'Upload Image'
