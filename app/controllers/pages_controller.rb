@@ -17,10 +17,9 @@ class PagesController < ApplicationController
 
   def consultant_learn_more
     render layout: 'learn_more'
-  end  
+  end
 
   def company_learn_more
     render layout: 'learn_more'
-  end  
-
+  end
 end
