@@ -48,7 +48,7 @@ class ProfilesController < ConsultantController
   end
 
   def download
-    redirect_to "/#{current_consultant.resume.url}"
+    redirect_to current_consultant.resume.url
   end
 
   def consultant
