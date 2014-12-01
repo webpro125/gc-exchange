@@ -37,8 +37,6 @@ Rails.application.routes.draw do
       get :resume
       put :upload_resume
       patch :upload_resume
-
-      get :download
     end
   end
 
@@ -57,6 +55,10 @@ Rails.application.routes.draw do
     member do
       put :approve
       put :reject
+    end
+
+    collection do
+      get :download
     end
   end
 

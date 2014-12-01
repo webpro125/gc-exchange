@@ -26,6 +26,11 @@ class ConsultantsController < CompanyController
     end
   end
 
+  def download
+    @consultant = Consultant.find(params[:id])
+    redirect_to @consultant.resume.url
+  end
+
   private
 
   def load_and_authorize_consultant

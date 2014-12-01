@@ -47,10 +47,6 @@ class ProfilesController < ConsultantController
     @form = UploadResumeForm.new(current_consultant)
   end
 
-  def download
-    redirect_to current_consultant.resume.url
-  end
-
   def consultant
   end
 
