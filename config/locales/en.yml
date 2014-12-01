@@ -107,6 +107,7 @@ en:
         less_information: 'Less Information'
         company: 'Company'
         consultant: 'Consultant'
+        learn_more: 'Learn More'
     wizard:
       actions:
         previous: '< Previous'
@@ -125,7 +126,9 @@ en:
           ''Cancel'' to edit.'
     profile:
       actions:
-        upload_photo: 'Upload Profile Photo'
+        edit: 'Edit Profile'
+        upload_resume: 'Upload Resume'
+        upload_photo: 'Upload Image'
         new_phone: '+ Add Phone'
         new_education: '+ Add Another Degree'
         save: 'Save'
@@ -151,6 +154,9 @@ en:
     password:
       actions:
         change_password: 'Change Password'
+    company:
+      actions:
+        index: 'Companies'
     project:
       table:
         company_name: 'Company'
