@@ -5,7 +5,7 @@ describe CreateProfileController do
     sign_in user
   end
 
-  let(:user) { FactoryGirl.create(:confirmed_consultant) }
+  let!(:user) { FactoryGirl.create(:confirmed_consultant) }
 
   describe 'logging in' do
 
@@ -24,15 +24,14 @@ describe CreateProfileController do
         it { should render_template(m) }
       end
 
-      describe "PUT #{m}" do
-        let(:valid_attributes) do
-          if m == :project_history
-            { id: m, project_history: { client_poc_name: 'Bob Saget' } }
-          else
-            { id: m, consultant: { first_name: 'first_name' } }
-          end
+      let(:valid_attributes) do
+        if m == :project_history
+          { id: m, project_history: { client_poc_name: 'Bob Saget' } }
+        else
+          { id: m, consultant: { first_name: 'first_name' } }
         end
-
+      end
+      describe "PUT #{m}" do
         it 'should change wizard step' do
           expect_any_instance_of(Consultant).to receive(:wizard_step=)
           put :update, valid_attributes
