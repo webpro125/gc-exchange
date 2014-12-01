@@ -123,10 +123,11 @@ $oil         	: #324046;
 $jet         	: #273634;
 $black       	: #1c2b32;
 $gces-blue		: #2A5E89;
-$gces-red		: #96413D;
+$gces-red     : #96413D;
+$gces-green   : #C1CDC9;
 
 // We use these to control various global styles
-$body-bg: #DEE1DF image-url("body-bg.png");
+$body-bg: none;
 $body-font-color: $jet;
 $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
