@@ -1,5 +1,12 @@
 @import "variables";
 
+h2 {
+  i {
+    font-size: 2rem;
+    color: $iron;
+  }
+}
+
 #one, #two, #three {
   .button {
     border-radius: 2px;
@@ -40,13 +47,15 @@
 
     &.intro {
       font-weight: 300;
+      color: $jet;
     }
   }
 }
 
 #one {
   text-align: center;
-
+  background: image-url("homepagebg.jpg") 50% bottom no-repeat;
+  background-size: cover;
 
   ul {
     margin: 0 auto;
@@ -98,7 +107,7 @@
   #new_search {
     max-width: 450px;
     text-align: center;
-    margin: 0 auto;
+    margin: 1rem auto 2rem;
     clear: both;
     overflow: hidden;  
 
@@ -143,11 +152,31 @@
       right: 0;
     }
   }
+
 }
-
 /*** TOS ***/
-
 ol, ol li {
   font-size: 0.75rem;
   line-height: 1.25rem;
 }
+.introbg, .benefit {
+  padding: 3rem 0;
+}
+.introbg {
+  background: $gces-green image-url("introbg.png");
+
+  h1, h3 {
+    color: scale-color($gces-green, $lightness: -80%);
+    text-shadow: 1px 1px 0  scale-color($gces-green, $lightness: 50%);
+    margin: 0;
+  }
+  h3 {
+    border-bottom: none;
+  }
+}
+.benefit {
+  &.even {
+    background: $white-smoke;
+  }
+}
+

@@ -1,0 +1,149 @@
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <%= link_to root_path do %>
+        <div id="logo"></div>
+      <% end %>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon">
+      <a href="#">
+        <span>Menu</span>
+      </a>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <% if development? %>
+          <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
+      <% end %>
+      <li class="has-form">
+        <div class="row collapse">
+          <%= render 'layouts/search' %>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <% if consultant_signed_in? %>
+          <li class="has-dropdown">
+            <%= link_to 'Profile', consultant_root_path %>
+            <ul class="dropdown">
+              <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to t('views.password.actions.change_password'),
+                              edit_consultant_registration_path %></li>
+            </ul>
+          </li>
+          <li>
+            <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
+          </li>
+      <% elsif user_signed_in? %>
+          <li>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+          </li>
+      <% else %>
+          <li>
+            <%= link_to 'Login', new_user_session_path %>
+          </li>
+          <li>
+            <%= link_to 'Request Access', new_sales_lead_path %>
+          </li>
+      <% end %>
+    </ul>
+  </section>
+</nav>
+
+<%= render 'layouts/flash' %>
+
+<div class="introbg">
+  <div class="row">  
+    <div class="large-12 columns">
+      <h1>Learn More</h1>
+      <h3>GCES is a service that facilitates the work cycle between companies and consultants, 
+        reducing overhead and increasing efficiency.
+      </h3>
+    </div>
+  </div>
+</div>
+<div class="benefit">
+  <div class="row">
+    <div class="large-7 columns">
+      <h2><i class="fi-torsos-all"></i> <%= link_to 'Sign up', new_sales_lead_path %></h2>
+      <p>Client Company registers and is authorized to search the GCES Database.
+      </p>
+    </div>
+    <div class="large-5 columns">
+     <aside>
+      <h5>How We Help
+      </h5>  
+      <p>GCES signs the agreement, then authorizes client company search that enables you to select 
+        and engage the best quality consultants faster and easier!
+      </p></aside>
+    </div>
+  </div>
+</div>
+
+<div class="benefit even">
+  <div class="row">
+    <div class="large-12 columns">
+      <h2><i class="fi-magnifying-glass"></i> Find and select consultants</h2>
+      <p>Communicate and negotiate with consultants and agree to engagement, then create purchase 
+        order using our streamlined system to engage the right consultant faster and easier.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="benefit">
+  <div class="row">
+    <div class="large-7 columns">
+      <h2><i class="fi-comments"></i> Authorize engagement</h2>
+      <p>Negotiate with consultant and agree to engagement &ndash; enabling rapid engagement on more 
+        projects!
+      </p>
+    </div>
+    <div class="large-5 columns">
+      <aside>
+        <h5>How We Help
+        </h5>
+        <p>GCES handles contracting and purchase order functions and administration to quickly 
+          initiate the project &ndash; reducing contracting and administrative costs.
+        </p>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<div class="benefit even">
+  <div class="row">
+    <div class="large-12 columns">
+      <h2><i class="fi-trophy"></i> Succeed</h2>
+      <p>Consultant contributes to client company success on contracted task.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="benefit">
+  <div class="row">
+    <div class="large-7 columns">
+      <h2><i class="fi-dollar-bill"></i> Manage payroll
+      </h2>
+      <p>Review time and expense information and verify consultant’s continued value and pay GCES 
+        invoices &ndash; receiving critical support at an affordable cost!
+      </p>
+    </div>
+    <div class="large-5 columns">
+      <aside>
+        <h5>How We Help</h5>
+        <p>GCES takes care of all time &amp; expense collection, invoicing &amp; consultant payment, 
+          and project closeout – reducing your administrative cost.
+        </p>
+      </aside>
+    </div>
+  </div>
+</div>
