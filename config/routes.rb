@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       get :resume
       put :upload_resume
       patch :upload_resume
+
+      get :download
     end
   end
 
