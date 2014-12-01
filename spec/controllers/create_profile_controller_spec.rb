@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe CreateProfileController do
+  before do
+    sign_in user
+  end
+
+  let(:user) { FactoryGirl.create(:confirmed_consultant) }
 
   describe 'logging in' do
-    before do
-      sign_in user
-    end
-
-    let(:user) { FactoryGirl.create(:confirmed_consultant) }
 
     [:project_history, :basic_information, :qualifications, :other_information,
      :background_information].each do |m|
@@ -39,12 +39,8 @@ describe CreateProfileController do
         end
 
         it 'assigns @form' do
-          begin
-            expect_any_instance_of(Reform::Form).to receive(:validate) { true }
-            put :update, valid_attributes
-          rescue SystemStackError
-            logger.info 'Stack level error caught'
-          end
+          expect_any_instance_of(Reform::Form).to receive(:validate) { true }
+          put :update, valid_attributes
         end
       end
     end
