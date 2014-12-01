@@ -31,6 +31,7 @@ describe CreateProfileController do
           { id: m, consultant: { first_name: 'first_name' } }
         end
       end
+
       describe "PUT #{m}" do
         it 'should change wizard step' do
           expect_any_instance_of(Consultant).to receive(:wizard_step=)
