@@ -160,6 +160,7 @@ en:
     project:
       table:
         company_name: 'Company'
+        date: 'Start/End Date'
         edit: 'Edit Project'
         delete: 'Delete Project'
       actions:

@@ -22,6 +22,11 @@ hr {
   opacity: 0;
 
 }
+@media #{$large-up} {
+  .container {
+    min-height: 0px;
+  }
+}
 .container {
   padding: 2rem;
   background: #FFF;
@@ -294,3 +299,16 @@ input, textarea {
   }
 }
 
+/*** TABLES ***/
+table {
+  width: 100%;
+  th, td {
+    &.manage {
+      text-align: center;
+      width: 150px;
+    }
+    .button {
+      margin: 0;
+    }
+  }
+}
