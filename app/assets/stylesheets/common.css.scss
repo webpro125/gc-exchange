@@ -7,29 +7,39 @@
 }
 
 /*** GLOBAL ***/
-
+body {
+  background: #DEE1DF image-url("body-bg.png");
+}
+.learn_more, .home {
+  background: none;
+}
+hr {
+  margin: 2rem 0;
+}
 .hint {
 	margin: -10px 0 10px 0;
 	font-size: 13px;
   opacity: 0;
 
 }
-@media #{$large-up} {
-  #container {
-    min-height: 800px;
+.container {
+  padding: 2rem;
+  background: #FFF;
+  width: 1100px;
+  max-width: 95%;
+  margin: 0 auto;
+  min-height: 800px;
+  box-shadow: 0 0 20px scale-color($gces-green, $lightness: -50%);
+}
+.home, .learn_more {
+  .container {
+    background: none;
+    width: 100%;
+    margin: 0;
+    min-height: 0px;
+    box-shadow: none;
   }
 }
-#container {
-  background: $white;
-  max-width: 95%;
-  width: 1040px;
-  padding: 2rem;
-  margin: 0 auto;
-  box-shadow: 0 0 30px rgba(193,205,201,1);
-}
-
-
-
 
 /*** BUTTON ***/
 
@@ -50,9 +60,22 @@ input[type="submit"] {
 }
 
 /*** TYPOGRAPHY ***/
-#container h1 {
-  font-weight: 300;
+
+.row {
+  h1, h2, h3, h4, h6 {
+    font-weight: 200;
+  }
+  h2 {
+    color: $gces-red;
+    line-height: 2.75rem;
+  }
+  h1 + h3 {
+    border-bottom: none;
+  }
 }
+
+
+
 h3 {
   color: $gces-red;
   border-bottom: 1px solid #DDD;
@@ -60,24 +83,50 @@ h3 {
 }
 
 ol {
+  color: $charcoal;
   >li {
-    margin-bottom: 1rem;
-    line-height: 1.45rem;
-  }  
+    margin-top: 1rem;
+  }
   ol { 
     list-style-type: upper-roman;
     margin-top: 0.5rem;
-
     >li {
+      margin-top: 0;
       margin-bottom: 0.5rem;
     }
     ol {
       list-style-type: lower-alpha;
-
       ol {
         list-style-type: lower-roman;
       }
     }
+  }
+}
+
+/*** ASIDES ***/
+aside {
+  background: scale-color($gces-green, $lightness: 80%);
+  padding: 1.5rem;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border: 1px solid scale-color($gces-green, $lightness: 70%);
+  h5, p {
+    line-height: 1.45rem;
+  }  
+  h5 {
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+
+    letter-spacing: 1px;
+
+  }
+  p {
+    font-size: 0.75rem;
+    margin-bottom: 0;
   }
 }
 
@@ -242,3 +291,4 @@ input, textarea {
   	}
   }
 }
+
