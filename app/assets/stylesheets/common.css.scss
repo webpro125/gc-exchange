@@ -16,14 +16,6 @@ hr {
   opacity: 0;
 
 }
-@media #{$large-up} {
-  .row {
-    min-height: 800px;
-  }
-  .learn_more .row {
-    min-height: 0px;
-  }
-}
 .container {
   margin: 2rem 0;
 }
