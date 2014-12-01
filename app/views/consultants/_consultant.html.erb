@@ -1,8 +1,8 @@
 <tr>
   <td>
-    <%= link_to consultant.full_name, profile_path(consultant) %>
+    <%= link_to consultant.full_name, consultant_path(consultant) %>
   </td>
   <td>
-    <%= lookup_translation(ApprovedStatus, consultant.approved_status.code) %>
+    <%= consultant.approved_status.label %>
   </td>
 </tr>

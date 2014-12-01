@@ -87,9 +87,10 @@ h3 {
 ol {
   color: $charcoal;
   >li {
-    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.45rem;
   }
-  ol { 
+  ol {
     list-style-type: upper-roman;
     margin-top: 0.5rem;
     >li {
@@ -115,7 +116,7 @@ aside {
   border: 1px solid scale-color($gces-green, $lightness: 70%);
   h5, p {
     line-height: 1.45rem;
-  }  
+  }
   h5 {
     margin-top: 0;
     text-transform: uppercase;
@@ -150,7 +151,7 @@ aside {
 .alert-box.notice {
   background: scale-color($gces-blue, $lightness: 80%);
   color: $gces-blue;
-} 
+}
 .alert-box.success {
   background-color: #abc1b2;
   border-color: #5d7b67;
@@ -206,7 +207,7 @@ aside {
 }
 .select2-dropdown-open.select2-drop-above {
   background: $white;
-  .select2-drop.select2-drop-above.select2-drop-active, 
+  .select2-drop.select2-drop-above.select2-drop-active,
   .select2-dropdown-open.select2-drop-above .select2-choice {
     border-color: $gces-blue;
       background: $white;
@@ -216,19 +217,19 @@ aside {
   font-size: 14px;
   line-height: 1.3em;
 }
-input[type="text"], 
-input[type="password"], 
-input[type="date"], 
-input[type="datetime"], 
-input[type="datetime-local"], 
-input[type="month"], 
-input[type="week"], 
-input[type="email"], 
-input[type="number"], 
-input[type="search"], 
-input[type="tel"], 
-input[type="time"], 
-input[type="url"], 
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
 textarea {
   border-radius: 2px;
   &:focus {
@@ -250,14 +251,14 @@ input, textarea {
 /*** IMAGES ***/
 
 .profile-thumb {
-  height: 80px;
-  width: 80px;
+  max-height: 80px;
+  max-width: 80px;
   background-repeat: no-repeat;
 }
 
 .profile-medium {
-  height: 200px;
-  width: 200px;
+  max-height: 200px;
+  max-width: 200px;
   background-repeat: no-repeat;
 }
 

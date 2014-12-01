@@ -1,8 +1,6 @@
 <div class="row">
   <div class="small-4 columns">
-    <div class="th profile-medium"
-         style="background-image:
-                 url(<%= image_path @consultant.profile_image.url(:medium) %>)"></div>
+    <%= image_tag(@consultant.profile_image.url(:medium), class: 'th profile-medium') %>
   </div>
   <div class="small-8 columns">
     <div class="row">
