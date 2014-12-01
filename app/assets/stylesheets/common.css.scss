@@ -8,10 +8,9 @@
 
 /*** GLOBAL ***/
 body {
-  background: #DEE1DF image-url("body-bg.png");
-}
-.learn_more, .home {
-  background: none;
+  &.learn_more, &.home {
+    background: none;
+  }
 }
 hr {
   margin: 2rem 0;
@@ -92,7 +91,7 @@ h3 {
 ol {
   color: $charcoal;
   >li {
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     line-height: 1.45rem;
   }
   ol {
@@ -307,8 +306,22 @@ table {
       text-align: center;
       width: 150px;
     }
-    .button {
-      margin: 0;
+  }
+}
+/*** ADMIN ***/
+.admin {
+  background: whitesmoke;
+  padding: 1rem;
+  border-radius: 2px;
+  border: 1px solid $gainsboro;
+  margin-bottom: 2rem;
+  p {
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+    margin-bottom: 0.5rem;
     }
+  .button {
+    width: 100%;
+    margin-bottom: 0.5rem;
   }
 }
