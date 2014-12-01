@@ -242,3 +242,17 @@ input, textarea {
   	}
   }
 }
+
+/*** TABLES ***/
+table {
+  width: 100%;
+  th, td {
+    &.manage {
+      text-align: center;
+      width: 150px;
+    }
+    .button {
+      margin: 0;
+    }
+  }
+}
