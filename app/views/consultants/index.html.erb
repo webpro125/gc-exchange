@@ -5,7 +5,9 @@
   <td>Status</td>
   </thead>
   <tbody>
-  <%= render @consultants %>
+  <% @consultants.each do |consultant| %>
+      <%= render consultant %>
+  <% end %>
   </tbody>
 </table>
 
