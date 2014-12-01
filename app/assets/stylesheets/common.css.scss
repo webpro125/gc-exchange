@@ -38,6 +38,8 @@ hr {
     margin: 0;
     min-height: 0px;
     box-shadow: none;
+    padding: 2rem 0;
+    max-width: 100%;
   }
 }
 
@@ -86,6 +88,7 @@ ol {
   color: $charcoal;
   >li {
     margin-top: 1rem;
+    line-height: 1.45rem;
   }
   ol {
     list-style-type: upper-roman;
@@ -113,20 +116,19 @@ aside {
   border: 1px solid scale-color($gces-green, $lightness: 70%);
   h5, p {
     line-height: 1.45rem;
-  }  
+  }
   h5 {
     margin-top: 0;
     text-transform: uppercase;
     font-size: 0.9rem;
     font-weight: 700;
-
-
     letter-spacing: 1px;
 
   }
   p {
     font-size: 0.75rem;
     margin-bottom: 0;
+    line-height: 1.25rem;
   }
 }
 

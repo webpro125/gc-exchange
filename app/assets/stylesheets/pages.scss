@@ -54,7 +54,8 @@ h2 {
 
 #one {
   text-align: center;
-
+  background: image-url("homepagebg.jpg") 50% bottom no-repeat;
+  background-size: cover;
 
   ul {
     margin: 0 auto;
