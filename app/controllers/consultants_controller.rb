@@ -1,5 +1,5 @@
 class ConsultantsController < CompanyController
-  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show]
+  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show, :download]
   skip_before_action :authenticate_user!, only: :show
 
   def index
@@ -27,8 +27,12 @@ class ConsultantsController < CompanyController
   end
 
   def download
-    @consultant = Consultant.find(params[:id])
-    redirect_to @consultant.resume.url
+    # if current_user.present?
+      @consultant = Consultant.find(params[:id])
+      redirect_to @consultant.resume.url
+    # else
+    #   redirect_to consultant_root_path
+    # end
   end
 
   private
