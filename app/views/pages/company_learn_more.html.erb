@@ -47,10 +47,10 @@
           </li>
       <% else %>
           <li>
-            <%= link_to 'Request Access', new_sales_lead_path %>
+            <%= link_to 'Login', new_user_session_path %>
           </li>
           <li>
-            <%= link_to 'Login', new_user_session_path %>
+            <%= link_to 'Request Access', new_sales_lead_path %>
           </li>
       <% end %>
     </ul>
@@ -72,7 +72,7 @@
 <div class="benefit">
   <div class="row">
     <div class="large-7 columns">
-      <h2><i class="fi-torsos-all"></i> Sign up</h2>
+      <h2><i class="fi-torsos-all"></i> <%= link_to 'Sign up', new_sales_lead_path %></h2>
       <p>Client Company registers and is authorized to search the GCES Database.
       </p>
     </div>

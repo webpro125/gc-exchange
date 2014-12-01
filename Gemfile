@@ -30,6 +30,7 @@ gem 'migration_data', '~> 0.0.4'
 gem 'foundation-datetimepicker-rails', '~> 0.1.3'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.0.0'
+gem 'foundation-icons-sass-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
