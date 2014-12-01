@@ -1,10 +1,6 @@
 /*** HEADER ***/
 
 .top-bar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 20;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
   #logo {
@@ -44,13 +40,5 @@
         border-radius: 2px;
       }
     }
-  }
-}
-.container, #container {
-  margin-top: 60px;
-}
-.home {
-  .container, #container {
-    margin-top: 0;
   }
 }
