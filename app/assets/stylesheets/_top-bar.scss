@@ -1,13 +1,24 @@
 /*** HEADER ***/
 
 .top-bar {
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
   #logo {
     background: image-url("gces-logo-white.png") 0 50% no-repeat;
-    height: 70px;
-    width: 220px;
+    height: 60px;
+    width: 145px;
     margin-left: 15px;
   }
   .top-bar-section {
+    ul.dropdown {
+      li {
+        &.divider {
+        }
+        a {
+          line-height: 45px;
+        }
+      }
+    }
     .button, input {
       height: 30px;
       line-height: 15px;
@@ -19,7 +30,7 @@
       border-radius: 2px;
     }
     .has-form {
-      padding: 22px 15px;
+      padding: 15px;
       .columns {
         padding: 0 0.2rem;
       }
@@ -31,4 +42,3 @@
     }
   }
 }
-
