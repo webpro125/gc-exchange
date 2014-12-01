@@ -107,6 +107,7 @@ en:
         less_information: 'Less Information'
         company: 'Company'
         consultant: 'Consultant'
+        learn_more: 'Learn More'
     wizard:
       actions:
         previous: '< Previous'

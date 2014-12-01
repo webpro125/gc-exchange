@@ -1,5 +1,12 @@
 @import "variables";
 
+h2 {
+  i {
+    font-size: 2rem;
+    color: $iron;
+  }
+}
+
 #one, #two, #three {
   .button {
     border-radius: 2px;
@@ -40,6 +47,7 @@
 
     &.intro {
       font-weight: 300;
+      color: $jet;
     }
   }
 }
@@ -144,3 +152,24 @@
     }
   }
 }
+.introbg, .benefit {
+  padding: 3rem 0;
+}
+.introbg {
+  background: $gces-green image-url("introbg.png");
+
+  h1, h3 {
+    color: scale-color($gces-green, $lightness: -80%);
+    text-shadow: 1px 1px 0  scale-color($gces-green, $lightness: 50%);
+    margin: 0;
+  }
+  h3 {
+    border-bottom: none;
+  }
+}
+.benefit {
+  &.even {
+    background: $white-smoke;
+  }
+}
+

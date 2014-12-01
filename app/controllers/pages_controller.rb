@@ -14,4 +14,13 @@ class PagesController < ApplicationController
 
   def terms_of_service
   end
+
+  def consultant_learn_more
+    render layout: 'learn_more'
+  end  
+
+  def company_learn_more
+    render layout: 'learn_more'
+  end  
+
 end
