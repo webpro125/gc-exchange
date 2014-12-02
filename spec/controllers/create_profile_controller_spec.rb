@@ -70,7 +70,6 @@ describe CreateProfileController do
 
   describe 'logged in completed wizard' do
     before do
-      sign_in user
       get :show, id: :other_information
     end
 
