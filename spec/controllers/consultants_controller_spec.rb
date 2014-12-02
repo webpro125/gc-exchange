@@ -45,6 +45,18 @@ describe ConsultantsController do
         end
       end
 
+      describe 'download' do
+        let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
+        before do
+          get :download, id: consultant.id
+        end
+
+        it { should_not redirect_to(new_user_session_path) }
+
+        it 'resume' do
+        end
+      end
+
       describe 'PUT approve' do
         describe 'pending_approval status' do
           let!(:consultant) { FactoryGirl.create(:consultant, :pending_approval) }
@@ -226,6 +238,19 @@ describe ConsultantsController do
           end.to raise_error Pundit::NotAuthorizedError
         end
       end
+
+      describe 'download' do
+        let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
+
+        before do
+          get :download, id: consultant.id
+        end
+        it { should_not redirect_to(new_user_session_path) }
+
+        it 'resume' do
+
+        end
+      end
     end
 
     describe 'as user' do
@@ -273,6 +298,24 @@ describe ConsultantsController do
             put :reject, id: consultant.id
           end.to raise_error Pundit::NotAuthorizedError
         end
+      end
+    end
+  end
+
+  describe 'logged out' do
+    describe 'as GCES user' do
+      let(:user) { FactoryGirl.create(:gces_user) }
+
+      describe 'download' do
+        let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
+
+        before do
+          sign_out user
+          allow_any_instance_of(Consultant).to receive(:resume_url) { 'BOOM' }
+          get :download, id: consultant.id
+        end
+
+        it { should redirect_to(new_user_session_path) }
       end
     end
   end

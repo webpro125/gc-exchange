@@ -12,6 +12,9 @@ development:
 
 test:
   storage: :file
+  fog_credentials:
+      provider: 'Local'
+      local_root: <%= Rails.root %>/spec/files
 
 staging:
   <<: *default_settings

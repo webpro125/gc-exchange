@@ -28,10 +28,9 @@ class ConsultantsController < CompanyController
 
   def download
     if user_signed_in?
-      # redirect_to "/#{@consultant.resume.url}"
-      redirect_to @consultant.resume.url
+      redirect_to @consultant.resume_url
     else
-      redirect_to consultant_root_path
+      redirect_to new_user_session_path
     end
   end
 

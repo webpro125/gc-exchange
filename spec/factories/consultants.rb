@@ -9,6 +9,10 @@ FactoryGirl.define do
     password_confirmation { 'password' }
     abstract              { Faker::Lorem.paragraph(4) }
 
+    trait :with_resume do
+      resume_file_name { 'a_pdf.pdf' }
+    end
+
     trait :approved do
       after(:create) do |c|
         c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code])
