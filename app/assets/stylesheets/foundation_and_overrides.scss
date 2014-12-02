@@ -127,7 +127,7 @@ $gces-red     : #96413D;
 $gces-green   : #C1CDC9;
 
 // We use these to control various global styles
-$body-bg: none;
+$body-bg: #DEE1DF image-url("body-bg.png");
 $body-font-color: $jet;
 $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
