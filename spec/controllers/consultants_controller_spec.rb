@@ -55,12 +55,21 @@ describe ConsultantsController do
             end.to change { consultant.reload.approved? }.to true
           end
 
-          describe do
+          describe 'succcess' do
             before do
               put :approve, id: consultant.id
             end
 
             it { should redirect_to(consultants_path) }
+          end
+
+          describe 'failure' do
+            before do
+              allow_any_instance_of(ConsultantSetStatus).to receive(:approve_and_save) { false }
+              put :approve, id: consultant.id
+            end
+
+            it { should redirect_to(consultant_path(consultant)) }
           end
         end
 
@@ -73,7 +82,7 @@ describe ConsultantsController do
             end.to change { consultant.reload.approved? }.to true
           end
 
-          describe do
+          describe 'success' do
             before do
               put :approve, id: consultant.id
             end
@@ -113,12 +122,21 @@ describe ConsultantsController do
             end.to change { consultant.reload.rejected? }.to true
           end
 
-          describe do
+          describe 'success' do
             before do
               put :reject, id: consultant.id
             end
 
             it { should redirect_to(consultants_path) }
+          end
+
+          describe 'failure' do
+            before do
+              allow_any_instance_of(ConsultantSetStatus).to receive(:reject_and_save) { false }
+              put :reject, id: consultant.id
+            end
+
+            it { should redirect_to(consultant_path(consultant)) }
           end
         end
 
