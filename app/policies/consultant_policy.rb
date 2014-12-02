@@ -31,15 +31,14 @@ class ConsultantPolicy < ApplicationPolicy
     user == record
   end
 
-  # def download?
-  #   gces? || user == record #|| user.company
-  # end
+  def download?
+    gces? || user.present? && user == record || user.present? && record.approved?
+  end
 
   alias_method :upload_image?, :upload?
   alias_method :resume?, :upload?
   alias_method :upload_resume?, :upload?
   alias_method :consultant?, :upload?
-  alias_method :download?, :edit?
 
   private
 

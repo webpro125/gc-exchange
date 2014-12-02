@@ -27,12 +27,12 @@ class ConsultantsController < CompanyController
   end
 
   def download
-    # if current_user.present?
-      @consultant = Consultant.find(params[:id])
+    if user_signed_in?
+      # redirect_to "/#{@consultant.resume.url}"
       redirect_to @consultant.resume.url
-    # else
-    #   redirect_to consultant_root_path
-    # end
+    else
+      redirect_to consultant_root_path
+    end
   end
 
   private
