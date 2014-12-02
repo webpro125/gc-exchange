@@ -92,7 +92,7 @@ class CreateProfileController < ConsultantController
 
   def render_project_history
     @form.save
-    current_consultant.save
+    ConsultantSetStatus.new(current_consultant).pending_approval_and_save
     redirect_to new_project_history_path
   end
 
