@@ -55,9 +55,7 @@ Rails.application.routes.draw do
     member do
       put :approve
       put :reject
-    end
 
-    collection do
       get :download
     end
   end
