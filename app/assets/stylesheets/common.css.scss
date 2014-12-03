@@ -90,14 +90,6 @@ input[type="submit"] {
 
       &:last-child {
         margin-bottom: 0;
-
-      &:before {
-        content: '•';
-        color: $gces-red;
-        margin-right: 5px;
-      }
-    }
-  }
       }
 
       &:before {
@@ -364,22 +356,5 @@ table {
   .button {
     width: 100%;
     margin-bottom: 0.5rem;
-  }
-}
-/*** SIDEBAR ***/
-.sidebar {
-  .row {
-    h4 {
-      margin-top: 1.5rem;
-      font-size: rem-calc(15);
-      letter-spacing: 0.5px;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-    &:first-child {
-      h4 {
-        margin-top: 0;
-      }
-    }
   }
 }
