@@ -252,6 +252,10 @@ textarea {
   &.required {
     background: #FFF image-url("required.png") right 50% no-repeat;
     padding-right: 25px;
+    &:focus {
+      background: #FFF image-url("required.png") right 50% no-repeat;
+      padding-right: 25px;
+    }
   }
 }
 label.required {
@@ -259,9 +263,6 @@ label.required {
 }
 label {
   padding-bottom: 2px;
-}
-.error label, .error label.error {
-  color: $gces-red;
 }
 
 .maxlength {
