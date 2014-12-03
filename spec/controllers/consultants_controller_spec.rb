@@ -52,9 +52,6 @@ describe ConsultantsController do
         end
 
         it { should_not redirect_to(new_user_session_path) }
-
-        it 'resume' do
-        end
       end
 
       describe 'PUT approve' do
@@ -246,10 +243,6 @@ describe ConsultantsController do
           get :download, id: consultant.id
         end
         it { should_not redirect_to(new_user_session_path) }
-
-        it 'resume' do
-
-        end
       end
     end
 

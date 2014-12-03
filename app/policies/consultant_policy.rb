@@ -32,7 +32,7 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def download?
-    gces? || user.present? && user == record || user.present? && record.approved?
+    gces? || (user.present? && (user == record || record.approved?))
   end
 
   alias_method :upload_image?, :upload?
