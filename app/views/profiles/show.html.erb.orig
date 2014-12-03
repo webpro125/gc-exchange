@@ -17,7 +17,11 @@
       </div>
     </div>
   </div>
+<<<<<<< Updated upstream
+  <div class="small-4 columns sidebar">
+=======
   <div class="medium-4 columns sidebar">
+>>>>>>> Stashed changes
     <%= render 'profiles/education' %>
     <%= render 'profiles/certification' %>
     <%= render 'profiles/expertise' %>

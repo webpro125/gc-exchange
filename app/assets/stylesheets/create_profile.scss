@@ -1,0 +1,60 @@
+@import "variables";
+
+/*** WIZARD ***/
+
+#bgquestions {
+  label {
+    font-weight: 600;
+  }
+  .radio {
+    label {
+      font-weight: 400;
+    }
+  }
+  .boolean {
+    input[type="checkbox"] + label {
+        display: block;
+        margin-left: 20px;
+    }
+    input {
+        float: left;
+        margin-top: 5px;
+    }
+  }
+  .input.radio_buttons {
+    border-bottom: 1px solid $smoke;
+    margin-bottom: 1rem;
+    padding-bottom: 0.25rem;
+  }
+}
+.row.wizardnav {
+  margin-top: 2rem;
+}
+.error label, .error label.error {
+  color: $gces-red;
+}
+
+/*** BREADCRUMBS ***/
+.breadcrumbs {
+  li {
+    letter-spacing: 0.5px;
+    line-height: 1rem;
+    &.current {
+      font-weight: 600;
+    }
+    @media #{$small-only} {
+        display: block;
+        width: 100%;
+    }
+  }
+  > *:before {
+    content: '\f10b';
+    font-family: "foundation-icons";
+    color: #CCC;
+  }
+  @media #{$small-only} {
+    > *:before {
+      display: none;
+    }
+  }
+}

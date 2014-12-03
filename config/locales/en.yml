@@ -135,6 +135,7 @@ en:
         save: 'Save'
         remove_education: 'X'
         download_resume: 'Download Resume >>'
+        edit_projects: 'Manage Projects'
       headers:
         contact: 'Contact Information'
         education: 'Education'

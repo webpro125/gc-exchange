@@ -1,38 +1,26 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="row">
-      <div class="small-12 columns">
-        <%= project_history.positions.pluck(:label).join(', ') %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-6 columns">
-        <span>
-          <%= project_history.client_company %>
-        </span>
-      </div>
-      <div class="small-6 columns">
-        <span class="right">
-          <%= project_history.customer_name.label if project_history.customer_name %>
-        </span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
-        <%= t('simple_form.labels.project_history.project_type') %>:
-        <%= project_history.project_type.label %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
-        <%= date_to_formatted_s(project_history.start_date) %> -
-        <%= date_to_formatted_s(project_history.end_date) || t('simple_form.now') %>
+      <div class="small-12 columns project">
+        <h5>
+          <%= project_history.positions.pluck(:label).join(', ') %>
+        </h5>
+        <p class="info">
+          <strong><%= project_history.client_company %></strong>
+        <span class="sep"> &ndash; </span>
+          <%= project_history.customer_name.label if project_history.customer_name %><br>
+          <span class="focus">
+            <%= t('simple_form.labels.project_history.project_type') %>: 
+            <%= project_history.project_type.label %>
+          </span>
+          <br>
+        <span class="date">
+          <%= date_to_formatted_s(project_history.start_date) %> &ndash;
+          <%= date_to_formatted_s(project_history.end_date) || t('simple_form.now') %>
           (<%= date_in_words(project_history.start_date, project_history.end_date) %>)
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
-        <p><%= project_history.description %></p>
+        </span>
+        </p>  
+        <p class="desc"><%= project_history.description %></p>
       </div>
     </div>
   </div>

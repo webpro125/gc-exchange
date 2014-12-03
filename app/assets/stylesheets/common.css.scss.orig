@@ -81,6 +81,20 @@ input[type="submit"] {
   ul {
     list-style: none;
     margin: 0;
+<<<<<<< Updated upstream
+
+    li {
+
+      &:before {
+        content: '•';
+        color: $gces-red;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+=======
+>>>>>>> Stashed changes
 
     li {
       text-indent: -0.65rem;
@@ -90,14 +104,6 @@ input[type="submit"] {
 
       &:last-child {
         margin-bottom: 0;
-
-      &:before {
-        content: '•';
-        color: $gces-red;
-        margin-right: 5px;
-      }
-    }
-  }
       }
 
       &:before {

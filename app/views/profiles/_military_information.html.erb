@@ -6,37 +6,44 @@
             <%= t('simple_form.labels.military.clearance_active') %>:
             <%= boolean_to_human @consultant.military.clearance_active? %>
             <div id="security">
-              <% if @consultant.military.clearance_level %>
-                  <%= t('simple_form.labels.military.clearance_level') %>:
-                  <%= @consultant.military.clearance_level.label %>
-              <% end %>
-              <% if @consultant.military.investigation_date %>
-                  <%= t('simple_form.labels.military.investigation_date') %>:
-                  <%= @consultant.military.investigation_date.to_formatted_s(:month_and_year) %>
-              <% end %>
-              <% if @consultant.military.clearance_expiration_date %>
-                  <%= t('simple_form.labels.military.clearance_expiration_date') %>:
-                  <%= @consultant.military.clearance_expiration_date.to_formatted_s(:month_and_year) %>
-              <% end %>
+              <p>
+                <strong><%= t('simple_form.labels.military.clearance_active') %>:</strong>
+                <%= boolean_to_human @consultant.military.clearance_active? %><br>
+                <% if @consultant.military.clearance_level %>
+                    <strong><%= t('simple_form.labels.military.clearance_level') %>:</strong>
+                    <%= @consultant.military.clearance_level.label %><br>
+                <% end %>
+                <% if @consultant.military.investigation_date %>
+                    <strong><%= t('simple_form.labels.military.investigation_date') %>:</strong>
+                    <%= @consultant.military.investigation_date.to_formatted_s(:month_and_year) %><br>
+                <% end %>
+                <% if @consultant.military.clearance_expiration_date %>
+                    <strong><%= t('simple_form.labels.military.clearance_expiration_date') %>:</strong>
+                    <%= @consultant.military.clearance_expiration_date.to_formatted_s(:month_and_year) %>
+                <% end %>
+              </p>
             </div>
         <% end %>
 
         <% if @consultant.military.military? %>
             <h4><%= t('views.profile.headers.military') %></h4>
             <div id="military">
-              <% if @consultant.military.branch %>
-                  <%= t('simple_form.labels.military.branch') %>:
-                  <%= @consultant.military.branch.label %>
-              <% end %>
-              <% if @consultant.military.rank %>
-                  <%= t('simple_form.labels.military.rank') %>:
-                  <%= @consultant.military.rank.label %>
-              <% end %>
-              <% if @consultant.military.service_start_date %>
-                  <%= t('activerecord.models.attributes.military.date') %>:
-                  <%=  @consultant.military.service_start_date.to_formatted_s(:month_and_year) %> -
-                  <%= @consultant.military.service_end_date.to_formatted_s(:month_and_year) %>
-              <% end %>
+              <p>
+                <% if @consultant.military.branch %>
+                    <strong><%= t('simple_form.labels.military.branch') %>:</strong>
+                    <%= @consultant.military.branch.label %><br>
+                <% end %>
+                <% if @consultant.military.rank %>
+                    <strong><%= t('simple_form.labels.military.rank') %>:</strong>
+                    <%= @consultant.military.rank.label %><br>
+                <% end %>
+                <% if @consultant.military.service_start_date %>
+                    <strong><%= t('activerecord.models.attributes.military.date') %>:</strong>
+                    <%=  @consultant.military.service_start_date.to_formatted_s(:month_and_year) %> 
+                    &ndash;
+                    <%= @consultant.military.service_end_date.to_formatted_s(:month_and_year) %>
+                <% end %>
+              </p>
         <% end %>
     <% end %>
     </div>
