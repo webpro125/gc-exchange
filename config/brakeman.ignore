@@ -1,0 +1,25 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "cbdc09b920030f7b7f48c61583f3d27b28b9b3a039d3d4c8a246267d83095a4a",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/consultants_controller.rb",
+      "line": 31,
+      "link": "http://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(Consultant.find(params[:id]).resume_url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ConsultantsController",
+        "method": "download"
+      },
+      "user_input": "Consultant.find(params[:id]).resume_url",
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2014-12-02 21:57:09 -0500",
+  "brakeman_version": "2.6.3"
+}
