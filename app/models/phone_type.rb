@@ -10,5 +10,4 @@ class PhoneType < ActiveRecord::Base
   scope :home, -> { find_by_code PhoneType::HOME[:code] }
   scope :work, -> { find_by_code PhoneType::WORK[:code] }
   scope :cell, -> { find_by_code PhoneType::CELL[:code] }
-
 end
