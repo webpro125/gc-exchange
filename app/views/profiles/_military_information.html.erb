@@ -2,7 +2,7 @@
   <div class="small-12 columns">
     <% if @consultant.military.present? %>
         <% if @consultant.military.clearance_active? %>
-            <h3><%= t('views.profile.headers.clearance') %></h3>
+            <h4><%= t('views.profile.headers.clearance') %></h4>
             <%= t('simple_form.labels.military.clearance_active') %>:
             <%= boolean_to_human @consultant.military.clearance_active? %>
             <div id="security">
@@ -22,7 +22,7 @@
         <% end %>
 
         <% if @consultant.military.military? %>
-            <h3><%= t('views.profile.headers.military') %></h3>
+            <h4><%= t('views.profile.headers.military') %></h4>
             <div id="military">
               <% if @consultant.military.branch %>
                   <%= t('simple_form.labels.military.branch') %>:

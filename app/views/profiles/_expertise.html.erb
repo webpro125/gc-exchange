@@ -1,8 +1,12 @@
 <% if @consultant.skills.size > 0 %>
     <div class="row">
       <div class="small-12 columns">
-        <h3><%= t('views.profile.headers.expertise') %></h3>
-        <%= @consultant.skills_list %>
+        <h4><%= t('views.profile.headers.expertise') %></h4>
+        <ul>
+          <% @consultant.skills_list.pluck(:label).each do |c| %>
+            <li><%= c %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
 <% end %>
