@@ -6,17 +6,17 @@
         <%= f.error_notification %>
       </div>
     </div>
-    <%= f.simple_fields_for :educations do |e| %>
-        <%= render 'educations/education_fields', f: e %>
-    <% end %>
-    <div class="row">
-      <div class="large-8 columns">
-        <%= render 'profiles/certifications_fields', f: f %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-8 columns">
-        <%= render 'profiles/skills_fields', f: f %>
+    <div class="wizard">
+      <%= f.simple_fields_for :educations do |e| %>
+          <%= render 'educations/education_fields', f: e %>
+      <% end %>
+      <div class="row">
+        <div class="medium-6 columns">
+          <%= render 'profiles/certifications_fields', f: f %>
+        </div>
+        <div class="medium-6 columns">
+          <%= render 'profiles/skills_fields', f: f %>
+        </div>
       </div>
     </div>
     <%= render 'footer', f: f %>

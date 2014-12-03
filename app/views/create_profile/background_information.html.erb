@@ -6,42 +6,44 @@
         <%= f.error_notification %>
       </div>
     </div>
-    <%= f.simple_fields_for :background do |b| %>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= b.input :citizen, as: :radio_buttons %>
+    <div id="bgquestions">
+      <%= f.simple_fields_for :background do |b| %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= b.input :citizen, as: :radio_buttons %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= b.input :convicted, as: :radio_buttons %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= b.input :convicted, as: :radio_buttons %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= b.input :parole, as: :radio_buttons %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= b.input :parole, as: :radio_buttons %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= b.input :illegal_drug_use, as: :radio_buttons %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= b.input :illegal_drug_use, as: :radio_buttons %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= b.input :illegal_purchase, as: :radio_buttons %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= b.input :illegal_purchase, as: :radio_buttons %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= b.input :illegal_prescription, as: :radio_buttons %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= b.input :illegal_prescription, as: :radio_buttons %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= b.input :information_is_correct, as: :boolean %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= b.input :information_is_correct, as: :boolean %>
+            </div>
           </div>
-        </div>
-    <% end %>
+      <% end %>
+    </div>
     <%= render 'footer',f: f %>
 <% end %>

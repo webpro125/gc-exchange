@@ -164,6 +164,16 @@ aside {
 
 /*** FORMS ***/
 
+.required {
+  .select2-container {
+    .select2-choice {
+      background-image: image-url("required.png");
+      background-position: calc(100% - 15px) 50%;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
 .select2-container {
   margin: 0 0 1rem 0;
   font-size: 14px;
@@ -239,12 +249,22 @@ textarea {
   &:focus {
     border-color: $gces-blue;
   }
-}
-input, textarea {
   &.required {
     background: #FFF image-url("required.png") right 50% no-repeat;
+    padding-right: 25px;
+    &:focus {
+      background: #FFF image-url("required.png") right 50% no-repeat;
+      padding-right: 25px;
+    }
   }
 }
+label.required {
+  font-weight: 600;
+}
+label {
+  padding-bottom: 2px;
+}
+
 .maxlength {
   margin: -10px 0 10px 0;
   float: right;
@@ -308,6 +328,7 @@ table {
     }
   }
 }
+
 /*** ADMIN ***/
 .admin {
   background: whitesmoke;
