@@ -56,7 +56,7 @@ en:
         consultant:
           attributes:
             resume:
-              allowed_file_content_types: 'only .doc, .docx, .pdf documents allowed'
+              allowed_file_content_types: 'only .pdf documents allowed'
             profile_image:
               allowed_file_content_types: 'only .jpg, .jpeg, .png images allowed'
         address:
