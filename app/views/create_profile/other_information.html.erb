@@ -6,7 +6,23 @@
         <%= f.error_notification %>
       </div>
     </div>
-
+    <div class="wizard">
+      <%= render 'profiles/address_fields', f: f %>
+      <div class="row">
+        <div class="medium-3 columns">
+          <%= f.input :willing_to_travel, as: :select %>
+        </div>
+        <div class="medium-3 columns end">
+          <%= f.input :rate %>
+        </div>
+        <div class="medium-6 columns">
+          <%= f.simple_fields_for :phones do |p| %>
+              <%= render 'phones/phone_fields', f: p %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <hr />
     <%= f.simple_fields_for :military do |m| %>
         <div class="row">
           <div class="medium-2 columns">
@@ -52,23 +68,6 @@
             </div>
           </div>
         </div>
-    <% end %>
-    <hr />
-    <div class="wizard">
-      <%= render 'profiles/address_fields', f: f %>
-      <div class="row">
-        <div class="medium-3 columns">
-          <%= f.input :willing_to_travel, as: :select %>
-        </div>
-        <div class="medium-3 columns end">
-          <%= f.input :rate %>
-        </div>
-        <div class="medium-6 columns">
-          <%= f.simple_fields_for :phones do |p| %>
-              <%= render 'phones/phone_fields', f: p %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <% end %> 
     <%= render 'footer', f: f %>
 <% end %>
