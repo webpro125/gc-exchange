@@ -1,8 +1,7 @@
 class Consultant < ActiveRecord::Base
   include Searchable
 
-  RESUME_MIME_TYPES = ['application/msword', 'application/vnd.ms-word', 'application/pdf',
-                       'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document']
+  RESUME_MIME_TYPES = ['application/pdf']
   PROFILE_IMAGE_TYPES = ['image/jpg',
                          'image/png',
                          'image/jpeg']

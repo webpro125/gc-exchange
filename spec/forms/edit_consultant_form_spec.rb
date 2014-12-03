@@ -6,9 +6,6 @@ describe EditConsultantForm do
 
   let(:mime_types) do
     [
-      'application/msword',
-      'application/vnd.ms-word',
-      'applicaiton/vnd.openxmlformats-officedocument.wordprocessingm1.document',
       'application/pdf'
     ]
   end
