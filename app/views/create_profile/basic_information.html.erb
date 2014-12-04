@@ -6,19 +6,21 @@
         <%= f.error_notification %>
       </div>
     </div>
-    <div class="row">
-      <div class="large-10 columns">
-        <%= f.input :resume, as: :file %>
+    <div class="wizard">
+      <div class="row">
+        <div class="medium-10 columns">
+          <%= f.input :resume, as: :file %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="large-10 columns">
-        <%= f.input :abstract, as: :text %>
+      <div class="row">
+        <div class="medium-10 columns">
+          <%= f.input :abstract, as: :text %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="large-10 columns">
-        <%= f.input :profile_image, as: :file %>
+      <div class="row">
+        <div class="medium-10 columns">
+          <%= f.input :profile_image, as: :file %>
+        </div>
       </div>
     </div>
     <%= render 'footer',f: f %>

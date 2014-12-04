@@ -9,7 +9,7 @@
   </thead>
 
   <tbody>
-  <% @users.each do |user| %>
+  <% @company.users.each do |user| %>
       <tr>
         <td><%= link_to user.full_name, company_user_path(@company, user) %></td>
         <td><%= link_to 'Edit',
@@ -27,7 +27,7 @@
 
 <br>
 
-<%= link_to 'New User', new_company_user_path %>
+<%= link_to 'New User', new_company_user_path(@company) %>
 <hr>
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

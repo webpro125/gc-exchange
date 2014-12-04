@@ -6,23 +6,39 @@
         <%= f.error_notification %>
       </div>
     </div>
-
+    <div class="wizard">
+      <%= render 'profiles/address_fields', f: f %>
+      <div class="row">
+        <div class="medium-3 columns">
+          <%= f.input :willing_to_travel, as: :select %>
+        </div>
+        <div class="medium-3 columns end">
+          <%= f.input :rate %>
+        </div>
+        <div class="medium-6 columns">
+          <%= f.simple_fields_for :phones do |p| %>
+              <%= render 'phones/phone_fields', f: p %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <hr />
     <%= f.simple_fields_for :military do |m| %>
         <div class="row">
-          <div class="large-2 columns">
+          <div class="medium-2 columns">
             <%= m.input :clearance_active, as: :select %>
           </div>
-          <div class="large-3 columns end clearance-hidden">
+          <div class="medium-3 columns end clearance-hidden">
             <%= m.input :clearance_level_id,
                         build_simple_form_dropdown(ClearanceLevel,
                                                    collection: ClearanceLevel.all)%>
           </div>
-          <div class="large-7 columns clearance-hidden">
+          <div class="medium-7 columns clearance-hidden">
             <div class="row">
-              <div class="large-6 columns">
+              <div class="medium-6 columns">
                 <%= m.input :investigation_date, date_options %>
               </div>
-              <div class="large-6 columns">
+              <div class="medium-6 columns">
                 <%= m.input :clearance_expiration_date, date_options %>
               </div>
             </div>
@@ -30,45 +46,28 @@
         </div>
         <hr />
         <div class="row">
-          <div class="large-2 columns">
+          <div class="medium-2 columns">
             <%= m.input :military, as: :select %>
           </div>
-          <div class="large-2 columns military-hidden">
+          <div class="medium-2 columns military-hidden">
             <%= m.input :rank_id, build_simple_form_dropdown(Rank,
                                                              collection: Rank.all)%>
           </div>
-          <div class="large-3 columns military-hidden">
+          <div class="medium-3 columns military-hidden">
             <%= m.input :branch_id, build_simple_form_dropdown(Branch,
                                                                collection: Branch.all)%>
           </div>
-          <div class="large-5 columns military-hidden">
+          <div class="medium-5 columns military-hidden">
             <div class="row">
-              <div class="large-6 columns">
+              <div class="medium-6 columns">
                 <%= m.input :service_start_date, date_options %>
               </div>
-              <div class="large-6 columns">
+              <div class="medium-6 columns">
                 <%= m.input :service_end_date, date_options %>
               </div>
             </div>
           </div>
         </div>
-    <% end %>
-    <hr />
-    <%= render 'profiles/address_fields', f: f %>
-    <div class="row">
-      <div class="large-3 columns">
-        <%= f.input :willing_to_travel, as: :select %>
-      </div>
-      <div class="large-3 columns end">
-        <%= f.input :rate %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-6 columns">
-        <%= f.simple_fields_for :phones do |p| %>
-            <%= render 'phones/phone_fields', f: p %>
-        <% end %>
-      </div>
-    </div>
+    <% end %> 
     <%= render 'footer', f: f %>
 <% end %>

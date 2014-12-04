@@ -39,10 +39,10 @@ en:
         certification_ids: 'Professional Certifications'
         skills_list: 'Expertise'
       education:
-        school: 'Institution Name'
+        school: 'Educational Institution'
         field_of_study: 'Field of Study'
       educations:
-        school: 'Institution Name'
+        school: 'Educational Institution'
         field_of_study: 'Field of Study'
       military:
         clearance_active: 'Clearance Active'
@@ -84,7 +84,7 @@ en:
         illegal_prescription: 'In the last seven (7) years have you intentionally engaged in the
         misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you
          or someone else?'
-        information_is_correct: 'I certify that, to the best of my knowledge and belief,
+        information_is_correct: ' I certify that, to the best of my knowledge and belief,
         all of the information provided by me is true and correct as of the date I provided the
         information.'
     hints:
