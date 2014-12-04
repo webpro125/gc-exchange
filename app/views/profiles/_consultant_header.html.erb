@@ -11,26 +11,35 @@
       </div>
     </div>
     <% if user_signed_in? || consultant_signed_in? %>
-        <div class="row">
-          <div class="small-12 columns">
-            <% if @consultant.military.clearance_active %>
-                <%= t('simple_form.labels.military.clearance_level') %>:
-                <%= @consultant.military.clearance_level.label if @consultant.military
-                        .clearance_level %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-            <%= t('simple_form.labels.consultant.willing_to_travel') %>:
-            <%= boolean_to_human @consultant.willing_to_travel? %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-            <%= t('simple_form.labels.consultant.rate') %>: <%= number_to_currency @consultant.rate %>
-          </div>
-        </div>
+      <table>
+        <% if @consultant.military.clearance_active %>
+          <tr>
+            <td>
+              <%= t('simple_form.labels.military.clearance_level') %>
+            </td>
+            <td>
+            <%= @consultant.military.clearance_level.label if @consultant.military
+                    .clearance_level %>
+            </td>
+          </tr>
+        <% end %>
+          <tr>
+            <td>
+              <%= t('simple_form.labels.consultant.willing_to_travel') %>
+            </td>
+            <td>
+              <%= boolean_to_human @consultant.willing_to_travel? %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= t('simple_form.labels.consultant.rate') %>
+            </td>
+            <td>
+              <%= number_to_currency @consultant.rate %>
+            </td>
+          </tr>
+        </table>
     <% end %>
   </div>
 </div>

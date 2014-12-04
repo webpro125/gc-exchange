@@ -29,8 +29,8 @@ en:
         primary: 'Primary'
       phones:
         number: 'Phone Number'
-        phone_type: 'Phone Type'
-        phone_type_id: 'Phone Type'
+        phone_type: 'Type'
+        phone_type_id: 'Type'
         primary: 'Primary'
       consultant:
         abstract: 'Background and Experience'

@@ -5,6 +5,9 @@
     margin: 0.5rem 0 0;
     width: 200px;
   }
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
 }
 
 img {
@@ -16,13 +19,45 @@ strong {
 }
 /*** MAIN ***/
 .main {
+  table {
+    border: none;
+    background: none;
+
+    &.contact {
+      tr {
+        td {
+          &:first-child {
+            width: 95px;
+          }
+        }
+      }
+    }
+    tr {
+      background: none;
+
+      td {
+        background: none;
+        padding: rem-calc(1) rem-calc(5);
+        font-size: rem-calc(15);
+
+        &:first-child {
+          font-weight: 200;
+          color: $aluminum;
+          padding-left: 0;
+          width: 115px;
+        }
+      }
+    }
+  }
+
   h1 {
     font-size: rem-calc(28);
     font-weight: 600;
   }
   h3 {
-    margin: 1rem 0 0.25rem;
-    color: $tuatara;
+    margin: 1.5rem 0 0.5rem;
+    padding-bottom: rem-calc(2);
+    color: $gces-red;
   }
   .abstract {
     p {
@@ -40,7 +75,7 @@ strong {
 
     .info {
       margin-bottom: 0.5rem;
-      line-height: 18px;
+      line-height: rem-calc(20);
 
       .focus {
         font-size: rem-calc(13);
@@ -62,6 +97,7 @@ strong {
   }
 }
 
+
 /*** SIDEBAR ***/
 .sidebar {
   table {
@@ -76,8 +112,18 @@ strong {
         font-size: rem-calc(13);
 
         &:first-child {
-          font-weight: 600;
           padding-left: 0;
+          color: $aluminum;
+          width: 80px;
+        }
+      }
+    }
+    &.security {
+      tr {
+        td {
+          &:first-child {
+            width: 120px;
+          }
         }
       }
     }
@@ -99,4 +145,24 @@ strong {
       }
     }
   }
+}
+
+/*** FORM FIELDS ***/
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
 }

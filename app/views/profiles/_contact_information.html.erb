@@ -1,4 +1,12 @@
 <h3><%= t('views.profile.headers.contact') %></h3>
-<p><%= render @consultant.phones %><br>
-    <strong><%= Address.human_attribute_name(:address) %>:</strong> <%= @consultant.address.address %>
-</p>
+<table class="contact">
+  <%= render @consultant.phones %>
+  <tr>
+    <td>
+      <%= Address.human_attribute_name(:address) %>
+    </td>
+    <td>
+      <%= @consultant.address.address %>
+    </td>
+  </tr>
+</table>
