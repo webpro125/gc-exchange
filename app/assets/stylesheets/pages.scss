@@ -19,11 +19,15 @@ h2 {
     list-style: none;
 
     li {
+      text-indent: -12px;
+      padding-left: 12px;    
+      line-height: 1.3em;
+      margin-bottom: rem-calc(5);
+
       &:before {
         content: '•';
         margin-right: 5px;
         color: $gces-blue;
-        text-indent: -12px;
       }
     }
   }
