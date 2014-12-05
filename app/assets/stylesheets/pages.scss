@@ -74,18 +74,23 @@ h2 {
 
   li:hover > ul.dropdown {
     display: block;
-    background: #EEE;
+    background: $white;
+    border: 1px solid $gainsboro;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
 
     li {
       width: auto;
       margin: 0;
+      transition: all 0.2s ease-in-out;
 
       &:hover {
-        background: #CCC;
+        background: $white-smoke;
       }
 
       &:first-child {
-        border-bottom: 1px solid #CCC;
+        border-bottom: 1px solid $gainsboro;
       }
 
       h5 {
