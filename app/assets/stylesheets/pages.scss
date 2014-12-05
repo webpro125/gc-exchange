@@ -8,6 +8,9 @@ h2 {
 }
 
 #one, #two, #three {
+  > .row {
+    padding: rem-calc(40) 0;
+  }
   .button {
     border-radius: 2px;
     -moz-border-radius: 2px;
