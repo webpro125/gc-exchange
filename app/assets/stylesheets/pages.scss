@@ -8,10 +8,15 @@ h2 {
 }
 
 #one, #two, #three {
+
+  aside {
+    max-width: rem-calc(420);
+  }
+  > .row {
+    padding: rem-calc(40) 0;
+  }
   .button {
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+    border-radius: $global-radius;
   }
   ul {
     margin-left: 0;
@@ -19,11 +24,15 @@ h2 {
     list-style: none;
 
     li {
+      text-indent: -12px;
+      padding-left: 12px;    
+      line-height: 1.4em;
+      margin-bottom: rem-calc(5);
+
       &:before {
         content: '•';
         margin-right: 5px;
         color: $gces-blue;
-        text-indent: -12px;
       }
     }
   }
@@ -74,18 +83,21 @@ h2 {
 
   li:hover > ul.dropdown {
     display: block;
-    background: #EEE;
+    background: $white;
+    border: 1px solid $gainsboro;
+    border-radius: $global-radius;
 
     li {
       width: auto;
       margin: 0;
+      transition: all 0.2s ease-in-out;
 
       &:hover {
-        background: #CCC;
+        background: $white-smoke;
       }
 
       &:first-child {
-        border-bottom: 1px solid #CCC;
+        border-bottom: 1px solid $gainsboro;
       }
 
       h5 {
@@ -121,9 +133,7 @@ h2 {
         padding: 0.5rem 1rem;
         height: 2.3125rem;
         font-size: 0.8rem;
-        border-radius: 2px;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;        
+        border-radius: $global-radius;       
       }
     }
   }

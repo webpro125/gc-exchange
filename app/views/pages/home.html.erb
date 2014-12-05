@@ -3,12 +3,10 @@
       <%= render 'layouts/search' %>
       <%= image_tag('gces-logo.png', size: '400', alt: 'GCES-logo') %>
       <h2 class="intro">
-        We connect a community of independent consultants to companies needing skilled capture,
-        proposal, and program support on Federal Government contracts. Our network uses secure
-        automated tools to provide companies quick affordable consultant access to win new
-        contracts and deliver successful programs.
+        We enable Client Companies to find and select the 
+        best qualified consultants and independent contractors and engage them quickly and 
+        affordably to support critical business needs.
       </h2>
-      <h2><strong>Connect. Collaborate. Contract.</strong></h2>
       <p>
         <a href="#company" class="button small"><%= t('views.page.actions.company') %></a>
         OR
@@ -34,15 +32,21 @@
 </div>
 <div id="two" class="screen"><a name="company"></a>
   <div class="row">
-    <div class="small-12 large-6 columns">
+    <div class="medium-6 columns">
       <h1><%= t('views.page.actions.company') %></h1>
-      <ul><li>Find highly skilled consultants to support your project</li>
-        <li>Eliminate costly consulting company overhead fees</li>
-        <li>Gain control and reduce the time to access critical skills </li>
+      <ul>
+        <li>Reduce the time to find and engage critically skilled consultants and independent contractors</li>
+        <li>Eliminate consulting company overhead fees</li>
+        <li>Minimize administrative and contracting overhead</li>
       </ul>
       <%= link_to t('views.page.actions.learn_more'), company_learn_more_path, class: 'button small' %>
+      <aside>
+        <p>Our automated client company registration processes is under development. Please 
+          fill out the fields to the right and a GCES manager will contact you to 
+          complete our company’s registration and enable your access to our consultant database.</p>
+      </aside>
     </div>
-    <div class="small-12 large-6 columns">
+    <div class="medium-6 columns">
       <h2>Get Started</h2>
       <%= render 'sales_leads/form' %>
     </div>
@@ -51,16 +55,15 @@
 <hr />
 <div id="three" class="screen"><a name="consultant"></a>
   <div class="row">
-    <div class="small-12 large-6 columns">
+    <div class="medium-6 columns">
       <h1>Consultant</h1>
       <ul>
-        <li>Find work and expand your corporate contacts</li>
-        <li>Use an integrated invoice and payment system </li>
-        <li>Connect and collaborate with other consultants </li>
+        <li>Use our tools for communication and rapid engagement with new clients</li>
+        <li>Increase your income and reduce the time you spend on marketing and administration</li>
       </ul>
       <%= link_to t('views.page.actions.learn_more'), consultant_learn_more_path, class: 'button small' %>
     </div>
-    <div class="small-12 large-6 columns">
+    <div class="medium-6 columns">
       <h2>Get Started</h2>
       <%= render 'devise/registrations/form', resource: @consultant, resource_name: 'consultant' %>
     </div>

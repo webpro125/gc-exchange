@@ -113,13 +113,13 @@ ol {
 /*** ASIDES ***/
 aside {
   background: scale-color($gces-green, $lightness: 80%);
-  padding: 1.5rem;
+  padding: 1.25rem;
   border-radius: 2px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border: 1px solid scale-color($gces-green, $lightness: 70%);
   h5, p {
-    line-height: 1.45rem;
+    line-height: 1.4rem;
   }
   h5 {
     margin-top: 0;
