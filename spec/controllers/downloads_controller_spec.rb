@@ -35,20 +35,15 @@ describe DownloadsController do
   end
 
   describe 'logged out' do
-    describe 'as GCES user' do
-      let(:user) { FactoryGirl.create(:gces_user) }
+    describe 'download_resume' do
+      let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
 
-      describe 'download_resume' do
-        let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
-
-        before do
-          sign_out user
-          allow_any_instance_of(Consultant).to receive(:resume_url) { 'BOOM' }
-          get :download_resume, id: consultant.id
-        end
-
-        it { should redirect_to(root_path) }
+      before do
+        allow_any_instance_of(Consultant).to receive(:resume_url) { 'BOOM' }
+        get :download_resume, id: consultant.id
       end
+
+      it { should redirect_to(root_path) }
     end
   end
 end

@@ -13,11 +13,7 @@ class ResumeUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  # def paperclip_path
-  #   ':class/:id/resume.:extension'
-  # end
-
-  def store_dir
+  def paperclip_path
     ':class/:id/resume.:extension'
   end
 

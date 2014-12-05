@@ -3,17 +3,17 @@ class DownloadsController < ApplicationController
 
   def download_resume
     if user_signed_in? || consultant_signed_in?
-      redirect_to @consultant.resume_url
+      if Rails.env.development?
+        redirect_to "/#{@consultant.resume_url}"
+      else
+        redirect_to @consultant.resume_url unless Rails.env.development?
+      end
     else
       redirect_to root_path
     end
   end
 
   private
-
-  def pundit_user
-    current_user || current_consultant
-  end
 
   def load_consultant
     @consultant = Consultant.find(params[:id])

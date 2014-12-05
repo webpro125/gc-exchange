@@ -18,7 +18,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-      it { should permit_action(:download_resume) }
       it { should permit_action(:show) }
     end
 
@@ -30,7 +29,6 @@ describe ConsultantPolicy do
       it { should permit_action(:edit) }
       it { should permit_action(:update) }
       it { should permit_action(:show) }
-      it { should permit_action(:download_resume) }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:upload) }
       it { should_not permit_action(:resume) }
@@ -50,7 +48,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-      it { should permit_action(:download_resume) }
       it { should permit_action(:show) }
     end
 
@@ -66,7 +63,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-      it { should_not permit_action(:download_resume) }
       it { should permit_action(:show) }
     end
 
@@ -83,7 +79,6 @@ describe ConsultantPolicy do
       it { should permit_action(:resume) }
       it { should permit_action(:upload_image) }
       it { should permit_action(:upload_resume) }
-      it { should permit_action(:download_resume) }
     end
   end
 
@@ -103,7 +98,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:show) }
-      it { should_not permit_action(:download_resume) }
     end
 
     describe 'for the consultant' do
@@ -119,7 +113,6 @@ describe ConsultantPolicy do
       it { should permit_action(:edit) }
       it { should permit_action(:update) }
       it { should permit_action(:show) }
-      it { should permit_action(:download_resume) }
     end
 
     describe 'for GCES user' do
@@ -135,7 +128,6 @@ describe ConsultantPolicy do
       it { should permit_action(:edit) }
       it { should permit_action(:update) }
       it { should permit_action(:show) }
-      it { should permit_action(:download_resume) }
     end
 
     describe 'for a user' do
@@ -151,7 +143,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:show) }
-      it { should_not permit_action(:download_resume) }
     end
 
     describe 'for a visitor' do
@@ -167,7 +158,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:show) }
-      it { should_not permit_action(:download_resume) }
     end
   end
 
@@ -187,7 +177,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-      it { should_not permit_action(:download_resume) }
     end
 
     describe 'for the consultant' do
@@ -203,7 +192,6 @@ describe ConsultantPolicy do
       it { should permit_action(:resume) }
       it { should permit_action(:upload_image) }
       it { should permit_action(:upload_resume) }
-      it { should permit_action(:download_resume) }
     end
 
     describe 'for GCES user' do
@@ -214,7 +202,6 @@ describe ConsultantPolicy do
       it { should permit_action(:edit) }
       it { should permit_action(:update) }
       it { should permit_action(:show) }
-      it { should permit_action(:download_resume) }
       it { should_not permit_action(:reject) }
       it { should_not permit_action(:upload) }
       it { should_not permit_action(:resume) }
@@ -235,7 +222,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-      it { should_not permit_action(:download_resume) }
     end
 
     describe 'for a visitor' do
@@ -251,7 +237,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-      it { should_not permit_action(:download_resume) }
     end
   end
 
@@ -271,7 +256,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-      it { should_not permit_action(:download_resume) }
     end
 
     describe 'for the consultant' do
@@ -287,7 +271,6 @@ describe ConsultantPolicy do
       it { should permit_action(:resume) }
       it { should permit_action(:upload_image) }
       it { should permit_action(:upload_resume) }
-      it { should permit_action(:download_resume) }
     end
 
     describe 'for GCES user' do
@@ -297,7 +280,6 @@ describe ConsultantPolicy do
       it { should permit_action(:edit) }
       it { should permit_action(:update) }
       it { should permit_action(:show) }
-      it { should permit_action(:download_resume) }
       it { should_not permit_action(:approve) }
       it { should_not permit_action(:reject) }
       it { should_not permit_action(:upload) }
