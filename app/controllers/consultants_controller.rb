@@ -1,5 +1,5 @@
 class ConsultantsController < CompanyController
-  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show, :download]
+  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show]
   skip_before_action :authenticate_user!, only: :show
 
   def index
@@ -23,14 +23,6 @@ class ConsultantsController < CompanyController
       redirect_to consultants_path, notice: t('controllers.consultant.reject.success')
     else
       redirect_to consultant_path(@consultant), notice: t('controllers.consultant.reject.fail')
-    end
-  end
-
-  def download
-    if user_signed_in?
-      redirect_to @consultant.resume_url
-    else
-      redirect_to new_user_session_path
     end
   end
 
