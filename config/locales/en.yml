@@ -138,6 +138,7 @@ en:
         edit_projects_html: '<i class="fi-widget"></i> Manage Projects'
       headers:
         contact: 'Contact Information'
+        projects: 'Project History'
         education: 'Education'
         certification: 'Certifications'
         expertise: 'Expertise'

@@ -69,13 +69,13 @@
             </div>
             <div class="row">
               <div class="large-12 columns">
-                <h3>Background and Experience</h3>
+                <h3><%= t('simple_form.labels.consultant.abstract') %></h3>
                 <%= f.input :abstract %>
               </div>
             </div>
             <div class="row">
               <div class="large-12 columns">
-                <h3>Project History</h3>
+                <h3><%= t('views.profile.headers.projects') %></h3>
                 <%= link_to t('views.profile.actions.edit_projects_html'),
                             project_histories_path,
                             class: 'button small' %>

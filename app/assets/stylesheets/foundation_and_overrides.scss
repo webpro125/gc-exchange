@@ -143,7 +143,7 @@ $body-font-family: $font-family-sans-serif;
 // $last-child-float: $opposite-direction;
 
 // We use these to make sure border radius matches unless we want it different.
-$global-radius: 3px;
+$global-radius: 2px;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
@@ -634,7 +634,7 @@ $form-label-font-color: $jet;
 // $input-focus-border-color: scale-color($white, $lightness: -40%);
 // $input-border-style: solid;
 // $input-border-width: 1px;
-$input-border-radius: $global-radius;
+$input-border-radius: $global-radius!important;
 // $input-disabled-bg: $gainsboro;
 // $input-disabled-cursor: $cursor-default-value;
 // $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);

@@ -280,9 +280,6 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 textarea {
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
   
   &:focus {
     border-color: $gces-blue;

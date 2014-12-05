@@ -12,7 +12,7 @@
       <div class="small-12 columns">
         <%= render 'profiles/contact_information' %>
         <%= render 'profiles/background_and_history' %>
-        <h3>Project History</h3>
+        <h3><%= t('views.profile.headers.projects') %></h3>
         <%= render @consultant.project_histories %>
       </div>
     </div>

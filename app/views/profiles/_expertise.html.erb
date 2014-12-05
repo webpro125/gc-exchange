@@ -3,7 +3,7 @@
       <div class="small-12 columns">
         <h4><%= t('views.profile.headers.expertise') %></h4>
         <ul>
-          <% @consultant.skills_list.pluck(:label).each do |c| %>
+          <% @consultant.skills.pluck(:label).each do |c| %>
             <li><%= c %></li>
           <% end %>
         </ul>
