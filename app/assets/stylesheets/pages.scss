@@ -16,9 +16,7 @@ h2 {
     padding: rem-calc(40) 0;
   }
   .button {
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+    border-radius: $global-radius;
   }
   ul {
     margin-left: 0;
@@ -87,9 +85,7 @@ h2 {
     display: block;
     background: $white;
     border: 1px solid $gainsboro;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+    border-radius: $global-radius;
 
     li {
       width: auto;
@@ -137,9 +133,7 @@ h2 {
         padding: 0.5rem 1rem;
         height: 2.3125rem;
         font-size: 0.8rem;
-        border-radius: 2px;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;        
+        border-radius: $global-radius;       
       }
     }
   }
