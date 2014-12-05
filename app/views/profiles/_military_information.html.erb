@@ -12,11 +12,11 @@
               <% end %>
               <% if @consultant.military.investigation_date %>
                   <%= t('simple_form.labels.military.investigation_date') %>:
-                  <%= @consultant.military.investigation_date.to_formatted_s(:month_and_year) %>
+                  <%= date_to_formatted_s(@consultant.military.investigation_date) %>
               <% end %>
               <% if @consultant.military.clearance_expiration_date %>
                   <%= t('simple_form.labels.military.clearance_expiration_date') %>:
-                  <%= @consultant.military.clearance_expiration_date.to_formatted_s(:month_and_year) %>
+                  <%= date_to_formatted_s(@consultant.military.clearance_expiration_date) %>
               <% end %>
             </div>
         <% end %>
@@ -34,8 +34,8 @@
               <% end %>
               <% if @consultant.military.service_start_date %>
                   <%= t('activerecord.models.attributes.military.date') %>:
-                  <%=  @consultant.military.service_start_date.to_formatted_s(:month_and_year) %> -
-                  <%= @consultant.military.service_end_date.to_formatted_s(:month_and_year) %>
+                  <%= date_to_formatted_s(@consultant.military.service_start_date) %> -
+                  <%= date_to_formatted_s(@consultant.military.service_end_date) %>
               <% end %>
         <% end %>
     <% end %>

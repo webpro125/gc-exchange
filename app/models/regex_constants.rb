@@ -18,9 +18,7 @@ module RegexConstants
   end
 
   module FileTypes
-    AS_DOCUMENTS  = ['application/pdf',
-                     'application/msword',
-                     'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+    AS_DOCUMENTS  = ['application/pdf']
   end
 
   module ImageTypes

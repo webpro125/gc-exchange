@@ -113,13 +113,13 @@ ol {
 /*** ASIDES ***/
 aside {
   background: scale-color($gces-green, $lightness: 80%);
-  padding: 1.5rem;
+  padding: 1.25rem;
   border-radius: 2px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border: 1px solid scale-color($gces-green, $lightness: 70%);
   h5, p {
-    line-height: 1.45rem;
+    line-height: 1.4rem;
   }
   h5 {
     margin-top: 0;
@@ -163,6 +163,16 @@ aside {
 }
 
 /*** FORMS ***/
+
+.required {
+  .select2-container {
+    .select2-choice {
+      background-image: image-url("required.png");
+      background-position: calc(100% - 15px) 50%;
+      background-repeat: no-repeat;
+    }
+  }
+}
 
 .select2-container {
   margin: 0 0 1rem 0;
@@ -239,12 +249,22 @@ textarea {
   &:focus {
     border-color: $gces-blue;
   }
-}
-input, textarea {
   &.required {
     background: #FFF image-url("required.png") right 50% no-repeat;
+    padding-right: 25px;
+    &:focus {
+      background: #FFF image-url("required.png") right 50% no-repeat;
+      padding-right: 25px;
+    }
   }
 }
+label.required {
+  font-weight: 600;
+}
+label {
+  padding-bottom: 2px;
+}
+
 .maxlength {
   margin: -10px 0 10px 0;
   float: right;
@@ -308,6 +328,7 @@ table {
     }
   }
 }
+
 /*** ADMIN ***/
 .admin {
   background: whitesmoke;

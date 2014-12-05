@@ -1,43 +1,45 @@
-<div class="row">
-  <div class="large-12 columns">
-    <%= f.input :position_ids, build_simple_form_dropdown(Position,
-                                                          collection: Position.all,
-                                                          input_html: { multiple: true,
-                                                          data: { maximumSelectionSize: 3,
-                                                                  maxSizeErrorMessage: I18n.t('activerecord.errors.models.project_history.attributes.project_history_positions.too_long.other') } }) %>
+<div class="wizard">
+    <div class="row">
+    <div class="large-12 columns">
+      <%= f.input :position_ids, build_simple_form_dropdown(Position,
+                                                            collection: Position.all,
+                                                            input_html: { multiple: true,
+                                                            data: { maximumSelectionSize: 3,
+                                                                    maxSizeErrorMessage: I18n.t('activerecord.errors.models.project_history.attributes.project_history_positions.too_long.other') } }) %>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="large-6 columns">
-    <%= f.input :client_company %>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.input :client_company %>
+    </div>
+    <div class="large-6 columns">
+      <%= f.input :customer_name_id, build_simple_form_dropdown(CustomerName,
+                                                                collection: CustomerName.all) %>
+    </div>
   </div>
-  <div class="large-6 columns">
-    <%= f.input :customer_name_id, build_simple_form_dropdown(CustomerName,
-                                                              collection: CustomerName.all) %>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.input :project_type_id, build_simple_form_dropdown(ProjectType,
+                                                               collection: ProjectType.all) %>
+    </div>
+    <div class="large-3 columns">
+      <%= f.input :start_date, date_options %>
+    </div>
+    <div class="large-3 columns">
+      <%= f.input :end_date, date_options %>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="large-6 columns">
-    <%= f.input :project_type_id, build_simple_form_dropdown(ProjectType,
-                                                             collection: ProjectType.all) %>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.input :client_poc_name %>
+    </div>
+    <div class="large-6 columns">
+      <%= f.input :client_poc_email %>
+    </div>
   </div>
-  <div class="large-3 columns">
-    <%= f.input :start_date, date_options %>
-  </div>
-  <div class="large-3 columns">
-    <%= f.input :end_date, date_options %>
-  </div>
-</div>
-<div class="row">
-  <div class="large-6 columns">
-    <%= f.input :client_poc_name %>
-  </div>
-  <div class="large-6 columns">
-    <%= f.input :client_poc_email %>
-  </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <%= f.input :description, as: :text %>
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.input :description, as: :text %>
+    </div>
   </div>
 </div>
