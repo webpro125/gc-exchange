@@ -153,7 +153,7 @@ h2 {
       width: 0;
       height: 0;
       border: inset 5px;
-      border-color: $gces-blue transparent transparent transparent;
+      border-color: lighten($primary-color, 30%) transparent transparent transparent;
       border-left-style: solid;
       margin-right: -15px;
       margin-top: -1px;
