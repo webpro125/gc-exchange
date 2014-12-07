@@ -135,9 +135,13 @@ strong {
       margin-bottom: 1rem;
     }
     h4 {
-      font-size: rem-calc(20);
-      font-weight: 400;
+      font-size: rem-calc(16);
+      font-weight: 600;
       border-bottom: 1px solid $gainsboro;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: $monsoon;
+      padding-bottom: 2px;
     }
     &:first-child {
       h4 {
