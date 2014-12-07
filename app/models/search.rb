@@ -16,6 +16,9 @@ class Search
   validate :at_least_one_attribute
 
   def initialize(params = {})
+    Consultant.import unless GlobalConsultantExchange::Application.config.es_index_created
+    GlobalConsultantExchange::Application.config.es_index_created = true
+
     params ||= {}
 
     nil_attributes = Hash[*VALID_ATTRIBUTES.map { |v| [v, nil] }.flatten]
