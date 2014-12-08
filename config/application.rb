@@ -35,6 +35,5 @@ module GlobalConsultantExchange
     email_config = YAML.load(loaded_file)[Rails.env].deep_symbolize_keys
 
     config.action_mailer.merge! email_config
-    config.es_index_created = false
   end
 end
