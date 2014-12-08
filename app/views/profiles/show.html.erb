@@ -4,7 +4,7 @@
     <div class="row">
       <div class="small-12 columns">
         <%= link_to t('views.profile.actions.download_resume'),
-                    @consultant.resume.url,
+                    download_resume_path(@consultant),
                     class: 'button small secondary' %>
       </div>
     </div>

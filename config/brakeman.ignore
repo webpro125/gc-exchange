@@ -1,0 +1,44 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "05c32fb40b5d6920470cbc108173defefb627df9ee60b103182f0e3c00a69c97",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/downloads_controller.rb",
+      "line": 7,
+      "link": "http://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(\"/#{Consultant.find(params[:id]).resume_url}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "DownloadsController",
+        "method": "download_resume"
+      },
+      "user_input": "Consultant.find(params[:id]).resume_url",
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "a0d31722f16ebe5762296ad11e7d5e1c48aa5582c32218d5f96e9f6578fbab07",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/downloads_controller.rb",
+      "line": 9,
+      "link": "http://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(Consultant.find(params[:id]).resume_url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "DownloadsController",
+        "method": "download_resume"
+      },
+      "user_input": "Consultant.find(params[:id]).resume_url",
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2014-12-05 17:56:16 -0500",
+  "brakeman_version": "2.6.3"
+}
