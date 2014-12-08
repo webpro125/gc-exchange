@@ -4,7 +4,6 @@ class DownloadsController < ApplicationController
   def download_resume
     if user_signed_in? || consultant_signed_in?
       if Rails.env.development?
-        send_file("/#{@consultant.resume_url}", disposition: 'attachment')
         redirect_to "/#{@consultant.resume_url}"
       else
         redirect_to @consultant.resume_url

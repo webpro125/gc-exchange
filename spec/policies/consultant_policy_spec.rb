@@ -286,7 +286,6 @@ describe ConsultantPolicy do
       it { should_not permit_action(:resume) }
       it { should_not permit_action(:upload_image) }
       it { should_not permit_action(:upload_resume) }
-
     end
 
     describe 'for a user' do
