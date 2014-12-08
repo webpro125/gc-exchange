@@ -78,14 +78,38 @@ input[type="submit"] {
   h1 + h3 {
     border-bottom: none;
   }
+  ul {
+    list-style: none;
+    margin: 0;
+
+    li {
+      text-indent: -0.65rem;
+      margin-left: 0.65rem;
+      line-height: 1.1rem;
+      margin-bottom: 0.2rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:before {
+        content: '•';
+        color: $gces-red;
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
-
+strong {
+  font-weight: 600;
+}
 
 h3 {
   color: $gces-red;
   border-bottom: 1px solid #DDD;
   font-weight: 200;
+  margin: 1rem 0 0.25rem;
 }
 
 ol {
@@ -163,6 +187,17 @@ aside {
 }
 
 /*** FORMS ***/
+.select, .select2 {
+  ul {
+    li {
+      text-indent: 0;
+      
+      &:before {
+        content: none;
+      }
+    }
+  }
+}
 
 .required {
   .select2-container {
@@ -245,7 +280,7 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 textarea {
-  border-radius: 2px;
+  
   &:focus {
     border-color: $gces-blue;
   }
@@ -281,9 +316,9 @@ label {
 }
 
 .profile-medium {
-  max-height: 200px;
-  max-width: 200px;
-  background-repeat: no-repeat;
+  max-width: 100%;
+  width: 200px;
+  height: auto;
 }
 
 /*** LOGIN ***/

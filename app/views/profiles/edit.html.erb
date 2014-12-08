@@ -2,25 +2,25 @@
     <%= f.error_notification %>
 
     <div class="row">
-      <div class="large-8 columns">
+      <div class="medium-8 columns main">
         <div class="row">
-          <div class="large-4 columns">
+          <div class="medium-4 columns">
             <%= link_to root_path do %>
-                <div class="th profile-medium"
-                     style="background:
-                             url(<%= image_path current_consultant.profile_image.url(:medium) %>)">
-                </div>
-                <%= link_to t('views.profile.actions.upload_photo'),
+                <%= image_tag(@current_consultant.profile_image.url(:medium), class: 'th profile-medium') %>
+                <%= link_to t('views.profile.actions.upload_photo_html'),
                             upload_profile_path,
-                            class: 'button small' %>
+                            class: 'button small upload' %>   
+                <%= link_to t('views.profile.actions.upload_resume_html'),
+                            resume_profile_path,
+                            class: 'button small upload' %>  
             <% end %>
           </div>
-          <div class="large-8 columns">
+          <div class="medium-8 columns">
             <div class="row">
-              <div class="large-6 columns">
+              <div class="medium-6 columns">
                 <%= f.input :first_name %>
               </div>
-              <div class="large-6 columns">
+              <div class="medium-6 columns">
                 <%= f.input :last_name %>
               </div>
             </div>
@@ -41,11 +41,6 @@
             <div class="row">
               <div class="large-12 columns">
                 <h3><%= t('views.profile.headers.contact') %></h3>
-                <div class="row">
-                  <div class="large-12 columns">
-                    <%= f.input :abstract %>
-                  </div>
-                </div>
                 <%= render 'address_fields', f: f %>
               </div>
             </div>
@@ -54,10 +49,10 @@
                 <%= f.simple_fields_for :phones do |p| %>
                     <div class="row">
                       <% if @form.phones.size > 1 %>
-                          <div class="large-11 columns">
+                          <div class="small-11 columns">
                             <%= render 'phones/phone_fields', f: p %>
                           </div>
-                          <div class="large-1 columns">
+                          <div class="small-1 columns">
                             <%= render 'phones/destroy_phone', f: p %>
                           </div>
                       <% else %>
@@ -67,46 +62,56 @@
                       <% end %>
                     </div>
                 <% end %>
+                <%= link_to t('views.profile.actions.new_phone_html') , 
+                            new_phone_path,
+                            class: 'button small' %>
               </div>
             </div>
             <div class="row">
               <div class="large-12 columns">
-                <%= link_to t('views.profile.actions.new_phone') , new_phone_path %>
+                <h3><%= t('simple_form.labels.consultant.abstract') %></h3>
+                <%= f.input :abstract %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <h3><%= t('views.profile.headers.projects') %></h3>
+                <%= link_to t('views.profile.actions.edit_projects_html'),
+                            project_histories_path,
+                            class: 'button small' %>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="large-4 columns">
+      <div class="medium-4 columns sidebar">
         <div class="row">
           <div class="large-12 columns">
-            <h3><%= t('views.profile.headers.education') %></h3>
+            <h4><%= t('views.profile.headers.education') %></h4>
             <%= f.simple_fields_for :educations do |e| %>
                 <%= render 'educations/education_fields', f: e %>
             <% end %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 column">
-            <%= link_to t('views.profile.actions.new_education') , new_education_path %>
+            <%= link_to t('views.profile.actions.new_education_html') , 
+                        new_education_path,
+                        class: 'button small' %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
-            <h3><%= t('views.profile.headers.certification') %></h3>
+            <h4><%= t('views.profile.headers.certification') %></h4>
             <%= render 'certifications_fields', f: f %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
-            <h3><%= t('views.profile.headers.expertise') %></h3>
+            <h4><%= t('views.profile.headers.expertise') %></h4>
             <%= render 'profiles/skills_fields', f: f %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
             <%= f.simple_fields_for :military do |m| %>
-                <h3><%= t('views.profile.headers.clearance') %></h3>
+                <h4><%= t('views.profile.headers.clearance') %></h4>
                 <%= m.input :clearance_active, as: :select %>
                 <div id="security">
                   <%= m.input :clearance_level_id,
@@ -115,7 +120,7 @@
                   <%= m.input :investigation_date, date_options %>
                   <%= m.input :clearance_expiration_date, date_options %>
                 </div>
-                <h3><%= t('views.profile.headers.military') %></h3>
+                <h4><%= t('views.profile.headers.military') %></h4>
                 <%= m.input :military, as: :select %>
                 <div id="military">
                   <%= m.input :rank_id, build_simple_form_dropdown(Rank,

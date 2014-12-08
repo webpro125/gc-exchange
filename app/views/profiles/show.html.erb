@@ -1,22 +1,23 @@
 <div class="row">
-  <div class="small-8 columns">
+  <div class="medium-8 columns main">
     <%= render 'profiles/consultant_header' %>
     <div class="row">
       <div class="small-12 columns">
-        <%= link_to t('views.profile.actions.download_resume'),
+        <%= link_to t('views.profile.actions.download_resume_html'),
                     download_resume_path(@consultant),
-                    class: 'button small secondary' %>
+                    class: 'button small secondary download' %>
       </div>
     </div>
     <div class="row">
       <div class="small-12 columns">
         <%= render 'profiles/contact_information' %>
         <%= render 'profiles/background_and_history' %>
+        <h3><%= t('views.profile.headers.projects') %></h3>
         <%= render @consultant.project_histories %>
       </div>
     </div>
   </div>
-  <div class="small-4 columns">
+  <div class="medium-4 columns sidebar">
     <%= render 'profiles/education' %>
     <%= render 'profiles/certification' %>
     <%= render 'profiles/expertise' %>
