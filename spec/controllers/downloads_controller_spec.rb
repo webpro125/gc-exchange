@@ -45,7 +45,7 @@ describe DownloadsController do
         get :download_resume, id: consultant.id
       end
 
-      it { should redirect_to(root_path) }
+      it { should redirect_to(new_sales_lead_path) }
     end
   end
 end

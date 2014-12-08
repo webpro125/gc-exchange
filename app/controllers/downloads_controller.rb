@@ -9,7 +9,7 @@ class DownloadsController < ApplicationController
         redirect_to @consultant.resume_url
       end
     else
-      redirect_to root_path
+      redirect_to new_sales_lead_path
     end
   end
 
