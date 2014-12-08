@@ -7,6 +7,14 @@ h2 {
   }
 }
 
+h5 {
+  &.steps {
+    text-align: center;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+}
+
 #one, #two, #three {
 
   aside {
@@ -170,7 +178,29 @@ ol, ol li {
   line-height: 1.25rem;
 }
 .introbg, .benefit {
-  padding: 3rem 0;
+  position: relative;
+  .row {
+    padding: 3rem 0;
+  }
+  > a {
+    position: absolute;
+    top: -160px;
+
+    &.button {
+      position: relative;
+      top: 0;
+    }
+  }
+  h2 {
+    a {
+      color: $gces-red;
+    }
+    &.current {
+      a {
+        color: $gces-blue;
+      }
+    }      
+  }
 }
 .introbg {
   background: $gces-green image-url("introbg.png");
@@ -188,5 +218,133 @@ ol, ol li {
   &.even {
     background: $white-smoke;
   }
+  &.signup {
+    background: $gces-blue;
+    text-align: center;
+    padding-bottom: 10rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+
+    h5 {
+      color: #FFF;
+    }
+  }
+}
+/** PROGRESS **/
+@media #{$small-up} {
+  #progress {
+    display: none;
+  }
+  .benefit .row {
+    padding: 1rem 0;
+  }
+}
+@media #{$medium-up} {
+  .benefit .row {
+    padding: 3rem 0;
+  }
+}
+@media #{$large-up} {
+  #progress {
+    display: block;
+  }
 }
 
+#progress {
+  position: relative;
+  padding: 1rem 0;
+  text-align: center;
+  background: $white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+
+  &.consultant {
+    ul li:last-child a {
+      padding: 10px 55px 0 70px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: inline-table;
+    margin: 0;
+
+    li {
+      display: inline;
+
+      &:first-child a {
+        border-top-left-radius: 3px; 
+        border-bottom-left-radius: 3px;
+        padding: 10px 45px 0 60px;
+      }
+      &:first-child a:before {
+        display: none; 
+      }
+      &:last-child a {
+        padding-right: 80px;
+        border-top-right-radius: 3px; 
+        border-bottom-right-radius: 3px;
+        padding: 10px 65px 0 80px;
+      }
+      &:last-child a {
+        &:after {
+          display: none; 
+        }
+      }      
+
+      a {
+        display: block;
+        float: left;
+        height: 40px;
+        background: $gces-blue;
+        text-align: center;
+        padding: 10px 50px 0 70px;
+        position: relative;
+        margin: 0 10px 0 0; 
+        font-size: rem-calc(15);
+        line-height: rem-calc(15);
+        text-decoration: none;
+        color: #fff;
+
+        &.current {
+          background: $gces-red;
+
+          &:after {
+            border-left-color: $gces-red;
+          }
+
+          &:hover {
+            background: scale-color($gces-red, $lightness: -20%);
+
+            &:after {
+              border-left-color: scale-color($gces-red, $lightness: -20%);
+            }
+          }
+        }
+
+        &:hover {
+          background: scale-color($gces-blue, $lightness: -20%);
+        
+          &:after {
+            border-left-color: scale-color($gces-blue, $lightness: -20%);
+          }
+        }
+
+        &:after {
+          content: "";  
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+          border-left: 20px solid $gces-blue;
+          position: absolute; right: -20px; top: 0;
+          z-index: 1;
+        }
+      
+        &:before {
+          content: "";  
+          border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 20px solid $white;
+          position: absolute; left: 0; top: 0;
+        }
+      }
+    }
+  }
+}

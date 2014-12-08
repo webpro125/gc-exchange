@@ -57,20 +57,42 @@
       </ul>
     </section>
   </nav>
+  <div id="progress">
+  <h5 class="steps">Select a step to learn more</h5>   
+    <div class="row">
+      <ul>
+        <li>
+          <a class="stepone" href="#one">
+            1. Sign up
+          </a>
+        </li>
+        <li>
+          <a class="steptwo" href="#two">
+            2. Search
+          </a>
+        </li>
+        <li>
+          <a class="stepthree" href="#three">
+            3. Engage
+          </a>
+        </li>
+        <li>
+          <a class="stepfour" href="#four">
+            4. Succeed
+          </a>
+        </li>
+        <li>
+          <a class="stepfive" href="#five">
+            5. Pay
+          </a>
+        </li>
+      </ul>   
+    </div>     
+  </div> 
 </div>
 <%= render 'layouts/flash' %>
 
-<div class="introbg">
-  <div class="row">  
-    <div class="large-12 columns">
-      <h1>Learn More</h1>
-      <h3>GCES is a service that facilitates the work cycle between companies and consultants, 
-        reducing overhead and increasing efficiency.
-      </h3>
-    </div>
-  </div>
-</div>
-<div class="benefit">
+<div class="benefit stepone"><a name="one"></a>
   <div class="row">
     <div class="large-7 columns">
       <h2><i class="fi-torsos-all"></i> <%= link_to 'Sign up', new_sales_lead_path %></h2>
@@ -88,23 +110,22 @@
   </div>
 </div>
 
-<div class="benefit even">
+<div class="benefit even steptwo"><a name="two"></a>
   <div class="row">
     <div class="large-12 columns">
-      <h2><i class="fi-magnifying-glass"></i> Find and select consultants</h2>
-      <p>Communicate and negotiate with consultants and agree to engagement, then create purchase 
-        order using our streamlined system to engage the right consultant faster and easier.
+      <h2><i class="fi-magnifying-glass"></i> Search</h2>
+      <p>Client Company searches and selects consultants. 
       </p>
     </div>
   </div>
 </div>
 
-<div class="benefit">
+<div class="benefit stepthree"><a name="three"></a>
   <div class="row">
     <div class="large-7 columns">
-      <h2><i class="fi-comments"></i> Authorize engagement</h2>
-      <p>Negotiate with consultant and agree to engagement &ndash; enabling rapid engagement on more 
-        projects!
+      <h2><i class="fi-comments"></i> Engage</h2>
+      <p>Communicate and negotiate with consultants and agree to engagement, then create purchase 
+        order using our streamlined system to engage the right consultant faster and easier.
       </p>
     </div>
     <div class="large-5 columns">
@@ -119,7 +140,7 @@
   </div>
 </div>
 
-<div class="benefit even">
+<div class="benefit even stepfour"><a name="four"></a>
   <div class="row">
     <div class="large-12 columns">
       <h2><i class="fi-trophy"></i> Succeed</h2>
@@ -129,11 +150,10 @@
   </div>
 </div>
 
-<div class="benefit">
+<div class="benefit stepfive"><a name="five"></a>
   <div class="row">
     <div class="large-7 columns">
-      <h2><i class="fi-dollar-bill"></i> Manage payroll
-      </h2>
+      <h2><i class="fi-dollar-bill"></i> Pay</h2>
       <p>Review time and expense information and verify consultant’s continued value and pay GCES 
         invoices &ndash; receiving critical support at an affordable cost!
       </p>
@@ -146,5 +166,12 @@
         </p>
       </aside>
     </div>
+  </div>
+</div>
+
+<div class="benefit signup">
+  <div class="row">
+    <h5>Want to join?</h5>
+    <%= link_to 'Sign up now!', new_sales_lead_path, class: 'button large secondary' %>
   </div>
 </div>
