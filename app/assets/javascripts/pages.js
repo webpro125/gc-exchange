@@ -36,3 +36,10 @@ $('.screen').css({'height': vph + 'px'});
 }
 
 });
+
+$(document).foundation({
+"magellan-expedition": {
+  destination_threshold: 60, // pixels from the top of destination for it to be considered active
+  fixed_top: 60, // top distance in pixels assigned to the fixed element on scroll
+}
+});

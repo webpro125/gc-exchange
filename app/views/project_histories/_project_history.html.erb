@@ -20,6 +20,16 @@
           (<%= date_in_words(project_history.start_date, project_history.end_date) %>)
         </span>
         </p>  
+        <% if user_is_gces? %>
+          <div class="row">
+            <div class="small-12 columns">
+              <%= t('simple_form.labels.project_history.client_poc_name') %>:
+              <%= project_history.client_poc_name %>
+              <%= t('simple_form.labels.project_history.client_poc_email') %>:
+              <%= project_history.client_poc_email %>
+            </div>
+          </div>
+        <% end %>
         <p class="desc"><%= project_history.description %></p>
       </div>
     </div>

@@ -53,20 +53,41 @@
     </section>
   </nav>
 </div>
+<div id="progress" class="consultant" data-magellan-expedition="fixed">
+  <h5 class="steps">Select a step to learn more</h5>    
+  <div class="row">
+    <ul>
+      <li data-magellan-arrival='stepone'>
+        <a class="stepone" href="#one">
+          1. Sign up
+        </a>
+      </li>
+      <li data-magellan-arrival='steptwo'>
+        <a class="steptwo" href="#two">
+          2. Search
+        </a>
+      </li>
+      <li data-magellan-arrival='stepthree'>
+        <a class="stepthree" href="#three">
+          3. Engage
+        </a>
+      </li>
+      <li data-magellan-arrival='stepfour'>
+        <a class="stepfour" href="#four">
+          4. Succeed
+        </a>
+      </li>
+      <li data-magellan-arrival='stepfive'>
+        <a class="stepfive" href="#five">
+          5. Get paid
+        </a>
+      </li>
+    </ul>   
+  </div>     
+</div>   
 <%= render 'layouts/flash' %>
 
-<div class="introbg">
-  <div class="row">
-    <div class="large-12 columns">
-      <h1>Learn More</h1>
-      <h3>GCES is a service that facilitates the work cycle between companies and consultants, 
-        reducing overhead and increasing efficiency.
-      </h3>
-    </div>
-  </div>
-</div>
-
-<div class="benefit">
+<div class="benefit" data-magellan-destination='stepone'><a name="one"></a>
   <div class="row">
     <div class="large-7 columns">
       <h2><i class="fi-torsos-all"></i> <%= link_to 'Sign up', new_consultant_registration_path %></h2>
@@ -87,16 +108,16 @@
   </div>
 </div>
 
-<div class="benefit even">
+<div class="benefit even" data-magellan-destination='steptwo'><a name="two"></a>
   <div class="row">
     <div class="large-12 columns">
-      <h2><i class="fi-magnifying-glass"></i> Get searched</h2>
+      <h2><i class="fi-magnifying-glass"></i> Search</h2>
       <p>Client company searches and selects consultants.</p>
     </div>
   </div>
 </div>
 
-<div class="benefit">
+<div class="benefit" data-magellan-destination='stepthree'><a name="three"></a>
   <div class="row">
     <div class="large-7 columns">
       <h2><i class="fi-comments"></i> Engage</h2>
@@ -117,7 +138,7 @@
   </div>
 </div>
 
-<div class="benefit even">
+<div class="benefit even" data-magellan-destination='stepfour'><a name="four"></a>
   <div class="row">
     <div class="large-12 columns">
       <h2><i class="fi-trophy"></i> Succeed</h2>
@@ -129,7 +150,7 @@
   </div>
 </div>
 
-<div class="benefit">
+<div class="benefit" data-magellan-destination='stepfive'><a name="five"></a>
   <div class="row">
     <div class="large-7 columns">
       <h2><i class="fi-dollar-bill"></i> Get paid
@@ -145,5 +166,12 @@
         </p>
       </aside>
     </div>
+  </div>
+</div>
+
+<div class="benefit signup screen">
+  <div class="row">
+    <h5>Want to join?</h5>
+    <%= link_to 'Sign up now!', new_consultant_registration_path, class: 'button large secondary' %>
   </div>
 </div>
