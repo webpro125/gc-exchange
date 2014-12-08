@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get :terms_of_service, to: 'pages#terms_of_service'
   get :company_learn_more, to: 'pages#company_learn_more'
   get :consultant_learn_more, to: 'pages#consultant_learn_more'
+  get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
 
   # Resources
   resource :profile, only: [:edit, :update, :show] do

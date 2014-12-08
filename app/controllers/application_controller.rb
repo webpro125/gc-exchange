@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
+  force_ssl if: :not_pages_controller?
+
   before_action :create_search
 
   def after_sign_in_path_for(resource)
@@ -16,6 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def not_pages_controller?
+    (Rails.env.staging? || Rails.env.production?) && controller_name != 'pages'
+  end
 
   def create_search
     @search = Search.new search_params
