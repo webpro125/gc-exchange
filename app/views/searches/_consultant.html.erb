@@ -1,9 +1,7 @@
 <article class="row consultant-profile">
   <div class="large-2 columns">
     <%= link_to consultant_path(consultant) do %>
-        <div class="th profile-thumb"
-             style="background-image: url(<%= image_path consultant.profile_image.url(:thumb) %>)">
-        </div>
+      <%= image_tag(consultant.profile_image.url(:thumb), class: 'th profile-thumb') %>
     <% end %>
   </div>
   <div class="large-10 columns">
