@@ -10,13 +10,14 @@ describe DownloadsController do
       let(:user) { FactoryGirl.create(:gces_user) }
 
       describe 'download_resume' do
-        let!(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
+        let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
 
         before do
+          consultant.save!
           get :download_resume, id: consultant.id
         end
 
-        it { should_not redirect_to(root_path) }
+        it { should redirect_to(consultant.resume.url) }
       end
     end
 
@@ -24,12 +25,13 @@ describe DownloadsController do
       let(:user) { FactoryGirl.create(:user, :as_owner) }
 
       describe 'download_resume' do
-        let!(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
+        let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
 
         before do
+          consultant.save!
           get :download_resume, id: consultant.id
         end
-        it { should_not redirect_to(root_path) }
+        it { should redirect_to(consultant.resume.url) }
       end
     end
   end

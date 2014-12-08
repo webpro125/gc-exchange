@@ -10,7 +10,10 @@ FactoryGirl.define do
     abstract              { Faker::Lorem.paragraph(4) }
 
     trait :with_resume do
-      resume_file_name { 'a_pdf.pdf' }
+      after(:create) do |c|
+        c.resume_file_name = 'a_pdf.pdf'
+        c.save
+      end
     end
 
     trait :approved do
