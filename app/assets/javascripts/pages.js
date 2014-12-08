@@ -5,6 +5,11 @@ window.onresize = function(event) {
 resizeDiv();
 }
 
+$('#progress li a').on('click', function(){
+    $('li a.current').removeClass('current');
+    $(this).addClass('current');
+});
+
 // Scrolling to anchor links
 $(function() {
   $('a[href*=#]:not([href=#])').click(function() {
@@ -34,10 +39,5 @@ var vpw = $(window).width();
 var vph = $(window).height();
 $('.screen').css({'height': vph + 'px'});
 }
-
-$('#progress li a').on('click', function(){
-    $('li a.current').removeClass('current');
-    $(this).addClass('current');
-});
 
 });
