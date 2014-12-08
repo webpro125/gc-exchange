@@ -9,16 +9,19 @@
       <%= link_to consultant.full_name, consultant_path(consultant) %>
     </h5>
     <p>
-      <strong>
-        <%= t('simple_form.labels.military.clearance_level') %>:
-      </strong>
-      <%= if consultant.military && consultant.military.clearance_level
-            consultant.military.clearance_level.label
-          else
-            t('activerecord.models.attributes.clearance_level.none')
-          end
-      %>
-      <br />
+
+      <% if user_signed_in?%>
+        <strong>
+          <%= t('simple_form.labels.military.clearance_level') %>:
+        </strong>
+        <%= if consultant.military && consultant.military.clearance_level
+              consultant.military.clearance_level.label
+            else
+              t('activerecord.models.attributes.clearance_level.none')
+            end
+        %>
+        <br />
+      <% end %>
       <strong>
         <%= t('simple_form.labels.consultant.willing_to_travel') %>:
       </strong>
