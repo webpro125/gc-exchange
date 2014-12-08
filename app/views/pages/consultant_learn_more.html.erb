@@ -52,42 +52,42 @@
       </ul>
     </section>
   </nav>
-  <div id="progress" class="consultant">
-  <h5 class="steps">Select a step to learn more</h5>    
-    <div class="row">
-      <ul>
-        <li>
-          <a class="stepone" href="#one">
-            1. Sign up
-          </a>
-        </li>
-        <li>
-          <a class="steptwo" href="#two">
-            2. Search
-          </a>
-        </li>
-        <li>
-          <a class="stepthree" href="#three">
-            3. Engage
-          </a>
-        </li>
-        <li>
-          <a class="stepfour" href="#four">
-            4. Succeed
-          </a>
-        </li>
-        <li>
-          <a class="stepfive" href="#five">
-            5. Get paid
-          </a>
-        </li>
-      </ul>   
-    </div>     
-  </div>   
 </div>
+<div id="progress" class="consultant" data-magellan-expedition="fixed">
+  <h5 class="steps">Select a step to learn more</h5>    
+  <div class="row">
+    <ul>
+      <li data-magellan-arrival='stepone'>
+        <a class="stepone" href="#one">
+          1. Sign up
+        </a>
+      </li>
+      <li data-magellan-arrival='steptwo'>
+        <a class="steptwo" href="#two">
+          2. Search
+        </a>
+      </li>
+      <li data-magellan-arrival='stepthree'>
+        <a class="stepthree" href="#three">
+          3. Engage
+        </a>
+      </li>
+      <li data-magellan-arrival='stepfour'>
+        <a class="stepfour" href="#four">
+          4. Succeed
+        </a>
+      </li>
+      <li data-magellan-arrival='stepfive'>
+        <a class="stepfive" href="#five">
+          5. Get paid
+        </a>
+      </li>
+    </ul>   
+  </div>     
+</div>   
 <%= render 'layouts/flash' %>
 
-<div class="benefit"><a name="one"></a>
+<div class="benefit" data-magellan-destination='stepone'><a name="one"></a>
   <div class="row">
     <div class="large-7 columns">
       <h2><i class="fi-torsos-all"></i> <%= link_to 'Sign up', new_consultant_registration_path %></h2>
@@ -108,7 +108,7 @@
   </div>
 </div>
 
-<div class="benefit even"><a name="two"></a>
+<div class="benefit even" data-magellan-destination='steptwo'><a name="two"></a>
   <div class="row">
     <div class="large-12 columns">
       <h2><i class="fi-magnifying-glass"></i> Search</h2>
@@ -117,7 +117,7 @@
   </div>
 </div>
 
-<div class="benefit"><a name="three"></a>
+<div class="benefit" data-magellan-destination='stepthree'><a name="three"></a>
   <div class="row">
     <div class="large-7 columns">
       <h2><i class="fi-comments"></i> Engage</h2>
@@ -138,7 +138,7 @@
   </div>
 </div>
 
-<div class="benefit even"><a name="four"></a>
+<div class="benefit even" data-magellan-destination='stepfour'><a name="four"></a>
   <div class="row">
     <div class="large-12 columns">
       <h2><i class="fi-trophy"></i> Succeed</h2>
@@ -150,7 +150,7 @@
   </div>
 </div>
 
-<div class="benefit"><a name="five"></a>
+<div class="benefit" data-magellan-destination='stepfive'><a name="five"></a>
   <div class="row">
     <div class="large-7 columns">
       <h2><i class="fi-dollar-bill"></i> Get paid

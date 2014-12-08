@@ -304,22 +304,6 @@ ol, ol li {
         text-decoration: none;
         color: #fff;
 
-        &.current {
-          background: $gces-red;
-
-          &:after {
-            border-left-color: $gces-red;
-          }
-
-          &:hover {
-            background: scale-color($gces-red, $lightness: -20%);
-
-            &:after {
-              border-left-color: scale-color($gces-red, $lightness: -20%);
-            }
-          }
-        }
-
         &:hover {
           background: scale-color($gces-blue, $lightness: -20%);
         
@@ -343,6 +327,22 @@ ol, ol li {
             border-bottom: 20px solid transparent;
             border-left: 20px solid $white;
           position: absolute; left: 0; top: 0;
+        }
+      }
+      &.active {
+        a {
+          background: $gces-red;
+
+          &:after {
+            border-left-color: $gces-red;
+          }
+          &:hover {
+            background: scale-color($gces-red, $lightness: -20%);
+
+            &:after {
+              border-left-color: scale-color($gces-red, $lightness: -20%);
+            }
+          }
         }
       }
     }
