@@ -18,6 +18,7 @@
     <%= render 'layouts/flash' %>
     <div class="container">
         <%= yield %>
+        <%= render 'layouts/footer' %>
     </div>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
