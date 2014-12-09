@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets
     .find_asset("#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= analytics_init if Rails.env.production? %>
     <%= csrf_meta_tags %>
   </head>
 
