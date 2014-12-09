@@ -16,6 +16,7 @@
 
   <body class="learn_more">
         <%= yield %>
+        <%= render 'layouts/footer' %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
     .find_asset("#{controller_name}.js") %>
