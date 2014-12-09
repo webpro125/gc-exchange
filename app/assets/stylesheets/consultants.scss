@@ -1,0 +1,24 @@
+@import "variables";
+@import "profileviews";
+
+/*** ADMIN ***/
+.row {
+
+&.admin {
+  background: whitesmoke;
+  padding: 1rem;
+  border-radius: 2px;
+  border: 1px solid $gainsboro;
+  margin-bottom: 2rem;
+  p {
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+    margin-bottom: 0.5rem;
+    }
+  .button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+}
