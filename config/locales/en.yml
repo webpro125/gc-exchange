@@ -64,6 +64,12 @@ en:
             state:
               match_fail: "must be a US state"
             geocode_fail: "must be a valid physical address"
+        certifications:
+          attributes:
+            code:
+             too_long:
+               one: "may only have at most %{count} certification"
+               other: "may only have at most %{count} certifications"
   controllers:
     project_history:
       create:

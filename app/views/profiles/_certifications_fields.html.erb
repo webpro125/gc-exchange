@@ -1,4 +1,7 @@
 <%= f.input :certification_ids,
             build_simple_form_dropdown(Certification,
                                        collection: Certification.all,
-                                       input_html: { multiple: true }) %>
+                                       input_html: { multiple: true,
+                                                     data: { maximumSelectionSize: 10,
+                                                             maxSizeErrorMessage: I18n.t('activerecord.errors.models.certifications.attributes.code.too_long.other')}}) %>
+
