@@ -9,12 +9,12 @@ describe ProjectHistoryPolicy do
     describe 'for valid project_history' do
       let(:project_history) { FactoryGirl.create(:project_history, consultant: consultant) }
 
-      it { should permit_action(:show)    }
       it { should permit_action(:create)  }
       it { should permit_action(:new)     }
       it { should permit_action(:update)  }
       it { should permit_action(:edit)    }
       it { should permit_action(:destroy) }
+      it { should_not permit_action(:show)    }
     end
 
     describe 'for another project_history' do
