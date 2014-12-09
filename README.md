@@ -52,6 +52,7 @@ export GOOGLE_MAPS_API=${google_maps_api_key}
 export BING_MAPS_API=${bing_maps_api_key}
 export COMPANY_SUPERUSER_PASS=${company_superuser_pass}
 export ELASTICSEARCH_HOST=${elasticsearch_host}
+export GA_TRACKER=${ga_tracker}
 ```
 
 Initialize your application by running

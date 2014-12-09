@@ -84,4 +84,5 @@ end
 
 group :production, :staging do
   gem 'unicorn', '~> 4.8.3'
+  gem 'google-analytics-rails', '~> 0.0.6'
 end
