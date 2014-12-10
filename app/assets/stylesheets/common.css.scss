@@ -292,6 +292,9 @@ textarea {
     }
   }
 }
+textarea {
+  height: auto;
+}
 label.required {
   font-weight: 600;
 }
