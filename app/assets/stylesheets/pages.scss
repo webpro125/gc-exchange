@@ -76,7 +76,7 @@ h5 {
 
   ul {
     margin: 0 auto;
-    width: 230px;
+    width: 260px;
 
     &.dropdown {
       display: none;
@@ -114,7 +114,7 @@ h5 {
       }
 
       h5 {
-        font-size: 13px;
+        font-size: rem-calc(14);
         margin: 0;
 
         a {
