@@ -4,6 +4,8 @@ module ConsultantHelper
   end
 
   def consultant_owns_record?
-    current_consultant.id == @consultant.id
+    if current_consultant
+      current_consultant.id == @consultant.id
+    end
   end
 end
