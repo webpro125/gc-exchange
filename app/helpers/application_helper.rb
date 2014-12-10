@@ -64,4 +64,8 @@ module ApplicationHelper
   def create_profile_helper(wizard_step)
     wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
   end
+
+  def link_to_blank(body, url_options = {}, html_options = {})
+    link_to(body, url_options, html_options.merge(target: '_blank'))
+  end
 end
