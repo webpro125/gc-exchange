@@ -35,26 +35,37 @@
 }
 
 /*** BREADCRUMBS ***/
-.breadcrumbs {
-  li {
-    letter-spacing: 0.5px;
-    line-height: 1rem;
-    &.current {
-      font-weight: 600;
+.row {
+  .breadcrumbs {
+    margin-bottom: 2rem;
+    li {
+      letter-spacing: 0.5px;
+      line-height: 1rem;
+      &.current {
+        font-weight: 600;
+      }
+      @media #{$small-only} {
+          display: block;
+          width: 100%;
+      }
+      &:before {
+        content: '\f10b';
+        font-family: "foundation-icons";
+        color: $base;
+      }
+      &:first-child {
+        &:before {
+          content: none;
+        }
+      }
+    }
+    > *:before {
+      
     }
     @media #{$small-only} {
-        display: block;
-        width: 100%;
-    }
-  }
-  > *:before {
-    content: '\f10b';
-    font-family: "foundation-icons";
-    color: #CCC;
-  }
-  @media #{$small-only} {
-    > *:before {
-      display: none;
+      > *:before {
+        display: none;
+      }
     }
   }
 }
