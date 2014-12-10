@@ -8,11 +8,11 @@
     <div class="row">
       <div class="small-12 columns">
         <h1>
-          <% if consultant_owns_record? || user_is_gces? %>
-            <%= @consultant.full_name %>
-          <% else %>
-            <%= @consultant.id %>
-          <% end %>
+          <%= if consultant_owns_record? || user_is_gces?
+            @consultant.full_name
+          else
+            @consultant.id
+          end %>
         </h1>
       </div>
     </div>
