@@ -6,7 +6,7 @@ module OtherInformation
   property :rate
   property :willing_to_travel
 
-  validates :rate, numericality: { greater_than: 0 }, presence: true
+  validates :rate, numericality: { greater_than: 0, less_than_or_equal_to: 5000 }, presence: true
   validates :willing_to_travel, presence: true
 
   property :address, populate_if_empty: Address do
