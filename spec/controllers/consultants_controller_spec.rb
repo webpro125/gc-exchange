@@ -45,22 +45,6 @@ describe ConsultantsController do
         end
       end
 
-      describe 'GET show' do
-        let(:consultant) { FactoryGirl.create(:consultant, :in_progress) }
-
-        before do
-          get :show, id: consultant.id
-        end
-
-        it { should redirect_to(root_path) }
-        it { should_not render_template(:show) }
-        it { should respond_with(302) }
-
-        it 'assigns consultant' do
-          assigns(:consultant).should eq(consultant)
-        end
-      end
-
       describe 'PUT approve' do
         describe 'pending_approval status' do
           let!(:consultant) { FactoryGirl.create(:consultant, :pending_approval) }
