@@ -74,3 +74,9 @@ rails s
 ```
 
 Or alternatively use something like pow http://pow.cx/
+
+Elasticsearch index needs to be created on new instances:
+```
+Consultant.__elasticsearch__.create_index! force: true
+Consultant.__elasticsearch__.refresh_index!
+```
