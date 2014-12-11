@@ -16,6 +16,9 @@ class ConsultantsController < CompanyController
   end
 
   def show
+    return unless  @consultant.in_progress?
+    redirect_to root_path
+    false
   end
 
   def reject
