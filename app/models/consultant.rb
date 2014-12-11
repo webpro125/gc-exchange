@@ -11,7 +11,7 @@ class Consultant < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   scope :approved, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code]))
