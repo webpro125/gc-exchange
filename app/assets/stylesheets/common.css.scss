@@ -17,9 +17,10 @@ hr {
 }
 .hint {
 	margin: -10px 0 10px 0;
-	font-size: 13px;
+	font-size: rem-calc(14);
   opacity: 0;
-
+  color: $monsoon;
+  font-style: italic;
 }
 @media #{$large-up} {
   .container {
@@ -30,7 +31,6 @@ hr {
   padding: 2rem 0 0;
   background: #FFF;
   width: 1100px;
-  max-width: 95%;
   margin: 0 auto;
   min-height: 800px;
   box-shadow: 0 0 20px scale-color($gces-green, $lightness: -50%);
@@ -49,7 +49,7 @@ hr {
 /*** BUTTON ***/
 
 .button, input[type="submit"] {
-  border-radius: 2px;
+  border-radius: $global-radius;
 }
 
 input[type="submit"] {
@@ -137,9 +137,7 @@ ol {
 aside {
   background: scale-color($gces-green, $lightness: 80%);
   padding: 1.25rem;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
+  border-radius: $global-radius;
   border: 1px solid scale-color($gces-green, $lightness: 70%);
   h5, p {
     line-height: 1.4rem;
@@ -153,9 +151,9 @@ aside {
 
   }
   p {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     margin-bottom: 0;
-    line-height: 1.25rem;
+    line-height: 1.35rem;
   }
 }
 
@@ -167,9 +165,7 @@ aside {
 .error small.error, .alert-box.alert {
   color: $gces-red;
   border: 1px solid $gces-red;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+  border-radius: $global-radius;
 }
 .alert-box.alert {
   margin: 0 auto rem-calc(20);
@@ -186,8 +182,10 @@ aside {
 }
 
 /*** FORMS ***/
+
 .select, .select2 {
   ul {
+  margin: 0;
     li {
       text-indent: 0;
       
@@ -216,7 +214,7 @@ aside {
     line-height: 2.3125rem;
     border-color: #CCC;
     background: $snow;
-    border-radius: 2px;
+    border-radius: $global-radius;
     .select2-arrow {
       border-left: none;
       background: none;
@@ -229,10 +227,15 @@ aside {
 .select2-container-multi {
   .select2-choices {
     border: 1px solid #CCC;
-    border-radius: 2px;
+    border-radius: $global-radius;
     background: $white;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-
+    margin: 0!important;
+    .select2-search-field {
+      input {
+        font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+    }
     .select2-search-choice {
       font-size: 14px;
       line-height: 1.2em;
@@ -305,7 +308,7 @@ label {
 .maxlength {
   margin: -10px 0 10px 0;
   float: right;
-  font-size: 11px;
+  font-size: rem-calc(13);
   color: $gces-red;
 }
 
