@@ -7,15 +7,15 @@
     <% end %>
     <% if wizard_path == create_profile_path(:project_history) %>
         <%= f.button :submit, t('views.wizard.actions.save_and_new'),
-                     class: 'secondary medium',
+                     class: 'secondary',
                      name:'save_and_new'%>
-        <%= f.button :submit, t('views.wizard.actions.finish'), class: 'secondary medium' %>
+        <%= f.button :submit, t('views.wizard.actions.finish'), class: 'secondary' %>
         <% elsif wizard_path == create_profile_path(:background_information) %>
         <%= f.button :submit, t('views.wizard.actions.save_and_next'),
                      data: { confirm: t('views.wizard.confirmations.background_information.save')},
-                     class: 'secondary medium' %>
+                     class: 'secondary' %>
     <% else %>
-        <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary medium' %>
+        <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary' %>
     <% end %>
   </div>
 </div>
