@@ -38,12 +38,14 @@
 .error label, .error label.error {
   color: $gces-red;
 }
-input[type="file"] {
-  margin-bottom: 0.25rem;
-}
-small {
-  font-style: italic;
-  color: $monsoon;
+.wizard {
+  input[type="file"] {
+    margin-bottom: 0.25rem;
+  }
+  small {
+    font-style: italic;
+    color: $monsoon;
+  }
 }
 
 /*** BREADCRUMBS ***/
