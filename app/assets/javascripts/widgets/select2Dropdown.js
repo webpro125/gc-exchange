@@ -90,7 +90,7 @@
         dropdownCssClass: 'bigdrop', // apply css that makes the dropdown taller
         tokenSeparators: [','],
         allowClear: $(self.ele).data('allowclear'),
-        placeholder: self.element.attr('placeholder')
+        placeholder: $(self.ele).attr('placeholder')
       };
 
       if(self.ele.data('tags')) {
