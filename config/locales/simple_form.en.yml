@@ -93,4 +93,7 @@ en:
       address:
         address: 'This is not shown publicly and is used for consultant search distance and billing 
         purposes'
+    placeholders:
+      consultant:
+        skills_list: 'Add skills, separated by commas'
 

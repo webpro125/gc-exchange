@@ -2,6 +2,10 @@
 
 /*** WIZARD ***/
 
+.button, input[type="submit"] {
+  border-radius: $global-radius;
+}
+
 #bgquestions {
   label {
     font-weight: 600;
