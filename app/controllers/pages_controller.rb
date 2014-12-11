@@ -10,6 +10,8 @@ class PagesController < ApplicationController
   end
 
   def user
+    @company = current_user.company
+    render 'companies/show'
   end
 
   def terms_of_service
