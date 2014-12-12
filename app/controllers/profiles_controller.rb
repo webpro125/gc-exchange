@@ -48,6 +48,8 @@ class ProfilesController < ConsultantController
   end
 
   def consultant
+    @consultant = current_consultant
+    render :show
   end
 
   private
