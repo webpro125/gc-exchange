@@ -5,7 +5,7 @@
     <td>
       <%= Address.human_attribute_name(:address) %>
     </td>
-    <% unless @consultant.address.blank? %>
+    <% if @consultant.address.present? %>
       <td>
         <%= @consultant.address.address %>
       </td>

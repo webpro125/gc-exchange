@@ -12,7 +12,7 @@
     </div>
     <% if user_signed_in? || consultant_signed_in? %>
       <table>
-        <% unless @consultant.military.blank? %>
+        <% if @consultant.military.present? %>
           <% if @consultant.military.clearance_active %>
             <tr>
               <td>
