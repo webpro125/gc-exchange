@@ -15,11 +15,18 @@ h5 {
   }
 }
 
+.home {
+  .container {
+    padding-top: 0;
+  }
+}
+
 #one, #two, #three {
   .reg {
     padding: rem-calc(30);
     box-shadow: 0 0 20px #CCC;
     border-radius: $global-radius;
+    background: #FFF;
     h2 {
       margin: 0 0 rem-calc(10);
     } 
@@ -32,6 +39,7 @@ h5 {
   }
   aside {
     max-width: rem-calc(420);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
   }
   > .row {
     padding: rem-calc(40) 0;
@@ -192,6 +200,15 @@ h5 {
     }
   }
 
+}
+
+#two {
+  background: image-url("companybg.jpg") 50% bottom no-repeat;
+  background-size: cover;
+}
+#three {
+  background: image-url("consultantbg.jpg") 50% bottom no-repeat;
+  background-size: cover;
 }
 /*** TOS ***/
 ol, ol li {
