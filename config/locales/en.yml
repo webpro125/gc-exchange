@@ -27,6 +27,7 @@ en:
         update: 'Search'
   activerecord:
     models:
+      user: 'Company'
       attributes:
         clearance_level:
           none: 'None'
@@ -183,3 +184,6 @@ en:
       new:
         save: 'Send Request'
         title: 'Company Registration Request'
+    registrations:
+      new:
+        title: 'Consultant Registration'
