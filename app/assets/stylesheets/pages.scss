@@ -16,7 +16,20 @@ h5 {
 }
 
 #one, #two, #three {
-
+  .reg {
+    padding: rem-calc(30);
+    box-shadow: 0 0 20px #CCC;
+    border-radius: $global-radius;
+    h2 {
+      margin: 0 0 rem-calc(10);
+    } 
+    .button {
+      margin: 0;
+    }
+    input {
+      margin-bottom: rem-calc(10);
+    }
+  }
   aside {
     max-width: rem-calc(420);
   }
@@ -25,7 +38,9 @@ h5 {
   }
   .button {
     border-radius: $global-radius;
+    margin-top: 1rem;
   }
+
   ul {
     margin-left: 0;
     padding-left: 0;
@@ -61,6 +76,7 @@ h5 {
     font-size: 1.3rem;
     margin-bottom: 0.75em;
     line-height: 1.3em;
+    font-weight: 600;
 
     &.intro {
       font-weight: 300;
