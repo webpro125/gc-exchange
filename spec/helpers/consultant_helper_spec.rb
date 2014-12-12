@@ -1,24 +1,37 @@
 require 'spec_helper'
-require 'user'
-require 'consultant'
 
 describe ConsultantHelper do
 
   describe 'logged in' do
     describe 'as GCES user' do
-      let(:user) { FactoryGirl.create(:gces_user) }
-      let(:consultant) { FactoryGirl.create(:consultant, :approved) }
+      describe '#user_is_gces?' do
+        it 'should return true' do
+          helper.stub_chain(:current_user, :gces?).and_return(true)
+          expect(helper.user_is_gces?).to eq true
+        end
 
-      it 'should return true' do
-        allow(helper).to receive(:current_user)  { true }
-        helper.stub(:user_is_gces?).and_return(true)
-        expect(helper.user_is_gces?).to eq true
+        it 'should return false' do
+          helper.stub_chain(:current_user, :gces?).and_return(false)
+          expect(helper.user_is_gces?).to eq false
+        end
       end
+    end
 
-      it 'should return true' do
-        allow(helper).to receive(:current_consultant)  { true }
-        helper.stub(:consultant_owns_record?).and_return(true)
-        expect(helper.consultant_owns_record?).to eq true
+    describe 'as consultant' do
+      describe '#consultant_owns_record?' do
+        let(:consultant) { FactoryGirl.create(:consultant, :approved) }
+
+        it 'should return true' do
+          helper.instance_variable_set('@consultant', consultant)
+          helper.stub_chain(:current_consultant, :id).and_return(consultant.id)
+          expect(helper.consultant_owns_record?).to eq true
+        end
+
+        it 'should return false' do
+          helper.instance_variable_set('@consultant', consultant)
+          helper.stub_chain(:current_consultant, :id).and_return(consultant.id + 1)
+          expect(helper.consultant_owns_record?).to eq false
+        end
       end
     end
   end
