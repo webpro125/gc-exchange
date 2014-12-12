@@ -12,16 +12,18 @@
     </div>
     <% if user_signed_in? || consultant_signed_in? %>
       <table>
-        <% if @consultant.military.clearance_active %>
-          <tr>
-            <td>
-              <%= t('simple_form.labels.military.clearance_level') %>
-            </td>
-            <td>
-            <%= @consultant.military.clearance_level.label if @consultant.military
-                    .clearance_level %>
-            </td>
-          </tr>
+        <% if @consultant.military.present? %>
+          <% if @consultant.military.clearance_active %>
+            <tr>
+              <td>
+                <%= t('simple_form.labels.military.clearance_level') %>
+              </td>
+              <td>
+              <%= @consultant.military.clearance_level.label if @consultant.military
+                      .clearance_level %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
           <tr>
             <td>

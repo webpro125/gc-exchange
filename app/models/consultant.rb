@@ -16,8 +16,14 @@ class Consultant < ActiveRecord::Base
   scope :approved, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code]))
   end)
+  scope :rejected, (lambda do
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code]))
+  end)
   scope :pending_approval, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
+  end)
+  scope :in_progress, (lambda do
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code]))
   end)
 
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
