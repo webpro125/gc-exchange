@@ -4,6 +4,8 @@ class UsersController < CompanyController
 
   def profile
     @company = current_user.company
+    authorize @company, :show?
+
     render 'companies/show'
   end
 
