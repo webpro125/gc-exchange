@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     root 'profiles#consultant', as: :consultant_root
   end
   authenticated :user do
-    root 'pages#user', as: :user_root
+    root 'users#profile', as: :user_root
   end
   authenticate :user, ->(u) { u.gces? } do
     mount Sidekiq::Web => '/sidekiq'

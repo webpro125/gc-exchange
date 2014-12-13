@@ -1,6 +1,11 @@
 class UsersController < CompanyController
-  before_action :load_and_authorize_company
+  before_action :load_and_authorize_company, except: [:profile]
   before_action :load_and_authorize_user, only: [:show, :edit, :update, :destroy]
+
+  def profile
+    @company = current_user.company
+    render 'companies/show'
+  end
 
   def index
     @users = policy_scope(@company.users).page(params[:page])
