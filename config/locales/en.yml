@@ -107,6 +107,9 @@ en:
       create:
         success: 'Phone created successfully.'
   views:
+    consultant:
+      actions:
+        index: 'Pending Consultants'
     search:
     page:
       actions:
