@@ -368,7 +368,16 @@ table {
     }
   }
 }
-
+/*** PAGINATION ***/
+ul.pagination {
+  li {
+  text-indent: 0;
+  margin: 0;
+    &:before {
+      content: none;
+    }
+  }
+}
 
 /*** FOOTER ***/
 footer {
