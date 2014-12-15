@@ -212,7 +212,7 @@ h5 {
 }
 /*** TOS ***/
 ol, ol li {
-  font-size: 0.75rem;
+  font-size: rem-calc(13);
   line-height: 1.25rem;
 }
 .introbg, .benefit {
@@ -389,3 +389,27 @@ ol, ol li {
     }
   }
 }
+/*** PRIVACY POLICY ***/
+.row {
+  .privacy {
+    h1 {
+      margin-bottom: 0;
+    }
+    ol,ul,p {
+      font-size: rem-calc(13);
+      margin-bottom: 1rem;
+    }
+    ol {
+      li {
+      text-indent: 0;
+      margin-left: 0;
+      font-size: rem-calc(13);
+      color: $jet;
+        &:before {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
