@@ -50,4 +50,10 @@ class User < ActiveRecord::Base
   def set_password
     self.password = self.password_confirmation = Devise.friendly_token.first(8)
   end
+
+  def send_confirmation_instructions
+    set_password
+
+    super
+  end
 end
