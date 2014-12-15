@@ -112,7 +112,7 @@ h3 {
 }
 
 ol {
-  color: $charcoal;
+
   >li {
     margin-top: 1rem;
     line-height: 1.45rem;
@@ -381,7 +381,14 @@ footer {
     p {
       font-size: rem-calc(13);
       color: $white;
-      text-shadow: 1px 1px 0 $monsoon;
+      a {
+        margin-left: rem-calc(5);
+        color: $smoke;
+        text-decoration: underline;
+        &:hover {
+          color: $iron;
+        }
+      }
     }
   }
   @media #{$small-only} {
