@@ -30,17 +30,7 @@ Rails.application.routes.draw do
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
 
   # Resources
-  resource :profile, only: [:edit, :update, :show] do
-    collection do
-      get :upload
-      put :upload_image
-      patch :upload_image
-
-      get :resume
-      put :upload_resume
-      patch :upload_resume
-    end
-  end
+  resource :profile, only: [:edit, :update, :show]
 
   get :search, to: 'searches#new'
   get 'search/skills', to: 'searches#skills'
@@ -54,6 +44,8 @@ Rails.application.routes.draw do
     resources :users
   end
   resources :consultants, only: [:index, :show] do
+    resources :upload_images, only: [:new, :create]
+    resources :upload_resumes, only: [:new, :create]
     member do
       put :approve
       put :reject

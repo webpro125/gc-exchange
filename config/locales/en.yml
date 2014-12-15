@@ -187,6 +187,13 @@ en:
       new:
         save: 'Send Request'
         title: 'Company Registration Request'
+    upload_resume:
+      actions:
+        upload_resume_html: '<i class="fi-upload"></i> Upload Resume'
+        upload_photo_html: '<i class="fi-photo"></i> Upload Image'
+    upload_image:
+      actions:
+        upload_photo_html: '<i class="fi-photo"></i> Upload Image'
     registrations:
       new:
         title: 'Consultant Registration'

@@ -1,0 +1,4 @@
+<%= simple_form_for @form, url:  consultant_upload_resumes_path, method: :post do |f| %>
+    <%= f.input :resume, as: :file %>
+    <%= f.button :submit %>
+<% end %>

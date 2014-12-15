@@ -51,4 +51,8 @@ class ApplicationController < ActionController::Base
   def sanitize_param(key)
     params[:search][key] = nil if params[:search] && params[:search][key].blank?
   end
+
+  def pundit_user
+    current_consultant || current_user
+  end
 end
