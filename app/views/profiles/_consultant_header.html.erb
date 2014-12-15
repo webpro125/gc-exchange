@@ -1,5 +1,10 @@
 <div class="row">
   <div class="medium-4 columns">
+    <% if user_is_gces? %>
+      <%= link_to t('views.upload_image.actions.upload_photo_html'),
+                  new_consultant_upload_image_path(@consultant.id),
+                  class: 'button small secondary download'  %>
+    <% end %>
     <%= image_tag(@consultant.profile_image.url(:medium), class: 'th profile-medium') %>
   </div>
   <div class="medium-8 columns">

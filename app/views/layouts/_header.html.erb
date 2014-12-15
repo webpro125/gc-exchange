@@ -36,8 +36,10 @@
             <%= link_to t('views.profile.actions.show'), profile_path %>
           <ul class="dropdown">
               <li><%= link_to t('views.profile.actions.edit'), edit_profile_path %></li>
-              <li><%= link_to t('views.profile.actions.upload_photo'), upload_profile_path %></li>
-              <li><%= link_to t('views.profile.actions.upload_resume'), resume_profile_path %></li>
+              <li><%= link_to t('views.profile.actions.upload_photo'),
+                              new_consultant_upload_image_path(@current_consultant) %></li>
+              <li><%= link_to t('views.profile.actions.upload_resume'),
+                              new_consultant_upload_resume_path(@current_consultant) %></li>
             <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
             <li class="divider"></li>
             <li><%= link_to t('views.password.actions.change_password'),

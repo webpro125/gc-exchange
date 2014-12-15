@@ -8,11 +8,11 @@
             <%= link_to root_path do %>
                 <%= image_tag(@current_consultant.profile_image.url(:medium), class: 'th profile-medium') %>
                 <%= link_to t('views.profile.actions.upload_photo_html'),
-                            upload_profile_path,
-                            class: 'button small upload' %>   
+                            new_consultant_upload_image_path(@current_consultant),
+                            class: 'button small upload' %>
                 <%= link_to t('views.profile.actions.upload_resume_html'),
-                            resume_profile_path,
-                            class: 'button small upload' %>  
+                            new_consultant_upload_resume_path(@current_consultant),
+                            class: 'button small upload' %>
             <% end %>
           </div>
           <div class="medium-8 columns">
@@ -62,7 +62,7 @@
                       <% end %>
                     </div>
                 <% end %>
-                <%= link_to t('views.profile.actions.new_phone_html') , 
+                <%= link_to t('views.profile.actions.new_phone_html') ,
                             new_phone_path,
                             class: 'button small' %>
               </div>
@@ -91,7 +91,7 @@
             <%= f.simple_fields_for :educations do |e| %>
                 <%= render 'educations/education_fields', f: e %>
             <% end %>
-            <%= link_to t('views.profile.actions.new_education_html') , 
+            <%= link_to t('views.profile.actions.new_education_html') ,
                         new_education_path,
                         class: 'button small' %>
           </div>
