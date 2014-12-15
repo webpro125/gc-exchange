@@ -15,17 +15,40 @@ h5 {
   }
 }
 
-#one, #two, #three {
+.home {
+  .container {
+    padding-top: 0;
+  }
+}
 
+#one, #two, #three {
+  .reg {
+    padding: rem-calc(30);
+    box-shadow: 0 0 20px #CCC;
+    border-radius: $global-radius;
+    background: #FFF;
+    h2 {
+      margin: 0 0 rem-calc(10);
+    } 
+    .button {
+      margin: 0;
+    }
+    input {
+      margin-bottom: rem-calc(10);
+    }
+  }
   aside {
     max-width: rem-calc(420);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
   }
   > .row {
     padding: rem-calc(40) 0;
   }
   .button {
     border-radius: $global-radius;
+    margin-top: 1rem;
   }
+
   ul {
     margin-left: 0;
     padding-left: 0;
@@ -61,6 +84,7 @@ h5 {
     font-size: 1.3rem;
     margin-bottom: 0.75em;
     line-height: 1.3em;
+    font-weight: 600;
 
     &.intro {
       font-weight: 300;
@@ -76,7 +100,7 @@ h5 {
 
   ul {
     margin: 0 auto;
-    width: 230px;
+    width: 260px;
 
     &.dropdown {
       display: none;
@@ -114,7 +138,7 @@ h5 {
       }
 
       h5 {
-        font-size: 13px;
+        font-size: rem-calc(14);
         margin: 0;
 
         a {
@@ -176,6 +200,15 @@ h5 {
     }
   }
 
+}
+
+#two {
+  background: image-url("companybg.jpg") 50% bottom no-repeat;
+  background-size: cover;
+}
+#three {
+  background: image-url("consultantbg.jpg") 50% bottom no-repeat;
+  background-size: cover;
 }
 /*** TOS ***/
 ol, ol li {

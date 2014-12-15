@@ -8,9 +8,9 @@
         affordably to support critical business needs.
       </h2>
       <p>
-        <a href="#company" class="button small"><%= t('views.page.actions.company') %></a>
+        <a href="#company" class="button medium"><%= t('views.page.actions.company') %></a>
         OR
-        <a href="#consultant" class="button small"><%= t('views.page.actions.consultant') %></a>?
+        <a href="#consultant" class="button medium"><%= t('views.page.actions.consultant') %></a>?
       </p>
       <ul>
         <li>
@@ -39,20 +39,19 @@
         <li>Eliminate consulting company overhead fees</li>
         <li>Minimize administrative and contracting overhead</li>
       </ul>
-      <%= link_to t('views.page.actions.learn_more'), company_learn_more_path, class: 'button small' %>
+      <%= link_to t('views.page.actions.learn_more'), company_learn_more_path, class: 'button medium' %>
       <aside>
-        <p>Our automated client company registration processes is under development. Please 
+        <p>Our automated client company registration process is under development. Please 
           fill out the fields to the right and a GCES manager will contact you to 
           complete our company’s registration and enable your access to our consultant database.</p>
       </aside>
     </div>
-    <div class="medium-6 columns">
-      <h2>Get Started</h2>
+    <div class="medium-6 columns reg">
+      <h2>Get started</h2>
       <%= render 'sales_leads/form' %>
     </div>
   </div>
 </div>
-<hr />
 <div id="three" class="screen"><a name="consultant"></a>
   <div class="row">
     <div class="medium-6 columns">
@@ -61,10 +60,10 @@
         <li>Use our tools for communication and rapid engagement with new clients</li>
         <li>Increase your income and reduce the time you spend on marketing and administration</li>
       </ul>
-      <%= link_to t('views.page.actions.learn_more'), consultant_learn_more_path, class: 'button small' %>
+      <%= link_to t('views.page.actions.learn_more'), consultant_learn_more_path, class: 'button medium' %>
     </div>
-    <div class="medium-6 columns">
-      <h2>Get Started</h2>
+    <div class="medium-6 columns reg">
+      <h2>Get started</h2>
       <%= render 'devise/registrations/form', resource: @consultant, resource_name: 'consultant' %>
     </div>
   </div>

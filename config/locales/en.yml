@@ -27,6 +27,7 @@ en:
         update: 'Search'
   activerecord:
     models:
+      user: 'Company'
       attributes:
         clearance_level:
           none: 'None'
@@ -106,6 +107,9 @@ en:
       create:
         success: 'Phone created successfully.'
   views:
+    consultant:
+      actions:
+        index: 'Pending Consultants'
     search:
     page:
       actions:
@@ -190,3 +194,6 @@ en:
     upload_image:
               actions:
                 upload_photo_html: '<i class="fi-photo"></i> Upload Image'
+    registrations:
+      new:
+        title: 'Consultant Registration'

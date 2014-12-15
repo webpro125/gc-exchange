@@ -91,6 +91,8 @@ en:
       consultant:
         abstract: 'Write an overview of your experience in the field'
       address:
-        address: 'This is not shown publicly and is used for consultant search distance and billing 
-        purposes'
+        address: 'This is not shown publicly and is used for consultant search purposes.'
+    placeholders:
+      consultant:
+        skills_list: 'Add skills, separated by commas'
 
