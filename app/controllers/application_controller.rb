@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
-  force_ssl if: :not_pages_controller?
+  force_ssl unless Rails.env.test?
 
   before_action :create_search
 
