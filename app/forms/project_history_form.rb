@@ -22,7 +22,8 @@ class ProjectHistoryForm < Reform::Form
   validates :client_company, length: { in: 3..512 }, presence: true
   validates :client_poc_name, length: { in: 2..256 }, presence: true,
             format: {  with: RegexConstants::Letters::AND_NUMBERS,
-                       message: 'only allows letters and numbers' }
+                       message: I18n.t('activerecord.errors.messages.only_letters_numbers') }
   validates :client_poc_email, length: { in: 3..128 }, presence: true,
-            format: { with: RegexConstants::EMAIL, message: 'must be valid email' }
+            format: { with: RegexConstants::EMAIL,
+                      message: I18n.t('activerecord.errors.messages.regex.email') }
 end

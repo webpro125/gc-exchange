@@ -41,6 +41,7 @@ en:
         regex:
           only_letters: 'only allows letters'
           only_letters_numbers: 'only allows letters and numbers'
+          email: 'must be valid email'
       models:
         user:
           attempt_owner_delete: 'cannot delete company owner'
