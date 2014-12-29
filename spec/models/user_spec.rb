@@ -20,8 +20,8 @@ describe User do
     it { should ensure_length_of(:first_name).is_at_most(24) }
     it { expect(subject).to allow_value('james').for(:first_name) }
     it { expect(subject).to allow_value('billy-jean 2').for(:first_name) }
-    it { expect(subject).to_not allow_value('1234567').for(:first_name) }
     it { expect(subject).to_not allow_value('!@#$').for(:first_name) }
+    it { expect(subject).to allow_value('1234567').for(:first_name) }
   end
 
   describe 'last_name' do
