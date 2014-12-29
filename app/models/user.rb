@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   before_destroy :validate_company_owner
 
   validates :first_name, length: { in: 2..24 }, presence: true,
-            format: { with: RegexConstants::Letters::AND_DASHES,
-                      message: I18n.t('activerecord.errors.messages.regex.only_letters') }
+            format: { with: RegexConstants::Letters::AND_NUMBERS,
+                      message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
