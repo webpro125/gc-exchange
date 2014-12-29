@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
-  force_ssl unless Rails.env.test?
+  force_ssl if: :staging_or_production?
 
   before_action :create_search
 
@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def not_pages_controller?
-    (Rails.env.staging? || Rails.env.production?) && controller_name != 'pages'
+  def staging_or_production?
+    Rails.env.staging? || Rails.env.production?
   end
 
   def create_search
