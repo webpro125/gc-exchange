@@ -1,10 +1,7 @@
 <%= simple_form_for @phone do |f| %>
     <%= f.error_notification %>
 
-    <%= f.input :number %>
-    <%= f.association :phone_type, build_simple_form_dropdown(PhoneType) %>
-    <%= f.check_box :primary %>
-    <%= f.label :primary, I18n.t('simple_form.labels.phone.primary'), {class: "checkbox inline"} %>
+    <%= render 'phone_fields', f: f %>
 
     <%= f.button :submit, button_label %>
 <% end %>
