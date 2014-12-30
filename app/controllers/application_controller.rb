@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def staging_or_production?
-    Rails.env.staging? || Rails.env.production?
+    (Rails.env.staging? || Rails.env.production?) && action_name != 'health_check'
   end
 
   def create_search

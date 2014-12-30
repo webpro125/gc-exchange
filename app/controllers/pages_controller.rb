@@ -19,4 +19,8 @@ class PagesController < ApplicationController
   def company_learn_more
     render layout: 'learn_more'
   end
+
+  def health_check
+    render text: DateTime.now
+  end
 end
