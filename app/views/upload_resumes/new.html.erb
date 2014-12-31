@@ -1,4 +1,10 @@
 <%= simple_form_for @form, url:  consultant_upload_resumes_path, method: :post do |f| %>
     <%= f.input :resume, as: :file %>
+    <p>
+      <small class="red">
+        Only PDF files allowed. Do not include any personal contact information such as phone 
+      number, email, or address.
+      </small>
+    </p>
     <%= f.button :submit %>
 <% end %>
