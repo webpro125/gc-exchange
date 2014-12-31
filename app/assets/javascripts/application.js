@@ -29,10 +29,8 @@ $(document).ready(function() {
   $('select, .select2').select2Dropdown();
 
   $('.form-datepicker').fdatetimepicker({
-    format: 'MM yyyy',
-    startView: 4,
-    viewMode: 3,
-    minView: 3,
+    format: 'MM dd yyyy',
+    minView: 2,
     forceParse: true
   });
 

@@ -17,7 +17,8 @@ class ProjectHistoryForm < Reform::Form
   validates :project_type_id, presence: true
   validates :position_ids, length: { in: 1..3 }, presence: true
   validates :description, length: { in: 3..1_500 }, allow_blank: true
-  validates :end_date, date: { after: :start_date, before: DateTime.now },
+  validates :start_date, date: { on_or_before: DateTime.now }
+  validates :end_date, date: { on_or_after: :start_date, on_or_before: DateTime.now },
             allow_blank: true, if: ->() { start_date.present? }
   validates :client_company, length: { in: 3..512 }, presence: true
   validates :client_poc_name, length: { in: 2..256 }, presence: true,
