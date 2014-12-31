@@ -54,11 +54,11 @@ module ApplicationHelper
   end
 
   def date_to_formatted_s(date)
-    date.try(:to_s, :month_and_year)
+    date.try(:to_s, :month_day_and_year)
   end
 
   def date_options
-    { format: :month_and_year, as: :date }
+    { format: :month_day_and_year, as: :date }
   end
 
   def create_profile_helper(wizard_step)
