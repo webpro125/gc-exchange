@@ -11,9 +11,8 @@
         <div class="medium-10 columns">
           <%= f.input :resume, as: :file %>
           <p>
-            <small>
-              Only PDF files allowed. Do not include any personal contact information such as phone 
-            number, email, or address.
+            <small class="red">
+              <%= t('simple_form.labels.consultant.instruction') %>
             </small>
           </p>
         </div>

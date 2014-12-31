@@ -45,6 +45,9 @@
   small {
     font-style: italic;
     color: $monsoon;
+    &.red {
+      color: scale-color($gces-red, $lightness: -10%);
+    }
   }
 }
 
