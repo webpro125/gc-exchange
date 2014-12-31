@@ -1,0 +1,32 @@
+<%= render 'header' %>
+
+<%= simple_form_for @form, url: create_profile_path(:basic_information), method: :put do |f| %>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.error_notification %>
+      </div>
+    </div>
+    <div class="wizard">
+      <div class="row">
+        <div class="medium-10 columns">
+          <%= f.input :resume, as: :file %>
+          <p>
+            <small class="red">
+              <%= t('simple_form.labels.consultant.instruction') %>
+            </small>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 columns">
+          <%= f.input :abstract, as: :text, input_html: { class: 'large', cols: 5, rows: 20 } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="medium-10 columns">
+          <%= f.input :profile_image, as: :file %>
+        </div>
+      </div>
+    </div>
+    <%= render 'footer',f: f %>
+<% end %>

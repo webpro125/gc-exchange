@@ -1,0 +1,88 @@
+@import "variables";
+
+/*** WIZARD ***/
+
+.button, input[type="submit"] {
+  border-radius: $global-radius;
+}
+
+#bgquestions {
+  label {
+    font-weight: 600;
+  }
+  .radio {
+    label {
+      font-weight: 400;
+    }
+  }
+  .boolean {
+    input[type="checkbox"] + label {
+        display: block;
+        margin-left: 20px;
+    }
+    input {
+        float: left;
+        margin-top: 5px;
+    }
+  }
+  .input.radio_buttons {
+    border-bottom: 1px solid $smoke;
+    margin-bottom: 1rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+.row.wizardnav {
+  margin-top: 2rem;
+}
+.error label, .error label.error {
+  color: $gces-red;
+}
+.wizard {
+  input[type="file"] {
+    margin-bottom: 0.25rem;
+  }
+  small {
+    font-style: italic;
+    color: $monsoon;
+    &.red {
+      color: scale-color($gces-red, $lightness: -10%);
+    }
+  }
+}
+
+/*** BREADCRUMBS ***/
+.row {
+  .breadcrumbs {
+    margin-bottom: 2rem;
+    li {
+      letter-spacing: 0.5px;
+      line-height: 1rem;
+      &.current {
+        font-weight: 600;
+      }
+      @media #{$small-only} {
+          display: block;
+          width: 100%;
+      }
+      &:before {
+        content: '\f10b';
+        font-family: "foundation-icons";
+        color: $base;
+      }
+      &:first-child {
+        &:before {
+          content: none;
+        }
+      }
+    }
+    > *:before {
+      
+    }
+    @media #{$small-only} {
+      > *:before {
+        display: none;
+      }
+    }
+  }
+}

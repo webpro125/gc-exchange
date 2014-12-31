@@ -1,3 +1,26 @@
+AllCops:
+  # Include gemspec and Rakefile
+  Include:
+    - '**/*.gemspec'
+    - '**/*.podspec'
+    - '**/*.jbuilder'
+    - '**/*.rake'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/Capfile'
+    - '**/Guardfile'
+    - '**/Podfile'
+    - '**/Thorfile'
+    - '**/Vagrantfile'
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+  # By default, the rails cops are not run. Override in project or home
+  # directory .rubocop.yml files, or by giving the -R/--rails option.
+  RunRailsCops: false
+
+
 # Align the elements of a hash literal if they span more than one line.
 Style/AlignHash:
   # Alignment of entries using hash rocket as separator. Valid values are:
@@ -81,7 +104,7 @@ Style/AlignParameters:
     - with_first_parameter
     - with_fixed_indentation
 
-Style/BlockNesting:
+Metrics/BlockNesting:
   Max: 3
 
 Style/BracesAroundHashParameters:
@@ -119,7 +142,7 @@ Style/ClassAndModuleChildren:
     - nested
     - compact
 
-Style/ClassLength:
+Metrics/ClassLength:
   CountComments: false  # count full line comments?
   Max: 100
 
@@ -148,8 +171,14 @@ Style/CommentAnnotation:
     - REVIEW
 
 # Avoid complex methods.
-Style/CyclomaticComplexity:
-  Max: 6
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Metrics/PerceivedComplexity:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
 
 # Multi-line method chaining should be done with leading dots.
 Style/DotPosition:
@@ -230,8 +259,8 @@ Style/LambdaCall:
     - call
     - braces
 
-Style/LineLength:
-  Max: 80
+Metrics/LineLength:
+  Max: 100
 
 Style/Next:
   # With `always` all conditions at the end of an iteration needs to be
@@ -257,9 +286,9 @@ Style/MethodDefParentheses:
     - require_parentheses
     - require_no_parentheses
 
-Style/MethodLength:
+Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 10
+  Max: 15
 
 Style/MethodName:
   EnforcedStyle: snake_case
@@ -270,13 +299,16 @@ Style/MethodName:
 Style/NumericLiterals:
   MinDigits: 5
 
-Style/ParameterLists:
+Metrics/ParameterLists:
   Max: 5
   CountKeywordArgs: true
 
 # Allow safe assignment in conditions.
 Style/ParenthesesAroundCondition:
   AllowSafeAssignment: true
+
+Metrics/AbcSize:
+  Enabled: false
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
@@ -310,7 +342,7 @@ Style/RedundantReturn:
 Style/RegexpLiteral:
   # The maximum number of (escaped) slashes that a slash-delimited regexp is
   # allowed to have. If there are more slashes, a %r regexp shall be used.
-  MaxSlashes: 1
+  MaxSlashes: 0
 
 Style/Semicolon:
   # Allow ; to separate several expressions on the same line.

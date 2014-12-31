@@ -1,0 +1,41 @@
+# Be sure to restart your server when you modify this file.
+common: &default_settings
+  storage: :fog
+  fog_directory: ''
+  fog_host: 'http://global_consultant_exchange.dev'
+  fog_credentials:
+    provider: 'Local'
+    local_root: <%= Rails.root %>/public/
+
+development:
+  <<: *default_settings
+
+test:
+  storage: :file
+  fog_credentials:
+      provider: 'Local'
+      local_root: <%= Rails.root %>/spec/files
+
+staging:
+  <<: *default_settings
+  fog_host: nil
+  fog_directory: 'gces-staging'
+  path: ':class/:attachment/:id/resume.:extension'
+  fog_credentials:
+    provider: 'AWS'
+    region: 'us-east-1'
+    aws_access_key_id: '<%= ENV['AWS_ACCESS_KEY'] %>'
+    aws_secret_access_key: '<%= ENV['AWS_SECRET_ACCESS_KEY'] %>'
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  <<: *default_settings
+  fog_host: nil
+  fog_directory: 'gces-production'
+  path: ':class/:attachment/:id/resume.:extension'
+  fog_credentials:
+    provider: 'AWS'
+    region: 'us-east-1'
+    aws_access_key_id: '<%= ENV['AWS_ACCESS_KEY'] %>'
+    aws_secret_access_key: '<%= ENV['AWS_SECRET_ACCESS_KEY'] %>'

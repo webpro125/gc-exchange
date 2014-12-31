@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="small-3">
+    <ul class="side-nav">
+      <% if current_consultant.project_histories.empty? %>
+          <li>
+            <%= link_to t('views.project.actions.index'), project_histories_path %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

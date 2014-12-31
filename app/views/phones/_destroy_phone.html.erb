@@ -1,0 +1,6 @@
+<div class="small-1 columns">
+  <%= link_to 'x',
+              phone_path(f.object),
+              method: :delete,
+              data: { confirm: { body: t('views.phone.confirmations.delete') } } if f.object.id %>
+</div>

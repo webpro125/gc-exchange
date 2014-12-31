@@ -1,0 +1,14 @@
+<h3><%= t('views.profile.headers.contact') %></h3>
+<table class="contact">
+  <%= render @consultant.phones %>
+  <tr>
+    <td>
+      <%= Address.human_attribute_name(:address) %>
+    </td>
+    <% if @consultant.address.present? %>
+      <td>
+        <%= @consultant.address.address %>
+      </td>
+    <% end %>
+  </tr>
+</table>
