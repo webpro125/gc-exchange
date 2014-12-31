@@ -30,6 +30,7 @@ $(document).ready(function() {
 
   $('.form-datepicker').fdatetimepicker({
     format: 'MM dd yyyy',
+    minView: 2,
     forceParse: true
   });
 
