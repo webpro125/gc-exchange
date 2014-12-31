@@ -21,4 +21,10 @@ class UserPolicy < LoggedInPolicy
   def destroy?
     new? && user != record
   end
+
+  def upload_resume?
+    user == record || user.gces?
+  end
+
+  alias_method :upload_image?, :upload_resume?
 end

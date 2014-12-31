@@ -19,34 +19,6 @@ class ProfilesController < ConsultantController
     @form = EditConsultantForm.new(current_consultant)
   end
 
-  def upload_image
-    @form = UploadImageForm.new(current_consultant)
-
-    if @form.validate(consultant_params) && @form.save
-      redirect_to consultant_root_path
-    else
-      render :upload
-    end
-  end
-
-  def upload_resume
-    @form = UploadResumeForm.new(current_consultant)
-
-    if @form.validate(consultant_params) && @form.save
-      redirect_to consultant_root_path
-    else
-      render :resume
-    end
-  end
-
-  def upload
-    @form = UploadImageForm.new(current_consultant)
-  end
-
-  def resume
-    @form = UploadResumeForm.new(current_consultant)
-  end
-
   def consultant
     @consultant = current_consultant
     render :show

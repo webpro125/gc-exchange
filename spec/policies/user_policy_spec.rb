@@ -16,6 +16,8 @@ describe UserPolicy do
       it { should permit_action(:create)  }
       it { should permit_action(:new)     }
       it { should permit_action(:destroy) }
+      it { should_not permit_action(:upload_resume) }
+      it { should_not permit_action(:upload_image) }
     end
 
     describe 'itself' do
@@ -25,6 +27,8 @@ describe UserPolicy do
       it { should permit_action(:update)  }
       it { should permit_action(:edit)    }
       it { should_not permit_action(:destroy) }
+      it { should permit_action(:upload_resume) }
+      it { should permit_action(:upload_image) }
     end
   end
 
@@ -40,6 +44,8 @@ describe UserPolicy do
       it { should permit_action(:update)  }
       it { should permit_action(:edit)    }
       it { should permit_action(:destroy) }
+      it { should permit_action(:upload_resume) }
+      it { should permit_action(:upload_image) }
     end
 
     describe 'for a user' do
@@ -51,6 +57,8 @@ describe UserPolicy do
       it { should_not permit_action(:create)  }
       it { should_not permit_action(:new)     }
       it { should_not permit_action(:destroy) }
+      it { should_not permit_action(:upload_resume) }
+      it { should_not permit_action(:upload_image) }
     end
 
     describe 'for an owner' do
@@ -62,6 +70,8 @@ describe UserPolicy do
       it { should_not permit_action(:create)  }
       it { should_not permit_action(:new)     }
       it { should_not permit_action(:destroy) }
+      it { should_not permit_action(:upload_resume) }
+      it { should_not permit_action(:upload_image) }
     end
   end
 

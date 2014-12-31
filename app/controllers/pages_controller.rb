@@ -1,7 +1,4 @@
 class PagesController < ApplicationController
-  before_action :authenticate_consultant!, only: :consultant
-  before_action :authenticate_user!, only: :user
-
   def home
     @sales_lead = SalesLead.new
     @consultant = Consultant.new
@@ -9,12 +6,10 @@ class PagesController < ApplicationController
     render layout: 'landing_page'
   end
 
-  def user
-    @company = current_user.company
-    render 'companies/show'
+  def terms_of_service
   end
 
-  def terms_of_service
+  def privacy_policy
   end
 
   def consultant_learn_more
@@ -23,5 +18,9 @@ class PagesController < ApplicationController
 
   def company_learn_more
     render layout: 'learn_more'
+  end
+
+  def health_check
+    render text: DateTime.now
   end
 end

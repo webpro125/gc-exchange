@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
-  force_ssl if: :not_pages_controller?
+  force_ssl if: :staging_or_production?
 
   before_action :create_search
 
@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def not_pages_controller?
-    (Rails.env.staging? || Rails.env.production?) && controller_name != 'pages'
+  def staging_or_production?
+    (Rails.env.staging? || Rails.env.production?) && action_name != 'health_check'
   end
 
   def create_search
@@ -50,5 +50,9 @@ class ApplicationController < ActionController::Base
 
   def sanitize_param(key)
     params[:search][key] = nil if params[:search] && params[:search][key].blank?
+  end
+
+  def pundit_user
+    current_consultant || current_user
   end
 end

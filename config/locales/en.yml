@@ -41,6 +41,7 @@ en:
         regex:
           only_letters: 'only allows letters'
           only_letters_numbers: 'only allows letters and numbers'
+          email: 'must be valid email'
       models:
         user:
           attempt_owner_delete: 'cannot delete company owner'
@@ -107,6 +108,9 @@ en:
       create:
         success: 'Phone created successfully.'
   views:
+    consultant:
+      actions:
+        index: 'Pending Consultants'
     search:
     page:
       actions:
@@ -184,6 +188,19 @@ en:
       new:
         save: 'Send Request'
         title: 'Company Registration Request'
+    upload_resume:
+      actions:
+        upload_resume_html: '<i class="fi-upload"></i> Upload Resume'
+        upload_photo_html: '<i class="fi-photo"></i> Upload Image'
+    upload_image:
+      actions:
+        upload_photo_html: '<i class="fi-photo"></i> Upload Image'
     registrations:
       new:
         title: 'Consultant Registration'
+    company:
+      confirmations:
+        delete: 'Are you sure you want to delete this company?'
+    user:
+      confirmations:
+        delete: 'Are you sure you want to delete this user?'

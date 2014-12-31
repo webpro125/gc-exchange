@@ -112,7 +112,7 @@ h3 {
 }
 
 ol {
-  color: $charcoal;
+
   >li {
     margin-top: 1rem;
     line-height: 1.45rem;
@@ -130,6 +130,13 @@ ol {
         list-style-type: lower-roman;
       }
     }
+  }
+}
+small {
+  font-style: italic;
+  color: $monsoon;
+  &.red {
+    color: scale-color($gces-red, $lightness: -10%);
   }
 }
 
@@ -368,7 +375,16 @@ table {
     }
   }
 }
-
+/*** PAGINATION ***/
+ul.pagination {
+  li {
+  text-indent: 0;
+  margin: 0;
+    &:before {
+      content: none;
+    }
+  }
+}
 
 /*** FOOTER ***/
 footer {
@@ -381,7 +397,14 @@ footer {
     p {
       font-size: rem-calc(13);
       color: $white;
-      text-shadow: 1px 1px 0 $monsoon;
+      a {
+        margin-left: rem-calc(5);
+        color: $smoke;
+        text-decoration: underline;
+        &:hover {
+          color: $iron;
+        }
+      }
     }
   }
   @media #{$small-only} {

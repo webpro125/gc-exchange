@@ -96,6 +96,11 @@ describe ProjectHistoryForm do
       subject.end_date = 3.years.ago
       expect(subject).not_to be_valid
     end
+
+    it 'can be equal to start date' do
+      subject.end_date = subject.start_date
+      expect(subject).to be_valid
+    end
   end
 
   describe 'description' do

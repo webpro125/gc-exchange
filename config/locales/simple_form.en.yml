@@ -33,6 +33,9 @@ en:
         phone_type_id: 'Type'
         primary: 'Primary'
       consultant:
+        resume: 'Resume (PDF)'
+        instruction: 'Only PDF files allowed. Do not include any personal contact information such 
+        as phone number, email, or address.'
         abstract: 'Background and Experience'
         willing_to_travel: 'Willing to Travel'
         rate: 'Hourly Rate'
