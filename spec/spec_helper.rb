@@ -1,8 +1,27 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
+require 'shoulda/matchers'
+require 'carrierwave/test/matchers'
+require 'capybara/rails'
+require 'capybara/rspec'
 require 'yarjuf'
+require 'simplecov'
+require 'simplecov-bamboo'
+require 'database_cleaner'
+require 'sidekiq/testing'
+require 'rake'
+require 'elasticsearch/extensions/test/cluster/tasks'
+
+SimpleCov.coverage_dir('spec/results/coverage')
+SimpleCov.minimum_coverage 95
+if ENV['bamboo_SIMPLE_COV_FORMATTER'] == 'clover'
+  SimpleCov.formatter = SimpleCov::Formatter::BambooFormatter
+end
+SimpleCov.start 'rails' do
+  add_filter '/vendor/'
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -11,13 +30,71 @@ require 'yarjuf'
 # run twice. It is recommended that you do not name files matching this glob to
 # end with _spec.rb. You can configure this pattern with with the --pattern
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
+  config.include FactoryGirl::Syntax::Methods
+  include CarrierWave::Test::Matchers
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    Rails.application.load_seed
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation, { except: ['phone_types'] }
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.after(:suite) do
+    FileUtils.rm_rf(Rails.root + 'public/test')
+  end
+
+  config.before :each, elasticsearch: true do
+    Consultant.__elasticsearch__.client = Elasticsearch::Client.new host: 'http://localhost:9250'
+    Consultant.__elasticsearch__.create_index!(force: true)
+    Consultant.__elasticsearch__.refresh_index!
+    Elasticsearch::Extensions::Test::Cluster.start(port: 9250) unless
+      Elasticsearch::Extensions::Test::Cluster.running?
+  end
+
+  config.after :suite do
+    Elasticsearch::Extensions::Test::Cluster.stop(port: 9250) if
+      Elasticsearch::Extensions::Test::Cluster.running?
+  end
+
+  config.before(:each) do |example|
+    # Clears out the jobs for tests using the fake testing
+    Sidekiq::Worker.clear_all
+
+    if example.metadata[:sidekiq] == :fake
+      Sidekiq::Testing.fake!
+    elsif example.metadata[:sidekiq] == :inline
+      Sidekiq::Testing.inline!
+    elsif example.metadata[:type] == :acceptance
+      Sidekiq::Testing.inline!
+    else
+      Sidekiq::Testing.fake!
+    end
+  end
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -43,7 +120,7 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
+  config.order = 'random'
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

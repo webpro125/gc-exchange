@@ -1,0 +1,15 @@
+<%= simple_form_for(@form) do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.error_notification %>
+      </div>
+    </div>
+
+    <%= render 'project_history_fields', f: f %>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.button :submit %>
+      </div>
+    </div>
+<% end %>

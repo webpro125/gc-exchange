@@ -1,12 +1,18 @@
-Chef::Log.info("Running deploy/before_symlink.rb...")
+Chef::Log.info('Running deploy/before_symlink.rb...')
 
-rails_env = new_resource.environment["RAILS_ENV"]
-Chef::Log.info("Precompiling assets for #{rails_env}...")
-
+rails_env = new_resource.environment['RAILS_ENV']
 current_release = release_path
 
-execute "rake assets:precompile" do
+Chef::Log.info("Precompiling assets for #{rails_env}...")
+execute 'rake assets:precompile' do
   cwd current_release
   command 'bundle exec rake assets:precompile'
-  environment "RAILS_ENV" => rails_env
+  environment new_resource.environment
+end
+
+Chef::Log.info("Seeding database for #{rails_env}...")
+execute 'rake db:seed' do
+  cwd current_release
+  command 'bundle exec rake db:seed'
+  environment new_resource.environment
 end

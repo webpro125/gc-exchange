@@ -1,0 +1,10 @@
+<div class="nested-fields row">
+  <div class="small-8 columns">
+    <%= f.input :number %>
+  </div>
+  <div class="small-4 columns">
+    <%= f.input :phone_type_id,
+                build_simple_form_dropdown(PhoneType,
+                                           collection: PhoneType.all) %>
+  </div>
+</div>

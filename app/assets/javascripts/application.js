@@ -13,6 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require_tree .
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/mouse
+//= require jquery-ui/position
+//= require jquery.maxlength
+//= require confirm-with-reveal.min
+//= require select2
+//= require foundation-datetimepicker
+//= require widgets
 
-$(function(){ $(document).foundation(); });
+$(document).ready(function() {
+  $(document).confirmWithReveal();
+  $(function(){ $(document).foundation(); });
+  $('select, .select2').select2Dropdown();
+
+  $('.form-datepicker').fdatetimepicker({
+    format: 'MM dd yyyy',
+    minView: 2,
+    forceParse: true
+  });
+
+  $('textarea').maxlength();
+});

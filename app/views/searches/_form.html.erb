@@ -1,0 +1,24 @@
+<%= simple_form_for @search, url: search_path, method: :get do |f| %>
+    <%= f.input :position_ids, build_simple_form_dropdown(Position,
+                                                          collection: Position.all,
+                                                          input_html: { multiple: true }) %>
+    <%= f.input :customer_name_ids, build_simple_form_dropdown(CustomerName,
+                                                               collection: CustomerName.all,
+                                                               input_html: { multiple: true }) %>
+    <%= f.input :project_type_ids, build_simple_form_dropdown(ProjectType,
+                                                              collection: ProjectType .all,
+                                                              input_html: { multiple: true }) %>
+    <hr />
+    <%= f.input :certification_ids, build_simple_form_dropdown(Certification,
+                                                               collection: Certification.all,
+                                                               input_html: { multiple: true }) %>
+    <%= f.input :q %>
+    <%= f.input :clearance_level_id, build_simple_form_dropdown(ClearanceLevel,
+                                                                collection: ClearanceLevel.all,
+                                                                input_html: {
+                                                                    data: { allowclear: 'true' }
+                                                                }) %>
+    <%= f.input :address %>
+
+    <%= f.button :submit %>
+<% end %>

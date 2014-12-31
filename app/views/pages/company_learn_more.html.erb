@@ -1,0 +1,182 @@
+<div class="sticky">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <%= link_to root_path do %>
+        <div id="logo"></div>
+        <% end %>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon">
+        <a href="#">
+          <span>Menu</span>
+        </a>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <% if development? %>
+        <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
+        <% end %>
+        <li class="has-form">
+          <div class="row collapse">
+            <%= render 'layouts/search' %>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <% if consultant_signed_in? %>
+        <li class="has-dropdown">
+          <%= link_to 'Profile', consultant_root_path %>
+          <ul class="dropdown">
+            <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to t('views.password.actions.change_password'),
+            edit_consultant_registration_path %></li>
+          </ul>
+        </li>
+        <li>
+          <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
+        </li>
+        <% elsif user_signed_in? %>
+        <li>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to 'Login', new_user_session_path %>
+        </li>
+        <li>
+          <%= link_to 'Request Access', new_sales_lead_path %>
+        </li>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+</div>
+<div id="progress" data-magellan-expedition="fixed">
+  <h5 class="steps">Select a step to learn more</h5>   
+  <div class="row">
+    <ul>
+      <li data-magellan-arrival='stepone'>
+        <a class="stepone" href="#one">
+          1. Sign up
+        </a>
+      </li>
+      <li data-magellan-arrival='steptwo'>
+        <a class="steptwo" href="#two">
+          2. Search
+        </a>
+      </li>
+      <li data-magellan-arrival='stepthree'>
+        <a class="stepthree" href="#three">
+          3. Engage
+        </a>
+      </li>
+      <li data-magellan-arrival='stepfour'>
+        <a class="stepfour" href="#four">
+          4. Succeed
+        </a>
+      </li>
+      <li data-magellan-arrival='stepfive'>
+        <a class="stepfive" href="#five">
+          5. Pay
+        </a>
+      </li>
+    </ul>   
+  </div>     
+</div> 
+<%= render 'layouts/flash' %>
+<div class="introbg">
+  <div class="row">
+    <h1>GCES helps client companies find the right consultant, at the right time &ndash; affordably.
+    </h1>
+  </div>
+</div>
+<div class="benefit stepone" data-magellan-destination='stepone'><a name="one"></a>
+  <div class="row">
+    <div class="large-7 columns">
+      <h2><i class="fi-torsos-all"></i> <%= link_to 'Sign up', new_sales_lead_path %></h2>
+      <p>Client Company registers and is authorized to search the GCES Database.
+      </p>
+    </div>
+    <div class="large-5 columns">
+     <aside>
+      <h5>How We Help
+      </h5>  
+      <p>GCES signs the agreement, then authorizes client company search that enables you to select 
+        and engage the best quality consultants faster and easier!
+      </p></aside>
+    </div>
+  </div>
+</div>
+
+<div class="benefit even steptwo" data-magellan-destination='steptwo'><a name="two"></a>
+  <div class="row">
+    <div class="large-12 columns">
+      <h2><i class="fi-magnifying-glass"></i> Search</h2>
+      <p>Client Company searches and selects consultants. 
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="benefit stepthree" data-magellan-destination='stepthree'><a name="three"></a>
+  <div class="row">
+    <div class="large-7 columns">
+      <h2><i class="fi-comments"></i> Engage</h2>
+      <p>Communicate and negotiate with consultants and agree to engagement, then create purchase 
+        order using our streamlined system to engage the right consultant faster and easier.
+      </p>
+    </div>
+    <div class="large-5 columns">
+      <aside>
+        <h5>How We Help
+        </h5>
+        <p>GCES handles contracting and purchase order functions and administration to quickly 
+          initiate the project &ndash; reducing contracting and administrative costs.
+        </p>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<div class="benefit even stepfour" data-magellan-destination='stepfour'><a name="four"></a>
+  <div class="row">
+    <div class="large-12 columns">
+      <h2><i class="fi-trophy"></i> Succeed</h2>
+      <p>Consultant contributes to client company success on contracted task.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="benefit stepfive" data-magellan-destination='stepfive'><a name="five"></a>
+  <div class="row">
+    <div class="large-7 columns">
+      <h2><i class="fi-dollar-bill"></i> Pay</h2>
+      <p>Review time and expense information and verify consultant’s continued value and pay GCES 
+        invoices &ndash; receiving critical support at an affordable cost!
+      </p>
+    </div>
+    <div class="large-5 columns">
+      <aside>
+        <h5>How We Help</h5>
+        <p>GCES takes care of all time &amp; expense collection, invoicing &amp; consultant payment, 
+          and project closeout – reducing your administrative cost.
+        </p>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<div class="benefit signup screen">
+  <div class="row">
+    <h5>Want to join?</h5>
+    <%= link_to 'Sign up now!', new_sales_lead_path, class: 'button large secondary' %>
+  </div>
+</div>

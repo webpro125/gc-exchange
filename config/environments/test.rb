@@ -26,14 +26,26 @@ Rails.application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
-  # Tell Action Mailer not to deliver emails to the real world.
-  # The :test delivery method accumulates sent emails in the
-  # ActionMailer::Base.deliveries array.
-  config.action_mailer.delivery_method = :test
-
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Geocoder.configure(lookup: :test)
+  Geocoder::Lookup::Test::INVALID_ADDRESS = 'oaiwjevoiajwefaw AZ, 99999'
+  Geocoder::Lookup::Test.add_stub(Geocoder::Lookup::Test::INVALID_ADDRESS, [{}])
+  Geocoder::Lookup::Test.set_default_stub(
+    [
+      {
+        'latitude'     => 40.7143528,
+        'longitude'    => -74.0059731,
+        'address'      => '1619 3rd Ave New York, NY 10128',
+        'state'        => 'New York',
+        'state_code'   => 'NY',
+        'country'      => 'United States',
+        'country_code' => 'US'
+      }
+    ]
+  )
 end

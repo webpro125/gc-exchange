@@ -1,0 +1,8 @@
+<%= simple_form_for @search, url: search_path, method: :get do |f| %>
+    <div class="large-10 medium-9 small-9 columns">
+      <%= f.input :q, label: false %>
+    </div>
+    <div class="large-2 medium-3 small-3 columns">
+      <%= f.button :submit, class: 'secondary' %>
+    </div>
+<% end %>
