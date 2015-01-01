@@ -108,7 +108,11 @@ class Consultant < ActiveRecord::Base
   end
 
   def update_consultant_index
-    ConsultantIndexer.perform_async(:update, id) if approved?
+    if approved?
+      ConsultantIndexer.perform_async(:update, id)
+    elsif rejected? && previous_changes.key?(:approved_status_id)
+      ConsultantIndexer.perform_async(:destroy, id)
+    end
   end
 
   def set_approved_status

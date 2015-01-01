@@ -259,27 +259,26 @@ describe Consultant do
       end
     end
 
-    describe 'not approved' do
+    describe 'rejected' do
       before do
-        subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code])
         subject.save!
       end
 
       describe '#update' do
         before do
-          subject.save!
           ConsultantIndexer.jobs.clear
+          subject.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code])
         end
 
-        it 'should not start a job' do
-          expect(ConsultantIndexer).not_to receive(:perform_async).with(:update,
-                                                                        subject.id)
+        it 'should start a job' do
+          expect(ConsultantIndexer).to receive(:perform_async).with(:destroy,
+                                                                    subject.id)
           subject.save!
         end
 
-        it 'should not add a job to queue' do
+        it 'should add a job to queue' do
           subject.save!
-          expect(ConsultantIndexer.jobs.size).to eq 0
+          expect(ConsultantIndexer.jobs.size).to eq 1
         end
       end
 
