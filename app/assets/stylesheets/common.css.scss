@@ -81,7 +81,7 @@ input[type="submit"] {
     list-style: none;
     margin: 0;
 
-    li {
+    > li {
       text-indent: -0.65rem;
       margin-left: 0.65rem;
       line-height: 1.1rem;

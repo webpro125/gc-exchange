@@ -123,13 +123,13 @@ ActiveRecord::Schema.define(version: 20141117132919) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                            default: 1,    null: false
     t.decimal  "rate",                                  precision: 8, scale: 2
-    t.boolean  "willing_to_travel",                                             default: true
     t.text     "abstract"
+    t.boolean  "willing_to_travel",                                             default: true
+    t.string   "wizard_step"
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
-    t.string   "wizard_step"
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree

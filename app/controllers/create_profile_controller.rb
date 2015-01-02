@@ -7,7 +7,7 @@ class CreateProfileController < ConsultantController
 
   before_action :redirect_after_wizard
 
-  steps :basic_information, :qualifications, :other_information, :background_information,
+  steps :howto, :basic_information, :qualifications, :other_information, :background_information,
         :project_history
 
   def show
