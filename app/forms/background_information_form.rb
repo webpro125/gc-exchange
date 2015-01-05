@@ -11,5 +11,7 @@ class BackgroundInformationForm < Reform::Form
     property :information_is_correct
 
     validates :information_is_correct, acceptance: true
+    validates :citizen, :convicted, :parole, :illegal_drug_use, :illegal_purchase,
+              :illegal_prescription, presence: true
   end
 end
