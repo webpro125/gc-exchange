@@ -388,27 +388,23 @@ ul.pagination {
 
 /*** WIZARD ***/
 .wizard {
-  .row {
-    ol {
-      li {
-        padding-left: 5px;
-        line-height: 1.4rem;
-        ul {
-          margin-top: 5px;
-          li {
-            line-height: 1.4rem;
-          }
+  ol {
+    li {
+      padding-left: 5px;
+      line-height: 1.4rem;
+      ul {
+        margin-top: 5px;
+        li {
+          line-height: 1.4rem;
         }
       }
     }
   }
-  .row {
-    p {
-      &.li {
-        margin-bottom: 5px;
-        + ol li:first-child {
-          margin-top: 0;
-        }
+  p {
+    &.li {
+      margin-bottom: 5px;
+      + ol li:first-child {
+        margin-top: 0;
       }
     }
   }
