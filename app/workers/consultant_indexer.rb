@@ -12,7 +12,8 @@ class ConsultantIndexer
     when /destroy/
       Consultant.__elasticsearch__.client.delete index: Consultant.index_name,
                                                  type: Consultant.document_type,
-                                                 id: record_id
+                                                 id: record_id,
+                                                 ignore: 404
     else fail ArgumentError, "Unknown operation '#{operation}'"
     end
   end

@@ -5,7 +5,6 @@ class ConsultantMailer < ActionMailer::Base
   def send_contract(consultant_id)
     @consultant = Consultant.find(consultant_id)
 
-    attachments[PROVISION_AGREE] = File.read("#{Rails.root}/public/#{PROVISION_AGREE}")
     attachments[INDEPENDENT_AGREE] = File.read("#{Rails.root}/public/#{INDEPENDENT_AGREE}")
 
     mail(subject: 'GCES Consultant Agreements', to: @consultant.email)

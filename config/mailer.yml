@@ -7,7 +7,8 @@ common: &default_settings
   raise_delivery_errors: true
   default_options:
     from: 'info@globalconsultantexchange.com'
-    to: 'bmills@globalconsultantexchange.com'
+    to: ['paul.mears@globalconsultantexchange.com', 'barrie.gillis@globalconsultantexchange.com',
+     'bmills@thoriumllc.com', 'jstoup@thoriumllc.com']
 
 development:
   <<: *default_settings
