@@ -1,5 +1,12 @@
 <%= simple_form_for @form, url: consultant_upload_images_path,
                     method: :post do |f| %>
-    <%= f.input :profile_image, as: :file %>
+    <%= f.input :profile_image,
+                as: :file,
+                input_html: { accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}" }%>
+    <p>
+      <small class="red">
+        <%= t('simple_form.labels.consultant.image_instruction') %>
+      </small>
+    </p>
     <%= f.button :submit %>
 <% end %>
