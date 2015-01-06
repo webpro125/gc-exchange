@@ -20,6 +20,7 @@ en:
           email: 'E-mail to sign in.'
         edit:
           email: 'E-mail.'
+        remember_me: 'Keep me logged in'
       address:
         address: 'Home Address'
       phone:
@@ -33,6 +34,7 @@ en:
         phone_type_id: 'Phone Type'
         primary: 'Primary'
       consultant:
+        remember_me: 'Keep me logged in'
         resume: 'Upload Your Resume (PDF)'
         profile_image: 'Upload Your Profile Image'
         resume_instruction: 'Only upload PDF files. Do not include any personal contact information
