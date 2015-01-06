@@ -3,6 +3,9 @@
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
 
+    <p>By entering your email address and clicking 'Send me reset password instructions' you will
+      receive an email with instructions to reset your password.  Please be sure to enter your
+      correct email and check your spam folder for the password reset instructions.</p>
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
   </div>

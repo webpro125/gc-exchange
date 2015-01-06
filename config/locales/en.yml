@@ -133,8 +133,9 @@ en:
         project_history: '5. Project History'
       confirmations:
         background_information:
-          save: 'Are you sure you entered the information correctly? Press ''OK'' to confirm or
-          ''Cancel'' to edit.'
+          save: 'I certify that, to the best of my knowledge and belief, all of the information
+          provided by me is true and correct as of the date I provided the information.  Press
+          ''Confirm'' to confirm or ''Cancel'' to edit.'
     profile:
       actions:
         show: 'Profile'

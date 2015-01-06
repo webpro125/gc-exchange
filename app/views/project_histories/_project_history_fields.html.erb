@@ -30,16 +30,16 @@
     </div>
   </div>
   <div class="row">
+    <div class="large-12 columns">
+      <%= f.input :description, as: :text, input_html: { class: 'medium', cols: 5, rows: 10 } %>
+    </div>
+  </div>
+  <div class="row">
     <div class="large-6 columns">
       <%= f.input :client_poc_name %>
     </div>
     <div class="large-6 columns">
       <%= f.input :client_poc_email %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="large-12 columns">
-      <%= f.input :description, as: :text, input_html: { class: 'medium', cols: 5, rows: 10 } %>
     </div>
   </div>
 </div>

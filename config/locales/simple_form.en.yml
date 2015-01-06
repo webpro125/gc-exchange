@@ -24,44 +24,54 @@ en:
         address: 'Home Address'
       phone:
         number: 'Phone Number'
-        phone_type: 'Type'
-        phone_type_id: 'Type'
+        phone_type: 'Phone Type'
+        phone_type_id: 'Phone Type'
         primary: 'Primary'
       phones:
         number: 'Phone Number'
-        phone_type: 'Type'
-        phone_type_id: 'Type'
+        phone_type: 'Phone Type'
+        phone_type_id: 'Phone Type'
         primary: 'Primary'
       consultant:
-        resume: 'Resume (PDF)'
-        instruction: 'Only PDF files allowed. Do not include any personal contact information such 
-        as phone number, email, or address.'
+        resume: 'Upload Your Resume (PDF)'
+        profile_image: 'Upload Your Profile Image'
+        resume_instruction: 'Only upload PDF files. Do not include any personal contact information
+        such as phone number, email, or address information in your resume.'
+        image_instruction: 'Only upload JPG, JPEG, or PNG files.'
         abstract: 'Background and Experience'
         willing_to_travel: 'Willing to Travel'
         rate: 'Hourly Rate'
         certification_ids: 'Professional Certifications'
-        skills_list: 'Expertise'
+        skills_list: 'Skills & Expertise'
+        first_name: 'First Name'
+        last_name: 'Last Name'
       education:
-        school: 'Educational Institution'
+        school: 'College'
         field_of_study: 'Field of Study'
       educations:
-        school: 'Educational Institution'
+        school: 'College'
         field_of_study: 'Field of Study'
       military:
-        clearance_active: 'Clearance Active'
+        military: 'Military Service'
+        clearance_active: 'Active Security Clearance'
         investigation_date: 'Investigation Date'
         clearance_expiration_date: 'Expiration Date'
-        clearance_level: 'Clearance Level'
+        clearance_level_id: 'Clearance Level'
         branch: 'Branch'
-        rank: 'Rank'
+        rank: 'Last Rank'
+        service_start_date: 'Initial Entry Date'
+        service_end_date: 'End of Service Date'
       project_history:
-        position_ids: 'Position(s)'
+        position_ids: 'Position(s) on Project'
         customer_name_id: 'Government Agency'
         client_poc_name: 'Reference Name'
         client_poc_email: 'Reference Email'
         project_type: 'Functional Area of Focus'
         project_type_id: 'Functional Area of Focus'
+        start_date: 'Start Date'
+        end_date: 'End Date'
         description: 'Description of Role Performed'
+        client_company: 'Company'
       search:
         position_ids: 'Position'
         q: 'Expertise'
@@ -91,11 +101,21 @@ en:
         all of the information provided by me is true and correct as of the date I provided the
         information.'
     hints:
+      project_history:
+        client_company: 'Identify the name of the company that owned the project.'
+        customer_name_id: 'Select the agency the work was done for if this project supported a
+        Government Agency.  Leave blank for Commercial Projects.'
+        client_poc_name: 'Identify the name of an individual you worked with on the project.'
+        client_poc_email: 'Provide the email address of your project reference.'
+        description: 'Summarize your roles on the project and discuss the processes, tools, and
+        techniques you used to achieve specific outcomes.'
+        project_type: 'Identify the industry market.'
+        project_type_id: 'Identify the industry market.'
       consultant:
-        abstract: 'Write an overview of your experience in the field'
+        abstract: 'This field provides a summary abstract of your career experience.  Enter
+        a brief description of your professional achievements, work history, and skills.'
+        certification_ids: 'Scroll down, identify, and click on your professional certifications.'
+        skills_list: 'Add your skills and separate each skill with a comma.'
       address:
-        address: 'This is not shown publicly and is used for consultant search purposes.'
-    placeholders:
-      consultant:
-        skills_list: 'Add skills, separated by commas'
-
+        address: 'Enter your Address, City, State, and Zip Code.  Your address is used to help
+        companies search for local consultants and this information will not be shown publicly.'
