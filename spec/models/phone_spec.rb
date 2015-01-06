@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Phone do
   before do
     @type = FactoryGirl.create(:phone_type)
-    @phone = Phone.new(number: '8675309', phone_type: @type, phoneable_id: 1,
+    @phone = Phone.new(number: '1238675309', phone_type: @type, phoneable_id: 1,
                        phoneable_type: 'Consultant')
   end
 
@@ -13,9 +13,14 @@ describe Phone do
 
   describe 'number' do
     it 'should format the number' do
-      expect(@phone.number).to_not eq('867 5309')
+      expect(@phone.number).to_not eq('123 867 5309')
       @phone.valid?
-      expect(@phone.number).to eq('867-5309')
+      expect(@phone.number).to eq('123-867-5309')
+    end
+
+    it 'should not accept text' do
+      @phone.number = 'test'
+      expect(@phone).to_not be_valid
     end
   end
 

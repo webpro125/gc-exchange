@@ -26,4 +26,8 @@ module RegexConstants
                  'image/png',
                  'image/jpeg']
   end
+
+  module Phone
+    PHONE_NUMBER = /\A[\(\)0-9\- \+\.]{10,20} *[extension\.]{0,9} *[0-9]{0,5}\z/
+  end
 end
