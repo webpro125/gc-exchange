@@ -28,6 +28,6 @@ module RegexConstants
   end
 
   module Phone
-    PHONE_NUMBER = /\A[\(\)0-9\-\+\.]{10,20} *[extension\.]{0,9} *[0-9]{0,5}\z/
+    PHONE_NUMBER = /\A[0-9]{3}[\-\ \.][0-9]{3}[\-\ \.][0-9]{4}\z|\A[0-9]{10}\z/
   end
 end
