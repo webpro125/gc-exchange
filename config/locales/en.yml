@@ -140,6 +140,8 @@ en:
       actions:
         show: 'Profile'
         edit: 'Edit Profile'
+        upload_resume: 'Upload Resume'
+        upload_photo: 'Upload Image'        
         upload_resume_html: '<i class="fi-upload"></i> Upload Resume'
         upload_photo_html: '<i class="fi-photo"></i> Upload Image'
         new_phone_html: '<i class="fi-plus"></i> Add Phone'
