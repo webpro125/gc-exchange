@@ -58,6 +58,7 @@ en:
         clearance_active: 'Active Security Clearance'
         investigation_date: 'Investigation Date'
         clearance_expiration_date: 'Expiration Date'
+        clearance_level: 'Clearance Level'
         clearance_level_id: 'Clearance Level'
         branch: 'Branch'
         rank: 'Last Rank'
