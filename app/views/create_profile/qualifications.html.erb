@@ -10,6 +10,14 @@
       <%= f.simple_fields_for :educations do |e| %>
           <%= render 'educations/education_fields', f: e %>
       <% end %>
+      <div class="links">
+        <%= link_to_add_association t('views.profile.actions.new_education_html'),
+                                    f,
+                                    :educations,
+                                    partial: 'educations/education_fields',
+                                    class: 'button small' %>
+      </div>
+      <hr />
       <div class="row">
         <div class="medium-6 columns">
           <%= render 'profiles/certifications_fields', f: f %>

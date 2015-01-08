@@ -17,6 +17,11 @@ module OtherInformation
 
   collection :phones, populate_if_empty: Phone do
     model :phone
+
+    # TODO: When Reform releases _destroy support implement that instead of this hack
+    property :id, virtual: false
+    property :_destroy, virtual: false
+
     property :number
     property :phone_type_id, type: Integer
 
@@ -39,5 +44,22 @@ module OtherInformation
     validates :branch_id, presence: true, if: ->() { rank_id.present? }
     validates :service_end_date, date: { after: :service_start_date, before: DateTime.now },
               allow_blank: true, if: ->() { service_start_date }
+  end
+
+  # TODO: When Reform releases _destroy support implement that instead of this hack
+  def save
+    # you might want to wrap all this in a transaction
+    super do |attrs|
+      if model.persisted?
+        to_be_removed = ->(i) { i[:_destroy] == '1' }
+        ids_to_rm = attrs[:phones].select(&to_be_removed).map { |i| i[:id] }
+
+        Phone.destroy(ids_to_rm)
+        phones.reject! { |i| ids_to_rm.include? i.id }
+      end
+    end
+
+    # this time actually save
+    super
   end
 end

@@ -15,10 +15,20 @@
         <div class="medium-3 columns end">
           <%= f.input :rate %>
         </div>
-        <div class="medium-6 columns">
-          <%= f.simple_fields_for :phones do |p| %>
-              <%= render 'phones/phone_fields', f: p %>
-          <% end %>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="medium-8 columns">
+        <%= f.simple_fields_for :phones do |p| %>
+            <%= render 'phones/phone_fields', f: p %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association t('views.profile.actions.new_phone_html'),
+                                      f,
+                                      :phones,
+                                      partial: 'phones/phone_fields',
+                                      class: 'button small' %>
         </div>
       </div>
     </div>
@@ -68,6 +78,6 @@
             </div>
           </div>
         </div>
-    <% end %> 
+    <% end %>
     <%= render 'footer', f: f %>
 <% end %>

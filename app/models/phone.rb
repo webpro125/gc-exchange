@@ -9,6 +9,8 @@ class Phone < ActiveRecord::Base
   validates :phone_type, presence: true
   validates :number, presence: true
 
+  attr_accessor :_destroy # TODO: Remove when Reform releases _destroy
+
   protected
 
   def set_phone

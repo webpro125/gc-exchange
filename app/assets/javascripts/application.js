@@ -18,6 +18,7 @@
 //= require jquery-ui/mouse
 //= require jquery-ui/position
 //= require jquery.maxlength
+//= require cocoon
 //= require confirm-with-reveal.min
 //= require select2
 //= require foundation-datetimepicker
