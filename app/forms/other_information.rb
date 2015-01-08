@@ -20,7 +20,13 @@ module OtherInformation
     property :number
     property :phone_type_id, type: Integer
 
-    validates :number, presence: true
+    validates :number,
+              presence: true,
+              format: {
+                with: RegexConstants::Phone::PHONE_NUMBER,
+                message: I18n.t('activerecord.errors.messages.regex.phone')
+              }
+
     validates :phone_type_id, presence: true
   end
 
