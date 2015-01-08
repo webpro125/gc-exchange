@@ -39,6 +39,10 @@
   color: $gces-red;
 }
 .wizard {
+  @media #{$large-only} {
+  min-height: 600px;
+  }
+
   input[type="file"] {
     margin-bottom: 0.25rem;
   }
@@ -47,6 +51,20 @@
     color: $monsoon;
     &.red {
       color: scale-color($gces-red, $lightness: -10%);
+    }
+  }
+  .button {
+    &.right {
+      @media #{$small-only} {
+        margin: 0 auto 10px;
+        float: none!important;
+        display: block;
+        clear: both;
+      }
+      float: right; 
+      margin-left: 20px;
+      margin-top: 20px;
+
     }
   }
 }
