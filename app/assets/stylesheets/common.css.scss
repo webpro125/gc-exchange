@@ -413,6 +413,22 @@ ul.pagination {
       }
     }
   }
+  .steps {
+  background: $white-smoke;
+  border: 1px solid $monsoon;
+  border-radius: $global-radius;
+  margin: 1rem 0 1.5rem;
+  padding: 0.5rem 0.75rem 0.25rem;
+  text-align: center;
+    h4, p {
+      text-align: center;
+    }
+
+    img {
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
 }
 
 /*** FOOTER ***/
