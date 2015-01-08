@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def send_confirmation_instructions
-    set_password
+    set_password unless password
 
     super
   end
