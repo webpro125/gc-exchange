@@ -133,16 +133,19 @@ en:
         background_information: '4. Background Information'
         project_history: '5. Project History'
       confirmations:
+        contract:
+          save: 'I certify that by click ''Confirm'', that I am digitally signing this contract.
+           I agree to the terms above.'
         background_information:
-          save: 'I certify that, to the best of my knowledge and belief, all of the information 
-          provided by me is true and correct as of the date I provided the information. Press 
-          ''Confirm'' to confirm or ''Cancel'' to edit.'        
+          save: 'I certify that, to the best of my knowledge and belief, all of the information
+          provided by me is true and correct as of the date I provided the information. Press
+          ''Confirm'' to confirm or ''Cancel'' to edit.'
     profile:
       actions:
         show: 'Profile'
         edit: 'Edit Profile'
         upload_resume: 'Upload Resume'
-        upload_photo: 'Upload Image'        
+        upload_photo: 'Upload Image'
         upload_resume_html: '<i class="fi-upload"></i> Upload Resume'
         upload_photo_html: '<i class="fi-photo"></i> Upload Image'
         new_phone_html: '<i class="fi-plus"></i> Add Phone'

@@ -20,11 +20,7 @@ class CreateProfileController < ConsultantController
     generate_update_form
 
     if @form.validate(form_params(step))
-      if params[:save_and_new] && step == :project_history
-        render_project_history
-      else
-        render_wizard_path
-      end
+      render_wizard_path
     else
       render_wizard
     end
@@ -57,6 +53,9 @@ class CreateProfileController < ConsultantController
       @form = BackgroundInformationForm.new current_consultant
     when :project_history
       @form = ProjectHistoryForm.new current_consultant.project_histories.build
+    when :contract
+      current_consultant.contract_effective_date = DateTime.now
+      @form = EditConsultantForm.new current_consultant
     end
   end
 
@@ -75,6 +74,8 @@ class CreateProfileController < ConsultantController
       @form = BackgroundInformationForm.new current_consultant
     when :project_history
       @form = ProjectHistoryForm.new current_consultant.project_histories.build
+    when :contract
+      @form = EditConsultantForm.new current_consultant
     end
   end
 
@@ -88,12 +89,6 @@ class CreateProfileController < ConsultantController
     return unless current_consultant.wizard_step == Wicked::FINISH_STEP
     redirect_to consultant_root_path
     false
-  end
-
-  def render_project_history
-    @form.save
-    ConsultantSetStatus.new(current_consultant).pending_approval_and_save
-    redirect_to new_project_history_path
   end
 
   def render_wizard_path
