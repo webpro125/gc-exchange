@@ -101,7 +101,6 @@ class CreateProfileController < ConsultantController
 
   def render_wizard_path
     render_wizard(@form)
-    byebug
     ConsultantSetStatus.new(current_consultant).pending_approval_and_save if step == :contract
   end
 end
