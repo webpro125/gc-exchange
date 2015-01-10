@@ -437,6 +437,48 @@ ul.pagination {
   }
 }
 
+/*** PROGRESS ***/
+
+@media #{$small-up} {
+  #progress {
+    display: none;
+  }
+  .benefit .row {
+    padding: 1rem 0;
+  }
+}
+@media #{$medium-up} {
+  .benefit .row {
+    padding: 3rem 0;
+  }
+}
+@media #{$large-up} {
+  #progress {
+    display: block;
+  }
+}
+
+#progress {
+  top: 60px!important;
+  max-width: 1000px;
+  ul {
+    margin: 0;
+
+    li {
+      text-indent: 0;
+      margin-left: 0;
+
+      &:before {
+        content: none;
+      }
+
+      a {
+        margin: 0;
+      }
+    }
+  }
+}
+
 /*** FOOTER ***/
 footer {
   background: $aluminum;

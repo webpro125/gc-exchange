@@ -1,7 +1,16 @@
 <%= render 'header' %>
 <div class="wizard">
-
-<h2>Independent Contractor Agreement</h2>
+<div id="progress" class="consultant" data-magellan-expedition="fixed">
+  <div class="row">
+    <ul>
+      <li data-magellan-arrival='stepone'>
+        <a class="button" href="#contract">Contract</a>
+        <a class="button" href="#attachment">Attachment 1</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<h2>Independent Contractor Agreement<a name="contract"></a></h2>
 
 <p>This Independent Contractor Agreement (“Agreement”), made on _______________(“Effective Date”) by and between Global Consultant Exchange Services, LLC, a District of Columbia limited liability company, with offices located at 4849 Alberta Falls Way, Colorado Springs, CO 80924 (“GCES”), and                         with offices located at             (“Consultant”).</p>
 <p>WHEREAS, GCES wishes to contract with Consultant to assist its clients in business development, proposal services and business operations support as described in Attachment 1 to this Agreement; and</p>
@@ -193,6 +202,52 @@
     <td>This agreement was executed digitally by Consultant on </td>
   </tr>
 </table>
+
+<div class="attachment">
+<h2>ATTACHMENT 1<a name="attachment"></a></h2>
+<h3>Statement of Work</h3>
+<ol>
+  <li><strong>INTRODUCTION</strong><br>
+  This Statement of Work (“SOW”) as detailed in Paragraph 2 describes the services to be provided by consultants registered with GCES to GCES clients.</li>
+  <li><strong>TASK DESCRIPTION</strong><br>
+  Consultant will provide in person, and make available others to provide, business development and business operations consulting services listed in Paragraph 3 below, when requested and authorized by GCES clients in accordance with Paragraph 4 below.</li>
+  <li><strong>SERVICES TO BE PROVIDED</strong><br>
+  Services to be provided include, but are not limited to, those of proposal managers, volume leads, graphic artists, technical editors, proposal writers and editors, business performance/ requirements analysts, business development strategists, integrated master planners, integrated master schedulers, and other skillsets and abilities as required, in support of various GCES clients program operations and new business development efforts. (“GCES Resources”) A security clearance may be required.</li>
+  <li><strong>AUTHORIZATION OF SERVICES</strong><br>
+  No service shall be provided except upon the specific request by the designated GCES client Point of Contact for the specific service from the specific GCES consultant for a specific GCES client task. Such authorization shall be made either through issuance or modification of a Purchase Order, or by issuance of an Authorization to Proceed, by the designated GCES client Point of Contact. GCES and its consultants are At Risk for any services performed which have not been explicitly authorized in accordance with this Paragraph. Unless specifically approved by GCES clients in advance, the rate described in paragraph 6, below, shall not be varied.</li>
+  <li><strong>PERIOD OF PERFORMANCE</strong><br>
+  Period of performance is specified in individual GCES client purchase orders.</li>
+  <li><strong>COST AND PRICES</strong><br>
+  Consultant shall be paid $   per hour for rendered Services.  Services will be charged on an hourly basis, as actually performed.  Unless specifically approved by GCES in advance, this rate shall not be varied by virtue of Consultant having performed work in excess of forty (40) hours per week.  Other Direct Charges (ODCs) are limited to travel expenses and conference fees incurred at the specific direction of GCES clients. Travel expenses shall not exceed that which is authorized by GCES clients for its employees.</li>
+  <li><strong>REPORTING</strong>
+    <ol>
+      <li>Activity Status Report. As requested by GCES, Consultant shall provide on a monthly basis a written status report to GCES. This report shall include summary of consultant activity for the reporting period by task description and summary of planned activity for the next reporting period.</li>
+      <li>Expenditure Report. As requested by GCES, Consultant shall provide on a monthly basis a written expenditure report to GCES. This report shall include: 
+        <ul>
+          <li>Summary of labor hours expended by labor category during the reporting period and estimate to complete task activities.</li>
+          <li>Summary of labor dollar value and other direct costs expended to date and estimate to complete task activities.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><strong>WORK LOCATION</strong><br>
+  As identified in individual GCES client purchase order(s).</li>
+  <li>POINTS OF CONTACT
+  <p>For GCES:<br>
+  Barrie A. Gillis, General Manager<br>
+  4849 Alberta Falls Way<br>
+  Colorado Springs, CO 80924<br>
+  barrie.gillis@globalconsultantexchange.com<br>
+  (703) 489-5352</p>
+  <p>For Consultant:<br></p>
+  </li>
+</ol>        
+        
+</div>              
+        
+
+
+
   
 <%= link_to 'I Agree – Complete Profile', next_wizard_path, class: 'button primary' %>
 
