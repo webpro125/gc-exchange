@@ -122,7 +122,7 @@ en:
         learn_more: 'Learn More'
     wizard:
       actions:
-        finish: 'Finish >'
+        finish: 'I Agree – Complete Profile >'
         save_and_next: 'Save & Continue >'
         save_and_new: 'Save & New >'
       header:
