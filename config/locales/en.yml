@@ -122,7 +122,6 @@ en:
         learn_more: 'Learn More'
     wizard:
       actions:
-        previous: '< Previous'
         finish: 'Finish >'
         save_and_next: 'Save & Continue >'
         save_and_new: 'Save & New >'
