@@ -405,6 +405,12 @@ ul.pagination {
       }
     }
   }
+  ul {
+    margin-bottom: 2rem;
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
   p {
     &.li {
       margin-bottom: 5px;
