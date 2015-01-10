@@ -461,23 +461,35 @@ ul.pagination {
     display: block;
   }
 }
+.wizard {
+  #progress {
+    top: 60px!important;
+    min-width: 1000px!important;
+    border-bottom: 1px solid $smoke;
+    margin-bottom: 1rem;
+    ul {
+      margin: 0;
 
-#progress {
-  top: 60px!important;
-  max-width: 1000px;
-  ul {
-    margin: 0;
+      li {
+        text-indent: 0;
+        margin-left: 0;
+        float: left;
+        margin-right: 10px;
 
-    li {
-      text-indent: 0;
-      margin-left: 0;
+        &.active {
+          a {
+            background: $gces-blue;
+            color: $white;
+          }
+        }
 
-      &:before {
-        content: none;
-      }
+        &:before {
+          content: none;
+        }
 
-      a {
-        margin: 0;
+        a {
+          margin: 0;
+        }
       }
     }
   }

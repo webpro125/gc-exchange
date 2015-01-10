@@ -3,15 +3,17 @@
 <div id="progress" class="consultant" data-magellan-expedition="fixed">
   <div class="row">
     <ul>
-      <li data-magellan-arrival='stepone'>
+      <li data-magellan-arrival='contract'>
         <a class="button secondary" href="#contract">Contract</a>
+      </li>
+      <li data-magellan-arrival='attachment'>
         <a class="button secondary" href="#attachment">Attachment 1</a>
       </li>
     </ul>
   </div>
 </div>
 <%= simple_form_for @form, url: create_profile_path(:contract), method: :put do |f| %>
-<h2>Independent Contractor Agreement<a name="contract"></a></h2>
+<h2>Independent Contractor Agreement<a name="contract" data-magellan-destination="contract" ></a></h2>
 
       <p>This Independent Contractor Agreement (“Agreement”), made on <span class="underline"><%=
           DateTime.now.to_s(:month_day_and_year) %></span>
@@ -641,7 +643,7 @@
       </table>
 
 <div class="attachment">
-<h2>ATTACHMENT 1<a name="attachment"></a></h2>
+<h2>ATTACHMENT 1<a name="attachment" data-magellan-destination="attachment"></a></h2>
 <h3>Statement of Work</h3>
 <ol>
   <li><strong>INTRODUCTION</strong><br>
@@ -669,7 +671,7 @@
   </li>
   <li><strong>WORK LOCATION</strong><br>
   As identified in individual GCES client purchase order(s).</li>
-  <li>POINTS OF CONTACT
+  <li><strong>POINTS OF CONTACT</strong>
   <p>For GCES:<br>
   Barrie A. Gillis, General Manager<br>
   4849 Alberta Falls Way<br>
@@ -682,6 +684,5 @@
         
 </div>              
         
-
-
-
+    <%= render 'footer',f: f %>
+<% end %>
