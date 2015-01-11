@@ -29,10 +29,10 @@
         <div class="row">
            <%= f.simple_fields_for :address do |a| %>
               <div class="medium-8 columns"><%= a.input :address, label: false %></div>
-          <% end %> 
+          <% end %>
           <div class="medium-4 columns"><p>(“Consultant”).</p></div>
-        </div>  
-        
+        </div>
+
 
       <p>WHEREAS, GCES wishes to contract with Consultant to assist its clients in business
         development, proposal services and business operations support as described in Attachment 1
@@ -687,7 +687,7 @@
             Period of performance is specified in individual GCES client purchase orders.
           </li>
           <li><strong>COST AND PRICES</strong><br>
-            Consultant shall be paid <%= number_to_currency current_consultant.rate %> per hour
+            Consultant shall be paid <%= f.input :rate %> per hour
             for rendered Services. Services will be charged on an hourly basis, as actually
             performed. Unless specifically approved by GCES in advance, this rate shall not be
             varied by virtue of Consultant having performed work in excess of forty (40) hours
