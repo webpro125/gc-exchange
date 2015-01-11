@@ -20,11 +20,19 @@
           DateTime.now.to_s(:month_day_and_year) %></span>
         (“Effective Date”) by and between Global Consultant Exchange Services, LLC, a District of
         Columbia limited liability company, with offices located at 4849 Alberta Falls Way,
-        Colorado Springs, CO 80924 (“GCES”), and <%= f.input :first_name, label: false %>
-        <%= f.input :last_name, label: false %>
-        with offices located at <%= f.simple_fields_for :address do |a| %>
-            <%= a.input :address, label: false %>
-        <% end %> (“Consultant”).</p>
+        Colorado Springs, CO 80924 (“GCES”), and</p>
+        <div class="row">
+          <div class="medium-4 columns"><%= f.input :first_name, label: false %></div>
+          <div class="medium-4 columns"><%= f.input :last_name, label: false %></div>
+          <div class="medium-4 columns"><p>with offices located at</p></div>
+        </div>
+        <div class="row">
+           <%= f.simple_fields_for :address do |a| %>
+              <div class="medium-8 columns"><%= a.input :address, label: false %></div>
+          <% end %> 
+          <div class="medium-4 columns"><p>(“Consultant”).</p></div>
+        </div>  
+        
 
       <p>WHEREAS, GCES wishes to contract with Consultant to assist its clients in business
         development, proposal services and business operations support as described in Attachment 1
@@ -727,9 +735,7 @@
             </p>
           </li>
         </ol>
-
       </div>
-
       <%= render 'footer', f: f %>
   <% end %>
 </div>
