@@ -202,6 +202,12 @@ aside {
   }
 }
 
+.select {
+  small.error {
+    margin-top: -1.01rem!important;
+  }
+}
+
 .required {
   .select2-container {
     .select2-choice {
