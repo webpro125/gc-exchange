@@ -13,6 +13,8 @@ class Phone < ActiveRecord::Base
               with: RegexConstants::Phone::PHONE_NUMBER,
               message: I18n.t('activerecord.errors.messages.regex.phone') }
 
+  attr_accessor :_destroy # TODO: Remove when Reform releases _destroy
+
   protected
 
   def set_phone

@@ -46,7 +46,7 @@ class Consultant < ActiveRecord::Base
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
 
-  accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :educations, allow_destroy: true
 
   validate :phone_length
   validates :educations, length: { maximum: 3 }

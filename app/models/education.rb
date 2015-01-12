@@ -6,4 +6,7 @@ class Education < ActiveRecord::Base
   validates :degree, presence: true
   validates :field_of_study, presence: true, length: { in: 2..256 }
   validates :school, presence: true, length: { in: 2..256 }
+
+  # TODO: remove this when reform supports this
+  attr_accessor :_destroy
 end

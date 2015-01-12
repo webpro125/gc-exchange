@@ -147,7 +147,8 @@ en:
         new_phone_html: '<i class="fi-plus"></i> Add Phone'
         new_education_html: '<i class="fi-plus"></i> Add Another Degree'
         save: 'Save'
-        remove_education_html: '<i class="fi-x"></i>'
+        remove_education_html: '<i class="fi-trash"></i> Delete Degree'
+        remove_phone_html: '<i class="fi-trash"></i> Delete Phone'
         download_resume_html: '<i class="fi-download"></i> Download Resume'
         edit_projects_html: '<i class="fi-widget"></i> Manage Projects'
       headers:
