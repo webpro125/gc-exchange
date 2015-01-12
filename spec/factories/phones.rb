@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :phone do
-    number { Faker::PhoneNumber.cell_phone }
+    number { rand(10**9..10**10) }
     association :phoneable, factory: :consultant
     phone_type
     primary false

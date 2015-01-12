@@ -33,7 +33,13 @@ hr {
   margin: 0 auto;
   min-height: 800px;
   box-shadow: 0 0 20px scale-color($gces-green, $lightness: -50%);
+
+  @media #{$small-only} {
+    max-width: 90%;
+    padding: 2rem 30px 0
+  }
 }
+
 .home, .learn_more {
   .container {
     background: none;
@@ -405,12 +411,34 @@ ul.pagination {
       }
     }
   }
+  ul {
+    margin-bottom: 2rem;
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
   p {
     &.li {
       margin-bottom: 5px;
       + ol li:first-child {
         margin-top: 0;
       }
+    }
+  }
+  .steps {
+  background: $white-smoke;
+  border: 1px solid $monsoon;
+  border-radius: $global-radius;
+  margin: 1rem 0 1.5rem;
+  padding: 0.5rem 0.75rem 0.25rem;
+  text-align: center;
+    h4, p {
+      text-align: center;
+    }
+
+    img {
+      margin: 0 auto;
+      text-align: center;
     }
   }
 }
