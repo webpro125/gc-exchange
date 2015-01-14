@@ -16,68 +16,72 @@
           <%= f.input :rate %>
         </div>
       </div>
-    </div>
-    <hr />
-    <div class="row">
-      <div class="medium-8 columns">
-        <%= f.simple_fields_for :phones do |p| %>
-            <%= render 'phones/phone_fields', f: p %>
-        <% end %>
-        <div class="links">
-          <%= link_to_add_association t('views.profile.actions.new_phone_html'),
-                                      f,
-                                      :phones,
-                                      partial: 'phones/phone_fields',
-                                      class: 'button small' %>
-        </div>
-      </div>
       <hr />
-      <%= f.simple_fields_for :military do |m| %>
-          <div class="row">
-            <div class="medium-2 columns">
-              <%= m.input :clearance_active, as: :select %>
-            </div>
-            <div class="medium-3 columns end clearance-hidden">
-              <%= m.input :clearance_level_id,
-                          build_simple_form_dropdown(ClearanceLevel,
-                                                     collection: ClearanceLevel.all)%>
-            </div>
-            <div class="medium-7 columns clearance-hidden">
-              <div class="row">
-                <div class="medium-6 columns">
-                  <%= m.input :investigation_date, date_options %>
-                </div>
-                <div class="medium-6 columns">
-                  <%= m.input :clearance_expiration_date, date_options %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="medium-2 columns">
-              <%= m.input :military, as: :select %>
-            </div>
-            <div class="medium-2 columns military-hidden">
-              <%= m.input :rank_id, build_simple_form_dropdown(Rank,
-                                                               collection: Rank.all)%>
-            </div>
-            <div class="medium-3 columns military-hidden">
-              <%= m.input :branch_id, build_simple_form_dropdown(Branch,
-                                                                 collection: Branch.all)%>
-            </div>
-            <div class="medium-5 columns military-hidden">
-              <div class="row">
-                <div class="medium-6 columns">
-                  <%= m.input :service_start_date, date_options %>
-                </div>
-                <div class="medium-6 columns">
-                  <%= m.input :service_end_date, date_options %>
-                </div>
-              </div>
-            </div>
+      <div class="row">
+        <div class="medium-12 columns">
+          <%= f.simple_fields_for :phones do |p| %>
+              <%= render 'phones/phone_fields', f: p %>
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association t('views.profile.actions.new_phone_html'),
+                                        f,
+                                        :phones,
+                                        partial: 'phones/phone_fields',
+                                        class: 'button small' %>
           </div>
         </div>
-    <% end %>
-    <%= render 'footer', f: f %>
+        <hr />
+        <%= f.simple_fields_for :military do |m| %>
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="medium-2 columns">
+                  <%= m.input :clearance_active, as: :select %>
+                </div>
+                <div class="medium-3 columns end clearance-hidden">
+                  <%= m.input :clearance_level_id,
+                              build_simple_form_dropdown(ClearanceLevel,
+                                                         collection: ClearanceLevel.all)%>
+                </div>
+                <div class="medium-7 columns clearance-hidden">
+                  <div class="row">
+                    <div class="medium-6 columns">
+                      <%= m.input :investigation_date, date_options %>
+                    </div>
+                    <div class="medium-6 columns">
+                      <%= m.input :clearance_expiration_date, date_options %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="medium-2 columns">
+                  <%= m.input :military, as: :select %>
+                </div>
+                <div class="medium-2 columns military-hidden">
+                  <%= m.input :rank_id, build_simple_form_dropdown(Rank,
+                                                                   collection: Rank.all)%>
+                </div>
+                <div class="medium-3 columns military-hidden">
+                  <%= m.input :branch_id, build_simple_form_dropdown(Branch,
+                                                                     collection: Branch.all)%>
+                </div>
+                <div class="medium-5 columns military-hidden">
+                  <div class="row">
+                    <div class="medium-6 columns">
+                      <%= m.input :service_start_date, date_options %>
+                    </div>
+                    <div class="medium-6 columns">
+                      <%= m.input :service_end_date, date_options %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        <% end %>
+        <%= render 'footer', f: f %>
+        </div>
 <% end %>
