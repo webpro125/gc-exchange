@@ -1,14 +1,14 @@
 <div class="nested-fields">
   <div class="row">
-    <div class="small-6 columns">
+    <div class="medium-3 columns">
       <%= f.input :number %>
     </div>
-    <div class="small-4 columns">
+    <div class="medium-3 columns">
       <%= f.input :phone_type_id,
                   build_simple_form_dropdown(PhoneType,
                                              collection: PhoneType.all) %>
     </div>
-    <div class="small-2 column">
+    <div class="medium-6 columns">
       <%= link_to_remove_association t('views.profile.actions.remove_phone_html'),
                                      f,
                                      class: 'button tiny alert' %>

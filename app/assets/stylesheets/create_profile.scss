@@ -67,6 +67,13 @@
 
     }
   }
+  .columns {
+    .button {
+      &.tiny {
+      margin-top: 1.55rem;
+      }
+    }
+  }
 }
 
 /*** ATTACHMENT ***/
