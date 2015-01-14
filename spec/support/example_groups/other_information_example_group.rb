@@ -11,6 +11,13 @@ shared_examples 'other_information' do
   end
 
   describe 'military' do
+    describe 'service_start_date' do
+      it 'should not be greater than today' do
+        subject.military.service_start_date = 1.day.from_now
+        expect(subject.military).not_to be_valid
+      end
+    end
+
     describe 'service_end_date' do
       it 'should not be greater than today' do
         subject.military.service_end_date = 3.day.from_now

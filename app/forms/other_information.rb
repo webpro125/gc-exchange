@@ -48,7 +48,8 @@ module OtherInformation
 
     validates :rank_id, presence: true, if: ->() { branch_id.present? }
     validates :branch_id, presence: true, if: ->() { rank_id.present? }
-    validates :service_end_date, date: { after: :service_start_date, before: DateTime.now },
+    validates :service_start_date, date: { on_or_before: DateTime.now }
+    validates :service_end_date, date: { after: :service_start_date, on_or_before: DateTime.now },
               allow_blank: true, if: ->() { service_start_date }
   end
 
