@@ -122,7 +122,7 @@ en:
         learn_more: 'Learn More'
     wizard:
       actions:
-        finish: 'Finish >'
+        finish: 'I Agree – Complete Profile >'
         save_and_next: 'Save & Continue >'
         save_and_new: 'Save & New >'
       header:
@@ -132,6 +132,9 @@ en:
         background_information: '4. Background Information'
         project_history: '5. Project History'
       confirmations:
+        contract:
+          save: 'I certify that by click ''Confirm'', that I am digitally signing this contract.
+           I agree to the terms above.'
         background_information:
           save: 'I certify that, to the best of my knowledge and belief, all of the information
           provided by me is true and correct as of the date I provided the information. Press

@@ -67,6 +67,21 @@
 
     }
   }
+  .columns {
+    .button {
+      &.tiny {
+      margin-top: 1.55rem;
+      }
+    }
+  }
+}
+
+/*** ATTACHMENT ***/
+.attachment {
+  background: $white-smoke;
+  border: 1px solid $smoke;
+  padding: 1rem;
+  margin: 1rem 0;
 }
 
 /*** BREADCRUMBS ***/

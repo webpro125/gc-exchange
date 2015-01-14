@@ -51,6 +51,10 @@ hr {
   }
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /*** BUTTON ***/
 
 .button, input[type="submit"] {
@@ -208,6 +212,12 @@ aside {
   }
 }
 
+.select {
+  small.error {
+    margin-top: -1.01rem!important;
+  }
+}
+
 .required {
   .select2-container {
     .select2-choice {
@@ -313,9 +323,6 @@ textarea {
 label.required {
   font-weight: 600;
 }
-label {
-  padding-bottom: 2px;
-}
 
 .maxlength {
   margin: -10px 0 10px 0;
@@ -393,6 +400,16 @@ ul.pagination {
 
 /*** WIZARD ***/
 .wizard {
+  .row {
+    margin: 0;
+    .columns {
+      padding-right: 0;
+      > p {
+        line-height: 5rem;
+        margin-bottom: 0;
+      }
+    }
+  }
   ol {
     li {
       padding-left: 5px;
@@ -433,6 +450,60 @@ ul.pagination {
     img {
       margin: 0 auto;
       text-align: center;
+    }
+  }
+}
+
+/*** PROGRESS ***/
+
+@media #{$small-up} {
+  #progress {
+    display: none;
+  }
+  .benefit .row {
+    padding: 1rem 0;
+  }
+}
+@media #{$medium-up} {
+  .benefit .row {
+    padding: 3rem 0;
+  }
+}
+@media #{$large-up} {
+  #progress {
+    display: block;
+  }
+}
+.wizard {
+  #progress {
+    top: 60px!important;
+    min-width: 1000px!important;
+    border-bottom: 1px solid $smoke;
+    margin-bottom: 1rem;
+    ul {
+      margin: 0;
+
+      li {
+        text-indent: 0;
+        margin-left: 0;
+        float: left;
+        margin-right: 10px;
+
+        &.active {
+          a {
+            background: $gces-blue;
+            color: $white;
+          }
+        }
+
+        &:before {
+          content: none;
+        }
+
+        a {
+          margin: 0;
+        }
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ class CreateProfileController < ConsultantController
   before_action :redirect_after_wizard
 
   steps :howto, :basic_information, :qualifications, :other_information, :background_information,
-        :howto_projects, :project_history
+        :howto_projects, :project_history, :contract
 
   def show
     generate_show_form
@@ -20,13 +20,11 @@ class CreateProfileController < ConsultantController
     generate_update_form
 
     if @form.validate(form_params(step))
-      if params[:save_and_new] && step == :project_history
-        render_project_history
-      elsif step == :background_information
-        render_background_information
-      else
-        render_wizard_path
-      end
+     if step == :background_information
+      render_background_information
+     else
+      render_wizard_path
+     end
     else
       render_wizard
     end
@@ -59,6 +57,9 @@ class CreateProfileController < ConsultantController
       @form = BackgroundInformationForm.new current_consultant
     when :project_history
       @form = ProjectHistoryForm.new current_consultant.project_histories.build
+    when :contract
+      current_consultant.contract_effective_date = DateTime.now
+      @form = EditConsultantForm.new current_consultant
     end
   end
 
@@ -67,16 +68,15 @@ class CreateProfileController < ConsultantController
     when :basic_information
       @form = BasicInformationForm.new current_consultant
     when :qualifications
-      current_consultant.educations.build unless current_consultant.educations.size > 0
-      @form = QualificationsForm.new current_consultant
+      generate_qualifications_show
     when :other_information
       generate_other_information
-      @form = OtherInformationForm.new current_consultant
     when :background_information
-      current_consultant.build_background unless current_consultant.background.present?
-      @form = BackgroundInformationForm.new current_consultant
+      generate_background_information
     when :project_history
       @form = ProjectHistoryForm.new current_consultant.project_histories.build
+    when :contract
+      @form = EditConsultantForm.new current_consultant
     end
   end
 
@@ -84,6 +84,17 @@ class CreateProfileController < ConsultantController
     current_consultant.phones.build unless current_consultant.phones.size > 0
     current_consultant.build_address unless current_consultant.address.present?
     current_consultant.build_military unless current_consultant.military.present?
+    @form = OtherInformationForm.new current_consultant
+  end
+
+  def generate_qualifications_show
+    current_consultant.educations.build unless current_consultant.educations.size > 0
+    @form = QualificationsForm.new current_consultant
+  end
+
+  def generate_background_information
+    current_consultant.build_background unless current_consultant.background.present?
+    @form = BackgroundInformationForm.new current_consultant
   end
 
   def redirect_after_wizard
@@ -98,15 +109,8 @@ class CreateProfileController < ConsultantController
     render_wizard_path
   end
 
-  def render_project_history
-    @form.save
-    ConsultantSetStatus.new(current_consultant).pending_approval_and_save
-    redirect_to new_project_history_path
-  end
-
   def render_wizard_path
     render_wizard(@form)
-    ConsultantSetStatus.new(current_consultant).pending_approval_and_save unless
-      @form.model.is_a? Consultant
+    ConsultantSetStatus.new(current_consultant).pending_approval_and_save if step == :contract
   end
 end
