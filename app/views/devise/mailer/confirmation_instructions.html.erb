@@ -1,7 +1,17 @@
 <p>Welcome <%= @email %>!</p>
 
-<p>We are glad you've created an account with Global Consultant Exchange. To get
-  started on your profile, please click the confirmation link below.
+<p>We are glad you've created an account with Global Consultant Exchange. To begin creating your
+  profile, please click the confirmation link below titled 'Confirm my account'.  This link
+  navigates you to a login page requiring you to enter the email and password that you used when
+  registering for your account.
 </p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>
+Once you've successfully logged in, you will be prompted to start creating your personal profile.
+  During this process you will be asked for certain information, some of which includes your
+  resume in PDF format, your skills and expertise, and your work history.  We've created a
+  step-by-step process to help you create your profile.  Once you complete your profile, it will
+  become searchable to companies looking for consultants that match your skills.
+</p>

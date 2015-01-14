@@ -171,19 +171,34 @@ describe CreateProfileController do
           expect_any_instance_of(ProjectHistoryForm).to receive(:validate) { true }
           put :update, valid_attributes
         end
+      end
+    end
 
-        it 'should call pending_approval on save' do
-          expect_any_instance_of(ConsultantSetStatus).to(
-            receive(:pending_approval_and_save) { true })
+    describe 'contract' do
+      let(:m) { :contract }
 
+      describe 'GET contract' do
+        before do
+          get :show, id: m
+        end
+
+        it 'assigns @form' do
+          expect(assigns(:form)).to be_a_kind_of EditConsultantForm
+        end
+
+        it { should respond_with(200) }
+        it { should render_template(m) }
+      end
+
+      describe 'PUT contract' do
+        it 'should change wizard step' do
+          expect_any_instance_of(Consultant).to receive(:wizard_step=)
           put :update, valid_attributes
         end
 
-        it 'should call pending_approval on save and new' do
-          expect_any_instance_of(ConsultantSetStatus).to(
-            receive(:pending_approval_and_save) { true })
-
-          put :update, valid_attributes.merge(save_and_new: true)
+        it 'assigns @form' do
+          expect_any_instance_of(EditConsultantForm).to receive(:validate) { true }
+          put :update, valid_attributes
         end
       end
     end

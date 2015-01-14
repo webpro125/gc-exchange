@@ -11,13 +11,19 @@ class Consultant < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   scope :approved, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code]))
   end)
+  scope :rejected, (lambda do
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code]))
+  end)
   scope :pending_approval, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
+  end)
+  scope :in_progress, (lambda do
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code]))
   end)
 
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
@@ -40,7 +46,7 @@ class Consultant < ActiveRecord::Base
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
 
-  accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :educations, allow_destroy: true
 
   validate :phone_length
   validates :educations, length: { maximum: 3 }
@@ -102,7 +108,11 @@ class Consultant < ActiveRecord::Base
   end
 
   def update_consultant_index
-    ConsultantIndexer.perform_async(:update, id) if approved?
+    if approved?
+      ConsultantIndexer.perform_async(:update, id)
+    elsif rejected? && previous_changes.key?(:approved_status_id)
+      ConsultantIndexer.perform_async(:destroy, id)
+    end
   end
 
   def set_approved_status

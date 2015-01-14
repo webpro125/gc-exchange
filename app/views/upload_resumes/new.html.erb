@@ -1,0 +1,11 @@
+<%= simple_form_for @form, url:  consultant_upload_resumes_path, method: :post do |f| %>
+    <%= f.input :resume,
+                as: :file,
+                input_html: { accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}" } %>
+    <p>
+      <small class="red">
+        <%= t('simple_form.labels.consultant.resume_instruction') %>
+      </small>
+    </p>
+    <%= f.button :submit %>
+<% end %>

@@ -8,11 +8,11 @@
             <%= link_to root_path do %>
                 <%= image_tag(@current_consultant.profile_image.url(:medium), class: 'th profile-medium') %>
                 <%= link_to t('views.profile.actions.upload_photo_html'),
-                            upload_profile_path,
-                            class: 'button small upload' %>   
+                            new_consultant_upload_image_path(@current_consultant),
+                            class: 'button small upload' %>
                 <%= link_to t('views.profile.actions.upload_resume_html'),
-                            resume_profile_path,
-                            class: 'button small upload' %>  
+                            new_consultant_upload_resume_path(@current_consultant),
+                            class: 'button small upload' %>
             <% end %>
           </div>
           <div class="medium-8 columns">
@@ -47,24 +47,15 @@
             <div class="row">
               <div class="large-12 columns">
                 <%= f.simple_fields_for :phones do |p| %>
-                    <div class="row">
-                      <% if @form.phones.size > 1 %>
-                          <div class="small-11 columns">
-                            <%= render 'phones/phone_fields', f: p %>
-                          </div>
-                          <div class="small-1 columns">
-                            <%= render 'phones/destroy_phone', f: p %>
-                          </div>
-                      <% else %>
-                          <div class="large-12 columns">
-                            <%= render 'phones/phone_fields', f: p %>
-                          </div>
-                      <% end %>
-                    </div>
+                    <%= render 'phones/phone_fields', f: p %>
                 <% end %>
-                <%= link_to t('views.profile.actions.new_phone_html') , 
-                            new_phone_path,
-                            class: 'button small' %>
+                <div class="links">
+                  <%= link_to_add_association t('views.profile.actions.new_phone_html'),
+                                              f,
+                                              :phones,
+                                              partial: 'phones/phone_fields',
+                                              class: 'button small' %>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -91,9 +82,13 @@
             <%= f.simple_fields_for :educations do |e| %>
                 <%= render 'educations/education_fields', f: e %>
             <% end %>
-            <%= link_to t('views.profile.actions.new_education_html') , 
-                        new_education_path,
-                        class: 'button small' %>
+            <div class="links">
+              <%= link_to_add_association t('views.profile.actions.new_education_html'),
+                                          f,
+                                          :educations,
+                                          partial: 'educations/education_fields',
+                                          class: 'button small' %>
+            </div>
           </div>
         </div>
         <div class="row">

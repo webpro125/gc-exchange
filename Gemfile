@@ -31,6 +31,8 @@ gem 'foundation-datetimepicker-rails', '~> 0.1.3'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.0.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
+gem 'google-webfonts-rails', '~> 0.0.4'
+gem 'cocoon', '~> 1.2.6'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

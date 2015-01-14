@@ -13,9 +13,11 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= analytics_init if Rails.env.production? %>
     <%= csrf_meta_tags %>
+    <%= google_webfonts_init({ google: ['Open+Sans:400italic,700,300,600,400:latin'] }) %>
   </head>
 
   <body class="learn_more">
+        <%= render 'layouts/header' %>
         <%= yield %>
         <%= render 'layouts/footer' %>
     <%= javascript_include_tag "application" %>

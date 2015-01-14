@@ -1,21 +1,21 @@
 <div class="row wizardnav">
   <div class="large-12 columns">
-    <% unless wizard_path == create_profile_path(:basic_information) %>
-        <%= link_to t('views.wizard.actions.previous'),
-                    previous_wizard_path,
-                    class: 'button secondary small' %>
-    <% end %>
-    <% if wizard_path == create_profile_path(:project_history) %>
-        <%= f.button :submit, t('views.wizard.actions.save_and_new'),
-                     class: 'secondary small',
-                     name:'save_and_new'%>
-        <%= f.button :submit, t('views.wizard.actions.finish'), class: 'secondary small' %>
-        <% elsif wizard_path == create_profile_path(:background_information) %>
+    <% if wizard_path == create_profile_path(:contract) %>
+        <%= f.button :submit, t('views.wizard.actions.finish'),
+                     data: {
+                             confirm: {
+                                     body: t('views.wizard.confirmations.contract.save')}
+                     },
+                     class: 'secondary' %>
+    <% elsif wizard_path == create_profile_path(:background_information) %>
         <%= f.button :submit, t('views.wizard.actions.save_and_next'),
-                     data: { confirm: t('views.wizard.confirmations.background_information.save')},
-                     class: 'secondary small' %>
+                     data: {
+                             confirm: {
+                                     body: t('views.wizard.confirmations.background_information.save')}
+                     },
+                     class: 'secondary' %>
     <% else %>
-        <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary small' %>
+        <%= f.button :submit, t('views.wizard.actions.save_and_next'), class: 'secondary' %>
     <% end %>
   </div>
 </div>

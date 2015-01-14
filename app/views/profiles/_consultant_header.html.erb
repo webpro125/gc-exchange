@@ -1,45 +1,58 @@
 <div class="row">
   <div class="medium-4 columns">
-    <%= image_tag(@consultant.profile_image.url(:medium), class: 'th profile-medium') %>
+    <% if policy(@consultant).upload_image? %>
+      <%= link_to t('views.upload_image.actions.upload_photo_html'),
+                  new_consultant_upload_image_path(@consultant.id),
+                  class: 'button small secondary download'  %>
+    <% end %>
+    <% if consultant_owns_record? || user_is_gces? %>
+        <%= image_tag(@consultant.profile_image.url(:medium), class: 'th profile-medium') %>
+    <% end %>
   </div>
   <div class="medium-8 columns">
     <div class="row">
       <div class="small-12 columns">
         <h1>
-          <%= @consultant.full_name %>
+          <%= if consultant_owns_record? || user_is_gces?
+            @consultant.full_name
+          else
+            @consultant.id
+          end %>
         </h1>
       </div>
     </div>
-    <% if user_signed_in? || consultant_signed_in? %>
       <table>
-        <% if @consultant.military.clearance_active %>
-          <tr>
-            <td>
-              <%= t('simple_form.labels.military.clearance_level') %>
-            </td>
-            <td>
-            <%= @consultant.military.clearance_level.label if @consultant.military
-                    .clearance_level %>
-            </td>
-          </tr>
+        <% if @consultant.military.present? %>
+          <% if @consultant.military.clearance_active %>
+            <tr>
+              <td>
+                <%= t('simple_form.labels.military.clearance_level') %>
+              </td>
+              <td>
+              <%= @consultant.military.clearance_level.label if @consultant.military
+                      .clearance_level %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
+        <tr>
+          <td>
+            <%= t('simple_form.labels.consultant.willing_to_travel') %>
+          </td>
+          <td>
+            <%= boolean_to_human @consultant.willing_to_travel? %>
+          </td>
+        </tr>
+        <% if user_signed_in? || consultant_signed_in? %>
           <tr>
-            <td>
-              <%= t('simple_form.labels.consultant.willing_to_travel') %>
-            </td>
-            <td>
-              <%= boolean_to_human @consultant.willing_to_travel? %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= t('simple_form.labels.consultant.rate') %>
-            </td>
-            <td>
-              <%= number_to_currency @consultant.rate %>
-            </td>
-          </tr>
-        </table>
-    <% end %>
+              <td>
+                <%= t('simple_form.labels.consultant.rate') %>
+              </td>
+              <td>
+                <%= number_to_currency @consultant.rate %>
+              </td>
+            </tr>
+        <% end %>
+      </table>
   </div>
 </div>

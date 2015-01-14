@@ -1,63 +1,3 @@
-<div class="sticky">
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <li class="name">
-        <%= link_to root_path do %>
-        <div id="logo"></div>
-        <% end %>
-      </li>
-      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-      <li class="toggle-topbar menu-icon">
-        <a href="#">
-          <span>Menu</span>
-        </a>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <!-- Left Nav Section -->
-      <ul class="left">
-        <% if development? %>
-        <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
-        <% end %>
-        <li class="has-form">
-          <div class="row collapse">
-            <%= render 'layouts/search' %>
-          </div>
-        </li>
-      </ul>
-
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <% if consultant_signed_in? %>
-        <li class="has-dropdown">
-          <%= link_to 'Profile', consultant_root_path %>
-          <ul class="dropdown">
-            <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
-            <li class="divider"></li>
-            <li><%= link_to t('views.password.actions.change_password'),
-            edit_consultant_registration_path %></li>
-          </ul>
-        </li>
-        <li>
-          <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
-        </li>
-        <% elsif user_signed_in? %>
-        <li>
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-        </li>
-        <% else %>
-        <li>
-          <%= link_to 'Login', new_user_session_path %>
-        </li>
-        <li>
-          <%= link_to 'Request Access', new_sales_lead_path %>
-        </li>
-        <% end %>
-      </ul>
-    </section>
-  </nav>
-</div>
 <div id="progress" data-magellan-expedition="fixed">
   <h5 class="steps">Select a step to learn more</h5>   
   <div class="row">
@@ -93,8 +33,11 @@
 <%= render 'layouts/flash' %>
 <div class="introbg">
   <div class="row">
-    <h1>GCES helps client companies find the right consultant, at the right time &ndash; affordably.
-    </h1>
+    <h3>Getting started is fast and easy. Completing Agreements can take as little as 24 hours. 
+      With Agreements in place, consultants and independent contractors are typically engaged 
+      within 1-2 days. You engage the same quality consultants traditional consulting companies 
+      provide at a fraction of the cost.
+    </h3>
   </div>
 </div>
 <div class="benefit stepone" data-magellan-destination='stepone'><a name="one"></a>
@@ -177,6 +120,6 @@
 <div class="benefit signup screen">
   <div class="row">
     <h5>Want to join?</h5>
-    <%= link_to 'Sign up now!', new_sales_lead_path, class: 'button large secondary' %>
+    <%= link_to 'Register now!', new_sales_lead_path, class: 'button large secondary' %>
   </div>
 </div>

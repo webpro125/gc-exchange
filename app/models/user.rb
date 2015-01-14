@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :confirmable, :timeoutable
 
   belongs_to :company
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   before_destroy :validate_company_owner
 
   validates :first_name, length: { in: 2..24 }, presence: true,
-            format: { with: RegexConstants::Letters::AND_DASHES,
-                      message: I18n.t('activerecord.errors.messages.regex.only_letters') }
+            format: { with: RegexConstants::Letters::AND_NUMBERS,
+                      message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
@@ -49,5 +49,11 @@ class User < ActiveRecord::Base
 
   def set_password
     self.password = self.password_confirmation = Devise.friendly_token.first(8)
+  end
+
+  def send_confirmation_instructions
+    set_password unless password
+
+    super
   end
 end

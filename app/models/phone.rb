@@ -7,7 +7,13 @@ class Phone < ActiveRecord::Base
   validates :phoneable_id, presence: true
   validates :phoneable_type, presence: true
   validates :phone_type, presence: true
-  validates :number, presence: true
+  validates :number,
+            presence: true,
+            format: {
+              with: RegexConstants::Phone::PHONE_NUMBER,
+              message: I18n.t('activerecord.errors.messages.regex.phone') }
+
+  attr_accessor :_destroy # TODO: Remove when Reform releases _destroy
 
   protected
 

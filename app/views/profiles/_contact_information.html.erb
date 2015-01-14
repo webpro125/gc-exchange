@@ -5,8 +5,10 @@
     <td>
       <%= Address.human_attribute_name(:address) %>
     </td>
-    <td>
-      <%= @consultant.address.address %>
-    </td>
+    <% if @consultant.address.present? %>
+      <td>
+        <%= @consultant.address.address %>
+      </td>
+    <% end %>
   </tr>
 </table>

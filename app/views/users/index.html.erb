@@ -1,4 +1,4 @@
-<h1>Listing users</h1>
+<h1>Manage Users</h1>
 
 <table>
   <thead>
@@ -17,7 +17,7 @@
         <td><%= link_to 'Destroy',
                         company_user_path(@company, user),
                         method: :delete,
-                        data: { confirm: 'Are you sure?' },
+                        data: { confirm: { body: t('views.user.confirmations.delete') } },
                         class: 'button tiny alert' if policy(user).destroy? %></td>
       </tr>
   <% end %>

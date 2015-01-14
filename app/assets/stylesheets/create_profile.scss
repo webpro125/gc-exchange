@@ -2,6 +2,10 @@
 
 /*** WIZARD ***/
 
+.button, input[type="submit"] {
+  border-radius: $global-radius;
+}
+
 #bgquestions {
   label {
     font-weight: 600;
@@ -27,11 +31,50 @@
     padding-bottom: 0.25rem;
   }
 }
+
 .row.wizardnav {
   margin-top: 2rem;
 }
 .error label, .error label.error {
   color: $gces-red;
+}
+.wizard {
+  @media #{$large-only} {
+  min-height: 600px;
+  }
+
+  input[type="file"] {
+    margin-bottom: 0.25rem;
+  }
+  small {
+    font-style: italic;
+    color: $monsoon;
+    &.red {
+      color: scale-color($gces-red, $lightness: -10%);
+    }
+  }
+  .button {
+    &.right {
+      @media #{$small-only} {
+        margin: 0 auto 10px;
+        float: none!important;
+        display: block;
+        clear: both;
+      }
+      float: right; 
+      margin-left: 20px;
+      margin-top: 20px;
+
+    }
+  }
+}
+
+/*** ATTACHMENT ***/
+.attachment {
+  background: $white-smoke;
+  border: 1px solid $smoke;
+  padding: 1rem;
+  margin: 1rem 0;
 }
 
 /*** BREADCRUMBS ***/

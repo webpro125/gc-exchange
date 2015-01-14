@@ -10,11 +10,11 @@ class EditConsultantForm < Reform::Form
   property :abstract
 
   validates :first_name, length: { in: 2..24 }, presence: true,
-            format: { with: RegexConstants::Letters::AND_DASHES,
-                      message: 'only allows letters' }
+            format: { with: RegexConstants::Letters::AND_NUMBERS,
+                      message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
-                      message: 'only allows letters and numbers' }
+                      message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
   validates :abstract, length: { maximum: 1500 }
 
   def self.reflect_on_association(association)

@@ -80,6 +80,13 @@
                     download_resume_path(@consultant),
                     class: 'button small secondary download' %>
       </div>
+      <% if policy(@consultant).upload_resume? %>
+        <div class="small-12 columns">
+          <%= link_to t('views.upload_resume.actions.upload_resume_html'),
+                      new_consultant_upload_resume_path(@consultant),
+                      class: 'button small secondary download' %>
+        </div>
+      <% end %>
     </div>
     <div class="row">
       <div class="small-12 columns">

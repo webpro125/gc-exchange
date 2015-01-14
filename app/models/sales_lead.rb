@@ -9,8 +9,8 @@ class SalesLead < ActiveRecord::Base
             :last_name,
             length: { in: 2..24 },
             presence: true,
-            format: { with: RegexConstants::Letters::AND_DASHES,
-                      message: 'only allows letters' }
+            format: { with: RegexConstants::Letters::AND_NUMBERS,
+                      message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
 
   protected
 
