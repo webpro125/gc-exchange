@@ -22,6 +22,8 @@ class CreateProfileController < ConsultantController
     if @form.validate(form_params(step))
       if params[:save_and_new] && step == :project_history
         render_project_history
+      elsif step == :background_information
+        render_background_information
       else
         render_wizard_path
       end
@@ -88,6 +90,12 @@ class CreateProfileController < ConsultantController
     return unless current_consultant.wizard_step == Wicked::FINISH_STEP
     redirect_to consultant_root_path
     false
+  end
+
+  def render_background_information
+    @form.save
+    ConsultantSetStatus.new(current_consultant).on_hold_and_save
+    render_wizard_path
   end
 
   def render_project_history

@@ -44,6 +44,13 @@ FactoryGirl.define do
       end
     end
 
+    trait :on_hold do
+      after(:create) do |c|
+        c.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::ON_HOLD[:code])
+        c.save
+      end
+    end
+
     trait :wicked_finish do
       after(:build) do |c|
         c.wizard_step = Wicked::FINISH_STEP

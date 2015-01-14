@@ -22,6 +22,9 @@ class Consultant < ActiveRecord::Base
   scope :pending_approval, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
   end)
+  scope :on_hold, (lambda do
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::ON_HOLD[:code]))
+  end)
   scope :in_progress, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code]))
   end)
@@ -69,6 +72,10 @@ class Consultant < ActiveRecord::Base
     approved_status.code == ApprovedStatus::PENDING_APPROVAL[:code]
   end
 
+  def on_hold?
+    approved_status.code == ApprovedStatus::ON_HOLD[:code]
+  end
+
   def in_progress?
     approved_status.code == ApprovedStatus::IN_PROGRESS[:code]
   end
@@ -108,7 +115,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def update_consultant_index
-    if approved?
+    if approved? || pending_approval?
       ConsultantIndexer.perform_async(:update, id)
     elsif rejected? && previous_changes.key?(:approved_status_id)
       ConsultantIndexer.perform_async(:destroy, id)
