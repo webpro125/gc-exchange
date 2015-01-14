@@ -3,9 +3,9 @@ class CreateProfileController < ConsultantController
 
   skip_after_action :verify_authorized
   skip_after_action :verify_policy_scoped
-  skip_before_action :consultant_wizard_redirect
+  # skip_before_action :consultant_wizard_redirect
 
-  before_action :redirect_after_wizard
+  # before_action :redirect_after_wizard
 
   steps :howto, :basic_information, :qualifications, :other_information, :background_information,
         :howto_projects, :project_history, :contract
