@@ -20,11 +20,11 @@ class CreateProfileController < ConsultantController
     generate_update_form
 
     if @form.validate(form_params(step))
-     if step == :background_information
-      render_background_information
-     else
-      render_wizard_path
-     end
+      if step == :background_information
+        render_background_information
+      else
+        render_wizard_path
+      end
     else
       render_wizard
     end
