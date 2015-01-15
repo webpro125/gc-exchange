@@ -2,9 +2,7 @@ class Consultant < ActiveRecord::Base
   include Searchable
 
   RESUME_MIME_TYPES = ['application/pdf']
-  PROFILE_IMAGE_TYPES = ['image/jpg',
-                         'image/png',
-                         'image/jpeg']
+  PROFILE_IMAGE_TYPES = ['image/jpg', 'image/png', 'image/jpeg']
 
   paginates_per 15
 
@@ -20,16 +18,20 @@ class Consultant < ActiveRecord::Base
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code]))
   end)
   scope :pending_approval, (lambda do
-    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
+    where(
+      approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
   end)
-  scope :on_hold, (lambda do
-    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::ON_HOLD[:code]))
-  end)
+  scope :on_hold,
+        ->() { where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::ON_HOLD[:code])) }
   scope :in_progress, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code]))
   end)
+  scope :approve_reject, (lambda do
+    where(arel_table[:approved_status_id].eq(ApprovedStatus.pending_approval.id)
+            .or(arel_table[:approved_status_id].eq(ApprovedStatus.on_hold.id)))
+  end)
 
-  before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
+  before_create :skip_confirmation!, if: -> { Rails.env.staging? }
   before_create :set_approved_status
   after_commit :update_consultant_index, on: [:update]
   after_commit :destroy_consultant_index, on: [:destroy]
@@ -51,7 +53,7 @@ class Consultant < ActiveRecord::Base
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
-  validate :phone_length
+  validates :phones, length: { maximum: 3 }
   validates :educations, length: { maximum: 3 }
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
@@ -101,14 +103,6 @@ class Consultant < ActiveRecord::Base
   end
 
   private
-
-  def phone_length
-    errors.add(:phones, :too_long, count: 3) if phones.size > 3
-  end
-
-  def skip_confirmation_in_staging
-    skip_confirmation!
-  end
 
   def destroy_consultant_index
     __elasticsearch__.delete_document

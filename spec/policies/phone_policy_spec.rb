@@ -8,11 +8,6 @@ describe PhonePolicy do
     let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
 
     it { should permit_action(:show)    }
-    it { should permit_action(:create)  }
-    it { should permit_action(:new)     }
-    it { should permit_action(:update)  }
-    it { should permit_action(:edit)    }
-    it { should permit_action(:destroy) }
   end
 
   describe 'for a visitor' do

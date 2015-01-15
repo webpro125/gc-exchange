@@ -25,8 +25,9 @@ describe ConsultantsController do
         it { should render_template(:index) }
         it { should respond_with(200) }
 
-        it 'assigns all pending_approval consultants' do
-          assigns(:consultants).should match_array(pending_approval)
+        it 'assigns all pending_approval and on_hold consultants' do
+          assigns(:consultants).should include(*pending_approval)
+          assigns(:consultants).should include(*on_hold)
         end
       end
 

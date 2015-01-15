@@ -20,8 +20,7 @@ class ConsultantSetStatus
   def pending_approval_and_save
     return false unless pending_approvable?
 
-    @consultant.approved_status = ApprovedStatus.pending_approval unless
-      @consultant.approved_status == ApprovedStatus.on_hold
+    @consultant.approved_status = ApprovedStatus.pending_approval
     @consultant.save
   end
 
@@ -41,7 +40,7 @@ class ConsultantSetStatus
   end
 
   def pending_approvable?
-    @consultant.in_progress? || @consultant.on_hold? &&
+    @consultant.in_progress? &&
       @consultant.wizard_step == Wicked::FINISH_STEP &&
       @consultant.project_histories.size > 0
   end
