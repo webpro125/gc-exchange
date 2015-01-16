@@ -15,6 +15,7 @@ describe ConsultantsController do
         let!(:approved) { FactoryGirl.create_list(:consultant, 2, :approved) }
         let!(:pending_approval) { FactoryGirl.create_list(:consultant, 2, :pending_approval) }
         let!(:rejected) { FactoryGirl.create_list(:consultant, 2, :rejected) }
+        let!(:on_hold) { FactoryGirl.create_list(:consultant, 2, :on_hold) }
 
         before do
           get :index
@@ -24,8 +25,9 @@ describe ConsultantsController do
         it { should render_template(:index) }
         it { should respond_with(200) }
 
-        it 'assigns all pending_approval consultants' do
-          assigns(:consultants).should match_array(pending_approval)
+        it 'assigns all pending_approval and on_hold consultants' do
+          assigns(:consultants).should include(*pending_approval)
+          assigns(:consultants).should include(*on_hold)
         end
       end
 
@@ -46,6 +48,32 @@ describe ConsultantsController do
       end
 
       describe 'PUT approve' do
+        describe 'on_hold status' do
+          let!(:consultant) { FactoryGirl.create(:consultant, :on_hold) }
+
+          it 'allows approve' do
+            expect do
+              put :approve, id: consultant.id
+            end.to change { consultant.reload.approved? }.to true
+          end
+
+          describe 'succcess' do
+            before do
+              put :approve, id: consultant.id
+            end
+
+            it { should redirect_to(consultants_path) }
+          end
+
+          describe 'failure' do
+            before do
+              allow_any_instance_of(ConsultantSetStatus).to receive(:on_hold_and_save) { false }
+              put :approve, id: consultant.id
+            end
+
+            it { should redirect_to(consultants_path) }
+          end
+        end
         describe 'pending_approval status' do
           let!(:consultant) { FactoryGirl.create(:consultant, :pending_approval) }
 
