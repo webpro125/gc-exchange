@@ -7,6 +7,6 @@ FactoryGirl.define do
     illegal_drug_use false
     illegal_purchase false
     illegal_prescription false
+    information_is_correct '1'
   end
-
 end

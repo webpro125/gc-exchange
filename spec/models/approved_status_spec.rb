@@ -24,5 +24,10 @@ describe ApprovedStatus do
       expect(subject.pending_approval).to eq(subject.find_by_code(
                                                ApprovedStatus::PENDING_APPROVAL[:code]))
     end
+
+    it 'on hold' do
+      expect(subject.on_hold).to eq(subject.find_by_code(
+                                               ApprovedStatus::ON_HOLD[:code]))
+    end
   end
 end

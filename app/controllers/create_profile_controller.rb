@@ -20,7 +20,11 @@ class CreateProfileController < ConsultantController
     generate_update_form
 
     if @form.validate(form_params(step))
-      render_wizard_path
+      if step == :background_information
+        render_background_information
+      else
+        render_wizard_path
+      end
     else
       render_wizard
     end
@@ -97,6 +101,12 @@ class CreateProfileController < ConsultantController
     return unless current_consultant.wizard_step == Wicked::FINISH_STEP
     redirect_to consultant_root_path
     false
+  end
+
+  def render_background_information
+    @form.save
+    ConsultantSetStatus.new(current_consultant).on_hold_and_save
+    render_wizard_path
   end
 
   def render_wizard_path
