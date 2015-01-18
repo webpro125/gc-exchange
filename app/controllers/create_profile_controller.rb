@@ -8,7 +8,7 @@ class CreateProfileController < ConsultantController
   before_action :redirect_after_wizard
 
   steps :howto, :basic_information, :qualifications, :other_information, :background_information,
-        :howto_projects, :project_history, :contract
+        :howto_projects, :project_history, :contract_begin, :contract
 
   def show
     generate_show_form
