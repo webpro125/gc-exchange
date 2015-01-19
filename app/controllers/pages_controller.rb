@@ -23,4 +23,7 @@ class PagesController < ApplicationController
   def health_check
     render text: DateTime.now
   end
+
+  def profile_completed
+  end
 end
