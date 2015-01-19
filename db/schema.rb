@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110023947) do
+ActiveRecord::Schema.define(version: 20150119154056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,8 +113,8 @@ ActiveRecord::Schema.define(version: 20150110023947) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first_name",                 limit: 24,                                        null: false
-    t.string   "last_name",                  limit: 24,                                        null: false
+    t.string   "first_name",                 limit: 64,                                        null: false
+    t.string   "last_name",                  limit: 64,                                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_file_name"
