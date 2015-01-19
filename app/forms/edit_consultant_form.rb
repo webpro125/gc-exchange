@@ -9,10 +9,10 @@ class EditConsultantForm < Reform::Form
   property :last_name
   property :abstract
 
-  validates :first_name, length: { in: 2..24 }, presence: true,
+  validates :first_name, length: { in: 2..64 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
-  validates :last_name, length: { in: 2..24 }, presence: true,
+  validates :last_name, length: { in: 2..64 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
   validates :abstract, length: { maximum: 1500 }
