@@ -4,7 +4,7 @@ module Qualifications
   property :skills_list
   property :certification_ids
 
-  collection :educations, populate_if_empty: Education do
+  collection :educations, populate_if_empty: Education, length: { maximum: 3 } do
     # TODO: When Reform releases _destroy support implement that instead of this hack
     property :id, virtual: false
     property :_destroy, virtual: false
