@@ -8,7 +8,7 @@ class CreateProfileController < ConsultantController
   before_action :redirect_after_wizard
 
   steps :howto, :basic_information, :qualifications, :other_information, :background_information,
-        :howto_projects, :project_history, :contract
+        :howto_projects, :project_history, :contract_begin, :contract
 
   def show
     generate_show_form
@@ -33,7 +33,7 @@ class CreateProfileController < ConsultantController
   private
 
   def finish_wizard_path
-    consultant_root_path
+    profile_completed_path
   end
 
   def form_params(sym)
@@ -99,7 +99,7 @@ class CreateProfileController < ConsultantController
 
   def redirect_after_wizard
     return unless current_consultant.wizard_step == Wicked::FINISH_STEP
-    redirect_to consultant_root_path
+    redirect_to finish_wizard_path
     false
   end
 

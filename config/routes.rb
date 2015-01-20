@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get :privacy_policy, to: 'pages#privacy_policy'
   get :company_learn_more, to: 'pages#company_learn_more'
   get :consultant_learn_more, to: 'pages#consultant_learn_more'
+  get :profile_completed, to: 'pages#profile_completed'
   get :health_check, to: 'pages#health_check'
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
 
