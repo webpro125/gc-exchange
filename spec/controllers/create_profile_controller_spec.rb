@@ -237,7 +237,7 @@ describe CreateProfileController do
     let(:user) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
 
     it 'should redirect to root' do
-      expect(response).to redirect_to consultant_root_path
+      expect(response).to redirect_to profile_completed_path
     end
   end
 end

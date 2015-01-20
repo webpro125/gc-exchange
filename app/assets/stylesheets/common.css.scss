@@ -171,6 +171,12 @@ aside {
     margin-bottom: 0;
     line-height: 1.35rem;
   }
+  ol {
+    font-size: 0.85rem;
+    li {
+      padding-left: 0;
+    }
+  }
 }
 
 /*** ALERTS ***/

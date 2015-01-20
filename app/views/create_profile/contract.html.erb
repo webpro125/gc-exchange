@@ -688,7 +688,7 @@
             Period of performance is specified in individual GCES client purchase orders.
           </li>
           <li><strong>COST AND PRICES</strong><br>
-            Consultant shall be paid <%= f.input :rate %> per hour
+            Consultant shall be paid <%= render 'shared/rate', f: f %> per hour
             for rendered Services. Services will be charged on an hourly basis, as actually
             performed. Unless specifically approved by GCES in advance, this rate shall not be
             varied by virtue of Consultant having performed work in excess of forty (40) hours

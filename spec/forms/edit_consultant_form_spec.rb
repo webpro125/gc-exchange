@@ -32,7 +32,7 @@ describe EditConsultantForm do
 
   describe 'consultant' do
     describe 'first_name' do
-      it { should ensure_length_of(:first_name).is_at_least(2).is_at_most(24) }
+      it { should ensure_length_of(:first_name).is_at_least(2).is_at_most(64) }
       it { should validate_presence_of(:first_name) }
       it { should allow_value('james', 'mary ann', 'Robert').for(:first_name) }
 
@@ -40,7 +40,7 @@ describe EditConsultantForm do
     end
 
     describe 'last_name' do
-      it { should ensure_length_of(:last_name).is_at_least(2).is_at_most(24) }
+      it { should ensure_length_of(:last_name).is_at_least(2).is_at_most(64) }
       it { should validate_presence_of(:last_name) }
       it { should allow_value('james', 'mary ann', 'billy-jean 2', '1234567890').for(:last_name) }
 
