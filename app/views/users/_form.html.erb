@@ -1,5 +1,6 @@
 <%= simple_form_for([@company, @user]) do |f| %>
     <%= f.error_notification %>
+    <%= render 'shared/base_error', model: @user %>
 
     <div class="form-inputs">
       <%= f.input :first_name %>

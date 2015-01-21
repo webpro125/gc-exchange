@@ -1,6 +1,6 @@
 <%= simple_form_for @form, url: profile_path do |f| %>
     <%= f.error_notification %>
-
+    <%= render 'shared/base_error', model: @form %>
     <div class="row">
       <div class="medium-8 columns main">
         <div class="row">

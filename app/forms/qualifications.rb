@@ -4,7 +4,7 @@ module Qualifications
   property :skills_list
   property :certification_ids
 
-  collection :educations, populate_if_empty: Education, length: { maximum: 3 } do
+  collection :educations, populate_if_empty: Education do
     # TODO: When Reform releases _destroy support implement that instead of this hack
     property :id, virtual: false
     property :_destroy, virtual: false
@@ -17,6 +17,8 @@ module Qualifications
     validates :field_of_study, presence: true, length: { in: 2..256 }
     validates :school, presence: true, length: { in: 2..256 }
   end
+
+  validate :education_length
 
   # TODO: When Reform releases _destroy support implement that instead of this hack
   def save
@@ -33,5 +35,12 @@ module Qualifications
 
     # this time actually save
     super
+  end
+
+  private
+
+  def education_length
+    remaining_educations = educations.reject { |i| i._destroy == '1' }
+    errors.add :base, 'At most 3 educations' if remaining_educations.size > 3
   end
 end
