@@ -77,7 +77,7 @@ en:
         client_company: 'Company'
       search:
         position_ids: 'Position'
-        q: 'Expertise'
+        q: 'Keywords'
         customer_name_ids: 'Government Agency'
         project_type_ids: 'Functional Area of Focus'
         clearance_level_id: 'Clearance Level'
@@ -108,17 +108,26 @@ en:
         client_company: 'Identify the name of the company that owned the project.'
         customer_name_id: 'Select the agency the work was done for if this project supported a
         Government Agency.  Leave blank for Commercial Projects.'
-        client_poc_name: 'Identify the name of an individual you worked with on the project.'
+        client_poc_name: 'Identify the person who received your work product on the project.'
         client_poc_email: 'Provide the email address of your project reference.'
         description: 'Summarize your roles on the project and discuss the processes, tools, and
         techniques you used to achieve specific outcomes.'
         project_type: 'Identify the industry market.'
         project_type_id: 'Identify the industry market.'
+        start_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
       consultant:
         abstract: 'This field provides a summary abstract of your career experience.  Enter
         a brief description of your professional achievements, work history, and skills.'
         certification_ids: 'Scroll down, identify, and click on your professional certifications.'
-        skills_list: 'Add your skills and separate each skill with a comma.'
+        skills_list: 'Add your skills and separate each skill with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)'
       address:
         address: 'Enter your Address, City, State, and Zip Code.  Your address is used to help
         companies search for local consultants and this information will not be shown publicly.'
+      phone:
+        number: 'Format xxx-xxx-xxxx'
+      military:
+        investigation_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        clearance_expiration_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        service_start_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        service_end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
