@@ -1,4 +1,6 @@
 <%= simple_form_for @form, url:  consultant_upload_resumes_path, method: :post do |f| %>
+    <%= render 'shared/base_error', model: @form %>
+
     <%= f.input :resume,
                 as: :file,
                 input_html: { accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}" } %>

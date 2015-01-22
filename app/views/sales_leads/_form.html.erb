@@ -1,12 +1,13 @@
 <%= simple_form_for @sales_lead do |f| %>
     <%= f.error_notification %>
+    <%= render 'shared/base_error', model: @sales_lead %>
 
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :company_name %>
     <%= f.input :phone_number %>
     <%= f.input :email %>
-    <%= f.input :message, as: :text, input_html: { class: 'small', cols: 5, rows: 5 } %>
+    <%= f.input :message, as: :text, input_html: {class: 'small', cols: 5, rows: 5} %>
 
     <%= f.button :submit, t('views.sales_lead.new.save') %>
 <% end %>

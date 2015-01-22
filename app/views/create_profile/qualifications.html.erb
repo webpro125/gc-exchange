@@ -1,6 +1,7 @@
 <%= render 'header' %>
 
 <%= simple_form_for @form, url: create_profile_path(:qualifications), method: :put do |f| %>
+    <%= render 'shared/base_error', model: @form %>
     <div class="row">
       <div class="large-12 columns">
         <%= f.error_notification %>
