@@ -18,6 +18,8 @@ module Qualifications
     validates :school, presence: true, length: { in: 2..256 }
   end
 
+  validate :education_length
+
   # TODO: When Reform releases _destroy support implement that instead of this hack
   def save
     # you might want to wrap all this in a transaction
@@ -33,5 +35,12 @@ module Qualifications
 
     # this time actually save
     super
+  end
+
+  private
+
+  def education_length
+    remaining_educations = educations.reject { |i| i._destroy == '1' }
+    errors.add :base, 'At most 3 educations' if remaining_educations.size > 3
   end
 end

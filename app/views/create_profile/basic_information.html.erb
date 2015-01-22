@@ -4,14 +4,15 @@
     <div class="row">
       <div class="small-12 columns">
         <%= f.error_notification %>
+        <%= render 'shared/base_error', model: @form %>
       </div>
     </div>
     <div class="wizard">
       <div class="row">
         <div class="medium-10 columns">
           <%= f.input :resume,
-                      as: :file,
-                      input_html: { accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}" } %>
+                      as:         :file,
+                      input_html: {accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}"} %>
           <p>
             <small class="red">
               <%= t('simple_form.labels.consultant.resume_instruction') %>
@@ -21,14 +22,14 @@
       </div>
       <div class="row">
         <div class="medium-10 columns">
-          <%= f.input :abstract, as: :text, input_html: { class: 'large', cols: 5, rows: 20 } %>
+          <%= f.input :abstract, as: :text, input_html: {class: 'large', cols: 5, rows: 20} %>
         </div>
       </div>
       <div class="row">
         <div class="medium-10 columns">
           <%= f.input :profile_image,
-                      as: :file,
-                      input_html: { accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}" }%>
+                      as:         :file,
+                      input_html: {accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}"} %>
           <p>
             <small class="red">
               <%= t('simple_form.labels.consultant.image_instruction') %>
@@ -37,5 +38,5 @@
         </div>
       </div>
     </div>
-    <%= render 'footer',f: f %>
+    <%= render 'footer', f: f %>
 <% end %>

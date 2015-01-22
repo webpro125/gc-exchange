@@ -1,5 +1,7 @@
 <%= simple_form_for @form, url: consultant_upload_images_path,
                     method: :post do |f| %>
+    <%= render 'shared/base_error', model: @form %>
+
     <%= f.input :profile_image,
                 as: :file,
                 input_html: { accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}" }%>

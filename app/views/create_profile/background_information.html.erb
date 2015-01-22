@@ -4,6 +4,7 @@
     <div class="row">
       <div class="large-12 columns">
         <%= f.error_notification %>
+        <%= render 'shared/base_error', model: @form %>
       </div>
     </div>
     <div id="bgquestions">
@@ -45,5 +46,5 @@
           </div>
       <% end %>
     </div>
-    <%= render 'footer',f: f %>
+    <%= render 'footer', f: f %>
 <% end %>
