@@ -21,18 +21,19 @@
         (“Effective Date”) by and between Global Consultant Exchange Services, LLC, a District of
         Columbia limited liability company, with offices located at 4849 Alberta Falls Way,
         Colorado Springs, CO 80924 (“GCES”), and</p>
-        <div class="row">
-          <div class="medium-4 columns"><%= f.input :first_name %></div>
-          <div class="medium-4 columns"><%= f.input :last_name %></div>
-          <div class="medium-4 columns"><p>with offices located at</p></div>
-        </div>
-        <div class="row">
-           <%= f.simple_fields_for :address do |a| %>
-              <div class="medium-8 columns"><%= a.input :address %></div>
-          <% end %>
-          <div class="medium-4 columns"><p>(“Consultant”).</p></div>
-        </div>
-        <br>
+
+      <div class="row">
+        <div class="medium-4 columns"><%= f.input :first_name %></div>
+        <div class="medium-4 columns"><%= f.input :last_name %></div>
+        <div class="medium-4 columns"><p>with offices located at</p></div>
+      </div>
+      <div class="row">
+        <%= f.simple_fields_for :address do |a| %>
+            <div class="medium-8 columns"><%= a.input :address, hint: false %></div>
+        <% end %>
+        <div class="medium-4 columns"><p>(“Consultant”).</p></div>
+      </div>
+      <br>
 
 
       <p>WHEREAS, GCES wishes to contract with Consultant to assist its clients in business
@@ -59,11 +60,12 @@
         <li><strong>COMPENSATION &amp; PAYMENT</strong>
           <ol>
             <li>As consideration for the Services rendered hereunder, and upon the submission of
-              monthly invoices, GCES shall pay Consultant at the rate set forth in the Statement of
-              Work at Attachment 1 for such Services as are actually rendered by Consultant and
-              accepted by GCES and its clients. In no event shall Consultant perform, or receive
-              compensation for additional services not set forth in the Statement of Work without a
-              formal, bilateral modification to the Statement of Work encompassing such services;
+              monthly invoices, GCES shall pay Consultant for such Services as are actually rendered
+              by Consultant and accepted by GCES and its clients at rates set forth in clients’
+              purchase order(s), such rates having been negotiated between Consultant and client(s).
+              In no event shall Consultant perform, or receive compensation for additional services
+              not set forth in the Statement of Work without a formal, bilateral modification to the
+              Statement of Work encompassing such services.
             </li>
             <li>GCES shall reimburse Consultant for reasonable and necessary out-of-pocket travel
               and other miscellaneous expenses relating to this Agreement and incurred at the
@@ -688,13 +690,13 @@
             Period of performance is specified in individual GCES client purchase orders.
           </li>
           <li><strong>COST AND PRICES</strong><br>
-            Consultant shall be paid <%= render 'shared/rate', f: f %> per hour
-            for rendered Services. Services will be charged on an hourly basis, as actually
-            performed. Unless specifically approved by GCES in advance, this rate shall not be
-            varied by virtue of Consultant having performed work in excess of forty (40) hours
-            per week. Other Direct Charges (ODCs) are limited to travel expenses and conference
-            fees incurred at the specific direction of GCES clients. Travel expenses shall not
-            exceed that which is authorized by GCES clients for its employees.
+            Consultant shall be paid for rendered Services at rates negotiated between Consultant
+            and GCES clients. Services will be charged on an hourly basis, as actually performed.
+            Unless specifically approved by GCES in advance, this rate shall not be varied by virtue
+            of Consultant having performed work in excess of forty (40) hours per week. Other Direct
+            Charges (ODCs) are limited to travel expenses and conference fees incurred at the
+            specific direction of GCES clients. Travel expenses shall not exceed that which is
+            authorized by GCES clients for its employees.
           </li>
           <li><strong>REPORTING</strong>
             <ol>
