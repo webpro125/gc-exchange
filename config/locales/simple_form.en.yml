@@ -66,7 +66,7 @@ en:
         service_end_date: 'End of Service Date'
       project_history:
         position_ids: 'Position(s) on Project'
-        customer_name_id: 'Government Agency'
+        customer_name_id: 'Government Department'
         client_poc_name: 'Reference Name'
         client_poc_email: 'Reference Email'
         project_type: 'Functional Area of Focus'
@@ -78,7 +78,7 @@ en:
       search:
         position_ids: 'Position'
         q: 'Keywords'
-        customer_name_ids: 'Government Agency'
+        customer_name_ids: 'Government Department'
         project_type_ids: 'Functional Area of Focus'
         clearance_level_id: 'Clearance Level'
         address: 'Location'
