@@ -116,12 +116,4 @@ describe ProjectHistoryForm do
   describe 'project_type_id' do
     it { should validate_presence_of(:project_type_id) }
   end
-
-  describe 'phone' do
-    describe 'phone_type_id' do
-      it 'should validate presence' do
-        expect(subject.phone).to validate_presence_of(:phone_type_id)
-      end
-    end
-  end
 end

@@ -17,11 +17,6 @@ describe Phone do
       @phone.valid?
       expect(@phone.number).to eq('123-867-5309')
     end
-
-    it 'should not accept text' do
-      @phone.number = 'test'
-      expect(@phone).to_not be_valid
-    end
   end
 
   describe 'associations' do
