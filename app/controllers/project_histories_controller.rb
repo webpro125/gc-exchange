@@ -22,6 +22,7 @@ class ProjectHistoriesController < ConsultantController
   # POST /projects
   def create
     project = current_consultant.project_histories.build
+    project.build_phone
     authorize project
 
     @form = ProjectHistoryForm.new(project)
@@ -65,6 +66,10 @@ class ProjectHistoriesController < ConsultantController
 
   # Only allow a trusted parameter "white list" through.
   def project_params
+    if params[:project_history] && params[:project_history][:position_ids]
+      params[:project_history][:position_ids].reject!(&:empty?)
+    end
+
     params.require(:project_history)
   end
 end

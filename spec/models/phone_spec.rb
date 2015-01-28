@@ -24,18 +24,6 @@ describe Phone do
     end
   end
 
-  describe 'phoneable' do
-    it 'phoneable_id is required' do
-      @phone.phoneable_id = nil
-      expect(@phone).to_not be_valid
-    end
-
-    it 'phoneable_type is required' do
-      @phone.phoneable_type = nil
-      expect(@phone).to_not be_valid
-    end
-  end
-
   describe 'associations' do
     describe 'phone_type' do
       it 'should not be destroyed' do

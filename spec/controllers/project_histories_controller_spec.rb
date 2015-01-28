@@ -4,15 +4,17 @@ describe ProjectHistoriesController do
   let!(:project_type) { FactoryGirl.create(:project_type) }
   let(:consultant) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
   let(:position) { FactoryGirl.create(:position) }
+  let(:phone) { FactoryGirl.attributes_for(:phone, phone_type_id: PhoneType.first.id) }
   let(:project_history_positions) do
     FactoryGirl.attributes_for(:project_history_position, position_id: position.id)
   end
 
   let(:valid_attributes) do
     FactoryGirl.attributes_for(:project_history,
-                               consultant: consultant,
-                               project_type_id: project_type.id,
-                               position_ids: [position.id])
+                               consultant:       consultant,
+                               project_type_id:  project_type.id,
+                               position_ids:     [position.id],
+                               phone_attributes: phone)
   end
 
   describe 'when logged in' do

@@ -35,12 +35,12 @@ class ProjectHistoryForm < Reform::Form
     property :phone_type_id, type: Integer
 
     validates :number,
-              presence: true,
+              allow_blank: true,
               format:   {
                 with:    RegexConstants::Phone::PHONE_NUMBER,
                 message: I18n.t('activerecord.errors.messages.regex.phone')
               }
 
-    validates :phone_type_id, presence: true
+    validates :phone_type_id, presence: true, unless: ->() { number.empty? }
   end
 end

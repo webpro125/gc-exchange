@@ -5,16 +5,17 @@ describe ProjectHistoryForm do
 
   subject do
     ProjectHistoryForm.new(
-      ProjectHistory.new(consultant: consultant,
-                         customer_name: FactoryGirl.create(:customer_name),
-                         client_company: 'Client company',
-                         client_poc_name: 'POC Name',
+      ProjectHistory.new(consultant:       consultant,
+                         customer_name:    FactoryGirl.create(:customer_name),
+                         client_company:   'Client company',
+                         client_poc_name:  'POC Name',
                          client_poc_email: 'poc@email.com',
-                         start_date: 2.years.ago,
-                         end_date: 1.year.ago,
-                         project_type: FactoryGirl.create(:project_type),
-                         positions: FactoryGirl.create_list(:position, 2),
-                         description: 'A short little quip of a description'))
+                         start_date:       2.years.ago,
+                         end_date:         1.year.ago,
+                         project_type:     FactoryGirl.create(:project_type),
+                         positions:        FactoryGirl.create_list(:position, 2),
+                         description:      'A short little quip of a description',
+                         phone:            FactoryGirl.build(:phone)))
   end
 
   describe 'client_company' do
@@ -117,12 +118,6 @@ describe ProjectHistoryForm do
   end
 
   describe 'phone' do
-    describe 'number' do
-      it 'should validate presence' do
-        expect(subject.phone).to validate_presence_of(:number)
-      end
-    end
-
     describe 'phone_type_id' do
       it 'should validate presence' do
         expect(subject.phone).to validate_presence_of(:phone_type_id)
