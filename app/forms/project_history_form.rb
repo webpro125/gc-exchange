@@ -27,4 +27,20 @@ class ProjectHistoryForm < Reform::Form
   validates :client_poc_email, length: { in: 3..128 }, presence: true,
             format: { with: RegexConstants::EMAIL,
                       message: I18n.t('activerecord.errors.messages.regex.email') }
+
+  property :phone, populate_if_empty: Phone do
+    model :phone
+
+    property :number
+    property :phone_type_id, type: Integer
+
+    validates :number,
+              presence: true,
+              format:   {
+                with:    RegexConstants::Phone::PHONE_NUMBER,
+                message: I18n.t('activerecord.errors.messages.regex.phone')
+              }
+
+    validates :phone_type_id, presence: true
+  end
 end

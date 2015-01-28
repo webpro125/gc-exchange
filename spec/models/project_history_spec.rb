@@ -24,6 +24,8 @@ describe ProjectHistory do
 
   it { should be_valid }
 
+  it { should have_one(:phone).dependent(:destroy) }
+
   describe 'association' do
     describe 'consultant' do
       before do

@@ -9,6 +9,7 @@ class ProjectHistoriesController < ConsultantController
   # GET /projects/new
   def new
     project = current_consultant.project_histories.build
+    project.build_phone unless project.phone
     authorize project
 
     @form = ProjectHistoryForm.new(project)
@@ -56,6 +57,7 @@ class ProjectHistoriesController < ConsultantController
   # Use callbacks to share common setup or constraints between actions.
   def set_project
     @project = ProjectHistory.find(params[:id])
+    @project.build_phone unless @project.phone
     authorize @project
 
     @form = ProjectHistoryForm.new(@project)
