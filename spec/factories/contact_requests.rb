@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :contact_request do
     consultant
-    company
+    user
     approved true
     project_start
     project_end
+    message { Faker::Lorem.characters(256) }
 
   end
 end

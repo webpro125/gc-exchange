@@ -39,6 +39,7 @@ describe Consultant do
   it { should respond_to(:rejected?) }
   it { should respond_to(:in_progress?) }
   it { should respond_to(:pending_approval?) }
+  it { should have_many(:contact_requests) }
 
   describe 'resume' do
     before do

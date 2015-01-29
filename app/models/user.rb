@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :confirmable, :timeoutable
 
   belongs_to :company
+  has_many :contact_requests, dependent: :destroy
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 
   before_validation :company_present
@@ -33,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def mailboxer_email(_object)
-    "#{email}"
+    email
   end
 
   def full_name

@@ -61,7 +61,7 @@ class Consultant < ActiveRecord::Base
   validates :consultant_skills, length: { maximum: 20 }
 
   def mailboxer_email(_object)
-    "#{email}"
+    email
   end
 
   def full_name

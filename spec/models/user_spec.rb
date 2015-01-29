@@ -13,6 +13,7 @@ describe User do
   end
 
   it { should be_valid }
+  it { should have_many(:contact_requests) }
 
   describe 'first_name' do
     it { expect(subject).to validate_presence_of(:first_name) }

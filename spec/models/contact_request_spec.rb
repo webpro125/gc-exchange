@@ -2,18 +2,21 @@ require 'spec_helper'
 
 describe ContactRequest do
   let!(:consultant) { FactoryGirl.create(:confirmed_consultant, :approved) }
-  let!(:company) { FactoryGirl.create(:company, :with_owner) }
+  let!(:user) { FactoryGirl.create(:user, :with_company) }
 
   subject do
     ContactRequest.new(
       consultant: consultant,
-      company: company,
+      user: user,
       project_start: 1.month.ago,
-      project_end: 2.months.from_now
+      project_end: 2.months.from_now,
+      message: 'Test message'
     )
   end
 
   it { should be_valid }
+  it { should belong_to(:consultant) }
+  it { should belong_to(:user) }
 
   describe 'association' do
     describe 'consultant' do
@@ -29,16 +32,16 @@ describe ContactRequest do
       end
     end
 
-    describe 'company' do
+    describe 'user' do
       before do
         subject.save!
       end
 
       it 'should not be destroyed on delete' do
-        company_id = subject.company_id
+        user_id = subject.user_id
 
         subject.destroy
-        expect(Company.find_by_id(company_id)).not_to be_nil
+        expect(User.find_by_id(user_id)).not_to be_nil
       end
     end
   end

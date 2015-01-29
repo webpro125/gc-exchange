@@ -140,16 +140,17 @@ ActiveRecord::Schema.define(version: 20150128165840) do
 
   create_table "contact_requests", force: true do |t|
     t.integer  "consultant_id", null: false
-    t.integer  "company_id",    null: false
+    t.integer  "user_id",       null: false
     t.boolean  "approved"
     t.date     "project_start"
     t.date     "project_end"
+    t.text     "message",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contact_requests", ["company_id"], name: "index_contact_requests_on_company_id", using: :btree
   add_index "contact_requests", ["consultant_id"], name: "index_contact_requests_on_consultant_id", using: :btree
+  add_index "contact_requests", ["user_id"], name: "index_contact_requests_on_user_id", using: :btree
 
   create_table "customer_names", force: true do |t|
     t.string "code",  limit: 32,  null: false
