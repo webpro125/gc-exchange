@@ -29,8 +29,12 @@
                 <%= t('simple_form.labels.military.clearance_level') %>
               </td>
               <td>
-              <%= @consultant.military.clearance_level.label if @consultant.military
-                      .clearance_level %>
+                <%= if @consultant.military && @consultant.military.clearance_level
+                      @consultant.military.clearance_level.label
+                    else
+                      t('activerecord.models.attributes.clearance_level.none')
+                    end
+                %>
               </td>
             </tr>
           <% end %>
