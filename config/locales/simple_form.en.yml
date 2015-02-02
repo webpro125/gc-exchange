@@ -75,6 +75,7 @@ en:
         end_date: 'End Date'
         description: 'Description of Role Performed'
         client_company: 'Company'
+        client_poc_phone: 'Reference Phone'
       search:
         position_ids: 'Position'
         q: 'Keywords'

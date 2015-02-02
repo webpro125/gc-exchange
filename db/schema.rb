@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128165840) do
+ActiveRecord::Schema.define(version: 20150128195534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,13 +123,13 @@ ActiveRecord::Schema.define(version: 20150128165840) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                            default: 1,    null: false
     t.decimal  "rate",                                  precision: 8, scale: 2
-    t.text     "abstract"
-    t.string   "wizard_step"
     t.boolean  "willing_to_travel",                                             default: true
+    t.text     "abstract"
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
+    t.string   "wizard_step"
     t.datetime "contract_effective_date"
   end
 
@@ -262,8 +262,8 @@ ActiveRecord::Schema.define(version: 20150128165840) do
   create_table "phones", force: true do |t|
     t.integer  "phoneable_id"
     t.string   "phoneable_type"
-    t.integer  "phone_type_id",                             null: false
-    t.string   "number",         limit: 32,                 null: false
+    t.integer  "phone_type_id"
+    t.string   "number",         limit: 32
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "primary",                   default: false

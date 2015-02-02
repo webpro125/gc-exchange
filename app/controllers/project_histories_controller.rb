@@ -9,6 +9,7 @@ class ProjectHistoriesController < ConsultantController
   # GET /projects/new
   def new
     project = current_consultant.project_histories.build
+    project.build_phone unless project.phone
     authorize project
 
     @form = ProjectHistoryForm.new(project)
@@ -21,6 +22,7 @@ class ProjectHistoriesController < ConsultantController
   # POST /projects
   def create
     project = current_consultant.project_histories.build
+    project.build_phone
     authorize project
 
     @form = ProjectHistoryForm.new(project)
@@ -56,6 +58,7 @@ class ProjectHistoriesController < ConsultantController
   # Use callbacks to share common setup or constraints between actions.
   def set_project
     @project = ProjectHistory.find(params[:id])
+    @project.build_phone unless @project.phone
     authorize @project
 
     @form = ProjectHistoryForm.new(@project)
@@ -63,6 +66,10 @@ class ProjectHistoriesController < ConsultantController
 
   # Only allow a trusted parameter "white list" through.
   def project_params
+    if params[:project_history] && params[:project_history][:position_ids]
+      params[:project_history][:position_ids].reject!(&:empty?)
+    end
+
     params.require(:project_history)
   end
 end

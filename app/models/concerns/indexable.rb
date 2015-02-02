@@ -8,6 +8,7 @@ module Indexable
   private
 
   def update_consultant_index
-    ConsultantIndexer.perform_async(:update, consultant.id) if consultant.approved?
+    ConsultantIndexer.perform_async(:update, consultant.id) if consultant.approved? ||
+                                                               consultant.pending_approval?
   end
 end
