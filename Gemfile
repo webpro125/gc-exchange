@@ -33,7 +33,7 @@ gem 'mini_magick', '~> 4.0.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'google-webfonts-rails', '~> 0.0.4'
 gem 'cocoon', '~> 1.2.6'
-gem 'mailboxer'
+gem 'mailboxer', '~> 0.12.5'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
