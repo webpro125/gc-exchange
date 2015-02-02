@@ -74,27 +74,32 @@ class CreateProfileController < ConsultantController
     when :background_information
       generate_background_information
     when :project_history
-      @form = ProjectHistoryForm.new current_consultant.project_histories.build
+      generate_project_history
     when :contract
       @form = EditConsultantForm.new current_consultant
     end
   end
 
   def generate_other_information
-    current_consultant.phones.build unless current_consultant.phones.size > 0
     current_consultant.build_address unless current_consultant.address.present?
     current_consultant.build_military unless current_consultant.military.present?
     @form = OtherInformationForm.new current_consultant
   end
 
   def generate_qualifications_show
-    current_consultant.educations.build unless current_consultant.educations.size > 0
     @form = QualificationsForm.new current_consultant
   end
 
   def generate_background_information
     current_consultant.build_background unless current_consultant.background.present?
     @form = BackgroundInformationForm.new current_consultant
+  end
+
+  def generate_project_history
+    project = current_consultant.project_histories.build
+    project.build_phone
+
+    @form = ProjectHistoryForm.new project
   end
 
   def redirect_after_wizard

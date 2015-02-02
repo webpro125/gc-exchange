@@ -3,8 +3,8 @@ module ConsultantHelper
     current_user && current_user.gces?
   end
 
-  def consultant_owns_record?
+  def consultant_owns_record?(consultant)
     return unless current_consultant
-    current_consultant.id == @consultant.id
+    current_consultant == consultant
   end
 end

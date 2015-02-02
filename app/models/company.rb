@@ -3,7 +3,6 @@ class Company < ActiveRecord::Base
 
   belongs_to :owner, class_name: 'User', inverse_of: :owned_company, dependent: :delete
   has_many :users, dependent: :destroy
-
   accepts_nested_attributes_for :owner
 
   validates :company_name, length: { in: 2..512 }, presence: true

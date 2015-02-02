@@ -23,13 +23,14 @@ describe ConsultantHelper do
       end
 
       it 'should return true' do
-        helper.stub_chain(:current_consultant, :id).and_return(consultant.id)
-        expect(helper.consultant_owns_record?).to eq true
+        helper.stub_chain(:current_consultant).and_return(consultant)
+        expect(helper.consultant_owns_record?(consultant)).to eq true
       end
 
       it 'should return false' do
-        helper.stub_chain(:current_consultant, :id).and_return(consultant.id + 1)
-        expect(helper.consultant_owns_record?).to eq false
+        helper.stub_chain(:current_consultant).and_return(
+          FactoryGirl.create(:consultant, :approved))
+        expect(helper.consultant_owns_record?(consultant)).to eq false
       end
     end
   end

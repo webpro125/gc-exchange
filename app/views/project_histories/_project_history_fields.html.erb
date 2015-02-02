@@ -34,6 +34,8 @@
       <%= f.input :description, as: :text, input_html: { class: 'medium', cols: 5, rows: 10 } %>
     </div>
   </div>
+  <h4>Reference Information</h4>
+  <hr/>
   <div class="row">
     <div class="large-6 columns">
       <%= f.input :client_poc_name %>
@@ -42,4 +44,7 @@
       <%= f.input :client_poc_email %>
     </div>
   </div>
+  <%= f.simple_fields_for :phone do |p| %>
+      <%= render 'phones/phone_fields', f: p, delete_phone: false %>
+  <% end %>
 </div>

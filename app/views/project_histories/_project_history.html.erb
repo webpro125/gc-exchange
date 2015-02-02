@@ -10,7 +10,7 @@
         <span class="sep"> &ndash; </span>
           <%= project_history.customer_name.label if project_history.customer_name %><br>
           <span class="focus">
-            <%= t('simple_form.labels.project_history.project_type') %>: 
+            <%= t('simple_form.labels.project_history.project_type') %>:
             <%= project_history.project_type.label %>
           </span>
           <br>
@@ -19,16 +19,28 @@
           <%= date_to_formatted_s(project_history.end_date) || t('simple_form.now') %>
           (<%= date_in_words(project_history.start_date, project_history.end_date) %>)
         </span>
-        </p>  
+        </p>
         <% if user_is_gces? %>
           <div class="row">
-            <div class="small-12 columns">
+            <div class="small-6 columns">
               <%= t('simple_form.labels.project_history.client_poc_name') %>:
               <%= project_history.client_poc_name %>
+              </div>
+            <div class="small-6 columns">
               <%= t('simple_form.labels.project_history.client_poc_email') %>:
               <%= project_history.client_poc_email %>
             </div>
           </div>
+            <div class="row">
+              <div class="small-6 columns">
+                <%= t('simple_form.labels.project_history.client_poc_phone') %>:
+                <%= project_history.phone.number if project_history.phone.present? %>
+              </div>
+              <div class="small-6 columns">
+                <%= t('simple_form.labels.phone.phone_type') %>:
+                <%= project_history.phone.phone_type.label if project_history.phone.present? %>
+              </div>
+            </div>
         <% end %>
         <p class="desc"><%= project_history.description %></p>
       </div>
