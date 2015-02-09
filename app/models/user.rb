@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :timeoutable, :registerable
+         :confirmable, :timeoutable
 
   belongs_to :company
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
