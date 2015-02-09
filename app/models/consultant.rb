@@ -1,5 +1,5 @@
 class Consultant < ActiveRecord::Base
-  include Searchable
+  include Searchable, Nameable
   acts_as_messageable
 
   RESUME_MIME_TYPES = ['application/pdf']
@@ -62,10 +62,6 @@ class Consultant < ActiveRecord::Base
 
   def mailboxer_email(_object)
     email
-  end
-
-  def full_name
-    "#{first_name} #{last_name}"
   end
 
   def approved?

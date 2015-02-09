@@ -1,0 +1,9 @@
+<h1>Corporate Dashboard</h1>
+<div class="row">
+  <div class="medium-7 columns">
+    <%= render 'shared/inbox', messages: @messages %>
+  </div>
+  <div class="medium-5 columns">
+    <%= render 'shared/recent_consultants', consultants: @consultants %>
+  </div>
+</div>
