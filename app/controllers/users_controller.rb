@@ -5,7 +5,7 @@ class UsersController < CompanyController
 
   def profile
     @messages = current_user.contact_requests.page(params[:page])
-    @consultants = Consultant.approved.limit(3).order(:created_at)
+    @consultants = Consultant.approved.limit(3).order(created_at: :desc)
   end
 
   def index
