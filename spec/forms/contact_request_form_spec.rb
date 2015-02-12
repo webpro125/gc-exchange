@@ -9,10 +9,9 @@ describe ContactRequestForm do
       ContactRequest.new(
         consultant: consultant,
         user: user,
+        message: 'Test message',
         project_start: 1.month.from_now,
-        project_end: 2.months.from_now,
-        message: 'Test message'
-      ))
+        project_end: 2.months.from_now))
   end
 
   it { should be_valid }
@@ -53,5 +52,9 @@ describe ContactRequestForm do
       subject.project_end = subject.project_start
       expect(subject).to be_valid
     end
+  end
+
+  describe 'status' do
+
   end
 end

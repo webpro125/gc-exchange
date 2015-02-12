@@ -51,6 +51,13 @@ Rails.application.routes.draw do
       put :reject
     end
   end
+  resources :conversations, only: [:index, :show, :new, :create] do
+    member do
+      post :reply
+      # post :trash
+      # post :untrash
+    end
+  end
 
   # Non resource
 
