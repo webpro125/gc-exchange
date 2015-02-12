@@ -2,12 +2,16 @@ class ContactRequest < ActiveRecord::Base
   enum contact_status: [:pending, :approved, :rejected, :hired, :fired, :agreed_to_terms,
                         :rejected_terms]
 
+  scope :open, -> { pending }
+
+  before_save :generate_communication
+
   belongs_to :consultant, dependent: :destroy
   belongs_to :user, dependent: :destroy
   belongs_to :communication, class_name: 'Mailboxer::Conversation', inverse_of:
-                                        :contact_conversation, dependent: :delete
+                                         :contact_conversation, dependent: :delete
 
-  before_create :generate_communication
+  attr_accessor :message, :subject
 
   private
 

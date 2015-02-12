@@ -9,6 +9,7 @@ describe ContactRequestForm do
       ContactRequest.new(
         consultant: consultant,
         user: user,
+        subject: 'Test Subject',
         message: 'Test message',
         project_start: 1.month.from_now,
         project_end: 2.months.from_now))
@@ -17,8 +18,6 @@ describe ContactRequestForm do
   it { should be_valid }
 
   describe 'project_start' do
-    it { should validate_presence_of(:project_start) }
-
     it 'should be less than today' do
       subject.project_start = 5.minutes.ago
       expect(subject).to be_valid
@@ -54,7 +53,11 @@ describe ContactRequestForm do
     end
   end
 
-  describe 'status' do
+  describe 'message' do
+    it { should validate_presence_of(:message) }
+  end
 
+  describe 'subject' do
+    it { should validate_presence_of(:subject) }
   end
 end

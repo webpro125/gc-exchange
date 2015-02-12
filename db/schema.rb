@@ -144,7 +144,6 @@ ActiveRecord::Schema.define(version: 20150128195534) do
     t.integer  "communication_id",                                     null: false
     t.date     "project_start"
     t.date     "project_end"
-    t.text     "message",                                              null: false
     t.decimal  "project_rate",     precision: 8, scale: 2
     t.integer  "contact_status",                           default: 0
     t.datetime "created_at"

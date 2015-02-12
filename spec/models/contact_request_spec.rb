@@ -8,6 +8,7 @@ describe ContactRequest do
     ContactRequest.new(
       consultant: consultant,
       user: user,
+      subject: 'Test Subject',
       message: 'Test Messages',
       project_start: 1.month.ago,
       project_end: 2.months.from_now,
