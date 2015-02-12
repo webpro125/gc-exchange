@@ -83,9 +83,9 @@ describe ConsultantPolicy do
       it { should_not permit_action(:reject) }
       it { should_not permit_action(:edit) }
       it { should_not permit_action(:update) }
-      it { should_not permit_action(:show) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:upload_image) }
+      it { should permit_action(:show) }
     end
 
     describe 'for the consultant' do
@@ -122,9 +122,9 @@ describe ConsultantPolicy do
       it { should_not permit_action(:reject) }
       it { should_not permit_action(:edit) }
       it { should_not permit_action(:update) }
-      it { should_not permit_action(:show) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:upload_image) }
+      it { should  permit_action(:show) }
     end
 
     describe 'for a visitor' do
@@ -135,9 +135,9 @@ describe ConsultantPolicy do
       it { should_not permit_action(:reject) }
       it { should_not permit_action(:edit) }
       it { should_not permit_action(:update) }
-      it { should_not permit_action(:show) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:upload_image) }
+      it { should permit_action(:show) }
     end
   end
 
