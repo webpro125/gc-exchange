@@ -28,5 +28,5 @@
 
 <%= link_to 'New User', new_company_user_path(@company) %>
 <hr>
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to 'Edit', edit_company_path(@company) if policy(@company).edit? %> |
+<%= link_to 'Back', companies_path if policy(@company).new? %>

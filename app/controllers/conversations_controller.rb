@@ -31,12 +31,6 @@ class ConversationsController < ApplicationController
     redirect_to :conversations
   end
 
-  def contact_request
-    @contact_request = ContactRequest.new
-    @contact_request.build_communication
-    redirect_to consultant_path(@contact_request.consultant)
-  end
-
   private
 
   def mailbox

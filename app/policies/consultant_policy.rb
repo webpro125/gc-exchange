@@ -18,7 +18,7 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def show?
-    edit? || record.approved?
+    edit? || record.approved? || record.pending_approval?
   end
 
   def edit?
