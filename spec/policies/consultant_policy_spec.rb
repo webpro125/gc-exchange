@@ -124,7 +124,7 @@ describe ConsultantPolicy do
       it { should_not permit_action(:update) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:upload_image) }
-      it { should  permit_action(:show) }
+      it { should permit_action(:show) }
     end
 
     describe 'for a visitor' do
