@@ -21,7 +21,7 @@ class ProfilesController < ConsultantController
 
   def consultant
     @consultant = current_consultant
-    render :show
+    @messages = @consultant.contact_requests.open.page(params[:page])
   end
 
   private

@@ -12,7 +12,7 @@ describe ProfilesController do
     describe 'GET "consultant"' do
       it 'renders "consultant"' do
         get :consultant
-        expect(response).to render_template 'profiles/show'
+        expect(response).to render_template 'profiles/consultant'
       end
     end
 
