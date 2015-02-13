@@ -87,6 +87,13 @@
                       class: 'button small secondary download' %>
         </div>
       <% end %>
+      <% if policy(@consultant).show? %>
+          <div class="small-12 columns">
+            <%= link_to t('views.profile.actions.contact'),
+                        new_consultant_contact_request_path(@consultant.id),
+                        class: 'button small secondary download' %>
+          </div>
+      <% end %>
     </div>
     <div class="row">
       <div class="small-12 columns">
