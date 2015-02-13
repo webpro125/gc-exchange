@@ -25,8 +25,8 @@ class ContactStatusMailer < ActionMailer::Base
   end
 
   def mailer_objects(contact_request)
-    @contact_request = ContactRequest.find_by_id(contact_request)
-    @consultant = Consultant.find_by_id(@contact_request.consultant_id)
-    @user = User.find_by_id(@contact_request.user_id)
+    @contact_request = ContactRequest.find(contact_request)
+    @consultant = Consultant.find(@contact_request.consultant_id)
+    @user = User.find(@contact_request.user_id)
   end
 end
