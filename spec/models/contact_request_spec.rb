@@ -27,10 +27,10 @@ describe ContactRequest do
         subject.save!
       end
 
-      it 'should not be deleteed on delete' do
+      it 'should not be deleted on delete' do
         consultant_id = subject.consultant_id
 
-        subject.delete
+        subject.destroy
         expect(Consultant.find_by_id(consultant_id)).not_to be_nil
       end
     end
@@ -40,10 +40,10 @@ describe ContactRequest do
         subject.save!
       end
 
-      it 'should not be deleteed on delete' do
+      it 'should not be deleted on delete' do
         user_id = subject.user_id
 
-        subject.delete
+        subject.destroy
         expect(User.find_by_id(user_id)).not_to be_nil
       end
     end
@@ -53,11 +53,11 @@ describe ContactRequest do
         subject.save!
       end
 
-      it 'should not be deleteed on delete' do
+      it 'should be deleted on delete' do
         communication_id = subject.communication_id
 
-        subject.delete
-        expect(Mailboxer::Conversation.find_by_id(communication_id)).not_to be_nil
+        subject.destroy
+        expect(Mailboxer::Conversation.find_by_id(communication_id)).to be_nil
       end
     end
   end

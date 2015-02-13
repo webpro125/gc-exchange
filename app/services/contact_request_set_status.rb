@@ -3,29 +3,32 @@ class ContactRequestSetStatus
     @contact_request = contact_request
   end
 
-  def approve_and_save
+  def interested_and_save
     return false unless @contact_request.pending?
 
-    @contact_request.approved!
+    @contact_request.interested!
     @contact_request.save
   end
 
-  def reject_and_save
-    @contact_request.rejected!
+  def not_interested_and_save
+    return false unless @contact_request.pending? || @contact_request.interested? ||
+                        @contact_request.hired?
+
+    @contact_request.not_interested!
     @contact_request.save
   end
 
   def hire_and_save
-    return false unless @contact_request.approved?
+    return false unless @contact_request.interested? || @contact_request.rejected_terms?
 
     @contact_request.hired!
     @contact_request.save
   end
 
-  def fire_and_save
-    return false unless @contact_request.approved?
+  def not_pursuing_and_save
+    return false unless @contact_request.interested?
 
-    @contact_request.fired!
+    @contact_request.not_pursuing!
     @contact_request.save
   end
 
