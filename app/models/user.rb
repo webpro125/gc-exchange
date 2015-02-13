@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Nameable
+
   acts_as_messageable
 
   # Include default devise modules. Others available are:
@@ -35,10 +37,6 @@ class User < ActiveRecord::Base
 
   def mailboxer_email(_object)
     email
-  end
-
-  def full_name
-    "#{first_name} #{last_name}"
   end
 
   private
