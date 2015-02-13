@@ -6,16 +6,6 @@ class ConversationsController < ApplicationController
     @conversations ||= current_user.mailbox.inbox
   end
 
-  def create
-    recipient_emails = conversation_params(:recipients).split(',')
-    recipients = User.where(email: recipient_emails).all
-
-    conversation = current_user.send_message(
-      recipients, *conversation_params(:body, :subject)).conversation
-
-    redirect_to conversation_path(conversation)
-  end
-
   def reply
     current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
     redirect_to conversation_path(conversation)

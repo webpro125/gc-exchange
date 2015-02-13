@@ -52,16 +52,12 @@ Rails.application.routes.draw do
       put :reject
     end
   end
-  resources :conversations, only: [:index, :show, :new, :create] do
+  resources :conversations, only: [:index, :show, :new] do
     member do
-      # post :reply
-      # post :trash
-      # post :untrash
+      post :reply
+      post :trash
+      post :untrash
     end
-    # collection do
-    #   get :contact_request
-    # end
-
   end
   # resources :contact_requests, only: [:new, :create]
   # Non resource
