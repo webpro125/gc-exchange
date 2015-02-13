@@ -11,15 +11,14 @@ class ContactRequestSetStatus
   end
 
   def not_interested_and_save
-    return false unless @contact_request.pending? || @contact_request.interested? ||
-                        @contact_request.hired?
+    return false unless interestable?
 
     @contact_request.not_interested!
     @contact_request.save
   end
 
   def hire_and_save
-    return false unless @contact_request.interested? || @contact_request.rejected_terms?
+    return false unless hireable?
 
     @contact_request.hired!
     @contact_request.save
@@ -44,5 +43,14 @@ class ContactRequestSetStatus
 
     @contact_request.rejected_terms!
     @contact_request.save
+  end
+
+  def interestable?
+    @contact_request.pending? || @contact_request.interested? ||
+      @contact_request.hired?
+  end
+
+  def hireable?
+    @contact_request.interested? || @contact_request.rejected_terms?
   end
 end
