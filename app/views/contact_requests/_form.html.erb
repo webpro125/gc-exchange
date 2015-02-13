@@ -3,8 +3,6 @@
     <%= f.error_notification %>
     <%= render 'shared/base_error', model: @contact_request %>
 
-    <%= f.input :project_start %>
-    <%= f.input :project_end %>
     <%= f.input :subject %>
     <%= f.input :message, as: :text, input_html: {class: 'small', cols: 5, rows: 5} %>
 
