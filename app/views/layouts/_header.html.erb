@@ -16,18 +16,19 @@
 
     <section class="top-bar-section">
       <!-- Left Nav Section -->
-      <% unless consultant_signed_in? %>
-          <ul class="left">
-            <% if development? %>
-                <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
-            <% end %>
+      <ul class="left">
+        <li><%= link_to 'Home' %></li>
+        <% if development? %>
+            <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
+        <% end %>
+        <% unless consultant_signed_in? %>
             <li class="has-form">
               <div class="row collapse">
                 <%= render 'layouts/search' %>
               </div>
             </li>
-          </ul>
-      <% end %>
+        <% end %>
+      </ul>
 
       <!-- Right Nav Section -->
       <ul class="right">
