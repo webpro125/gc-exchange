@@ -4,7 +4,7 @@ class UsersController < CompanyController
   skip_after_action :verify_authorized, only: :profile
 
   def profile
-    @messages = current_user.contact_requests.page(params[:page])
+    @messages = current_user.contact_requests.open.page(params[:page])
     @consultants = Consultant.approved.limit(3).order(created_at: :desc)
   end
 

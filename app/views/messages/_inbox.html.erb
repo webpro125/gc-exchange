@@ -1,0 +1,18 @@
+<% messages.each do |message| %>
+    <div class="row">
+      <div class="medium-8 columns">
+        <% com = message.communication %>
+
+        <h5>
+          <%= message.user.full_name if consultant_signed_in? %>
+          <%= message.consultant.full_name if user_signed_in? %>
+        </h5>
+        <%= com.subject %>
+        <%= truncate com.messages.last.body, length: 25 %>
+      </div>
+      <div class="medium-4 columns">
+        <%= com.updated_at.strftime("%B %d") %>
+      </div>
+    </div>
+<% end %>
+<%= paginate messages %>
