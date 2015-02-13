@@ -15,6 +15,8 @@ class ContactRequestSetStatus
 
     @contact_request.not_interested!
     @contact_request.save
+    ContactStatusMailer.consultant_not_interested(@contact_request.id).deliver
+    true
   end
 
   def hire_and_save
@@ -29,6 +31,8 @@ class ContactRequestSetStatus
 
     @contact_request.not_pursuing!
     @contact_request.save
+    ContactStatusMailer.company_not_pursuing(@contact_request.id).deliver
+    true
   end
 
   def agree_to_terms_and_save
@@ -36,6 +40,8 @@ class ContactRequestSetStatus
 
     @contact_request.agreed_to_terms!
     @contact_request.save
+    ContactStatusMailer.consultant_agreed_to_terms(@contact_request.id).deliver
+    true
   end
 
   def reject_terms_and_save
@@ -43,6 +49,8 @@ class ContactRequestSetStatus
 
     @contact_request.rejected_terms!
     @contact_request.save
+    ContactStatusMailer.consultant_rejected_terms(@contact_request.id).deliver
+    true
   end
 
   def interestable?

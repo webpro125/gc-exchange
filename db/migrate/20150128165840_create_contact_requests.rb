@@ -8,6 +8,8 @@ class CreateContactRequests < ActiveRecord::Migration
       t.date :project_end
       t.decimal :project_rate, precision: 8, scale: 2
       t.integer :contact_status,          default: 0
+      t.string :project_name, limit: 128
+      t.text :project_location, limit: 500
 
       t.timestamps
     end
