@@ -1,0 +1,30 @@
+<% messages.each do |message| %>
+    <div class="row">
+      <div class="medium-8 columns">
+        <% com = message.communication %>
+        <h5>
+          <%= message.user.full_name if consultant_signed_in? %>
+          <% if user_signed_in? %>
+              <%= link_to consultant_path(message.consultant) do %>
+                  <%= image_tag(message.consultant.profile_image.url(:thumb),
+                                class: 'th profile-thumb-mini') %>
+                  <%= message.consultant.full_name %>
+              <% end %>
+          <% end %>
+        </h5>
+        <h6>
+          <%= link_to com.subject, conversation_path(message) %>
+        </h6>
+
+        <p>
+          <%= link_to truncate(com.messages.last.body, length: 25), conversation_path(message) %>
+        </p>
+      </div>
+      <div class="medium-4 columns">
+        <p class="right">
+          <%= com.updated_at.strftime("%B %d") %>
+        </p>
+      </div>
+    </div>
+<% end %>
+<%= paginate messages %>
