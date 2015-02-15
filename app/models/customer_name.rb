@@ -20,7 +20,7 @@ class CustomerName < ActiveRecord::Base
   OMB = { code: 'OMB', label: 'Office of Management and Budget' }
   EPA = { code: 'EPA', label: 'Environmental Protection Agency' }
   SBA = { code: 'SBA', label: 'Small Business Administration' }
-  JCOS = { code: 'JCOS', label: 'Join Chiefs of Staff' }
+  JCOS = { code: 'JCOS', label: 'Joint Chiefs of Staff' }
   ARMY = { code: 'ARMY', label: 'United States Army' }
   NAVY = { code: 'NAVY', label: 'United States Navy' }
   AIRFORCE = { code: 'AIRFORCE', label: 'United States Air Force' }
