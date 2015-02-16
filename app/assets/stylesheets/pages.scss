@@ -103,27 +103,82 @@ h5 {
       font-weight: 800;
       font-style: italic;
       color: $jet;
+      margin-top: 2rem;
+      font-size: 2rem;
     }
   }
 }
+.row.action {
+  max-width: 100%;
+  background: image-url('bg-home.png');
+  background-size: cover;
 
+  .learnmore {
+    color: $yellow;
+    text-decoration: underline;
+    font-size: 1.3rem;
+    font-weight: 800;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    margin-left: -69px;
+  }
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+      margin: 0 auto;
+    }
+  }
+
+  h2 {
+    color: $white;
+    font-weight: 800;
+    font-size: 1.3rem;
+    line-height: 1.9rem;
+  }
+  .brown, .blue {
+    min-height: 300px;
+    padding: 2rem 1.9rem;
+    text-align: center;
+  }
+}
 .row.coming {
-  background: scale-color($gces-blue, $lightness: 80%);
+  background: scale-color($light-blue, $lightness: 70%);
   max-width: 100%;
   padding: 1rem 0;
 
   .tablehead {
-    background: scale-color($gces-blue, $lightness: 60%);
-    border: 1px solid scale-color($gces-blue, $lightness: 60%);
+    background: $light-blue;
+    border: 1px solid $light-blue;
     text-align: center;
     h4 {
       color: $white;
       font-weight: 600;
+
+      .soon {
+        background: scale-color($light-blue, $lightness: -50%);
+        color: #FFF;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        display: inline-block;
+        margin-left: 10px;
+        border-radius: $global-radius;
+      }
     }
   }
   .tablebody {
-    border: 1px solid scale-color($gces-blue, $lightness: 60%);
+    border: 1px solid $light-blue;
     padding: 1rem 0;
+
+    ul {
+      li {
+        line-height: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+    }
 
     p {
       line-height: 1.2rem;
@@ -141,7 +196,7 @@ h5 {
 }
 
 .row.options {
-  background: scale-color($gces-blue, $lightness: 80%);
+  background: $light-blue;
   max-width: 100%;
   padding: 1rem 0;
   text-align: center;
