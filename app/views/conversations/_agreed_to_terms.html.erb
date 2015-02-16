@@ -1,0 +1,29 @@
+<div class="medium-12 columns">
+  <% if consultant_signed_in? %>
+      <div class="panel">
+        <div class="row">
+          <div class="medium-12 columns">
+            <p>
+              You've agreed to the project terms. GCES will coordinate the terms for the engagement.
+            </p>
+
+            <%= render 'conversations/hired_terms' %>
+          </div>
+        </div>
+      </div>
+  <% else %>
+      <div class="panel">
+        <div class="row">
+          <div class="medium-12 columns">
+
+            <p>
+              The consultant has agreed to the project terms. GCES will coordinate the terms for
+              the engagement.
+            </p>
+
+            <%= render 'conversations/hired_terms' %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>

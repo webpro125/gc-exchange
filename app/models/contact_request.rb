@@ -14,12 +14,20 @@ class ContactRequest < ActiveRecord::Base
 
   before_create :generate_communication
 
-  has_one :travel_authorization
+  belongs_to :travel_authorization
   belongs_to :consultant
   belongs_to :user
   belongs_to :communication, class_name: 'Mailboxer::Conversation', dependent: :destroy
 
   attr_accessor :message, :subject
+
+  def open?
+    pending? || can_reply?
+  end
+
+  def can_reply?
+    interested? || hired? || rejected_terms?
+  end
 
   private
 

@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
   end
 
   def interested
-    contact_request.assign_attributes(*message_params(:message))
+    contact_request.assign_attributes(message_params(:message))
 
     if ContactRequestSetStatus.new(contact_request).interested_and_save
       redirect_to conversation_path contact_request
@@ -22,6 +22,8 @@ class ConversationsController < ApplicationController
   end
 
   def not_interested
+    contact_request.assign_attributes(message_params(:message))
+
     if ContactRequestSetStatus.new(contact_request).not_interested_and_save
       redirect_to conversations_path
     else
@@ -30,34 +32,48 @@ class ConversationsController < ApplicationController
   end
 
   def not_pursuing
-    # TODO: not persuing
+    contact_request.assign_attributes(message_params(:message))
+
+    if ContactRequestSetStatus.new(contact_request).not_pursuing_and_save
+      redirect_to conversation_path contact_request
+    else
+      render :show
+    end
   end
 
   def hire
-    # TODO: hire
+    contact_request.assign_attributes(message_params(:message, :project_start, :project_end,
+                                                     :project_rate, :project_name,
+                                                     :project_location, :travel_authorization_id))
+
+    if ContactRequestSetStatus.new(contact_request).hire_and_save
+      redirect_to conversation_path contact_request
+    else
+      render :show
+    end
   end
 
   def agree_to_terms
-    # TODO: agree_to_terms
+    if ContactRequestSetStatus.new(contact_request).agree_to_terms_and_save
+      redirect_to conversation_path contact_request
+    else
+      render :show
+    end
   end
 
   def reject_terms
-    # TODO: reject_terms
+    contact_request.assign_attributes(message_params(:message))
+
+    if ContactRequestSetStatus.new(contact_request).reject_terms_and_save
+      redirect_to conversation_path contact_request
+    else
+      render :show
+    end
   end
 
   def reply
-    pundit_user.reply_to_conversation(conversation, *message_params(:body))
-    redirect_to conversation_path(conversation)
-  end
-
-  def trash
-    conversation.move_to_trash(pundit_user)
-    redirect_to :conversations
-  end
-
-  def untrash
-    conversation.untrash(pundit_user)
-    redirect_to :conversations
+    pundit_user.reply_to_conversation(conversation, message_params(:message)[:message])
+    redirect_to conversation_path(contact_request)
   end
 
   private
@@ -68,31 +84,17 @@ class ConversationsController < ApplicationController
 
   def contact_request
     @contact_request ||= pundit_user.contact_requests.find(params[:id])
+
+    authorize @contact_request
+    @contact_request
   end
 
   def conversation
-    contact_request.conversation
-  end
-
-  def conversation_params(*keys)
-    fetch_params(:conversation, *keys)
+    contact_request.communication
   end
 
   def message_params(*keys)
-    fetch_params(:message, *keys)
-  end
-
-  def fetch_params(key, *subkeys)
-    params[key].instance_eval do
-      case subkeys.size
-      when 0 then
-        self
-      when 1 then
-        self[subkeys.first]
-      else
-        subkeys.map { |k| self[k] }
-      end
-    end
+    params.require(:contact_request).permit(keys)
   end
 
   def auth_a_user!

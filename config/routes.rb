@@ -55,8 +55,6 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :show] do
     member do
       post :reply
-      post :trash
-      post :untrash
       post :interested
       post :not_interested
       post :not_pursuing
