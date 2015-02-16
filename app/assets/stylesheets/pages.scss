@@ -1,5 +1,14 @@
 @import "variables";
 
+.one-fifth {
+  width: 20%;
+  p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+  }
+}
+
 h2 {
   i {
     font-size: 2rem;
@@ -85,22 +94,79 @@ h5 {
   }
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: 0.75em;
     line-height: 1.3em;
     font-weight: 600;
 
     &.intro {
-      font-weight: 300;
+      font-weight: 800;
+      font-style: italic;
       color: $jet;
     }
   }
 }
 
+.row.coming {
+  background: scale-color($gces-blue, $lightness: 80%);
+  max-width: 100%;
+  padding: 1rem 0;
+
+  .tablehead {
+    background: scale-color($gces-blue, $lightness: 60%);
+    border: 1px solid scale-color($gces-blue, $lightness: 60%);
+    text-align: center;
+    h4 {
+      color: $white;
+      font-weight: 600;
+    }
+  }
+  .tablebody {
+    border: 1px solid scale-color($gces-blue, $lightness: 60%);
+    padding: 1rem 0;
+
+    p {
+      line-height: 1.2rem;
+      text-align: right;
+    }
+  }
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+      margin: 0 auto;
+    }
+  }
+
+}
+
+.row.options {
+  background: scale-color($gces-blue, $lightness: 80%);
+  max-width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+
+  a.button {
+    margin: 0;
+  }
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+      margin: 0 auto;
+    }
+  }
+
+}
+
 #one {
   text-align: center;
-  background: image-url("homepagebg.jpg") 50% bottom no-repeat;
-  background-size: cover;
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+    }
+  }
 
   ul {
     margin: 0 auto;
@@ -206,14 +272,6 @@ h5 {
 
 }
 
-#two {
-  background: image-url("companybg.jpg") 50% bottom no-repeat;
-  background-size: cover;
-}
-#three {
-  background: image-url("consultantbg.jpg") 50% bottom no-repeat;
-  background-size: cover;
-}
 /*** TOS ***/
 ol, ol li {
   font-size: rem-calc(13);
