@@ -14,6 +14,17 @@
   </div>
   <%= simple_form_for @form, url: create_profile_path(:contract), method: :put do |f| %>
       <%= render 'shared/base_error', model: @form %>
+
+      <div class="panel">
+        <p>
+          NOTE: If you wish to register and contract with GCES as a corporate entity, and not as a
+          sole proprietor, please execute the following Agreement and contact the GCES General Manager
+          at <%= mail_to 'barrie.gillis@globalconsultexchange.com' %>. He will amend the Agreement
+          to specify your corporate identity.
+        </p>
+
+      </div>
+
       <h2>Independent Contractor
         Agreement<a name="contract" data-magellan-destination="contract"></a></h2>
 
@@ -22,18 +33,19 @@
         (“Effective Date”) by and between Global Consultant Exchange Services, LLC, a District of
         Columbia limited liability company, with offices located at 4849 Alberta Falls Way,
         Colorado Springs, CO 80924 (“GCES”), and</p>
-        <div class="row">
-          <div class="medium-4 columns"><%= f.input :first_name %></div>
-          <div class="medium-4 columns"><%= f.input :last_name %></div>
-          <div class="medium-4 columns"><p>with offices located at</p></div>
-        </div>
-        <div class="row">
-           <%= f.simple_fields_for :address do |a| %>
-              <div class="medium-8 columns"><%= a.input :address %></div>
-          <% end %>
-          <div class="medium-4 columns"><p>(“Consultant”).</p></div>
-        </div>
-        <br>
+
+      <div class="row">
+        <div class="medium-4 columns"><%= f.input :first_name %></div>
+        <div class="medium-4 columns"><%= f.input :last_name %></div>
+        <div class="medium-4 columns"><p>with offices located at</p></div>
+      </div>
+      <div class="row">
+        <%= f.simple_fields_for :address do |a| %>
+            <div class="medium-8 columns"><%= a.input :address %></div>
+        <% end %>
+        <div class="medium-4 columns"><p>(“Consultant”).</p></div>
+      </div>
+      <br>
 
       <div class="row">
         <div class="medium-4 columns"><%= f.input :first_name %></div>
