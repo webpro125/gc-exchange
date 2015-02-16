@@ -14,8 +14,8 @@ describe ContactRequestSetStatus do
         expect(subject.interested_and_save).to eq true
       end
 
-      it 'calls save' do
-        expect_any_instance_of(ContactRequest).to receive(:save)
+      it 'calls interested' do
+        expect_any_instance_of(ContactRequest).to receive(:interested!)
         subject.interested_and_save
       end
 

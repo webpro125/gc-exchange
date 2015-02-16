@@ -14,11 +14,6 @@ class ContactStatusMailer < ActionMailer::Base
     mail(subject: 'Consultant agreed to terms', to: @user.email)
   end
 
-  def consultant_not_interested(contact_request)
-    mailer_objects(contact_request)
-    mail(subject: 'Consultant is not interested', to: @user.email)
-  end
-
   def consultant_rejected_terms(contact_request)
     mailer_objects(contact_request)
     mail(subject: 'Consultant rejected terms', to: @user.email)
