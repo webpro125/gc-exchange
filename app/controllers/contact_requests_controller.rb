@@ -19,6 +19,10 @@ class ContactRequestsController < ConversationsController
     end
   end
 
+  def reply
+    @contact_request
+  end
+
   private
 
   def load_consultant
