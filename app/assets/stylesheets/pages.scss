@@ -103,18 +103,20 @@ h5 {
       font-weight: 800;
       font-style: italic;
       color: $jet;
+      margin-top: 2rem;
+      font-size: 2rem;
     }
   }
 }
 
 .row.coming {
-  background: scale-color($gces-blue, $lightness: 80%);
+  background: scale-color($light-blue, $lightness: 70%);
   max-width: 100%;
   padding: 1rem 0;
 
   .tablehead {
-    background: scale-color($gces-blue, $lightness: 60%);
-    border: 1px solid scale-color($gces-blue, $lightness: 60%);
+    background: $light-blue;
+    border: 1px solid $light-blue;
     text-align: center;
     h4 {
       color: $white;
@@ -122,8 +124,15 @@ h5 {
     }
   }
   .tablebody {
-    border: 1px solid scale-color($gces-blue, $lightness: 60%);
+    border: 1px solid $light-blue;
     padding: 1rem 0;
+
+    ul {
+      li {
+        line-height: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+    }
 
     p {
       line-height: 1.2rem;
@@ -141,7 +150,7 @@ h5 {
 }
 
 .row.options {
-  background: scale-color($gces-blue, $lightness: 80%);
+  background: $light-blue;
   max-width: 100%;
   padding: 1rem 0;
   text-align: center;
