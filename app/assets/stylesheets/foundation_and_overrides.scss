@@ -122,8 +122,8 @@ $tuatara     	: #404750;
 $oil         	: #324046;
 $jet         	: #273634;
 $black       	: #1c2b32;
-$gces-blue		: #2A5E89;
-$gces-red     : #96413D;
+$gces-blue		: #124c64;
+$gces-red     : #7c3d37;
 $gces-green   : #C1CDC9;
 
 // We use these to control various global styles
@@ -1364,11 +1364,11 @@ $tabs-navigation-font-color: $jet;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $gces-blue;
+$topbar-bg-color: $white;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: 60px;
+$topbar-height: 113px;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
@@ -1376,30 +1376,30 @@ $topbar-height: 60px;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: scale-color($gces-blue, $lightness: -40%);
-// $topbar-dropdown-link-color: $white;
-$topbar-dropdown-link-bg: scale-color($gces-blue, $lightness: -20%);
+$topbar-dropdown-bg: $white;
+$topbar-dropdown-link-color: $gces-blue;
+$topbar-dropdown-link-bg: $white;
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: $white;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: $white;
-// $topbar-link-color-hover: $white;
-// $topbar-link-color-active: $white;
-// $topbar-link-color-active-hover: $white;
-// $topbar-link-weight: $font-weight-normal;
+$topbar-link-color: $gces-blue;
+$topbar-link-color-hover: $gces-red;
+$topbar-link-color-active: $gces-red;
+$topbar-link-color-active-hover: scale-color($gces-red, $lightness: -14%);
+$topbar-link-weight: $font-weight-bold;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
 // $topbar-link-bg-color-hover: $charcoal;
-$topbar-link-bg-hover: scale-color($gces-blue, $lightness: -40%);
-// $topbar-link-bg-active: $primary-color;
+$topbar-link-bg-hover: $white;
+$topbar-link-bg-active: $white;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
 // $topbar-link-text-transform: none;
-// $topbar-link-padding: $topbar-height / 3;
+$topbar-link-padding: 10px!important;
 // $topbar-back-link-size: $h5-font-size;
 // $topbar-link-dropdown-padding: 20px;
 
@@ -1428,12 +1428,12 @@ $topbar-link-bg-hover: scale-color($gces-blue, $lightness: -40%);
 // $topbar-media-query: $medium-up;
 
 // Divider Styles
-// $topbar-divider-border-bottom: solid 1px  scale-color($topbar-bg-color, $lightness: 13%);
+// $topbar-divider-border-bottom: solid 1px $gces-blue;
 // $topbar-divider-border-top: solid 1px scale-color($topbar-bg-color, $lightness: -50%);
 
 // Sticky Class
 // $topbar-sticky-class: ".sticky";
-// $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+$topbar-arrows: false; //Set false to remove the triangle icon from the menu item
 
 // 36. Visibility Classes
 // - - - - - - - - - - - - - - - - - - - - - - - - -

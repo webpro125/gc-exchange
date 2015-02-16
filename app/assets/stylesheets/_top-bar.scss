@@ -1,23 +1,39 @@
+@import "variables";
+
 /*** HEADER ***/
 
+body > .sticky {
+  border-bottom: 3px solid $gces-blue;
+}
 .top-bar {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
   #logo {
-    background: image-url("gces-logo-white.png") 0 50% no-repeat;
-    height: 60px;
-    width: 145px;
+    background: image-url("gces-logo-header.png") 50% 50% no-repeat;
+    height: 110px;
+    width: 350px;
     margin-left: 15px;
   }
   .top-bar-section {
-    ul.dropdown {
-      li {
-        &.divider {
-        }
-        a {
-          line-height: 45px;
-        }
+    @media #{$medium-up} {
+      .top-bar-section li:not(.has-form) a:not(.button) {
+        line-height: 110px!important;
       }
+    }
+
+    ul {
+      &.right {
+        padding-right: 3rem;
+      }
+      &.dropdown {
+        li {
+          &.divider {
+          }
+          a {
+            line-height: 45px;
+          }
+        }
+      }  
     }
     .button, input {
       height: 30px;

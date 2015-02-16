@@ -21,11 +21,13 @@
             <% if development? %>
                 <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
             <% end %>
+            <% if consultant_signed_in? %>
             <li class="has-form">
               <div class="row collapse">
                 <%= render 'layouts/search' %>
               </div>
             </li>
+            <% end %>
           </ul>
       <% end %>
 
