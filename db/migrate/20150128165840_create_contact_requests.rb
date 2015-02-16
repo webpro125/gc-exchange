@@ -10,6 +10,7 @@ class CreateContactRequests < ActiveRecord::Migration
       t.integer :contact_status,          default: 0
       t.string :project_name, limit: 128
       t.text :project_location, limit: 500
+      t.boolean :travel_authorization, default: false
 
       t.timestamps
     end
