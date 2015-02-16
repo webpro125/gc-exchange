@@ -3,6 +3,7 @@ require 'spec_helper'
 describe ContactRequest do
   let!(:consultant) { FactoryGirl.create(:confirmed_consultant, :approved) }
   let!(:user) { FactoryGirl.create(:user, :with_company) }
+  let!(:travel_authorization) { FactoryGirl.create(:travel_authorization) }
 
   subject do
     ContactRequest.new(

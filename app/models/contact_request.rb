@@ -12,8 +12,9 @@ class ContactRequest < ActiveRecord::Base
                                        ContactRequest.contact_statuses[:rejected_terms])))
   end)
 
-  before_save :generate_communication
+  before_create :generate_communication
 
+  has_one :travel_authorization
   belongs_to :consultant
   belongs_to :user
   belongs_to :communication, class_name: 'Mailboxer::Conversation', dependent: :destroy
