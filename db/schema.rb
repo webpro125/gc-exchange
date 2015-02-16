@@ -139,13 +139,15 @@ ActiveRecord::Schema.define(version: 20150128195534) do
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
 
   create_table "contact_requests", force: true do |t|
-    t.integer  "consultant_id",                                        null: false
-    t.integer  "user_id",                                              null: false
-    t.integer  "communication_id",                                     null: false
+    t.integer  "consultant_id",                                                    null: false
+    t.integer  "user_id",                                                          null: false
+    t.integer  "communication_id",                                                 null: false
     t.date     "project_start"
     t.date     "project_end"
-    t.decimal  "project_rate",     precision: 8, scale: 2
-    t.integer  "contact_status",                           default: 0
+    t.decimal  "project_rate",                 precision: 8, scale: 2
+    t.integer  "contact_status",                                       default: 0
+    t.string   "project_name",     limit: 128
+    t.text     "project_location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

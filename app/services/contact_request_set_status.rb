@@ -14,7 +14,9 @@ class ContactRequestSetStatus
     return false unless interestable?
 
     @contact_request.not_interested!
-    @contact_request.save
+    return unless @contact_request.save
+    ContactStatusMailer.delay.consultant_not_interested(@contact_request.id)
+    true
   end
 
   def hire_and_save
@@ -28,21 +30,27 @@ class ContactRequestSetStatus
     return false unless @contact_request.interested?
 
     @contact_request.not_pursuing!
-    @contact_request.save
+    return unless @contact_request.save
+    ContactStatusMailer.delay.company_not_pursuing(@contact_request.id)
+    true
   end
 
   def agree_to_terms_and_save
     return false unless @contact_request.hired?
 
     @contact_request.agreed_to_terms!
-    @contact_request.save
+    return unless @contact_request.save
+    ContactStatusMailer.delay.consultant_agreed_to_terms(@contact_request.id)
+    true
   end
 
   def reject_terms_and_save
     return false unless @contact_request.hired?
 
     @contact_request.rejected_terms!
-    @contact_request.save
+    return unless  @contact_request.save
+    ContactStatusMailer.delay.consultant_rejected_terms(@contact_request.id)
+    true
   end
 
   def interestable?

@@ -1,12 +1,15 @@
 class ContactRequest < ActiveRecord::Base
-  enum contact_status: [:pending, :interested, :not_interested, :hired, :not_pursuing,
-                        :agreed_to_terms, :rejected_terms]
+  enum contact_status: { pending: 0, interested: 1, not_interested: 2, hired: 3, not_pursuing: 4,
+                         agreed_to_terms: 5, rejected_terms: 6 }
 
   scope :open, (lambda do
-    where(arel_table[:contact_status].eq(0)
-                                 .or(arel_table[:contact_status].eq(1))
-                                 .or(arel_table[:contact_status].eq(3))
-                                 .or(arel_table[:contact_status].eq(6)))
+    where(arel_table[:contact_status].eq(ContactRequest.contact_statuses[:pending])
+                                 .or(arel_table[:contact_status].eq(
+                                       ContactRequest.contact_statuses[:interested]))
+                                 .or(arel_table[:contact_status].eq(
+                                       ContactRequest.contact_statuses[:hired]))
+                                 .or(arel_table[:contact_status].eq(
+                                       ContactRequest.contact_statuses[:rejected_terms])))
   end)
 
   before_save :generate_communication
