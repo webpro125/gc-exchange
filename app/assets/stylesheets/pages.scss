@@ -1,5 +1,15 @@
 @import "variables";
 
+.one-fifth {
+  width: 20%;
+  p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+  margin-bottom: 0;
+  }
+}
+
 h2 {
   i {
     font-size: 2rem;
@@ -25,32 +35,116 @@ h5 {
   }
 }
 
-#one, #two, #three {
-  .reg {
-    padding: rem-calc(30);
-    box-shadow: 0 0 20px #CCC;
-    border-radius: $global-radius;
-    background: #FFF;
-    h2 {
-      margin: 0 0 rem-calc(10);
-    } 
-    .button {
-      margin: 0;
-    }
-    input {
-      margin-bottom: rem-calc(10);
+.row.action {
+  max-width: 100%;
+  background: image-url('bg-home.png');
+  background-size: cover;
+
+  .learnmore {
+    color: $yellow;
+    text-decoration: underline;
+    font-size: 1.3rem;
+    font-weight: 800;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    margin-left: -69px;
+  }
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+      margin: 0 auto;
     }
   }
-  aside {
-    max-width: rem-calc(420);
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+
+  h2 {
+    color: $white;
+    font-weight: 800;
+    font-size: 1.3rem;
+    line-height: 1.9rem;
   }
+  .brown, .blue {
+    min-height: 300px;
+    padding: 2rem 1.9rem;
+    text-align: center;
+  }
+}
+.row.coming {
+  background: scale-color($light-blue, $lightness: 70%);
+  max-width: 100%;
+  padding: 1rem 0;
+
+  .tablehead {
+    background: $light-blue;
+    border: 1px solid $light-blue;
+    text-align: center;
+    h4 {
+      color: $white;
+      font-weight: 600;
+
+      .soon {
+        background: scale-color($light-blue, $lightness: -50%);
+        color: #FFF;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        display: inline-block;
+        margin-left: 10px;
+        border-radius: $global-radius;
+      }
+    }
+  }
+  .tablebody {
+    border: 1px solid $light-blue;
+    padding: 1rem 0;
+
+    ul {
+      li {
+        line-height: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    p {
+      line-height: 1.2rem;
+      text-align: right;
+    }
+  }
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+      margin: 0 auto;
+    }
+  }
+
+}
+
+.row.options {
+  background: $light-blue;
+  max-width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+
+  a.button {
+    margin: 0;
+  }
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+      margin: 0 auto;
+    }
+  }
+
+}
+
+#one {
+
   > .row {
     padding: rem-calc(40) 0;
-  }
-  .button {
-    border-radius: $global-radius;
-    margin-top: 1rem;
   }
 
   ul {
@@ -76,31 +170,37 @@ h5 {
   input[type="submit"] {
     float: right;
   }
-	span.optional {
-		display: none;
-	}
+  span.optional {
+    display: none;
+  }
 
   > .columns {
     padding: 4rem 0;
   }
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: 0.75em;
     line-height: 1.3em;
     font-weight: 600;
 
     &.intro {
-      font-weight: 300;
+      font-weight: 800;
+      font-style: italic;
       color: $jet;
+      margin: 0;
+      font-size: 2rem;
     }
   }
-}
 
-#one {
+
   text-align: center;
-  background: image-url("homepagebg.jpg") 50% bottom no-repeat;
-  background-size: cover;
+
+  @media #{$medium-up} {
+    .row {
+      max-width: 77rem;
+    }
+  }
 
   ul {
     margin: 0 auto;
@@ -206,14 +306,6 @@ h5 {
 
 }
 
-#two {
-  background: image-url("companybg.jpg") 50% bottom no-repeat;
-  background-size: cover;
-}
-#three {
-  background: image-url("consultantbg.jpg") 50% bottom no-repeat;
-  background-size: cover;
-}
 /*** TOS ***/
 ol, ol li {
   font-size: rem-calc(13);
