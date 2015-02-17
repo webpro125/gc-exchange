@@ -6,6 +6,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.2rem;
+  margin-bottom: 0;
   }
 }
 
@@ -34,80 +35,6 @@ h5 {
   }
 }
 
-#one, #two, #three {
-  .reg {
-    padding: rem-calc(30);
-    box-shadow: 0 0 20px #CCC;
-    border-radius: $global-radius;
-    background: #FFF;
-    h2 {
-      margin: 0 0 rem-calc(10);
-    } 
-    .button {
-      margin: 0;
-    }
-    input {
-      margin-bottom: rem-calc(10);
-    }
-  }
-  aside {
-    max-width: rem-calc(420);
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  }
-  > .row {
-    padding: rem-calc(40) 0;
-  }
-  .button {
-    border-radius: $global-radius;
-    margin-top: 1rem;
-  }
-
-  ul {
-    margin-left: 0;
-    padding-left: 0;
-    list-style: none;
-
-    li {
-      text-indent: -12px;
-      padding-left: 12px;    
-      line-height: 1.4em;
-      margin-bottom: rem-calc(5);
-
-      &:before {
-        content: '•';
-        margin-right: 5px;
-        color: $gces-blue;
-      }
-    }
-  }
-  padding: 0 40px;
-
-  input[type="submit"] {
-    float: right;
-  }
-	span.optional {
-		display: none;
-	}
-
-  > .columns {
-    padding: 4rem 0;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75em;
-    line-height: 1.3em;
-    font-weight: 600;
-
-    &.intro {
-      font-weight: 800;
-      font-style: italic;
-      color: $jet;
-      margin-top: 2rem;
-      font-size: 2rem;
-    }
-  }
-}
 .row.action {
   max-width: 100%;
   background: image-url('bg-home.png');
@@ -215,6 +142,58 @@ h5 {
 }
 
 #one {
+
+  > .row {
+    padding: rem-calc(40) 0;
+  }
+
+  ul {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+
+    li {
+      text-indent: -12px;
+      padding-left: 12px;    
+      line-height: 1.4em;
+      margin-bottom: rem-calc(5);
+
+      &:before {
+        content: '•';
+        margin-right: 5px;
+        color: $gces-blue;
+      }
+    }
+  }
+  padding: 0 40px;
+
+  input[type="submit"] {
+    float: right;
+  }
+  span.optional {
+    display: none;
+  }
+
+  > .columns {
+    padding: 4rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75em;
+    line-height: 1.3em;
+    font-weight: 600;
+
+    &.intro {
+      font-weight: 800;
+      font-style: italic;
+      color: $jet;
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+
+
   text-align: center;
 
   @media #{$medium-up} {
