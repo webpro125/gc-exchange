@@ -13,7 +13,10 @@ describe User do
   end
 
   it { should be_valid }
-  it { should have_many(:contact_requests) }
+
+  it { expect(subject).to have_many(:projects).dependent(:destroy) }
+  it { expect(subject).to belong_to(:company) }
+  it { expect(subject).to have_one(:owned_company) }
 
   describe 'first_name' do
     it { expect(subject).to validate_presence_of(:first_name) }
@@ -55,9 +58,6 @@ describe User do
     before do
       subject.save
     end
-
-    it { expect(subject).to belong_to(:company) }
-    it { expect(subject).to have_one(:owned_company) }
 
     describe 'company' do
       before do

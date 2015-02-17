@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
   def interested
     contact_request.assign_attributes(message_params(:message))
 
-    if ContactRequestSetStatus.new(contact_request).interested_and_save
+    if ProjectSetStatus.new(contact_request).interested_and_save
       redirect_to conversation_path contact_request
     else
       render :show
@@ -24,7 +24,7 @@ class ConversationsController < ApplicationController
   def not_interested
     contact_request.assign_attributes(message_params(:message))
 
-    if ContactRequestSetStatus.new(contact_request).not_interested_and_save
+    if ProjectSetStatus.new(contact_request).not_interested_and_save
       redirect_to conversations_path
     else
       render :show
@@ -34,7 +34,7 @@ class ConversationsController < ApplicationController
   def not_pursuing
     contact_request.assign_attributes(message_params(:message))
 
-    if ContactRequestSetStatus.new(contact_request).not_pursuing_and_save
+    if ProjectSetStatus.new(contact_request).not_pursuing_and_save
       redirect_to conversation_path contact_request
     else
       render :show
@@ -46,7 +46,7 @@ class ConversationsController < ApplicationController
                                                      :project_rate, :project_name,
                                                      :project_location, :travel_authorization_id))
 
-    if ContactRequestSetStatus.new(contact_request).hire_and_save
+    if ProjectSetStatus.new(contact_request).hire_and_save
       redirect_to conversation_path contact_request
     else
       render :show
@@ -54,7 +54,7 @@ class ConversationsController < ApplicationController
   end
 
   def agree_to_terms
-    if ContactRequestSetStatus.new(contact_request).agree_to_terms_and_save
+    if ProjectSetStatus.new(contact_request).agree_to_terms_and_save
       redirect_to conversation_path contact_request
     else
       render :show
@@ -64,7 +64,7 @@ class ConversationsController < ApplicationController
   def reject_terms
     contact_request.assign_attributes(message_params(:message))
 
-    if ContactRequestSetStatus.new(contact_request).reject_terms_and_save
+    if ProjectSetStatus.new(contact_request).reject_terms_and_save
       redirect_to conversation_path contact_request
     else
       render :show

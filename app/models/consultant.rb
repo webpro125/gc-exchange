@@ -51,7 +51,7 @@ class Consultant < ActiveRecord::Base
   has_many :consultant_certifications, dependent: :destroy
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
-  has_many :contact_requests, dependent: :destroy
+  has_many :projects, dependent: :destroy
   has_many :communications, through: :contact_requests
 
   accepts_nested_attributes_for :educations, allow_destroy: true
