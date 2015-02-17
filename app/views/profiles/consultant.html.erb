@@ -2,20 +2,10 @@
 <div class="row">
   <div class="medium-9 columns">
     <h4>Inbox</h4>
-    <%= render 'messages/inbox', messages: @messages %>
+    <%= render 'conversations/inbox', messages: @messages %>
   </div>
   <div class="medium-1 columns vr">
     &nbsp;
   </div>
-  <div class="medium-2 columns">
-    <h4>Profile</h4>
-    <ul class="list">
-      <li><%= link_to t('views.profile.actions.edit'), edit_profile_path %></li>
-      <li><%= link_to t('views.profile.actions.upload_photo'),
-                      new_consultant_upload_image_path(current_consultant) %></li>
-      <li><%= link_to t('views.profile.actions.upload_resume'),
-                      new_consultant_upload_resume_path(current_consultant) %></li>
-      <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
-    </ul>
-  </div>
+  <%= render 'profiles/side_bar' %>
 </div>

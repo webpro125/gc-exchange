@@ -52,11 +52,15 @@ Rails.application.routes.draw do
       put :reject
     end
   end
-  resources :conversations, only: [:index, :show, :new] do
+  resources :conversations, only: [:index, :show] do
     member do
       post :reply
-      post :trash
-      post :untrash
+      post :interested
+      post :not_interested
+      post :not_pursuing
+      post :hire
+      post :agree_to_terms
+      post :reject_terms
     end
   end
   # resources :contact_requests, only: [:new, :create]

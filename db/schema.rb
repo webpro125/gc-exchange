@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128195534) do
+ActiveRecord::Schema.define(version: 20150216211615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,13 +123,13 @@ ActiveRecord::Schema.define(version: 20150128195534) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                            default: 1,    null: false
     t.decimal  "rate",                                  precision: 8, scale: 2
-    t.text     "abstract"
-    t.string   "wizard_step"
     t.boolean  "willing_to_travel",                                             default: true
+    t.text     "abstract"
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
+    t.string   "wizard_step"
     t.datetime "contract_effective_date"
   end
 
@@ -139,19 +139,23 @@ ActiveRecord::Schema.define(version: 20150128195534) do
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
 
   create_table "contact_requests", force: true do |t|
-    t.integer  "consultant_id",                                        null: false
-    t.integer  "user_id",                                              null: false
-    t.integer  "communication_id",                                     null: false
+    t.integer  "consultant_id",                                                           null: false
+    t.integer  "user_id",                                                                 null: false
+    t.integer  "communication_id",                                                        null: false
+    t.integer  "travel_authorization_id"
     t.date     "project_start"
     t.date     "project_end"
-    t.decimal  "project_rate",     precision: 8, scale: 2
-    t.integer  "contact_status",                           default: 0
+    t.decimal  "project_rate",                        precision: 8, scale: 2
+    t.integer  "contact_status",                                              default: 0
+    t.string   "project_name",            limit: 128
+    t.text     "project_location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "contact_requests", ["communication_id"], name: "index_contact_requests_on_communication_id", using: :btree
   add_index "contact_requests", ["consultant_id"], name: "index_contact_requests_on_consultant_id", using: :btree
+  add_index "contact_requests", ["travel_authorization_id"], name: "index_contact_requests_on_travel_authorization_id", using: :btree
   add_index "contact_requests", ["user_id"], name: "index_contact_requests_on_user_id", using: :btree
 
   create_table "customer_names", force: true do |t|
@@ -338,6 +342,14 @@ ActiveRecord::Schema.define(version: 20150128195534) do
   end
 
   add_index "skills", ["code"], name: "index_skills_on_code", unique: true, using: :btree
+
+  create_table "travel_authorizations", force: true do |t|
+    t.string "code",  limit: 32,  null: false
+    t.string "label", limit: 256, null: false
+  end
+
+  add_index "travel_authorizations", ["code"], name: "index_travel_authorizations_on_code", unique: true, using: :btree
+  add_index "travel_authorizations", ["label"], name: "index_travel_authorizations_on_label", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                             default: "", null: false

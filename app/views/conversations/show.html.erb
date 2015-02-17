@@ -1,0 +1,138 @@
+<% communication = @contact_request.communication %>
+<div class="row">
+  <div class="medium-9 columns">
+    <h1><%= communication.subject %></h1>
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <%= link_to 'Back to Inbox', conversations_path, class: 'button tiny' %>
+
+        <% if @contact_request.open? %>
+            <% if consultant_signed_in? %>
+                <%= button_to 'Not Interested',
+                              not_interested_conversation_path(@contact_request),
+                              method: :post,
+                              class:  'button tiny',
+                              data:   {
+                                      confirm: {
+                                              body: 'Are you sure that you are not interested in
+                                              this project?  By clicking confirm, you will not be
+                                               to reopen conversation dialog with this company
+                                               until they reach out to you again.'
+                                      }
+                              } %>
+            <% else %>
+                <%= button_to 'Not Pursuing',
+                              not_interested_conversation_path(@contact_request),
+                              method: :post,
+                              class:  'button tiny',
+                              data:   {
+                                      confirm: {
+                                              body: 'Are you sure that you are not interested in
+                                              this consultant?  By clicking confirm, you will
+                                              close communication with this consultant until you
+                                              reach out to them with another engagement.'
+                                      }
+                              } %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        <div class="panel">
+          <p>
+            <% if consultant_signed_in? %>
+                NOTE: As you begin this dialogue with a potential client, (1) please keep in mind
+                your
+                responsibility to maintain correct contact information within the GCES database and
+                (2) be sensitive to the possibility of latent conflicts of interests that might
+                exist
+                between you and the potential client.
+            <% else %>
+                NOTE: As you begin this dialogue with a potential consultant, please keep in mind
+                the
+                possibility of latent conflicts of interest that might exist between your company
+                and
+                the potential consultant. GCES encourages you to address any potential conflict of
+                interest issues with the consultant early in your dialogue to avoid possible
+                confidentiality breaches.
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <%= case @contact_request
+          when :pending?.to_proc
+            render 'conversations/pending'
+          when :not_interested?.to_proc
+            render 'conversations/not_interested'
+          when :interested?.to_proc
+            render 'conversations/interested'
+          when :hired?.to_proc
+            render 'conversations/hired'
+          when :not_pursuing?.to_proc
+            render 'conversations/not_pursuing'
+          when :agreed_to_terms?.to_proc
+            render 'conversations/agreed_to_terms'
+          when :rejected_terms?.to_proc
+            render 'conversations/rejected_terms'
+          end
+      %>
+    </div>
+    <% if @contact_request.can_reply? %>
+        <div class="row">
+          <div class="medium-12 columns">
+            <ul class="right">
+              <li id="reply-btn"><i class="fi-arrow-left"></i> Reply</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row" id="reply" style="display: none; opacity: 0;">
+          <div class="medium-12 columns">
+            <%= simple_form_for @contact_request,
+                                url:    reply_conversation_path(@contact_request),
+                                method: :post do |f| %>
+                <%= f.input :message, as: :text %>
+                <%= f.button :submit, 'Send Message' %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+    <% communication.messages.each do |message| %>
+        <div class="row">
+          <div class="medium-6 columns">
+            <% if message.sender_type == 'Consultant' %>
+                <%= link_to consultant_path(message.sender) do %>
+                    <%= image_tag(message.sender.profile_image.url(:thumb),
+                                  class: 'th profile-thumb-mini') %>
+                    <%= message.sender.full_name %>
+                <% end %>
+            <% else %>
+                <%= message.sender.full_name %>
+            <% end %>
+          </div>
+          <div class="medium-6 columns">
+            <div class="right">
+              <%= message.created_at.strftime('%B %d at %I:%M %p') %>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="medium-12 columns">
+            <p>
+              <%= message.body %>
+            </p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <% if consultant_signed_in? %>
+      <div class="medium-1 columns vr">
+        &nbsp;
+      </div>
+      <%= render 'profiles/side_bar' %>
+  <% end %>
+</div>

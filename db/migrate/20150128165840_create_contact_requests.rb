@@ -4,10 +4,13 @@ class CreateContactRequests < ActiveRecord::Migration
       t.references :consultant, index: true, null: false
       t.references :user, index: true, null: false
       t.references :communication, index: true, null: false
+      t.references :travel_authorization, index: true
       t.date :project_start
       t.date :project_end
       t.decimal :project_rate, precision: 8, scale: 2
       t.integer :contact_status,          default: 0
+      t.string :project_name, limit: 128
+      t.text :project_location, limit: 500
 
       t.timestamps
     end
