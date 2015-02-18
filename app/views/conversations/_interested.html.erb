@@ -1,0 +1,26 @@
+<div class="medium-12 columns">
+  <% if user_signed_in? %>
+      <div class="panel">
+        <div class="row">
+          <div class="medium-8 columns">
+            <p>
+              If you're interested in hiring this consultant for your engagement, please click
+              <strong>hire</strong> to inform the consultant of your interest.
+            </p>
+
+          </div>
+          <div class="medium-4 columns">
+            <%= content_tag(:button,
+                            'Hire',
+                            type:  :button,
+                            class: 'button tiny respond-to-message') %>
+          </div>
+        </div>
+      </div>
+      <div class="row respond-to-message-form" style="display: none; opacity: 0;">
+        <div class="medium-12 columns">
+          <%= render 'conversations/hire_form' %>
+        </div>
+      </div>
+  <% end %>
+</div>

@@ -44,7 +44,6 @@ Rails.application.routes.draw do
     resources :users
   end
   resources :consultants, only: [:index, :show] do
-    resources :contact_requests, only: [:new, :create]
     resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
@@ -64,7 +63,6 @@ Rails.application.routes.draw do
       # post :reject_terms
     end
   end
-  # resources :contact_requests, only: [:new, :create]
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.
