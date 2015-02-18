@@ -21,7 +21,9 @@ class ProfilesController < ConsultantController
 
   def consultant
     @consultant = current_consultant
-    render :show
+    # @messages = @consultant.mailbox.inbox.page(params[:page])
+    # @messages = @consultant.mailbox.inbox.open.page(params[:page])
+    @messages = @consultant.mailbox.inbox.page(params[:page])
   end
 
   private

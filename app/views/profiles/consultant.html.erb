@@ -1,11 +1,11 @@
+<h1>Consultant Dashboard</h1>
 <div class="row">
-  <div class="small-3">
-    <ul class="side-nav">
-      <% if current_consultant.project_histories.empty? %>
-          <li>
-            <%= link_to t('views.project.actions.index'), project_histories_path %>
-          </li>
-      <% end %>
-    </ul>
+  <div class="medium-9 columns">
+    <h4>Inbox</h4>
+    <%= render 'conversations/inbox', messages: @messages %>
   </div>
+  <div class="medium-1 columns vr">
+    &nbsp;
+  </div>
+  <%= render 'profiles/side_bar' %>
 </div>
