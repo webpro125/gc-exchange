@@ -6,7 +6,7 @@ class ContactRequestsController < ConversationsController
   def new
     @contact_request = ContactRequest.new
     @contact_request.build_communication
-    @form = ContactRequestForm.new(@contact_request)
+    @form = ProjectForm.new(@contact_request)
   end
 
   def create
