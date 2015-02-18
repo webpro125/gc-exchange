@@ -6,18 +6,14 @@ class ContactRequestPolicy < LoggedInPolicy
   end
 
   def show?
-    record.open?
+    user.contact_requests.include?(record)
   end
 
   alias_method :interested?, :show?
   alias_method :not_interested?, :show?
-
-  def not_pursuing?
-    record.can_reply?
-  end
-
-  alias_method :hire?, :not_pursuing?
-  alias_method :agree_to_terms?, :not_pursuing?
-  alias_method :reject_terms?, :not_pursuing?
-  alias_method :reply?, :not_pursuing?
+  alias_method :agree_to_terms?, :show?
+  alias_method :reject_terms?, :show?
+  alias_method :not_pursuing?, :show?
+  alias_method :hire?, :show?
+  alias_method :reply?, :show?
 end
