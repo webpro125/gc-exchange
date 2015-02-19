@@ -5,6 +5,12 @@
 body > .sticky {
   border-bottom: 3px solid $gces-blue;
 }
+.top-bar-section .dropdown li:not(.has-form) > a {
+  font-size: rem-calc(13);
+}
+.top-bar-section .dropdown li:not(.has-form):hover > a:not(.button) {
+  background: scale-color(#dde6e9, $lightness: 20%)!important;
+}
 .top-bar {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 

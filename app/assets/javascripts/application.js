@@ -32,7 +32,8 @@ $(document).foundation({
     slide_number: false,
     navigation_arrows: false,
     bullets: false,
-    variable_height: true
+    variable_height: true,
+    next_on_click: false
   }
 });
 

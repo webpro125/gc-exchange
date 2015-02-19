@@ -31,57 +31,169 @@
 <div class="row options">
   <div class="row">
     <div class="medium-4 columns">
-      <a href="#" class="button">See <em>Contractor</em> Benefits</a>
+      <a data-orbit-link="contractor-benefits" class="button">See <em>Contractor</em> Benefits</a>
     </div>
     <div class="medium-4 columns">
-      <a href="#" class="button">See <em>how</em> we do it!</a>
+      <a data-orbit-link="how" class="button">See <em>how</em> we do it!</a>
     </div>
     <div class="medium-4 columns">
-      <a href="#" class="button">See <em>Consultant/Mentor</em> Benefits</a>
+      <a data-orbit-link="consultant-benefits" class="button">See <em>Consultant/Mentor</em> Benefits</a>
     </div>
   </div>
 </div>
 <div class="row action"
-  <ul class="home-orbit" data-orbit>
-    <li class="active slide-1">
-      <%= image_tag('slide-placeholder.png', alt: 'home') %>
-      <div class="orbit-caption">
+  <ul data-orbit class="home-orbit">
+   
+    <li data-orbit-slide="home" class="slide-1 active">
+      <div class="row">
         <div class="medium-6 columns brown">
-          <h2>GCES’ Consultants provide a full range of government business capture, proposal development and project start-up support to help Government Contractors win and execute business</h2>
-          <a href="#" class="learnmore">Learn More &#187;</a>
+          <h2>GCES’ Consultants provide a full range of government business capture, proposal development and project start-up support to help Government Contractors win and execute business.</h2>
+          <a data-orbit-link="home-consultants" class="learnmore">Learn More &#187;</a>
         </div>
         <div class="medium-6 columns blue">
           <h2>GCES’ Mentors provide corporate and military career experience to support corporate development and special projects.</h2>
-          <a href="#" class="learnmore">Learn More &#187;</a>
+          <a data-orbit-link="home-mentors" class="learnmore">Learn More &#187;</a>
         </div>  
       </div>
     </li>
-    <li>
-      <%= image_tag('bg-home.png', alt: 'home') %>
-      <div class="orbit-caption">
-        <div class="medium-6 columns brown">
-          <h2>GCES’ Consultants provide a full range of government business capture, proposal development and project start-up support to help Government Contractors win and execute business</h2>
-          <a href="#" class="learnmore">Learn More &#187;</a>
+     <li data-orbit-slide="home-mentors" class="slide-2">
+      <div class="row">
+        <div class="medium-6 columns">
+          <h2>GCES’ qualified Mentors typically support one project/company at a time on an as needed basis to</h2> 
+          <ul>
+            <li>Teach, assist, coach</li>
+            <li>Support turn-around and recovery, transformation, and special projects</li>
+          </ul>
+          <%= link_to 'Register as a Mentor »', new_consultant_registration_path, class: 'register' %>
         </div>
         <div class="medium-6 columns blue">
-          <h2>GCES’ Mentors provide corporate and military career experience to support corporate development and special projects.</h2>
-          <a href="#" class="learnmore">Learn More &#187;</a>
+          <h2 class="blued">GCES’ Mentors provide corporate and military career experience to support corporate development and special projects.</h2>
+
+          <a data-orbit-link="home" class="back">Back &#187;</a>
         </div>  
       </div>
-    </li>
-    <li>
-      <%= image_tag('bg-home.png', alt: 'home') %>
-      <div class="orbit-caption">
+    </li>    
+
+    <li data-orbit-slide="home-consultants" class="slide-3">
+      <div class="row">
         <div class="medium-6 columns brown">
-          <h2>GCES’ Consultants provide a full range of government business capture, proposal development and project start-up support to help Government Contractors win and execute business</h2>
-          <a href="#" class="learnmore">Learn More &#187;</a>
+          <h2 class="browned">GCES’ Consultants provide a full range of government business capture, proposal development and project start-up support to help Government Contractors win and execute business</h2>
+          <a data-orbit-link="home" class="back">Back &#187;</a>
         </div>
-        <div class="medium-6 columns blue">
-          <h2>GCES’ Mentors provide corporate and military career experience to support corporate development and special projects.</h2>
-          <a href="#" class="learnmore">Learn More &#187;</a>
+        <div class="medium-6 columns compact">
+          <h2>Our registered consultants fill needs in</h2>
+          <div class="row">
+            <div class="medium-6 columns">
+              <ul>
+                <li>Business capture</li>
+                <li>Proposal management, writing, editing, reviewing</li>
+                <li>Subject matter expertise</li>
+                <li>Program Planning, Architecture and Management Expertise</li>
+              </ul>
+            </div>
+            <div class="medium-6 columns">
+              <ul>
+                <li>Technical expertise</li>
+                <li>Project staffing</li>
+                <li>Military expertise</li>
+                <li>Mentoring</li>
+                <li>Business Architecture</li>
+                <li>Project start-up</li>
+              </ul>
+              <p><small>GCES is an approved Government contractor</small></p>
+            </div>            
+          </div>
+          <%= link_to 'Register as a Consultant »', new_consultant_registration_path, class: 'register' %>
         </div>  
       </div>
     </li>
+    <li data-orbit-slide="how" class="slide-4">
+      <div class="row">
+        <h2 class="head">GCES uses a web-based business model to provide Contractors quick access to needed Consultant skills and to provide Consultants wide exposure to multiple Contractors.</h2>
+        <%= image_tag('home-how.png', alt: 'how') %>
+      </div>
+    </li> 
+    <li data-orbit-slide="contractor-benefits" class="slide-5">
+      <div class="row">
+        <h2 class="head">Unique GCES Features Enable Registered Government Contractors to&#8230;</h2>
+        <div class="medium-6 columns">
+          <h3>Acquire Qualified Consultant Support Quickly</h3>
+          <ul>
+            <li>Real-time access to ever-expanding nationwide database of consultants and mentors</li>
+            <li>Extensive database search capabilities leading to quick, efficient selection of consultants</li>
+            <li>Direct access to consultants for interviews, work requirements, and hourly rate negotiations</li>
+            <li>Pre-negotiated master agreement enables consultants to start work immediately</li>
+            <li>All consultants vetted for prior performance, citizenship, and personal liability issues</li>
+          </ul>
+        </div>
+        <div class="medium-6 columns">
+          <h3>Reduce Corporate Overhead Costs</h3>
+          <ul>
+            <li>Master Contract negotiated once with GCES</li>
+            <li>Multiple consultant engagements managed via single contract</li>
+            <li>Individual engagements managed via purchase orders</li>
+            <li>GCES manages all consultant invoicing, payment &amp; tax processing</li>
+            <li>GCES consultants incur no employee-related expenses</li>
+            <li>Small fixed fee per consultant labor hour guarantees best-qualified consultants at affordable cost</li>
+          </ul>
+          <%= link_to 'Register as a Contractor', new_sales_lead_path %>
+          <a data-orbit-link="contact-us">More information? Contact us &#187;</a>
+      </div>
+    </li>   
+    <li data-orbit-slide="consultant-benefits" class="slide-6">
+      <div class="row">
+        <h2 class="head">Unique GCES Features Enable Registered Consultants &amp; Mentors to&#8230;</h2>
+        <div class="medium-6 columns">
+          <h3>Increase Engagement Opportunities</h3>
+          <ul>
+            <li>Exposure to ever-expanding list of registered contractors nationwide</li>
+            <li>Extensive consultant database search capabilities increase consultant visibility to Contractors</li>
+            <li>Direct Consultant-Contractor communication and negotiation</li>
+            <li>Pre-negotiated contracts enable rapid engagement</li>
+            <li>Consultant quality control increases Contractor interest in registered consultants</li>
+            <li>Mentor focus fills unique market niche</li>
+          </ul>
+        </div>
+        <div class="medium-6 columns">
+          <h3>Reduce Overhead Costs</h3>
+          <ul>
+            <li>Reduce/eliminate advertising costs though exposure on the GCES website</li>
+            <li>Multiple engagements under a single consulting agreement reduces administrative costs and time</li>
+            <li>GCES is consultants’ single source for time accounting, invoicing, payment and tax documents</li>
+          </ul>
+          <%= link_to 'Register as a Consultant', new_consultant_registration_path %>
+          <a data-orbit-link="contact-us">More information? Contact us &#187;</a>
+        </div>  
+      </div>
+    </li>   
+    <li data-orbit-slide="about-us" class="slide-7">
+      <div class="row">
+        <h2 class="head">GCES is a limited liability company organized in Washington D.C. in 2014 by:</h2>
+        <div class="medium-4 columns">
+          <h4>Barrie Gillis</h4>
+          <p><em>Partner: General Manager</em></p>
+          <p>Barrie has 30 years of experience as a business management and business development professional. Among his accomplishments, he co-founded, led, and sold an international systems engineering firm. A business development consultant since 1998, Barrie developed the business model upon which GCES is based. Barrie is a retired Air Force Intelligence and Information Technology officer and a graduate of the University of Virginia.</p>
+        </div>
+        <div class="medium-4 columns">
+          <h4>Paul Mears</h4>
+          <p><em>Partner: Strategy and Business Development</em></p>
+          <p>Paul is a business strategy and business development professional with over 40 years of experience leading proposal development in the commercial and government markets, including 15 years as Vice President and Executive Business Capture Consultant at SM&amp;A, Inc. He has lead proposal efforts yielding over $14.6 billion in business for his clients, 98% of all business dollars pursued. Paul is a former US Army Aviation and Intelligence Officer and a graduate of Stephen F. Austin State University.</p>
+        </div> 
+        <div class="medium-4 columns">
+          <h4>Billy Mills</h4>
+          <p><em>Partner: Chief Architect</em></p>
+          <p>Billy is a proven consultant leader in program architecture, capture and proposal management, Integrated Master Planning/Scheduling, Earned Value Management Systems, and risk management with 15 years’ experience in the aerospace, defense and information technology markets. In addition, Billy has founded successful enterprises in the commercial services and web-based markets. Billy is a former Marine Corp Infantry officer and a graduate of the United States Military Academy.</p>
+        </div>           
+      </div>
+    </li>   
+    <li data-orbit-slide="contact-us" class="slide-8">
+      <div class="row">
+        <h2 class="head">Contact Us</h2>
+        <p>For questions/comments about GCES business operations:<br><a href="mailto:barrie.gillis@globalconsultantexchange.com">barrie.gillis@globalconsultantexchange.com</a></p>
+        <p>For questions/comments about how GCES can help you:<br><a href="mailto:paul.mears@globalconsultantexchange.com">paul.mears@globalconsultantexchange.com</a></p>
+        <p>For questions about our website:<br><a href="mailto:billy.mills@globalconsultantexchange.com">billy.mills@globalconsultantexchange.com</a></p>
+      </div>
+    </li>   
   </ul>
 </div>
 <div class="row coming">

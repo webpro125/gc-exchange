@@ -64,13 +64,12 @@
               <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
             </li>
         <% else %>
-            <li class="has-dropdown">
-              <a href="#">Login</a>
-              <ul class="dropdown">
-                <li><%= link_to t('views.page.actions.company'), new_user_session_path %></li>
-                <li><%= link_to t('views.page.actions.consultant'), new_consultant_session_path %></li>
-              </ul>
+            <li data-orbit-link="home">
+              <a>Home</a>
             </li>
+            <li data-orbit-link="about-us">
+              <a>About Us</a>
+            </li>    
             <li class="has-dropdown">
               <a href="#">Register</a>
               <ul class="dropdown">
@@ -79,7 +78,18 @@
                   <%= link_to t('views.page.actions.consultant'), new_consultant_registration_path %>
                 </li>
               </ul>
+            </li>        
+            <li class="has-dropdown">
+              <a href="#">Login</a>
+              <ul class="dropdown">
+                <li><%= link_to t('views.page.actions.company'), new_user_session_path %></li>
+                <li><%= link_to t('views.page.actions.consultant'), new_consultant_session_path %></li>
+              </ul>
             </li>
+            <li data-orbit-link="contact-us">
+              <a>Contact Us</a>
+            </li>              
+
         <% end %>
       </ul>
     </section>
