@@ -34,11 +34,25 @@ h5 {
     width: 100%;
   }
 }
+ul.home-orbit {
+  height: 200px!important;
+}
+.orbit-container .orbit-slides-container > * .orbit-caption {
+  background-color: transparent;
+  top: 0;
+  width: 1000px;
+  margin-left: -500px;
+  left: 50%;
+}
 
 .row.action {
   max-width: 100%;
-  background: image-url('bg-home.png');
-  background-size: cover;
+
+
+  .slide-1 {
+    background: image-url("bg-home.png") 50% 50% no-repeat;
+    background-size: cover;
+  }
 
   .learnmore {
     color: $yellow;
