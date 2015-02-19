@@ -71,9 +71,6 @@ ul.home-orbit {
       font-weight: 600;
       margin-bottom: 0;
 
-      + p {
-      margin: 0 0 0.5rem;
-      }
     }
     p {
       font-size: 1rem;
@@ -161,7 +158,22 @@ ul.home-orbit {
   .slide-4, .slide-5, .slide-6, .slide-7, .slide-8 {
     background: image-url("bg-blue2.jpg") 50% 50% no-repeat;
     background-size: cover;
-  }   
+  }  
+  .slide-7 {
+    h4 {
+      display: inline-block;
+    }
+    a {
+      &.mail {
+        color: $white;
+        margin-left: 5px;
+        
+        + p {
+          margin: 0 0 0.5rem;
+        }
+      }
+    }
+  } 
   .slide-8 {
     p {
       font-size: 1.25rem;
