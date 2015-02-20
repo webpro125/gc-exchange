@@ -1,5 +1,9 @@
 @import "foundation_and_overrides";
 
+.button {
+  border-radius: 3px;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="date"],

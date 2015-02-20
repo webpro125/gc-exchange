@@ -93,7 +93,7 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial
 
 // We use these to define default font weights
 // $font-weight-normal: normal !default;
-// $font-weight-bold: bold !default;
+$font-weight-bold: bold !default;
 
 // We use these as default colors throughout
 $primary-color: scale-color(#2A5E89, $lightness: 20%);
@@ -122,9 +122,11 @@ $tuatara     	: #404750;
 $oil         	: #324046;
 $jet         	: #273634;
 $black       	: #1c2b32;
-$gces-blue		: #2A5E89;
-$gces-red     : #96413D;
+$gces-blue		: #124c64;
+$gces-red     : #7c3d37;
 $gces-green   : #C1CDC9;
+$light-blue   : #8fabb6;
+$yellow       : #ffff99;
 
 // We use these to control various global styles
 $body-bg: #DEE1DF image-url("body-bg.png");
@@ -441,7 +443,7 @@ $crumb-slash-color: $iron;
 // $button-font-sml: rem-calc(13);
 // $button-font-med: rem-calc(16);
 // $button-font-lrg: rem-calc(20);
-// $button-font-weight: $font-weight-normal;
+$button-font-weight: $font-weight-bold;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
@@ -530,7 +532,7 @@ $button-radius: 3px;
 // $f-dropdown-margin-bottom: $f-dropdown-margin-top;
 
 // We use this to control the background color
-// $f-dropdown-bg: $white;
+$f-dropdown-bg: $smoke;
 
 // We use this to set the border styles for dropdowns.
 // $f-dropdown-border-style: solid;
@@ -1364,11 +1366,11 @@ $tabs-navigation-font-color: $jet;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $gces-blue;
+$topbar-bg-color: $white;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: 60px;
+$topbar-height: 90px;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
@@ -1376,30 +1378,30 @@ $topbar-height: 60px;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: scale-color($gces-blue, $lightness: -40%);
-// $topbar-dropdown-link-color: $white;
-$topbar-dropdown-link-bg: scale-color($gces-blue, $lightness: -20%);
+$topbar-dropdown-bg: #dde6e9;
+$topbar-dropdown-link-color: $gces-blue;
+$topbar-dropdown-link-bg: #dde6e9;
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: $white;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: $white;
-// $topbar-link-color-hover: $white;
-// $topbar-link-color-active: $white;
-// $topbar-link-color-active-hover: $white;
-// $topbar-link-weight: $font-weight-normal;
-// $topbar-link-font-size: rem-calc(13);
+$topbar-link-color: $gces-blue;
+$topbar-link-color-hover: scale-color($gces-red, $lightness: 15%);
+$topbar-link-color-active: scale-color($gces-red, $lightness: 15%);
+$topbar-link-color-active-hover: $gces-red;
+$topbar-link-weight: $font-weight-bold;
+$topbar-link-font-size: rem-calc(16);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
 // $topbar-link-bg-color-hover: $charcoal;
-$topbar-link-bg-hover: scale-color($gces-blue, $lightness: -40%);
-// $topbar-link-bg-active: $primary-color;
-// $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
+$topbar-link-bg-hover: $white;
+$topbar-link-bg-active: $white;
+$topbar-link-bg-active-hover: $white;
 // $topbar-link-font-family: $body-font-family;
 // $topbar-link-text-transform: none;
-// $topbar-link-padding: $topbar-height / 3;
+$topbar-link-padding: 20px!important;
 // $topbar-back-link-size: $h5-font-size;
 // $topbar-link-dropdown-padding: 20px;
 
@@ -1428,12 +1430,12 @@ $topbar-link-bg-hover: scale-color($gces-blue, $lightness: -40%);
 // $topbar-media-query: $medium-up;
 
 // Divider Styles
-// $topbar-divider-border-bottom: solid 1px  scale-color($topbar-bg-color, $lightness: 13%);
+// $topbar-divider-border-bottom: solid 1px $gces-blue;
 // $topbar-divider-border-top: solid 1px scale-color($topbar-bg-color, $lightness: -50%);
 
 // Sticky Class
 // $topbar-sticky-class: ".sticky";
-// $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+$topbar-arrows: false; //Set false to remove the triangle icon from the menu item
 
 // 36. Visibility Classes
 // - - - - - - - - - - - - - - - - - - - - - - - - -

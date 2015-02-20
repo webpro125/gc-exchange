@@ -5,19 +5,13 @@
                   new_consultant_upload_image_path(@consultant.id),
                   class: 'button small secondary download'  %>
     <% end %>
-    <% if consultant_owns_record?(@consultant) || user_is_gces? %>
         <%= image_tag(@consultant.profile_image.url(:medium), class: 'th profile-medium') %>
-    <% end %>
   </div>
   <div class="medium-8 columns">
     <div class="row">
       <div class="small-12 columns">
         <h1>
-          <%= if consultant_owns_record?(@consultant) || user_is_gces?
-            @consultant.full_name
-          else
-            @consultant.id
-          end %>
+          <%= @consultant.full_name %>
         </h1>
       </div>
     </div>

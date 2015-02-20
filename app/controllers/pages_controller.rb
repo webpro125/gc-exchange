@@ -12,14 +12,6 @@ class PagesController < ApplicationController
   def privacy_policy
   end
 
-  def consultant_learn_more
-    render layout: 'learn_more'
-  end
-
-  def company_learn_more
-    render layout: 'learn_more'
-  end
-
   def health_check
     render text: DateTime.now
   end
