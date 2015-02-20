@@ -5,7 +5,8 @@
         <% consultant = conversation.recipients.last %>
         <h5>
           <%= if consultant_signed_in?
-                "#{conversation.originator.full_name} - #{conversation.originator.company.name}"
+                "#{conversation.originator.full_name} - #{conversation.originator.company
+                        .company_name}"
               end %>
           <% if user_signed_in? %>
               <%= link_to consultant_path(consultant) do %>
