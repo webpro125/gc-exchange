@@ -1,9 +1,6 @@
 $(document).ready(function($){
   'use script';
   
-window.onresize = function(event) {
-resizeDiv();
-}
 
 // Scrolling to anchor links
 $(function() {
@@ -25,15 +22,8 @@ $(function() {
     }
   });
 
-resizeDiv();
-
 });
 
-function resizeDiv() {
-var vpw = $(window).width();
-var vph = $(window).height();
-$('.screen').css({'height': vph + 'px'});
-}
 
 });
 
@@ -42,4 +32,5 @@ $(document).foundation({
   destination_threshold: 60, // pixels from the top of destination for it to be considered active
   fixed_top: 60, // top distance in pixels assigned to the fixed element on scroll
 }
+
 });

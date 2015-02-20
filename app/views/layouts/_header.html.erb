@@ -1,4 +1,4 @@
-<div class="sticky">
+<div class="nav-cont">
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
@@ -21,11 +21,13 @@
             <% if development? %>
                 <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
             <% end %>
+            <% if user_signed_in? %>
             <li class="has-form">
               <div class="row collapse">
                 <%= render 'layouts/search' %>
               </div>
             </li>
+            <% end %>
           </ul>
       <% end %>
 
@@ -62,13 +64,12 @@
               <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
             </li>
         <% else %>
-            <li class="has-dropdown">
-              <a href="#">Login</a>
-              <ul class="dropdown">
-                <li><%= link_to t('views.page.actions.company'), new_user_session_path %></li>
-                <li><%= link_to t('views.page.actions.consultant'), new_consultant_session_path %></li>
-              </ul>
+            <li data-orbit-link="home">
+              <a>Home</a>
             </li>
+            <li data-orbit-link="about-us">
+              <a>About Us</a>
+            </li>    
             <li class="has-dropdown">
               <a href="#">Register</a>
               <ul class="dropdown">
@@ -77,7 +78,18 @@
                   <%= link_to t('views.page.actions.consultant'), new_consultant_registration_path %>
                 </li>
               </ul>
+            </li>        
+            <li class="has-dropdown">
+              <a href="#">Login</a>
+              <ul class="dropdown">
+                <li><%= link_to t('views.page.actions.company'), new_user_session_path %></li>
+                <li><%= link_to t('views.page.actions.consultant'), new_consultant_session_path %></li>
+              </ul>
             </li>
+            <li data-orbit-link="contact-us">
+              <a>Contact Us</a>
+            </li>              
+
         <% end %>
       </ul>
     </section>
