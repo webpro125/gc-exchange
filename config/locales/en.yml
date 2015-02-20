@@ -212,5 +212,5 @@ en:
       confirmations:
         delete: 'Are you sure you want to delete this user?'
     conversation:
-          new:
-            save: 'Send Request'
+      new:
+        save: 'Send Request'
