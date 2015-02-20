@@ -55,12 +55,6 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :show] do
     member do
       post :reply
-      # post :interested
-      # post :not_interested
-      # post :not_pursuing
-      # post :hire
-      # post :agree_to_terms
-      # post :reject_terms
     end
   end
   # Non resource

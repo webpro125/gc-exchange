@@ -1,22 +1,13 @@
 class Message
-  # include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
-
   attr_accessor :subject, :message
-
-  # validates :subject, presence: true, length: { in: 2..128 }
-  # validates :message, presence: true, length: { in: 2..5000 }
 
   private
 
-  def initialize(attributes = {})
-    attributes.each do |name, value|
-      send("#{name}=", value)
-    end
+  def persisted?
+    false
   end
 
-  def persisted?
-    return false
+  def to_key
+    [1]
   end
 end

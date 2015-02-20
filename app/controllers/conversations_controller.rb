@@ -4,8 +4,7 @@ class ConversationsController < ApplicationController
   helper_method :mailbox, :conversation
 
   def index
-    # @messages ||= pundit_user.mailbox.inbox.all.open.page(params[:page])
-    # @messages ||= pundit_user.mailbox.inbox.all
+    # @messages ||= pundit_user.mailbox.inbox.open.page(params[:page])
     # TODO: View other inboxes
   end
 
@@ -20,7 +19,7 @@ class ConversationsController < ApplicationController
       conversation = current_user.send_message(@consultant,
                                                params[:conversation][:message],
                                                params[:conversation][:subject]).conversation
-    redirect_to conversation_path(conversation)
+      redirect_to conversation_path(conversation)
     else
       render :new
     end
