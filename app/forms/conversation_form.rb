@@ -1,8 +1,6 @@
 require 'reform/form/coercion'
 
 class ConversationForm < Reform::Form
-  model :message
-
   property :subject
   property :message
 

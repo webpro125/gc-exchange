@@ -10,18 +10,17 @@ class ConversationsController < ApplicationController
   end
 
   def new
-    @message = Message.new
-    @form = ConversationForm.new(@message)
+    @form = ConversationForm.new(Message.new)
   end
 
   def create
-    @message = conversation_form_params
+    @form = ConversationForm.new(Message.new)
 
-    @conversation = current_user.send_message(@consultant,
-                                              @message[:message],
-                                              @message[:subject]).conversation
-    if @conversation.save
-      redirect_to conversation_path(conversation)
+    if @form.validate(conversation_form_params)
+      conversation = current_user.send_message(@consultant,
+                                               params[:conversation][:message],
+                                               params[:conversation][:subject]).conversation
+    redirect_to conversation_path(conversation)
     else
       render :new
     end
@@ -116,7 +115,7 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_form_params
-    params.require(:message).permit(:subject, :message)
+    params.require(:conversation).permit(:subject, :message)
   end
 
   def auth_a_user!
