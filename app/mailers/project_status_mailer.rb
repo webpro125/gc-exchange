@@ -11,12 +11,27 @@ class ProjectStatusMailer < ActionMailer::Base
 
   def consultant_agreed_to_terms(project)
     mailer_objects(project)
-    mail(subject: 'Consultant agreed to terms', to: @user.email)
+    mail(subject: 'Engagement Acceptance Notice', to: @user.email)
+  end
+
+  def company_agreed_to_terms(project)
+    mailer_objects(project)
+    mail(subject: 'Engagement Acceptance Notice', to: @user.email)
+  end
+
+  def gces_agreed_to_terms(project)
+    mailer_objects(project)
+    mail(subject: 'Engagement Acceptance Notice', to: @user.email)
   end
 
   def consultant_rejected_terms(project)
     mailer_objects(project)
     mail(subject: 'Consultant rejected terms', to: @user.email)
+  end
+
+  def consultant_hired(project)
+    mailer_objects(project)
+    mail(subject: 'Consultant hired', to: @user.email)
   end
 
   def mailer_objects(project)
