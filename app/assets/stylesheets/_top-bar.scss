@@ -14,6 +14,17 @@ body > .nav-cont {
 .top-bar {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
+  .row {
+    display: table;
+    height: 50px;
+
+    form {
+      height: 40px;
+      vertical-align: middle;
+      display: table-cell;
+    }
+  }
+
   #logo {
     background: image-url("gces-logo-header.png") 50% 50% no-repeat;
     height: 90px;
@@ -42,7 +53,7 @@ body > .nav-cont {
       }  
     }
     .button, input {
-      height: 30px;
+      height: 40px;
       line-height: 15px;
       top: 0;
     }
