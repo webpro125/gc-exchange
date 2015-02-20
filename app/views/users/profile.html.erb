@@ -2,10 +2,20 @@
 <div class="row">
   <div class="medium-8 columns">
     <h4>Inbox</h4>
-    <%= render 'conversations/inbox', messages: @messages %>
+    <%= render 'conversations/inbox', conversations: @messages %>
   </div>
   <div class="medium-4 columns">
-    <h4>Recently Added Consultants</h4>
-    <%= render 'shared/recent_consultants', consultants: @consultants %>
+    <div class="row">
+      <div class="medium-12 columns">
+        <h4>Offers</h4>
+        <%= render 'projects/offers', projects: @projects %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        <h4>Recently Added Consultants</h4>
+        <%= render 'shared/recent_consultants', consultants: @consultants %>
+      </div>
+    </div>
   </div>
 </div>
