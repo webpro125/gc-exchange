@@ -39,6 +39,15 @@
   color: $gces-red;
 }
 .wizard {
+  blockquote {
+    margin-left: 1.75rem;
+    padding-left: 0;
+    border: 0;
+    color: $jet;
+    p {
+      color: $jet;
+    }
+  }
   @media #{$large-only} {
   min-height: 600px;
   }
@@ -54,6 +63,8 @@
     }
   }
   .button {
+  margin: 1rem 0 2rem;
+
     &.right {
       @media #{$small-only} {
         margin: 0 auto 10px;
