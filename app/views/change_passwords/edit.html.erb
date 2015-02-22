@@ -1,12 +1,13 @@
 <h1>Change Password</h1>
 
-<%= simple_form_for([@company, @user]) do |f| %>
+<%= simple_form_for @user, url: change_password_path, method: :put do |f| %>
     <%= f.error_notification %>
     <%= render 'shared/base_error', model: @user %>
 
     <div class="form-inputs">
       <%= f.input :password %>
       <%= f.input :password_confirmation %>
+      <%= f.input :current_password %>
     </div>
 
     <div class="form-actions">

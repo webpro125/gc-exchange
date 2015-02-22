@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   # Resources
   resource :profile, only: [:edit, :update, :show]
+  resource :change_password, only: [:edit, :update]
 
   get :search, to: 'searches#new'
   get 'search/skills', to: 'searches#skills'
@@ -41,9 +42,7 @@ Rails.application.routes.draw do
   resources :project_histories, path: 'projects', except: [:show]
   resources :sales_leads, only: [:new, :create]
   resources :companies do
-    resources :users do
-      get :password_reset, on: :collection
-    end
+    resources :users
   end
   resources :consultants, only: [:index, :show] do
     resources :upload_images, only: [:new, :create]
@@ -53,11 +52,6 @@ Rails.application.routes.draw do
       put :reject
     end
   end
-  # resources :users do
-  #   collection do
-  #     patch 'update_password'
-  #   end
-  # end
 
   # Non resource
 
