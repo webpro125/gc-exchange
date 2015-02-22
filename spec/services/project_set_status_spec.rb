@@ -6,8 +6,8 @@ describe ProjectSetStatus do
   let!(:consultant) { FactoryGirl.create(:confirmed_consultant, :approved) }
   let!(:user) { FactoryGirl.create(:user, :with_company) }
 
-  describe 'status is hired' do
-    let(:project) { FactoryGirl.create(:project, contact_status: :hired) }
+  describe 'status is offered' do
+    let(:project) { FactoryGirl.create(:project, contact_status: :offered) }
 
     describe '#agree_to_terms_and_save' do
       it 'returns true' do
@@ -19,7 +19,7 @@ describe ProjectSetStatus do
         subject.agree_to_terms_and_save
       end
 
-      it 'sets hired_agreed_to_terms_status' do
+      it 'sets offered_agreed_to_terms_status' do
         subject.agree_to_terms_and_save
         expect(project.agreed_to_terms?).to eq true
       end
@@ -83,9 +83,9 @@ describe ProjectSetStatus do
         subject.hire_and_save
       end
 
-      it 'sets hired' do
+      it 'sets offered' do
         subject.hire_and_save
-        expect(project.hired?).to eq true
+        expect(project.offered?).to eq true
       end
     end
   end
@@ -167,9 +167,9 @@ describe ProjectSetStatus do
         subject.hire_and_save
       end
 
-      it 'sets hired' do
+      it 'sets offered' do
         subject.hire_and_save
-        expect(project.hired?).to eq false
+        expect(project.offered?).to eq false
       end
     end
   end
@@ -187,7 +187,7 @@ describe ProjectSetStatus do
         subject.agree_to_terms_and_save
       end
 
-      it 'sets hired_agreed_to_terms_status' do
+      it 'sets offered_agreed_to_terms_status' do
         subject.agree_to_terms_and_save
         expect(project.agreed_to_terms?).to eq false
       end
@@ -251,9 +251,9 @@ describe ProjectSetStatus do
         subject.hire_and_save
       end
 
-      it 'sets hired' do
+      it 'sets offered' do
         subject.hire_and_save
-        expect(project.hired?).to eq false
+        expect(project.offered?).to eq false
       end
     end
   end
@@ -315,9 +315,9 @@ describe ProjectSetStatus do
         subject.hire_and_save
       end
 
-      it 'sets hired' do
+      it 'sets offered' do
         subject.hire_and_save
-        expect(project.hired?).to eq false
+        expect(project.offered?).to eq false
       end
     end
   end
@@ -399,9 +399,9 @@ describe ProjectSetStatus do
         subject.hire_and_save
       end
 
-      it 'sets hired' do
+      it 'sets offered' do
         subject.hire_and_save
-        expect(project.hired?).to eq true
+        expect(project.offered?).to eq true
       end
     end
   end
