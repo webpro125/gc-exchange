@@ -1,11 +1,11 @@
 <h1>Consultant Dashboard</h1>
 <div class="row">
-  <div class="medium-9 columns">
+  <div class="medium-8 columns vr">
     <h4>Inbox</h4>
-    <%= render 'conversations/inbox', messages: @messages %>
+    <%= render 'conversations/inbox', conversations: @conversations %>
   </div>
-  <div class="medium-1 columns vr">
-    &nbsp;
+  <div class="medium-4 columns">
+    <%= render 'profiles/side_bar' %>
+    <%= render 'projects/offers', projects: @projects %>
   </div>
-  <%= render 'profiles/side_bar' %>
 </div>

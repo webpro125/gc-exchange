@@ -8,6 +8,6 @@ FactoryGirl.define do
     proposed_rate 100.00
     project_name { Faker::Lorem.characters(24) }
     project_location '1619 3rd Ave New York, NY 10128'
-    contact_status :hired
+    contact_status :offered
   end
 end

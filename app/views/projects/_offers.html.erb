@@ -1,10 +1,12 @@
+<h4>Offers</h4>
 <% projects.each do |project| %>
     <div class="panel">
       <div class="row">
         <div class="medium-12 columns">
           <div class="row">
             <div class="medium-9 columns">
-              <%= link_to project.project_name, project_path(project) %> - TODO STATUS
+              <%= link_to project.project_name, project_path(project) %> -
+              <%= project.contact_status.humanize.upcase %>
             </div>
             <div class="medium-3 columns">
               <%= project.created_at.strftime('%_m/%-d') %>

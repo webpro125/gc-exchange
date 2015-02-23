@@ -21,7 +21,8 @@ class ProfilesController < ConsultantController
 
   def consultant
     @consultant = current_consultant
-    @messages = @consultant.mailbox.inbox.page(params[:page])
+    @conversations = @consultant.mailbox.inbox.page(params[:page])
+    @projects = @consultant.projects.open.limit(3)
   end
 
   private

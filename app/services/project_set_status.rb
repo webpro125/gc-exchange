@@ -15,7 +15,7 @@ class ProjectSetStatus
   def hire_and_save
     return false unless hireable?
 
-    @project.hired!
+    @project.offered!
     return unless @project.save
     ProjectStatusMailer.delay.consultant_hired(@project.id)
     true
@@ -31,7 +31,7 @@ class ProjectSetStatus
   end
 
   def agree_to_terms_and_save
-    return false unless @project.hired?
+    return false unless @project.offered?
 
     @project.agreed_to_terms!
     return unless @project.save
@@ -42,7 +42,7 @@ class ProjectSetStatus
   end
 
   def reject_terms_and_save
-    return false unless @project.hired?
+    return false unless @project.offered?
 
     @project.rejected_terms!
     return unless  @project.save
@@ -51,7 +51,7 @@ class ProjectSetStatus
   end
 
   def interestable?
-    @project.hired?
+    @project.offered?
   end
 
   def hireable?
