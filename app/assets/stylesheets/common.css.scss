@@ -93,17 +93,6 @@ input[type="submit"] {
     list-style: none;
     margin: 0;
 
-    &.list {
-      li {
-      margin-left: 0;
-      text-indent: 0;
-      margin-bottom: 0.75rem;
-        &:before {
-        content: none;
-        }
-      }
-    }
-
     > li {
       text-indent: -0.65rem;
       margin-left: 0.65rem;
@@ -160,16 +149,6 @@ small {
   color: $monsoon;
   &.red {
     color: scale-color($gces-red, $lightness: -10%);
-  }
-}
-
-@media #{$medium-up} {
-  .vr {
-    min-height: 200px;
-    border-right: 2px solid $smoke;
-    + .medium-4 {
-      padding: 0 0 0 2rem;
-    }
   }
 }
 
