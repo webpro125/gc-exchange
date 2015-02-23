@@ -39,6 +39,9 @@
   color: $gces-red;
 }
 .wizard {
+  aside {
+    margin-bottom: 1rem;
+  }
   h2 {
     + h3 {
       border-bottom: 0;
