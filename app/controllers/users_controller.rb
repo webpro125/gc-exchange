@@ -1,5 +1,5 @@
 class UsersController < CompanyController
-  before_action :load_and_authorize_company, except: [:profile, :update_password]
+  before_action :load_and_authorize_company, except: [:profile]
   before_action :load_and_authorize_user, only: [:show, :edit, :update, :destroy]
 
   def profile
