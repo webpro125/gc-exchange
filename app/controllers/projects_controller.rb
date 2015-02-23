@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
   def update
     @form = ProjectForm.new(@project)
 
-    if @form.validate(project_params) && @form.save
+    if @form.validate(project_params) && ProjectSetStatus.new(@form).offer_and_save
       redirect_to @project, notice: 'Engagement Offer was successfully updated.'
     else
       render :edit
@@ -78,7 +78,7 @@ class ProjectsController < ApplicationController
   end
 
   def reject_terms
-    if ProjectSetStatus.new(@project).reject_terms_and_save
+    if ProjectSetStatus.new(@project).under_revision_and_save
       redirect_to projects_path
     else
       render :show

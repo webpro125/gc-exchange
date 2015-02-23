@@ -41,7 +41,7 @@
         <%= case @project
             when :offered?.to_proc
               render 'offered'
-            when :rejected_terms?.to_proc
+            when :under_revision?.to_proc
               render 'rejected_terms'
             end %>
       </div>

@@ -149,7 +149,9 @@ describe ProjectsController do
 
       describe 'PUT update' do
         describe 'with valid params' do
-          let!(:project) { FactoryGirl.create(:project, user: user) }
+          let!(:project) do
+            FactoryGirl.create(:project, user: user, contact_status: :under_revision)
+          end
 
           it 'updates the requested project' do
             ProjectForm.any_instance.should_receive(:validate).with('project_name' => 'New Name')
@@ -297,7 +299,7 @@ describe ProjectsController do
         let!(:project) { FactoryGirl.create(:project, consultant: user) }
 
         it 'updates the requested project' do
-          ProjectSetStatus.any_instance.should_receive(:reject_terms_and_save) { true }
+          ProjectSetStatus.any_instance.should_receive(:under_revision_and_save) { true }
           put :reject_terms, id: project.to_param
         end
 

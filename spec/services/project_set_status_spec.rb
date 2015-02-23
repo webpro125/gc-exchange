@@ -25,19 +25,19 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#reject_terms_and_save' do
-      it 'returns true' do
-        expect(subject.reject_terms_and_save).to eq true
+    describe '#offer_and_save' do
+      it 'returns false' do
+        expect(subject.offer_and_save).to eq false
       end
 
-      it 'calls save' do
-        expect_any_instance_of(Project).to receive(:save)
-        subject.reject_terms_and_save
+      it 'does not call save' do
+        expect_any_instance_of(Project).not_to receive(:save)
+        subject.offer_and_save
       end
 
-      it 'sets rejected_terms_status' do
-        subject.reject_terms_and_save
-        expect(project.rejected_terms?).to eq true
+      it 'sets under_revision_status' do
+        subject.offer_and_save
+        expect(project.offered?).to eq true
       end
     end
 
@@ -73,18 +73,18 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#hire_and_save' do
+    describe '#offer_and_save' do
       it 'returns false' do
-        expect(subject.hire_and_save).to eq false
+        expect(subject.offer_and_save).to eq false
       end
 
       it 'does not call save' do
         expect_any_instance_of(Project).to_not receive(:save)
-        subject.hire_and_save
+        subject.offer_and_save
       end
 
       it 'sets offered' do
-        subject.hire_and_save
+        subject.offer_and_save
         expect(project.offered?).to eq true
       end
     end
@@ -109,19 +109,19 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#reject_terms_and_save' do
+    describe '#offer_and_save' do
       it 'returns false' do
-        expect(subject.reject_terms_and_save).to eq false
+        expect(subject.offer_and_save).to eq false
       end
 
       it 'does not call save' do
         expect_any_instance_of(Project).not_to receive(:save)
-        subject.reject_terms_and_save
+        subject.offer_and_save
       end
 
-      it 'sets rejected_terms_status' do
-        subject.reject_terms_and_save
-        expect(project.rejected_terms?).to eq false
+      it 'sets under_revision_status' do
+        subject.offer_and_save
+        expect(project.under_revision?).to eq false
       end
     end
 
@@ -157,18 +157,18 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#hire_and_save' do
+    describe '#offer_and_save' do
       it 'returns false' do
-        expect(subject.hire_and_save).to eq false
+        expect(subject.offer_and_save).to eq false
       end
 
       it 'does not call save' do
         expect_any_instance_of(Project).to_not receive(:save)
-        subject.hire_and_save
+        subject.offer_and_save
       end
 
       it 'sets offered' do
-        subject.hire_and_save
+        subject.offer_and_save
         expect(project.offered?).to eq false
       end
     end
@@ -193,19 +193,19 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#reject_terms_and_save' do
+    describe '#offer_and_save' do
       it 'returns false' do
-        expect(subject.reject_terms_and_save).to eq false
+        expect(subject.offer_and_save).to eq false
       end
 
       it 'does not call save' do
         expect_any_instance_of(Project).not_to receive(:save)
-        subject.reject_terms_and_save
+        subject.offer_and_save
       end
 
-      it 'sets rejected_terms_status' do
-        subject.reject_terms_and_save
-        expect(project.rejected_terms?).to eq false
+      it 'sets under_revision_status' do
+        subject.offer_and_save
+        expect(project.under_revision?).to eq false
       end
     end
 
@@ -241,18 +241,18 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#hire_and_save' do
+    describe '#offer_and_save' do
       it 'returns false' do
-        expect(subject.hire_and_save).to eq false
+        expect(subject.offer_and_save).to eq false
       end
 
       it 'does not call save' do
         expect_any_instance_of(Project).to_not receive(:save)
-        subject.hire_and_save
+        subject.offer_and_save
       end
 
       it 'sets offered' do
-        subject.hire_and_save
+        subject.offer_and_save
         expect(project.offered?).to eq false
       end
     end
@@ -272,14 +272,14 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#reject_terms_and_save' do
+    describe '#offer_and_save' do
       it 'returns false' do
-        expect(subject.reject_terms_and_save).to eq false
+        expect(subject.offer_and_save).to eq false
       end
 
       it 'does not call save' do
         expect_any_instance_of(Project).to_not receive(:save)
-        subject.reject_terms_and_save
+        subject.offer_and_save
       end
     end
 
@@ -305,25 +305,25 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#hire_and_save' do
+    describe '#offer_and_save' do
       it 'returns false' do
-        expect(subject.hire_and_save).to eq false
+        expect(subject.offer_and_save).to eq false
       end
 
       it 'does not call save' do
         expect_any_instance_of(Project).to_not receive(:save)
-        subject.hire_and_save
+        subject.offer_and_save
       end
 
       it 'sets offered' do
-        subject.hire_and_save
+        subject.offer_and_save
         expect(project.offered?).to eq false
       end
     end
   end
 
-  describe 'status is rejected_terms' do
-    let(:project) { FactoryGirl.create(:project, contact_status: :rejected_terms) }
+  describe 'status is under_revision' do
+    let(:project) { FactoryGirl.create(:project, contact_status: :under_revision) }
 
     describe '#agree_to_terms_and_save' do
       it 'returns false' do
@@ -341,19 +341,19 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#reject_terms_and_save' do
-      it 'returns false' do
-        expect(subject.reject_terms_and_save).to eq false
+    describe '#offer_and_save' do
+      it 'returns true' do
+        expect(subject.offer_and_save).to eq true
       end
 
-      it 'does not call save' do
-        expect_any_instance_of(Project).not_to receive(:save)
-        subject.reject_terms_and_save
+      it 'does call save' do
+        expect_any_instance_of(Project).to receive(:save)
+        subject.offer_and_save
       end
 
-      it 'sets rejected_terms_status' do
-        subject.reject_terms_and_save
-        expect(project.rejected_terms?).to eq true
+      it 'sets under_revision_status' do
+        subject.offer_and_save
+        expect(project.offered?).to eq true
       end
     end
 
@@ -389,18 +389,18 @@ describe ProjectSetStatus do
       end
     end
 
-    describe '#hire_and_save' do
+    describe '#offer_and_save' do
       it 'returns true' do
-        expect(subject.hire_and_save).to eq true
+        expect(subject.offer_and_save).to eq true
       end
 
       it 'calls save' do
         expect_any_instance_of(Project).to receive(:save)
-        subject.hire_and_save
+        subject.offer_and_save
       end
 
       it 'sets offered' do
-        subject.hire_and_save
+        subject.offer_and_save
         expect(project.offered?).to eq true
       end
     end
