@@ -164,6 +164,9 @@ small {
   .vr {
     min-height: 200px;
     border-right: 2px solid $smoke;
+    + .medium-4 {
+      padding: 0 0 0 2rem;
+    }
   }
 }
 
