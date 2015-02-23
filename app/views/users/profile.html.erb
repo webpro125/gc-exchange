@@ -1,0 +1,20 @@
+<h1>Corporate Dashboard</h1>
+<div class="row">
+  <div class="medium-8 columns vr">
+    <h4>Inbox</h4>
+    <%= render 'conversations/inbox', conversations: @messages %>
+  </div>
+  <div class="medium-4 columns">
+    <div class="row">
+      <div class="medium-12 columns">
+        <%= render 'projects/offers', projects: @projects %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        <h4>Recently Added Consultants</h4>
+        <%= render 'shared/recent_consultants', consultants: @consultants %>
+      </div>
+    </div>
+  </div>
+</div>

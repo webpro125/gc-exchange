@@ -18,15 +18,16 @@
       <!-- Left Nav Section -->
       <% unless consultant_signed_in? %>
           <ul class="left">
+            <li><%= link_to 'Home', root_path %></li>
             <% if development? %>
                 <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
             <% end %>
             <% if user_signed_in? %>
-            <li class="has-form">
-              <div class="row collapse">
-                <%= render 'layouts/search' %>
-              </div>
-            </li>
+                <li class="has-form">
+                  <div class="row collapse">
+                    <%= render 'layouts/search' %>
+                  </div>
+                </li>
             <% end %>
           </ul>
       <% end %>
@@ -69,7 +70,7 @@
             </li>
             <li data-orbit-link="about-us">
               <a>About Us</a>
-            </li>    
+            </li>
             <li class="has-dropdown">
               <a href="#">Register</a>
               <ul class="dropdown">
@@ -78,7 +79,7 @@
                   <%= link_to t('views.page.actions.consultant'), new_consultant_registration_path %>
                 </li>
               </ul>
-            </li>        
+            </li>
             <li class="has-dropdown">
               <a href="#">Login</a>
               <ul class="dropdown">
@@ -88,7 +89,7 @@
             </li>
             <li data-orbit-link="contact-us">
               <a>Contact Us</a>
-            </li>              
+            </li>
 
         <% end %>
       </ul>

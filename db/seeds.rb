@@ -80,3 +80,9 @@ Degree::DEGREE_TYPES.each do |type|
     t.label = type[:label]
   end
 end
+
+TravelAuthorization::TRAVEL_AUTHORIZATION_TYPES.each do |type|
+  TravelAuthorization.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+  end
+end

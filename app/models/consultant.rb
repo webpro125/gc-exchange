@@ -1,5 +1,6 @@
 class Consultant < ActiveRecord::Base
-  include Searchable
+  include Searchable, Nameable
+  acts_as_messageable
 
   RESUME_MIME_TYPES = ['application/pdf']
   PROFILE_IMAGE_TYPES = ['image/jpg', 'image/png', 'image/jpeg']
@@ -50,6 +51,8 @@ class Consultant < ActiveRecord::Base
   has_many :consultant_certifications, dependent: :destroy
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
+  has_many :projects, dependent: :destroy
+  has_many :communications, through: :contact_requests
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
@@ -58,8 +61,8 @@ class Consultant < ActiveRecord::Base
   validates :consultant_certifications, length: { maximum: 10 }
   validates :consultant_skills, length: { maximum: 20 }
 
-  def full_name
-    "#{first_name} #{last_name}"
+  def mailboxer_email(_object)
+    email
   end
 
   def approved?
