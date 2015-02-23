@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects', except: [:show]
-  resources :projects, path: 'engagements'
+  resources :projects, path: 'offers', only: [:index]
   resources :sales_leads, only: [:new, :create]
   resources :companies do
     resources :users
@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :contact_requests, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
+    resources :projects, path: 'offers', shallow: true, except: [:index, :destroy]
     member do
       put :approve
       put :reject
@@ -64,7 +65,6 @@ Rails.application.routes.draw do
       post :reject_terms
     end
   end
-  # resources :contact_requests, only: [:new, :create]
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.

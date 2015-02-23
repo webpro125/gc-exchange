@@ -1,12 +1,24 @@
-class ContactRequestPolicy < LoggedInPolicy
+class ProjectPolicy < LoggedInPolicy
   class Scope < Scope
     def resolve
       scope
     end
   end
 
+  def destroy?
+    false
+  end
+
+  def new?
+    user.is_a?(User) && user.projects.include?(record)
+  end
+
+  alias_method :create?, :new?
+  alias_method :edit?, :new?
+  alias_method :update?, :edit?
+
   def show?
-    user.contact_requests.include?(record)
+    user.projects.include?(record)
   end
 
   alias_method :interested?, :show?

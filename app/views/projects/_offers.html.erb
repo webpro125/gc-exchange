@@ -3,30 +3,7 @@
     <div class="panel">
       <div class="row">
         <div class="medium-12 columns">
-          <div class="row">
-            <div class="medium-9 columns">
-              <%= link_to project.project_name, project_path(project) %> -
-              <%= project.contact_status.humanize.upcase %>
-            </div>
-            <div class="medium-3 columns">
-              <%= project.created_at.strftime('%_m/%-d') %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="medium-12 columns">
-              <div>
-                <%= link_to project.consultant.full_name, consultant_path(project.consultant) %>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="medium-12 columns">
-              <div>
-                <strong>Start Date: </strong>
-                <%= project.proposed_start.to_formatted_s(:month_day_and_year) %>
-              </div>
-            </div>
-          </div>
+          <%= render project %>
         </div>
       </div>
     </div>

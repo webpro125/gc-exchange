@@ -96,12 +96,4 @@ class ConversationsController < ApplicationController
   def message_params(*keys)
     params.require(:contact_request).permit(keys)
   end
-
-  def auth_a_user!
-    if consultant_signed_in?
-      authenticate_consultant!
-    else
-      authenticate_user!
-    end
-  end
 end

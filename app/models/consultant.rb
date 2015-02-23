@@ -2,7 +2,7 @@ class Consultant < ActiveRecord::Base
   include Searchable, Nameable
   acts_as_messageable
 
-  RESUME_MIME_TYPES = ['application/pdf']
+  RESUME_MIME_TYPES   = ['application/pdf']
   PROFILE_IMAGE_TYPES = ['image/jpg', 'image/png', 'image/jpeg']
 
   paginates_per 15
@@ -31,6 +31,9 @@ class Consultant < ActiveRecord::Base
     where(arel_table[:approved_status_id].eq(ApprovedStatus.pending_approval.id)
             .or(arel_table[:approved_status_id].eq(ApprovedStatus.on_hold.id)))
   end)
+  scope :recent, (lambda do
+    approved.limit(3).order(created_at: :desc)
+  end)
 
   before_create :skip_confirmation!, if: -> { Rails.env.staging? }
   before_create :set_approved_status
@@ -51,8 +54,7 @@ class Consultant < ActiveRecord::Base
   has_many :consultant_certifications, dependent: :destroy
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
-  has_many :projects, dependent: :destroy
-  has_many :communications, through: :contact_requests
+  has_many :projects, ->() { order(:updated_at) }, dependent: :destroy
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
