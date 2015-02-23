@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     resources :users
   end
   resources :consultants, only: [:index, :show] do
-    resources :contact_requests, only: [:new, :create]
+    resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
     resources :projects, path: 'offers', shallow: true, except: [:index, :destroy]
@@ -57,12 +57,6 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :show] do
     member do
       post :reply
-      post :interested
-      post :not_interested
-      post :not_pursuing
-      post :hire
-      post :agree_to_terms
-      post :reject_terms
     end
   end
   # Non resource

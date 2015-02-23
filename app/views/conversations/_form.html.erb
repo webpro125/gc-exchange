@@ -1,7 +1,7 @@
-<%= simple_form_for @form, url: consultant_contact_requests_path(@consultant.id), method: :post do
+<%= simple_form_for @form, url: consultant_conversations_path, method: :post do
 |f| %>
     <%= f.error_notification %>
-    <%= render 'shared/base_error', model: @contact_request %>
+    <%= render 'shared/base_error', model: @form %>
 
     <%= f.input :subject %>
     <%= f.input :message, as: :text, input_html: {class: 'small', cols: 5, rows: 5} %>

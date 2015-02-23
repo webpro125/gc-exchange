@@ -1,4 +1,4 @@
-<% communication = @contact_request.communication %>
+<% communication = @conversation %>
 <div class="row">
   <div class="medium-9 columns">
     <h1><%= communication.subject %></h1>
@@ -6,7 +6,6 @@
     <div class="row">
       <div class="medium-12 columns">
         <%= link_to 'Back to Inbox', conversations_path, class: 'button tiny' %>
-
         <% if @contact_request.open? %>
             <% if consultant_signed_in? %>
                 <%= button_to 'Not Interested',
@@ -63,25 +62,8 @@
       </div>
     </div>
     <div class="row">
-      <%= case @contact_request
-          when :pending?.to_proc
-            render 'conversations/pending'
-          when :not_interested?.to_proc
-            render 'conversations/not_interested'
-          when :interested?.to_proc
-            render 'conversations/interested'
-          when :hired?.to_proc
-            render 'conversations/hired'
-          when :not_pursuing?.to_proc
-            render 'conversations/not_pursuing'
-          when :agreed_to_terms?.to_proc
-            render 'conversations/agreed_to_terms'
-          when :rejected_terms?.to_proc
-            render 'conversations/rejected_terms'
-          end
-      %>
+
     </div>
-    <% if @contact_request.can_reply? %>
         <div class="row">
           <div class="medium-12 columns">
             <ul class="right">
@@ -91,15 +73,14 @@
         </div>
         <div class="row" id="reply" style="display: none; opacity: 0;">
           <div class="medium-12 columns">
-            <%= simple_form_for @contact_request,
-                                url:    reply_conversation_path(@contact_request),
+            <%= simple_form_for @message,
+                                url:    reply_conversation_path(communication),
                                 method: :post do |f| %>
                 <%= f.input :message, as: :text %>
                 <%= f.button :submit, 'Send Message' %>
             <% end %>
           </div>
         </div>
-    <% end %>
     <% communication.messages.each do |message| %>
         <div class="row">
           <div class="medium-6 columns">

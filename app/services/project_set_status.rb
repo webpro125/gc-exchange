@@ -8,7 +8,7 @@ class ProjectSetStatus
 
     @project.not_interested!
     return unless @project.save
-    ContactStatusMailer.delay.consultant_not_interested(@project.id)
+    ProjectStatusMailer.delay.consultant_not_interested(@project.id)
     true
   end
 
@@ -16,7 +16,9 @@ class ProjectSetStatus
     return false unless hireable?
 
     @project.offered!
-    @project.save
+    return unless @project.save
+    ProjectStatusMailer.delay.consultant_hired(@project.id)
+    true
   end
 
   def not_pursuing_and_save
@@ -24,7 +26,7 @@ class ProjectSetStatus
 
     @project.not_pursuing!
     return unless @project.save
-    ContactStatusMailer.delay.company_not_pursuing(@project.id)
+    ProjectStatusMailer.delay.company_not_pursuing(@project.id)
     true
   end
 
@@ -33,7 +35,9 @@ class ProjectSetStatus
 
     @project.agreed_to_terms!
     return unless @project.save
-    ContactStatusMailer.delay.consultant_agreed_to_terms(@project.id)
+    ProjectStatusMailer.delay.gces_agreed_to_terms(@project.id)
+    ProjectStatusMailer.delay.consultant_agreed_to_terms(@project.id)
+    ProjectStatusMailer.delay.company_agreed_to_terms(@project.id)
     true
   end
 
@@ -42,7 +46,7 @@ class ProjectSetStatus
 
     @project.rejected_terms!
     return unless  @project.save
-    ContactStatusMailer.delay.consultant_rejected_terms(@project.id)
+    ProjectStatusMailer.delay.consultant_rejected_terms(@project.id)
     true
   end
 
