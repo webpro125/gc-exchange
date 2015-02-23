@@ -48,25 +48,6 @@ class UsersController < CompanyController
     redirect_to company_users_path(@company), notice: t('controllers.user.destroy.success')
   end
 
-  def password_reset
-    @user = current_user
-    render :password_reset
-  end
-
-  def update_password
-    @company = current_user.company
-    authorize @company, :show?
-
-    @user = User.find(current_user.id)
-    if @user.update(user_params)
-      # Sign in the user by passing validation in case their password changed
-      sign_in @user, bypass: true
-      redirect_to root_path
-    else
-      render :password_reset
-    end
-  end
-
   private
 
   def load_and_authorize_company
@@ -80,7 +61,6 @@ class UsersController < CompanyController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password,
-                                 :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email)
   end
 end
