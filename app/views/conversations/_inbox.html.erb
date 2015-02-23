@@ -1,30 +1,34 @@
-<% messages.each do |message| %>
+<% conversations.each do |conversation| %>
     <div class="row">
       <div class="medium-8 columns">
-        <% com = message.communication %>
+        <% message = conversation.messages.first %>
+        <% consultant = conversation.recipients.last %>
         <h5>
-          <%= message.user.full_name if consultant_signed_in? %>
+          <%= if consultant_signed_in?
+                "#{conversation.originator.full_name} - #{conversation.originator.company.name}"
+              end %>
           <% if user_signed_in? %>
-              <%= link_to consultant_path(message.consultant) do %>
-                  <%= image_tag(message.consultant.profile_image.url(:thumb),
+              <%= link_to consultant_path(consultant) do %>
+                  <%= image_tag(consultant.profile_image.url(:thumb),
                                 class: 'th profile-thumb-mini') %>
-                  <%= message.consultant.full_name %>
+                  <%= consultant.full_name %>
               <% end %>
           <% end %>
         </h5>
         <h6>
-          <%= link_to com.subject, conversation_path(message) %>
+          <%= link_to conversation.subject, conversation_path(conversation) %>
         </h6>
 
         <p>
-          <%= link_to truncate(com.messages.last.body, length: 25), conversation_path(message) %>
+          <%= link_to truncate(conversation.messages.last.body, length: 25),
+                      conversation_path(conversation) %>
         </p>
       </div>
       <div class="medium-4 columns">
         <p class="right">
-          <%= com.updated_at.strftime("%B %d") %>
+          <%= conversation.updated_at.strftime("%B %d") %>
         </p>
       </div>
     </div>
 <% end %>
-<%= paginate messages %>
+<%= paginate conversations %>

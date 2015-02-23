@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects', except: [:show]
+  resources :projects, path: 'engagements'
   resources :sales_leads, only: [:new, :create]
   resources :companies do
     resources :users

@@ -1,0 +1,14 @@
+<%= simple_form_for(@project) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  </div>
+
+  <div class="form-actions">
+    <div class="row">
+      <div class="small-8 small-centered columns">
+        <%= f.button :submit %>
+      </div>
+    </div>
+  </div>
+<% end %>
