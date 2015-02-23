@@ -39,6 +39,35 @@
   color: $gces-red;
 }
 .wizard {
+  h2 {
+    + h3 {
+      border-bottom: 0;
+      margin-bottom: 2rem;
+    }    
+  }
+  ol {
+    margin-bottom: 0.25rem;
+    li {
+      margin-top: 0;
+    }
+  }
+  p {
+    &.nosp {
+      margin-bottom: 5px;
+    }
+  }
+  blockquote {
+    margin-left: 1.75rem;
+    padding-left: 0;
+    border: 0;
+    color: $jet;
+    ul {
+      margin-bottom: 1rem;
+    }
+    p {
+      color: $jet;
+    }
+  }
   @media #{$large-only} {
   min-height: 600px;
   }
@@ -54,6 +83,8 @@
     }
   }
   .button {
+  margin: 2rem 0;
+
     &.right {
       @media #{$small-only} {
         margin: 0 auto 10px;
