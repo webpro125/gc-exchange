@@ -5,6 +5,13 @@ class ProjectPolicy < LoggedInPolicy
     end
   end
 
+  def agree_to_terms?
+    user.is_a?(Consultant) && user.projects.include?(record)
+  end
+
+  alias_method :not_interested?, :agree_to_terms?
+  alias_method :reject_terms?, :agree_to_terms?
+
   def destroy?
     false
   end
@@ -13,6 +20,8 @@ class ProjectPolicy < LoggedInPolicy
     user.is_a?(User) && user.projects.include?(record)
   end
 
+  alias_method :not_pursuing?, :new?
+  alias_method :offer?, :new?
   alias_method :create?, :new?
   alias_method :edit?, :new?
   alias_method :update?, :edit?
@@ -20,12 +29,4 @@ class ProjectPolicy < LoggedInPolicy
   def show?
     user.projects.include?(record)
   end
-
-  alias_method :interested?, :show?
-  alias_method :not_interested?, :show?
-  alias_method :agree_to_terms?, :show?
-  alias_method :reject_terms?, :show?
-  alias_method :not_pursuing?, :show?
-  alias_method :hire?, :show?
-  alias_method :reply?, :show?
 end

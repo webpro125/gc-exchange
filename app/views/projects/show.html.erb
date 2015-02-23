@@ -1,4 +1,54 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @project.project_name %></h1>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div class="row">
+  <div class="medium-8 columns vr">
+    <div class="row">
+      <div class="medium-8 columns">
+        <%= @project.consultant.full_name %>
+      </div>
+      <div class="medium-4 columns">
+        <%= @project.created_at.to_s(:month_day_and_year) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        Client Point of Contact: <%= @project.user.full_name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        Estimated Start Date: <%= @project.proposed_start.to_s(:month_day_and_year) %>
+      </div>
+      <div class="medium-6 columns">
+        Estimated End Date: <%= @project.proposed_end.to_s(:month_day_and_year) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        Hourly Rate: <%= @project.proposed_rate %>
+      </div>
+      <div class="medium-6 columns">
+        Work Location: <%= @project.project_location %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        Travel Expense Authorization: <%= @project.travel_authorization.label %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        <%= case @project
+            when :offered?.to_proc
+              render 'offered'
+            when :rejected_terms?.to_proc
+              render 'rejected_terms'
+            end %>
+      </div>
+    </div>
+  </div>
+  <div class="medium-4 columns">
+    <%= render 'profiles/side_bar' if consultant_signed_in? %>
+    <%= render 'shared/recent_consultants', consultants: @consultants if user_signed_in? %>
+  </div>
+</div>

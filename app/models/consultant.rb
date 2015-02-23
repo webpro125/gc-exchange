@@ -54,7 +54,7 @@ class Consultant < ActiveRecord::Base
   has_many :consultant_certifications, dependent: :destroy
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
-  has_many :projects, ->() { order(:updated_at) }, dependent: :destroy
+  has_many :projects, ->() { order(updated_at: :desc) }, dependent: :destroy
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 

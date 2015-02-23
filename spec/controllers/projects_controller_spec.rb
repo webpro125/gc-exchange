@@ -191,6 +191,29 @@ describe ProjectsController do
           it { should render_template(:edit) }
         end
       end
+
+      describe 'PUT not_pursuing' do
+        let!(:project) { FactoryGirl.create(:project, user: user) }
+
+        it 'updates the requested project' do
+          ProjectSetStatus.any_instance.should_receive(:not_pursuing_and_save) { true }
+          put :not_pursuing, id: project.to_param
+        end
+
+        describe do
+          before do
+            put :not_pursuing, id: project.to_param
+          end
+
+          it 'assigns the requested project as @project' do
+            put :not_pursuing, id: project.to_param
+            assigns(:project).should eq(project)
+          end
+
+          it { should_not redirect_to(new_user_session_path) }
+          it { should redirect_to(projects_path) }
+        end
+      end
     end
 
     describe 'as a consultant' do
@@ -244,6 +267,75 @@ describe ProjectsController do
           expect do
             get :edit, id: project.id
           end.to raise_error Pundit::NotAuthorizedError
+        end
+      end
+
+      describe 'PUT agree_to_terms' do
+        let!(:project) { FactoryGirl.create(:project, consultant: user) }
+
+        it 'updates the requested project' do
+          ProjectSetStatus.any_instance.should_receive(:agree_to_terms_and_save) { true }
+          put :agree_to_terms, id: project.to_param
+        end
+
+        describe do
+          before do
+            put :agree_to_terms, id: project.to_param
+          end
+
+          it 'assigns the requested project as @project' do
+            put :agree_to_terms, id: project.to_param
+            assigns(:project).should eq(project)
+          end
+
+          it { should_not redirect_to(new_user_session_path) }
+          it { should redirect_to(projects_path) }
+        end
+      end
+
+      describe 'PUT reject_terms' do
+        let!(:project) { FactoryGirl.create(:project, consultant: user) }
+
+        it 'updates the requested project' do
+          ProjectSetStatus.any_instance.should_receive(:reject_terms_and_save) { true }
+          put :reject_terms, id: project.to_param
+        end
+
+        describe do
+          before do
+            put :reject_terms, id: project.to_param
+          end
+
+          it 'assigns the requested project as @project' do
+            put :reject_terms, id: project.to_param
+            assigns(:project).should eq(project)
+          end
+
+          it { should_not redirect_to(new_user_session_path) }
+          it { should redirect_to(projects_path) }
+        end
+      end
+
+      describe 'PUT not_interested' do
+        let!(:project) { FactoryGirl.create(:project, consultant: user) }
+
+        it 'updates the requested project' do
+          ProjectSetStatus.any_instance.should_receive(:not_interested_and_save) { true }
+          put :not_interested, id: project.to_param
+        end
+
+        describe do
+          before do
+            put :not_interested, id: project.to_param
+          end
+
+          it 'assigns the requested project as @project' do
+            put :not_interested, id: project.to_param
+            assigns(:project).should eq(project)
+          end
+
+          it { should_not redirect_to(new_user_session_path) }
+          it { should redirect_to(projects_path) }
         end
       end
     end

@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :auth_a_user!
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, except: [:index, :new, :create]
   before_action :set_consultant, only: [:new, :create]
+  before_action :consultants
 
   # GET /projects
   def index
-    @projects    = pundit_user.projects.page(params[:page])
-    @consultants = Consultant.recent
+    @projects = pundit_user.projects.page(params[:page])
   end
 
   # GET /projects/1
@@ -53,6 +53,38 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def not_interested
+    if ProjectSetStatus.new(@project).not_interested_and_save
+      redirect_to projects_path
+    else
+      render :show
+    end
+  end
+
+  def not_pursuing
+    if ProjectSetStatus.new(@project).not_pursuing_and_save
+      redirect_to projects_path
+    else
+      render :show
+    end
+  end
+
+  def agree_to_terms
+    if ProjectSetStatus.new(@project).agree_to_terms_and_save
+      redirect_to projects_path
+    else
+      render :show
+    end
+  end
+
+  def reject_terms
+    if ProjectSetStatus.new(@project).reject_terms_and_save
+      redirect_to projects_path
+    else
+      render :show
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -69,5 +101,9 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:travel_authorization_id, :proposed_start, :proposed_end,
                                     :proposed_rate, :project_name, :project_location)
+  end
+
+  def consultants
+    @consultants = Consultant.recent
   end
 end
