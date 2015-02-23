@@ -22,7 +22,7 @@ class ChangePasswordsController < ApplicationController
   end
 
   def current_password?(current_password)
-    current_user.valid_password?(current_password)
+    @user.valid_password?(current_password)
   end
 
   def load_and_authorize_user
