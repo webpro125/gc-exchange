@@ -1,12 +1,12 @@
 Your offer of engagement described below and submitted to <%= @consultant.full_name %> on <%=
     Date.today %>, consultant has declined your offer.
 
-• Engagement Name: <%= @Project.project_name %>
-• Client Point of Contact: <%= @User.full_name %>
-• Estimated Start Date: <%= @Project.proposed_start %>
-• Estimated End Date: <%= @Project.proposed_end %>
-• Hourly Rate: <%= @Project.proposed_rate %>
-• Work Location: <%= @Project.project_location %>
-• Travel Expense Authorization: <%= @Project.travel_authorization_id.label %>
+• Engagement Name: <%= @project.project_name %>
+• Client Point of Contact: <%= @user.full_name %>
+• Estimated Start Date: <%= @project.proposed_start %>
+• Estimated End Date: <%= @project.proposed_end %>
+• Hourly Rate: <%= @project.proposed_rate %>
+• Work Location: <%= @project.project_location %>
+• Travel Expense Authorization: <%= @project.travel_authorization.label %>
 
 If you wish to continue negotiations, please feel free to resume the dialog with this consultant.
