@@ -76,6 +76,13 @@ en:
         description: 'Description of Role Performed'
         client_company: 'Company'
         client_poc_phone: 'Reference Phone'
+      project:
+        proposed_start: 'Engagement Start Date'
+        proposed_end: 'Engagement End Date'
+        proposed_rate: 'Negotiated Consultant''s Hourly Rate'
+        project_location: 'Work Location'
+        project_name: 'Engagement Identification'
+        travel_authorization_id: 'Travel Authorization'
       search:
         position_ids: 'Position'
         q: 'Keywords'

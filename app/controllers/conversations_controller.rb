@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   helper_method :mailbox, :conversation
 
   def index
-    # @messages ||= pundit_user.mailbox.inbox.open.page(params[:page])
+    @messages ||= pundit_user.mailbox.inbox.page(params[:page])
     # TODO: View other inboxes
   end
 

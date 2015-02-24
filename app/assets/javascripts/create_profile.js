@@ -33,14 +33,5 @@
       toggleClearance(clearance.val());
       toggleMilitary(military.val());
     }
-
-    var rate = $('#consultant_rate');
-
-    rate.on('blur', function() {
-      var _this = $(this);
-      var val = _this.val();
-
-      _this.val(parseFloat(val).toFixed(2));
-    });
   });
 })();
