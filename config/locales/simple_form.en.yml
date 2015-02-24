@@ -122,7 +122,8 @@ en:
         end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
       consultant:
         abstract: 'This field provides a summary abstract of your career experience.  Enter
-        a brief description of your professional achievements, work history, and skills.'
+        a brief description of your professional achievements, work history, and skills. Include 
+        experience that substantiates  your qualifications to be a “Mentor”.'
         certification_ids: 'Scroll down, identify, and click on your professional certifications.'
         skills_list: 'Add your skills and separate each skill with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)'
       address:
