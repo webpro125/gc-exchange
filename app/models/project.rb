@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   belongs_to :consultant
   belongs_to :user
 
-  validates :consultant, presence: true, uniqueness: { scope: :user }
+  validates :consultant, presence: true
   validates :user, presence: true
   validates :travel_authorization, presence: true
 end
