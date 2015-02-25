@@ -20,8 +20,7 @@ class Consultant < ActiveRecord::Base
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code]))
   end)
   scope :pending_approval, (lambda do
-    where(
-      approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
   end)
   scope :on_hold,
         ->() { where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::ON_HOLD[:code])) }

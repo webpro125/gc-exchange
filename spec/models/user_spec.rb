@@ -14,6 +14,8 @@ describe User do
 
   it { should be_valid }
 
+  it { expect(subject).to have_many(:shared_contacts).dependent(:destroy) }
+
   it { expect(subject).to have_many(:projects).dependent(:destroy) }
   it { expect(subject).to belong_to(:company) }
   it { expect(subject).to have_one(:owned_company) }
