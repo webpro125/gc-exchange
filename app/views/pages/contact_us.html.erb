@@ -28,27 +28,15 @@
     </div>
   </div>
 </div>
-<div class="row options">
-  <div class="row">
-    <div class="medium-4 columns">
-      <a href="/contractor_benefits" class="button">See <em>Contractor</em> Benefits</a>
-    </div>
-    <div class="medium-4 columns">
-      <a href="/how_we_do_it" class="button">See <em>how</em> we do it!</a>
-    </div>
-    <div class="medium-4 columns">
-      <a href="/consultant_benefits" class="button">See <em>Consultant/Mentor</em> Benefits</a>
-    </div>
-  </div>
-</div>
+<%= render 'pages/options' %>
 <div class="row action"
   <ul data-orbit class="home-orbit">  
     <li data-orbit-slide="contact-us" class="slide-8 active">
       <div class="row">
         <h2 class="head">Contact Us</h2>
-        <p>For questions/comments about GCES business operations:<br><a href="mailto:barrie.gillis@globalconsultantexchange.com">barrie.gillis@globalconsultantexchange.com</a></p>
-        <p>For questions/comments about how GCES can help you:<br><a href="mailto:paul.mears@globalconsultantexchange.com">paul.mears@globalconsultantexchange.com</a></p>
-        <p>For questions about our website:<br><a href="mailto:billy.mills@globalconsultantexchange.com">billy.mills@globalconsultantexchange.com</a></p>
+        <p>For questions/comments about GCES business operations:<br><%= mail_to 'barrie.gillis@globalconsultantexchange.com', class: 'mail' do %> barrie.gillis@globalconsultantexchange.com <% end %></p>
+        <p>For questions/comments about how GCES can help you:<br><%= mail_to 'paul.mears@globalconsultantexchange.com', class: 'mail' do %> paul.mears@globalconsultantexchange.com <% end %></p>
+        <p>For questions about our website:<br><%= mail_to 'billy.mills@globalconsultantexchange.com', class: 'mail' do %> billy.mills@globalconsultantexchange.com <% end %></p>
       </div>
     </li>   
   </ul>

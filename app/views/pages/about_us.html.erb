@@ -28,36 +28,24 @@
     </div>
   </div>
 </div>
-<div class="row options">
-  <div class="row">
-    <div class="medium-4 columns">
-      <a href="/contractor_benefits" class="button">See <em>Contractor</em> Benefits</a>
-    </div>
-    <div class="medium-4 columns">
-      <a href="/how_we_do_it" class="button">See <em>how</em> we do it!</a>
-    </div>
-    <div class="medium-4 columns">
-      <a href="/consultant_benefits" class="button">See <em>Consultant/Mentor</em> Benefits</a>
-    </div>
-  </div>
-</div>
+<%= render 'pages/options' %>
 <div class="row action"
   <ul data-orbit class="home-orbit"> 
     <li data-orbit-slide="about-us" class="slide-7 active">
       <div class="row">
         <h2 class="head">GCES is a limited liability company organized in Washington D.C. in 2014 by:</h2>
         <div class="medium-4 columns">
-          <h4>Barrie Gillis</h4> <a class="mail" href="mailto:barrie.gillis@globalconsultantexchange.com"><i class="fi-mail"></i></a>
+          <h4>Barrie Gillis</h4> <%= mail_to 'barrie.gillis@globalconsultantexchange.com', class: 'mail' do %> <i class="fi-mail"></i> <% end %>
           <p><em>Partner: General Manager</em></p>
           <p>Barrie has 30 years of experience as a business management and business development professional. Among his accomplishments, he co-founded, led, and sold an international systems engineering firm. A business development consultant since 1998, Barrie developed the business model upon which GCES is based. Barrie is a retired Air Force Intelligence and Information Technology officer and a graduate of the University of Virginia.</p>
         </div>
         <div class="medium-4 columns">
-          <h4>Paul Mears</h4> <a class="mail" href="mailto:paul.mears@globalconsultantexchange.com"><i class="fi-mail"></i></a>
+          <h4>Paul Mears</h4> <%= mail_to 'paul.mears@globalconsultantexchange.com', class: 'mail' do %> <i class="fi-mail"></i> <% end %>
           <p><em>Partner: Strategy and Business Development</em></p>
           <p>Paul is a business strategy and business development professional with over 40 years of experience leading proposal development in the commercial and government markets, including 15 years as Vice President and Executive Business Capture Consultant at SM&amp;A, Inc. He has lead proposal efforts yielding over $14.6 billion in business for his clients, 98% of all business dollars pursued. Paul is a former US Army Aviation and Intelligence Officer and a graduate of Stephen F. Austin State University.</p>
         </div> 
         <div class="medium-4 columns">
-          <h4>Billy Mills</h4> <a class="mail" href="mailto:billy.mills@globalconsultantexchange.com"><i class="fi-mail"></i></a>
+          <h4>Billy Mills</h4> <%= mail_to 'billy.mills@globalconsultantexchange.com', class: 'mail' do %> <i class="fi-mail"></i> <% end %>
           <p><em>Partner: Chief Architect</em></p>
           <p>Billy is a proven consultant leader in program architecture, capture and proposal management, Integrated Master Planning/Scheduling, Earned Value Management Systems, and risk management with 15 years’ experience in the aerospace, defense and information technology markets. In addition, Billy has founded successful enterprises in the commercial services and web-based markets. Billy is a former Marine Corp Infantry officer and a graduate of the United States Military Academy.</p>
         </div>           

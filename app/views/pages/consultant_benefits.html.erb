@@ -28,19 +28,7 @@
     </div>
   </div>
 </div>
-<div class="row options">
-  <div class="row">
-    <div class="medium-4 columns">
-      <a href="/contractor_benefits" class="button">See <em>Contractor</em> Benefits</a>
-    </div>
-    <div class="medium-4 columns">
-      <a href="/how_we_do_it" class="button">See <em>how</em> we do it!</a>
-    </div>
-    <div class="medium-4 columns">
-      <a href="/consultant_benefits" class="button">See <em>Consultant/Mentor</em> Benefits</a>
-    </div>
-  </div>
-</div>
+<%= render 'pages/options' %>
 <div class="row action"
   <ul data-orbit class="home-orbit">
     <li data-orbit-slide="consultant-benefits" class="slide-6 active">
@@ -65,7 +53,7 @@
             <li>GCES is consultants’ single source for time accounting, invoicing, payment and tax documents</li>
           </ul>
           <%= link_to 'Register as a Consultant', new_consultant_registration_path %>
-          <a href="/contact_us">More information? Contact us &#187;</a>
+          <%= link_to 'More information? Contact us &#187;', contact_us_path %>
         </div>  
       </div>
     </li>   
