@@ -21,7 +21,7 @@
         </h6>
 
         <p>
-          <%= link_to truncate(conversation.messages.last.body, length: 25),
+          <%= link_to truncate(conversation.messages.last.body, length: 100),
                       conversation_path(conversation) %>
         </p>
       </div>

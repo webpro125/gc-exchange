@@ -54,14 +54,20 @@
               <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
             </li>
         <% elsif user_signed_in? %>
-            <% if user_is_gces? %>
-                <li>
-                  <%= link_to t('views.consultant.actions.index'), consultants_path %>
-                </li>
-                <li>
-                  <%= link_to t('views.company.actions.index'), companies_path %>
-                </li>
-            <% end %>
+            <li class="has-dropdown">
+              <%= link_to 'Manage', '#' %>
+              <ul class="dropdown">
+                <% if user_is_gces? %>
+                    <li>
+                      <%= link_to t('views.consultant.actions.index'), consultants_path %>
+                    </li>
+                    <li>
+                      <%= link_to t('views.company.actions.index'), companies_path %>
+                    </li>
+                <% end %>
+                <li><%= link_to t('views.offer.actions.index'), projects_path %></li>
+              </ul>
+            </li>
             <li>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
             </li>

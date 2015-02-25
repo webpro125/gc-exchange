@@ -1,11 +1,11 @@
 class ConversationsController < ApplicationController
+  before_action :recent_consultants
   before_filter :load_consultant, only: [:create]
   before_action :auth_a_user!
   helper_method :mailbox, :conversation
 
   def index
-    # @messages ||= pundit_user.mailbox.inbox.open.page(params[:page])
-    # TODO: View other inboxes
+    @messages ||= pundit_user.mailbox.inbox.page(params[:page])
   end
 
   def new
@@ -26,8 +26,8 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @message = Message.new
-    conversation
+    @message    = Message.new
+    @consultant = conversation.recipients.select { |r| r.is_a? Consultant }.first
   end
 
   def reply
@@ -64,7 +64,7 @@ class ConversationsController < ApplicationController
   def project_params
     params.require(:project).permit(:subject, :message, :project_start, :project_end,
                                     :project_rate).merge(consultant_id: @consultant.id,
-                                                         user_id: current_user.id)
+                                                         user_id:       current_user.id)
   end
 
   def update_communication
@@ -73,5 +73,9 @@ class ConversationsController < ApplicationController
     else
       current_user.reply_to_conversation(conversation, message)
     end
+  end
+
+  def recent_consultants
+    @consultants = Consultant.recent
   end
 end

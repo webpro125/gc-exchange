@@ -1,7 +1,9 @@
 class Message
-  attr_accessor :subject, :message
+  # include ActiveModel::Validations
+  # include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  private
+  attr_accessor :subject, :message
 
   def persisted?
     false

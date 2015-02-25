@@ -1,40 +1,11 @@
 <% communication = @conversation %>
 <div class="row">
-  <div class="medium-9 columns">
+  <div class="medium-8 columns vr">
     <h1><%= communication.subject %></h1>
 
     <div class="row">
       <div class="medium-12 columns">
         <%= link_to 'Back to Inbox', conversations_path, class: 'button tiny' %>
-        <% if @contact_request.open? %>
-            <% if consultant_signed_in? %>
-                <%= button_to 'Not Interested',
-                              not_interested_conversation_path(@contact_request),
-                              method: :post,
-                              class:  'button tiny',
-                              data:   {
-                                      confirm: {
-                                              body: 'Are you sure that you are not interested in
-                                              this project?  By clicking confirm, you will not be
-                                               to reopen conversation dialog with this company
-                                               until they reach out to you again.'
-                                      }
-                              } %>
-            <% else %>
-                <%= button_to 'Not Pursuing',
-                              not_interested_conversation_path(@contact_request),
-                              method: :post,
-                              class:  'button tiny',
-                              data:   {
-                                      confirm: {
-                                              body: 'Are you sure that you are not interested in
-                                              this consultant?  By clicking confirm, you will
-                                              close communication with this consultant until you
-                                              reach out to them with another engagement.'
-                                      }
-                              } %>
-            <% end %>
-        <% end %>
       </div>
     </div>
     <div class="row">
@@ -64,23 +35,23 @@
     <div class="row">
 
     </div>
-        <div class="row">
-          <div class="medium-12 columns">
-            <ul class="right">
-              <li id="reply-btn"><i class="fi-arrow-left"></i> Reply</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row" id="reply" style="display: none; opacity: 0;">
-          <div class="medium-12 columns">
-            <%= simple_form_for @message,
-                                url:    reply_conversation_path(communication),
-                                method: :post do |f| %>
-                <%= f.input :message, as: :text %>
-                <%= f.button :submit, 'Send Message' %>
-            <% end %>
-          </div>
-        </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        <ul class="right">
+          <li id="reply-btn"><i class="fi-arrow-left"></i> Reply</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row" id="reply" style="display: none; opacity: 0;">
+      <div class="medium-12 columns">
+        <%= simple_form_for @message,
+                            url:    reply_conversation_path(communication),
+                            method: :post do |f| %>
+            <%= f.input :message, as: :text %>
+            <%= f.button :submit, 'Send Message' %>
+        <% end %>
+      </div>
+    </div>
     <% communication.messages.each do |message| %>
         <div class="row">
           <div class="medium-6 columns">
@@ -110,10 +81,23 @@
         </div>
     <% end %>
   </div>
-  <% if consultant_signed_in? %>
-      <div class="medium-1 columns vr">
-        &nbsp;
-      </div>
-      <%= render 'profiles/side_bar' %>
-  <% end %>
+  <div class="row">
+    <div class="medium-4 columns">
+      <% if consultant_signed_in? %>
+          <%= render 'profiles/side_bar' %>
+      <% else %>
+          <h4>Offers</h4>
+
+          <div class="row">
+            <div class="medium-12 columns">
+              <%= link_to 'Add Engagement Offer',
+                          new_consultant_project_path(@consultant),
+                          class: 'button tiny' %>
+              <%= link_to t('views.offer.actions.index'), projects_path, class: 'button tiny' %>
+            </div>
+          </div>
+          <%= render 'shared/recent_consultants', consultants: @consultants %>
+      <% end %>
+    </div>
+  </div>
 </div>
