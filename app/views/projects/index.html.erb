@@ -4,6 +4,7 @@
   <div class="medium-8 columns vr">
     <h4>Inbox</h4>
     <%= render @projects %>
+    <%= paginate @projects %>
   </div>
   <div class="medium-4 columns">
     <%= render 'profiles/side_bar' if consultant_signed_in? %>

@@ -35,66 +35,6 @@ class ConversationsController < ApplicationController
     redirect_to conversation_path(conversation)
   end
 
-  # def interested
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).interested_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def not_interested
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).not_interested_and_save
-  #     redirect_to conversations_path
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def not_pursuing
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).not_pursuing_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def hire
-  #   contact_request.assign_attributes(message_params(:message, :project_start, :project_end,
-  #                                                    :project_rate, :project_name,
-  #                                                    :project_location, :travel_authorization_id))
-  #
-  #   if ProjectSetStatus.new(contact_request).hire_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def agree_to_terms
-  #   if ProjectSetStatus.new(contact_request).agree_to_terms_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def reject_terms
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).reject_terms_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-
   private
 
   def mailbox
