@@ -114,6 +114,9 @@ en:
         index: 'Pending Consultants'
     search:
     page:
+      consultant_benefits_html: 'See <em>Consultant/Mentor</em> Benefits'
+      how_we_do_it_html: 'See <em>how</em> we do it!'
+      contractor_benefits_html: 'See <em>Contractor</em> Benefits'
       actions:
         more_information: 'More Information'
         less_information: 'Less Information'
