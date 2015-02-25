@@ -21,10 +21,6 @@ describe ProjectForm do
 
   it { expect(subject).to validate_presence_of(:travel_authorization_id) }
 
-  it { expect(subject).to validate_presence_of(:proposed_start) }
-
-  it { expect(subject).to validate_presence_of(:proposed_end) }
-
   it { expect(subject).to validate_presence_of(:project_name) }
   it { expect(subject).to ensure_length_of(:project_name).is_at_least(2).is_at_most(128) }
 
