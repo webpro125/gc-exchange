@@ -39,8 +39,15 @@ Rails.application.routes.draw do
 
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects', except: [:show]
-  resources :projects, path: 'offers', only: [:index]
   resources :sales_leads, only: [:new, :create]
+  resources :projects, path: 'offers', only: [:index] do
+    member do
+      post :agree_to_terms
+      post :reject_terms
+      post :not_pursuing
+      post :not_interested
+    end
+  end
   resources :companies do
     resources :users
   end

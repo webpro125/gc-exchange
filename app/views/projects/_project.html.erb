@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="medium-9 columns">
+  <div class="medium-12 columns">
     <div class="row">
-      <div class="medium-12 columns">
+      <div class="medium-9 columns">
         <%= if consultant_signed_in?
               "#{project.user.full_name} - #{project.user.company.company_name}"
             end %>
@@ -13,6 +13,13 @@
             <% end %>
         <% end %>
       </div>
+      <div class="medium-3 columns">
+        <%= if project.updated_at.today?
+              project.updated_at.strftime('%l:%M %p')
+            else
+              project.updated_at.strftime('%_m/%-d')
+            end %>
+      </div>
     </div>
     <div class="row">
       <div class="medium-12 columns">
@@ -23,24 +30,10 @@
     <div class="row">
       <div class="medium-12 columns">
         <div>
-          <%= link_to project.consultant.full_name, consultant_path(project.consultant) %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="medium-12 columns">
-        <div>
           <strong>Start Date: </strong>
           <%= project.proposed_start.to_formatted_s(:month_day_and_year) %>
         </div>
       </div>
     </div>
-  </div>
-  <div class="medium-3 columns">
-    <%= if project.updated_at.today?
-          project.updated_at.strftime('%l:%M %p')
-        else
-          project.updated_at.strftime('%_m/%-d')
-        end %>
   </div>
 </div>

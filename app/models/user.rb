@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :confirmable, :timeoutable
 
   belongs_to :company
-  has_many :projects, ->() { order(:updated_at) }, dependent: :destroy
+  has_many :projects, ->() { order(updated_at: :desc) }, dependent: :destroy
   has_many :communications, through: :contact_requests
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 

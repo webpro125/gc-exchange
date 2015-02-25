@@ -1,0 +1,24 @@
+@import "variables";
+
+
+ul {    
+  &.list {
+    li {
+    margin-left: 0;
+    text-indent: 0;
+    margin-bottom: 0.5rem;
+      &:before {
+      content: none;
+      }
+    }
+  }
+}
+
+@media #{$medium-up} {
+    .medium-4 {
+      &.side {
+        padding: 0 0 0 2rem;
+        border-left: 2px solid $smoke;
+      }
+    }
+}
