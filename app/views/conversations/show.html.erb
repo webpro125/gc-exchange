@@ -6,34 +6,14 @@
     <div class="row">
       <div class="medium-12 columns">
         <%= link_to 'Back to Inbox', conversations_path, class: 'button tiny' %>
-        <% if @contact_request.open? %>
-            <% if consultant_signed_in? %>
-                <%= button_to 'Not Interested',
-                              not_interested_conversation_path(@contact_request),
-                              method: :post,
-                              class:  'button tiny',
-                              data:   {
-                                      confirm: {
-                                              body: 'Are you sure that you are not interested in
-                                              this project?  By clicking confirm, you will not be
-                                               to reopen conversation dialog with this company
-                                               until they reach out to you again.'
-                                      }
-                              } %>
-            <% else %>
-                <%= button_to 'Not Pursuing',
-                              not_interested_conversation_path(@contact_request),
-                              method: :post,
-                              class:  'button tiny',
-                              data:   {
-                                      confirm: {
-                                              body: 'Are you sure that you are not interested in
-                                              this consultant?  By clicking confirm, you will
-                                              close communication with this consultant until you
-                                              reach out to them with another engagement.'
-                                      }
-                              } %>
-            <% end %>
+        <% if consultant_signed_in? &&
+                !current_consultant.contactable(current_consultant,
+                                                conversation.other_participant(current_consultant))
+        %>
+            <%= link_to 'Approve Personal Contact Information',
+                        approve_personal_contact_conversation_path,
+                        method: :put,
+                        class: 'button tiny' if policy(current_consultant).contactable? %>
         <% end %>
       </div>
     </div>

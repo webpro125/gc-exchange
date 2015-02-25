@@ -25,6 +25,10 @@ class ConsultantPolicy < ApplicationPolicy
     gces? || user == record
   end
 
+  def contactable?
+    user == record
+  end
+
   alias_method :update?, :edit?
 
   def upload_resume?

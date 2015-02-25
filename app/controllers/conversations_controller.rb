@@ -35,6 +35,17 @@ class ConversationsController < ApplicationController
     redirect_to conversation_path(conversation)
   end
 
+  def approve_personal_contact
+    shared_contact = SharedContacts.new(consultant_id:  current_consultant.id,
+                                     user_id: conversation.last_sender.id,
+                                     allowed: true)
+    if shared_contact.save?
+      redirect_to conversation_path(conversation), notice: 'Approved Contact'
+    else
+      redirect_to conversation_path(conversation), notice: 'Unable to Approve Contact'
+    end
+  end
+
   # def interested
   #   contact_request.assign_attributes(message_params(:message))
   #
