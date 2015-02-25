@@ -117,14 +117,6 @@ class ConversationsController < ApplicationController
     params.require(:conversation).permit(:subject, :message)
   end
 
-  def auth_a_user!
-    if consultant_signed_in?
-      authenticate_consultant!
-    else
-      authenticate_user!
-    end
-  end
-
   def load_consultant
     @consultant = Consultant.find(params[:consultant_id])
   end

@@ -5,7 +5,7 @@ class UsersController < CompanyController
 
   def profile
     @messages = current_user.mailbox.inbox.page(params[:page])
-    @consultants = Consultant.approved.limit(3).order(created_at: :desc)
+    @consultants = Consultant.recent
     @projects = current_user.projects.open.limit(3)
   end
 
