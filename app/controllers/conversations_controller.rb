@@ -1,11 +1,11 @@
 class ConversationsController < ApplicationController
+  before_action :recent_consultants
   before_filter :load_consultant, only: [:create]
   before_action :auth_a_user!
   helper_method :mailbox, :conversation
 
   def index
-    # @messages ||= pundit_user.mailbox.inbox.open.page(params[:page])
-    # TODO: View other inboxes
+    @messages ||= pundit_user.mailbox.inbox.page(params[:page])
   end
 
   def new
@@ -26,8 +26,8 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @message = Message.new
-    conversation
+    @message    = Message.new
+    @consultant = conversation.recipients.select { |r| r.is_a? Consultant }.first
   end
 
   def reply
@@ -46,66 +46,6 @@ class ConversationsController < ApplicationController
       redirect_to conversation_path(conversation), notice: 'Unable to Approve Contact'
     end
   end
-
-  # def interested
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).interested_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def not_interested
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).not_interested_and_save
-  #     redirect_to conversations_path
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def not_pursuing
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).not_pursuing_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def hire
-  #   contact_request.assign_attributes(message_params(:message, :project_start, :project_end,
-  #                                                    :project_rate, :project_name,
-  #                                                    :project_location, :travel_authorization_id))
-  #
-  #   if ProjectSetStatus.new(contact_request).hire_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def agree_to_terms
-  #   if ProjectSetStatus.new(contact_request).agree_to_terms_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
-  #
-  # def reject_terms
-  #   contact_request.assign_attributes(message_params(:message))
-  #
-  #   if ProjectSetStatus.new(contact_request).reject_terms_and_save
-  #     redirect_to conversation_path contact_request
-  #   else
-  #     render :show
-  #   end
-  # end
 
   private
 
@@ -129,14 +69,6 @@ class ConversationsController < ApplicationController
     params.require(:conversation).permit(:subject, :message)
   end
 
-  def auth_a_user!
-    if consultant_signed_in?
-      authenticate_consultant!
-    else
-      authenticate_user!
-    end
-  end
-
   def load_consultant
     @consultant = Consultant.find(params[:consultant_id])
   end
@@ -144,7 +76,7 @@ class ConversationsController < ApplicationController
   def project_params
     params.require(:project).permit(:subject, :message, :project_start, :project_end,
                                     :project_rate).merge(consultant_id: @consultant.id,
-                                                         user_id: current_user.id)
+                                                         user_id:       current_user.id)
   end
 
   def update_communication
@@ -153,5 +85,9 @@ class ConversationsController < ApplicationController
     else
       current_user.reply_to_conversation(conversation, message)
     end
+  end
+
+  def recent_consultants
+    @consultants = Consultant.recent
   end
 end

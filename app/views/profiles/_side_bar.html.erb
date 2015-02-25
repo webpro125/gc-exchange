@@ -1,11 +1,14 @@
-<div class="medium-2 columns">
-  <h4>Profile</h4>
-  <ul class="list">
-    <li><%= link_to t('views.profile.actions.edit'), edit_profile_path %></li>
-    <li><%= link_to t('views.profile.actions.upload_photo'),
-                    new_consultant_upload_image_path(current_consultant) %></li>
-    <li><%= link_to t('views.profile.actions.upload_resume'),
-                    new_consultant_upload_resume_path(current_consultant) %></li>
-    <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
-  </ul>
+<div class="row">
+  <div class="medium-12 columns">
+    <h4>Profile</h4>
+    <ul class="list">
+      <li><%= link_to t('views.profile.actions.edit'), edit_profile_path %></li>
+      <li><%= link_to t('views.profile.actions.upload_photo'),
+                      new_consultant_upload_image_path(current_consultant) %></li>
+      <li><%= link_to t('views.profile.actions.upload_resume'),
+                      new_consultant_upload_resume_path(current_consultant) %></li>
+      <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
+      <li><%= link_to t('views.offer.actions.index'), projects_path %></li>
+    </ul>
+  </div>
 </div>

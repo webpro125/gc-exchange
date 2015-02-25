@@ -1,11 +1,9 @@
 <h1>Consultant Dashboard</h1>
 <div class="row">
-  <div class="medium-9 columns">
+  <div class="medium-8 columns vr">
     <h4>Inbox</h4>
     <%= render 'conversations/inbox', conversations: @messages %>
   </div>
-  <div class="medium-1 columns vr">
-    &nbsp;
+    <%= render 'profiles/side_column' %>
   </div>
-  <%= render 'profiles/side_bar' %>
 </div>

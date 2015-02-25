@@ -1,0 +1,9 @@
+<% if consultant_signed_in? %>
+    <p>Please be patient while your Point of Contact works with you to resubmit the engagement
+      offer. You specified that the terms were not agreeable to you and your contact is making
+      changes to the terms.</p>
+<% else %>
+    <p>You will need to update the terms as the consultant did not agree. Please work with the
+      consultant to make sure that the terms are agreeable to both parties.</p>
+    <%= link_to 'Edit', project_path(@project), class: 'button' %>
+<% end %>

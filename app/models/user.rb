@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Nameable, Contactable
+  include Nameable
 
   acts_as_messageable
 
@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :confirmable, :timeoutable
 
   belongs_to :company
-  has_many :projects, dependent: :destroy
+  has_many :projects, ->() { order(updated_at: :desc) }, dependent: :destroy
   has_many :shared_contacts, dependent: :destroy
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 

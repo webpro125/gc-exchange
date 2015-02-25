@@ -12,10 +12,15 @@ class ProjectSetStatus
     true
   end
 
-  def hire_and_save
+  def offer_and_save
     return false unless hireable?
 
-    @project.hired!
+    if @project.respond_to? :offered!
+      @project.offered!
+    else
+      @project.model.offered!
+    end
+
     return unless @project.save
     ProjectStatusMailer.delay.consultant_hired(@project.id)
     true
@@ -31,7 +36,7 @@ class ProjectSetStatus
   end
 
   def agree_to_terms_and_save
-    return false unless @project.hired?
+    return false unless @project.offered?
 
     @project.agreed_to_terms!
     return unless @project.save
@@ -41,21 +46,25 @@ class ProjectSetStatus
     true
   end
 
-  def reject_terms_and_save
-    return false unless @project.hired?
+  def under_revision_and_save
+    return false unless @project.offered?
 
-    @project.rejected_terms!
-    return unless  @project.save
+    @project.under_revision!
+    return unless @project.save
     ProjectStatusMailer.delay.consultant_rejected_terms(@project.id)
     true
   end
 
   def interestable?
-    @project.hired?
+    @project.offered?
   end
 
   def hireable?
-    @project.rejected_terms?
+    if @project.respond_to? :under_revision?
+      @project.under_revision?
+    else
+      @project.model.under_revision?
+    end
   end
 
   def not_pursuable?
