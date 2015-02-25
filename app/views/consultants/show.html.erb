@@ -98,7 +98,7 @@
     <div class="row">
       <div class="small-12 columns">
         <%= render 'profiles/contact_information' if user_is_gces? ||
-                current_user.contactable(current_user,Consultant.find(params[:id]))%>
+                current_user.contactable(@consultant) %>
         <%= render 'profiles/background_and_history' %>
         <%= render @consultant.project_histories if user_signed_in? %>
       </div>

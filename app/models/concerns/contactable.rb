@@ -1,33 +1,13 @@
 module Contactable
   extend ActiveSupport::Concern
 
-  def contactable(consultant_or_user, unknown)
-    if consultant_or_user.class == User
-      results = SharedContacts.where(user: consultant_or_user)
-      if unknown.class === User
-        results[]
-        return false
-      else
-        results.where(consultant: unknown)
-        if results.exists?
-          return true
-        else
-          return false
-        end
-      end
+  def contactable(consultant_or_user)
+    if self.class == Consultant && consultant_or_user.class == User
+      shared_contacts.exists?(user: consultant_or_user)
+    elsif self.class == User && consultant_or_user.class == Consultant
+      shared_contacts.exists?(consultant: consultant_or_user)
     else
-      results = SharedContacts.where(consultant: consultant_or_user)
-      if unknown.class == Consultant
-        results[]
-        return false
-      else
-        results.where(user: unknown)
-        if results.exists?
-          return true
-        else
-          return false
-        end
-      end
+      fail('Contactable Error')
     end
   end
 end

@@ -1,5 +1,6 @@
 class Consultant < ActiveRecord::Base
   include Searchable, Nameable, Contactable
+
   acts_as_messageable
 
   RESUME_MIME_TYPES = ['application/pdf']
@@ -44,7 +45,7 @@ class Consultant < ActiveRecord::Base
   has_one :military, dependent: :destroy
   has_one :background, dependent: :destroy
   belongs_to :approved_status
-  has_many :shared_contacts
+  has_many :shared_contacts, dependent: :destroy
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
   has_many :consultant_skills, dependent: :destroy

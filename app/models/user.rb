@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Nameable, Contactable
+
   acts_as_messageable
 
   # Include default devise modules. Others available are:
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
 
   belongs_to :company
   has_many :projects, dependent: :destroy
-  has_many :shared_contacts
+  has_many :shared_contacts, dependent: :destroy
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 
   before_validation :company_present

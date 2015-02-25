@@ -8,10 +8,10 @@ Mailboxer::Conversation.class_eval do
   end
 
   def consultant_recipient
-    self.recipients.select { |r| r.is_a? Consultant }.first
+    recipients.select { |r| r.is_a? Consultant }.first
   end
 
   def user_recipient
-    self.recipients.select { |r| r.is_a? User }.first
+    recipients.select { |r| r.is_a? User }.first
   end
 end

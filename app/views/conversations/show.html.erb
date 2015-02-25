@@ -7,8 +7,7 @@
       <div class="medium-12 columns">
         <%= link_to 'Back to Inbox', conversations_path, class: 'button tiny' %>
         <% if consultant_signed_in? &&
-                !current_consultant.contactable(current_consultant,
-                                                conversation.other_participant(current_consultant))
+                !current_consultant.contactable(conversation.other_participant(current_consultant))
         %>
             <%= link_to 'Approve Personal Contact Information',
                         approve_personal_contact_conversation_path,
