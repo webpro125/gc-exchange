@@ -7,6 +7,9 @@
   font-weight: 600;
   line-height: 1.2rem;
   margin-bottom: 0;
+    @media #{$xlarge-up} {
+      font-size: rem-calc(18);
+    }
   }
 }
 .top-bar {
@@ -39,9 +42,6 @@ h5 {
     margin: 0;
     width: 100%;
   }
-}
-ul.home-orbit {
-  height: 200px!important;
 }
 .orbit-container {
  .orbit-slides-container {
@@ -105,9 +105,6 @@ ul.home-orbit {
     }
     img {
       margin: 0 auto;
-    }
-    li > .row {
-      margin: 1rem auto;
     }
   }
 }
@@ -220,12 +217,12 @@ ul.home-orbit {
     margin-left: -135px;
   }
 
-  @media #{$medium-up} {
+  @media #{$large-up} {
     .row {
-      max-width: 77rem;
+      max-width: 90%;
       margin: 0 auto;
     }
-  }
+  }  
 
   .compact {
 
@@ -256,7 +253,10 @@ ul.home-orbit {
     color: $white;
     font-weight: 800;
     font-size: 1.3rem;
-    line-height: 1.9rem;
+    @media #{$xlarge-up} {
+      font-size: 1.75rem;
+    }
+    line-height: 1.4;
 
     &.head {
       font-weight: 800;
@@ -284,6 +284,13 @@ ul.home-orbit {
   background: scale-color($light-blue, $lightness: 70%);
   max-width: 100%;
   padding: 1rem 0;
+
+  @media #{$large-up} {
+    .row {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }  
 
   .tablehead {
     background: $light-blue;
@@ -327,13 +334,6 @@ ul.home-orbit {
     }
   }
 
-  @media #{$medium-up} {
-    .row {
-      max-width: 77rem;
-      margin: 0 auto;
-    }
-  }
-
 }
 
 .row.options {
@@ -347,11 +347,17 @@ ul.home-orbit {
 
   a.button {
     margin: 0;
+    @media #{$medium-up} {
+      font-size: rem-calc(14);
+    }    
+    @media #{$xlarge-up} {
+      font-size: rem-calc(22);
+    }
   }
 
-  @media #{$medium-up} {
+  @media #{$large-up} {
     .row {
-      max-width: 77rem;
+      max-width: 90%;
       margin: 0 auto;
     }
   }
@@ -359,9 +365,14 @@ ul.home-orbit {
 }
 
 #one {
-
   > .row {
-    padding: rem-calc(40) 0;
+    padding: rem-calc(15) 0;
+    @media #{$medium-up} {
+      padding: rem-calc(20) 0;
+    }
+    @media #{$large-up} {
+      padding: rem-calc(30) 0;
+    }    
   }
 
   ul {
@@ -402,20 +413,31 @@ ul.home-orbit {
     font-weight: 600;
 
     &.intro {
-      font-weight: 800;
+      font-weight: 600;
       font-style: italic;
       color: $jet;
       margin: 0;
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
+    @media #{$large-up} {
+      &.intro {
+        font-size: 1.75rem;
+      }
+    }
+    @media #{$large-up} {
+      &.intro {
+        font-size: 2.5rem;
+      }
+    }    
   }
 
 
   text-align: center;
 
-  @media #{$medium-up} {
+  @media #{$large-up} {
     .row {
-      max-width: 77rem;
+      max-width: 90%;
+      margin: 0 auto;
     }
   }
 
