@@ -37,9 +37,9 @@ class ConversationsController < ApplicationController
 
   def approve_personal_contact
     current_consultant.shared_contacts.build(user: conversation
-                                                     .other_participant(current_consultant.id),
+                                                     .other_participant(current_consultant),
                                              allowed: true)
-    if shared_contact.save
+    if current_consultant.save
       redirect_to conversation_path(conversation), notice: 'Approved Contact'
     else
       redirect_to conversation_path(conversation), notice: 'Unable to Approve Contact'

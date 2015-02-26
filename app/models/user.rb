@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Nameable
+  include Nameable, Contactable
 
   acts_as_messageable
 
