@@ -4,36 +4,42 @@
   <div class="medium-8 columns vr">
     <div class="row">
       <div class="medium-8 columns">
-        <%= @project.consultant.full_name %>
+        <h4><%= @project.consultant.full_name %></h4>
       </div>
       <div class="medium-4 columns">
-        <%= @project.created_at.to_s(:month_day_and_year) %>
+        <h4><%= @project.created_at.to_s(:month_day_and_year) %></h4>
       </div>
     </div>
     <div class="row">
       <div class="medium-12 columns">
-        Client Point of Contact: <%= @project.user.full_name %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="medium-6 columns">
-        Estimated Start Date: <%= @project.proposed_start.to_s(:month_day_and_year) %>
-      </div>
-      <div class="medium-6 columns">
-        Estimated End Date: <%= @project.proposed_end.to_s(:month_day_and_year) %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="medium-6 columns">
-        Hourly Rate: <%= @project.proposed_rate %>
-      </div>
-      <div class="medium-6 columns">
-        Work Location: <%= @project.project_location %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="medium-12 columns">
-        Travel Expense Authorization: <%= @project.travel_authorization.label %>
+        <table>
+          <tbody>
+            <tr>
+              <td width="200">Client Point of Contact:</td>
+              <td><%= @project.user.full_name %></td>
+            </tr>
+            <tr>
+              <td>Estimated Start Date:</td>
+              <td><%= @project.proposed_start.to_s(:month_day_and_year) %></td>
+            </tr>
+            <tr>
+              <td>Estimated End Date:</td>
+              <td><%= @project.proposed_end.to_s(:month_day_and_year) %></td>
+            </tr>
+            <tr>
+              <td>Proposed Hourly Rate:</td>
+              <td>$<%= @project.proposed_rate %></td>
+            </tr>
+            <tr>
+              <td>Work Location:</td>
+              <td><%= @project.project_location %></td>
+            </tr>
+            <tr>
+              <td>Travel Expense Authorization:</td>
+              <td><%= @project.travel_authorization.label %></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="row">
@@ -47,7 +53,7 @@
       </div>
     </div>
   </div>
-  <div class="medium-4 columns">
+  <div class="medium-4 columns side">
     <%= render 'profiles/side_bar' if consultant_signed_in? %>
     <%= render 'shared/recent_consultants', consultants: @consultants if user_signed_in? %>
   </div>
