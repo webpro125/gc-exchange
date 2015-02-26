@@ -26,13 +26,8 @@ describe ConversationsController do
       describe 'message strong_params' do
         let(:conversation) { Mailboxer::Conversation.first }
 
-        before do
-          @conversation = consultant.send_message(user, 'Test Message Body', 'Test Subject')
-          @conversation.save
-        end
-
         it do
-          conversation = Mailboxer::Conversation.first
+          consultant.send_message(user, 'Test Message Body', 'Test Subject')
           should permit(:message).for(:reply,
                                       verb: :post,
                                       params: {
@@ -70,8 +65,7 @@ describe ConversationsController do
         let(:conversation) { Mailboxer::Conversation.first }
 
         before do
-          @conversation = consultant.send_message(user, 'Test Message Body', 'Test Subject')
-          @conversation.save
+          consultant.send_message(user, 'Test Message Body', 'Test Subject')
           get :show, id: conversation.id
         end
 

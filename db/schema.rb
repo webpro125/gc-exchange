@@ -123,13 +123,13 @@ ActiveRecord::Schema.define(version: 20150224160445) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                            default: 1,    null: false
     t.decimal  "rate",                                  precision: 8, scale: 2
-    t.text     "abstract"
-    t.string   "wizard_step"
     t.boolean  "willing_to_travel",                                             default: true
+    t.text     "abstract"
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
+    t.string   "wizard_step"
     t.datetime "contract_effective_date"
   end
 
@@ -314,7 +314,6 @@ ActiveRecord::Schema.define(version: 20150224160445) do
   end
 
   add_index "projects", ["consultant_id"], name: "index_projects_on_consultant_id", using: :btree
-  add_index "projects", ["project_name"], name: "index_projects_on_project_name", unique: true, using: :btree
   add_index "projects", ["travel_authorization_id"], name: "index_projects_on_travel_authorization_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
