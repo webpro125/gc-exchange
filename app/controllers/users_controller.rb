@@ -4,7 +4,7 @@ class UsersController < CompanyController
   skip_after_action :verify_authorized, only: :profile
 
   def profile
-    @messages = current_user.mailbox.inbox.page(params[:page])
+    @messages = current_user.mailbox.conversations.page(params[:page])
     @consultants = Consultant.recent
     @projects = current_user.projects.open.limit(3)
   end
