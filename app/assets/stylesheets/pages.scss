@@ -201,7 +201,7 @@ h5 {
     font-size: 1.3rem;
     font-weight: 800;
     position: absolute;
-    bottom: 0px;
+    bottom: 20px;
     left: 50%;
     margin-left: -69px;
   }
@@ -253,6 +253,9 @@ h5 {
     color: $white;
     font-weight: 800;
     font-size: 1.3rem;
+    @media #{$large-up} {
+      font-size: 1.5rem;
+    }    
     @media #{$xlarge-up} {
       font-size: 1.75rem;
     }
@@ -349,7 +352,10 @@ h5 {
     margin: 0;
     @media #{$medium-up} {
       font-size: rem-calc(14);
-    }    
+    } 
+    @media #{$large-up} {
+      font-size: rem-calc(17);
+    }  
     @media #{$xlarge-up} {
       font-size: rem-calc(22);
     }
@@ -424,7 +430,7 @@ h5 {
         font-size: 1.75rem;
       }
     }
-    @media #{$large-up} {
+    @media #{$xlarge-up} {
       &.intro {
         font-size: 2.5rem;
       }
