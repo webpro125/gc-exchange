@@ -21,7 +21,9 @@ class ProjectStatusMailer < ActionMailer::Base
 
   def gces_agreed_to_terms(project)
     mailer_objects(project)
-    mail(subject: 'Engagement Acceptance Notice', to: @user.email)
+    mail(subject: 'Engagement Acceptance Notice', to: ['paul.mears@globalconsultantexchange.com',
+                                                       'barrie.gillis@globalconsultantexchange.com',
+                                                       'bmills@thoriumllc.com'])
   end
 
   def consultant_rejected_terms(project)

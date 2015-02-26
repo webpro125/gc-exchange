@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(version: 20150224160445) do
   end
 
   add_index "projects", ["consultant_id"], name: "index_projects_on_consultant_id", using: :btree
+  add_index "projects", ["project_name"], name: "index_projects_on_project_name", unique: true, using: :btree
   add_index "projects", ["travel_authorization_id"], name: "index_projects_on_travel_authorization_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
@@ -344,6 +345,7 @@ ActiveRecord::Schema.define(version: 20150224160445) do
   end
 
   add_index "shared_contacts", ["consultant_id"], name: "index_shared_contacts_on_consultant_id", using: :btree
+  add_index "shared_contacts", ["user_id", "consultant_id"], name: "index_shared_contacts_on_user_id_and_consultant_id", unique: true, using: :btree
   add_index "shared_contacts", ["user_id"], name: "index_shared_contacts_on_user_id", using: :btree
 
   create_table "skills", force: true do |t|

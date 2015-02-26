@@ -13,5 +13,8 @@ describe SharedContact do
   end
 
   it { should be_valid }
+  it { expect(subject).to validate_presence_of(:consultant) }
+  it { expect(subject).to validate_presence_of(:user) }
+  it { expect(subject).to validate_presence_of(:allowed) }
 
 end

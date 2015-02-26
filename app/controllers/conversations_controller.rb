@@ -31,7 +31,7 @@ class ConversationsController < ApplicationController
   end
 
   def reply
-    pundit_user.reply_to_conversation(conversation, message_params(:message)[:message])
+    pundit_user.reply_to_conversation(conversation, message_params[:message])
     redirect_to conversation_path(conversation)
   end
 
@@ -56,8 +56,8 @@ class ConversationsController < ApplicationController
     @conversation ||= pundit_user.mailbox.conversations.find(params[:id])
   end
 
-  def message_params(*keys)
-    params.require(:message).permit(keys)
+  def message_params
+    params.require(:message).permit(:message)
   end
 
   def conversation_form_params

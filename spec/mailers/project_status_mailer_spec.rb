@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ProjectStatusMailer do
   let!(:project) { FactoryGirl.create(:project) }
+  let!(:phones) { FactoryGirl.build(:phone, primary: true) }
 
   before do
     ActionMailer::Base.deliveries = []
@@ -11,6 +12,7 @@ describe ProjectStatusMailer do
     let(:mail) { ProjectStatusMailer.gces_agreed_to_terms(project) }
 
     before do
+      project.consultant.phones = [phones]
       ProjectStatusMailer.gces_agreed_to_terms(project).deliver
     end
 
@@ -19,7 +21,9 @@ describe ProjectStatusMailer do
     end
 
     it 'assigns user email' do
-      expect(mail.to).to eq([project.user.email])
+      expect(mail.to).to eq(['paul.mears@globalconsultantexchange.com',
+                             'barrie.gillis@globalconsultantexchange.com',
+                             'bmills@thoriumllc.com'])
     end
   end
 

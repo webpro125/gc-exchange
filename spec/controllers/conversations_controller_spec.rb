@@ -23,21 +23,30 @@ describe ConversationsController do
         end
       end
 
-      # describe 'message strong_params' do
-      #   it do
-      #     consultant = FactoryGirl.create(:consultant)
-      #     should permit(:conversation, :recipients, :reply_body).for(:reply, verb: :post,
-      #                                                                params: { consultant_id:
-      #                                                                            consultant.id })
-      #   end
-      # end
+      describe 'message strong_params' do
+        let(:conversation) { Mailboxer::Conversation.first }
+
+        before do
+          @conversation = consultant.send_message(user, 'Test Message Body', 'Test Subject')
+          @conversation.save
+        end
+
+        it do
+          conversation = Mailboxer::Conversation.first
+          should permit(:message).for(:reply,
+                                      verb: :post,
+                                      params: {
+                                        id: conversation.id
+                                      })
+        end
+      end
 
       describe 'GET index' do
         before do
           get :index, {}
         end
         it 'assigns new messages as @messages' do
-          # assigns(:messages).should be_a_kind_of(Message)
+          assigns(:messages).should match_array(Mailboxer::Conversation.all)
         end
       end
 
@@ -90,34 +99,10 @@ describe ConversationsController do
                    user_id: user.id
             end
 
-            it 'assigns a newly created conversation as conversation' do
-              # assigns(:conversation).should be_a(Mailboxer::Conversation)
-              # assigns(:conversation).should be_persisted
-            end
-
-            it 'assigns a newly created conversation as conversation' do
-              # assigns(:conversation).should be_a(Mailboxer::Conversation)
-              # assigns(:conversation).should be_persisted
-            end
-
             it { should_not redirect_to(new_user_session_path) }
             it { should redirect_to(conversation_path(Mailboxer::Conversation.last)) }
           end
         end
-      end
-
-      describe 'as Consultant' do
-        let(:user) { FactoryGirl.create(:consultant, :approved) }
-
-        # describe 'download_resume' do
-        #   let(:consultant) { FactoryGirl.create(:consultant, :approved, :with_resume) }
-        #
-        #   before do
-        #     consultant.save!
-        #     get :download_resume, id: consultant.id
-        #   end
-        #   it { should redirect_to(consultant.resume.url) }
-        # end
       end
     end
   end
