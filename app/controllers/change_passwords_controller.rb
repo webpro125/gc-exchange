@@ -1,4 +1,4 @@
-class ChangePasswordsController < ApplicationController
+class ChangePasswordsController < CompanyController
   before_action :load_and_authorize_user
 
   def edit
