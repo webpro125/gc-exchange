@@ -1,0 +1,35 @@
+<% conversations.each do |conversation| %>
+    <div class="row">
+      <div class="medium-8 columns">
+        <% message = conversation.messages.first %>
+        <% consultant = conversation.recipients.last %>
+        <h5>
+          <%= if consultant_signed_in?
+                "#{conversation.originator.full_name} - #{conversation.originator.company
+                        .company_name}"
+              end %>
+          <% if user_signed_in? %>
+              <%= link_to consultant_path(consultant) do %>
+                  <%= image_tag(consultant.profile_image.url(:thumb),
+                                class: 'th profile-thumb-mini') %>
+                  <%= consultant.full_name %>
+              <% end %>
+          <% end %>
+        </h5>
+        <h6>
+          <%= link_to conversation.subject, conversation_path(conversation) %>
+        </h6>
+
+        <p>
+          <%= link_to truncate(conversation.messages.last.body, length: 100),
+                      conversation_path(conversation) %>
+        </p>
+      </div>
+      <div class="medium-4 columns">
+        <p class="right">
+          <%= conversation.updated_at.strftime("%B %d") %>
+        </p>
+      </div>
+    </div>
+<% end %>
+<%= paginate conversations %>

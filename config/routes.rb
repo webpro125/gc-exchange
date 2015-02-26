@@ -23,10 +23,13 @@ Rails.application.routes.draw do
   root 'pages#home'
   get :consultant_welcome, to: 'pages#consultant_welcome'
   get :company_welcome, to: 'pages#company_welcome'
+  get :consultant_benefits, to: 'pages#consultant_benefits'
+  get :contractor_benefits, to: 'pages#contractor_benefits'
+  get :how_we_do_it, to: 'pages#how_we_do_it'
+  get :about_us, to: 'pages#about_us'
+  get :contact_us, to: 'pages#contact_us'
   get :terms_of_service, to: 'pages#terms_of_service'
   get :privacy_policy, to: 'pages#privacy_policy'
-  get :company_learn_more, to: 'pages#company_learn_more'
-  get :consultant_learn_more, to: 'pages#consultant_learn_more'
   get :profile_completed, to: 'pages#profile_completed'
   get :health_check, to: 'pages#health_check'
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
@@ -41,18 +44,33 @@ Rails.application.routes.draw do
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects', except: [:show]
   resources :sales_leads, only: [:new, :create]
+  resources :projects, path: 'offers', only: [:index] do
+    member do
+      post :agree_to_terms
+      post :reject_terms
+      post :not_pursuing
+      post :not_interested
+    end
+  end
   resources :companies do
     resources :users
   end
   resources :consultants, only: [:index, :show] do
+    resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
+    resources :projects, path: 'offers', shallow: true, except: [:index, :destroy]
     member do
       put :approve
       put :reject
     end
   end
-
+  resources :conversations, only: [:index, :show] do
+    member do
+      post :reply
+      put :approve_personal_contact
+    end
+  end
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.

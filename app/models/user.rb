@@ -1,10 +1,16 @@
 class User < ActiveRecord::Base
+  include Nameable
+
+  acts_as_messageable
+
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :timeoutable
 
   belongs_to :company
+  has_many :projects, ->() { order(updated_at: :desc) }, dependent: :destroy
+  has_many :shared_contacts, dependent: :destroy
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 
   before_validation :company_present
@@ -30,8 +36,8 @@ class User < ActiveRecord::Base
     c.company_name == Company::GLOBAL_CONSULTANT_EXCHANGE
   end
 
-  def full_name
-    "#{first_name} #{last_name}"
+  def mailboxer_email(_object)
+    email
   end
 
   private

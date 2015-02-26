@@ -1,0 +1,8 @@
+<%= simple_form_for :communication_message, url: reply_conversation_path(conversation) do |f| %>
+    <%= f.error_notification %>
+    <%= render 'shared/base_error', model: @conversation %>
+
+    <%= f.input :body, as: :text, input_html: {class: 'small', cols: 5, rows: 5} %>
+
+    <%= f.button :submit, t('views.conversation.new.save') %>
+<% end %>

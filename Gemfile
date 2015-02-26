@@ -8,10 +8,9 @@ gem 'jquery-rails', '~> 3.1.0'
 gem 'foundation-rails', '~> 5.3.1'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
-gem 'rake', '~> 10.3.2'
+gem 'paperclip', '~> 4.2'
 gem 'geocoder', '~> 1.2.2'
 gem 'pundit', '~> 0.3.0'
-gem 'paperclip', '~> 4.2'
 gem 'fog', '~> 1.3'
 gem 'newrelic_rpm', '~> 3.9'
 gem 'kaminari', '~> 0.16.1'
@@ -33,6 +32,7 @@ gem 'mini_magick', '~> 4.0.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'google-webfonts-rails', '~> 0.0.4'
 gem 'cocoon', '~> 1.2.6'
+gem 'mailboxer', '~> 0.12.5'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -41,11 +41,6 @@ end
 group :development do
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller', '~> 0.7.2'
-  gem 'guard-rspec', '~> 4.3', require: false
-  gem 'guard-brakeman', '~> 0.8.1', require: false
-  gem 'guard-rubocop', '~> 1.2.0', require: false
-  gem 'rubocop', '~> 0.27', require: false
-  gem 'brakeman', '~> 2.6.2', require: false
 end
 
 group :development, :test do
@@ -58,9 +53,14 @@ group :development, :test do
   gem 'rb-readline', '~> 0.5.1'
   gem 'ruby_gntp', '~> 0.3.4'
   gem 'growl', '~> 1.0.3'
-  gem 'terminal-notifier-guard'
   gem 'guard-bundler', '~> 2.0.0', require: false
   gem 'guard-migrate', '~> 1.2.0', require: false
+  gem 'guard-rspec', '~> 4.3', require: false
+  gem 'guard-brakeman', '~> 0.8.1', require: false
+  gem 'guard-rubocop', '~> 1.2.0', require: false
+
+  gem 'rubocop', '~> 0.27', require: false
+  gem 'brakeman', '~> 2.6.2', require: false
 
   gem 'rspec-rails', '~> 2.99'
   gem 'rspec-activemodel-mocks', '~> 1.0.1'

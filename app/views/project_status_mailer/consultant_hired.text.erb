@@ -1,0 +1,25 @@
+In accordance with your and <%= @user.full_name %> agreement with GCES, <%= @user.full_name %>
+desires to engage you as described below:
+
+• Engagement Name: <%= @project.project_name %>
+• Client Point of Contact: <%= @user.full_name %>
+• Estimated Start Date: <%= @project.proposed_start %>
+• Estimated End Date: <%= @project.proposed_end %>
+• Hourly Rate: <%= @project.proposed_rate %>
+• Work Location: <%= @project.project_location %>
+• Travel Expense Authorization: <%= @project.travel_authorization.label %>
+
+If you are willing to accept this engagement as described above, press the “ACCEPT OFFER” button
+and GCES will:
+• Notify <%= @user.full_name %> of your acceptance
+• Coordinate with <%= @user.full_name %> to initiate authorization for this engagement
+• Notify you when GCES has received <%= @user.full_name %>’s authorization for this engagement.
+<b>[NOTE: You may be financially and legally responsible for any work you perform on this
+  engagement and any travel expenses you incur BEFORE GCES notifies you that <%= @user.full_name
+%> has authorized you to start work.] </b>
+
+If you chose not to accept this engagement as described above, press the “REJECT OFFER” button
+and GCES will:
+• Notify <%= @user.full_name %> that you do not accept this engagement as described. <b> [NOTE:
+  if you desire to continue negotiations with <%= @user.full_name %> regarding this engagement,
+  resume the dialogue with the client.] </b>

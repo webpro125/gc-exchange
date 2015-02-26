@@ -76,6 +76,13 @@ en:
         description: 'Description of Role Performed'
         client_company: 'Company'
         client_poc_phone: 'Reference Phone'
+      project:
+        proposed_start: 'Engagement Start Date'
+        proposed_end: 'Engagement End Date'
+        proposed_rate: 'Negotiated Consultant''s Hourly Rate'
+        project_location: 'Work Location'
+        project_name: 'Engagement Identification'
+        travel_authorization_id: 'Travel Authorization'
       search:
         position_ids: 'Position'
         q: 'Keywords'
@@ -111,15 +118,19 @@ en:
         Government Agency.  Leave blank for Commercial Projects.'
         client_poc_name: 'Identify the person who received your work product on the project.'
         client_poc_email: 'Provide the email address of your project reference.'
-        description: 'Summarize your roles on the project and discuss the processes, tools, and
-        techniques you used to achieve specific outcomes.'
+        description: 'To help the searcher find your unique experience, summarize your roles on
+        the project and discuss specifics about the Government organization targeted or supported,
+        the name of the procurement or program pursued or supported, any processes, tools, and
+        techniques you used to achieve specific outcomes. Including results and experience
+        functioning as a “Mentor” are also appropriate in this field.'
         project_type: 'Identify the industry market.'
         project_type_id: 'Identify the industry market.'
         start_date: 'Format Month DD YYYY (e.g. January 09 1990)'
         end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
       consultant:
         abstract: 'This field provides a summary abstract of your career experience.  Enter
-        a brief description of your professional achievements, work history, and skills.'
+        a brief description of your professional achievements, work history, and skills. Include
+        experience that substantiates  your qualifications to be a “Mentor”.'
         certification_ids: 'Scroll down, identify, and click on your professional certifications.'
         skills_list: 'Add your skills and separate each skill with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)'
       address:

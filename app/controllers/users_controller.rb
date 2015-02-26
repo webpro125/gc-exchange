@@ -1,12 +1,12 @@
 class UsersController < CompanyController
   before_action :load_and_authorize_company, except: [:profile]
   before_action :load_and_authorize_user, only: [:show, :edit, :update, :destroy]
+  skip_after_action :verify_authorized, only: :profile
 
   def profile
-    @company = current_user.company
-    authorize @company, :show?
-
-    render 'companies/show'
+    @messages = current_user.mailbox.inbox.page(params[:page])
+    @consultants = Consultant.recent
+    @projects = current_user.projects.open.limit(3)
   end
 
   def index

@@ -21,24 +21,34 @@ describe Consultant do
 
   subject do
     Consultant.new(
-      first_name: 'Freddy',
-      last_name: 'Kreuger',
-      email: 'freddy.kreuger@globalconsultantexchange.com',
-      password: 'password',
+      first_name:            'Freddy',
+      last_name:             'Kreuger',
+      email:                 'freddy.kreuger@globalconsultantexchange.com',
+      password:              'password',
       password_confirmation: 'password',
-      abstract: 'Testing the abstract'
+      abstract:              'Testing the abstract'
     )
   end
 
   it { should be_valid }
   it { should respond_to(:background) }
-  it { should respond_to(:phones) }
-  it { should respond_to(:educations) }
   it { should respond_to(:approved_status) }
   it { should respond_to(:approved?) }
   it { should respond_to(:rejected?) }
   it { should respond_to(:in_progress?) }
   it { should respond_to(:pending_approval?) }
+
+  it { expect(subject).to have_many(:projects).dependent(:destroy) }
+  it { expect(subject).to have_many(:consultant_certifications).dependent(:destroy) }
+  it { expect(subject).to have_many(:educations).dependent(:destroy) }
+  it { expect(subject).to have_many(:certifications) }
+  it { expect(subject).to have_many(:consultant_skills).dependent(:destroy) }
+  it { expect(subject).to have_many(:skills) }
+  it { expect(subject).to have_many(:phones).dependent(:destroy) }
+  it { expect(subject).to have_many(:shared_contacts).dependent(:destroy) }
+
+  it { expect(subject).to have_one(:address).dependent(:destroy) }
+  it { expect(subject).to have_one(:background).dependent(:destroy) }
 
   describe 'resume' do
     before do
@@ -67,50 +77,10 @@ describe Consultant do
   end
 
   describe 'association' do
-    describe 'address' do
-      before do
-        subject.save!
-        FactoryGirl.create(:address, consultant: subject)
-      end
-
-      it 'should be destroyed on delete' do
-        address = subject.address.id
-        expect(address).not_to be_nil
-
-        subject.destroy
-        expect(Address.find_by_id(address)).to be_nil
-      end
-    end
-
-    describe 'background' do
-      before do
-        subject.save!
-        FactoryGirl.create(:background, consultant: subject)
-      end
-
-      it 'should be destroyed on delete' do
-        background = subject.background.id
-        expect(background).not_to be_nil
-
-        subject.destroy
-        expect(Background.find_by_id(background)).to be_nil
-      end
-    end
-
     describe 'phones' do
       before do
         subject.phones << FactoryGirl.create(:phone)
         subject.save!
-      end
-
-      it 'should destroy them on delete' do
-        phones = subject.phones.map(&:id)
-        expect(phones).not_to be_nil
-
-        subject.destroy
-        phones.each do |phone|
-          expect(Phone.find_by_id(phone)).to be_nil
-        end
       end
 
       it 'should not allow more than 3' do
@@ -119,36 +89,10 @@ describe Consultant do
       end
     end
 
-    describe 'skills' do
-      before do
-        subject.skills << FactoryGirl.create(:skill)
-        subject.save!
-      end
-
-      it 'should not destroy them on delete' do
-        skills = subject.skills.map(&:id)
-        expect(skills).not_to be_nil
-
-        subject.destroy
-        skills.each do |skill|
-          expect(Skill.find_by_id(skill)).not_to be_nil
-        end
-      end
-    end
-
     describe 'consultant_skills' do
       before do
         subject.skills << FactoryGirl.create(:skill)
         subject.save!
-      end
-
-      it 'should destroy them on delete' do
-        consultant_skills = subject.consultant_skills.map(&:id)
-
-        subject.destroy
-        consultant_skills.each do |skill|
-          expect(ConsultantSkill.find_by_id(skill)).to be_nil
-        end
       end
 
       it 'should not allow more than 20' do
@@ -163,35 +107,9 @@ describe Consultant do
         subject.save!
       end
 
-      it 'should not destroy them on delete' do
-        certifications = subject.certifications.map(&:id)
-        expect(certifications).not_to be_nil
-
-        subject.destroy
-        certifications.each do |certification|
-          expect(Certification.find_by_id(certification)).not_to be_nil
-        end
-      end
-
       it 'should not allow more than 10' do
         subject.certifications << FactoryGirl.build_list(:certification, 11)
         expect(subject).not_to be_valid
-      end
-    end
-
-    describe 'consultant_certifications' do
-      before do
-        subject.certifications << FactoryGirl.create(:certification)
-        subject.save!
-      end
-
-      it 'should destroy them on delete' do
-        consultant_certifications = subject.consultant_certifications.map(&:id)
-
-        subject.destroy
-        consultant_certifications.each do |consultant_certification|
-          expect(ConsultantCertification.find_by_id(consultant_certification)).to be_nil
-        end
       end
     end
 
@@ -199,16 +117,6 @@ describe Consultant do
       before do
         subject.educations << FactoryGirl.create(:education)
         subject.save!
-      end
-
-      it 'should destroy them on delete' do
-        educations = subject.educations.map(&:id)
-        expect(educations).not_to be_nil
-
-        subject.destroy
-        educations.each do |education|
-          expect(Education.find_by_id(education)).to be_nil
-        end
       end
 
       it 'should not allow more than 3' do

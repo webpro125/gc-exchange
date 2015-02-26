@@ -24,6 +24,19 @@
 //= require foundation-datetimepicker
 //= require widgets
 
+$(document).foundation({
+  orbit: {
+    animation: 'fade',
+    timer: false,
+    pause_on_hover: true,
+    slide_number: false,
+    navigation_arrows: false,
+    bullets: false,
+    variable_height: true,
+    next_on_click: false
+  }
+});
+
 $(document).ready(function() {
   $(document).confirmWithReveal();
   $(function(){ $(document).foundation(); });
@@ -37,4 +50,13 @@ $(document).ready(function() {
   });
 
   $('textarea').maxlength();
+
+  var rate = $('#consultant_rate, #project_proposed_rate');
+
+  rate.on('blur', function() {
+    var _this = $(this);
+    var val = _this.val();
+
+    _this.val(parseFloat(val).toFixed(2));
+  });
 });
