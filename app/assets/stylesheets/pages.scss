@@ -25,7 +25,6 @@ h2 {
     color: $iron;
   }
 }
-
 h5 {
   &.steps {
     text-align: center;
@@ -33,7 +32,6 @@ h5 {
     font-weight: 600;
   }
 }
-
 .home {
   .container {
     padding-top: 0;
@@ -58,7 +56,6 @@ h5 {
         }
       }
     }
-
     > li > .row {
       padding: 1rem 0;
     }
@@ -70,7 +67,6 @@ h5 {
       color: #6dcff6;
       font-weight: 600;
       margin-bottom: 0;
-
     }
     p {
       font-size: 1rem;
@@ -101,7 +97,6 @@ h5 {
         font-size: 1rem;
         padding-bottom: 5px;
       }
-
     }
     img {
       margin: 0 auto;
@@ -114,14 +109,9 @@ h5 {
   width: 1000px;
   margin-left: -500px;
   left: 50%;
-
 }
-
-
 .row.action {
   max-width: 100%;
-
-
   .slide-1 {
     background: image-url("bg-home.png") 50% 50% no-repeat;
     background-size: cover;
@@ -223,9 +213,7 @@ h5 {
       margin: 0 auto;
     }
   }  
-
   .compact {
-
     ul {
       li {
         font-size: 1rem;
@@ -294,7 +282,6 @@ h5 {
       margin: 0 auto;
     }
   }  
-
   .tablehead {
     background: $light-blue;
     border: 1px solid $light-blue;
@@ -323,20 +310,17 @@ h5 {
     ul, p {
       color: $gces-blue;
     }
-
     ul {
       li {
         line-height: 1.2rem;
         margin-bottom: 0.25rem;
       }
     }
-
     p {
       line-height: 1.2rem;
       text-align: right;
     }
   }
-
 }
 
 .row.options {
@@ -360,16 +344,13 @@ h5 {
       font-size: rem-calc(22);
     }
   }
-
   @media #{$large-up} {
     .row {
       max-width: 90%;
       margin: 0 auto;
     }
   }
-
 }
-
 #one {
   > .row {
     padding: rem-calc(15) 0;
@@ -436,8 +417,6 @@ h5 {
       }
     }    
   }
-
-
   text-align: center;
 
   @media #{$large-up} {
@@ -466,7 +445,6 @@ h5 {
       }
     }
   }
-
   li:hover > ul.dropdown {
     display: block;
     background: $white;
@@ -497,11 +475,9 @@ h5 {
       }
     }
   }
-
   img {
     margin: 2rem 0 0.5rem 0;
   }
-
   #new_search {
     max-width: 450px;
     text-align: center;
@@ -523,12 +499,10 @@ h5 {
       }
     }
   }
-
   .button {
     margin: 0 5px;
     border-radius: 2px;
   }
-
   .login {
     position: relative;
     display: inline-block;
@@ -548,7 +522,6 @@ h5 {
       right: 0;
     }
   }
-
 }
 
 /*** TOS ***/
@@ -626,7 +599,6 @@ ol, ol li {
     display: block;
   }
 }
-
 #progress {
   position: relative;
   padding: 1rem 0;
@@ -639,7 +611,6 @@ ol, ol li {
       padding: 10px 55px 0 70px;
     }
   }
-
   ul {
     list-style: none;
     display: inline-table;
@@ -753,4 +724,3 @@ ol, ol li {
     }
   }
 }
-
