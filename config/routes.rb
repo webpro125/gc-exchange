@@ -2,12 +2,12 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
-  devise_for :consultants, path: '/', path_names: { sign_in: 'login',
-                                                    sign_out: 'logout',
+  devise_for :consultants, path: '/', path_names: { sign_in:      'login',
+                                                    sign_out:     'logout',
                                                     registration: 'register' },
-             controllers: { registrations: 'registrations' }
+             controllers:        { registrations: 'registrations' }
 
-  devise_for :users, path_names: { sign_in: 'login',
+  devise_for :users, path_names: { sign_in:  'login',
                                    sign_out: 'logout' }
   # Root Paths
   authenticated :consultant do
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects', except: [:show]
   resources :sales_leads, only: [:new, :create]
-  resources :companies do
+  resources :companies, path: 'contractors' do
     resources :users
   end
   resources :consultants, only: [:index, :show] do

@@ -27,7 +27,7 @@ en:
         update: 'Search'
   activerecord:
     models:
-      user: 'Company'
+      user: 'Contractor'
       attributes:
         clearance_level:
           none: 'None'
@@ -45,7 +45,7 @@ en:
           phone: 'must be a valid phone number'
       models:
         user:
-          attempt_owner_delete: 'cannot delete company owner'
+          attempt_owner_delete: 'cannot delete government contractor owner'
         project_history:
           attributes:
             project_history_positions:
@@ -86,11 +86,11 @@ en:
         success: 'Message was successfully sent'
     company:
       create:
-        success: 'Company was successfully created.'
+        success: 'Contractor was successfully created.'
       update:
-        success: 'Company was successfully updated.'
+        success: 'Contractor was successfully updated.'
       destroy:
-        success: 'Company was successfully destroyed.'
+        success: 'Contractor was successfully destroyed.'
     user:
       create:
         success: 'User was successfully created.'
@@ -120,7 +120,7 @@ en:
       actions:
         more_information: 'More Information'
         less_information: 'Less Information'
-        company: 'Company'
+        company: 'Government Contractor'
         consultant: 'Consultant'
         learn_more: 'Learn More'
     wizard:
@@ -180,7 +180,7 @@ en:
         change_password: 'Change Password'
     project:
       table:
-        company_name: 'Company'
+        company_name: 'Government Contractor'
         date: 'Start/End Date'
         edit: 'Edit Project'
         delete: 'Delete Project'
@@ -194,7 +194,7 @@ en:
     sales_lead:
       new:
         save: 'Send Request'
-        title: 'Company Registration Request'
+        title: 'Government Contractor Registration Request'
     upload_resume:
       actions:
         upload_resume_html: '<i class="fi-upload"></i> Upload Resume'
@@ -207,9 +207,9 @@ en:
         title: 'Consultant Registration'
     company:
       actions:
-        index: 'Manage Companies'
+        index: 'Manage Government Contractors'
       confirmations:
-        delete: 'Are you sure you want to delete this company?'
+        delete: 'Are you sure you want to delete this government contractor?'
     user:
       confirmations:
         delete: 'Are you sure you want to delete this user?'
