@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   belongs_to :company
   has_many :projects, ->() { order(updated_at: :desc) }, dependent: :destroy
-  has_many :communications, through: :contact_requests
+  has_many :shared_contacts, dependent: :destroy
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
 
   before_validation :company_present

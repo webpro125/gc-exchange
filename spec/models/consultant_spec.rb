@@ -45,6 +45,7 @@ describe Consultant do
   it { expect(subject).to have_many(:consultant_skills).dependent(:destroy) }
   it { expect(subject).to have_many(:skills) }
   it { expect(subject).to have_many(:phones).dependent(:destroy) }
+  it { expect(subject).to have_many(:shared_contacts).dependent(:destroy) }
 
   it { expect(subject).to have_one(:address).dependent(:destroy) }
   it { expect(subject).to have_one(:background).dependent(:destroy) }

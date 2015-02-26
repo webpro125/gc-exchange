@@ -3,6 +3,14 @@
   <%= render @consultant.phones %>
   <tr>
     <td>
+      <%= Consultant.human_attribute_name(:email) %>
+    </td>
+    <td>
+      <%= @consultant.email %>
+    </td>
+  </tr>
+  <tr>
+    <td>
       <%= Address.human_attribute_name(:address) %>
     </td>
     <% if @consultant.address.present? %>

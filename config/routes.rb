@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :show] do
     member do
       post :reply
+      put :approve_personal_contact
     end
   end
   # Non resource
