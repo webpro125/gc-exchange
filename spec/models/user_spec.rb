@@ -14,6 +14,12 @@ describe User do
 
   it { should be_valid }
 
+  it { expect(subject).to have_many(:shared_contacts).dependent(:destroy) }
+
+  it { expect(subject).to have_many(:projects).dependent(:destroy) }
+  it { expect(subject).to belong_to(:company) }
+  it { expect(subject).to have_one(:owned_company) }
+
   describe 'first_name' do
     it { expect(subject).to validate_presence_of(:first_name) }
     it { should ensure_length_of(:first_name).is_at_least(2) }
@@ -54,9 +60,6 @@ describe User do
     before do
       subject.save
     end
-
-    it { expect(subject).to belong_to(:company) }
-    it { expect(subject).to have_one(:owned_company) }
 
     describe 'company' do
       before do
