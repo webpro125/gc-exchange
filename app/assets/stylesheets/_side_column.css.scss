@@ -1,6 +1,5 @@
 @import "variables";
 
-
 ul {    
   &.list {
     li {
@@ -19,6 +18,9 @@ ul {
       &.side {
         padding: 0 0 0 2rem;
         border-left: 2px solid $smoke;
+      }
+      .consultant-profile {
+        border: none;
       }
     }
 }
