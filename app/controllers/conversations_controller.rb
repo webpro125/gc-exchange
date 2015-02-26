@@ -31,8 +31,19 @@ class ConversationsController < ApplicationController
   end
 
   def reply
-    pundit_user.reply_to_conversation(conversation, message_params(:message)[:message])
+    pundit_user.reply_to_conversation(conversation, message_params[:message])
     redirect_to conversation_path(conversation)
+  end
+
+  def approve_personal_contact
+    current_consultant.shared_contacts.build(user: conversation
+                                                     .other_participant(current_consultant.id),
+                                             allowed: true)
+    if shared_contact.save
+      redirect_to conversation_path(conversation), notice: 'Approved Contact'
+    else
+      redirect_to conversation_path(conversation), notice: 'Unable to Approve Contact'
+    end
   end
 
   private
@@ -45,12 +56,8 @@ class ConversationsController < ApplicationController
     @conversation ||= pundit_user.mailbox.conversations.find(params[:id])
   end
 
-  def message_params(*keys)
-    params.require(:message).permit(keys)
-  end
-
-  def conversation_params(*keys)
-    params.require(:conversation, *keys)
+  def message_params
+    params.require(:message).permit(:message)
   end
 
   def conversation_form_params
@@ -59,20 +66,6 @@ class ConversationsController < ApplicationController
 
   def load_consultant
     @consultant = Consultant.find(params[:consultant_id])
-  end
-
-  def project_params
-    params.require(:project).permit(:subject, :message, :project_start, :project_end,
-                                    :project_rate).merge(consultant_id: @consultant.id,
-                                                         user_id:       current_user.id)
-  end
-
-  def update_communication
-    if current_consultant?
-      current_consultant.reply_to_conversation(conversation, message)
-    else
-      current_user.reply_to_conversation(conversation, message)
-    end
   end
 
   def recent_consultants

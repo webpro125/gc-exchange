@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216211615) do
+ActiveRecord::Schema.define(version: 20150224160445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,26 +137,6 @@ ActiveRecord::Schema.define(version: 20150216211615) do
   add_index "consultants", ["confirmation_token"], name: "index_consultants_on_confirmation_token", unique: true, using: :btree
   add_index "consultants", ["email"], name: "index_consultants_on_email", unique: true, using: :btree
   add_index "consultants", ["reset_password_token"], name: "index_consultants_on_reset_password_token", unique: true, using: :btree
-
-  create_table "contact_requests", force: true do |t|
-    t.integer  "consultant_id",                                                           null: false
-    t.integer  "user_id",                                                                 null: false
-    t.integer  "communication_id",                                                        null: false
-    t.integer  "travel_authorization_id"
-    t.date     "project_start"
-    t.date     "project_end"
-    t.decimal  "project_rate",                        precision: 8, scale: 2
-    t.integer  "contact_status",                                              default: 0
-    t.string   "project_name",            limit: 128
-    t.text     "project_location"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "contact_requests", ["communication_id"], name: "index_contact_requests_on_communication_id", using: :btree
-  add_index "contact_requests", ["consultant_id"], name: "index_contact_requests_on_consultant_id", using: :btree
-  add_index "contact_requests", ["travel_authorization_id"], name: "index_contact_requests_on_travel_authorization_id", using: :btree
-  add_index "contact_requests", ["user_id"], name: "index_contact_requests_on_user_id", using: :btree
 
   create_table "customer_names", force: true do |t|
     t.string "code",  limit: 32,  null: false
@@ -319,6 +299,25 @@ ActiveRecord::Schema.define(version: 20150216211615) do
 
   add_index "project_types", ["code"], name: "index_project_types_on_code", unique: true, using: :btree
 
+  create_table "projects", force: true do |t|
+    t.integer  "consultant_id",                                                           null: false
+    t.integer  "user_id",                                                                 null: false
+    t.integer  "travel_authorization_id",                                                 null: false
+    t.date     "proposed_start"
+    t.date     "proposed_end"
+    t.decimal  "proposed_rate",                       precision: 8, scale: 2
+    t.integer  "contact_status",                                              default: 0
+    t.string   "project_name",            limit: 128
+    t.text     "project_location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["consultant_id"], name: "index_projects_on_consultant_id", using: :btree
+  add_index "projects", ["project_name"], name: "index_projects_on_project_name", unique: true, using: :btree
+  add_index "projects", ["travel_authorization_id"], name: "index_projects_on_travel_authorization_id", using: :btree
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
   create_table "ranks", force: true do |t|
     t.string "code",  limit: 32,  null: false
     t.string "label", limit: 256, null: false
@@ -336,6 +335,18 @@ ActiveRecord::Schema.define(version: 20150216211615) do
   end
 
   add_index "sales_leads", ["email"], name: "index_sales_leads_on_email", unique: true, using: :btree
+
+  create_table "shared_contacts", force: true do |t|
+    t.integer  "consultant_id",                 null: false
+    t.integer  "user_id",                       null: false
+    t.boolean  "allowed",       default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shared_contacts", ["consultant_id"], name: "index_shared_contacts_on_consultant_id", using: :btree
+  add_index "shared_contacts", ["user_id", "consultant_id"], name: "index_shared_contacts_on_user_id_and_consultant_id", unique: true, using: :btree
+  add_index "shared_contacts", ["user_id"], name: "index_shared_contacts_on_user_id", using: :btree
 
   create_table "skills", force: true do |t|
     t.string "code", limit: 128, null: false

@@ -1,5 +1,6 @@
 class Consultant < ActiveRecord::Base
-  include Searchable, Nameable
+  include Searchable, Nameable, Contactable
+
   acts_as_messageable
 
   RESUME_MIME_TYPES   = ['application/pdf']
@@ -19,8 +20,7 @@ class Consultant < ActiveRecord::Base
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::REJECTED[:code]))
   end)
   scope :pending_approval, (lambda do
-    where(
-      approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
+    where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::PENDING_APPROVAL[:code]))
   end)
   scope :on_hold,
         ->() { where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::ON_HOLD[:code])) }
@@ -47,6 +47,7 @@ class Consultant < ActiveRecord::Base
   has_one :military, dependent: :destroy
   has_one :background, dependent: :destroy
   belongs_to :approved_status
+  has_many :shared_contacts, dependent: :destroy
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
   has_many :consultant_skills, dependent: :destroy
