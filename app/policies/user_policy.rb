@@ -27,4 +27,8 @@ class UserPolicy < LoggedInPolicy
   end
 
   alias_method :upload_image?, :upload_resume?
+
+  def update_password?
+    user == record
+  end
 end

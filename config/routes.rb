@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   # Resources
   resource :profile, only: [:edit, :update, :show]
+  resource :change_password, only: [:edit, :update]
 
   get :search, to: 'searches#new'
   get 'search/skills', to: 'searches#skills'
