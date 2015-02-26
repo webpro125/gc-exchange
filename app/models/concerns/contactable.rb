@@ -7,7 +7,7 @@ module Contactable
     elsif self.class == User && consultant_or_user.class == Consultant
       shared_contacts.exists?(consultant: consultant_or_user)
     else
-      fail('Contactable Error')
+      fail ArgumentError, 'Contactable Error'
     end
   end
 end
