@@ -1,0 +1,10 @@
+• Date of Acceptance by Consultant: <%= Date.today %>
+• Consultant Name/Identifier: <%= @consultant.full_name %> <%= @consultant.id %>
+• Client Name/Identifier: <%= @user.full_name %> <%= @user.id %>
+• Client Point of Contact: <%= @user.full_name %>
+• Engagement Name: <%= @project.project_name %>
+• Estimated Start Date: <%= @project.proposed_start %>
+• Estimated End Date: <%= @project.proposed_end %>
+• Hourly Rate: <%= @project.proposed_rate %>
+• Work Location: <%= @project.project_location %>
+• Travel Expense Authorization: <%= @project.travel_authorization.label %>

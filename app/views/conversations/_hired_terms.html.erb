@@ -1,0 +1,23 @@
+<p>
+  <strong>
+    <%= @contact_request.project_name %> - <%= @contact_request.project_location %>
+  </strong>
+</p>
+
+<p>
+  <strong>Start Date:</strong> <%= @contact_request.project_start
+                                   .to_s(:month_day_year) %>
+</p>
+
+<p>
+  <strong>End Date:</strong> <%= @contact_request.project_end.to_s(:month_day_year) %>
+</p>
+
+<p>
+  <strong>Pay Rate:</strong> <%= number_to_currency @contact_request.project_rate
+%>/hour
+</p>
+
+<p>
+  <strong>Travel Authorization:</strong> <%= @contact_request.travel_authorization.label %>
+</p>

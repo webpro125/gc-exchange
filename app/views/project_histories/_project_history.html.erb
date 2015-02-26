@@ -28,7 +28,7 @@
               </div>
             <div class="small-6 columns">
               <%= t('simple_form.labels.project_history.client_poc_email') %>:
-              <%= project_history.client_poc_email %>
+              <%= mail_to project_history.client_poc_email %>
             </div>
           </div>
             <div class="row">
@@ -38,7 +38,7 @@
               </div>
               <div class="small-6 columns">
                 <%= t('simple_form.labels.phone.phone_type') %>:
-                <%= project_history.phone.phone_type.label if project_history.phone.present? %>
+                <%= project_history.phone.phone_type.label if project_history.phone.present? && project_history.phone.phone_type%>
               </div>
             </div>
         <% end %>
