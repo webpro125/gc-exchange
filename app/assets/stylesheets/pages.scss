@@ -47,7 +47,6 @@ h5 {
       min-height: 250px;
       padding: 0 1.9rem;
 
-
       .medium-6 {
         padding: 0;
 
@@ -331,7 +330,6 @@ h5 {
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   z-index: 20;
   position: relative;
-
   a.button {
     margin: 0;
     @media #{$medium-up} {
@@ -361,7 +359,6 @@ h5 {
       padding: rem-calc(30) 0;
     }    
   }
-
   ul {
     margin-left: 0;
     padding-left: 0;
@@ -622,7 +619,6 @@ ol, ol li {
       &:before {
         content: none;
       }
-
       &:first-child a {
         border-top-left-radius: 3px; 
         border-bottom-left-radius: 3px;
@@ -642,7 +638,6 @@ ol, ol li {
           display: none; 
         }
       }      
-
       a {
         display: block;
         float: left;
