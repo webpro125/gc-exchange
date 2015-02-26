@@ -2,7 +2,7 @@
 
 /*** HEADER ***/
 
-body > .nav-cont {
+body > .sticky {
   border-bottom: 3px solid $gces-blue;
 }
 .top-bar-section .dropdown li:not(.has-form) > a {
@@ -28,8 +28,8 @@ body > .nav-cont {
 
   #logo {
     background: image-url("gces-logo-header.png") 50% 50% no-repeat;
-    height: 90px;
-    width: 280px;
+    height: 110px;
+    width: 320px;
     margin-left: 15px;
   }
   .top-bar-section {
