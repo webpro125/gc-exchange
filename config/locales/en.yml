@@ -114,6 +114,9 @@ en:
         index: 'Pending Consultants'
     search:
     page:
+      consultant_benefits_html: 'See <em>Consultant/Mentor</em> Benefits'
+      how_we_do_it_html: 'See <em>how</em> we do it!'
+      contractor_benefits_html: 'See <em>Contractor</em> Benefits'
       actions:
         more_information: 'More Information'
         less_information: 'Less Information'
@@ -122,9 +125,9 @@ en:
         learn_more: 'Learn More'
     wizard:
       actions:
-        finish: 'I Agree – Complete Profile >'
-        save_and_next: 'Save & Continue >'
-        save_and_new: 'Save & New >'
+        finish: 'I Agree – Complete Profile ›'
+        save_and_next: 'Save & Continue ›'
+        save_and_new: 'Save & New ›'
       header:
         basic: '1. Basic Information'
         qualifications: '2. Qualifications'

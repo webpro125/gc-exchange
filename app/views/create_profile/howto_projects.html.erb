@@ -3,24 +3,9 @@
 
   <h2>You’re Almost Finished Building Your Profile</h2>
 
-  <%= link_to 'Continue to Step 5', next_wizard_path, class: 'button primary right' %>
-
-  <p>In Step 5 of the Profile Builder, you are required to enter your first project work history.
-    Please provide specific details for the first project you enter. To complete the Profile
-    Builder, you must enter one project in your work history. You may edit, update, and add new
-    projects to your profile at any time in the future using your personalized consultant dashboard.
+  <p>In the Profile Builder, you are required to enter your first project work history. Please provide specific details for the first project you enter. To become searchable you should add two or more additional projects to your profile upon completion of the Profile Builder and signing the Consultant Agreement.
   </p>
 
-  <p>When you finished uploading your first project history, you must read and digital accept the
-    terms of our standard consulting contract. Our contract contains terms and conditions to protect
-    the interest of all parties including you, GCES, and our Client Companies. Your consultant
-    profile will not be searchable until you complete the Profile Builder and accept the terms
-    of the GCES consulting contract.
-  </p>
-
-  <div class="steps">
-    <%= image_tag('howto-finish.png', alt: 'How to Complete Profile', size: '900') %>
-  </div>
   <h3>Instructions to complete Step 5 of the Profile Builder</h3>
   <ul>
     <li>Be descriptive and discuss your specific roles and responsibilities on each project</li>
@@ -31,4 +16,5 @@
       experience
     </li>
   </ul>
+  <%= link_to 'Continue to Step 5 ›', next_wizard_path, class: 'button primary' %>
 </div>
