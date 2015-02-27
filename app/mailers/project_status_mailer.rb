@@ -14,6 +14,11 @@ class ProjectStatusMailer < ActionMailer::Base
     mail(subject: 'Engagement Acceptance Notice', to: @consultant.email)
   end
 
+  def consultant_approved_contact(consultant, conversation)
+    retrieve_users(consultant, conversation)
+    mail(subject: 'Consultant Approved Personal Contact', to: @user.email)
+  end
+
   def company_agreed_to_terms(project)
     mailer_objects(project)
     mail(subject: 'Engagement Acceptance Notice', to: @user.email)
@@ -40,5 +45,11 @@ class ProjectStatusMailer < ActionMailer::Base
     @project = Project.find(project)
     @consultant = Consultant.find(@project.consultant_id)
     @user = User.find(@project.user_id)
+  end
+
+  def retrieve_users(consultant, conversation)
+    convo = Mailboxer::Conversation.find(conversation)
+    @consultant = Consultant.find(consultant)
+    @user = convo.other_participant(@consultant)
   end
 end
