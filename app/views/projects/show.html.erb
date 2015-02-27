@@ -5,12 +5,20 @@
     <div class="row">
       <div class="medium-8 columns">
         <% if consultant_signed_in? %>
-          <h4><%= @project.consultant.full_name %></h4>
+            <h4>
+              <%= image_tag(@project.consultant.profile_image.url(:thumb),
+                            class: 'th profile-thumb') %>
+              <%= @project.consultant.full_name %>
+            </h4>
         <% end %>
         <% if user_signed_in? %>
-          <%= link_to consultant_path do %>
-            <h4><%= @project.consultant.full_name %></h4>
-          <% end %>
+            <%= link_to consultant_path do %>
+                <h4>
+                  <%= image_tag(@project.consultant.profile_image.url(:thumb),
+                                class: 'th profile-thumb') %>
+                  <%= @project.consultant.full_name %>
+                </h4>
+            <% end %>
         <% end %>
       </div>
       <div class="medium-4 columns">
@@ -21,30 +29,30 @@
       <div class="medium-12 columns">
         <table>
           <tbody>
-            <tr>
-              <td width="200">Client Point of Contact:</td>
-              <td><%= @project.user.full_name %></td>
-            </tr>
-            <tr>
-              <td>Estimated Start Date:</td>
-              <td><%= @project.proposed_start.to_s(:month_day_and_year) %></td>
-            </tr>
-            <tr>
-              <td>Estimated End Date:</td>
-              <td><%= @project.proposed_end.to_s(:month_day_and_year) %></td>
-            </tr>
-            <tr>
-              <td>Proposed Hourly Rate:</td>
-              <td>$<%= @project.proposed_rate %></td>
-            </tr>
-            <tr>
-              <td>Work Location:</td>
-              <td><%= @project.project_location %></td>
-            </tr>
-            <tr>
-              <td>Travel Expense Authorization:</td>
-              <td><%= @project.travel_authorization.label %></td>
-            </tr>
+          <tr>
+            <td width="200">Client Point of Contact:</td>
+            <td><%= @project.user.full_name %></td>
+          </tr>
+          <tr>
+            <td>Estimated Start Date:</td>
+            <td><%= @project.proposed_start.to_s(:month_day_and_year) %></td>
+          </tr>
+          <tr>
+            <td>Estimated End Date:</td>
+            <td><%= @project.proposed_end.to_s(:month_day_and_year) %></td>
+          </tr>
+          <tr>
+            <td>Proposed Hourly Rate:</td>
+            <td>$<%= @project.proposed_rate %></td>
+          </tr>
+          <tr>
+            <td>Work Location:</td>
+            <td><%= @project.project_location %></td>
+          </tr>
+          <tr>
+            <td>Travel Expense Authorization:</td>
+            <td><%= @project.travel_authorization.label %></td>
+          </tr>
           </tbody>
         </table>
       </div>
