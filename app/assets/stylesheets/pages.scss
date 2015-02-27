@@ -43,20 +43,25 @@ h5 {
 }
 .orbit-container {
  .orbit-slides-container {
-    li > .row > .medium-6 {
-      min-height: 250px;
-      padding: 0 1.9rem;
+    li {
+      text-indent: 0;
+      
+      > .row {
+        padding: 1rem 0;
 
-      .medium-6 {
-        padding: 0;
+        > .medium-6 {
+          min-height: 250px;
+          padding: 0 1.9rem;  
 
-        ul {
-          max-width: 95%;
+          .medium-6 {
+            padding: 0;
+
+            ul {
+              max-width: 95%;
+            }            
+          }        
         }
       }
-    }
-    > li > .row {
-      padding: 1rem 0;
     }
     ul, img {
       margin-bottom: 1rem;
@@ -227,7 +232,7 @@ h5 {
   }
 
   p {
-    line-height: 0.9;
+    line-height: 1.5;
     margin-top: 10px;
 
     small {
