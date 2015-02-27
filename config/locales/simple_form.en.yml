@@ -143,3 +143,6 @@ en:
         clearance_expiration_date: 'Format Month DD YYYY (e.g. January 09 1990)'
         service_start_date: 'Format Month DD YYYY (e.g. January 09 1990)'
         service_end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+      project:
+        proposed_start: 'Format Month DD YYYY (e.g. January 09 1990)'
+        proposed_end: 'Format Month DD YYYY (e.g. January 09 1990)'
