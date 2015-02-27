@@ -4,7 +4,8 @@
   <div class="medium-8 columns vr">
     <div class="row">
       <div class="medium-8 columns">
-        <h4><%= @project.consultant.full_name %></h4>
+        <h4><%= link_to @project.consultant.full_name, consultant_path(@project.consultant.id)
+        %></h4>
       </div>
       <div class="medium-4 columns">
         <h4><%= @project.created_at.to_s(:month_day_and_year) %></h4>
