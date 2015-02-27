@@ -75,6 +75,30 @@ describe ProjectStatusMailer do
     end
   end
 
+  describe 'Consultant Approved Contact' do
+    let(:consultant) { FactoryGirl.create(:consultant, :approved) }
+    let(:user) { FactoryGirl.create(:user, :with_company) }
+    let(:mail) do
+      ProjectStatusMailer
+        .consultant_approved_contact(consultant.id, Mailboxer::Conversation.first.id)
+    end
+
+    before do
+      consultant.send_message(user, 'Test Message Body', 'Test Subject')
+      ActionMailer::Base.deliveries = []
+      ProjectStatusMailer.consultant_approved_contact(consultant.id,
+                                                      Mailboxer::Conversation.first.id).deliver
+    end
+
+    it 'should send an email' do
+      ActionMailer::Base.deliveries.count.should == 1
+    end
+
+    it 'assigns user email' do
+      expect(mail.to).to eq([user.email])
+    end
+  end
+
   describe 'Consultant Hired' do
     let(:mail) { ProjectStatusMailer.consultant_hired(project) }
 

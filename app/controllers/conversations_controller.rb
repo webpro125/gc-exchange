@@ -27,7 +27,7 @@ class ConversationsController < ApplicationController
 
   def show
     @message    = Message.new
-    @consultant = conversation.recipients.select { |r| r.is_a? Consultant }.first
+    @consultant = conversation.consultant_recipient
   end
 
   def reply
@@ -40,6 +40,7 @@ class ConversationsController < ApplicationController
                                                      .other_participant(current_consultant),
                                              allowed: true)
     if current_consultant.save
+      ProjectStatusMailer.delay.consultant_approved_contact(current_consultant.id, conversation.id)
       redirect_to conversation_path(conversation), notice: 'Approved Contact'
     else
       redirect_to conversation_path(conversation), notice: 'Unable to Approve Contact'
