@@ -1,7 +1,9 @@
 @import "variables";
 
 .one-fifth {
-  width: 20%;
+  @media #{$medium-up} {
+    width: 20%;
+  }
   p {
   font-size: 0.9rem;
   font-weight: 600;
@@ -43,15 +45,25 @@ h5 {
 }
 .orbit-container {
  .orbit-slides-container {
-    li {
+    > li {
       text-indent: 0;
-      
+      &:before {
+        content: none;
+      }
+      .row {
+        margin: 0;
+      }
       > .row {
         padding: 1rem 0;
 
         > .medium-6 {
-          min-height: 250px;
-          padding: 0 1.9rem;  
+          @media #{$medium-up} {
+            min-height: 250px;
+          }  
+          @media #{$small-only} {
+            padding: 1rem 1.9rem;
+          }
+          padding: 0 1.9rem;
 
           .medium-6 {
             padding: 0;
@@ -117,7 +129,10 @@ h5 {
 .row.action {
   max-width: 100%;
   .slide-1 {
-    background: image-url("bg-home.png") 50% 50% no-repeat;
+    background: image-url("bg-blue1.jpg") 50% 50% no-repeat;
+    @media #{$medium-up} {
+      background: image-url("bg-home.png") 50% 50% no-repeat;
+    }
     background-size: cover;
   }
   .slide-2 {
@@ -183,10 +198,14 @@ h5 {
     text-decoration: underline;
     font-size: 1.3rem;
     font-weight: 800;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    margin-left: -40px;
+    text-align: center;
+
+    @media #{$medium-up} {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      margin-left: -40px;
+    }
   }   
 
   .learnmore {
@@ -194,10 +213,14 @@ h5 {
     text-decoration: underline;
     font-size: 1.3rem;
     font-weight: 800;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    margin-left: -69px;
+    text-align: center;
+
+    @media #{$medium-up} {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      margin-left: -69px;
+    }
   }
 
   .register {
@@ -205,10 +228,14 @@ h5 {
     text-decoration: underline;
     font-size: 1.3rem;
     font-weight: 800;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    margin-left: -135px;
+    text-align: center;
+
+    @media #{$medium-up} {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      margin-left: -135px;
+    }    
   }
 
   @media #{$large-up} {
@@ -270,7 +297,9 @@ h5 {
     }
   }
   .brown, .blue {
-    min-height: 250px;
+    @media #{$medium-up} {
+      min-height: 250px;
+    }  
     padding: 0 1.9rem;
     text-align: center;
   }
@@ -279,6 +308,13 @@ h5 {
   background: scale-color($light-blue, $lightness: 70%);
   max-width: 100%;
   padding: 1rem 0;
+
+  .row {
+    @media #{$small-only} {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }
 
   @media #{$large-up} {
     .row {
@@ -322,7 +358,12 @@ h5 {
     }
     p {
       line-height: 1.2rem;
-      text-align: right;
+      @media #{$small-only} {
+        margin: 15px 0 10px;
+      }
+      @media #{$medium-up} {
+        text-align: right;
+      }
     }
   }
 }
@@ -336,9 +377,12 @@ h5 {
   z-index: 20;
   position: relative;
   a.button {
-    margin: 0;
+    margin: 0.25rem 0;
+    font-size: rem-calc(13);
+    
     @media #{$medium-up} {
       font-size: rem-calc(14);
+      margin: 0;
     } 
     @media #{$large-up} {
       font-size: rem-calc(17);
@@ -382,8 +426,9 @@ h5 {
       }
     }
   }
-  padding: 0 40px;
-
+  @media #{$medium-up} {
+    padding: 0 40px;
+  }
   input[type="submit"] {
     float: right;
   }
@@ -406,18 +451,18 @@ h5 {
       font-style: italic;
       color: $jet;
       margin: 0;
-      font-size: 1.5rem;
-    }
-    @media #{$large-up} {
-      &.intro {
+      font-size: 1.15rem;
+
+      @media #{$medium-up} {
+        font-size: 1.5rem;
+      } 
+      @media #{$large-up} {
         font-size: 1.75rem;
-      }
-    }
-    @media #{$xlarge-up} {
-      &.intro {
+      } 
+      @media #{$xlarge-up} {
         font-size: 2.5rem;
-      }
-    }    
+      }             
+    }   
   }
   text-align: center;
 
