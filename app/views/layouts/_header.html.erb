@@ -18,6 +18,7 @@
       <!-- Left Nav Section -->
       <% unless consultant_signed_in? %>
           <ul class="left">
+            <li><%= link_to 'Home', root_path if consultant_signed_in? or user_signed_in? %></li>
             <% if development? %>
                 <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
             <% end %>
@@ -69,7 +70,7 @@
             </li>
             <li>
               <%= link_to 'About Us', about_us_path %>
-            </li>    
+            </li>
             <li class="has-dropdown">
               <a href="#">Register</a>
               <ul class="dropdown">
@@ -78,7 +79,7 @@
                   <%= link_to t('views.page.actions.consultant'), new_consultant_registration_path %>
                 </li>
               </ul>
-            </li>        
+            </li>
             <li class="has-dropdown">
               <a href="#">Login</a>
               <ul class="dropdown">
@@ -88,7 +89,7 @@
             </li>
             <li>
               <%= link_to 'Contact Us', contact_us_path %>
-            </li>              
+            </li>
 
         <% end %>
       </ul>
