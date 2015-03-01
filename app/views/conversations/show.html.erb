@@ -1,0 +1,113 @@
+<% communication = @conversation %>
+<div class="row">
+  <div class="medium-8 columns vr">
+    <h1><%= communication.subject %></h1>
+
+    <div class="row">
+      <div class="medium-12 columns">
+        <%= link_to 'Back to Inbox', conversations_path, class: 'button tiny' %>
+        <% if ((consultant_signed_in? &&
+                !current_consultant.contactable(conversation
+                                                        .other_participant(current_consultant))) &&
+                !user_is_gces?)
+        %>
+            <%= link_to 'Approve Personal Contact Information',
+                        approve_personal_contact_conversation_path,
+                        method: :put,
+                        class: 'button tiny' if policy(current_consultant).contactable? %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        <div class="panel">
+          <p>
+            <% if consultant_signed_in? %>
+                NOTE: As you begin this dialogue with a potential client, (1) please keep in mind
+                your
+                responsibility to maintain correct contact information within the GCES database and
+                (2) be sensitive to the possibility of latent conflicts of interests that might
+                exist
+                between you and the potential client.
+            <% else %>
+                NOTE: As you begin this dialogue with a potential consultant, please keep in mind
+                the
+                possibility of latent conflicts of interest that might exist between your company
+                and
+                the potential consultant. GCES encourages you to address any potential conflict of
+                interest issues with the consultant early in your dialogue to avoid possible
+                confidentiality breaches.
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+      <div class="medium-12 columns">
+        <ul class="right">
+          <li id="reply-btn"><i class="fi-arrow-left"></i> Reply</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row" id="reply" style="display: none; opacity: 0;">
+      <div class="medium-12 columns">
+        <%= simple_form_for @message,
+                            url:    reply_conversation_path(communication),
+                            method: :post do |f| %>
+            <%= f.input :message, as: :text %>
+            <%= f.button :submit, 'Send Message' %>
+        <% end %>
+      </div>
+    </div>
+    <% communication.messages.each do |message| %>
+        <div class="row">
+          <div class="medium-6 columns">
+            <% if message.sender_type == 'Consultant' %>
+                <%= link_to consultant_path(message.sender) do %>
+                    <%= image_tag(message.sender.profile_image.url(:thumb),
+                                  class: 'th profile-thumb-mini') %>
+                    <%= message.sender.full_name %>
+                <% end %>
+            <% else %>
+                <%= message.sender.full_name %>
+            <% end %>
+          </div>
+          <div class="medium-6 columns">
+            <div class="right">
+              <%= message.created_at.strftime('%B %d at %I:%M %p') %>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="medium-12 columns">
+            <p>
+              <%= message.body %>
+            </p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="medium-4 columns">
+      <% if consultant_signed_in? %>
+          <%= render 'profiles/side_bar' %>
+      <% else %>
+          <h4>Offers</h4>
+
+          <div class="row">
+            <div class="medium-12 columns">
+              <%= link_to 'Add Engagement Offer',
+                          new_consultant_project_path(@consultant),
+                          class: 'button tiny' %>
+              <%= link_to t('views.offer.actions.index'), projects_path, class: 'button tiny' %>
+            </div>
+          </div>
+          <%= render 'shared/recent_consultants', consultants: @consultants %>
+      <% end %>
+    </div>
+  </div>
+</div>

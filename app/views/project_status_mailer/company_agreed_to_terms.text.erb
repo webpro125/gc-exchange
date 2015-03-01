@@ -1,0 +1,15 @@
+• Date of Acceptance by Consultant: <%= Date.today %>
+• Consultant Name: <%= @consultant.full_name %>
+• Engagement Name: <%= @project.project_name %>
+• Client Point of Contact: <%= @user.full_name %>
+• Estimated Start Date: <%= @project.proposed_start %>
+• Estimated End Date: <%= @project.proposed_end %>
+• Hourly Rate: <%= @project.proposed_rate %>
+• Work Location: <%= @project.project_location %>
+• Travel Expense Authorization: <%= @project.travel_authorization.label %>
+
+Be advised that <%= @consultant.full_name %> has accepted your engagement offer as described
+above. GCES is now coordinating with your contracts department to insure prompt issuance of your
+company’s authority to proceed.  If you have any questions or concerns, please contact the GCES
+General Manager at barrie.gillis@globalconsultantexchange.com, citing the reference information
+above.

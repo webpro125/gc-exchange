@@ -1,4 +1,4 @@
-<div class="nav-cont">
+<div class="sticky">
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
@@ -23,11 +23,11 @@
                 <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
             <% end %>
             <% if user_signed_in? %>
-            <li class="has-form">
-              <div class="row collapse">
-                <%= render 'layouts/search' %>
-              </div>
-            </li>
+                <li class="has-form">
+                  <div class="row collapse">
+                    <%= render 'layouts/search' %>
+                  </div>
+                </li>
             <% end %>
           </ul>
       <% end %>
@@ -44,6 +44,7 @@
                 <li><%= link_to t('views.profile.actions.upload_resume_html'),
                                 new_consultant_upload_resume_path(current_consultant) %></li>
                 <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
+                <li><%= link_to t('views.offer.actions.index'), projects_path %></li>
                 <li class="divider"></li>
                 <li><%= link_to t('views.password.actions.change_password'),
                                 edit_consultant_registration_path %></li>
@@ -53,14 +54,23 @@
               <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
             </li>
         <% elsif user_signed_in? %>
-            <% if user_is_gces? %>
-                <li>
-                  <%= link_to t('views.consultant.actions.index'), consultants_path %>
+            <li class="has-dropdown">
+              <%= link_to 'Manage', '#' %>
+              <ul class="dropdown">
+                <% if user_is_gces? %>
+                    <li>
+                      <%= link_to t('views.consultant.actions.index'), consultants_path %>
+                    </li>
+                    <li>
+                      <%= link_to t('views.company.actions.index'), companies_path %>
+                    </li>
+                <% end %>
+                <li><%= link_to t('views.offer.actions.index'), projects_path %></li>
+                <li><%= link_to t('views.password.actions.change_password'),
+                                edit_change_password_path %>
                 </li>
-                <li>
-                  <%= link_to t('views.company.actions.index'), companies_path %>
-                </li>
-            <% end %>
+              </ul>
+            </li>
             <li>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
             </li>

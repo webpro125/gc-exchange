@@ -87,10 +87,18 @@
                       class: 'button small secondary download' %>
         </div>
       <% end %>
+      <% if policy(@consultant).show? %>
+          <div class="small-12 columns">
+            <%= link_to t('views.profile.actions.contact'),
+                        new_consultant_conversation_path(@consultant.id),
+                        class: 'button small secondary download' %>
+          </div>
+      <% end %>
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <%= render 'profiles/contact_information' if user_is_gces? %>
+        <%= render 'profiles/contact_information' if user_is_gces? ||
+                current_user.contactable(@consultant) %>
         <%= render 'profiles/background_and_history' %>
         <%= render @consultant.project_histories if user_signed_in? %>
       </div>

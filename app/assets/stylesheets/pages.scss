@@ -1,12 +1,17 @@
 @import "variables";
 
 .one-fifth {
-  width: 20%;
+  @media #{$medium-up} {
+    width: 20%;
+  }
   p {
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.2rem;
   margin-bottom: 0;
+    @media #{$xlarge-up} {
+      font-size: rem-calc(18);
+    }
   }
 }
 .top-bar {
@@ -22,7 +27,6 @@ h2 {
     color: $iron;
   }
 }
-
 h5 {
   &.steps {
     text-align: center;
@@ -30,7 +34,6 @@ h5 {
     font-weight: 600;
   }
 }
-
 .home {
   .container {
     padding-top: 0;
@@ -40,27 +43,37 @@ h5 {
     width: 100%;
   }
 }
-ul.home-orbit {
-  height: 200px!important;
-}
 .orbit-container {
  .orbit-slides-container {
-    li > .row > .medium-6 {
-      min-height: 250px;
-      padding: 0 1.9rem;
+    > li {
+      text-indent: 0;
+      &:before {
+        content: none;
+      }
+      .row {
+        margin: 0;
+      }
+      > .row {
+        padding: 1rem 0;
 
+        > .medium-6 {
+          @media #{$medium-up} {
+            min-height: 250px;
+          }  
+          @media #{$small-only} {
+            padding: 1rem 1.9rem;
+          }
+          padding: 0 1.9rem;
 
-      .medium-6 {
-        padding: 0;
+          .medium-6 {
+            padding: 0;
 
-        ul {
-          max-width: 95%;
+            ul {
+              max-width: 95%;
+            }            
+          }        
         }
       }
-    }
-
-    > li > .row {
-      padding: 1rem 0;
     }
     ul, img {
       margin-bottom: 1rem;
@@ -70,7 +83,6 @@ ul.home-orbit {
       color: #6dcff6;
       font-weight: 600;
       margin-bottom: 0;
-
     }
     p {
       font-size: 1rem;
@@ -101,13 +113,9 @@ ul.home-orbit {
         font-size: 1rem;
         padding-bottom: 5px;
       }
-
     }
     img {
       margin: 0 auto;
-    }
-    li > .row {
-      margin: 1rem auto;
     }
   }
 }
@@ -117,16 +125,14 @@ ul.home-orbit {
   width: 1000px;
   margin-left: -500px;
   left: 50%;
-
 }
-
-
 .row.action {
   max-width: 100%;
-
-
   .slide-1 {
-    background: image-url("bg-home.png") 50% 50% no-repeat;
+    background: image-url("bg-blue1.jpg") 50% 50% no-repeat;
+    @media #{$medium-up} {
+      background: image-url("bg-home.png") 50% 50% no-repeat;
+    }
     background-size: cover;
   }
   .slide-2 {
@@ -192,10 +198,14 @@ ul.home-orbit {
     text-decoration: underline;
     font-size: 1.3rem;
     font-weight: 800;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    margin-left: -40px;
+    text-align: center;
+
+    @media #{$medium-up} {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      margin-left: -40px;
+    }
   }   
 
   .learnmore {
@@ -203,10 +213,14 @@ ul.home-orbit {
     text-decoration: underline;
     font-size: 1.3rem;
     font-weight: 800;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    margin-left: -69px;
+    text-align: center;
+
+    @media #{$medium-up} {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      margin-left: -69px;
+    }
   }
 
   .register {
@@ -214,21 +228,23 @@ ul.home-orbit {
     text-decoration: underline;
     font-size: 1.3rem;
     font-weight: 800;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    margin-left: -135px;
+    text-align: center;
+
+    @media #{$medium-up} {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      margin-left: -135px;
+    }    
   }
 
-  @media #{$medium-up} {
+  @media #{$large-up} {
     .row {
-      max-width: 77rem;
+      max-width: 90%;
       margin: 0 auto;
     }
-  }
-
+  }  
   .compact {
-
     ul {
       li {
         font-size: 1rem;
@@ -243,7 +259,7 @@ ul.home-orbit {
   }
 
   p {
-    line-height: 0.9;
+    line-height: 1.5;
     margin-top: 10px;
 
     small {
@@ -256,7 +272,13 @@ ul.home-orbit {
     color: $white;
     font-weight: 800;
     font-size: 1.3rem;
-    line-height: 1.9rem;
+    @media #{$large-up} {
+      font-size: 1.5rem;
+    }    
+    @media #{$xlarge-up} {
+      font-size: 1.75rem;
+    }
+    line-height: 1.4;
 
     &.head {
       font-weight: 800;
@@ -275,7 +297,9 @@ ul.home-orbit {
     }
   }
   .brown, .blue {
-    min-height: 250px;
+    @media #{$medium-up} {
+      min-height: 250px;
+    }  
     padding: 0 1.9rem;
     text-align: center;
   }
@@ -285,6 +309,19 @@ ul.home-orbit {
   max-width: 100%;
   padding: 1rem 0;
 
+  .row {
+    @media #{$small-only} {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }
+
+  @media #{$large-up} {
+    .row {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }  
   .tablehead {
     background: $light-blue;
     border: 1px solid $light-blue;
@@ -313,27 +350,22 @@ ul.home-orbit {
     ul, p {
       color: $gces-blue;
     }
-
     ul {
       li {
         line-height: 1.2rem;
         margin-bottom: 0.25rem;
       }
     }
-
     p {
       line-height: 1.2rem;
-      text-align: right;
+      @media #{$small-only} {
+        margin: 15px 0 10px;
+      }
+      @media #{$medium-up} {
+        text-align: right;
+      }
     }
   }
-
-  @media #{$medium-up} {
-    .row {
-      max-width: 77rem;
-      margin: 0 auto;
-    }
-  }
-
 }
 
 .row.options {
@@ -344,26 +376,38 @@ ul.home-orbit {
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   z-index: 20;
   position: relative;
-
   a.button {
-    margin: 0;
+    margin: 0.25rem 0;
+    font-size: rem-calc(13);
+    
+    @media #{$medium-up} {
+      font-size: rem-calc(14);
+      margin: 0;
+    } 
+    @media #{$large-up} {
+      font-size: rem-calc(17);
+    }  
+    @media #{$xlarge-up} {
+      font-size: rem-calc(22);
+    }
   }
-
-  @media #{$medium-up} {
+  @media #{$large-up} {
     .row {
-      max-width: 77rem;
+      max-width: 90%;
       margin: 0 auto;
     }
   }
-
 }
-
 #one {
-
   > .row {
-    padding: rem-calc(40) 0;
+    padding: rem-calc(15) 0;
+    @media #{$medium-up} {
+      padding: rem-calc(20) 0;
+    }
+    @media #{$large-up} {
+      padding: rem-calc(30) 0;
+    }    
   }
-
   ul {
     margin-left: 0;
     padding-left: 0;
@@ -382,8 +426,9 @@ ul.home-orbit {
       }
     }
   }
-  padding: 0 40px;
-
+  @media #{$medium-up} {
+    padding: 0 40px;
+  }
   input[type="submit"] {
     float: right;
   }
@@ -402,20 +447,29 @@ ul.home-orbit {
     font-weight: 600;
 
     &.intro {
-      font-weight: 800;
+      font-weight: 600;
       font-style: italic;
       color: $jet;
       margin: 0;
-      font-size: 2rem;
-    }
+      font-size: 1.15rem;
+
+      @media #{$medium-up} {
+        font-size: 1.5rem;
+      } 
+      @media #{$large-up} {
+        font-size: 1.75rem;
+      } 
+      @media #{$xlarge-up} {
+        font-size: 2.5rem;
+      }             
+    }   
   }
-
-
   text-align: center;
 
-  @media #{$medium-up} {
+  @media #{$large-up} {
     .row {
-      max-width: 77rem;
+      max-width: 90%;
+      margin: 0 auto;
     }
   }
 
@@ -438,7 +492,6 @@ ul.home-orbit {
       }
     }
   }
-
   li:hover > ul.dropdown {
     display: block;
     background: $white;
@@ -469,11 +522,9 @@ ul.home-orbit {
       }
     }
   }
-
   img {
     margin: 2rem 0 0.5rem 0;
   }
-
   #new_search {
     max-width: 450px;
     text-align: center;
@@ -495,12 +546,10 @@ ul.home-orbit {
       }
     }
   }
-
   .button {
     margin: 0 5px;
     border-radius: 2px;
   }
-
   .login {
     position: relative;
     display: inline-block;
@@ -520,7 +569,6 @@ ul.home-orbit {
       right: 0;
     }
   }
-
 }
 
 /*** TOS ***/
@@ -598,7 +646,6 @@ ol, ol li {
     display: block;
   }
 }
-
 #progress {
   position: relative;
   padding: 1rem 0;
@@ -611,7 +658,6 @@ ol, ol li {
       padding: 10px 55px 0 70px;
     }
   }
-
   ul {
     list-style: none;
     display: inline-table;
@@ -623,7 +669,6 @@ ol, ol li {
       &:before {
         content: none;
       }
-
       &:first-child a {
         border-top-left-radius: 3px; 
         border-bottom-left-radius: 3px;
@@ -643,7 +688,6 @@ ol, ol li {
           display: none; 
         }
       }      
-
       a {
         display: block;
         float: left;
@@ -725,4 +769,3 @@ ol, ol li {
     }
   }
 }
-

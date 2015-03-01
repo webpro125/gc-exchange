@@ -21,7 +21,8 @@ class ProfilesController < ConsultantController
 
   def consultant
     @consultant = current_consultant
-    render :show
+    @conversations = @consultant.mailbox.conversations.page(params[:page])
+    @projects = @consultant.projects.open.limit(3)
   end
 
   private

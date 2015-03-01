@@ -2,7 +2,7 @@
 
 /*** HEADER ***/
 
-body > .nav-cont {
+body > .sticky {
   border-bottom: 3px solid $gces-blue;
 }
 .top-bar-section .dropdown li:not(.has-form) > a {
@@ -27,31 +27,56 @@ body > .nav-cont {
   }
 
   #logo {
-    background: image-url("gces-logo-header.png") 50% 50% no-repeat;
-    height: 90px;
-    width: 280px;
-    margin-left: 15px;
+    background: image-url("gces-logo-header.png") left 50% no-repeat;
+    height: 110px;
+    width: 320px;
+    margin-left: 20px;
+    @media #{$small-only} {
+      background-size: 50%;
+    }
+    @media #{$medium-only} {
+      background-size: 100%;
+      width: 200px;
+    }
   }
   .top-bar-section {
-    @media #{$medium-up} {
-      .top-bar-section li:not(.has-form) a:not(.button) {
-        line-height: 110px!important;
-      }
-    }
-
     ul {
-      &.right {
-        padding-right: 3rem;
-      }
-      &.dropdown {
-        li {
-          &.divider {
+      @media #{$medium-up} {    
+        &.right {
+          padding-right: 3rem;
+        }
+        &.dropdown {
+          li {
+            &.divider {
+            }
+            a {
+              line-height: 45px;
+            }
           }
+        }  
+      }
+      li {
+        a {
+          @media #{$medium-only} { 
+            font-size: rem-calc(12);
+          }
+          @media #{$large-only} { 
+            font-size: rem-calc(14);
+          }          
+        }
+        &:not(.has-form) {
           a {
-            line-height: 45px;
+            &:not(.button) {
+              @media #{$medium-up} {
+                line-height: 110px!important;
+              }
+              @media #{$medium-only} {
+                padding: 0 10px!important;
+              }
+            }
           }
         }
-      }  
+      }
     }
     .button, input {
       height: 40px;

@@ -18,6 +18,7 @@ describe UserPolicy do
       it { should permit_action(:destroy) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:upload_image) }
+      it { should_not permit_action(:update_password) }
     end
 
     describe 'itself' do
@@ -26,9 +27,10 @@ describe UserPolicy do
 
       it { should permit_action(:update)  }
       it { should permit_action(:edit)    }
-      it { should_not permit_action(:destroy) }
       it { should permit_action(:upload_resume) }
       it { should permit_action(:upload_image) }
+      it { should permit_action(:update_password) }
+      it { should_not permit_action(:destroy) }
     end
   end
 
@@ -46,6 +48,7 @@ describe UserPolicy do
       it { should permit_action(:destroy) }
       it { should permit_action(:upload_resume) }
       it { should permit_action(:upload_image) }
+      it { should_not permit_action(:update_password) }
     end
 
     describe 'for a user' do
@@ -59,6 +62,7 @@ describe UserPolicy do
       it { should_not permit_action(:destroy) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:upload_image) }
+      it { should_not permit_action(:update_password) }
     end
 
     describe 'for an owner' do
@@ -72,6 +76,7 @@ describe UserPolicy do
       it { should_not permit_action(:destroy) }
       it { should_not permit_action(:upload_resume) }
       it { should_not permit_action(:upload_image) }
+      it { should_not permit_action(:update_password) }
     end
   end
 

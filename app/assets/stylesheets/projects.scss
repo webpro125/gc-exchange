@@ -1,0 +1,29 @@
+@import "variables";
+
+table {
+  border: none;
+  border-collapse: collapse;
+  tr {
+    background: none!important;
+    td {
+      font-size: 1rem;
+      vertical-align: top;
+      border-top: 1px solid $gainsboro;
+
+      &:first-child {
+        padding-left: 0;
+        text-align: right;
+        font-weight: bold;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.button_to {
+  float: left;
+  display: block;
+  margin-right: 1rem;
+}

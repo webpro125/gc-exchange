@@ -76,6 +76,13 @@ en:
         description: 'Description of Role Performed'
         client_company: 'Government Contractor'
         client_poc_phone: 'Reference Phone'
+      project:
+        proposed_start: 'Engagement Start Date'
+        proposed_end: 'Engagement End Date'
+        proposed_rate: 'Negotiated Consultant''s Hourly Rate'
+        project_location: 'Work Location'
+        project_name: 'Engagement Identification'
+        travel_authorization_id: 'Travel Authorization'
       search:
         position_ids: 'Position'
         q: 'Keywords'
@@ -122,7 +129,8 @@ en:
         end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
       consultant:
         abstract: 'This field provides a summary abstract of your career experience.  Enter
-        a brief description of your professional achievements, work history, and skills.'
+        a brief description of your professional achievements, work history, and skills. Include
+        experience that substantiates  your qualifications to be a “Mentor”.'
         certification_ids: 'Scroll down, identify, and click on your professional certifications.'
         skills_list: 'Add your skills and separate each skill with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)'
       address:
@@ -136,3 +144,6 @@ en:
         clearance_expiration_date: 'Format Month DD YYYY (e.g. January 09 1990)'
         service_start_date: 'Format Month DD YYYY (e.g. January 09 1990)'
         service_end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+      project:
+        proposed_start: 'Format Month DD YYYY (e.g. January 09 1990)'
+        proposed_end: 'Format Month DD YYYY (e.g. January 09 1990)'

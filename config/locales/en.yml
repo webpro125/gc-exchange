@@ -157,6 +157,7 @@ en:
         remove_phone_html: '<i class="fi-trash"></i> Delete Phone'
         download_resume_html: '<i class="fi-download"></i> Download Resume'
         edit_projects_html: '<i class="fi-widget"></i> Manage Projects'
+        contact: 'Contact'
       headers:
         contact: 'Contact Information'
         projects: 'Project History'
@@ -191,6 +192,9 @@ en:
         index: 'Manage Projects'
       confirmations:
         delete: 'Are you sure you want to delete this project?'
+    offer:
+      actions:
+        index: 'Manage Engagement Offers'
     sales_lead:
       new:
         save: 'Send Request'
@@ -213,3 +217,6 @@ en:
     user:
       confirmations:
         delete: 'Are you sure you want to delete this user?'
+    conversation:
+      new:
+        save: 'Send Request'
