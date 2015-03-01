@@ -15,6 +15,10 @@ body {
 hr {
   margin: 2rem 0;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
 .hint {
 	margin: -10px 0 10px 0;
 	font-size: rem-calc(14);
@@ -28,6 +32,7 @@ hr {
 }
 .container {
   padding: 2rem 0 0;
+  overflow: hidden;
   background: #FFF;
   width: 1100px;
   max-width: 100%;
@@ -37,8 +42,7 @@ hr {
 
   @media #{$small-only} {
     max-width: 90%;
-    padding: 2rem 30px 0
-  }
+  } 
 }
 
 .home, .learn_more {
