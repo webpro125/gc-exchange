@@ -11,6 +11,14 @@ body > .sticky {
 .top-bar-section .dropdown li:not(.has-form):hover > a:not(.button) {
   background: scale-color(#dde6e9, $lightness: 20%)!important;
 }
+.top-bar-section .has-dropdown.hover > .dropdown, 
+.top-bar-section .has-dropdown.not-click:hover > .dropdown {
+  width: 160px!important;
+}
+.top-bar-section .has-dropdown.hover > .dropdown li:hover a, 
+.top-bar-section .has-dropdown.not-click:hover > .dropdown li:hover a {
+  background: none!important;
+}
 .top-bar {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
@@ -57,6 +65,9 @@ body > .sticky {
             }
             &:hover {
               background: none!important;
+              a {
+                background: none!important;
+              }
             }            
             &.parent-link + li a {
               padding-top: 20px;
