@@ -51,6 +51,9 @@
               </ul>
             </li>
             <li>
+              <%= link_to 'Messages', conversations_path %>
+            </li>
+            <li>
               <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
             </li>
         <% elsif user_signed_in? %>

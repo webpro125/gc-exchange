@@ -46,11 +46,31 @@ body > .sticky {
           padding-right: 3rem;
         }
         &.dropdown {
+          left: -50%!important;
+          right: -50%!important;
+          background: #dde6e9;
+          width: 160px;
+
           li {
+            width: auto!important;
             &.divider {
             }
+            &:hover {
+              background: none!important;
+            }            
+            &.parent-link + li a {
+              padding-top: 20px;
+            }   
+            &:last-child a {
+              padding-bottom: 20px;
+            }                     
             a {
-              line-height: 45px;
+              line-height: 1.5!important;
+              white-space: normal;
+              display: block;
+              padding: 7px 20px;
+              width: 160px;
+
             }
           }
         }  
@@ -68,7 +88,7 @@ body > .sticky {
           a {
             &:not(.button) {
               @media #{$medium-up} {
-                line-height: 110px!important;
+                line-height: 110px;
               }
               @media #{$medium-only} {
                 padding: 0 10px!important;
