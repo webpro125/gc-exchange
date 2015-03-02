@@ -18,7 +18,7 @@
       <!-- Left Nav Section -->
       <% unless consultant_signed_in? %>
           <ul class="left">
-            <li><%= link_to 'Home', root_path %></li>
+            <li><%= link_to 'Home', root_path if consultant_signed_in? or user_signed_in? %></li>
             <% if development? %>
                 <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
             <% end %>

@@ -74,7 +74,7 @@ en:
         start_date: 'Start Date'
         end_date: 'End Date'
         description: 'Description of Role Performed'
-        client_company: 'Company'
+        client_company: 'Government Contractor'
         client_poc_phone: 'Reference Phone'
       project:
         proposed_start: 'Engagement Start Date'
@@ -113,7 +113,7 @@ en:
         information.'
     hints:
       project_history:
-        client_company: 'Identify the name of the company that owned the project.'
+        client_company: 'Identify the name of the government contractor that owned the project.'
         customer_name_id: 'Select the agency the work was done for if this project supported a
         Government Agency.  Leave blank for Commercial Projects.'
         client_poc_name: 'Identify the person who received your work product on the project.'
@@ -135,7 +135,8 @@ en:
         skills_list: 'Add your skills and separate each skill with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)'
       address:
         address: 'Enter your Address, City, State, and Zip Code.  Your address is used to help
-        companies search for local consultants and this information will not be shown publicly.'
+        government contractors search for local consultants and this information will not be shown
+        publicly.'
       phone:
         number: 'Format xxx-xxx-xxxx'
       military:
