@@ -1383,8 +1383,8 @@ $topbar-dropdown-link-color: $gces-blue;
 $topbar-dropdown-link-bg: #dde6e9;
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
-// $topbar-dropdown-toggle-color: $white;
-// $topbar-dropdown-toggle-alpha: 0.4;
+$topbar-dropdown-toggle-color: none;
+$topbar-dropdown-toggle-alpha: 0;
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $gces-blue;
