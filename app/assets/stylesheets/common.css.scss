@@ -34,14 +34,13 @@ img {
   padding: 2rem 0 0;
   overflow: hidden;
   background: #FFF;
-  width: 1100px;
-  max-width: 100%;
+  width: 90%;
+  max-width: 95%;
   margin: 0 auto;
   min-height: 800px;
-  box-shadow: 0 0 20px scale-color($gces-green, $lightness: -50%);
 
   @media #{$small-only} {
-    max-width: 90%;
+    max-width: 95%;
   } 
 }
 
@@ -88,7 +87,7 @@ input[type="submit"] {
   }
   h2 {
     color: $gces-red;
-    line-height: 2.75rem;
+    line-height: 1.2;
   }
   h1 + h3 {
     border-bottom: none;
@@ -157,6 +156,21 @@ small {
   &.red {
     color: scale-color($gces-red, $lightness: -10%);
   }
+}
+/*** LOGIN ***/
+#login, #registration {
+  margin: 2rem auto;
+  box-shadow: 0 0 15px #CCC;
+  max-width: 100%;
+  padding: 2rem;
+  border-radius: 3px;
+  background: scale-color($light-blue, $lightness: 90%);
+}
+#login {
+  max-width: 25rem;
+}
+#registration {
+  max-width: 40rem;
 }
 
 /*** ASIDES ***/
@@ -537,6 +551,7 @@ footer {
   box-shadow: inset 0 0 rem-calc(20) $monsoon;
 
   .row {
+  max-width: 90%;
 
     p {
       font-size: rem-calc(13);
