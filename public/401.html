@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unauthorized (401)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+  body {
+    background-color: #DDE0DF;
+    color: #2E2F30;
+    text-align: center;
+    font-family: 'Open Sans', 'Helvetica Neue', helvetica, arial, sans-serif;
+    margin: 0;
+  }
+
+  div.dialog {
+    width: 95%;
+    max-width: 42em;
+    margin: 4em auto 0;
+  }
+
+  div.dialog > div {
+    border: 1px solid #CCC;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: white;
+    padding: 7px 12% 0;
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.25);
+  }
+
+  h1 {
+    font-size: 38px;
+    font-weight: 200;
+    color: #96413d;
+    line-height: 1.2em;
+  }
+
+  div.dialog > p {
+    margin: 0 0 1em;
+    padding: 1em;
+    background-color: #F7F7F7;
+    border: 1px solid #CCC;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    color: #666;
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.25);
+  }
+  </style>
+</head>
+
+<body>
+  <!-- This file lives in public/401.html -->
+  <div class="dialog">
+    <div>
+      <h1>You do not have the proper authorization to view this page.</h1>
+      <p>Please talk to your system administrator to understand why you do not have access.</p>
+    </div>
+    <p>If you are the application owner check the logs for more information.</p>
+  </div>
+</body>
+</html>

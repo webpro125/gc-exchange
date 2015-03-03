@@ -35,5 +35,7 @@ module GlobalConsultantExchange
     email_config = YAML.load(loaded_file)[Rails.env].deep_symbolize_keys
 
     config.action_mailer.merge! email_config
+
+    config.action_dispatch.rescue_responses.merge!('Pundit::NotAuthorizedError' => :unauthorized)
   end
 end
