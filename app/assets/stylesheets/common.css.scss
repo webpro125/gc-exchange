@@ -39,6 +39,12 @@ img {
   margin: 0 auto;
   min-height: 800px;
 
+  .row {
+    .row {
+      width: 100%;
+    }
+  }
+
   @media #{$small-only} {
     max-width: 95%;
   } 
@@ -228,6 +234,13 @@ aside {
 }
 
 /*** FORMS ***/
+form {
+  .row {
+    .row {
+      margin: 0!important;
+    }
+  }
+}
 
 .select, .select2 {
   ul {
@@ -541,6 +554,13 @@ ul.pagination {
         }
       }
     }
+  }
+}
+/*** SIDEBAR ***/
+.panel {
+  > .row {
+    margin: 0;
+    width: 100%;
   }
 }
 
