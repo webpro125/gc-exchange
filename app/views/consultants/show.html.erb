@@ -97,8 +97,10 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <%= render 'profiles/contact_information' if user_is_gces? ||
-                current_user.contactable(@consultant) %>
+        <% if user_signed_in? %>
+            <%= render 'profiles/contact_information' if user_is_gces? ||
+                    current_user.contactable(@consultant) %>
+        <% end %>
         <%= render 'profiles/background_and_history' %>
         <%= render @consultant.project_histories if user_signed_in? %>
       </div>
