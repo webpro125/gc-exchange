@@ -42,7 +42,7 @@ en:
         image_instruction: 'Only upload JPG, JPEG, or PNG files.'
         abstract: 'Background and Experience'
         willing_to_travel: 'Willing to Travel'
-        rate: 'Hourly Rate'
+        rate: 'Published Hourly Rate'
         certification_ids: 'Professional Certifications'
         skills_list: 'Skills & Expertise'
         first_name: 'First Name'
