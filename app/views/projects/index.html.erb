@@ -5,7 +5,7 @@
     <%= render @projects %>
     <%= paginate @projects %>
   </div>
-  <div class="medium-4 columns">
+  <div class="medium-4 columns side">
     <%= render 'profiles/side_bar' if consultant_signed_in? %>
     <%= render 'shared/recent_consultants', consultants: @consultants if user_signed_in? %>
   </div>
