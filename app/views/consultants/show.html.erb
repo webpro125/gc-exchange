@@ -1,75 +1,75 @@
 <% if user_is_gces? %>
-<div class="row admin">
-  <div class="large-12 columns">
-    <h3>GCES Admin Panel</h3>
-    <div class="row">
-      <div class="large-10 columns">
-        <% if @consultant.background.present? %>
+    <div class="row admin">
+      <div class="large-12 columns">
+        <h3>GCES Admin Panel</h3>
         <div class="row">
-          <div class="large-6 columns">
-            <p>
-              <%= t('simple_form.labels.background.citizen') %>
-              <strong>
-                <%= boolean_to_human(@consultant.background.citizen) %>
-              </strong>
-            </p>
-            <p>
-              <%= t('simple_form.labels.background.convicted') %>
-              <strong>
-                <%= boolean_to_human(@consultant.background.convicted) %>
-              </strong>
-            </p>
-            <p>
-              <%= t('simple_form.labels.background.parole') %>
-              <strong>
-                <%= boolean_to_human(@consultant.background.parole) %>
-              </strong>
-            </p>
-            <p>
-              <%= t('simple_form.labels.background.illegal_drug_use') %>
-              <strong>
-                <%= boolean_to_human(@consultant.background.illegal_drug_use) %>
-              </strong>
-            </p>
+          <div class="large-10 columns">
+            <% if @consultant.background.present? %>
+                <div class="row">
+                  <div class="large-6 columns">
+                    <p>
+                      <%= t('simple_form.labels.background.citizen') %>
+                      <strong>
+                        <%= boolean_to_human(@consultant.background.citizen) %>
+                      </strong>
+                    </p>
+                    <p>
+                      <%= t('simple_form.labels.background.convicted') %>
+                      <strong>
+                        <%= boolean_to_human(@consultant.background.convicted) %>
+                      </strong>
+                    </p>
+                    <p>
+                      <%= t('simple_form.labels.background.parole') %>
+                      <strong>
+                        <%= boolean_to_human(@consultant.background.parole) %>
+                      </strong>
+                    </p>
+                    <p>
+                      <%= t('simple_form.labels.background.illegal_drug_use') %>
+                      <strong>
+                        <%= boolean_to_human(@consultant.background.illegal_drug_use) %>
+                      </strong>
+                    </p>
+                  </div>
+                  <div class="large-6 columns">
+                    <p>
+                      <%= t('simple_form.labels.background.illegal_purchase') %>
+                      <strong>
+                        <%= boolean_to_human(@consultant.background.illegal_purchase) %>
+                      </strong>
+                    </p>
+                    <p>
+                      <%= t('simple_form.labels.background.illegal_prescription') %>
+                      <strong>
+                        <%= boolean_to_human(@consultant.background.illegal_prescription) %>
+                      </strong>
+                    </p>
+                  </div>
+                </div>
+            <% end %>
           </div>
-          <div class="large-6 columns">
-            <p>
-              <%= t('simple_form.labels.background.illegal_purchase') %>
-              <strong>
-                <%= boolean_to_human(@consultant.background.illegal_purchase) %>
-              </strong>
-            </p>
-            <p>
-              <%= t('simple_form.labels.background.illegal_prescription') %>
-              <strong>
-                <%= boolean_to_human(@consultant.background.illegal_prescription) %>
-              </strong>
-            </p>
-          </div>
-        </div>
-        <% end %>
-      </div>
-      <div class="large-2 columns">
-        <div class="row">
-          <div class="large-12 columns">
-            <%= link_to t('views.consultant.actions.approve'),
-            approve_consultant_path(@consultant),
-            method: :put,
-            class: 'button success' if policy(@consultant).approve? %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= link_to t('views.consultant.actions.reject'),
-            reject_consultant_path(@consultant),
-            method: :put,
-            class: 'button alert' if policy(@consultant).reject? %>
+          <div class="large-2 columns">
+            <div class="row">
+              <div class="large-12 columns">
+                <%= link_to t('views.consultant.actions.approve'),
+                            approve_consultant_path(@consultant),
+                            method: :put,
+                            class: 'button success' if policy(@consultant).approve? %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <%= link_to t('views.consultant.actions.reject'),
+                            reject_consultant_path(@consultant),
+                            method: :put,
+                            class: 'button alert' if policy(@consultant).reject? %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 <% end %>
 <div class="row">
   <div class="medium-8 columns main">
@@ -81,11 +81,11 @@
                     class: 'button small secondary download' %>
       </div>
       <% if policy(@consultant).upload_resume? %>
-        <div class="small-12 columns">
-          <%= link_to t('views.upload_resume.actions.upload_resume_html'),
-                      new_consultant_upload_resume_path(@consultant),
-                      class: 'button small secondary download' %>
-        </div>
+          <div class="small-12 columns">
+            <%= link_to t('views.upload_resume.actions.upload_resume_html'),
+                        new_consultant_upload_resume_path(@consultant),
+                        class: 'button small secondary download' %>
+          </div>
       <% end %>
       <% if policy(@consultant).show? %>
           <div class="small-12 columns">
@@ -97,8 +97,9 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <%= render 'profiles/contact_information' if user_is_gces? ||
-                current_user.contactable(@consultant) %>
+        <% if user_signed_in? && (user_is_gces? || current_user.contactable(@consultant))%>
+            <%= render 'profiles/contact_information' %>
+        <% end %>
         <%= render 'profiles/background_and_history' %>
         <%= render @consultant.project_histories if user_signed_in? %>
       </div>
