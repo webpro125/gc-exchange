@@ -1,6 +1,11 @@
 @import "variables";
 @import "profileviews";
 
+img {
+  &.th {
+    margin: 10px 0 0 1px;
+  }
+}
 /*** ADMIN ***/
 .row {
 
@@ -9,7 +14,7 @@
   padding: 1rem;
   border-radius: 2px;
   border: 1px solid $gainsboro;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
   p {
     font-size: 0.75rem;
     line-height: 1.2rem;

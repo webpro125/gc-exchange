@@ -23,14 +23,21 @@ body > .sticky {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 
   .row {
-    display: table;
     height: 50px;
 
     form {
       height: 40px;
-      vertical-align: middle;
-      display: table-cell;
-      width: 200px;
+      @media #{$medium-up} {
+        width: 160px;
+        margin-top: 25px;
+      }
+      @media #{$screen} and (min-width:#{lower-bound(50em)}) {
+        width: 250px;
+      }      
+      @media #{$large-up} {
+        width: 340px;
+        margin-top: 20px;
+      }
     }
   }
 
@@ -110,14 +117,29 @@ body > .sticky {
       }
     }
     .button, input {
-      height: 40px;
-      line-height: 15px;
       top: 0;
+
+      @media #{$medium-up} {
+        height: 30px;
+        line-height: 15px;
+        font-size: 11px!important;
+      }
+      @media #{$large-up} {
+        height: 40px;
+        line-height: 15px;
+        font-size: 13px;
+      }      
+
     }
     .button {
       font-size: 13px;
-      padding: 0 1rem;
       border-radius: 2px;
+      @media #{$medium-up} {
+        padding: 0 10px;
+      }      
+      @media #{$large-up} {
+        padding: 0 1rem;
+      }        
     }
     .has-form {
       padding: 15px;
