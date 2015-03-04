@@ -195,6 +195,7 @@ en:
     offer:
       actions:
         index: 'View All'
+        menu: 'Offers'
     sales_lead:
       new:
         save: 'Send Request'
