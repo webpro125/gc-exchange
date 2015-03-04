@@ -152,3 +152,4 @@ en:
       project:
         proposed_start: 'Format Month DD YYYY (e.g. January 09 1990)'
         proposed_end: 'Format Month DD YYYY (e.g. January 09 1990)'
+        project_location: 'The location where the work is to be performed.'
