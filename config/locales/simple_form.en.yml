@@ -116,7 +116,10 @@ en:
       project_history:
         client_company: 'Identify the name of the government contractor that owned the project.'
         customer_name_id: 'Select the agency the work was done for if this project supported a
-        Government Agency.  Leave blank for Commercial Projects.'
+        Government Agency.  Leave blank for Commercial Projects. Provide detailed information
+        about the specific organization within the selected Government Department or Agency in the
+        “Description of Role Performed” field. Example: You could identify specific divisions
+        within these agencies.'
         client_poc_name: 'Identify the person who received your work product on the project.'
         client_poc_email: 'Provide the email address of your project reference.'
         description: 'To help the searcher find your unique experience, summarize your roles on
