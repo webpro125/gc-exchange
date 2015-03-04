@@ -19,17 +19,7 @@
         end %>
   </div>
 </div>
-<div class="row">
-  <div class="medium-12 columns">
-    <%= link_to project.project_name, project_path(project) %> -
-    <%= project.contact_status.humanize.upcase %>
-  </div>
-</div>
-<div class="row">
-  <div class="medium-12 columns">
-    <div>
-      <strong>Start Date: </strong>
-      <%= project.proposed_start.to_formatted_s(:month_day_and_year) %>
-    </div>
-  </div>
-</div>
+<%= link_to project.project_name, project_path(project) %><br>
+<strong>Start Date: </strong>
+<%= project.proposed_start.to_formatted_s(:month_day_and_year) %><br>
+<span class="status"><%= project.contact_status.humanize.upcase %></span>

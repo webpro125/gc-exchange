@@ -194,7 +194,8 @@ en:
         delete: 'Are you sure you want to delete this project?'
     offer:
       actions:
-        index: 'Manage Engagement Offers'
+        index: 'View All'
+        menu: 'Offers'
     sales_lead:
       new:
         save: 'Send Request'

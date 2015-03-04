@@ -44,7 +44,6 @@
                 <li><%= link_to t('views.profile.actions.upload_resume_html'),
                                 new_consultant_upload_resume_path(current_consultant) %></li>
                 <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
-                <li><%= link_to t('views.offer.actions.index'), projects_path %></li>
                 <li class="divider"></li>
                 <li><%= link_to t('views.password.actions.change_password'),
                                 edit_consultant_registration_path %></li>
@@ -52,6 +51,9 @@
             </li>
             <li>
               <%= link_to 'Messages', conversations_path %>
+            </li>
+            <li>
+              <%= link_to t('views.offer.actions.menu'), projects_path %>
             </li>
             <li>
               <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
@@ -68,11 +70,13 @@
                       <%= link_to t('views.company.actions.index'), companies_path %>
                     </li>
                 <% end %>
-                <li><%= link_to t('views.offer.actions.index'), projects_path %></li>
                 <li><%= link_to t('views.password.actions.change_password'),
                                 edit_change_password_path %>
                 </li>
               </ul>
+            </li>
+            <li>
+              <%= link_to t('views.offer.actions.menu'), projects_path %>
             </li>
             <li>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete %>

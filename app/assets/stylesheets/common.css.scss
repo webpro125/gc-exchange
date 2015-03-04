@@ -60,8 +60,10 @@ img {
     max-width: 100%;
   }
 }
-.columns.vr {
-  padding-right: 2rem;
+@media #{$medium-up} {
+  .columns.vr {
+    padding-right: 2rem;
+  }
 }
 .underline {
   text-decoration: underline;
@@ -563,7 +565,22 @@ ul.pagination {
     width: 100%;
   }
 }
-
+.status {
+  font-size: 12px;
+  background: $gainsboro;
+  padding: 0px 10px;
+  border-radius: 3px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 5px;
+}
+.viewall {
+  display: inline-block;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-left: 5px;
+}
 /*** FOOTER ***/
 footer {
   background: $aluminum;
