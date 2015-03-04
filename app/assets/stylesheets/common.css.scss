@@ -574,6 +574,13 @@ ul.pagination {
   display: inline-block;
   margin-top: 5px;
 }
+.viewall {
+  display: inline-block;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-left: 5px;
+}
 /*** FOOTER ***/
 footer {
   background: $aluminum;

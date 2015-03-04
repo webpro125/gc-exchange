@@ -96,7 +96,9 @@
       <% if consultant_signed_in? %>
           <%= render 'profiles/side_bar' %>
       <% else %>
-          <h4>Offers</h4>
+          <h4>Offers 
+            <span class="viewall"><%= link_to t('views.offer.actions.index'), projects_path %></span>
+          </h4>
 
           <div class="row">
             <div class="medium-12 columns">
