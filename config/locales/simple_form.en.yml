@@ -136,7 +136,8 @@ en:
         a brief description of your professional achievements, work history, and skills. Include
         experience that substantiates  your qualifications to be a “Mentor”.'
         certification_ids: 'Scroll down, identify, and click on your professional certifications.'
-        skills_list: 'Add your skills and separate each skill with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)'
+        skills_list: 'Add education, training and certification requirements and separate each skill
+        with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)'
       address:
         address: 'Enter your Address, City, State, and Zip Code.  Your address is used to help
         government contractors search for local consultants and this information will not be shown
