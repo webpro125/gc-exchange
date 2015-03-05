@@ -75,12 +75,9 @@
                 </li>
               </ul>
             </li>
-            <li>
-              <%= link_to t('views.offer.actions.menu'), projects_path %>
-            </li>
-            <li>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-            </li>
+            <li><%= link_to 'Messages', conversations_path %></li>
+            <li><%= link_to t('views.offer.actions.menu'), projects_path %></li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
         <% else %>
             <li>
               <%= link_to 'Home', root_path %>
