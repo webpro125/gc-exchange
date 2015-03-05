@@ -1,6 +1,6 @@
 <%= simple_form_for @search, url: search_path, method: :get do |f| %>
     <div class="large-9 medium-7 small-9 columns">
-      <%= f.input :q, label: false %>
+      <%= f.input :q, label: false, hint: false %>
     </div>
     <div class="large-3 medium-5 small-3 columns">
       <%= f.button :submit, class: 'secondary button postfix' %>

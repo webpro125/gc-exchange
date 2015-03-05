@@ -153,3 +153,8 @@ en:
         proposed_start: 'Format Month DD YYYY (e.g. January 09 1990)'
         proposed_end: 'Format Month DD YYYY (e.g. January 09 1990)'
         project_location: 'The location where the work is to be performed.'
+      search:
+        q: 'This field is used to find consultants who’s detailed profiles align with your specific
+        requirements, for example – unique skills, training, and tools, program names, specific
+        Government office experience, etc. You may also search for “Mentors” – senior, career
+        professional, who prefers to support special projects on a less than full time basis'
