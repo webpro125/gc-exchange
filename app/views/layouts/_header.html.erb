@@ -16,21 +16,21 @@
 
     <section class="top-bar-section">
       <!-- Left Nav Section -->
-      <% unless consultant_signed_in? %>
-          <ul class="left">
-            <li><%= link_to 'Home', root_path if consultant_signed_in? or user_signed_in? %></li>
-            <% if development? %>
-                <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
-            <% end %>
-            <% if user_signed_in? %>
-                <li class="has-form">
-                  <div class="row collapse">
-                    <%= render 'layouts/search' %>
-                  </div>
-                </li>
-            <% end %>
-          </ul>
-      <% end %>
+      <ul class="left">
+        <% if consultant_signed_in? or user_signed_in? %>
+            <li><%= link_to 'Home', root_path %></li>
+        <% end %>
+        <% if development? %>
+            <li><a href="#" data-reveal-id="debug-modal">Debug</a></li>
+        <% end %>
+        <% if user_signed_in? %>
+            <li class="has-form">
+              <div class="row collapse">
+                <%= render 'layouts/search' %>
+              </div>
+            </li>
+        <% end %>
+      </ul>
 
       <!-- Right Nav Section -->
       <ul class="right">
