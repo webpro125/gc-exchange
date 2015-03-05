@@ -153,3 +153,6 @@ en:
         proposed_start: 'Format Month DD YYYY (e.g. January 09 1990)'
         proposed_end: 'Format Month DD YYYY (e.g. January 09 1990)'
         project_location: 'The location where the work is to be performed.'
+      search:
+        customer_name_ids: 'To search for lower level Government organization experience, enter the
+        specific Government organizations title in the Keyword search field.'
