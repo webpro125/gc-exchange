@@ -43,9 +43,6 @@
       </div>
     </div>
     <div class="row">
-
-    </div>
-    <div class="row">
       <div class="medium-12 columns">
         <ul class="right">
           <li id="reply-btn"><i class="fi-arrow-left"></i> Reply</li>
@@ -91,25 +88,23 @@
         </div>
     <% end %>
   </div>
-  <div class="row">
-    <div class="medium-4 columns">
-      <% if consultant_signed_in? %>
-          <%= render 'profiles/side_bar' %>
-      <% else %>
-          <h4>Offers 
-            <span class="viewall"><%= link_to t('views.offer.actions.index'), projects_path %></span>
-          </h4>
+  <div class="medium-4 columns side">
+    <% if consultant_signed_in? %>
+        <%= render 'profiles/side_bar' %>
+    <% else %>
+        <h4>Offers 
+          <span class="viewall"><%= link_to t('views.offer.actions.index'), projects_path %></span>
+        </h4>
 
-          <div class="row">
-            <div class="medium-12 columns">
-              <%= link_to 'Add Engagement Offer',
-                          new_consultant_project_path(@consultant),
-                          class: 'button tiny' %>
-              <%= link_to t('views.offer.actions.index'), projects_path, class: 'button tiny' %>
-            </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <%= link_to 'Add Engagement Offer',
+                        new_consultant_project_path(@consultant),
+                        class: 'button tiny' %>
+            <%= link_to t('views.offer.actions.index'), projects_path, class: 'button tiny' %>
           </div>
-          <%= render 'shared/recent_consultants', consultants: @consultants %>
-      <% end %>
-    </div>
+        </div>
+        <%= render 'shared/recent_consultants', consultants: @consultants %>
+    <% end %>
   </div>
 </div>
