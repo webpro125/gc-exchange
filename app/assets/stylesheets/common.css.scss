@@ -166,21 +166,23 @@ small {
   }
 }
 /*** LOGIN ***/
-#login, #registration {
+#login, #registration, #welcome {
   margin: 2rem auto;
   box-shadow: 0 0 15px #CCC;
-  max-width: 100%;
+  max-width: 95%;
   padding: 2rem;
   border-radius: 3px;
   background: scale-color($light-blue, $lightness: 90%);
 }
 #login {
-  max-width: 25rem;
+  width: 25rem;
 }
 #registration {
-  max-width: 40rem;
+  width: 40rem;
 }
-
+#welcome {
+  width: 50rem;
+}
 /*** ASIDES ***/
 aside {
   background: scale-color($gces-green, $lightness: 80%);
