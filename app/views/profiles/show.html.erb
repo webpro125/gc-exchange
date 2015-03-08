@@ -3,13 +3,6 @@
     <%= render 'profiles/consultant_header' %>
     <div class="row">
       <div class="small-12 columns">
-        <%= link_to t('views.profile.actions.download_resume_html'),
-                    download_resume_path(@consultant),
-                    class: 'button small secondary download' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
         <%= render 'profiles/contact_information' %>
         <%= render 'profiles/background_and_history' %>
         <h3><%= t('views.profile.headers.projects') %></h3>

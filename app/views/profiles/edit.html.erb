@@ -4,7 +4,7 @@
     <div class="row">
       <div class="medium-8 columns main vr">
         <div class="row">
-          <div class="medium-4 columns">
+          <div class="left conheader">
             <%= link_to root_path do %>
                 <%= image_tag(@current_consultant.profile_image.url(:medium), class: 'th profile-medium') %>
                 <%= link_to t('views.profile.actions.upload_photo_html'),
@@ -15,7 +15,7 @@
                             class: 'button small upload' %>
             <% end %>
           </div>
-          <div class="medium-8 columns">
+          <div class="columns">
             <div class="row">
               <div class="medium-6 columns">
                 <%= f.input :first_name %>
