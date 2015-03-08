@@ -27,6 +27,7 @@ body > .sticky {
 
     form {
       height: 40px;
+
       @media #{$medium-up} {
         width: 160px;
         margin-top: 25px;
