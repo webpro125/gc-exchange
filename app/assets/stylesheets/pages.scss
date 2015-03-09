@@ -128,6 +128,9 @@ h5 {
 }
 .row.action {
   max-width: 100%;
+  .row {
+    max-width: 90%;
+  }
   .slide-1 {
     background: image-url("bg-blue1.jpg") 50% 50% no-repeat;
     @media #{$medium-up} {
@@ -182,9 +185,12 @@ h5 {
   } 
   .slide-8 {
     p {
-      font-size: 1.25rem;
+      font-size: 0.75rem;
       text-align: center;
       line-height: 1.5;
+      @media #{$medium-up} {
+        font-size: 1.25rem;
+      }
       a {
         color: #70d7ff;
         font-weight: 800;
@@ -399,6 +405,8 @@ h5 {
   }
 }
 #one {
+  max-width: 90%;
+  margin: 0 auto;
   > .row {
     padding: rem-calc(15) 0;
     @media #{$medium-up} {
