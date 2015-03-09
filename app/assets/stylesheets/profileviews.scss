@@ -13,6 +13,9 @@
 img {
   max-width: 100%;
   height: auto;
+  &.th {
+    margin: 10px 1px 0;
+  }
 }
 strong {
   font-weight: 600;
@@ -97,7 +100,29 @@ strong {
     }
   }
 }
-
+.vr {
+  > .row {
+    margin: 0;
+  }
+}
+.conheader {
+  margin-right: 2rem;
+  padding-left: 0.9375rem;
+  width: 220px;
+  @media #{$small-only} {
+    margin-bottom: 1rem;
+  }  
+  @media #{$medium-up} {
+    + div {
+      width: auto;
+      overflow: hidden;
+      float: none;
+    }
+  }
+  a {
+    display: block;
+  }
+}
 
 /*** SIDEBAR ***/
 .sidebar {
