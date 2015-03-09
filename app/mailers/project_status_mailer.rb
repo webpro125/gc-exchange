@@ -36,9 +36,9 @@ class ProjectStatusMailer < ActionMailer::Base
     mail(subject: 'Consultant rejected terms', to: @user.email)
   end
 
-  def consultant_hired(project)
+  def consultant_proposed_terms(project)
     mailer_objects(project)
-    mail(subject: 'Consultant hired', to: @consultant.email)
+    mail(subject: 'Consultant Proposed Terms', to: @consultant.email)
   end
 
   def mailer_objects(project)

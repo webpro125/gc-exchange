@@ -22,7 +22,7 @@ class ProjectSetStatus
     end
 
     return unless @project.save
-    ProjectStatusMailer.delay.consultant_hired(@project.id)
+    ProjectStatusMailer.delay.consultant_proposed_terms(@project.id)
     true
   end
 
