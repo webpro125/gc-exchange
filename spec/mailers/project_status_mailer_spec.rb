@@ -99,11 +99,11 @@ describe ProjectStatusMailer do
     end
   end
 
-  describe 'Consultant Hired' do
-    let(:mail) { ProjectStatusMailer.consultant_hired(project) }
+  describe 'Consultant Terms' do
+    let(:mail) { ProjectStatusMailer.consultant_new_offer(project) }
 
     before do
-      ProjectStatusMailer.consultant_hired(project).deliver
+      ProjectStatusMailer.consultant_new_offer(project).deliver
     end
 
     it 'should send an email' do
