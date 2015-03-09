@@ -100,10 +100,10 @@ describe ProjectStatusMailer do
   end
 
   describe 'Consultant Terms' do
-    let(:mail) { ProjectStatusMailer.consultant_proposed_terms(project) }
+    let(:mail) { ProjectStatusMailer.consultant_new_offer(project) }
 
     before do
-      ProjectStatusMailer.consultant_proposed_terms(project).deliver
+      ProjectStatusMailer.consultant_new_offer(project).deliver
     end
 
     it 'should send an email' do
