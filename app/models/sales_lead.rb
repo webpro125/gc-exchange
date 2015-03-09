@@ -3,7 +3,9 @@ class SalesLead < ActiveRecord::Base
 
   validates :company_name, length: { in: 2..128 }, presence: true
   validates :message, length: { in: 2..5_000 }, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true,
+            format: { with: RegexConstants::EMAIL,
+                      message: I18n.t('activerecord.errors.messages.regex.email') }
   validates :phone_number, presence: true
   validates :first_name,
             :last_name,
