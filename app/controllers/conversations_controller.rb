@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   helper_method :mailbox, :conversation
 
   def index
-    @messages ||= pundit_user.mailbox.inbox.page(params[:page])
+    @messages ||= pundit_user.mailbox.conversations.page(params[:page])
   end
 
   def new
