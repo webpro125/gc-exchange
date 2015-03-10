@@ -72,7 +72,7 @@ img {
 /*** BUTTON ***/
 
 .button, input[type="submit"] {
-  border-radius: $global-radius;
+  border-radius: $global-radius!important;
 }
 
 input[type="submit"] {
