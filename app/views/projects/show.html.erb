@@ -12,7 +12,7 @@
             </h4>
         <% end %>
         <% if user_signed_in? %>
-            <%= link_to consultant_path do %>
+            <%= link_to consultant_path(@project.consultant_id) do %>
                 <h4>
                   <%= image_tag(@project.consultant.profile_image.url(:thumb),
                                 class: 'th profile-thumb') %>
