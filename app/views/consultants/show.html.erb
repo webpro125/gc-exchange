@@ -75,11 +75,6 @@
   <div class="medium-8 columns main">
     <%= render 'profiles/consultant_header' %>
     <div class="row">
-      <div class="small-12 columns">
-        <%= link_to t('views.profile.actions.download_resume'),
-                    download_resume_path(@consultant),
-                    class: 'button small secondary download' %>
-      </div>
       <% if policy(@consultant).upload_resume? %>
           <div class="small-12 columns">
             <%= link_to t('views.upload_resume.actions.upload_resume_html'),
