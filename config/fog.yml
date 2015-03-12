@@ -27,6 +27,17 @@ staging:
     aws_access_key_id: '<%= ENV['AWS_ACCESS_KEY'] %>'
     aws_secret_access_key: '<%= ENV['AWS_SECRET_ACCESS_KEY'] %>'
 
+sales:
+  <<: *default_settings
+  fog_host: nil
+  fog_directory: 'gces-sales'
+  path: ':class/:attachment/:id/resume.:extension'
+  fog_credentials:
+    provider: 'AWS'
+    region: 'us-east-1'
+    aws_access_key_id: '<%= ENV['AWS_ACCESS_KEY'] %>'
+    aws_secret_access_key: '<%= ENV['AWS_SECRET_ACCESS_KEY'] %>'
+
 # Do not keep production secrets in the repository,
 # instead read values from the environment.
 production:

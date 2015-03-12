@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
-  force_ssl if: :staging_or_production?
+  force_ssl if: :staging_or_production_or_sales?
 
   before_action :create_search
 
@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def staging_or_production?
-    (Rails.env.staging? || Rails.env.production?) && action_name != 'health_check'
+  def staging_or_production_or_sales?
+    (Rails.env.staging? || Rails.env.production? || Rails.env.sales?) && action_name !=
+      'health_check'
   end
 
   def create_search
