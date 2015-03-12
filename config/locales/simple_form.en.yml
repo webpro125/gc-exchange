@@ -113,6 +113,8 @@ en:
         all of the information provided by me is true and correct as of the date I provided the
         information.'
     hints:
+      defaults:
+        password: 'Password must be at least 8 characters long.'
       project_history:
         client_company: 'Identify the name of the government contractor that owned the project.'
         customer_name_id: 'Select the agency the work was done for if this project supported a
