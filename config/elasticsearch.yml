@@ -21,3 +21,8 @@ staging:
   <<: *default_settings
   log: false
   host: <%= ENV['ELASTICSEARCH_HOST'] %>
+
+sales:
+  <<: *default_settings
+  log: false
+  host: <%= ENV['ELASTICSEARCH_HOST'] %>

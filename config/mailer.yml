@@ -44,3 +44,15 @@ production:
     domain: 'globalconsultantexchange.com'
     user_name: <%= Rails.application.secrets.email_username %>
     password: <%= Rails.application.secrets.email_password %>
+
+sales:
+  <<: *default_settings
+  default_url_options:
+      host: 'sales.globalconsultantexchange.com'
+  smtp_settings:
+    address: 'email-smtp.us-east-1.amazonaws.com'
+    port: 25
+    authentication: login
+    domain: 'sales.globalconsultantexchange.com'
+    user_name: <%= Rails.application.secrets.email_username %>
+    password: <%= Rails.application.secrets.email_password %>

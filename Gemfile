@@ -84,7 +84,7 @@ group :development, :staging do
   gem 'quiet_assets', '~> 1.0'
 end
 
-group :production, :staging do
+group :production, :staging, :sales do
   gem 'unicorn', '~> 4.8.3'
   gem 'google-analytics-rails', '~> 0.0.6'
 end
