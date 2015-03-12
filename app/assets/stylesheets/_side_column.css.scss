@@ -24,3 +24,19 @@ ul {
       }
     }
 }
+.conheader {
+  padding-left: 0.9375rem;
+  width: 80px;
+  float: left;
+  @media #{$small-only} {
+    margin-bottom: 1rem;
+  }  
+  + div {
+    width: auto;
+    overflow: hidden;
+    float: none;
+  }
+  a {
+    display: block;
+  }
+}
