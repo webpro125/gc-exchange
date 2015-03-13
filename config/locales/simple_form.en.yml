@@ -114,7 +114,8 @@ en:
         information.'
     hints:
       project_history:
-        client_company: 'Identify the name of the government contractor that owned the project.'
+        client_company: 'Identify the name of the government contractor that owned the project. You
+        may enter “proprietary” if disclosure is inappropriate at this time.'
         customer_name_id: 'Select the agency the work was done for if this project supported a
         Government Agency.  Leave blank for Commercial Projects. Provide detailed information
         about the specific organization within the selected Government Department or Agency in the
