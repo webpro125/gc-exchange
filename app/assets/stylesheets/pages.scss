@@ -385,7 +385,26 @@ h5 {
   a.button {
     margin: 0.25rem 0;
     font-size: rem-calc(13);
-    
+    background: $gces-blue; /* Old browses */
+    background: -moz-linear-gradient(top,  scale-color($gces-blue, $lightness: 20%) 0%, $gces-blue 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,scale-color($gces-blue, $lightness: 20%)), color-stop(100%,$gces-blue)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, scale-color($gces-blue, $lightness: 20%) 0%,$gces-blue 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, scale-color($gces-blue, $lightness: 20%) 0%,$gces-blue 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, scale-color($gces-blue, $lightness: 20%) 0%,$gces-blue 100%); /* IE10+ */
+    background: linear-gradient(to bottom, scale-color($gces-blue, $lightness: 20%) 0%,$gces-blue 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='scale-color($gces-blue, $lightness: 20%)', endColorstr='$gces-blue',GradientType=0 ); /* IE6-9 */
+
+    &:hover {
+      background: $gces-blue; /* Old browsers */
+      background: -moz-linear-gradient(top,  $gces-blue 0%, scale-color($gces-blue, $lightness: 20%) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$gces-blue), color-stop(100%,scale-color($gces-blue, $lightness: 20%))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  $gces-blue 0%,scale-color($gces-blue, $lightness: 20%) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  $gces-blue 0%,scale-color($gces-blue, $lightness: 20%) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  $gces-blue 0%,scale-color($gces-blue, $lightness: 20%) 100%); /* IE10+ */
+      background: linear-gradient(to bottom,  $gces-blue 0%,scale-color($gces-blue, $lightness: 20%) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gces-blue', endColorstr='scale-color($gces-blue, $lightness: 20%)',GradientType=0 ); /* IE6-9 */
+    }
+
     @media #{$medium-up} {
       font-size: rem-calc(14);
       margin: 0;
