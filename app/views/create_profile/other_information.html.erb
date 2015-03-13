@@ -30,6 +30,11 @@
                                         partial: 'phones/phone_fields',
                                         class:   'button small' %>
           </div>
+          <p>
+            <small class="red">
+              <%= t('simple_form.labels.consultant.phone_instruction') %>
+            </small>
+          </p>
         </div>
         <hr/>
         <%= f.simple_fields_for :military do |m| %>
