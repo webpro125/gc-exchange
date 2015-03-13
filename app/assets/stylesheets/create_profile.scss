@@ -53,6 +53,12 @@
       margin-top: 0;
     }
   }
+  ul {
+    &.sub {
+      margin-left: 1rem;
+      max-width: 80%;
+    }
+  }
   p {
     &.nosp {
       margin-bottom: 5px;
