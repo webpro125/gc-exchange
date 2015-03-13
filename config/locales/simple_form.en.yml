@@ -58,7 +58,7 @@ en:
         military: 'Military Service'
         clearance_active: 'Active Security Clearance'
         investigation_date: 'Investigation Date'
-        clearance_expiration_date: 'Expiration Date'
+        clearance_expiration_date: 'Expiration Date (optional)'
         clearance_level: 'Clearance Level'
         clearance_level_id: 'Clearance Level'
         branch: 'Branch'
