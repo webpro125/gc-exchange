@@ -15,6 +15,9 @@ unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
   Company.create(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE, owner: user)
 end
 
+CustomerName.find_or_initialize_by(label: 'Marine Corpse Intelligence Activity')
+  .update_attributes(label:'Marine Corps Intelligence Activity')
+
 # Skills are set up differently
 Skill::SKILL_TYPES.each do |type|
   Skill.find_or_create_by(code: type)
