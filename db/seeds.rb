@@ -15,9 +15,6 @@ unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
   Company.create(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE, owner: user)
 end
 
-CustomerName.find_or_initialize_by(label: 'Marine Corpse Intelligence Activity')
-  .update_attributes(label:'Marine Corps Intelligence Activity')
-
 # Skills are set up differently
 Skill::SKILL_TYPES.each do |type|
   Skill.find_or_create_by(code: type)
@@ -88,4 +85,10 @@ TravelAuthorization::TRAVEL_AUTHORIZATION_TYPES.each do |type|
   TravelAuthorization.find_or_create_by(code: type[:code]) do |t|
     t.label = type[:label]
   end
+end
+
+if CustomerName.find_by_label('Marine Corpse Intelligence Activity')
+  marine =  CustomerName.find_by_label('Marine Corpse Intelligence Activity')
+  marine.label = 'Marine Corps Intelligence Activity'
+  marine.save!
 end
