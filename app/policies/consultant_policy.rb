@@ -25,6 +25,10 @@ class ConsultantPolicy < ApplicationPolicy
     gces? || user == record
   end
 
+  def contract?
+    gces? || user == record
+  end
+
   def contactable?
     user == record
   end

@@ -33,6 +33,8 @@ gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'google-webfonts-rails', '~> 0.0.4'
 gem 'cocoon', '~> 1.2.6'
 gem 'mailboxer', '~> 0.12.5'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

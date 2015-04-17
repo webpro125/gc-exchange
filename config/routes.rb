@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     member do
       put :approve
       put :reject
+      get :contract
     end
   end
   resources :conversations, only: [:index, :show] do

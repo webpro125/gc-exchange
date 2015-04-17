@@ -1,5 +1,5 @@
 class ConsultantsController < CompanyController
-  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show]
+  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show, :contract]
   skip_before_action :authenticate_user!, only: :show
 
   def index
@@ -23,6 +23,14 @@ class ConsultantsController < CompanyController
       redirect_to consultants_path, notice: t('controllers.consultant.reject.success')
     else
       redirect_to consultant_path(@consultant), notice: t('controllers.consultant.reject.fail')
+    end
+  end
+
+  def contract
+    respond_to do |format|
+      format.pdf do
+        render pdf: 'contract'
+      end
     end
   end
 
