@@ -25,27 +25,12 @@
     Colorado Springs, CO 80924 (&#8220;GCES&#8221;), and</p>
 
   <div class="row">
-    <div class="medium-4 columns"><%= @consultant.first_name %></div>
-    <div class="medium-4 columns"><%= @consultant.last_name %></div>
-    <div class="medium-4 columns"><p>with offices located at</p></div>
+    <div class="medium-4 columns"><p><%= @consultant.first_name %> <%= @consultant.last_name %> with offices located at <%= @consultant.address.address %> (&#8220;Consultant&#8221;).</p></div>
   </div>
-  <div class="row">
-    <div class="medium-8 columns"><%= @consultant.address.address %></div>
-    <div class="medium-4 columns"><p>(&#8220;Consultant&#8221;).</p></div>
-  </div>
-  <br>
 
   <div class="row">
-    <div class="medium-4 columns"><%= @consultant.first_name %></div>
-    <div class="medium-4 columns"><%= @consultant.last_name %></div>
-    <div class="medium-4 columns"><p>with offices located at</p></div>
+    <div class="medium-4 columns"><p><%= @consultant.first_name %> <%= @consultant.last_name %> with offices located at <%= @consultant.address.address %> (&#8220;Consultant&#8221;).</p></div>
   </div>
-  <div class="row">
-    <div class="medium-8 columns"><%= @consultant.address.address %></div>
-    <div class="medium-4 columns"><p>(&#8220;Consultant&#8221;).</p></div>
-  </div>
-  <br>
-
 
   <p>WHEREAS, GCES wishes to contract with Consultant to assist its clients in business
     development, proposal services and business operations support as described in Attachment 1
@@ -106,10 +91,10 @@
         </li>
         <li>All invoices submitted by Consultant shall include a breakout and description of the
           Services rendered, along with the actual hours and expenses incurred, and receipts (if
-          required). Invoices shall be sent to GCES at the following address:<br><br>
-          Global Consultant Exchange Services, LLC<br>
+          required). Invoices shall be sent to GCES at the following address:<br>
+          <p class="address">Global Consultant Exchange Services, LLC<br>
           4849 Alberta Falls Way<br>
-          Colorado Springs, CO 80924
+          Colorado Springs, CO 80924</p>
         </li>
         <li>GCES shall, after receipt of a proper invoice that complies with the requirements of
           this Agreement, make payment within three (3) business days following receipt of
@@ -589,11 +574,9 @@
         </li>
       </ol>
     </li>
-    <li><strong>AUTHORIZED REPRESENTATIVES/NOTICE</strong> &ndash; The authorized representative for
-      GCES during the Term of this Agreement is:<br>
-      Barrie A. Gillis<br>
-      Consultant&#8217;s authorized representative is: <br>
-      <%= @consultant.full_name %>
+    <li><strong>AUTHORIZED REPRESENTATIVES/NOTICE</strong> &ndash; <br>The authorized representative for
+      GCES during the Term of this Agreement is: Barrie A. Gillis<br>
+      Consultant&#8217;s authorized representative is: <%= @consultant.full_name %><br>
       All notices required or permitted under this Agreement shall be in writing and shall be
       deemed duly given either when personally delivered, when sent by registered or certified
       mail/return receipt requested, or when sent by facsimile with confirmation of successful
@@ -713,7 +696,7 @@
       <li><strong>REPORTING</strong>
         <ol>
           <li>Activity Status Report. As requested by GCES, Consultant shall provide on a
-            monthly basis a written status report to GCES. This report shall include summary of
+            monthly basis a written status report to GCES. This report shall include 
             consultant activity for the reporting period by task description and summary of
             planned activity for the next reporting period.
           </li>
