@@ -29,7 +29,8 @@ class ConsultantsController < CompanyController
   def contract
     respond_to do |format|
       format.pdf do
-        render pdf: 'contract'
+        render pdf: 'contract',
+        layout: 'pdf_layout'
       end
     end
   end

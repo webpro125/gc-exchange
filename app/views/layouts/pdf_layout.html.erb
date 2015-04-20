@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Global Consultant Exchange" %></title>
+
+    <%= wicked_pdf_stylesheet_link_tag "pdf" %>
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag 'debug' if development? %>
+    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets
+    .find_asset("#{controller_name}.css") %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
+    <%= analytics_init if Rails.env.production? %>
+    <%= csrf_meta_tags %>
+    <%= google_webfonts_init({ google: ['Open+Sans:400italic,700italic,700,300,600,400:latin'] }) %>
+</head>
+
+<body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+        <div class="row">
+            <%= render 'layouts/flash' %>
+            <%= yield %>
+        </div>
+    </div>
+    <%= render 'layouts/footer' %>
+    <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
+    .find_asset("#{controller_name}.js") %>
+    <%= render 'layouts/debug' if development? %>
+</body>
+</html>
