@@ -77,54 +77,6 @@ describe Consultant do
   end
 
   describe 'association' do
-    describe 'phones' do
-      before do
-        subject.phones << FactoryGirl.create(:phone)
-        subject.save!
-      end
-
-      it 'should not allow more than 3' do
-        subject.phones << FactoryGirl.build_list(:phone, 3)
-        expect(subject).not_to be_valid
-      end
-    end
-
-    describe 'consultant_skills' do
-      before do
-        subject.skills << FactoryGirl.create(:skill)
-        subject.save!
-      end
-
-      it 'should not allow more than 20' do
-        subject.skills << FactoryGirl.build_list(:skill, 21)
-        expect(subject).not_to be_valid
-      end
-    end
-
-    describe 'certifications' do
-      before do
-        subject.certifications << FactoryGirl.create(:certification)
-        subject.save!
-      end
-
-      it 'should not allow more than 10' do
-        subject.certifications << FactoryGirl.build_list(:certification, 11)
-        expect(subject).not_to be_valid
-      end
-    end
-
-    describe 'educations' do
-      before do
-        subject.educations << FactoryGirl.create(:education)
-        subject.save!
-      end
-
-      it 'should not allow more than 3' do
-        subject.educations << FactoryGirl.build_list(:education, 4)
-        expect(subject).not_to be_valid
-      end
-    end
-
     describe 'approved_status' do
       it 'should not destroy them on delete' do
         subject.save!
