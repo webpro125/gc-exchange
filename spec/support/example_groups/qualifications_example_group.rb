@@ -1,10 +1,20 @@
 shared_examples 'qualifications' do
   describe 'skills_list' do
     it { should respond_to :skills_list }
+
+    it 'should validate length' do
+      subject.skills_list = (1..41).to_a.join(',')
+      expect(subject).to_not be_valid
+    end
   end
 
   describe 'certification_ids' do
     it { should respond_to :certification_ids }
+
+    it 'should validate length' do
+      subject.certification_ids = (1..11).to_a
+      expect(subject).to_not be_valid
+    end
   end
 
   describe 'educations' do
