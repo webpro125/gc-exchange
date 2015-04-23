@@ -88,6 +88,7 @@ class CreateProfileController < ConsultantController
 
   def generate_qualifications_show
     @form = QualificationsForm.new current_consultant
+    flash[:success] = t('controllers.create_profile.create.success')
   end
 
   def generate_background_information
