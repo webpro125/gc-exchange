@@ -28,6 +28,7 @@ class Position < ActiveRecord::Base
   PRICE_TO_WIN_ANALYST    = { code: 'PRICE_TO_WIN_ANALYST', label: 'Price to win Analyst' }
   COLOR_REVIEW            = { code: 'COLOR_REVIEW', label: 'Color Review' }
   MENTOR                  = { code: 'MENTOR', label: 'Mentor' }
+  PROPOSAL_WRITER         = { code: 'PROPOSAL_WRITER', label: 'Proposal Writer' }
 
   POSITION_TYPES = [CAPTURE_MANAGER, PROPOSAL_MANAGER, TECHNICAL_VOLUME, MANAGEMENT_VOLUME,
                     RESUME_VOLUME, SECURITY_VOLUME, COST_VOLUME, PAST_PERFORMANCE_VOLUME,
@@ -35,5 +36,5 @@ class Position < ActiveRecord::Base
                     COST_ANALYST, SOLUTION_ARCHITECT, SYSTEMS_ENGINEER, PROGRAM_ARCHITECT,
                     BUSINESS_ARCHITECT, TECHNICAL_EDITOR, GRAPHIC_DEVELOPER, PRODUCTION_MANAGER,
                     WIN_STRATEGY_LEAD, PROPOSAL_COORDINATOR, MENTOR, PRICE_TO_WIN_ANALYST,
-                    COLOR_REVIEW, DESKTOP_PUBLISHER].freeze
+                    COLOR_REVIEW, DESKTOP_PUBLISHER, PROPOSAL_WRITER].freeze
 end
