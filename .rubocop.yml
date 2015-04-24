@@ -144,7 +144,7 @@ Style/ClassAndModuleChildren:
 
 Metrics/ClassLength:
   CountComments: false  # count full line comments?
-  Max: 100
+  Max: 110
 
 # Align with the style guide.
 Style/CollectionMethods:
