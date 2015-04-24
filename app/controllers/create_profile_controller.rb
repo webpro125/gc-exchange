@@ -23,6 +23,9 @@ class CreateProfileController < ConsultantController
       if step == :background_information
         render_background_information
       else
+        if step == :basic_information
+          flash[:success] = t('controllers.create_profile.create.success')
+        end
         render_wizard_path
       end
     else
