@@ -23,6 +23,9 @@ class CreateProfileController < ConsultantController
       if step == :background_information
         render_background_information
       else
+        if step == :basic_information
+          flash[:success] = t('controllers.create_profile.create.success')
+        end
         render_wizard_path
       end
     else
@@ -56,7 +59,7 @@ class CreateProfileController < ConsultantController
     when :background_information
       @form = BackgroundInformationForm.new current_consultant
     when :project_history
-      @form = ProjectHistoryForm.new current_consultant.project_histories.build
+      @form = ProjectHistoryForm.new current_consultant.project_histories.first_or_initialize
     when :contract
       current_consultant.contract_effective_date = DateTime.now
       @form = EditConsultantForm.new current_consultant
@@ -96,8 +99,8 @@ class CreateProfileController < ConsultantController
   end
 
   def generate_project_history
-    project = current_consultant.project_histories.build
-    project.build_phone
+    project = current_consultant.project_histories.first_or_initialize
+    project.build_phone if project.phone.nil?
 
     @form = ProjectHistoryForm.new project
   end

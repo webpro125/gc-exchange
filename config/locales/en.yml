@@ -108,6 +108,9 @@ en:
     phone:
       create:
         success: 'Phone created successfully.'
+    create_profile:
+      create:
+        success: 'Resume saved successfully.'
   views:
     consultant:
       actions:

@@ -5,9 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
   protected
 
   # Overwriting the confirmation redirect path method
-  def after_inactive_sign_up_path_for(resource)
-    ConsultantMailer.delay.send_contract(resource.id)
-
+  def after_inactive_sign_up_path_for(_resource)
     consultant_welcome_path
   end
 

@@ -86,3 +86,9 @@ TravelAuthorization::TRAVEL_AUTHORIZATION_TYPES.each do |type|
     t.label = type[:label]
   end
 end
+
+if CustomerName.find_by_label('Marine Corpse Intelligence Activity')
+  marine =  CustomerName.find_by_label('Marine Corpse Intelligence Activity')
+  marine.label = 'Marine Corps Intelligence Activity'
+  marine.save!
+end

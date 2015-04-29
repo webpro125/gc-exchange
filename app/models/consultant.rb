@@ -59,11 +59,6 @@ class Consultant < ActiveRecord::Base
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
-  validates :phones, length: { maximum: 3 }
-  validates :educations, length: { maximum: 3 }
-  validates :consultant_certifications, length: { maximum: 10 }
-  validates :consultant_skills, length: { maximum: 20 }
-
   def mailboxer_email(_object)
     email
   end
