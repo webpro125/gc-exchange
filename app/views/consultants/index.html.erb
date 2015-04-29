@@ -1,5 +1,5 @@
 <h1>Consultants</h1>
-<table>
+<table id="consultant_lists">
   <thead>
   <td>Name</td>
   <td>Contact</td>
@@ -7,7 +7,11 @@
   </thead>
   <tbody>
   <% @consultants.each do |consultant| %>
-      <%= render consultant %>
+      <tr>
+        <td><%= link_to(consultant.full_name, consultant) %></td>
+        <td><%= mail_to(consultant.email, 'Send Mail') %></td>
+        <td><%= consultant.approved_status.label %></td>
+      </tr>
   <% end %>
   </tbody>
 </table>

@@ -1,7 +1,7 @@
 class ConsultantPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.approve_reject
+      scope
     end
   end
 

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.foundation
 //= require foundation
 //= require jquery-ui/core
 //= require jquery-ui/widget
@@ -60,3 +62,7 @@ $(document).ready(function() {
     _this.val(parseFloat(val).toFixed(2));
   });
 });
+
+$(document).ready(function() {
+    $('#consultant_lists').dataTable();
+} );
