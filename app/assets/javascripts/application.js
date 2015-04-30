@@ -62,7 +62,3 @@ $(document).ready(function() {
     _this.val(parseFloat(val).toFixed(2));
   });
 });
-
-$(document).ready(function() {
-    $('#consultant_lists').dataTable();
-} );

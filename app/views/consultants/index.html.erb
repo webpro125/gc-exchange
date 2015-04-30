@@ -7,11 +7,7 @@
   </thead>
   <tbody>
   <% @consultants.each do |consultant| %>
-      <tr>
-        <td><%= link_to(consultant.full_name, consultant) %></td>
-        <td><%= mail_to(consultant.email, 'Send Mail') %></td>
-        <td><%= consultant.approved_status.label %></td>
-      </tr>
+      <%= render consultant %>
   <% end %>
   </tbody>
 </table>
