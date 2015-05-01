@@ -114,7 +114,7 @@ en:
   views:
     consultant:
       actions:
-        index: 'Pending Consultants'
+        index: 'Manage Consultants'
     search:
     page:
       consultant_benefits_html: 'See <em>Consultant/Mentor</em> Benefits'
