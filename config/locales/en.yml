@@ -108,10 +108,13 @@ en:
     phone:
       create:
         success: 'Phone created successfully.'
+    create_profile:
+      create:
+        success: 'Resume saved successfully.'
   views:
     consultant:
       actions:
-        index: 'Pending Consultants'
+        index: 'Manage Consultants'
     search:
     page:
       consultant_benefits_html: 'See <em>Consultant/Mentor</em> Benefits'

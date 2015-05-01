@@ -76,17 +76,20 @@ class SearchAdapter
 
   def build_sort
     [{ updated_at: { order: :desc } },
-     { last_sign_in_at: :desc },
      '_score'
     ]
   end
 
   def build_terms(terms)
-    terms_list = terms.map { |k, v| { get_name_from_key(k) => v } }.reduce(:merge)
+    obj = {}
+    obj.compare_by_identity
 
-    return nil if terms_list.empty?
+    return nil if terms.empty?
 
-    { terms:  terms_list }
+    terms.to_a.each_with_object(obj) do |ele, result|
+      result['terms'] = { get_name_from_key(ele[0]) => ele[1] }
+      result
+    end
   end
 
   def get_name_from_key(key)
