@@ -1,6 +1,6 @@
-class ConsultantsController < CompanyController
+class ConsultantsController < ApplicationController
   before_action :load_and_authorize_consultant, only: [:approve, :reject, :show, :contract]
-  skip_before_action :authenticate_user!, only: :show
+  skip_before_action :authenticate_user!, only: [:show, :contract]
 
   def index
     @consultants = policy_scope(Consultant).page(params[:page])
