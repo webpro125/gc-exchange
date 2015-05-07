@@ -1,6 +1,6 @@
-class ConsultantsController < CompanyController
-  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show]
-  skip_before_action :authenticate_user!, only: :show
+class ConsultantsController < ApplicationController
+  before_action :load_and_authorize_consultant, only: [:approve, :reject, :show, :contract]
+  skip_before_action :authenticate_user!, only: [:show, :contract]
 
   def index
     @consultants = policy_scope(Consultant).page(params[:page])
@@ -24,6 +24,10 @@ class ConsultantsController < CompanyController
     else
       redirect_to consultant_path(@consultant), notice: t('controllers.consultant.reject.fail')
     end
+  end
+
+  def contract
+    render pdf: 'contract'
   end
 
   private

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+</head>
+
+<body>
+    <div id="container">
+        <div class="row">
+            <%= yield %>
+        </div>
+    </div>
+</body>
+</html>

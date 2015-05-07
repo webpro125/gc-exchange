@@ -44,6 +44,7 @@
                 <li><%= link_to t('views.profile.actions.upload_resume_html'),
                                 new_consultant_upload_resume_path(current_consultant) %></li>
                 <li><%= link_to t('views.project.actions.index'), project_histories_path %></li>
+                <li><%= link_to 'Contract', contract_consultant_path(current_consultant) %></li>
                 <li class="divider"></li>
                 <li><%= link_to t('views.password.actions.change_password'),
                                 edit_consultant_registration_path %></li>
