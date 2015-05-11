@@ -15,19 +15,6 @@
   <%= simple_form_for @form, url: create_profile_path(:contract), method: :put do |f| %>
       <%= render 'shared/base_error', model: @form %>
 
-      <div class="panel">
-        <p class="contract">
-          <strong>NOTE:</strong>
-        </p>
-        <ul>
-          <li>If you wish to register and contract with GCES as a sole proprietor, please execute 
-            the following Agreement.</li>
-          <li>If you wish to register and contract with GCES as a corporate entity, please execute 
-            the following Agreement and contact the GCES General Manager at <a href="mailto:barrie.gillis@globalconsultexchange.com">barrie.gillis@globalconsultexchange.com</a>. 
-            He will amend the Agreement to specify your corporate identity.</li>
-        </ul>
-      </div>
-
       <h2>Independent Contractor
         Agreement<a name="contract" data-magellan-destination="contract"></a></h2>
 
