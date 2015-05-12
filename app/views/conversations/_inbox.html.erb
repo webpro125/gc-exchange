@@ -2,7 +2,7 @@
     <div class="row">
       <div class="medium-8 columns">
         <% message = conversation.messages.first %>
-        <% consultant = conversation.recipients.last %>
+        <% consultant = conversation.consultant_recipient %>
         <h5>
           <%= if consultant_signed_in?
                 "#{conversation.originator.full_name} - #{conversation.originator.company
