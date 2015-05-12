@@ -1,7 +1,7 @@
 class ConsultantPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.approve_reject
+      scope
     end
   end
 
@@ -23,6 +23,10 @@ class ConsultantPolicy < ApplicationPolicy
 
   def edit?
     gces? || user == record
+  end
+
+  def contract?
+    record.contract_effective_date.present? && (gces? || user == record)
   end
 
   def contactable?

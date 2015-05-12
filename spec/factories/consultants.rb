@@ -8,6 +8,7 @@ FactoryGirl.define do
     password              { 'password' }
     password_confirmation { 'password' }
     abstract              { Faker::Lorem.paragraph(4) }
+    contract_effective_date { DateTime.now }
 
     trait :with_resume do
       after(:create) do |c|

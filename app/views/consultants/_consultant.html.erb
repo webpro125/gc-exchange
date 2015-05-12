@@ -8,4 +8,8 @@
   <td>
     <%= consultant.approved_status.label %>
   </td>
+  <td>
+    <%= link_to 'Download Contract', contract_consultant_path(consultant) if policy(consultant)
+            .contract? %>
+  </td>
 </tr>

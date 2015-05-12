@@ -1,0 +1,47 @@
+@import "variables";
+
+h2 {
+  font-weight: bold;
+}
+
+body {
+  padding: 2rem;
+  p, ul, ol {
+    font-size: 13px;
+  }
+  ul {
+    list-style: none;
+    li {
+      text-indent: -11px;
+      padding-left: 11px;
+      line-height: 1.3;
+
+      &:before {
+        content: '•';
+        margin-right: 5px;
+      }
+    }
+  }
+  ol {
+    li {
+      margin-bottom: 0.5rem;
+      ol {
+        margin-top: 0.25rem;
+      }
+    }
+  }
+}
+
+.panel {
+  padding: 1rem;
+  p {
+    margin-bottom: 0.25rem;
+    &.address {
+      margin-top: 10px;
+    }
+  }
+}
+
+.medium-4, .medium-8 {
+  float: left;
+}
