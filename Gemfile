@@ -36,6 +36,7 @@ gem 'mailboxer', '~> 0.12.5'
 gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'will_paginate', '~> 3.0.6'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

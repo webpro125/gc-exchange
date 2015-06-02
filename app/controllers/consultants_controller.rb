@@ -3,8 +3,13 @@ class ConsultantsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :contract]
 
   def index
-    @consultants = policy_scope(Consultant).page(params[:page])
-    authorize @consultants
+    render json: ConsultantsDatatable.new(view_context)
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: ConsultantsDatatable.new(view_context) }
+    # end
+    # @consultants = policy_scope(Consultant).page(params[:page])
+    # authorize @consultants
   end
 
   def approve
