@@ -1,16 +1,18 @@
 class ConsultantsDatatable
-  delegate :params, :h, :link_to, to: :@view
+  delegate :params, :h, :link_to, :link_to_if, :mail_to, :policy,
+           :contract_consultant_path, to: :@view
 
   def initialize(view)
     @view = view
   end
 
-  def as_json(options = {})
+  def as_json(_options = {})
     {
+      draw: params[:draw],
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: Consultant.count,
-      iTotalDisplayRecords: consultants.total_entries,
-      aaData: data
+      recordsTotal: Consultant.count,
+      recordsFiltered: consultants.total_count,
+      data: data
     }
   end
 
@@ -19,9 +21,12 @@ class ConsultantsDatatable
   def data
     consultants.map do |consultant|
       [
-        link_to(consultant.first_name, consultant),
-        consultant.email,
-        consultant.approved_status.label
+        link_to(consultant.first_name + ' ' + consultant.last_name, consultant),
+        mail_to(consultant.email, 'Send Mail'),
+        consultant.approved_status.label,
+        link_to_if(policy(consultant).contract?,
+                   'Download Contract',
+                   contract_consultant_path(consultant)) {}
       ]
     end
   end
@@ -31,28 +36,29 @@ class ConsultantsDatatable
   end
 
   def fetch_consultants
-    consultants = Consultant.order("#{sort_column} #{sort_direction}")
-    consultants = consultants.page(page).per_page(per_page)
-    if params[:sSearch].present?
-      consultants = consultants.where('first_name like :search', search: '%#{params[:sSearch]}%')
+    c = Consultant.order("#{sort_column} #{sort_direction}")
+    c = c.page(page).per(per)
+    if params[:search][:value].present?
+      c = c.where('last_name like :search or email like :search',
+                  search: "%#{params[:search][:value]}%")
     end
-    consultants
+    c
   end
 
   def page
-    params[:iDisplayStart].to_i/per_page + 1
+    params[:start].to_i / per + 1
   end
 
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+  def per
+    params[:length].to_i > 0 ? params[:length].to_i : 10
   end
 
   def sort_column
-    columns = %w(first_name)
-    columns[params[:iSortCol_0].to_i]
+    columns = %w(last_name email approved_status_id contract_effective_date)
+    columns[params[:order]['0'][:column].to_i]
   end
 
   def sort_direction
-    params[:sSortDir_0] == 'desc' ? 'desc' : 'asc'
+    params[:order]['0'][:dir] == 'desc' ? 'desc' : 'asc'
   end
 end
