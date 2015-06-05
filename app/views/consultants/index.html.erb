@@ -1,5 +1,5 @@
 <h1>Consultants</h1>
-<table id="consultant_lists">
+<table id="consultants" data-source="<%= consultants_url(format: "json") %>">
   <thead>
   <td>Name</td>
   <td>Contact</td>
@@ -7,8 +7,5 @@
   <td>Download Contract</td>
   </thead>
   <tbody>
-  <% @consultants.each do |consultant| %>
-      <%= render consultant %>
-  <% end %>
   </tbody>
 </table>

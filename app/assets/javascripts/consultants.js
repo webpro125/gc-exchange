@@ -1,3 +1,8 @@
 $(document).ready(function() {
-    $('#consultant_lists').dataTable();
+    $('#consultants').dataTable({
+        bJQueryUI:  true,
+        processing: true,
+        serverSide: true,
+        ajax:       $('#consultants ').data('source')
+    })
 } );
