@@ -133,7 +133,6 @@ ActiveRecord::Schema.define(version: 20150611173202) do
     t.datetime "contract_effective_date"
     t.datetime "date_on_hold"
     t.datetime "date_pending_approval"
-    t.datetime "date_in_progress"
     t.datetime "date_approved"
     t.datetime "date_rejected"
   end
