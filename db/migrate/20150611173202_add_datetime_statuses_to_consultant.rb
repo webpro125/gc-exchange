@@ -7,11 +7,23 @@ class AddDatetimeStatusesToConsultant < ActiveRecord::Migration
   end
 
   def data
-    Consultant.each do |c|
-      c.date_on_hold = DateTime.now
-      c.date_pending_approval = DateTime.now
-      c.date_approved = DateTime.now
-      c.date_rejected = DateTime.now
+    Consultant.find_each do |c|
+      if c.approved_status.label = "Pending Approval"
+        c.date_pending_approval = DateTime.now
+      end
+
+      if c.approved_status.label = "On Hold"
+        c.date_on_hold = DateTime.now
+      end
+
+      if c.approved_status.label = "Approved"
+        c.date_approved = DateTime.now
+      end
+
+      if c.approved_status.label = "Rejected"
+        c.date_rejected = DateTime.now
+      end
+      c.save
     end
   end
 end
