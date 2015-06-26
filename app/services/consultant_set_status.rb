@@ -7,6 +7,7 @@ class ConsultantSetStatus
     return false unless approvable?
 
     @consultant.approved_status = ApprovedStatus.approved
+    @consultant.date_approved = DateTime.now
     @consultant.save
   end
 
@@ -14,6 +15,7 @@ class ConsultantSetStatus
     return false unless rejectable?
 
     @consultant.approved_status = ApprovedStatus.rejected
+    @consultant.date_rejected = DateTime.now
     @consultant.save
   end
 
@@ -21,6 +23,7 @@ class ConsultantSetStatus
     return false unless pending_approvable?
 
     @consultant.approved_status = ApprovedStatus.pending_approval
+    @consultant.date_pending_approval = DateTime.now
     @consultant.save
   end
 
@@ -28,6 +31,7 @@ class ConsultantSetStatus
     return false unless on_hold?
 
     @consultant.approved_status = ApprovedStatus.on_hold
+    @consultant.date_on_hold = DateTime.now
     @consultant.save
   end
 
