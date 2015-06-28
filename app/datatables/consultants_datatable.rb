@@ -1,6 +1,6 @@
 class ConsultantsDatatable
   delegate :params, :h, :link_to, :link_to_if, :mail_to, :policy,
-           :contract_consultant_path, to: :@view
+           :contract_consultant_path, :download_resume_path, to: :@view
 
   def initialize(view)
     @view = view
@@ -8,11 +8,11 @@ class ConsultantsDatatable
 
   def as_json(_options = {})
     {
-      draw: params[:draw],
-      sEcho: params[:sEcho].to_i,
-      recordsTotal: Consultant.count,
+      draw:            params[:draw],
+      sEcho:           params[:sEcho].to_i,
+      recordsTotal:    Consultant.count,
       recordsFiltered: consultants.total_count,
-      data: data
+      data:            data
     }
   end
 
@@ -20,13 +20,49 @@ class ConsultantsDatatable
 
   def data
     consultants.map do |consultant|
+      consultant_fields(consultant)
+        .push(link_to_if(consultant.resume.present?,
+                         'Download Resume',
+                         download_resume_path(consultant)) {})
+        .push(link_to_if(policy(consultant).contract?,
+                         'Download Contract',
+                         contract_consultant_path(consultant)) {})
+        .push(consultant.rate)
+        .push(*project_history_fields(consultant.project_histories[0]))
+        .push(*project_history_fields(consultant.project_histories[1]))
+        .push(*project_history_fields(consultant.project_histories[2]))
+    end
+  end
+
+  def consultant_fields(consultant)
+    [
+      link_to(consultant.first_name, consultant),
+      link_to(consultant.last_name, consultant),
+      consultant.phones.size > 0 ? consultant.phones.first.number : '',
+      mail_to(consultant.email),
+      consultant.approved_status.label,
+      consultant.created_at,
+      consultant.date_pending_approval,
+      consultant.date_approved,
+      consultant.date_on_hold,
+      consultant.date_rejected,
+      consultant.last_sign_in_at,
+      consultant.updated_at,
+      consultant.sign_in_count
+    ]
+  end
+
+  def project_history_fields(history)
+    if history.present?
       [
-        link_to(consultant.first_name + ' ' + consultant.last_name, consultant),
-        mail_to(consultant.email, 'Send Mail'),
-        consultant.approved_status.label,
-        link_to_if(policy(consultant).contract?,
-                   'Download Contract',
-                   contract_consultant_path(consultant)) {}
+        history.positions.pluck(:label).join(', '),
+        history.client_poc_name,
+        history.client_poc_email,
+        history.phone.try(:number)
+      ]
+    else
+      [
+        '', '', '', ''
       ]
     end
   end
@@ -39,7 +75,7 @@ class ConsultantsDatatable
     c = Consultant.order("#{sort_column} #{sort_direction}")
     c = c.page(page).per(per)
     if params[:search][:value].present?
-      c = c.where('last_name like :search or email like :search',
+      c = c.where('last_name like :search or email like :search or first_name like :search',
                   search: "%#{params[:search][:value]}%")
     end
     c
@@ -54,7 +90,10 @@ class ConsultantsDatatable
   end
 
   def sort_column
-    columns = %w(last_name email approved_status_id contract_effective_date)
+    columns = %w(first_name last_name id email approved_status_id created_at
+                 date_pending_approval date_approved date_on_hold date_rejected last_sign_in_at
+                 updated_at sign_in_count rate id contract_effective_date id id id id id id id id id
+                 id id id)
     columns[params[:order]['0'][:column].to_i]
   end
 

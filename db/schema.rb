@@ -123,17 +123,16 @@ ActiveRecord::Schema.define(version: 20150616125134) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                            default: 1,    null: false
     t.decimal  "rate",                                  precision: 8, scale: 2
-    t.text     "abstract"
-    t.string   "wizard_step"
     t.boolean  "willing_to_travel",                                             default: true
+    t.text     "abstract"
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
+    t.string   "wizard_step"
     t.datetime "contract_effective_date"
     t.datetime "date_on_hold"
     t.datetime "date_pending_approval"
-    t.datetime "date_in_progress"
     t.datetime "date_approved"
     t.datetime "date_rejected"
   end
