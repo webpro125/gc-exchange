@@ -1,6 +1,6 @@
 class ConsultantsDatatable
   delegate :params, :h, :link_to, :link_to_if, :mail_to, :policy,
-           :contract_consultant_path, :download_resume_path, to: :@view
+           :contract_consultant_path, :download_resume_path, :number_to_currency, to: :@view
 
   def initialize(view)
     @view = view
@@ -21,13 +21,13 @@ class ConsultantsDatatable
   def data
     consultants.map do |consultant|
       consultant_fields(consultant)
+        .push(number_to_currency(consultant.rate))
         .push(link_to_if(consultant.resume.present?,
                          'Download Resume',
                          download_resume_path(consultant)) {})
         .push(link_to_if(policy(consultant).contract?,
                          'Download Contract',
                          contract_consultant_path(consultant)) {})
-        .push(consultant.rate)
         .push(*project_history_fields(consultant.project_histories[0]))
         .push(*project_history_fields(consultant.project_histories[1]))
         .push(*project_history_fields(consultant.project_histories[2]))
@@ -41,13 +41,13 @@ class ConsultantsDatatable
       consultant.phones.size > 0 ? consultant.phones.first.number : '',
       mail_to(consultant.email),
       consultant.approved_status.label,
-      consultant.created_at,
-      consultant.date_pending_approval,
-      consultant.date_approved,
-      consultant.date_on_hold,
-      consultant.date_rejected,
-      consultant.last_sign_in_at,
-      consultant.updated_at,
+      consultant.created_at.to_s(:long),
+      consultant.date_pending_approval ? consultant.date_pending_approval.to_s(:long) : nil,
+      consultant.date_approved ? consultant.date_approved.to_s(:long) : nil,
+      consultant.date_on_hold ? consultant.date_on_hold.to_s(:long) : nil,
+      consultant.date_rejected ? consultant.date_rejected.to_s(:long) : nil,
+      consultant.last_sign_in_at ? consultant.last_sign_in_at.to_s(:long) : nil,
+      consultant.updated_at.to_s(:long),
       consultant.sign_in_count
     ]
   end
