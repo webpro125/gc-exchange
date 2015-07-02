@@ -72,7 +72,7 @@ class ConsultantsDatatable
   end
 
   def fetch_consultants
-    c = Consultant.order("#{sort_column} #{sort_direction}")
+    c = Consultant.order("#{sort_column} #{sort_direction}").joins(:project_histories, :positions)
     c = c.page(page).per(per)
     if params[:search][:value].present?
       c = c.where('last_name like :search or email like :search or first_name like :search',
@@ -92,8 +92,13 @@ class ConsultantsDatatable
   def sort_column
     columns = %w(first_name last_name id email approved_status_id created_at
                  date_pending_approval date_approved date_on_hold date_rejected last_sign_in_at
-                 updated_at sign_in_count rate id contract_effective_date id id id id id id id id id
-                 id id id)
+                 updated_at sign_in_count rate resume contract_effective_date positions.label
+                 project_histories.client_poc_name project_histories.client_poc_email id
+                 positions.label project_histories.client_poc_name
+                 project_histories.client_poc_email id positions.label
+                 project_histories.client_poc_name project_histories.client_poc_email
+                 positions.label)
+
     columns[params[:order]['0'][:column].to_i]
   end
 
