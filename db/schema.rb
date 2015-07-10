@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224160445) do
+ActiveRecord::Schema.define(version: 20150616125134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,10 @@ ActiveRecord::Schema.define(version: 20150224160445) do
     t.datetime "profile_image_updated_at"
     t.string   "wizard_step"
     t.datetime "contract_effective_date"
+    t.datetime "date_on_hold"
+    t.datetime "date_pending_approval"
+    t.datetime "date_approved"
+    t.datetime "date_rejected"
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree

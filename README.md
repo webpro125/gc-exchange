@@ -25,7 +25,9 @@ set REDIS_URL='your_url'
 Mailcatcher & Foreman
 
 ```
-gem install mailcatcher
+rvm default@mailcatcher --create do gem install mailcatcher
+rvm wrapper default@mailcatcher --no-prefix mailcatcher catchmail
+
 gem install foreman
 foreman start
 ```

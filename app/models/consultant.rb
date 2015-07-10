@@ -50,6 +50,8 @@ class Consultant < ActiveRecord::Base
   has_many :shared_contacts, dependent: :destroy
   has_many :phones, as: :phoneable, dependent: :destroy
   has_many :project_histories, dependent: :destroy
+  has_many :project_history_positions, through: :project_histories
+  has_many :positions, through: :project_history_positions
   has_many :consultant_skills, dependent: :destroy
   has_many :skills, through: :consultant_skills
   has_many :consultant_certifications, dependent: :destroy
@@ -110,7 +112,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def update_consultant_index
-    if approved? || pending_approval?
+    if approved?
       ConsultantIndexer.perform_async(:update, id)
     elsif rejected? && previous_changes.key?(:approved_status_id)
       ConsultantIndexer.perform_async(:destroy, id)
