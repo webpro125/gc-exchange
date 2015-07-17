@@ -54,8 +54,6 @@ group :development, :test do
   # Guard
   gem 'spring-commands-rspec', '~> 1.0.2', require: false
   gem 'rb-readline', '~> 0.5.1'
-  gem 'ruby_gntp', '~> 0.3.4'
-  gem 'growl', '~> 1.0.3'
   gem 'guard-bundler', '~> 2.0.0', require: false
   gem 'guard-migrate', '~> 1.2.0', require: false
   gem 'guard-rspec', '~> 4.3', require: false
