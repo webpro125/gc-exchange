@@ -16,6 +16,7 @@ gem 'newrelic_rpm', '~> 3.9'
 gem 'kaminari', '~> 0.16.1'
 gem 'elasticsearch-model', '~> 0.1.5'
 gem 'elasticsearch-rails', '~> 0.1.5'
+gem 'pry-rails'
 gem 'sidekiq', '~> 3.2.5'
 gem 'sidekiq-unique-jobs', '~> 3.0.2'
 gem 'sinatra', '~> 1.4.5'
@@ -44,6 +45,7 @@ end
 group :development do
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'thin'
 end
 
 group :development, :test do
