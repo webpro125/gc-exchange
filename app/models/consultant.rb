@@ -198,12 +198,8 @@ class Consultant < ActiveRecord::Base
   end
 
   def self.dynamic_export_columns
-    result = []
-    %w(1st 2nd 3rd).each do |prefix|
-      %w(positions poc_name poc_email poc_phone).each do |suffix|
-        result << "#{prefix}_project_#{suffix}"
-      end
-    end
-    result
+    %w( 1st 2nd 3rd )
+      .product(%w( positions poc_name poc_email poc_phone ))
+      .map { |prefix, suffix| "#{prefix}_project_#{suffix}" }
   end
 end
