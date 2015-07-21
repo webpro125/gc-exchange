@@ -75,6 +75,8 @@ class Consultant < ActiveRecord::Base
       date_rejected
       date_last_signed_in
       date_modified
+      sign_in_count
+      rate
       )
     CSV.generate do |csv|
       csv << columns.map(&:humanize).map(&:titleize)
