@@ -61,8 +61,8 @@ class Consultant < ActiveRecord::Base
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
-  def self.to_csv
-    CSV.generate do |csv|
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
       csv << export_columns.map(&:humanize).map(&:titleize)
       all.order(:first_name).each do |consultant|
         values = export_columns.map do |col|
