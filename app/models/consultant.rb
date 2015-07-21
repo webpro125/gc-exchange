@@ -75,7 +75,7 @@ class Consultant < ActiveRecord::Base
       date_rejected
       )
     CSV.generate do |csv|
-      csv << columns
+      csv << columns.map(&:humanize).map(&:titleize)
       all.each do |consultant|
         values = columns.map { |col| consultant.send(col) }
         csv << values
