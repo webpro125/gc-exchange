@@ -67,6 +67,7 @@ class Consultant < ActiveRecord::Base
       last_name
       primary_phone
       email
+      status
       date_account_created
       date_pending_approval
       date_approved
@@ -86,6 +87,10 @@ class Consultant < ActiveRecord::Base
 
   def date_account_created
     created_at
+  end
+
+  def status
+    approved_status.label
   end
 
   def mailboxer_email(_object)
