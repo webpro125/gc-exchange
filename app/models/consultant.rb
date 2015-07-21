@@ -73,6 +73,8 @@ class Consultant < ActiveRecord::Base
       date_approved
       date_on_hold
       date_rejected
+      date_last_signed_in
+      date_modified
       )
     CSV.generate do |csv|
       csv << columns.map(&:humanize).map(&:titleize)
@@ -89,6 +91,14 @@ class Consultant < ActiveRecord::Base
 
   def date_account_created
     created_at
+  end
+
+  def date_last_signed_in
+    last_sign_in_at
+  end
+
+  def date_modified
+    updated_at
   end
 
   def status
