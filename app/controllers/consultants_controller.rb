@@ -6,6 +6,7 @@ class ConsultantsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: ConsultantsDatatable.new(view_context) }
+      format.csv  { render text: policy_scope(Consultant).to_csv }
     end
     @consultants = policy_scope(Consultant).page(params[:page])
     authorize @consultants

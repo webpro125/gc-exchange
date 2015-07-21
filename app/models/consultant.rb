@@ -61,6 +61,33 @@ class Consultant < ActiveRecord::Base
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
+  def self.to_csv
+    columns = %w(
+      first_name
+      last_name
+      primary_phone
+      email
+      date_account_created
+      date_pending_approval
+      date_approved
+      )
+    CSV.generate do |csv|
+      csv << columns
+      all.each do |consultant|
+        values = columns.map { |col| consultant.send(col) }
+        csv << values
+      end
+    end
+  end
+
+  def primary_phone
+    phones.size > 0 ? phones.first.number : ''
+  end
+
+  def date_account_created
+    created_at
+  end
+
   def mailboxer_email(_object)
     email
   end
