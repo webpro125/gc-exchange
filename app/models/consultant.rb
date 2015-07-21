@@ -64,10 +64,35 @@ class Consultant < ActiveRecord::Base
   def self.to_csv
     CSV.generate do |csv|
       csv << export_columns.map(&:humanize).map(&:titleize)
-      all.each do |consultant|
-        values = export_columns.map { |col| consultant.send(col) }
+      all.order(:first_name).each do |consultant|
+        values = export_columns.map do |col|
+          if col =~ /_project_/
+            consultant.project_history_info for_column: col
+          else
+            consultant.send(col)
+          end
+        end
         csv << values
       end
+    end
+  end
+
+  def project_history_info(for_column:)
+    for_column =~ /^(\d).._project_(.+)$/
+    number = $1.to_i
+    attribute = $2
+    history = project_histories[number - 1]
+    return '' unless history.present?
+
+    case attribute
+    when 'positions'
+      history.positions.pluck(:label).join(', ')
+    when 'poc_name'
+      history.client_poc_name
+    when 'poc_email'
+      history.client_poc_email
+    when 'poc_phone'
+      history.phone.try(:number)
     end
   end
 
@@ -154,7 +179,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def self.export_columns
-    %w(
+    result = %w(
       first_name
       last_name
       primary_phone
@@ -170,5 +195,16 @@ class Consultant < ActiveRecord::Base
       sign_in_count
       rate
       )
+    %w( 1st 2nd 3rd ).each do |prefix|
+      %w(
+        project_positions
+        project_poc_name
+        project_poc_email
+        project_poc_phone
+      ).each do |suffix|
+        result << "#{prefix}_#{suffix}"
+      end
+    end
+    result
   end
 end
