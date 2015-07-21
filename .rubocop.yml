@@ -85,6 +85,9 @@ Style/AlignHash:
     - ignore_implicit
     - ignore_explicit
 
+Style/MultilineOperationIndentation:
+  Enabled: false
+
 Style/AlignParameters:
   # Alignment of parameters in multi-line method calls.
   #

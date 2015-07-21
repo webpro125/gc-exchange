@@ -72,16 +72,18 @@ class ConsultantsDatatable
   end
 
   def fetch_consultants
-    result = Consultant
-      .order("#{sort_column} #{sort_direction}")
-      .joins(:project_histories, :positions)
-      .distinct
-      .page(page)
-      .per(per)
+    result = Consultant.order("#{sort_column} #{sort_direction}")
+                       .joins(:project_histories, :positions)
+                       .distinct
+                       .page(page)
+                       .per(per)
 
     if params[:search][:value].present?
-      result = result.where('last_name like :search or email like :search or first_name like :search',
-                  search: "%#{params[:search][:value]}%")
+      where_text = 'last_name like :search or email like :search or first_name like :search'
+      result = result.where(
+                            where_text,
+                            search: "%#{params[:search][:value]}%"
+                           )
     end
 
     result
