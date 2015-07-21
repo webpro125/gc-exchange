@@ -72,7 +72,10 @@ class ConsultantsDatatable
   end
 
   def fetch_consultants
-    c = Consultant.order("#{sort_column} #{sort_direction}").joins(:project_histories, :positions)
+    c = Consultant
+          .order("#{sort_column} #{sort_direction}")
+          .joins(:project_histories, :positions)
+          .distinct
     c = c.page(page).per(per)
     if params[:search][:value].present?
       c = c.where('last_name like :search or email like :search or first_name like :search',

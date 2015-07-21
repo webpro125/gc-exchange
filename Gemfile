@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.7'
 gem 'pg', '~> 0.17'
+
 gem 'sass-rails', '~> 4.0.4'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
