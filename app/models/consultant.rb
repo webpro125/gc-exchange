@@ -71,6 +71,8 @@ class Consultant < ActiveRecord::Base
       date_account_created
       date_pending_approval
       date_approved
+      date_on_hold
+      date_rejected
       )
     CSV.generate do |csv|
       csv << columns
