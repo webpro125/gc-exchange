@@ -62,26 +62,10 @@ class Consultant < ActiveRecord::Base
   accepts_nested_attributes_for :educations, allow_destroy: true
 
   def self.to_csv
-    columns = %w(
-      first_name
-      last_name
-      primary_phone
-      email
-      status
-      date_account_created
-      date_pending_approval
-      date_approved
-      date_on_hold
-      date_rejected
-      date_last_signed_in
-      date_modified
-      sign_in_count
-      rate
-      )
     CSV.generate do |csv|
-      csv << columns.map(&:humanize).map(&:titleize)
+      csv << export_columns.map(&:humanize).map(&:titleize)
       all.each do |consultant|
-        values = columns.map { |col| consultant.send(col) }
+        values = export_columns.map { |col| consultant.send(col) }
         csv << values
       end
     end
@@ -167,5 +151,24 @@ class Consultant < ActiveRecord::Base
 
   def set_approved_status
     self.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code])
+  end
+
+  def self.export_columns
+    %w(
+      first_name
+      last_name
+      primary_phone
+      email
+      status
+      date_account_created
+      date_pending_approval
+      date_approved
+      date_on_hold
+      date_rejected
+      date_last_signed_in
+      date_modified
+      sign_in_count
+      rate
+      )
   end
 end
