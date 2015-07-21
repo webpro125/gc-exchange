@@ -79,9 +79,9 @@ class Consultant < ActiveRecord::Base
 
   def project_history_info(for_column:)
     for_column =~ /^(\d).._project_(.+)$/
-    number = $1.to_i
-    attribute = $2
-    history = project_histories[number - 1]
+    number =    Regexp.last_match(1).to_i
+    attribute = Regexp.last_match(2)
+    history =   project_histories[number - 1]
     return '' unless history.present?
 
     case attribute
@@ -179,7 +179,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def self.export_columns
-    result = %w(
+    %w(
       first_name
       last_name
       primary_phone
@@ -194,15 +194,14 @@ class Consultant < ActiveRecord::Base
       date_modified
       sign_in_count
       rate
-      )
-    %w( 1st 2nd 3rd ).each do |prefix|
-      %w(
-        project_positions
-        project_poc_name
-        project_poc_email
-        project_poc_phone
-      ).each do |suffix|
-        result << "#{prefix}_#{suffix}"
+    ) + dynamic_export_columns
+  end
+
+  def self.dynamic_export_columns
+    result = []
+    %w(1st 2nd 3rd).each do |prefix|
+      %w(positions poc_name poc_email poc_phone).each do |suffix|
+        result << "#{prefix}_project_#{suffix}"
       end
     end
     result
