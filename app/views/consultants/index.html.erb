@@ -1,4 +1,9 @@
 <h1>Consultants</h1>
+<p>
+  Download:
+  <%= link_to 'Excel', consultants_path(format: 'xls') %> |
+  <%= link_to 'CSV', consultants_path(format: 'csv') %>
+</p>
 <table id="consultants" data-source="<%= consultants_url(format: "json") %>" style="overflow: auto">
   <thead>
   <td>First Name</td>

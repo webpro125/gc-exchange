@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ClassLength
 class Consultant < ActiveRecord::Base
   include Searchable, Nameable, Contactable
 
@@ -61,6 +62,61 @@ class Consultant < ActiveRecord::Base
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << export_columns.map(&:humanize).map(&:titleize)
+      all.order(:first_name).each do |consultant|
+        values = export_columns.map do |col|
+          if col =~ /_project_/
+            consultant.project_history_info for_column: col
+          else
+            consultant.send(col)
+          end
+        end
+        csv << values
+      end
+    end
+  end
+
+  def project_history_info(for_column:)
+    for_column =~ /^(\d).._project_(.+)$/
+    number =    Regexp.last_match(1).to_i
+    attribute = Regexp.last_match(2)
+    history =   project_histories[number - 1]
+    return '' unless history.present?
+
+    case attribute
+    when 'positions'
+      history.positions.pluck(:label).join(', ')
+    when 'poc_name'
+      history.client_poc_name
+    when 'poc_email'
+      history.client_poc_email
+    when 'poc_phone'
+      history.phone.try(:number)
+    end
+  end
+
+  def primary_phone
+    phones.size > 0 ? phones.first.number : ''
+  end
+
+  def date_account_created
+    created_at
+  end
+
+  def date_last_signed_in
+    last_sign_in_at
+  end
+
+  def date_modified
+    updated_at
+  end
+
+  def status
+    approved_status.label
+  end
+
   def mailboxer_email(_object)
     email
   end
@@ -121,5 +177,20 @@ class Consultant < ActiveRecord::Base
 
   def set_approved_status
     self.approved_status = ApprovedStatus.find_by_code(ApprovedStatus::IN_PROGRESS[:code])
+  end
+
+  def self.export_columns
+    %w(
+      first_name last_name primary_phone email status
+      date_account_created date_pending_approval date_approved
+      date_on_hold date_rejected date_last_signed_in
+      date_modified sign_in_count rate
+    ) + dynamic_export_columns
+  end
+
+  def self.dynamic_export_columns
+    %w( 1st 2nd 3rd )
+      .product(%w( positions poc_name poc_email poc_phone ))
+      .map { |prefix, suffix| "#{prefix}_project_#{suffix}" }
   end
 end

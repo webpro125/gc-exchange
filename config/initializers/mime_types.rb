@@ -6,3 +6,4 @@
 # :docx
 # Mime::Type.register 'application/msword', :doc
 Mime::Type.register 'application/pdf', :pdf
+Mime::Type.register 'application/xls', :xls
