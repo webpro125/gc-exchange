@@ -73,8 +73,6 @@ class ConsultantsDatatable
 
   def fetch_consultants
     result = Consultant.order("#{sort_column} #{sort_direction}")
-                       .joins(:project_histories, :positions)
-                       .distinct
                        .page(page)
                        .per(per)
 
