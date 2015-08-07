@@ -77,7 +77,7 @@ class ConsultantsDatatable
                        .per(per)
 
     if params[:search][:value].present?
-      where_text = 'last_name like :search or email like :search or first_name like :search'
+      where_text = 'last_name ILIKE :search OR email ILIKE :search OR first_name ILIKE :search'
       result = result.where(
                             where_text,
                             search: "%#{params[:search][:value]}%"
