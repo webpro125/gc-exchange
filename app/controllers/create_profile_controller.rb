@@ -7,8 +7,15 @@ class CreateProfileController < ConsultantController
 
   before_action :redirect_after_wizard
 
-  steps :howto, :basic_information, :qualifications, :other_information, :background_information,
-        :howto_projects, :project_history, :contract_begin, :contract
+  steps :howto,
+        :basic_information,
+        :qualifications,
+        :other_information,
+        :background_information,
+        :howto_projects,
+        :project_history,
+        :contract_begin,
+        :contract
 
   def show
     generate_show_form
@@ -16,10 +23,11 @@ class CreateProfileController < ConsultantController
   end
 
   def update
+    Rails.logger.debug("STEP: #{step}")
     current_consultant.wizard_step = next_step
     generate_update_form
 
-    if @form.validate(form_params(step))
+    if step == :contract || @form.validate(form_params(step))
       if step == :background_information
         render_background_information
       else
