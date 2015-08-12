@@ -221,8 +221,8 @@ describe CreateProfileController do
           put :update, valid_attributes
         end
 
-        it 'assigns @form' do
-          expect_any_instance_of(EditConsultantForm).to receive(:validate) { true }
+        it 'does not validate' do
+          expect_any_instance_of(EditConsultantForm).not_to receive(:validate) { true }
           put :update, valid_attributes
         end
       end
