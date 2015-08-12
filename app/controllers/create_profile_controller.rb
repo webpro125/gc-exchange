@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ClassLength
 class CreateProfileController < ConsultantController
   include Wicked::Wizard
 
