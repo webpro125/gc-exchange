@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616125134) do
+ActiveRecord::Schema.define(version: 20151029034919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,13 +123,13 @@ ActiveRecord::Schema.define(version: 20150616125134) do
     t.datetime "resume_updated_at"
     t.integer  "approved_status_id",                                            default: 1,    null: false
     t.decimal  "rate",                                  precision: 8, scale: 2
-    t.boolean  "willing_to_travel",                                             default: true
     t.text     "abstract"
+    t.string   "wizard_step"
+    t.boolean  "willing_to_travel",                                             default: true
     t.string   "profile_image_file_name"
     t.string   "profile_image_content_type"
     t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
-    t.string   "wizard_step"
     t.datetime "contract_effective_date"
     t.datetime "date_on_hold"
     t.datetime "date_pending_approval"
@@ -222,6 +222,12 @@ ActiveRecord::Schema.define(version: 20150616125134) do
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
+  create_table "markets", force: true do |t|
+    t.string  "code"
+    t.string  "label"
+    t.integer "market_id"
+  end
+
   create_table "militaries", force: true do |t|
     t.integer  "rank_id"
     t.integer  "clearance_level_id"
@@ -263,8 +269,9 @@ ActiveRecord::Schema.define(version: 20150616125134) do
   add_index "phones", ["phoneable_id", "phoneable_type"], name: "index_phones_on_phoneable_id_and_phoneable_type", using: :btree
 
   create_table "positions", force: true do |t|
-    t.string "code",  limit: 32,  null: false
-    t.string "label", limit: 256, null: false
+    t.string  "code",      limit: 32,              null: false
+    t.string  "label",     limit: 256,             null: false
+    t.integer "market_id",             default: 1
   end
 
   add_index "positions", ["code"], name: "index_positions_on_code", unique: true, using: :btree
@@ -318,6 +325,7 @@ ActiveRecord::Schema.define(version: 20150616125134) do
   end
 
   add_index "projects", ["consultant_id"], name: "index_projects_on_consultant_id", using: :btree
+  add_index "projects", ["project_name"], name: "index_projects_on_project_name", unique: true, using: :btree
   add_index "projects", ["travel_authorization_id"], name: "index_projects_on_travel_authorization_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
@@ -395,8 +403,6 @@ ActiveRecord::Schema.define(version: 20150616125134) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
-
-  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
 
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
 

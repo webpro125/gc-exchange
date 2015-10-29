@@ -48,6 +48,14 @@ end
 Position::POSITION_TYPES.each do |type|
   Position.find_or_create_by(code: type[:code]) do |t|
     t.label = type[:label]
+    t.market_id = type[:market_id]
+  end
+end
+
+Markets::MARKETS.each do |type|
+  Markets.find_or_create_by(code: type[:code]) do |t|
+    t.label = type[:label]
+    t.market_id = type[:market_id]
   end
 end
 

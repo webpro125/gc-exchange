@@ -1,13 +1,15 @@
 <div class="wizard">
+  <h4>Position(s) on Projects</h4>
     <div class="row">
     <div class="large-12 columns">
-      <%= f.input :position_ids, build_simple_form_dropdown(Position,
-                                                            collection: Position.all,
-                                                            input_html: { multiple: true,
-                                                            data: { maximumSelectionSize: 3,
-                                                                    maxSizeErrorMessage: I18n.t('activerecord.errors.models.project_history.attributes.project_history_positions.too_long.other') } }) %>
+      <%= f.input :position_ids, build_simple_form_dropdown(Position, :label => 'Government Contractor - Business Capture Experience', collection: Position.where(market_id: 1), input_html: { multiple: true }) %>
     </div>
   </div>
+  <div class="row">
+  <div class="large-12 columns">
+    <%= f.input :position_ids, build_simple_form_dropdown(Position, :label => 'Government & Non-government Experience (Includes Government Contract Support Services)', collection: Position.where(market_id: 2), input_html: { multiple: true }) %>
+  </div>
+</div>
   <div class="row">
     <div class="large-6 columns">
       <%= f.input :client_company %>
