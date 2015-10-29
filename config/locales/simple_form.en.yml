@@ -67,6 +67,7 @@ en:
         service_start_date: 'Initial Entry Date'
         service_end_date: 'End of Service Date'
       project_history:
+        consultant: 'test'
         position_ids: 'Position(s) on Project'
         customer_name_id: 'Government Department'
         client_poc_name: 'Reference Name'
