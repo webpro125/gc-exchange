@@ -110,7 +110,7 @@ describe ProjectHistoryForm do
   end
 
   describe 'position_ids' do
-    it { should ensure_length_of(:position_ids).is_at_least(1).is_at_most(3) }
+    it { should validate_presence_of(:position_ids) }
   end
 
   describe 'project_type_id' do
