@@ -23,6 +23,7 @@ module OtherInformation
     property :_destroy, virtual: false
 
     property :number
+    property :ext
     property :phone_type_id, type: Integer
 
     validates :number,

@@ -113,7 +113,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def primary_phone
-    phones.size > 0 ? phones.first.number : ''
+    phones.size > 0 ? phones.first.number_with_ext : ''
   end
 
   def date_account_created

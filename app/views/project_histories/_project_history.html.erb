@@ -34,7 +34,7 @@
             <div class="row">
               <div class="small-6 columns">
                 <%= t('simple_form.labels.project_history.client_poc_phone') %>:
-                <%= project_history.phone.number if project_history.phone.present? %>
+                <%= project_history.phone.number_with_ext if project_history.phone.present? %>
               </div>
               <div class="small-6 columns">
                 <%= t('simple_form.labels.phone.phone_type') %>:

@@ -32,6 +32,7 @@ class ProjectHistoryForm < Reform::Form
     model :phone
 
     property :number
+    property :ext
     property :phone_type_id, type: Integer
 
     validates :number,

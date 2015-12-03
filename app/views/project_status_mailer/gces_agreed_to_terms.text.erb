@@ -1,6 +1,6 @@
 • Date of Acceptance by Consultant: <%= Date.today %>
 • Consultant Name/Identifier: <%= @consultant.full_name %> <%= @consultant.id %>
-• Consultant Phone: <%= @consultant.phones.first.number %>
+• Consultant Phone: <%= @consultant.phones.first.number_with_ext %>
 • Consultant Email: <%= @consultant.email %>
 • Client Name/Identifier: <%= @user.full_name %> <%= @user.id %>
 • Client Point of Contact: <%= @user.full_name %>

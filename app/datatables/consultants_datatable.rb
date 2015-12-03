@@ -38,7 +38,7 @@ class ConsultantsDatatable
     [
       link_to(consultant.first_name, consultant),
       link_to(consultant.last_name, consultant),
-      consultant.phones.size > 0 ? consultant.phones.first.number : '',
+      consultant.phones.size > 0 ? consultant.phones.first.number_with_ext : '',
       mail_to(consultant.email),
       consultant.approved_status.label,
       consultant.created_at.to_s(:long),

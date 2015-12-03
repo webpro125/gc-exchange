@@ -4,13 +4,16 @@
     <div class="medium-3 columns">
       <%= f.input :number %>
     </div>
-    <div class="medium-3 columns end">
+    <div class="medium-1 columns">
+      <%= f.input :ext %>
+    </div>
+    <div class="medium-2 columns end">
       <%= f.input :phone_type_id,
                   build_simple_form_dropdown(PhoneType,
                                              collection: PhoneType.all) %>
     </div>
     <% unless delete_phone %>
-        <div class="medium-6 columns">
+        <div class="medium-3 columns">
           <%= link_to_remove_association t('views.profile.actions.remove_phone_html'),
                                          f,
                                          class: 'button tiny alert' %>

@@ -8,6 +8,14 @@ class Phone < ActiveRecord::Base
 
   attr_accessor :_destroy # TODO: Remove when Reform releases _destroy
 
+  def number_with_ext
+    if ext.present?
+      "#{number} Ext: #{ext}"
+    else
+      number
+    end
+  end
+
   protected
 
   def set_phone
