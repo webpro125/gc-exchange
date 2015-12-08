@@ -1,0 +1,52 @@
+.skills-table {
+  label.control-label {
+    font-size: 120%;
+  }
+  &.two-columns {
+    span.checkbox, span.radio {
+      width: 50%;
+      &:nth-child(even) {
+        clear: left;
+      }
+    }
+  }
+
+  &.three-columns div {
+    span.checkbox, span.radio {
+      width: 33%;
+      &:nth-child(3n+2) {
+        clear: left;
+      }
+    }
+  }
+
+  &.four-columns div {
+    span.checkbox, span.radio {
+      width: 25%;
+      &:nth-child(4n+2) {
+        clear: left;
+      }
+    }
+  }
+
+  span.checkbox, span.radio {
+    display: block;
+    float: left;
+    margin-bottom: .8em;
+    border-top: 1px solid rgb(235, 235, 235);
+    padding-top: .8em;
+
+    input {
+      display: inline;
+      margin-bottom: 0;
+    }
+    label {
+      display: inline;
+      font-size: 90%;
+    }
+  }
+}
+
+.large-label label.control-label {
+  font-size: 120%;
+}

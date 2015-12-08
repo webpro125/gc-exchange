@@ -10,7 +10,7 @@ describe 'project_histories/new.html.erb' do
   end
 
   it 'should have customer_name' do
-    expect(rendered).to have_field('project_history_customer_name_id')
+    expect(rendered).to have_field("project_history[customer_name_id]")
   end
 
   it 'should have client_company' do
@@ -38,6 +38,6 @@ describe 'project_histories/new.html.erb' do
   end
 
   it 'should have project_type' do
-    expect(rendered).to have_field('project_history_project_type_id')
+    expect(rendered).to have_field('project_history[project_type_id]')
   end
 end
