@@ -36,8 +36,9 @@ class Certification < ActiveRecord::Base
   CERTIFIED_PROFESSIONAL_LOGISTICIAN      = { code: 'CERTIFIED_PROFESSIONAL_LOGISTICIAN',
                                               label: 'Certified Professional Logistician' }
   ITIL                                    = { code: 'IT_INFRASTRUCTURE_LIBRARY',
-                                              label: 'Information Technology Infrastructure
-Library (ITIL)' }
+                                              label: 'Information Technology Infrastructure Library (ITIL)' }
+  APMP                                    = { code: 'APMP', label: 'Association of Proposal Management Professionals' }
+
   CERTIFICATION_TYPES = [SIX_SIGMA, PROFESSIONAL_ENGINEER_CIVIL,
                          PROFESSIONAL_ENGINEER_MECHANICAL, PROFESSIONAL_ENGINEER_ELECTRICAL,
                          PROFESSIONAL_ENGINEER_SYSTEMS, PMI_SCHEDULING_PROFESSIONAL,
@@ -47,5 +48,5 @@ Library (ITIL)' }
                          EMERGENCY_MANAGEMENT_PROFESSIONAL, CERTIFIED_ETHICAL_HACKER,
                          INFORMATION_SYSTEMS_AUDITOR, LAWYER,
                          CERTIFIED_PROFESSIONAL_SYSTEMS_ENGINEER,
-                         CERTIFIED_PROFESSIONAL_LOGISTICIAN, ITIL].freeze
+                         CERTIFIED_PROFESSIONAL_LOGISTICIAN, ITIL, APMP].freeze
 end
