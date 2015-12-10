@@ -56,9 +56,10 @@ class CustomerName < ActiveRecord::Base
   FBI = { code: 'FBI', label: 'Federal Bureau of Investigation, National Security Branch' }
   DEA = { code:  'DEA',
           label: 'Drug Enforcement Administration, Office of National Security Intelligence' }
+  FDIC = { code: 'FDIC', label: 'Federal Deposit Insurance Corporation' }
   CUSTOMER_NAME_TYPES = [DOS, USDT, DOD, DOJ, DOI, DOA, DOC, DOL, DHHS, HUD, DOT, DOE, DOED, DVA,
                          DHS, INTEL, OMB, EPA, SBA, JCOS, ARMY, NAVY, AIRFORCE, MARINE, NORTHCOM,
                          SOUTHCOM, CENTCOM, EUCOM, PACOM, AFRICOM, STRATCOM, SOCOM, TRANSCOM, COAST,
                          ODNI, CIA, CGI, HSI, INR, TFI, DIA, NSA, NGA, NRO, CYBERCOM, AFISRA,
-                         NASIC, INSCOM, NGIC, MCIA, ONI, FBI, DEA].freeze
+                         NASIC, INSCOM, NGIC, MCIA, ONI, FBI, DEA, FDIC].freeze
 end
