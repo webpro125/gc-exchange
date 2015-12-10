@@ -45,6 +45,8 @@ en:
         willing_to_travel: 'Willing to Travel'
         phone_instruction: 'One phone number is required.'
         rate: 'Published Hourly Rate'
+        gces_fee: "GCES Fee"
+        total_rate: "Total Rate"
         certification_ids: 'Professional Certifications'
         skills_list: 'Skills & Expertise'
         first_name: 'First Name'

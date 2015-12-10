@@ -124,6 +124,23 @@ strong {
   }
 }
 
+table.consultant-header {
+  width: 350px;
+  tr {
+    td {
+      &:first-child {
+        width: 180px;
+      }
+      &.right-side {
+        text-align: right;
+      }
+      &.underline {
+        //border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+}
+
 /*** SIDEBAR ***/
 .sidebar {
   table {

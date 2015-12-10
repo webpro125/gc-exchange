@@ -18,14 +18,14 @@
         </h1>
       </div>
     </div>
-      <table>
+      <table class="consultant-header">
         <% if @consultant.military.present? %>
           <% if @consultant.military.clearance_active %>
             <tr>
               <td>
                 <%= t('simple_form.labels.military.clearance_level') %>
               </td>
-              <td>
+              <td class="right-side">
                 <%= if @consultant.military && @consultant.military.clearance_level
                       @consultant.military.clearance_level.label
                     else
@@ -40,7 +40,7 @@
           <td>
             <%= t('simple_form.labels.consultant.willing_to_travel') %>
           </td>
-          <td>
+          <td class="right-side">
             <%= boolean_to_human @consultant.willing_to_travel? %>
           </td>
         </tr>
@@ -49,8 +49,26 @@
               <td>
                 <%= t('simple_form.labels.consultant.rate') %>
               </td>
-              <td>
+              <td class="right-side">
                 <%= number_to_currency @consultant.rate %>
+              </td>
+            </tr>
+        <% end %>
+        <% if user_signed_in? %>
+          <tr>
+              <td>
+                <%= t('simple_form.labels.consultant.gces_fee') %>
+              </td>
+              <td class="right-side underline">
+              +  <%= number_to_currency Company::GCES_FEE %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= t('simple_form.labels.consultant.total_rate') %>
+              </td>
+              <td class="right-side">
+                <%= number_to_currency ( @consultant.rate.to_i + Company::GCES_FEE ) %>
               </td>
             </tr>
         <% end %>
