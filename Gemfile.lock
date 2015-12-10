@@ -530,6 +530,3 @@ DEPENDENCIES
   wicked_pdf
   wkhtmltopdf-binary
   yarjuf
-
-BUNDLED WITH
-   1.10.5
