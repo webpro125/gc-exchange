@@ -68,7 +68,7 @@
                 <%= t('simple_form.labels.consultant.total_rate') %>
               </td>
               <td class="right-side">
-                <%= number_to_currency ( @consultant.rate.to_i + Company::GCES_FEE ) %>
+                <%= number_to_currency ( @consultant.rate.to_f + Company::GCES_FEE ) %>
               </td>
             </tr>
         <% end %>
