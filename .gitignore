@@ -9,6 +9,7 @@
 /atlassian-ide-plugin.xml
 /*.sublime-*
 /.vagrant
+dump.rdb
 
 # Ignore bundler config.
 /.bundle
