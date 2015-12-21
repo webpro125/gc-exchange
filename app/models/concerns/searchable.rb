@@ -26,7 +26,8 @@ module Searchable
     end
 
     def resume_fullpath
-      File.join(Rails.root, "public", resume.path)
+      resume.cache_stored_file! if resume.cached?.blank?
+      resume.path
     end
 
     # Customize the JSON serialization for Elasticsearch
