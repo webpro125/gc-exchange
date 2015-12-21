@@ -86,8 +86,8 @@ describe SearchAdapter do
     end
 
     it 'adds certification' do
-      expect(should_query[should_query.keys[0]]).to include('certification.id')
-      expect(should_query[should_query.keys[0]]['certification.id']).to eq([1, 2, 3])
+      expect(should_query[should_query.keys[0]]).to include('certifications.id')
+      expect(should_query[should_query.keys[0]]['certifications.id']).to eq([1, 2, 3])
     end
 
     it 'adds clearance_level_ids' do

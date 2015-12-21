@@ -8,7 +8,7 @@ class SearchAdapter
                         clearance_active: 'military.clearance_active',
                         project_type_ids: 'project_histories.project_type.id',
                         customer_name_ids: 'project_histories.customer_name.id',
-                        certification_ids: 'certification.id' }
+                        certification_ids: 'certifications.id' }
 
   def initialize(params)
     fail ArgumentError unless params.is_a?(Search)
