@@ -51,7 +51,7 @@ class SearchAdapter
     return nil unless @params.q
 
     @query[:query] = { fuzzy_like_this:
-                         { fields: %w(skills_list abstract full_name address military.branch
+                         { fields: %w(skills_list abstract full_name address military.branch resume_attachment
                                       project_histories.description
                                       project_histories.project_type.label
                                       project_histories.project_history_positions.position.label),

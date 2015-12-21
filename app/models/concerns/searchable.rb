@@ -7,6 +7,7 @@ module Searchable
     index_name [Rails.env, model_name.collection.gsub(%r{/}, '-')].join('_')
 
     mapping do
+      indexes :resume_attachment, type: 'attachment'
       indexes :address, type: :geo_point
       indexes :military do
         indexes :clearance_level_id, null_value: 0
@@ -20,12 +21,20 @@ module Searchable
       end
     end
 
+    def resume_attachment
+      Base64.encode64(open(resume_fullpath) { |file| file.read })
+    end
+
+    def resume_fullpath
+      File.join(Rails.root, "public", resume.path)
+    end
+
     # Customize the JSON serialization for Elasticsearch
     def as_indexed_json(options = {})
       as_json(
         {
-          methods: [:full_name, :skills_list, :abstract],
-          only: [:full_name, :last_sign_in_at, :skills_list],
+          methods: [:full_name, :skills_list, :abstract, :resume_attachment],
+          only: [:full_name, :last_sign_in_at, :skills_list, :resume_attachment],
           include: {
             address: {
               methods: [:lat, :lon],
