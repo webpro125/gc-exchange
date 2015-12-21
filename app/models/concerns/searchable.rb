@@ -22,7 +22,7 @@ module Searchable
     end
 
     def resume_attachment
-      Base64.encode64(open(resume_fullpath) { |file| file.read })
+      Base64.encode64(open(resume_fullpath) { |file| file.read }) if resume.present?
     end
 
     def resume_fullpath
