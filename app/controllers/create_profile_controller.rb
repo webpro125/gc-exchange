@@ -71,6 +71,7 @@ class CreateProfileController < ConsultantController
       @form = ProjectHistoryForm.new current_consultant.project_histories.first_or_initialize
     when :contract
       current_consultant.contract_effective_date = DateTime.now
+      current_consultant.contract_version = Consultant::CURRENT_CONTRACT_VERSION
       @form = EditConsultantForm.new current_consultant
     end
   end

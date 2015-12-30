@@ -6,6 +6,7 @@ class Consultant < ActiveRecord::Base
 
   RESUME_MIME_TYPES   = ['application/pdf']
   PROFILE_IMAGE_TYPES = ['image/jpg', 'image/png', 'image/jpeg']
+  CURRENT_CONTRACT_VERSION = "v2"
 
   paginates_per 15
 
@@ -154,6 +155,14 @@ class Consultant < ActiveRecord::Base
 
   def in_progress?
     approved_status.code == ApprovedStatus::IN_PROGRESS[:code]
+  end
+
+  def current_contract?
+    contract_version == Consultant::CURRENT_CONTRACT_VERSION
+  end
+
+  def contract_signed?
+    contract_version.present? && contract_effective_date.present?
   end
 
   def skills_list

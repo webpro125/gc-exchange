@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20151210173507) do
     t.datetime "date_pending_approval"
     t.datetime "date_approved"
     t.datetime "date_rejected"
+    t.string   "contract_version"
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
