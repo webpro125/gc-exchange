@@ -13,6 +13,7 @@ describe OtherInformationForm do
       educations: FactoryGirl.build_list(:education, 2),
       military: FactoryGirl.build(:military),
       address: FactoryGirl.build(:address),
+      entity: FactoryGirl.build(:entity),
       phones: FactoryGirl.build_list(:phone, 2)
     )
   end

@@ -9,6 +9,19 @@ module OtherInformation
   validates :rate, numericality: { greater_than: 0, less_than_or_equal_to: 5_000 }, presence: true
   validates :willing_to_travel, presence: true
 
+  property :entity, populate_if_empty: Entity do
+    property :entity_type
+    property :title
+    property :name
+    property :address
+    property :address2
+    property :city
+    property :state
+    property :zip
+
+    validates :entity_type, presence: true
+  end
+
   property :address, populate_if_empty: Address do
     property :address
 

@@ -95,6 +95,7 @@ class CreateProfileController < ConsultantController
 
   def generate_other_information
     current_consultant.build_address unless current_consultant.address.present?
+    current_consultant.build_entity unless current_consultant.entity.present?
     current_consultant.build_military unless current_consultant.military.present?
     @form = OtherInformationForm.new current_consultant
   end

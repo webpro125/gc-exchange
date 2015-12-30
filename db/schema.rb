@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210173507) do
+ActiveRecord::Schema.define(version: 20151230144623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,20 @@ ActiveRecord::Schema.define(version: 20151210173507) do
 
   add_index "educations", ["consultant_id"], name: "index_educations_on_consultant_id", using: :btree
   add_index "educations", ["degree_id"], name: "index_educations_on_degree_id", using: :btree
+
+  create_table "entities", force: true do |t|
+    t.integer  "entity_type"
+    t.string   "title"
+    t.string   "name"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "consultant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mailboxer_conversation_opt_outs", force: true do |t|
     t.integer "unsubscriber_id"

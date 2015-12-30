@@ -48,6 +48,7 @@ describe Consultant do
   it { expect(subject).to have_many(:shared_contacts).dependent(:destroy) }
 
   it { expect(subject).to have_one(:address).dependent(:destroy) }
+  it { expect(subject).to have_one(:entity).dependent(:destroy) }
   it { expect(subject).to have_one(:background).dependent(:destroy) }
 
   describe 'resume' do

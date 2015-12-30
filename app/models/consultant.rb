@@ -46,6 +46,7 @@ class Consultant < ActiveRecord::Base
   mount_uploader :profile_image, ProfileImageUploader, mount_on: :profile_image_file_name
 
   has_one :address, dependent: :destroy
+  has_one :entity, dependent: :destroy
   has_one :military, dependent: :destroy
   has_one :background, dependent: :destroy
   belongs_to :approved_status

@@ -25,6 +25,7 @@
 //= require select2
 //= require foundation-datetimepicker
 //= require widgets
+//= require entities
 
 $(document).foundation({
   orbit: {

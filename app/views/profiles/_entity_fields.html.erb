@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="large-12 columns">
+    <%= f.simple_fields_for :entity do |a| %>
+    <fieldset>
+      <h3>Your Legal Consultating Status</h3>
+      <div class="row">
+        <div class="columns large-3">
+          <%= a.input :entity_type, as: :select, collection: Entity.entity_type_select_options %>
+        </div>
+      </div>
+      <div class="entity-fields">
+        <p>Please fill out additional information about your entity.</p>
+        <div class="row">
+          <div class="columns large-6">
+            <%= a.input :title, label: "Your Title" %>
+          </div>
+          <div class="columns large-6">
+            <%= a.input :name, label: "Business Name" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="columns large-6">
+            <%= a.input :address, lable: "Business Address" %>
+          </div>
+          <div class="columns large-6">
+            <%= a.input :address2 %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="columns large-4">
+            <%= a.input :city %>
+          </div>
+          <div class="columns large-4">
+            <%= a.input :state %>
+          </div>
+          <div class="columns large-4">
+            <%= a.input :zip %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <% end %>
+  </div>
+</div>
