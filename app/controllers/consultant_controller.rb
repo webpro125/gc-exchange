@@ -20,7 +20,7 @@ class ConsultantController < ApplicationController
   end
 
   def current_contract_redirect
-    if current_consultant.contract_signed? && !current_consultant.current_contract?
+    if current_consultant.contract_signed? && !current_consultant.current_contract? && session[:skip_update_contract].blank?
       redirect_to new_update_contract_path
     end
   end

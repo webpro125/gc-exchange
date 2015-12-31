@@ -55,7 +55,11 @@ Rails.application.routes.draw do
   resources :companies, path: 'contractors' do
     resources :users
   end
-  resources :update_contracts, only: [:new, :update]
+  resources :update_contracts, only: [:new, :update] do
+    member do
+      get :skip
+    end
+  end
   resources :consultants, only: [:index, :show] do
     resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]

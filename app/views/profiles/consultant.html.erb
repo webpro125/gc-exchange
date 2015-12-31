@@ -1,6 +1,12 @@
 <h1>Consultant Dashboard</h1>
 <div class="row">
   <div class="medium-8 columns vr">
+    <% if !@consultant.current_contract? %>
+      <div class="panel">
+        <p>Please remember to update your contract.</p>
+        <p><%= link_to "Update Contract", new_update_contract_path, class: 'button' %></p>
+      </div>
+    <% end %>
     <h4>Inbox</h4>
     <%= render 'conversations/inbox', conversations: @conversations %>
   </div>
