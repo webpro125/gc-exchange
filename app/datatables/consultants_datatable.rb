@@ -48,7 +48,9 @@ class ConsultantsDatatable
       consultant.date_rejected ? consultant.date_rejected.to_s(:long) : nil,
       consultant.last_sign_in_at ? consultant.last_sign_in_at.to_s(:long) : nil,
       consultant.updated_at.to_s(:long),
-      consultant.sign_in_count
+      consultant.sign_in_count,
+      consultant.contract_effective_date,
+      consultant.contract_version
     ]
   end
 
