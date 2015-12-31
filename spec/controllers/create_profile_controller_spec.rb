@@ -204,6 +204,7 @@ describe CreateProfileController do
 
       describe 'GET contract' do
         before do
+          user.entity = create(:entity, consultant: user)
           get :show, id: m
         end
 
