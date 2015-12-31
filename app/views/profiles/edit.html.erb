@@ -59,6 +59,11 @@
               </div>
             </div>
             <div class="row">
+              <div class="columns large-12">
+                <%= render 'entity_fields', f: f %>
+              </div>
+            </div>
+            <div class="row">
               <div class="large-12 columns">
                 <h3><%= t('simple_form.labels.consultant.abstract') %></h3>
                 <%= f.input :abstract, as: :text, input_html: { class: 'large', cols: 5, rows: 20 } %>
