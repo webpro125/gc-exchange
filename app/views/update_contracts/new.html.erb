@@ -1,0 +1,13 @@
+<div data-alert class="alert-box notice text-center">
+  <p>We have recently updated our contract. You are seeing this because we need you to review and sign our updated contract below.</p>
+  <p><%= link_to "I'll do this later", skip_update_contract_path("skip"), class: 'button' %></p>
+</div>
+<%= simple_form_for @form, url: update_contract_path(:update), method: :put do |f| %>
+  <%= render 'consultants/contract_details', f: f %>
+        <%= f.button :submit, t('views.wizard.actions.finish'),
+                     data: {
+                             confirm: {
+                                     body: t('views.wizard.confirmations.contract.save')}
+                     },
+                     class: 'secondary' %>
+<% end %>

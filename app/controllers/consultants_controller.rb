@@ -33,6 +33,7 @@ class ConsultantsController < ApplicationController
   end
 
   def contract
+    @contract = Contract.for_consultant(@consultant)
     render pdf: 'contract'
   end
 

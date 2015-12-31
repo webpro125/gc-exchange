@@ -89,6 +89,7 @@ class CreateProfileController < ConsultantController
     when :project_history
       generate_project_history
     when :contract
+      @contract = Contract.for_consultant current_consultant
       @form = EditConsultantForm.new current_consultant
     end
   end
