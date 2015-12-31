@@ -18,4 +18,8 @@ class Entity < ActiveRecord::Base
    def self.entity_type_select_options
      entity_types.collect {|k, v| [EntityTypeLables[k.to_sym], k] }
    end
+
+   def full_address
+     "#{address} #{address2} #{city}, #{state}, #{zip}"
+   end
 end
