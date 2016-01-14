@@ -5,7 +5,7 @@ class Entity < ActiveRecord::Base
    enum entity_type: [ :sole_proprietor, :single_member_llc, :c_corp, :s_corp, :partnership, :llc_c_corp, :llc_s_corp, :llc_partnership ]
 
    EntityTypeLables = {
-     sole_proprietor: "Individual/Sole Proprietor",
+     sole_proprietor: "Individual Consultant/Sole proprietor",
      single_member_llc: "Single member Limited Liability Company",
      c_corp: "C Corporation",
      s_corp: "S Corporation",
@@ -21,5 +21,9 @@ class Entity < ActiveRecord::Base
 
    def full_address
      "#{address} #{address2} #{city}, #{state}, #{zip}"
+   end
+
+   def entity_label
+     EntityTypeLables[entity_type.to_sym]
    end
 end

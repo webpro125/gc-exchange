@@ -2,7 +2,7 @@
   <h2>Independent Contractor Agreement<a name="contract" data-magellan-destination="contract"></a></h2>
 
   <p>This Independent Contractor Agreement (“Agreement”), made this <u><%= @contract.effective_date %></u> (“Effective Date”) by and between Global Consultant Exchange Services, LLC, a District of Columbia limited liability company, 
-  with offices located at 4849 Alberta Falls Way, Colorado Springs, CO 80924 and 1010 Wisconsin Avenue NW, Suite 540, Washington, DC 20007 (“GCES”), and <u><%= @contract.legal_name %></u>
+  with offices located at 4849 Alberta Falls Way, Colorado Springs, CO 80924 and 1010 Wisconsin Avenue NW, Suite 540, Washington, DC 20007 (“GCES”), and <u><%= @contract.full_name_and_legal_name %></u>
   with offices located at <u><%= @contract.address %></u>
   (“Consultant”).</p>
 
@@ -305,7 +305,7 @@
     </div>
     <div class="columns large-6">
       <p><strong>CONSULTANT</strong></p>
-      <p>Name: <u><%= @contract.legal_name %></u></p>
+      <p>Name: <u><%= @contract.full_name_and_legal_name %></u></p>
       <p>Signature: This agreement was executed digitally by Consultant on <%= @contract.effective_date %></p>
       <p>Title: <u><%= @contract.title %></u></p>
     </div>
@@ -493,8 +493,9 @@
   <h2 class="text-center">GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC. RIDER</h2>
 
   <p>Consultant may not be engaged or continue to be engaged by General Dynamics Information Technology, Inc. (“GDIT”) unless he/she/it agrees to comply with GDIT’s policy prohibiting Consultants from providing consulting services to a competitor of GDIT on any procurement related to the procurement for which they will be or are engaged by GDIT following the termination of their engagement with GDIT without GDIT’s prior written consent.  The term “related procurement” means one emanating from the same procuring authority for the same category of product or services (aircraft, ship, military vehicle, construction, IT services, healthcare services, management services, etc.) and addressing the same phase of the product or service lifecycle (planning and analysis; R&D; concept development; engineering, design and testing; production, integration and deployment; operation and maintenance; etc.).  GDIT’s policy applies to efforts such as eSITE, ITEMS, SITEC, Transformers and Greenway, among others.</p>  
-  <p>I, <%= @contract.consultant.full_name %>(“Consultant”), hereby agree that in consideration of GDIT’s willingness to engage my Services, I will comply with the above policy.  As such, I do warrant and represent that following the termination of my engagement with GDIT, I will not provide consulting Services to a competitor of GDIT on any procurement related to the procurement for which I was engaged to perform consulting Services.  I further represent and warrant that a “related procurement” is one emanating from the same procuring authority for the same category of product or services and addressing the same phase of the product or service lifecycle.</p>  
+  <p>I, [Consultant Name](“Consultant”), hereby agree that in consideration of GDIT’s willingness to engage my Services, I will comply with the above policy.  As such, I do warrant and represent that following the termination of my engagement with GDIT, I will not provide consulting Services to a competitor of GDIT on any procurement related to the procurement for which I was engaged to perform consulting Services.  I further represent and warrant that a “related procurement” is one emanating from the same procuring authority for the same category of product or services and addressing the same phase of the product or service lifecycle.</p>  
   <p>I acknowledge that the injury that would be suffered by GDIT as a result of a breach of this Agreement would be irreparable, and that an award of monetary damages to GDIT for such breach would be an inadequate remedy.  Consequently, GDIT will have the right, in addition to any other rights it may have, to obtain injunctive relief to restrain any breach or threatened breach of this Agreement.</p>  
   <p>In addition to any other indemnification obligations set forth in the Independent Contractor Agreement with GCES, I agree to further indemnify, defend and hold GCES and its officers, directors and employees, harmless from and against all expenses, costs, damages, liabilities and losses (including, without limitation, reasonable attorney’s fees) incurred by GCES in connection with a claim, demand, action or suit resulting from my breach of this Agreement.</p>  
-  <p>Consultant Signature: This agreement was executed digitally by Consultant on <%= @contract.effective_date %></p>
+  <p>Consultant Signature: </p>
+  <hr>
 </section>

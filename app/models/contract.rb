@@ -44,6 +44,10 @@ class Contract
     def legal_name
       entity.name
     end
+
+    def full_name_and_legal_name
+      "#{consultant.full_name} of #{legal_name}, a #{entity.entity_label}"
+    end
   end
 
   class SoleProprietor < Contract
@@ -57,6 +61,10 @@ class Contract
 
     def legal_name
       consultant.full_name
+    end
+
+    def full_name_and_legal_name
+      "#{legal_name} an #{entity.entity_label}"
     end
   end
 end
