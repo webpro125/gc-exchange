@@ -4,23 +4,23 @@
     <fieldset>
       <h3>Your Legal Consultating Status</h3>
       <div class="row">
-        <div class="columns large-3">
-          <%= a.input :entity_type, as: :select, collection: Entity.entity_type_select_options %>
+        <div class="columns large-5">
+          <%= a.input :entity_type, disabled: local_assigns[:edit_only], as: :select, collection: Entity.entity_type_select_options %>
         </div>
       </div>
       <div class="entity-fields">
         <p>Please fill out additional information about your entity.</p>
         <div class="row">
           <div class="columns large-6">
-            <%= a.input :title, label: "Your Title" %>
+            <%= a.input :title, label: "Your Business Title / Role", disabled: local_assigns[:edit_only] %>
           </div>
           <div class="columns large-6">
-            <%= a.input :name, label: "Business Name" %>
+            <%= a.input :name, label: "Business Name", disabled: local_assigns[:edit_only] %>
           </div>
         </div>
         <div class="row">
           <div class="columns large-6">
-            <%= a.input :address, lable: "Business Address" %>
+            <%= a.input :address, label: "Business Address" %>
           </div>
           <div class="columns large-6">
             <%= a.input :address2 %>
