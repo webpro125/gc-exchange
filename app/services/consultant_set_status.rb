@@ -8,6 +8,7 @@ class ConsultantSetStatus
 
     @consultant.approved_status = ApprovedStatus.approved
     @consultant.date_approved = DateTime.now
+    @consultant.approval_number = next_approval_number
     @consultant.save
   end
 
@@ -58,4 +59,11 @@ class ConsultantSetStatus
         @consultant.background.illegal_purchase == true ||
         @consultant.background.illegal_prescription == true)
   end
+
+  private
+
+  def next_approval_number
+    Consultant.maximum(:approval_number).to_i + 1
+  end
+
 end

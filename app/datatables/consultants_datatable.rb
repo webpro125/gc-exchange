@@ -45,6 +45,7 @@ class ConsultantsDatatable
       consultant.created_at.to_s(:long),
       consultant.date_pending_approval ? consultant.date_pending_approval.to_s(:long) : nil,
       consultant.date_approved ? consultant.date_approved.to_s(:long) : nil,
+      consultant.approval_number,
       consultant.date_on_hold ? consultant.date_on_hold.to_s(:long) : nil,
       consultant.date_rejected ? consultant.date_rejected.to_s(:long) : nil,
       consultant.last_sign_in_at ? consultant.last_sign_in_at.to_s(:long) : nil,
@@ -99,8 +100,8 @@ class ConsultantsDatatable
   end
 
   def sort_column
-    columns = %w(id first_name last_name email approved_status_id created_at
-                 date_pending_approval date_approved date_on_hold date_rejected last_sign_in_at
+    columns = %w(id first_name last_name phone email approved_status_id created_at
+                 date_pending_approval date_approved approval_number date_on_hold date_rejected last_sign_in_at
                  updated_at sign_in_count rate resume contract_effective_date positions.label
                  project_histories.client_poc_name project_histories.client_poc_email id
                  positions.label project_histories.client_poc_name

@@ -208,7 +208,7 @@ class Consultant < ActiveRecord::Base
     %w(
       id first_name last_name primary_phone email street_address status
       date_account_created date_pending_approval date_approved
-      date_on_hold date_rejected date_last_signed_in
+      approval_number date_on_hold date_rejected date_last_signed_in
       date_modified sign_in_count rate
     ) + dynamic_export_columns
   end
