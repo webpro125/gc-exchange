@@ -36,6 +36,7 @@ class ConsultantsDatatable
 
   def consultant_fields(consultant)
     [
+      consultant.id,
       link_to(consultant.first_name, consultant),
       link_to(consultant.last_name, consultant),
       consultant.phones.size > 0 ? consultant.phones.first.number_with_ext : '',
@@ -98,7 +99,7 @@ class ConsultantsDatatable
   end
 
   def sort_column
-    columns = %w(first_name last_name id email approved_status_id created_at
+    columns = %w(id first_name last_name email approved_status_id created_at
                  date_pending_approval date_approved date_on_hold date_rejected last_sign_in_at
                  updated_at sign_in_count rate resume contract_effective_date positions.label
                  project_histories.client_poc_name project_histories.client_poc_email id

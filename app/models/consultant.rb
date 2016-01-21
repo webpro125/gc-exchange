@@ -78,7 +78,7 @@ class Consultant < ActiveRecord::Base
         REPORT_COLUMN_NAMES[raw_column] || raw_column.humanize.titleize
       end
 
-      all.order(:first_name).each do |consultant|
+      all.order(:id).each do |consultant|
         values = export_columns.map do |col|
           if col =~ /_project_/
             consultant.project_history_info for_column: col
@@ -206,7 +206,7 @@ class Consultant < ActiveRecord::Base
 
   def self.export_columns
     %w(
-      first_name last_name primary_phone email street_address status
+      id first_name last_name primary_phone email street_address status
       date_account_created date_pending_approval date_approved
       date_on_hold date_rejected date_last_signed_in
       date_modified sign_in_count rate
