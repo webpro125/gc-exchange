@@ -1,3 +1,8 @@
+production: # Environment
+  first_thing: # Hook point
+    - snippet: cloud66/wkhtmltopdf # Hook type
+      target: rails # Hook fields
+      execute: true
 staging: # Environment
   first_thing: # Hook point
     - snippet: cloud66/wkhtmltopdf # Hook type
