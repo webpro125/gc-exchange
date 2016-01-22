@@ -272,7 +272,7 @@
     <li>
       <strong>AUTHORIZED REPRESENTATIVES/NOTICE</strong> — The authorized representative for GCES during the Term of this Agreement is:
       <p>Barrie A. Gillis</p>
-      <p>Consultant’s authorized representative is:<%= current_consultant.full_name %></p>
+      <p>Consultant’s authorized representative is:<%= @contract.full_name %></p>
       <p>All notices required or permitted under this Agreement shall be in writing and shall be deemed duly given either when personally delivered, when sent by registered or certified mail/return receipt requested, or when sent by facsimile with confirmation of successful transmission.</p>
     </li>
     <%# 19.0 %>
@@ -370,7 +370,7 @@
     </div>
     <div class="columns large-6">
       <p><strong>For <%= @contract.legal_name %>:</strong></p>
-      <p><%= @contract.consultant.full_name %>, <%= @contract.title %></p>
+      <p><%= @contract.full_name %>, <%= @contract.title %></p>
       <p><%= @contract.address %></p>
       <p><%= @contract.consultant.email %></p>
       <p><%= @contract.phone %></p>
