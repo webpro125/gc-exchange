@@ -20,6 +20,10 @@ class Contract
     entity.sole_proprietor?
   end
 
+  def full_name
+    consultant.full_name
+  end
+
   def phone
     consultant.phones.first.number_with_ext
   end
