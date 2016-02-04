@@ -50,17 +50,21 @@ class SearchAdapter
     keyword_params = build KEYWORD_PARAMS
     return nil unless @params.q
 
-    @query[:query] = { fuzzy_like_this:
-                         { fields: %w(skills_list abstract full_name address military.branch resume_attachment
-                                      project_histories.description
-                                      project_histories.project_type.label
-                                      project_histories.project_history_positions.position.label),
-                           like_text: keyword_params[:q],
-                           fuzziness: 'AUTO',
-                           max_query_terms: 20 }
-    }
+
+    @query[:query] = {multi_match: {
+      fields: search_fields,
+      operator: "and",
+      query: keyword_params[:q],
+    }}
 
     @query
+  end
+
+  def search_fields
+    %w(skills_list abstract full_name address military.branch resume_attachment
+      project_histories.description
+      project_histories.project_type.label
+      project_histories.project_history_positions.position.label)
   end
 
   def build_geo
