@@ -24,10 +24,10 @@ class ConsultantsDatatable
         .push(number_to_currency(consultant.rate))
         .push(link_to_if(consultant.resume.present?,
                          'Download Resume',
-                         download_resume_path(consultant)) {})
+                         download_resume_path(consultant), target: '_blank') {})
         .push(link_to_if(policy(consultant).contract?,
                          'Download Contract',
-                         contract_consultant_path(consultant)) {})
+                         contract_consultant_path(consultant), target: '_blank') {})
         .push(*project_history_fields(consultant.project_histories[0]))
         .push(*project_history_fields(consultant.project_histories[1]))
         .push(*project_history_fields(consultant.project_histories[2]))
@@ -37,8 +37,8 @@ class ConsultantsDatatable
   def consultant_fields(consultant)
     [
       consultant.id,
-      link_to(consultant.first_name, consultant),
-      link_to(consultant.last_name, consultant),
+      link_to(consultant.first_name, consultant, target: '_blank'),
+      link_to(consultant.last_name, consultant, target: '_blank'),
       consultant.phones.size > 0 ? consultant.phones.first.number_with_ext : '',
       mail_to(consultant.email),
       consultant.approved_status.label,
