@@ -56,6 +56,7 @@ class SearchAdapter
                                       project_histories.project_type.label
                                       project_histories.project_history_positions.position.label),
                            like_text: keyword_params[:q],
+                           fuzziness: 'AUTO',
                            max_query_terms: 20 }
     }
 
