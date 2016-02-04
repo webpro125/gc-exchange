@@ -52,6 +52,7 @@ class ProjectHistoryForm < Reform::Form
   end
 
   def end_date_ok?
+    return unless end_date.present?
     if end_date.respond_to?(:>) && end_date > DateTime.now
       errors.add(:end_date, "needs to be before today")
     end
