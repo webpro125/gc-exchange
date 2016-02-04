@@ -119,6 +119,9 @@ GEM
     equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.5)
+    exception_notification (4.1.4)
+      actionmailer (~> 4.0)
+      activesupport (~> 4.0)
     excon (0.41.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -475,6 +478,7 @@ DEPENDENCIES
   elasticsearch-extensions (~> 0.0.15)
   elasticsearch-model (~> 0.1.5)
   elasticsearch-rails (~> 0.1.5)
+  exception_notification
   factory_girl_rails (~> 4.4)
   faker (~> 1.4.3)
   file_validators (~> 1.2.0)

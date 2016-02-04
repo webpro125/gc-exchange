@@ -38,6 +38,7 @@ gem 'mailboxer', '~> 0.12.5'
 gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'exception_notification'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
