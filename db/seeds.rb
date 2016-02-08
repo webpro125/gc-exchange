@@ -9,7 +9,7 @@
 unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
   user = User.create(first_name: 'James',
                      last_name: 'Stoup',
-                     email: 'jstoup@thoriumllc.com')
+                     email: 'jess@brownwebdesign.com')
 
   user.skip_confirmation!
   Company.create(company_name: Company::GLOBAL_CONSULTANT_EXCHANGE, owner: user)
