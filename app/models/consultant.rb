@@ -37,7 +37,6 @@ class Consultant < ActiveRecord::Base
     approved.limit(3).order(created_at: :desc)
   end)
 
-  before_create :skip_confirmation!, if: -> { Rails.env.staging? }
   before_create :set_approved_status
   after_commit :update_consultant_index, on: [:update]
   after_commit :destroy_consultant_index, on: [:destroy]
