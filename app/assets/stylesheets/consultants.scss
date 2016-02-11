@@ -1,6 +1,14 @@
 @import "variables";
 @import "profileviews";
 
+.remaining-positions {
+  display: none;
+}
+
+#consultants td li {
+  white-space: nowrap;
+}
+
 img {
   &.th {
     margin: 10px 0 0 1px;
