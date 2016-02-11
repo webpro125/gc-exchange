@@ -1,4 +1,5 @@
 desc "Tear down and reset the staging db"
+# ps xa | grep postgres: | grep $POSTGRESQL_DATABASE | grep -v grep | awk '{print $1}' | sudo xargs kill'
 task :reset_staging_db => :environment do
   Rake::Task['db:reset'].invoke
   add_admins
