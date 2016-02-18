@@ -53,11 +53,21 @@ class SearchAdapter
 
     @query[:query] = {multi_match: {
       fields: search_fields,
-      operator: "and",
       query: keyword_params[:q],
-    }}
+    }.merge(term_type_option)}
 
     @query
+  end
+
+  def term_type_option
+    case @params.term_type
+    when 'all_words'
+      {operator: "and"}
+    when 'exact'
+      {type: "phrase"}
+    when 'any_words'
+      {operator: "or"}
+    end
   end
 
   def search_fields

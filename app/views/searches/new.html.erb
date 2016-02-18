@@ -7,11 +7,11 @@
   </div>
 </div>
 <div class="row">
-  <div class="large-4 medium-4 columns">
+  <div class="large-5 medium-5 columns">
     <h4>Refine Search</h4>
     <%= render 'searches/form' %>
   </div>
-  <div class="large-8 medium-8 columns">
+  <div class="large-7 medium-7 columns">
     <% unless @consultants.empty? %>
         <% @consultants.each do |consultant| %>
             <%= render 'searches/consultant', consultant: consultant %>
