@@ -36,8 +36,9 @@ class ApplicationController < ActionController::Base
     sanitize_param :clearance_level_id
     sanitize_param :address
     sanitize_param :q
+    sanitize_param :term_type
 
-    params.permit(search: [:address, :q, :clearance_level_id, position_ids: [],
+    params.permit(search: [:address, :q, :clearance_level_id, :term_type, position_ids: [],
                            customer_name_ids: [], project_type_ids: [],
                            certification_ids: []])[:search]
   end
