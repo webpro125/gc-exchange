@@ -12,7 +12,7 @@ class ResumeUploader < CarrierWave::Uploader::Base
   storage :fog
 
   def cache_dir
-    Rails.root.join 'tmp/uploads'
+    '/tmp'
   end
 
   # Override the directory where uploaded files will be stored.
