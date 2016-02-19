@@ -77,6 +77,7 @@ Rails.application.routes.draw do
       put :approve_personal_contact
     end
   end
+  resources :reports, only: [:index]
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -35,3 +35,4 @@ spec/results
 
 # Ignore vendor/bin
 /vendor/bin
+.env

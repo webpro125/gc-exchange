@@ -39,6 +39,7 @@ gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'exception_notification', '4.1.1'
+gem 'google-analytics-rails', '~> 0.0.6'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -47,6 +48,7 @@ end
 group :development do
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'dotenv-rails'
   gem 'thin'
 end
 
@@ -91,5 +93,4 @@ end
 
 group :production, :staging, :sales do
   gem 'unicorn', '~> 4.8.3'
-  gem 'google-analytics-rails', '~> 0.0.6'
 end

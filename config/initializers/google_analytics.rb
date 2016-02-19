@@ -1,0 +1,1 @@
+GA.tracker = Rails.application.secrets.ga_tracker

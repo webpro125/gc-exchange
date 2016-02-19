@@ -12,7 +12,7 @@
     .find_asset("#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application" %>
-    <%= analytics_init if Rails.env.production? %>
+    <%= analytics_init unless Rails.env.test? %>
     <%= csrf_meta_tags %>
     <%= google_webfonts_init({ google: ['Open+Sans:400italic,700italic,700,300,600,400:latin'] }) %>
 </head>
