@@ -11,6 +11,10 @@ class ResumeUploader < CarrierWave::Uploader::Base
   # storage :file
   storage :fog
 
+  def cache_dir
+    Rails.root.join 'tmp/uploads'
+  end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def paperclip_path
