@@ -40,6 +40,8 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'exception_notification', '4.1.1'
 gem 'google-analytics-rails', '~> 0.0.6'
+gem 'coffee-rails'
+gem 'momentjs-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

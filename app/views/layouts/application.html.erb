@@ -8,16 +8,15 @@
 
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag 'debug' if development? %>
-    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets
-    .find_asset("#{controller_name}.css") %>
+    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application" %>
-    <%= analytics_init unless Rails.env.test? %>
+    <%= analytics_init(development? ? {domain: 'null'} : {}) if GoogleAnalytics.valid_tracker? %>
     <%= csrf_meta_tags %>
     <%= google_webfonts_init({ google: ['Open+Sans:400italic,700italic,700,300,600,400:latin'] }) %>
 </head>
 
-<body>
+<body class="<%= yield(:body_class) %>">
     <%= render 'layouts/header' %>
     <div class="container">
         <div class="row">

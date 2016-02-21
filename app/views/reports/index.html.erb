@@ -1,1 +1,49 @@
+<% body_class('report-metrics-page') %>
+
 <h1>System Metrics</h1>
+
+<div class="report">
+  <div class="small-12 report-toolbar clearfix">
+    <ul class="button-group round left">
+      <li><button class="button tiny" id="offset-minus">&#8592;</button></li>
+      <li><button class="button tiny" id="offset-plus">&#8594;</button></li>
+    </ul>
+
+    <ul class="button-group right filter-types">
+      <li><button class="button tiny" data-filter="today">today</button></li>
+      <li><button class="button tiny" data-filter="day">day</button></li>
+      <li><button class="button tiny" data-filter="week">week</button></li>
+      <li><button class="button tiny" data-filter="month">month</button></li>
+      <li><button class="button tiny" data-filter="quarter">3 months</button></li>
+      <li><button class="button tiny" data-filter="year">year</button></li>
+    </ul>
+
+    <h4 id="date-range"></h4>
+  </div>
+
+  <hr>
+
+  <div class="report-data">
+    <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4" data-equalizer>
+      <li>
+        <div class="panel text-center" data-equalizer-watch>
+          <h2 id="new-accounts">#</h2>
+          <p>Total Number New Accounts Created/Started</p>
+        </div>
+      </li>
+      <li>
+        <div class="panel text-center" data-equalizer-watch>
+          <h2 id="profiles-approved">#</h2>
+          <p>Total Number of Profiles Approved for Search</p>
+        </div>
+      </li>
+      <li>
+        <div class="panel text-center" data-equalizer-watch>
+          <h2 id="profiles-pending">#</h2>
+          <p>Total Number of Profiles Waiting</p>
+        </div>
+      </li>
+    </ul>
+    <div class="loading-indicator" id="loading"><span class="spinner"></span></div>
+  </div>
+</div>
