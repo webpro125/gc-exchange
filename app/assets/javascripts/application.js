@@ -28,7 +28,6 @@
 //= require date-range
 //= require widgets
 //= require entities
-//= require reports
 
 $(document).foundation({
   orbit: {

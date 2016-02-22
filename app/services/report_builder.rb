@@ -1,18 +1,38 @@
 class ReportBuilder
-  def initialize(from, to)
+  FILTER_TYPES = {
+    'day'     => {period: 'hour', format: '%-l %p'},
+    'week'    => {period: 'day', format: '%m/%d/%Y'},
+    'month'   => {period: 'day', format: '%d'},
+    'quarter' => {period: 'week', format: 'Week %W'},
+    'year'    => {period: 'month', format: '%b %Y'}
+  }
+
+  def initialize(from, to, filter)
     @from = from
     @to = to
+    @filter = filter
   end
 
-  def metrics
-    user_count = User.where(created_at: @from..@to).count
-    profiles_approved = Consultant.where(date_approved: @from..@to).count
-    profiles_pending = Consultant.where(date_pending_approval: @from..@to).count
+  def consultant_metrics
+    group_options = FILTER_TYPES[@filter]
+    user_count = User.group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    profiles_approved = Consultant.group_by_period(
+      group_options[:period], :date_approved,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    profiles_pending = Consultant.group_by_period(
+      group_options[:period], :date_pending_approval,
+      range: @from..@to, format: group_options[:format]
+    ).count
 
     {
-      new_accounts: user_count,
-      approved: profiles_approved,
-      pending: profiles_pending
+      categories: user_count.keys,
+      user_count: user_count.values,
+      profiles_approved: profiles_approved.values,
+      profiles_pending: profiles_pending.values
     }
   end
 end
