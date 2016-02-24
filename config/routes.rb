@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', :to => 'dashboard#index'
     resources :dashboard
-    resources :consultant
+    resources :consultants
   end
   authenticated :admin do
     root :path => 'admin/dashboard', :to => 'admin/dashboard#index', as: :admin_root
