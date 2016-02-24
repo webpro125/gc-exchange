@@ -1,0 +1,14 @@
+
+= render :partial => 'admin/navbar'
+#page-wrapper.gray-bg
+  = render :partial => 'admin/topbar'
+  = render :partial => 'admin/consultant/consultant_grid'
+  .row.m-t-lg
+    %button.btn.btn-default.wg-external-reset-button.pull-right.m-r{"data-grid-name" => 'g1'} Reset
+    %button.btn.btn-primary.m-r.wg-external-submit-button.pull-right.m-r-md{"data-grid-name" => 'g1'} Apply filter
+
+  .row
+    .wrapper.wrapper-content.animated.fadeInRight
+      .ibox.float-e-margins
+        .ibox-content.form-horizontal
+          = render_grid(@consultant_grid)

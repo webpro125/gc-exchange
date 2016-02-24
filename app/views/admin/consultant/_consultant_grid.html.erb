@@ -1,0 +1,17 @@
+<%= define_grid(@consultant_grid, show_filters: :always, hide_csv_button: true, hide_submit_button: true, hide_reset_button: true) do |g|
+
+  g.column name: 'ID' do |data|
+    data.id
+  end
+
+  g.column name: 'First Name', attribute: 'first_name' do |data|
+    data.first_name
+  end
+  g.column name: 'Last Name', attribute: 'last_name' do |data|
+    data.last_name
+  end
+  g.column name: 'Approved Date' do |data|
+    data.date_approved ? data.date_approved.to_s(:long) : nil
+  end
+
+end -%>
