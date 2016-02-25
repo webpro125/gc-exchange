@@ -35,6 +35,10 @@ class ProjectsController < ApplicationController
 
     @form = ProjectForm.new(@project)
 
+    # send notification sms to consultant for this offer
+    message = 'contractor sent you offer'
+    send_sms(@consultant.phones.first.number.to_s, message) unless @consultant.phones.blank?
+
     if @form.validate(project_params) && @form.save
       redirect_to @project, notice: 'Engagement Offer was successfully created.'
     else

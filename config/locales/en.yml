@@ -111,6 +111,13 @@ en:
     create_profile:
       create:
         success: 'Resume saved successfully.'
+    admin:
+      create:
+        success: 'Admin User was successfully created.'
+      update:
+        success: 'Admin User was successfully updated.'
+      destroy:
+        success: 'Admin User was successfully destroyed.'
   views:
     consultant:
       actions:

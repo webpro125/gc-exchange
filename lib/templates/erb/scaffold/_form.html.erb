@@ -3,19 +3,11 @@
 
   <div class="form-inputs">
   <%- attributes.each do |attribute| -%>
-    <div class="row">
-      <div class="small-8 small-centered columns">
-        <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
-      </div>
-    </div>
+    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
   <%- end -%>
   </div>
 
   <div class="form-actions">
-    <div class="row">
-      <div class="small-8 small-centered columns">
-        <%%= f.button :submit %>
-      </div>
-    </div>
+    <%%= f.button :submit %>
   </div>
 <%% end %>

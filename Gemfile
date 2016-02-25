@@ -40,6 +40,15 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'exception_notification', '4.1.1'
 
+# twilio
+gem 'twilio-ruby', '~> 4.11.1'
+# slim template engine
+gem 'haml', '~> 4.0.5'
+gem "font-awesome-rails"
+# wice grid
+gem "wice_grid", '3.6.0.pre4'
+gem 'bootstrap-datepicker-rails', '~> 1.5'
+
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end

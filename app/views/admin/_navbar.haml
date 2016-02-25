@@ -1,0 +1,32 @@
+%nav.navbar-default.navbar-static-side{"role"=> "navigation"}
+  .sidebar-collapse
+    %ul#side-menu.nav
+      %li.nav-header
+        .dropdown.profile-element
+          %span
+            = image_tag 'missing.png', :class => 'img-circle'
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %span.clear
+              %span.block.m-t-xs
+                %strong.font-bold= current_admin.first_name + ' ' + current_admin.last_name
+          %ul.dropdown-menu.animated.fadeInRight.m-t-xs
+            %li
+              %a{:href=>"#"}  Logout
+        .logo-element
+          | IN+
+      %li{:class => current_page_active('admin/dashboard')}
+        = link_to admin_dashboard_index_path do
+          %i.fa.fa-th-large
+          %span.nav-label Dashboard
+      %li{:class => current_page_active('admin/consultants')}
+        = link_to admin_consultants_path do
+          %i.fa.fa-user
+          %span.nav-label Consultants
+      %li{:class => current_page_active('admin/companies')}
+        = link_to admin_companies_path do
+          %i.fa.fa-group
+          %span.nav-label Contractors
+      %li{:class => current_page_active('admin/admins')}
+        = link_to admin_admins_path do
+          %i.fa.fa-sitemap
+          %span.nav-label Admin Users

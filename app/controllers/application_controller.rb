@@ -65,4 +65,22 @@ class ApplicationController < ActionController::Base
       authenticate_user!
     end
   end
+  
+  # send sms
+  def send_sms to_phone, message
+    if to_phone[0] == "0"
+      to_phone.sub!("0", '')
+    end
+    to_number = '+1' + to_phone
+
+    twilio_client.messages.create(
+        to: to_number,
+        from: ENV['TWILIO_PHONE_NUMBER'],
+        body: message
+    )
+  end
+
+  def twilio_client
+    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  end
 end

@@ -64,4 +64,10 @@ module ApplicationHelper
   def create_profile_helper(wizard_step)
     wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
   end
+
+  def current_page_active controller
+    class_name = ''
+    class_name = 'active' if params[:controller].to_s == controller
+    class_name
+  end
 end

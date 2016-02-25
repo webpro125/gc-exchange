@@ -45,6 +45,7 @@ class CreateProfileController < ConsultantController
   private
 
   def finish_wizard_path
+    send_completed_sms current_consultant.phones.first.number.to_s unless current_consultant.phones.blank?
     profile_completed_path
   end
 
@@ -65,6 +66,7 @@ class CreateProfileController < ConsultantController
       @form = QualificationsForm.new current_consultant
     when :other_information
       @form = OtherInformationForm.new current_consultant
+      send_welcome_sms(@form.phones.first.number.to_s) unless @form.phones.blank?
     when :background_information
       @form = BackgroundInformationForm.new current_consultant
     when :project_history
@@ -133,4 +135,13 @@ class CreateProfileController < ConsultantController
     render_wizard(@form)
     ConsultantSetStatus.new(current_consultant).pending_approval_and_save if step == :contract
   end
+
+  def send_welcome_sms to_phone
+    send_sms to_phone, 'welcome message'
+  end
+
+  def send_completed_sms to_phone
+    send_sms to_phone, 'complete message'
+  end
+
 end

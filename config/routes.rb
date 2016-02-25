@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :admins, path: '/admin', path_names: { sign_in: 'login', sign_out: 'logout'},
+             controllers: { sessions: 'admin/sessions'},
+             :skip => [:registrations]
 
   devise_for :consultants, path: '/', path_names: { sign_in:      'login',
                                                     sign_out:     'logout',
@@ -16,6 +19,19 @@ Rails.application.routes.draw do
   authenticated :user do
     root 'users#profile', as: :user_root
   end
+  namespace :admin do
+    get '/', :to => 'dashboard#index'
+    resources :dashboard
+    resources :consultants
+    resources :companies, path: 'contractors' do
+      resources :users
+    end
+    resources :admins
+  end
+  authenticated :admin do
+    root :path => 'admin/dashboard', :to => 'admin/dashboard#index', as: :admin_root
+  end
+
   authenticate :user, ->(u) { u.gces? } do
     mount Sidekiq::Web => '/sidekiq'
   end

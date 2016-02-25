@@ -100,3 +100,8 @@ if CustomerName.find_by_label('Marine Corpse Intelligence Activity')
   marine.label = 'Marine Corps Intelligence Activity'
   marine.save!
 end
+admin = Admin.find_or_create_by(email: 'henry.braun125@gmail.com') do |t|
+  t.first_name = 'Henry'
+  t.last_name = 'Braun'
+  t.password = 'flygare10'
+end
