@@ -20,5 +20,9 @@
           %span.nav-label Dashboard
       %li{:class => current_page_active('admin/consultants')}
         = link_to admin_consultants_path do
-          %i.fa.fa-comments-o
+          %i.fa.fa-user
           %span.nav-label Consultants
+      %li{:class => current_page_active('admin/companies')}
+        = link_to admin_companies_path do
+          %i.fa.fa-group
+          %span.nav-label Contractors

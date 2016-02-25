@@ -10,6 +10,19 @@
   g.column name: 'Last Name', attribute: 'last_name' do |data|
     data.last_name
   end
+
+  g.column name: 'Email', attribute: 'email' do |data|
+    data.email
+  end
+
+  g.column name: 'Phone', assoc: :phones, attribute: 'number' do |data|
+    data.phones.size > 0 ? data.phones.first.number_with_ext : ''
+  end
+
+  g.column name: 'Created Date' do |data|
+    data.created_at.to_date
+  end
+
   g.column name: 'Approved Date' do |data|
     data.date_approved ? data.date_approved.to_s(:long) : nil
   end

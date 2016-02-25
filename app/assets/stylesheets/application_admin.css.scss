@@ -12,12 +12,18 @@
  *
  *= require_self
  *= require bootstrap
+ *= require font-awesome
  *= require animate
  *= require style
  */
 
-@import "font-awesome";
 .profile-element img {
   width: 50px;
   height: 50px;
+}
+.table {
+  font-size: 13px;
+}
+abbr[title="required"] {
+  color: #ed5565
 }

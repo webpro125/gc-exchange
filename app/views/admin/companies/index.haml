@@ -1,0 +1,33 @@
+= render :partial => 'admin/navbar'
+#page-wrapper.gray-bg
+  = render :partial => 'admin/topbar'
+  = render :partial => 'header', :locals => { :mode => 'index'}
+  .row.m-t-lg
+    = link_to new_admin_company_path, :class => 'btn btn-sm btn-info pull-right m-r-sm' do
+      %i.fa.fa-plus
+      Add Company
+
+  .row
+    .wrapper.wrapper-content.animated.fadeInRight
+      .ibox.float-e-margins
+        .ibox-title
+          %h5 Manage Contractors
+        .ibox-content
+          %table.table
+            %thead
+              %tr
+                %th Company
+                %th Added Date
+                %th Action
+            %tbody
+              - @companies.each do |company|
+                %tr
+                  %td= company.company_name
+                  %td= company.created_at.to_date
+                  %td
+                    = link_to edit_admin_company_path(company), :class => 'btn btn-xs btn-warning' do
+                      %i.fa.fa-edit
+                      Edit
+                    = link_to '#', :class => 'btn btn-xs btn-danger' do
+                      %i.fa.fa-trash-o
+                      Delete

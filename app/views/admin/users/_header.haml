@@ -1,0 +1,22 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2 Manage Contractors
+    %ol.breadcrumb
+      %li
+        %a{:href => "#"}  Home
+      %li{:class => (mode == 'index' ? 'active' : '')}
+        = link_to 'Contractors', admin_companies_path
+      - if mode != 'index'
+        - if mode == 'edit'
+          %li
+            = mode
+          %li
+            %strong= @user.full_name
+        - else
+          %li.active
+            %strong= mode
+.result-notice
+
+- if flash[:notice]
+  .alert.alert-info.custom-alert-margin.m-t-md
+    = flash[:notice]
