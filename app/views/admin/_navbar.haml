@@ -26,3 +26,7 @@
         = link_to admin_companies_path do
           %i.fa.fa-group
           %span.nav-label Contractors
+      %li{:class => current_page_active('admin/admins')}
+        = link_to admin_admins_path do
+          %i.fa.fa-sitemap
+          %span.nav-label Admin Users

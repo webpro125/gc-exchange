@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :companies, path: 'contractors' do
       resources :users
     end
+    resources :admins
   end
   authenticated :admin do
     root :path => 'admin/dashboard', :to => 'admin/dashboard#index', as: :admin_root
