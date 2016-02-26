@@ -15,7 +15,7 @@ class ReportBuilder
 
   def consultant_metrics
     group_options = FILTER_TYPES[@filter]
-    user_count = User.group_by_period(
+    user_count = Consultant.group_by_period(
       group_options[:period], :created_at,
       range: @from..@to, format: group_options[:format]
     ).count
@@ -34,5 +34,16 @@ class ReportBuilder
       profiles_approved: profiles_approved.values,
       profiles_pending: profiles_pending.values
     }
+  end
+
+  def visits
+    return {} unless ga_api_available?
+    data = GA_API_CLIENT.visits(@from, @to)
+  end
+
+  private
+
+  def ga_api_available?
+    GA_API_CLIENT.present?
   end
 end
