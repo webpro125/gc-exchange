@@ -3,12 +3,12 @@ require 'google/api_client'
 class GoogleAnalyticsApi
   API_VERSION = 'v3'
   CACHED_API_FILE = File.join(Rails.root, 'tmp', 'cache', "analytics-#{API_VERSION}.cache")
-  SERVICE_ACCOUNT_EMAIL = Rails.application.secrets.ga_api['service_account_email']
-  KEY_FILE = Rails.application.secrets.ga_api['key_file']
-  KEY_SECRET = Rails.application.secrets.ga_api['key_secret']
-  PROFILE_ID = Rails.application.secrets.ga_api['profile_id']
-  APP_NAME = Rails.application.secrets.ga_api['app_name']
-  APP_VERSION = Rails.application.secrets.ga_api['app_version']
+  SERVICE_ACCOUNT_EMAIL = GA_API_CONFIG[:service_account_email]
+  KEY_FILE = GA_API_CONFIG[:key_file]
+  KEY_SECRET = GA_API_CONFIG[:key_secret]
+  PROFILE_ID = GA_API_CONFIG[:profile_id]
+  APP_NAME = GA_API_CONFIG[:app_name]
+  APP_VERSION = GA_API_CONFIG[:app_version]
 
   def initialize
     begin
@@ -48,6 +48,6 @@ class GoogleAnalyticsApi
         'metrics' => 'ga:users,ga:sessions',
         'sort' => '-ga:sessions'
       }
-    )
+    ).data
   end
 end
