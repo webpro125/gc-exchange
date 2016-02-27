@@ -1,0 +1,194 @@
+= render :partial => 'admin/navbar'
+#page-wrapper.gray-bg
+  = render :partial => 'admin/topbar'
+  = render :partial => 'header', :locals => { :mode => 'Detail'}
+  .wrapper.wrapper-content.animated.fadeInRight
+    - if @consultant.background.present?
+      .m-b.text-right
+        = link_to t('views.consultant.actions.approve'),
+          approve_admin_consultant_path(@consultant),
+          method: :put,
+          class: 'btn btn-success m-r' if ConsultantSetStatus.new(@consultant).approvable?
+        = link_to t('views.consultant.actions.reject'),
+          reject_admin_consultant_path(@consultant),
+          method: :put,
+          class: 'btn btn-danger' if ConsultantSetStatus.new(@consultant).rejectable?
+      .well
+        %h3
+          Background Information
+        .row
+          .col-md-6
+            %p
+              = t('simple_form.labels.background.citizen')
+              %span.label.m-l-xs{:class => (@consultant.background.citizen ? 'label-success':'label-danger')}
+                = boolean_to_human(@consultant.background.citizen)
+            %p
+              = t('simple_form.labels.background.convicted')
+              %span.label.m-l-xs{:class => (@consultant.background.convicted ? 'label-success':'label-danger')}
+                = boolean_to_human(@consultant.background.convicted)
+            %p
+              = t('simple_form.labels.background.parole')
+              %span.label.m-l-xs{:class => (@consultant.background.parole ? 'label-success':'label-danger')}
+                = boolean_to_human(@consultant.background.parole)
+            %p
+              = t('simple_form.labels.background.illegal_drug_use')
+              %span.label.m-l-xs{:class => (@consultant.background.illegal_drug_use ? 'label-success':'label-danger')}
+                = boolean_to_human(@consultant.background.illegal_drug_use)
+          .col-md-6
+            %p
+              = t('simple_form.labels.background.illegal_purchase')
+              %span.label.m-l-xs{:class => (@consultant.background.illegal_purchase ? 'label-success':'label-danger')}
+                = boolean_to_human(@consultant.background.illegal_purchase)
+            %p
+              = t('simple_form.labels.background.illegal_prescription')
+              %span.label.m-l-xs{:class => (@consultant.background.illegal_prescription ? 'label-success':'label-danger')}
+                = boolean_to_human(@consultant.background.illegal_prescription)
+    .row.m-b-lg.m-t-lg
+      .col-md-6
+        .profile-image
+          = image_tag(@consultant.profile_image.url(:medium), class: 'img-circle circle-border m-b-md')
+        .profile-info
+          %div
+            %div
+              %h2.m-t-none.m-b-sm= @consultant.full_name
+              = form_for @form, url:  consultant_upload_images_path(consultant_id: @consultant.id),
+                method: :post, :multipart => true, :html => {:class => 'upload-image-form'} do |f|
+                .file-upload.btn.btn-xs.btn-info#upload-resume.m-b-sm
+                  %i.fa.fa-file-image-o
+                  %span Upload Image
+                  = f.file_field :profile_image, as: :file, accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}",
+                    :class => 'upload'
+              %br/
+              = link_to content_tag(:i, '', :class => 'fa fa-download') + ' Download Resume',
+                download_resume_path(@consultant),
+                class: 'btn btn-default btn-xs'
+              = form_for @form, url:  consultant_upload_resumes_path(consultant_id: @consultant.id),
+                method: :post, :multipart => true, :html => {:class => 'upload-resume-form'} do |f|
+                .file-upload.btn.btn-default.btn-xs#upload-resume
+                  %i.fa.fa-upload
+                  %span Upload Resume
+                  = f.file_field :resume, as: :file, accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}",
+                    :class => 'upload'
+      .col-md-4
+        %table.table.small.m-b-xs
+          - if @consultant.military.present?
+            - if @consultant.military.clearance_active
+              %tr
+                %td
+                  = t('simple_form.labels.military.clearance_level')
+                %td
+                  - if @consultant.military && @consultant.military.clearance_level
+                    @consultant.military.clearance_level.label
+                  - else
+                    t('activerecord.models.attributes.clearance_level.none')
+              %tr
+                %td
+                  = t('simple_form.labels.consultant.willing_to_travel')
+                %td
+                  = boolean_to_human @consultant.willing_to_travel?
+          %tr
+            %td
+              = t('simple_form.labels.consultant.rate')
+            %td
+              = number_to_currency @consultant.rate
+          %tr
+            %td
+              = t('simple_form.labels.consultant.gces_fee')
+            %td
+              + #{number_to_currency Company::GCES_FEE}
+          %tr
+            %td
+              = t('simple_form.labels.consultant.total_rate')
+            %td
+              = number_to_currency ( @consultant.rate.to_f + Company::GCES_FEE )
+    .row
+      .col-md-8
+        .ibox.m-b-md
+          .ibox-title
+            %h5 Contact Information
+          .ibox-content
+            %table.table
+              = render @consultant.phones
+              %tr
+                %td.no-borders
+                  = Consultant.human_attribute_name(:email)
+                %td.no-borders
+                  = @consultant.email
+              %tr
+                %td
+                  = Address.human_attribute_name(:address)
+                %td
+                  - if @consultant.address.present?
+                    = @consultant.address.address
+        .ibox.m-b-md
+          .ibox-title
+            %h5= t('simple_form.labels.consultant.abstract')
+          .ibox-content
+            = @consultant.abstract
+        .ibox.m-b-md
+          .ibox-content
+            = render @consultant.project_histories
+      .col-md-4
+        - if @consultant.educations.size > 0
+          .ibox.m-b-md
+            .ibox-title
+              %h5= t('views.profile.headers.education')
+            .ibox-content
+              = render @consultant.educations
+        - if @consultant.certifications.size > 0
+          .ibox.m-b-md
+            .ibox-title
+              %h5= t('views.profile.headers.certification')
+            .ibox-content
+              %ul
+                - @consultant.certifications.pluck(:label).each do |c|
+                  %li= c
+        - if @consultant.skills.size > 0
+          .ibox.m-b-md
+            .ibox-title
+              %h5= t('views.profile.headers.expertise')
+            .ibox-content
+              %ul
+                - @consultant.skills.pluck(:code).each do |c|
+                  %li= c
+        - if @consultant.military.present?
+          - if @consultant.military.clearance_active?
+            .ibox.m-b-md
+              .ibox-title
+                %h5= t('views.profile.headers.clearance')
+              .ibox-content
+                %table.table
+                  %tr
+                    %td= t('simple_form.labels.military.clearance_active')
+                    %td= boolean_to_human @consultant.military.clearance_active?
+                  - if @consultant.military.clearance_level
+                    %tr
+                      %td= t('simple_form.labels.military.clearance_level')
+                      %td= @consultant.military.clearance_level.label
+                  - if @consultant.military.investigation_date
+                    %tr
+                      %td= t('simple_form.labels.military.investigation_date')
+                      %td= date_to_formatted_s(@consultant.military.investigation_date)
+                  - if @consultant.military.clearance_expiration_date
+                    %tr
+                      %td= t('simple_form.labels.military.clearance_expiration_date')
+                      %td= date_to_formatted_s(@consultant.military.clearance_expiration_date)
+                - if @consultant.military.military?
+                  %h5= t('views.profile.headers.military')
+                  %table.military
+                    - if @consultant.military.branch
+                      %tr
+                        %td= t('simple_form.labels.military.branch')
+                        %td= @consultant.military.branch.label
+                    - if @consultant.military.rank
+                      %tr
+                        %td= t('simple_form.labels.military.rank')
+                        %td= @consultant.military.rank.label
+                    - if @consultant.military.service_start_date
+                      %tr
+                        %td= t('activerecord.models.attributes.military.date')
+                        %td
+                          = date_to_formatted_s(@consultant.military.service_start_date)
+                          = ' - '
+                          = date_to_formatted_s(@consultant.military.service_end_date)
+

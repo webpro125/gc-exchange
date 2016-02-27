@@ -105,6 +105,8 @@ en:
       reject:
         success: 'Consultant rejected.'
         fail: 'Consultant was not able to be rejected.'
+      image:
+        success: 'Image saved successfully.'
     phone:
       create:
         success: 'Phone created successfully.'

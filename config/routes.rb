@@ -22,7 +22,13 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', :to => 'dashboard#index'
     resources :dashboard
-    resources :consultants
+    resources :consultants do
+      member do
+        put :approve
+        put :reject
+        get :contract
+      end
+    end
     resources :companies, path: 'contractors' do
       resources :users
     end
