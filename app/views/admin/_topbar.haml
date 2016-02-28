@@ -3,6 +3,8 @@
     .navbar-header
       %a.navbar-minimalize.minimalize-styl-2.btn.btn-primary{:href=> "#"}
         %i.fa.fa-bars
+      = render 'admin/search'
+
     %ul.nav.navbar-top-links.navbar-right
       %li
         = link_to destroy_admin_session_path, :method => :delete do

@@ -1,0 +1,13 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2 Search Consultants
+    %ol.breadcrumb
+      %li
+        %a{:href => "#"}  Home
+      %li.active
+        %strong Search Consultants
+.result-notice
+
+- if flash[:notice]
+  .alert.alert-info.custom-alert-margin.m-t-md
+    = flash[:notice]

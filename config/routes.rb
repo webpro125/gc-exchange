@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     end
     resources :admins
   end
+
+  scope :admin do
+    get :searches, path:'search', to: 'admin/searches#new', as: :admin_search
+  end
   authenticated :admin do
     root :path => 'admin/dashboard', :to => 'admin/dashboard#index', as: :admin_root
   end

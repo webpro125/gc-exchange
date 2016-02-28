@@ -1,0 +1,20 @@
+= render 'admin/navbar'
+#page-wrapper.gray-bg
+  = render 'admin/topbar'
+  = render :partial => 'header'
+  .row
+    .wrapper.wrapper-content.animated.fadeInRight
+      .ibox.float-e-margins
+        .ibox-title
+          %h5 Search Consultants
+        .ibox-content
+          = render 'form'
+
+      .ibox.float-e-margins
+        .ibox-title
+          %h5 Search Result
+        .ibox-content
+          - unless @consultants.empty?
+            - @consultants.each do |consultant|
+              = render 'consultant', consultant: consultant
+            = paginate @consultants

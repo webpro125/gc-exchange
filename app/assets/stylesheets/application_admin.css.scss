@@ -15,6 +15,8 @@
  *= require font-awesome
  *= require animate
  *= require style
+ *= require select2
+ *= require select2-bootstrap
  */
 
 .profile-element img {
@@ -45,4 +47,21 @@ abbr[title="required"] {
 .upload-resume-form, .upload-image-form {
   display: inline-block;
   margin-bottom: 0;
+}
+.navbar-form-custom {
+  width: 300px !important;
+}
+.navbar-form-custom .form-group {
+  float: left;
+  width: 65%;
+}
+.navbar-form-custom .form-group.submit-wrap {
+  width: 35%;
+}
+.navbar-form-custom .search-submit-button {
+  height: 35px;
+  margin: 12px
+}
+.select2-container .select2-choice {
+  height: 32px !important;
 }
