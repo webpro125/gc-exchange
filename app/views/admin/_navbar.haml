@@ -30,3 +30,7 @@
         = link_to admin_admins_path do
           %i.fa.fa-sitemap
           %span.nav-label Admin Users
+      %li{:class => current_page_active('admin/projects')}
+        = link_to admin_projects_path do
+          %i.fa.fa-delicious
+          %span.nav-label Offers

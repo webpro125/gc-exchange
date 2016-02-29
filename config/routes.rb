@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :users
     end
     resources :admins
+    resources :projects, path: 'offers'
   end
 
   scope :admin do
