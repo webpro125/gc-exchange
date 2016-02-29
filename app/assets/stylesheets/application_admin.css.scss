@@ -65,3 +65,7 @@ abbr[title="required"] {
 .select2-container .select2-choice {
   height: 32px !important;
 }
+table.wice-grid tr.wg-filter-row input[type=text] {
+  min-width: 100px;
+  width: 100%;
+}

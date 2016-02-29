@@ -19,15 +19,15 @@
     data.phones.size > 0 ? data.phones.first.number_with_ext : ''
   end
 
-  g.column name: 'Approved' do |data|
+  g.column name: 'Approved', assoc: :approved_status, attribute:  'code', filter: false do |data|
     'yes' if data.approved?
   end
-  g.column name: 'Created Date' do |data|
+  g.column name: 'Created Date', attribute: 'created_at', filter_type: :bootstrap_datepicker do |data|
     data.created_at.to_date
   end
 
-  g.column name: 'Approved Date' do |data|
-    data.date_approved ? data.date_approved.to_s(:long) : nil
+  g.column name: 'Approved Date', attribute: 'date_approved', filter_type: :bootstrap_datepicker do |data|
+    data.date_approved ? data.date_approved.to_date : nil
   end
 
 end -%>

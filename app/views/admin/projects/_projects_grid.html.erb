@@ -20,15 +20,15 @@
     '$' + data.proposed_rate.to_s
   end
 
-  g.column name: 'Added Date' do |data|
+  g.column name: 'Added Date', attribute: 'created_at', filter_type: :bootstrap_datepicker do |data|
     data.created_at.to_date
   end
 
-  g.column name: 'Proposed Start' do |data|
+  g.column name: 'Proposed Start', attribute: 'proposed_start', filter_type: :bootstrap_datepicker do |data|
     data.proposed_start.to_date
   end
 
-  g.column name: 'Proposed End' do |data|
+  g.column name: 'Proposed End', attribute: 'proposed_end', filter_type: :bootstrap_datepicker do |data|
     data.proposed_end.to_date
   end
   #
