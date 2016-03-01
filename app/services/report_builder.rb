@@ -7,7 +7,7 @@ class ReportBuilder
     'year'    => {period: 'month', format: '%b %Y'}
   }
 
-  def initialize(from, to, filter)
+  def initialize(from, to, filter = 'day')
     @from = from
     @to = to
     @filter = filter
@@ -46,9 +46,16 @@ class ReportBuilder
     }
   end
 
-  def visits
+  def search_metrics
+  end
+
+  def visits_metrics
     return {} unless ga_api_available?
-    data = GA_API_CLIENT.visits(@from, @to)
+    {
+      pageviews: GA_API_CLIENT.pageviews(@from, @to),
+      avg_session_duration: ApplicationController.helpers.distance_of_time_in_words(GA_API_CLIENT.avg_session_duration(@from, @to)),
+      pages_per_session: GA_API_CLIENT.pages_per_session(@from, @to)
+    }
   end
 
   private

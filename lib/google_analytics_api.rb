@@ -37,17 +37,39 @@ class GoogleAnalyticsApi
     end
   end
 
-  def visits(from = Date.today.beginning_of_day, to = Date.today.end_of_day)
+  def pageviews(from, to)
     @client.execute(
       api_method: @analytics.data.ga.get,
       parameters: {
         'ids' => "ga:#{PROFILE_ID}",
         'start-date' => from.strftime('%Y-%m-%d'),
         'end-date' => to.strftime('%Y-%m-%d'),
-        'dimensions' => 'ga:sessionCount',
-        'metrics' => 'ga:users,ga:sessions',
-        'sort' => '-ga:sessions'
+        'metrics' => 'ga:pageviews'
       }
-    ).data
+    ).data.rows[0][0].to_i
+  end
+
+  def pages_per_session(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:pageviewsPerSession'
+      }
+    ).data.rows[0][0].to_i
+  end
+
+  def avg_session_duration(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:avgSessionDuration'
+      }
+    ).data.rows[0][0].to_i
   end
 end

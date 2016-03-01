@@ -1,4 +1,4 @@
-reportPage = ->
+reportConsultantPage = ->
   return unless $('body').hasClass('report-consultants-page')
 
   dateRange = new DateRange('day')
@@ -95,4 +95,4 @@ reportPage = ->
     loadData()
   , 500, true)
 
-$(document).ready(reportPage)
+$(document).ready(reportConsultantPage)
