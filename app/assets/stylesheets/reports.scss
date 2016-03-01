@@ -1,4 +1,5 @@
 @import "variables";
+@import "jqcloud/jqcloud.min";
 
 .loading-indicator {
   position: absolute;
@@ -61,4 +62,15 @@
 
 .report-data {
   position: relative;
+}
+
+.search-metrics {
+  width: 100%;
+  border: 1px solid #d0d0d0;
+  margin-bottom: 15px;
+
+  .search-content {
+    height: 300px;
+    width: 100%;
+  }
 }

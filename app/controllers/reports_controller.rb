@@ -21,6 +21,15 @@ class ReportsController < ApplicationController
     end
   end
 
+  def search
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: ReportBuilder.new(@from, @to, @filter).search_metrics
+      end
+    end
+  end
+
   private
 
   def verify_gces
