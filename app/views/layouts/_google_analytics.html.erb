@@ -6,9 +6,4 @@
 
   ga('create', "<%= Rails.application.secrets.ga_tracker %>", 'auto');
   ga('send', 'pageview');
-  <% if consultant_signed_in? %>
-    ga('set', 'userId', "<%= "Consultant_#{current_consultant.id}" %>");
-  <% elsif user_signed_in? %>
-    ga('set', 'userId', "<%= "User_#{current_user.id}" %>");
-  <% end %>
 </script>
