@@ -17,3 +17,12 @@
 //= require plugins/slimscroll/jquery.slimscroll.min
 //= require inspinia
 //= require plugins/pace/pace.min
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/mouse
+//= require jquery-ui/position
+//= require select2
+//= require widgets
+$(document).ready(function() {
+    $('select, .select2').select2Dropdown();
+});

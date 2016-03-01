@@ -15,6 +15,8 @@
  *= require font-awesome
  *= require animate
  *= require style
+ *= require select2
+ *= require select2-bootstrap
  */
 
 .profile-element img {
@@ -26,4 +28,44 @@
 }
 abbr[title="required"] {
   color: #ed5565
+}
+.file-upload {
+  position: relative;
+  overflow: hidden;
+}
+.file-upload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.upload-resume-form, .upload-image-form {
+  display: inline-block;
+  margin-bottom: 0;
+}
+.navbar-form-custom {
+  width: 300px !important;
+}
+.navbar-form-custom .form-group {
+  float: left;
+  width: 65%;
+}
+.navbar-form-custom .form-group.submit-wrap {
+  width: 35%;
+}
+.navbar-form-custom .search-submit-button {
+  height: 35px;
+  margin: 12px
+}
+.select2-container .select2-choice {
+  height: 32px !important;
+}
+table.wice-grid tr.wg-filter-row input[type=text] {
+  min-width: 100px;
+  width: 100%;
 }

@@ -22,11 +22,22 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', :to => 'dashboard#index'
     resources :dashboard
-    resources :consultants
+    resources :consultants do
+      member do
+        put :approve
+        put :reject
+        get :contract
+      end
+    end
     resources :companies, path: 'contractors' do
       resources :users
     end
     resources :admins
+    resources :projects, path: 'offers'
+  end
+
+  scope :admin do
+    get :searches, path:'search', to: 'admin/searches#new', as: :admin_search
   end
   authenticated :admin do
     root :path => 'admin/dashboard', :to => 'admin/dashboard#index', as: :admin_root

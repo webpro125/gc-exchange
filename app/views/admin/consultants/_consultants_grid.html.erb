@@ -5,10 +5,10 @@
   end
 
   g.column name: 'First Name', attribute: 'first_name' do |data|
-    data.first_name
+    link_to data.first_name, admin_consultant_path(data)
   end
   g.column name: 'Last Name', attribute: 'last_name' do |data|
-    data.last_name
+    link_to data.last_name, admin_consultant_path(data)
   end
 
   g.column name: 'Email', attribute: 'email' do |data|
@@ -19,12 +19,15 @@
     data.phones.size > 0 ? data.phones.first.number_with_ext : ''
   end
 
-  g.column name: 'Created Date' do |data|
+  g.column name: 'Approved', assoc: :approved_status, attribute:  'code', filter: false do |data|
+    'yes' if data.approved?
+  end
+  g.column name: 'Created Date', attribute: 'created_at', filter_type: :bootstrap_datepicker do |data|
     data.created_at.to_date
   end
 
-  g.column name: 'Approved Date' do |data|
-    data.date_approved ? data.date_approved.to_s(:long) : nil
+  g.column name: 'Approved Date', attribute: 'date_approved', filter_type: :bootstrap_datepicker do |data|
+    data.date_approved ? data.date_approved.to_date : nil
   end
 
 end -%>

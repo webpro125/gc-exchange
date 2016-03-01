@@ -1,0 +1,22 @@
+= simple_form_for @search, url: admin_search_path, method: :get,
+  wrapper: :vertical_form do |f|
+  = render 'shared/base_error', model: @search
+  .row
+    .col-md-6.b-r
+      = f.input :position_ids, build_simple_form_dropdown(Position, collection: Position.all, input_html: {multiple: true})
+      = f.input :customer_name_ids, build_simple_form_dropdown(CustomerName,
+        collection: CustomerName.all,
+        input_html: {multiple: true})
+      = f.input :project_type_ids, build_simple_form_dropdown(ProjectType,
+        collection: ProjectType.all,
+        input_html: {multiple: true})
+      = f.input :certification_ids, build_simple_form_dropdown(Certification,
+        collection: Certification.all,
+        input_html: {multiple: true})
+    .col-md-6
+      = f.input :q
+      = f.input :clearance_level_id, build_simple_form_dropdown(ClearanceLevel,
+        collection: ClearanceLevel.all,
+        input_html: { data: {allowclear: 'true'}})
+      = f.input :address
+      = f.button :submit, class: 'btn btn-info m-t-md pull-right'

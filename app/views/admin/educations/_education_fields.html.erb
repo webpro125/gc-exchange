@@ -1,0 +1,22 @@
+<div class="nested-fields">
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.input :school %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.input :field_of_study %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :degree_id, build_simple_form_dropdown(Degree, collection: Degree.all) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to_remove_association t('views.profile.actions.remove_education_html'),
+                                     f,
+                                     class: 'button tiny alert right' %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<%= define_grid(@projects_grid, show_filters: :always, hide_csv_button: true, hide_submit_button: true, hide_reset_button: true) do |g|
+
+  g.column name: 'ID' do |data|
+    data.id
+  end
+
+  g.column name: 'Project Name', attribute: 'project_name' do |data|
+    # link_to data.first_name, admin_consultant_path(data)
+    data.project_name
+  end
+  g.column name: 'Created By', assoc: :user, attribute: 'email' do |data|
+    link_to data.user.email, edit_admin_company_user_path(data.user.company, data.user)
+  end
+
+  g.column name: 'Created For', assoc: :consultant, attribute: 'email' do |data|
+    link_to data.consultant.email, admin_consultant_path(data)
+  end
+
+  g.column name: 'Proposed Rate' do |data|
+    '$' + data.proposed_rate.to_s
+  end
+
+  g.column name: 'Added Date', attribute: 'created_at', filter_type: :bootstrap_datepicker do |data|
+    data.created_at.to_date
+  end
+
+  g.column name: 'Proposed Start', attribute: 'proposed_start', filter_type: :bootstrap_datepicker do |data|
+    data.proposed_start.to_date
+  end
+
+  g.column name: 'Proposed End', attribute: 'proposed_end', filter_type: :bootstrap_datepicker do |data|
+    data.proposed_end.to_date
+  end
+  #
+  # g.column name: 'Phone', assoc: :phones, attribute: 'number' do |data|
+  #   data.phones.size > 0 ? data.phones.first.number_with_ext : ''
+  # end
+  #
+  # g.column name: 'Approved' do |data|
+  #   'yes' if data.approved?
+  # end
+  # g.column name: 'Created Date' do |data|
+  #   data.created_at.to_date
+  # end
+  #
+  # g.column name: 'Approved Date' do |data|
+  #   data.date_approved ? data.date_approved.to_s(:long) : nil
+  # end
+
+end -%>

@@ -1,14 +1,11 @@
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
-    %h2 Manage Consultants
+    %h2 Search Consultants
     %ol.breadcrumb
       %li
         %a{:href => "#"}  Home
-      %li{:class => (mode == 'index' ? 'active' : '')}
-        = link_to 'Consultants', admin_consultants_path
-      - if mode != 'index'
-        %li.active
-          %strong= mode
+      %li.active
+        %strong Search Consultants
 .result-notice
 
 - if flash[:notice]

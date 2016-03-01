@@ -1,0 +1,23 @@
+%article.row.consultant-profile
+  .col-md-2.columns
+    = link_to admin_consultant_path(consultant) do
+      = image_tag(consultant.profile_image.url(:thumb), class: 'th profile-thumb')
+  .col-md-10.columns
+    %h5
+      = link_to consultant.full_name, admin_consultant_path(consultant)
+    %p
+      %strong
+        = t('simple_form.labels.military.clearance_level')
+        \:
+      - if consultant.military && consultant.military.clearance_level
+        = consultant.military.clearance_level.label
+      - else
+        = t('activerecord.models.attributes.clearance_level.none')
+      %br/
+      %strong
+        = t('simple_form.labels.consultant.willing_to_travel')
+        \:
+      = boolean_to_human consultant.willing_to_travel
+    %a.read-more-toggle{"data-less-text" => "#{t('views.search.actions.less_information')}", "data-more-text" => "#{t('views.search.actions.more_information')}", :href => "#"}
+    .read-more-content
+      %p= consultant.abstract
