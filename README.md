@@ -45,6 +45,8 @@ http://www.bingmapsportal.com
 Create google analytics account credentials.
 Create service account on google console and generate p12 key file.
 https://console.developers.google.com
+Enable UserID tracking on Google Analytics.
+https://support.google.com/analytics/answer/3123666
 Create Credentials => Service Account Key => P12
 Add credentials to config/ga_api.yml based on config/ga_api.yml.example file.
 

@@ -4,7 +4,6 @@ class ReportsController < ApplicationController
   before_filter :get_date_range
 
   def consultant
-    binding.pry
     respond_to do |format|
       format.html {}
       format.json do

@@ -4,12 +4,14 @@ reportPage = ->
   dateRange = new DateRange('day')
   $loading = $('#loading')
   $dateRangeIndicator = $('#date-range')
-  $consultantChart = $('#consultant-chart')
+  $consultantAccountChart = $('#consultant-account-chart')
+  $consultantLoginChart = $('#consultant-login-chart')
 
-  chartOptions =
+  accountChartOptions =
     chart:
       type: 'line'
-    title: false
+    title:
+      text: 'Consultant Account Metrics'
     credits:
       enabled: false
     yAxis:
@@ -26,12 +28,37 @@ reportPage = ->
       {name: 'Profiles Pending', data: []}
     ]
 
+  accountLoginOptions =
+    chart:
+      type: 'line'
+    title:
+      text: 'Consultant Login Metrics'
+    credits:
+      enabled: false
+    yAxis:
+      min: 0
+      allowDecimals: false
+    xAxis:
+      type: 'category'
+      gridLineWidth: 1
+    tooltip:
+      shared: true
+    series: [
+      {name: 'Total Logins', data: []}
+      {name: 'Uniq Logins', data: []}
+    ]
+
   updateReportData = (data) ->
-    chartOptions.xAxis.categories = data.categories
-    chartOptions.series[0].data = data.user_count
-    chartOptions.series[1].data = data.profiles_approved
-    chartOptions.series[2].data = data.profiles_pending
-    $consultantChart.highcharts chartOptions
+    accountChartOptions.xAxis.categories = data.categories
+    accountChartOptions.series[0].data = data.user_count
+    accountChartOptions.series[1].data = data.profiles_approved
+    accountChartOptions.series[2].data = data.profiles_pending
+    $consultantAccountChart.highcharts accountChartOptions
+
+    accountLoginOptions.xAxis.categories = data.categories
+    accountLoginOptions.series[0].data = data.total_logins
+    accountLoginOptions.series[1].data = data.uniq_logins
+    $consultantLoginChart.highcharts accountLoginOptions
 
   loadData = ->
     $('#filter-types-btn').text(dateRange.type)

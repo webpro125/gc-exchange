@@ -27,12 +27,22 @@ class ReportBuilder
       group_options[:period], :date_pending_approval,
       range: @from..@to, format: group_options[:format]
     ).count
+    total_logins = Metric.consultants.logins.group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    uniq_logins = Metric.consultants.logins.select("DISTINCT concat(loggable_type, loggable_id)").group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
 
     {
       categories: user_count.keys,
       user_count: user_count.values,
       profiles_approved: profiles_approved.values,
-      profiles_pending: profiles_pending.values
+      profiles_pending: profiles_pending.values,
+      total_logins: total_logins.values,
+      uniq_logins: uniq_logins.values
     }
   end
 
