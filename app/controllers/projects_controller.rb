@@ -35,11 +35,15 @@ class ProjectsController < ApplicationController
 
     @form = ProjectForm.new(@project)
 
-    # send notification sms to consultant for this offer
-    message = 'contractor sent you offer'
-    send_sms(@consultant.phones.first.number.to_s, message) unless @consultant.phones.blank?
-
     if @form.validate(project_params) && @form.save
+
+      # send notification sms to consultant for this offer
+      host_url = request.host || "drake.gces.staging.c66.me"
+      off_url = host_url + '/offers/' + @project.id.to_s
+      message = 'You just recieved an offer to support a consulting project assignment.
+              Please login to GCES to view your offer: ' + off_url
+      send_sms(@consultant.phones.first.number.to_s, message) unless @consultant.phones.blank?
+
       redirect_to @project, notice: 'Engagement Offer was successfully created.'
     else
       render :new

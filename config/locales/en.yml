@@ -120,6 +120,8 @@ en:
         success: 'Admin User was successfully updated.'
       destroy:
         success: 'Admin User was successfully destroyed.'
+    setting:
+      update: 'Your setting was successfully updated.'
   views:
     consultant:
       actions:
@@ -178,6 +180,12 @@ en:
         expertise: 'Expertise'
         clearance: 'Security Clearance'
         military: 'Military Status'
+    account_setting:
+      action:
+        show: 'Account Setting'
+        update_sms_notification: 'Update SMS Notification'
+      label:
+        sms_notification: 'SMS Notification'
     education:
       new:
         save: 'Save'

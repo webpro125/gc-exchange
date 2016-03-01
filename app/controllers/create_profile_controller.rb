@@ -137,11 +137,17 @@ class CreateProfileController < ConsultantController
   end
 
   def send_welcome_sms to_phone
-    send_sms to_phone, 'welcome message'
+    host_url = request.host || "drake.gces.staging.c66.me"
+    account_url = host_url + '/account_setting'
+    message = 'Welcome to GCES. You signed up for text notifications.
+              To cancel text notifications click the following link: ' + account_url
+    send_sms to_phone, message
   end
 
   def send_completed_sms to_phone
-    send_sms to_phone, 'complete message'
+    message = 'Congratulations, you finished the profile builder.
+              You are free to login at any time to change, or to add more details to your profile.'
+    send_sms to_phone, message
   end
 
 end

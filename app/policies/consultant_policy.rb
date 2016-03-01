@@ -39,6 +39,10 @@ class ConsultantPolicy < ApplicationPolicy
     user == record || gces?
   end
 
+  def update_sms_notification?
+    user == record || gces?
+  end
+
   alias_method :upload_image?, :upload_resume?
   alias_method :consultant?, :upload_resume?
 
