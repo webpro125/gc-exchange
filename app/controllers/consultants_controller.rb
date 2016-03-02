@@ -20,7 +20,7 @@ class ConsultantsController < ApplicationController
       profile_url = host_url + '/profile/edit'
       message = 'Your profile has been approved by GCES and is viewable by our Client Companies.
                   Please remember to keep your profile updated at: ' + profile_url
-      send_sms(@consultant.phones.first.number.to_s, message) unless @consultant.phones.blank?
+      send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
 
       redirect_to consultants_path, notice: t('controllers.consultant.approve.success')
     else

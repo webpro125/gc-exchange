@@ -66,17 +66,25 @@ class ApplicationController < ActionController::Base
   end
   
   # send sms
-  def send_sms to_phone, message
-    if to_phone[0] == "0"
-      to_phone.sub!("0", '')
-    end
-    to_number = '+1' + to_phone
+  def send_sms to_phone, message, consultant
+    if consultant.sms_notification
+      if to_phone[0] == "0"
+        to_phone.sub!("0", '')
+      end
+      to_number = '+1' + to_phone
+      begin
+        twilio_client.messages.create(
+            to: to_number,
+            from: ENV['TWILIO_PHONE_NUMBER'],
+            body: message
+        )
+      rescue Twilio::REST::RequestError => e
+        puts e.message
+      end
 
-    twilio_client.messages.create(
-        to: to_number,
-        from: ENV['TWILIO_PHONE_NUMBER'],
-        body: message
-    )
+    else
+      true
+    end
   end
 
   def twilio_client

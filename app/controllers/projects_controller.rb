@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
       off_url = host_url + '/offers/' + @project.id.to_s
       message = 'You just recieved an offer to support a consulting project assignment.
               Please login to GCES to view your offer: ' + off_url
-      send_sms(@consultant.phones.first.number.to_s, message) unless @consultant.phones.blank?
+      send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
 
       redirect_to @project, notice: 'Engagement Offer was successfully created.'
     else

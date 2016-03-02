@@ -19,9 +19,14 @@
     data.phones.size > 0 ? data.phones.first.number_with_ext : ''
   end
 
+  g.column name: 'sms', attribute:  'sms_notification', filter: false do |data|
+    data.sms_notification? ? 'Yes' : 'No'
+  end
+
   g.column name: 'Approved', assoc: :approved_status, attribute:  'code', filter: false do |data|
     'yes' if data.approved?
   end
+
   g.column name: 'Created Date', attribute: 'created_at', filter_type: :bootstrap_datepicker do |data|
     data.created_at.to_date
   end

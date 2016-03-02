@@ -141,13 +141,13 @@ class CreateProfileController < ConsultantController
     account_url = host_url + '/account_setting'
     message = 'Welcome to GCES. You signed up for text notifications.
               To cancel text notifications click the following link: ' + account_url
-    send_sms to_phone, message
+    send_sms to_phone, message, current_consultant
   end
 
   def send_completed_sms to_phone
     message = 'Congratulations, you finished the profile builder.
               You are free to login at any time to change, or to add more details to your profile.'
-    send_sms to_phone, message
+    send_sms to_phone, message, current_consultant
   end
 
 end

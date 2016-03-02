@@ -6,7 +6,7 @@ class SettingsController < ApplicationController
   end
 
   def update_sms_notification
-    @consultant.sms_notification = params[:sms_notification]
+    @consultant.sms_notification = params[:consultant][:sms_notification]
 
     respond_to do |format|
       if @consultant.save
