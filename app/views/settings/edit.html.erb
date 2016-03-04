@@ -1,0 +1,7 @@
+<h3><%= t('views.account_setting.action.show') %></h3>
+<%= simple_form_for @consultant, url: account_setting_update_sms_notification_path do |f| %>
+    <%= render 'shared/base_error', model: @consultant %>
+
+    <%= f.input :sms_notification, label: t('views.account_setting.label.sms_notification') %>
+    <%= f.button :submit, t('views.account_setting.action.update_sms_notification') %>
+<% end %>

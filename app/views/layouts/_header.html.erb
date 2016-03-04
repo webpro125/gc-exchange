@@ -38,6 +38,7 @@
             <li class="has-dropdown">
               <%= link_to t('views.profile.actions.show'), profile_path %>
               <ul class="dropdown">
+                <li><%= link_to t('views.account_setting.action.show'), account_setting_path %></li>
                 <li><%= link_to t('views.profile.actions.edit'), edit_profile_path %></li>
                 <li><%= link_to t('views.profile.actions.upload_photo_html'),
                                 new_consultant_upload_image_path(current_consultant) %></li>

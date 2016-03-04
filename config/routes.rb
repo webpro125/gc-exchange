@@ -79,6 +79,10 @@ Rails.application.routes.draw do
       post :not_interested
     end
   end
+
+  get 'account_setting', to: 'settings#edit'
+  patch 'account_setting/update_sms_notification', to: 'settings#update_sms_notification'
+
   resources :companies, path: 'contractors' do
     resources :users
   end

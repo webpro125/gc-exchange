@@ -15,6 +15,13 @@ class ConsultantsController < ApplicationController
 
   def approve
     if ConsultantSetStatus.new(@consultant).approve_and_save
+
+      host_url = request.host || "drake.gces.staging.c66.me"
+      profile_url = host_url + '/profile/edit'
+      message = 'Your profile has been approved by GCES and is viewable by our Client Companies.
+                  Please remember to keep your profile updated at: ' + profile_url
+      send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
+
       redirect_to consultants_path, notice: t('controllers.consultant.approve.success')
     else
       redirect_to consultant_path(@consultant), notice: t('controllers.consultant.approve.fail')
