@@ -108,6 +108,13 @@ Rails.application.routes.draw do
       put :approve_personal_contact
     end
   end
+  resources :reports, only: [] do
+    collection do
+      get :consultant
+      get :search
+      get :visits
+    end
+  end
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.

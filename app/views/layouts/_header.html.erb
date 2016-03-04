@@ -61,6 +61,16 @@
               <%= link_to 'Logout', destroy_consultant_session_path, method: :delete %>
             </li>
         <% elsif user_signed_in? %>
+            <% if user_is_gces? %>
+              <li class="has-dropdown">
+                <%= link_to 'Reports', consultant_reports_path %>
+                <ul class="dropdown">
+                  <li><%= link_to 'Visits Metrics', visits_reports_path %></li>
+                  <li><%= link_to 'Consultants Metrics', consultant_reports_path %></li>
+                  <li><%= link_to 'Trending Searches', search_reports_path %></li>
+                </ul>
+              </li>
+            <% end %>
             <li class="has-dropdown">
               <%= link_to 'Manage', '#' %>
               <ul class="dropdown">

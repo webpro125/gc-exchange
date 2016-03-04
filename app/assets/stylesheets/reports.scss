@@ -1,0 +1,76 @@
+@import "variables";
+@import "jqcloud/jqcloud.min";
+
+.loading-indicator {
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.9);
+  cursor: progress;
+
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -9px;
+    margin-left: -9px;
+    width: 18px;
+    height: 18px;
+    background-image: image-url('spinner.gif');
+    background-repeat: no-repeat;
+  }
+}
+
+.report {
+  // TODO: Stupid overriding because of common.scss:106 ...
+  //       Need refactoring common.scss, avoid overriding Zurb Foundation stylesheets
+  ul {
+    li {
+      text-indent: inherit;
+      margin-left: inherit;
+      line-height: inherit;
+      margin-bottom: inherit;
+
+      &:before {
+        content: '';
+        margin: 0;
+      }
+    }
+  }
+}
+
+.report-toolbar {
+  padding: 15px;
+  border: 1px solid black;
+  text-align: center;
+
+  #date-range {
+    display: inline-block;
+    margin: 0;
+  }
+
+  .button {
+    border-radius: inherit !important;
+    margin-bottom: 0;
+    border-width: 0;
+  }
+}
+
+.report-data {
+  position: relative;
+}
+
+.search-metrics {
+  width: 100%;
+  border: 1px solid #d0d0d0;
+  margin-bottom: 15px;
+
+  .search-content {
+    height: 300px;
+    width: 100%;
+  }
+}

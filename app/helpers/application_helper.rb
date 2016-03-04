@@ -14,6 +14,10 @@ module ApplicationHelper
     Rails.env.development?
   end
 
+  def body_class(class_name)
+    content_for :body_class, class_name
+  end
+
   # Looks up a translation for a Lookup
   #
   # Returns a translation

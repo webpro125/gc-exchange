@@ -30,6 +30,8 @@ module GlobalConsultantExchange
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.autoload_paths += Dir["#{config.root}/lib"]
+
     # Action Mailer
     loaded_file = ERB.new(File.read("#{Rails.root}/config/mailer.yml")).result
     email_config = YAML.load(loaded_file)[Rails.env].deep_symbolize_keys
