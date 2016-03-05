@@ -5,8 +5,12 @@
         <% consultant = conversation.consultant_recipient %>
         <h5>
           <%= if consultant_signed_in?
-                "#{conversation.originator.full_name} - #{conversation.originator.company
-                        .company_name}"
+                if conversation.originator.class.name != 'Admin'
+                  "#{conversation.originator.full_name} - #{conversation.originator.company
+                          .company_name}"
+                else
+                  "#{conversation.originator.full_name + ' - Admin'}"
+                end
               end %>
           <% if user_signed_in? %>
               <%= link_to consultant_path(consultant) do %>

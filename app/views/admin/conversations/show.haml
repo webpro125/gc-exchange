@@ -1,0 +1,55 @@
+= render 'admin/navbar'
+#page-wrapper.gray-bg
+  = render 'admin/topbar'
+  = render :partial => 'header', :locals => { :mode => 'Detail'}
+  .row
+    .wrapper.wrapper-content.animated.fadeInRight
+      .ibox.float-e-margins
+        - communication = @conversation
+        .ibox-title.text-right
+          %h5.text-left
+            Subject #{communication.subject}, To #{communication.originator.full_name}
+          = link_to admin_conversations_path, class: 'btn btn-info btn-xs' do
+            %i.fa.fa-long-arrow-left
+            Back to Inbox
+        .ibox-content
+          .alert.alert-info
+            %p
+              NOTE: As you begin this dialogue with a potential consultant, please keep in mind
+              the
+              possibility of latent conflicts of interest that might exist between your company
+              and
+              the potential consultant. GCES encourages you to address any potential conflict of
+              interest issues with the consultant early in your dialogue to avoid possible
+              confidentiality breaches.
+          .row
+            .col-md-12.text-right
+              %button.btn.btn-default.btn-sm#reply-btn
+                %i.fi-arrow-left
+                Reply
+          #reply.row{:style => "display: none; opacity: 0;"}
+            .col-md-12
+              = simple_form_for [:admin, @message],
+                url:    reply_admin_conversation_path(communication),
+                wrapper: :vertical_form,
+                method: :post do |f|
+                = f.input :message, as: :text
+                = f.button :submit, 'Send Message', class: 'btn btn-success btn-sm'
+      - communication.messages.each do |message|
+        .ibox.float-e-margins
+          .ibox-content
+            .row
+              .col-md-6
+                - if message.sender_type == 'Consultant'
+                  = link_to admin_consultant_path(message.sender) do
+                    = image_tag(message.sender.profile_image.url(:thumb),
+                      class: 'th profile-thumb-mini')
+                    = message.sender.full_name
+                - else
+                  = message.sender.full_name
+              .col-md-6
+                .text-right
+                  = message.created_at.strftime('%B %d at %I:%M %p')
+            %hr/
+            %p
+              = message.body

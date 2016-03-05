@@ -34,3 +34,7 @@
         = link_to admin_projects_path do
           %i.fa.fa-delicious
           %span.nav-label Offers
+      %li{:class => current_page_active('admin/conversations')}
+        = link_to admin_conversations_path do
+          %i.fa.fa-envelope
+          %span.nav-label Messages

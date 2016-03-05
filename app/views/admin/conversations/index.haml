@@ -1,0 +1,10 @@
+= render :partial => 'admin/navbar'
+#page-wrapper.gray-bg
+  = render :partial => 'admin/topbar'
+  = render :partial => 'header', :locals => { :mode => 'index'}
+  .row
+    .wrapper.wrapper-content.animated.fadeInRight
+      .ibox.float-e-margins
+        .ibox-content
+          %ul.list-group
+            = render partial: 'conversation', collection: @conversations
