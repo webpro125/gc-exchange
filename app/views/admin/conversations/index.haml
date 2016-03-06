@@ -5,6 +5,9 @@
   .row
     .wrapper.wrapper-content.animated.fadeInRight
       .ibox.float-e-margins
-        .ibox-content
-          %ul.list-group
+        %ul.nav.nav-tabs.custom
+          = mailbox_section 'inbox', @box
+          = mailbox_section 'sent', @box
+        .ibox-content.custom
+          %ul.list-group.inbox
             = render partial: 'conversation', collection: @conversations

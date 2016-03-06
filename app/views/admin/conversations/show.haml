@@ -7,8 +7,7 @@
       .ibox.float-e-margins
         - communication = @conversation
         .ibox-title.text-right
-          %h5.text-left
-            Subject #{communication.subject}, To #{communication.originator.full_name}
+          %h5.text-left #{communication.subject}
           = link_to admin_conversations_path, class: 'btn btn-info btn-xs' do
             %i.fa.fa-long-arrow-left
             Back to Inbox

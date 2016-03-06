@@ -70,4 +70,16 @@ module ApplicationHelper
     class_name = 'active' if params[:controller].to_s == controller
     class_name
   end
+
+  def mailbox
+    if user_signed_in?
+      logged_user = current_user
+    elsif consultant_signed_in?
+      logged_user = current_user
+    else
+      logged_user = current_admin
+    end
+
+    @mailbox ||= logged_user.mailbox
+  end
 end

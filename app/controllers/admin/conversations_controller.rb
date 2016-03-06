@@ -1,12 +1,19 @@
 class Admin::ConversationsController < ApplicationController
+  before_action :authenticate_admin!
   before_action :recent_consultants
   before_filter :load_consultant, only: [:create, :new]
-  before_action :authenticate_admin!
+  before_action :get_box, only: [:index]
   helper_method :mailbox, :conversation
   layout 'application_admin'
 
   def index
-    @conversations ||= current_admin.mailbox.conversations.page(params[:page])
+    if @box.eql? "inbox"
+      @conversations ||= mailbox.inbox.page(params[:page])
+    elsif @box.eql? "sent"
+      @conversations ||= mailbox.sentbox.page(params[:page])
+    else
+      @conversations ||= mailbox.trash
+    end
   end
 
   def new
@@ -30,6 +37,7 @@ class Admin::ConversationsController < ApplicationController
     @message    = Message.new
     # @consultant = conversation.consultant_recipient
     conversation
+    @conversation.mark_as_read(current_admin)
   end
 
   def reply
@@ -63,4 +71,10 @@ class Admin::ConversationsController < ApplicationController
     @consultants = Consultant.recent
   end
 
+  def get_box
+    if params[:box].blank? or !["inbox","sent","trash"].include?(params[:box])
+      params[:box] = 'inbox'
+    end
+    @box = params[:box]
+  end
 end

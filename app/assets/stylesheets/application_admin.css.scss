@@ -75,3 +75,24 @@ table.wice-grid tr.wg-filter-row input[type=text] {
 .profile-thumb-mini {
   width: 30px; height: 30px;
 }
+.inbox .list-group-item.read {
+  background-color: rgba(243,243,243,.85)
+}
+.inbox .list-group-item .last-message {
+  width: 200px;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 30px;
+}
+.nav-tabs.custom li.active a, .nav-tabs.custom li.active a:hover, .nav-tabs.custom li.active a:focus {
+  background-color: #FFFFFF;
+  border-color: #dddddd #dddddd rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+.ibox-content.custom {
+  border-width: 1px 1px;
+  border-color: #ddd;
+  border-top: 0;
+  padding-top: 40px;
+}
