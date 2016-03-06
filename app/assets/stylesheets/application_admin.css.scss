@@ -96,3 +96,15 @@ table.wice-grid tr.wg-filter-row input[type=text] {
   border-top: 0;
   padding-top: 40px;
 }
+.inbox .list-group-item .sent-date {
+  position: relative;
+}
+.inbox .list-group-item .sent-date a {
+  position: absolute;
+  left: -35px;
+  top: 0;
+  display: none;
+}
+.inbox .list-group-item:hover .sent-date a {
+  display: block;
+}

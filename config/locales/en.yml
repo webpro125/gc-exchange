@@ -124,6 +124,13 @@ en:
       update: 'Your setting was successfully updated.'
     conversation:
       create: 'Sent Request'
+      destroy:
+        success: 'The conversation was moved to trash.'
+      restore:
+        success: 'The conversation was restored.'
+      empty_to_trash:
+        success: 'Your trash was cleaned!'
+
   views:
     consultant:
       actions:

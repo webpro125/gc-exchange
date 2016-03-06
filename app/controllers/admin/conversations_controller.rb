@@ -45,6 +45,23 @@ class Admin::ConversationsController < ApplicationController
     redirect_to admin_conversation_path(conversation)
   end
 
+  def destroy
+    conversation.move_to_trash(current_admin)
+    redirect_to admin_conversations_path, notice: t('controllers.conversation.destroy.success')
+  end
+
+  def restore
+    conversation.untrash(current_admin)
+    redirect_to admin_conversations_path, notice: t('controllers.conversation.restore.success')
+  end
+
+  def empty_trash
+    mailbox.trash.each do |conversation|
+      conversation.receipts_for(current_admin).update_all(deleted: true)
+    end
+    redirect_to admin_conversations_path, notice: t('controllers.conversation.empty_to_trash.success')
+  end
+
   private
 
   def mailbox
@@ -78,3 +95,4 @@ class Admin::ConversationsController < ApplicationController
     @box = params[:box]
   end
 end
+

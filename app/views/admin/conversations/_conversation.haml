@@ -1,4 +1,12 @@
 %li.list-group-item.clearfix{:class=> (conversation.is_unread?(current_admin) ? '' : 'read')}
   = link_to participant_names(conversation), admin_conversation_path(conversation), class: 'pull-left'
   %div.last-message= conversation.last_message.body
-  %span.pull-right= conversation.last_message.created_at.to_s(:long)
+  %span.pull-right.sent-date
+    = conversation.last_message.created_at.to_s(:long)
+    - if conversation.is_trashed?(current_admin)
+      = link_to restore_admin_conversation_path(conversation), class: 'btn btn-xs btn-info', method: :post do
+        %i.fa.fa-refresh
+    - else
+      = link_to admin_conversation_path(conversation), class: 'btn btn-danger btn-xs', method: :delete,
+        data: {confirm: 'Are you sure?'} do
+        %i.fa.fa-trash-o

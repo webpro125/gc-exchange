@@ -8,6 +8,10 @@
         %ul.nav.nav-tabs.custom
           = mailbox_section 'inbox', @box
           = mailbox_section 'sent', @box
+          = mailbox_section 'trash', @box
         .ibox-content.custom
+          - if @box == 'trash'
+            = link_to 'Empty trash', empty_trash_admin_conversations_path, class: 'btn btn-danger', method: :delete,
+              data: {confirm: 'Are you sure?'}
           %ul.list-group.inbox
             = render partial: 'conversation', collection: @conversations
