@@ -6,15 +6,20 @@ reportSearchPage = ->
   $dateRangeIndicator = $('#date-range')
   cloudOptions =
     autoResize: true
+    removeOverflowing: false
     fontSize:
       from: 0.05
       to: 0.03
+  $trendingKeywords = $('#trending-keywords').jQCloud([], cloudOptions)
+  $trendingPositions = $('#trending-positions').jQCloud([], cloudOptions)
+  $trendingAreas = $('#trending-areas').jQCloud([], cloudOptions)
+  $trendingDepartments = $('#trending-departments').jQCloud([], cloudOptions)
 
   updateReportData = (data) ->
-    $('#trending-keywords').jQCloud(data.keywords, cloudOptions)
-    $('#trending-postions').jQCloud(data.positions, cloudOptions)
-    $('#trending-areas').jQCloud(data.areas, cloudOptions)
-    $('#trending-departments').jQCloud(data.departments, cloudOptions)
+    $trendingKeywords.jQCloud('update', data.keywords)
+    $trendingPositions.jQCloud('update', data.positions)
+    $trendingAreas.jQCloud('update', data.areas)
+    $trendingDepartments.jQCloud('update', data.departments)
 
   loadData = ->
     startDate = startRange(filterType)

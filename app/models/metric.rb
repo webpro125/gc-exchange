@@ -7,6 +7,26 @@ class Metric < ActiveRecord::Base
   scope :consultants, -> { where(loggable_type: 'Consultant') }
   scope :users, -> { where(loggable_type: 'User') }
 
+  QUERY_METRICS = {
+    position_ids: :positions,
+    project_type_ids: :areas,
+    customer_name_ids: :departments
+  }
+
+  scope :queries, -> {
+    select("params -> 'q' as results")
+      .map(&:results).reject(&:empty?).flatten
+  }
+
+  QUERY_METRICS.keys.each do |key|
+    scope QUERY_METRICS[key], -> {
+      select("params -> '#{key.to_s}' as results")
+        .map(&:results).compact
+        .map { |data| JSON.parse(data) }
+        .reject(&:empty?).flatten
+    }
+  end
+
   METRIC_TYPES = [LOGIN=:login, SEARCH=:search]
 
   def self.log_login(user)

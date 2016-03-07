@@ -10,6 +10,11 @@ reportVisitsPage = ->
     $('#avg-session-duration').text(data.avg_session_duration)
     $('#page-per-session').text(data.pages_per_session)
 
+    if data.valid
+      $('#alert-message').hide()
+    else
+      $('#alert-message').show()
+
   loadData = ->
     startDate = startRange(filterType)
     $('#filter-types-btn').text(filterType.split('-').join(' '))
