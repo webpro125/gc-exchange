@@ -120,6 +120,9 @@ Rails.application.routes.draw do
       put :approve_personal_contact
       post :restore
     end
+    collection do
+      delete :empty_trash
+    end
   end
   # Non resource
 

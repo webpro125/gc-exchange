@@ -1,3 +1,7 @@
+<% if @box == 'trash' %>
+<%= link_to 'Empty trash', empty_trash_conversations_path, class: 'button tiny alert',
+            method: :delete, data: {confirm: 'Are you sure?'} %>
+<% end %>
 <ul class="nav nav-tabs custom">
   <%= mailbox_section 'inbox', @box %>
   <%= mailbox_section 'sent', @box %>
