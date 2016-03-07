@@ -1,0 +1,9 @@
+= simple_form_for [:admin, @form], url: admin_consultant_conversations_path, method: :post,
+  wrapper: :vertical_form do |f|
+  = f.error_notification
+  = f.input :subject
+  = f.input :message, as: :text, input_html: {class: 'small', cols: 5, rows: 5}
+  .hr-line-dashed
+  = button_tag(type: 'submit', class: "btn btn-primary") do
+    %i.fa.fa-check-circle
+    = t('views.sales_lead.new.save')

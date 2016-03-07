@@ -6,7 +6,8 @@
     <div class="row">
       <div class="medium-12 columns">
         <%= link_to 'Back to Inbox', conversations_path, class: 'button tiny' %>
-        <% if ((consultant_signed_in? &&
+        <% if communication.originator.class.name != 'Admin'
+             if ((consultant_signed_in? &&
                 !current_consultant.contactable(conversation
                                                         .other_participant(current_consultant))) &&
                 !user_is_gces?)
@@ -15,7 +16,9 @@
                         approve_personal_contact_conversation_path,
                         method: :put,
                         class: 'button tiny' if policy(current_consultant).contactable? %>
-        <% end %>
+        <%   end
+           end
+        %>
       </div>
     </div>
     <div class="row">

@@ -91,4 +91,12 @@ class ApplicationController < ActionController::Base
   def twilio_client
     Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
   end
+
+  def get_box
+    if params[:box].blank? or !["inbox","sent","trash"].include?(params[:box])
+      params[:box] = 'inbox'
+    end
+    @box = params[:box]
+  end
+
 end

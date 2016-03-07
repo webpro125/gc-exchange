@@ -2,9 +2,17 @@ class UsersController < CompanyController
   before_action :load_and_authorize_company, except: [:profile]
   before_action :load_and_authorize_user, only: [:show, :edit, :update, :destroy]
   skip_after_action :verify_authorized, only: :profile
+  before_action :get_box, only: [:profile]
 
   def profile
-    @messages = current_user.mailbox.conversations.page(params[:page])
+    # @messages = current_user.mailbox.conversations.page(params[:page])
+    if @box.eql? "inbox"
+      @messages ||= current_user.mailbox.inbox.page(params[:page])
+    elsif @box.eql? "sent"
+      @messages ||= current_user.mailbox.sentbox.page(params[:page])
+    else
+      @messages ||= current_user.mailbox.trash
+    end
     @consultants = Consultant.recent
     @projects = current_user.projects.open.limit(3)
   end
