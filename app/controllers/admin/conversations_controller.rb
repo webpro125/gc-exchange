@@ -87,12 +87,5 @@ class Admin::ConversationsController < ApplicationController
   def recent_consultants
     @consultants = Consultant.recent
   end
-
-  def get_box
-    if params[:box].blank? or !["inbox","sent","trash"].include?(params[:box])
-      params[:box] = 'inbox'
-    end
-    @box = params[:box]
-  end
 end
 

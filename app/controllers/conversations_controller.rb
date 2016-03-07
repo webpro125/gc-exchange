@@ -3,9 +3,17 @@ class ConversationsController < ApplicationController
   before_filter :load_consultant, only: [:create]
   before_action :auth_a_user!
   helper_method :mailbox, :conversation
+  before_action :get_box, only: [:index]
 
   def index
-    @messages ||= pundit_user.mailbox.conversations.page(params[:page])
+    # @messages ||= pundit_user.mailbox.conversations.page(params[:page])
+    if @box.eql? "inbox"
+      @messages ||= pundit_user.mailbox.inbox.page(params[:page])
+    elsif @box.eql? "sent"
+      @messages ||= pundit_user.mailbox.sentbox.page(params[:page])
+    else
+      @messages ||= pundit_user.mailbox.trash
+    end
   end
 
   def new
@@ -28,6 +36,7 @@ class ConversationsController < ApplicationController
   def show
     @message    = Message.new
     @consultant = conversation.consultant_recipient
+    conversation.mark_as_read(pundit_user)
   end
 
   def reply

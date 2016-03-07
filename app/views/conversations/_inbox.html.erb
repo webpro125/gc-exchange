@@ -1,5 +1,10 @@
-<% conversations.each do |conversation| %>
-    <div class="row">
+<ul class="nav nav-tabs custom">
+  <%= mailbox_section 'inbox', @box %>
+  <%= mailbox_section 'sent', @box %>
+</ul>
+<div class="message-inbox">
+  <% conversations.each do |conversation| %>
+    <div class="row <%= conversation.is_unread?(pundit_user) ? '' : 'read' %>">
       <div class="medium-8 columns">
         <% message = conversation.messages.first %>
         <% consultant = conversation.consultant_recipient %>
@@ -37,3 +42,4 @@
     </div>
 <% end %>
 <%= paginate conversations %>
+</div>
