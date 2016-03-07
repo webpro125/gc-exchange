@@ -14,12 +14,14 @@ reportSearchPage = ->
   $trendingPositions = $('#trending-positions').jQCloud([], cloudOptions)
   $trendingAreas = $('#trending-areas').jQCloud([], cloudOptions)
   $trendingDepartments = $('#trending-departments').jQCloud([], cloudOptions)
+  $trendingCerts = $('#trending-certs').jQCloud([], cloudOptions)
 
   updateReportData = (data) ->
     $trendingKeywords.jQCloud('update', data.keywords)
     $trendingPositions.jQCloud('update', data.positions)
     $trendingAreas.jQCloud('update', data.areas)
     $trendingDepartments.jQCloud('update', data.departments)
+    $trendingCerts.jQCloud('update', data.certifications)
 
   loadData = ->
     startDate = startRange(filterType)

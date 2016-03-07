@@ -10,12 +10,13 @@ class Metric < ActiveRecord::Base
   QUERY_METRICS = {
     position_ids: :positions,
     project_type_ids: :areas,
-    customer_name_ids: :departments
+    customer_name_ids: :departments,
+    certification_ids: :certifications
   }
 
   scope :queries, -> {
     select("params -> 'q' as results")
-      .map(&:results).reject(&:empty?).flatten
+      .map(&:results).reject(&:blank?).flatten
   }
 
   QUERY_METRICS.keys.each do |key|
@@ -23,7 +24,7 @@ class Metric < ActiveRecord::Base
       select("params -> '#{key.to_s}' as results")
         .map(&:results).compact
         .map { |data| JSON.parse(data) }
-        .reject(&:empty?).flatten
+        .reject(&:blank?).flatten
     }
   end
 

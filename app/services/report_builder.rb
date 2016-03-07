@@ -62,11 +62,16 @@ class ReportBuilder
     department_labels = CustomerName.where(id: departments).to_a
     departments = departments.group_by_count.map { |q, count| {text: department_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
 
+    certs = searches.certifications
+    cert_labels = Certification.where(id: certs).to_a
+    certifications = certs.group_by_count.map { |q, count| {text: cert_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
+
     {
       keywords: keywords,
       positions: positions,
       areas: areas,
-      departments: departments
+      departments: departments,
+      certifications: certifications
     }
   end
 
