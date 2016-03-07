@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
     elsif @box.eql? "sent"
       @messages ||= pundit_user.mailbox.sentbox.page(params[:page])
     else
-      @messages ||= pundit_user.mailbox.trash
+      @messages ||= pundit_user.mailbox.trash.page(params[:page])
     end
   end
 
@@ -54,6 +54,23 @@ class ConversationsController < ApplicationController
     else
       redirect_to conversation_path(conversation), notice: 'Unable to Approve Contact'
     end
+  end
+
+  def destroy
+    conversation.move_to_trash(pundit_user)
+    redirect_to conversations_path, notice: t('controllers.conversation.destroy.success')
+  end
+
+  def restore
+    conversation.untrash(pundit_user)
+    redirect_to conversations_path, notice: t('controllers.conversation.restore.success')
+  end
+
+  def empty_trash
+    mailbox.trash.each do |conversation|
+      conversation.receipts_for(pundit_user).update_all(deleted: true)
+    end
+    redirect_to conversations_path, notice: t('controllers.conversation.empty_to_trash.success')
   end
 
   private

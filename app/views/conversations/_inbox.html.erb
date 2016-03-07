@@ -1,6 +1,7 @@
 <ul class="nav nav-tabs custom">
   <%= mailbox_section 'inbox', @box %>
   <%= mailbox_section 'sent', @box %>
+  <%= mailbox_section 'trash', @box %>
 </ul>
 <div class="message-inbox">
   <% conversations.each do |conversation| %>
@@ -37,6 +38,14 @@
       <div class="medium-4 columns">
         <p class="right">
           <%= conversation.updated_at.strftime("%B %d") %>
+        </p>
+        <p class="right">
+          <% if conversation.is_trashed?(pundit_user) %>
+          <%= link_to 'Restore', restore_conversation_path(conversation), class: 'button primary tiny', method: :post %>
+          <% else %>
+          <%= link_to 'Move to Trash', conversation_path(conversation), class: 'button alert tiny',
+                      method: :delete, data: {confirm: 'Are you sure?'} %>
+          <% end %>
         </p>
       </div>
     </div>

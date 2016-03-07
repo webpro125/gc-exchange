@@ -114,10 +114,11 @@ Rails.application.routes.draw do
       get :contract
     end
   end
-  resources :conversations, only: [:index, :show] do
+  resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
       put :approve_personal_contact
+      post :restore
     end
   end
   # Non resource
