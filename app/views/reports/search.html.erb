@@ -1,0 +1,62 @@
+<% body_class('report-search-page') %>
+
+<h1>Search Metrics</h1>
+
+<div class="report">
+  <div class="small-12 report-toolbar clearfix">
+    <div class="right filter-types">
+      <button data-dropdown="drop-filter-types" data-options="align:left" class="button tiny dropdown" id="filter-types-btn">today</button><br>
+      <ul id="drop-filter-types" data-dropdown-content class="f-dropdown" aria-hidden="true">
+        <li><a href="#" data-filter="today">today</a></li>
+        <li><a href="#" data-filter="last-week">last week</a></li>
+        <li><a href="#" data-filter="last-month">last 1 month</a></li>
+        <li><a href="#" data-filter="last-2-months">last 2 months</a></li>
+        <li><a href="#" data-filter="last-3-months">last 3 months</a></li>
+      </ul>
+    </div>
+
+    <h4 id="date-range"></h4>
+  </div>
+
+  <hr>
+
+  <div class="report-data">
+    <div class="row">
+      <div class="small-12 large-6 columns">
+        <div class="search-metrics">
+          <h3 class="text-center">Trending Keywords</h3>
+          <div id="trending-keywords" class="search-content"></div>
+        </div>
+      </div>
+      <div class="small-12 large-6 columns">
+        <div class="search-metrics">
+          <h3 class="text-center">Trending Positions</h3>
+          <div id="trending-postions" class="search-content"></div>
+        </div>
+      </div>
+      <div class="small-12 large-6 columns">
+        <div class="search-metrics">
+          <h3 class="text-center">Trending Functional Areas</h3>
+          <div id="trending-areas" class="search-content"></div>
+        </div>
+      </div>
+      <div class="small-12 large-6 columns">
+        <div class="search-metrics">
+          <h3 class="text-center">Trending Departments</h3>
+          <div id="trending-departments" class="search-content"></div>
+        </div>
+      </div>
+      <div class="small-12 large-6 columns">
+        <div class="search-metrics">
+          <h3 class="text-center">Trending Certifications</h3>
+          <div id="trending-certs" class="search-content"></div>
+        </div>
+      </div>
+      <div class="small-12 large-6 columns">
+      </div>
+    </div>
+    <div id="loading" class="loading-indicator">
+      <span class="spinner"></span>
+    </div>
+  </div>
+</div>

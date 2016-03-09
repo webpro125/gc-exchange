@@ -8,16 +8,15 @@
 
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag 'debug' if development? %>
-    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets
-    .find_asset("#{controller_name}.css") %>
+    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <!--[if lte IE 8]><%= javascript_include_tag 'jqery.flot/excanvas.min' %><![endif]-->
     <%= javascript_include_tag "application" %>
-    <%= analytics_init if Rails.env.production? %>
     <%= csrf_meta_tags %>
     <%= google_webfonts_init({ google: ['Open+Sans:400italic,700italic,700,300,600,400:latin'] }) %>
 </head>
 
-<body>
+<body class="<%= yield(:body_class) %>">
     <%= render 'layouts/header' %>
     <div class="container">
         <div class="row">
@@ -26,8 +25,9 @@
         </div>
     </div>
     <%= render 'layouts/footer' %>
-    <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
-    .find_asset("#{controller_name}.js") %>
+    <%= render 'layouts/google_analytics' unless Rails.env.test? %>
+    <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.js") %>
+    <%= yield :js %>
     <%= render 'layouts/debug' if development? %>
 </body>
 </html>

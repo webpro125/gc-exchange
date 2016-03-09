@@ -58,6 +58,10 @@ class Search
     end
   end
 
+  def metrics
+    attributes.select { |_, value| value.present? }
+  end
+
   private
 
   def lat_and_long

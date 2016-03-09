@@ -24,6 +24,8 @@
 //= require confirm-with-reveal.min
 //= require select2
 //= require foundation-datetimepicker
+//= require moment
+//= require date-range
 //= require widgets
 //= require entities
 

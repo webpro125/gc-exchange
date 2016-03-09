@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301161446) do
+ActiveRecord::Schema.define(version: 20160301184934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "addresses", force: true do |t|
     t.float    "latitude",      null: false
@@ -265,6 +266,15 @@ ActiveRecord::Schema.define(version: 20160301161446) do
     t.integer "market_id"
   end
 
+  create_table "metrics", force: true do |t|
+    t.string   "loggable_type"
+    t.integer  "loggable_id"
+    t.string   "metric_type",   null: false
+    t.hstore   "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "militaries", force: true do |t|
     t.integer  "rank_id"
     t.integer  "clearance_level_id"
@@ -441,6 +451,8 @@ ActiveRecord::Schema.define(version: 20160301161446) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
 
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
 

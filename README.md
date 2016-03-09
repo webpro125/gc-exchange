@@ -42,6 +42,17 @@ https://developers.google.com/maps/documentation/business/
 Create a bing maps api key
 http://www.bingmapsportal.com
 
+Create google analytics account credentials.
+Create service account on google console and generate p12 key file.
+https://console.developers.google.com
+Create Credentials => Service Account Key => P12
+Add credentials to config/ga_api.yml based on config/ga_api.yml.example file.
+
+Copy p12 file to config/${private_key_file}.p12
+export GOOGLE_PRIVATE_KEY_FILE=${private_key_file}
+export GOOGLE_SERVICE_ACCOUNT_EMAIL=${google_service_account_email}
+export GA_PROFILE_ID=${google_analytics_profile_id}
+
 Generate a secret key and save your keys as ENV variables.
 Generate a password for the company superuser password.
 Generate elastic search ENV variables.
@@ -56,6 +67,12 @@ export COMPANY_SUPERUSER_PASS=${company_superuser_pass}
 export ELASTICSEARCH_HOST=${elasticsearch_host}
 export GA_TRACKER=${ga_tracker}
 ```
+
+On development environment, please copy .env.example to configure environment variables.
+```
+cp .env.example .env
+```
+Set variables on .env file.
 
 Initialize your application by running
 ```
