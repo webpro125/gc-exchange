@@ -48,46 +48,46 @@ class ReportBuilder
 
   def search_metrics
     searches = Metric.searches.where(created_at: @from..@to)
-    params = searches.pluck(:params)
-    keywords = params.map { |s| s['q'] }.reject { |q| q.blank? }
-                 .inject(Hash.new(0)) { |h, q| h[q] += 1; h }
-                 .map { |q, count| {text: q, weight: count} }
+    keywords = searches.queries.group_by_count.map { |q, count| {text: q, weight: count} }
 
-    positions = params.map { |s| JSON.parse(s['position_ids']) }.flatten
-                 .inject(Hash.new(0)) { |h, q| h[q] +=1; h }
-    position_labels = Position.where(id: positions.keys).to_a
-    positions = positions.map { |q, count| {text: position_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
+    positions = searches.positions
+    position_labels = Position.where(id: positions).to_a
+    positions = positions.group_by_count.map { |q, count| {text: position_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
 
-    areas = params.map { |s| JSON.parse(s['project_type_ids']) }.flatten
-                  .inject(Hash.new(0)) { |h, q| h[q] +=1; h }
-    area_labels  = ProjectType.where(id: areas.keys).to_a
-    areas = areas.map { |q, count| {text: area_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
+    areas = searches.areas
+    area_labels = ProjectType.where(id: areas).to_a
+    areas = areas.group_by_count.map { |q, count| {text: area_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
 
-    departments = params.map { |s| JSON.parse(s['customer_name_ids']) }.flatten
-                  .inject(Hash.new(0)) { |h, q| h[q] +=1; h }
-    department_labels  = CustomerName.where(id: departments.keys).to_a
-    departments = departments.map { |q, count| {text: department_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
+    departments = searches.departments
+    department_labels = CustomerName.where(id: departments).to_a
+    departments = departments.group_by_count.map { |q, count| {text: department_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
+
+    certs = searches.certifications
+    cert_labels = Certification.where(id: certs).to_a
+    certifications = certs.group_by_count.map { |q, count| {text: cert_labels.detect { |p| p.id == q.to_i }.label, weight: count} }
 
     {
       keywords: keywords,
       positions: positions,
       areas: areas,
-      departments: departments
+      departments: departments,
+      certifications: certifications
     }
   end
 
   def visits_metrics
-    return {} unless ga_api_available?
+    return {valid: false} unless ga_api_available?
     {
       pageviews: GA_API_CLIENT.pageviews(@from, @to),
       avg_session_duration: ApplicationController.helpers.distance_of_time_in_words(GA_API_CLIENT.avg_session_duration(@from, @to)),
-      pages_per_session: GA_API_CLIENT.pages_per_session(@from, @to)
+      pages_per_session: GA_API_CLIENT.pages_per_session(@from, @to),
+      valid: true
     }
   end
 
   private
 
   def ga_api_available?
-    GA_API_CLIENT.present?
+    GA_API_CLIENT.valid?
   end
 end

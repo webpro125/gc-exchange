@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
   def new
     if @search.valid?
-      Metric.log_search(current_user, @search.attributes) #if current_user && !current_user.gces?
+      Metric.log_search(current_user, @search.metrics) if current_user && !current_user.gces?
 
       response = Consultant.search(SearchAdapter.new(@search).to_query)
       @consultants = response.page(params[:page]).records

@@ -62,6 +62,14 @@
 
 .report-data {
   position: relative;
+
+  #alert-message {
+    display: none;
+    border: none;
+    span {
+      font-size: 20px;
+    }
+  }
 }
 
 .search-metrics {

@@ -32,9 +32,15 @@ class GoogleAnalyticsApi
         @analytics = @client.discovered_api('analytics', API_VERSION)
         File.open(CACHED_API_FILE, 'w') { |file| Marshal.dump(@analytics, file) }
       end
+
+      @valid = true
     rescue => e
-      nil
+      @valid = false
     end
+  end
+
+  def valid?
+    @valid
   end
 
   def pageviews(from, to)
@@ -46,7 +52,7 @@ class GoogleAnalyticsApi
         'end-date' => to.strftime('%Y-%m-%d'),
         'metrics' => 'ga:pageviews'
       }
-    ).data.rows[0][0].to_i
+    ).data.rows.try(:[], 0).try(:[], 0).to_i
   end
 
   def pages_per_session(from, to)
@@ -58,7 +64,7 @@ class GoogleAnalyticsApi
         'end-date' => to.strftime('%Y-%m-%d'),
         'metrics' => 'ga:pageviewsPerSession'
       }
-    ).data.rows[0][0].to_i
+    ).data.rows.try(:[], 0).try(:[], 0).to_i
   end
 
   def avg_session_duration(from, to)
@@ -70,6 +76,6 @@ class GoogleAnalyticsApi
         'end-date' => to.strftime('%Y-%m-%d'),
         'metrics' => 'ga:avgSessionDuration'
       }
-    ).data.rows[0][0].to_i
+    ).data.rows.try(:[], 0).try(:[], 0).to_i
   end
 end
