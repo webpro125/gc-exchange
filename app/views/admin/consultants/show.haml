@@ -51,24 +51,28 @@
           %div
             %div
               %h2.m-t-none.m-b-sm= @consultant.full_name
-              = form_for @form, url:  consultant_upload_images_path(consultant_id: @consultant.id),
-                method: :post, :multipart => true, :html => {:class => 'upload-image-form'} do |f|
-                .file-upload.btn.btn-xs.btn-info#upload-resume.m-b-sm
-                  %i.fa.fa-file-image-o
-                  %span Upload Image
-                  = f.file_field :profile_image, as: :file, accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}",
-                    :class => 'upload'
-              %br/
               = link_to content_tag(:i, '', :class => 'fa fa-download') + ' Download Resume',
                 download_resume_path(@consultant),
-                class: 'btn btn-default btn-xs'
+                class: 'btn btn-default btn-xs vertical-top'
               = form_for @form, url:  consultant_upload_resumes_path(consultant_id: @consultant.id),
                 method: :post, :multipart => true, :html => {:class => 'upload-resume-form'} do |f|
-                .file-upload.btn.btn-default.btn-xs#upload-resume
+                .file-upload.btn.btn-default.btn-xs.vertical-top.m-b#upload-resume
                   %i.fa.fa-upload
                   %span Upload Resume
                   = f.file_field :resume, as: :file, accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}",
                     :class => 'upload'
+              %br/
+              = form_for @form, url:  consultant_upload_images_path(consultant_id: @consultant.id),
+                method: :post, :multipart => true, :html => {:class => 'upload-image-form'} do |f|
+                .file-upload.btn.btn-xs.btn-info.vertical-top#upload-resume.m-b-sm
+                  %i.fa.fa-file-image-o
+                  %span Upload Image
+                  = f.file_field :profile_image, as: :file, accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}",
+                    :class => 'upload'
+              = link_to new_admin_consultant_conversation_path(@consultant), class: 'btn btn-xs btn-info vertical-top' do
+                %i.fa.fa-user-plus
+                Contact
+
       .col-md-4
         %table.table.small.m-b-xs
           - if @consultant.military.present?

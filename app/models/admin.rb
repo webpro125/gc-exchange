@@ -1,5 +1,8 @@
 class Admin < ActiveRecord::Base
   include Nameable
+
+  acts_as_messageable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,4 +14,8 @@ class Admin < ActiveRecord::Base
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
+
+  def mailboxer_email(_object)
+    email
+  end
 end

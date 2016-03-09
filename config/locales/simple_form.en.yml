@@ -1,5 +1,6 @@
 en:
   simple_form:
+    now: 'Present'
     "yes": 'Yes'
     "no": 'No'
     required:
@@ -10,22 +11,155 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-    # include_blanks:
-    #   defaults:
-    #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
+     # Labels and hints examples
+    labels:
+      defaults:
+        password: 'Password'
+      user:
+        new:
+          email: 'E-mail to sign in.'
+        edit:
+          email: 'E-mail.'
+        remember_me: 'Keep me logged in'
+      address:
+        address: 'Home Address'
+      phone:
+        number: 'Phone Number'
+        phone_type: 'Phone Type'
+        phone_type_id: 'Phone Type'
+        primary: 'Primary'
+      phones:
+        number: 'Phone Number'
+        phone_type: 'Phone Type'
+        phone_type_id: 'Phone Type'
+        primary: 'Primary'
+      consultant:
+        remember_me: 'Keep me logged in'
+        resume: 'Upload Your Resume or CV, with appropriate attachments – (Note: Some consultants use this field to provide examples of their work or a summary of seminars, training, or other fixed price consulting products that they offer, along with pricing, for review by our client Contractors.'
+        profile_image: 'Upload Your Profile Image'
+        resume_instruction: 'Only upload PDF files. We will give you control over which
+        Government Contractors have access to your personal contact information if you remove
+        your telephone number, email address, or home address from your resume.'
+        image_instruction: 'Only upload JPG, JPEG, or PNG files.'
+        abstract: 'Background and Experience'
+        willing_to_travel: 'Willing to Travel'
+        phone_instruction: 'One phone number is required.'
+        rate: 'Published Hourly Rate'
+        gces_fee: "GCES Fee"
+        total_rate: "Total Rate"
+        certification_ids: 'Professional Certifications'
+        skills_list: 'Skills & Expertise'
+        first_name: 'First Name'
+        last_name: 'Last Name'
+      education:
+        school: 'College'
+        field_of_study: 'Field of Study'
+      educations:
+        school: 'College'
+        field_of_study: 'Field of Study'
+      military:
+        military: 'Military Service'
+        clearance_active: 'Active Security Clearance'
+        investigation_date: 'Investigation Date'
+        clearance_expiration_date: 'Expiration Date (optional)'
+        clearance_level: 'Clearance Level'
+        clearance_level_id: 'Clearance Level'
+        branch: 'Branch'
+        rank: 'Last Rank'
+        service_start_date: 'Initial Entry Date'
+        service_end_date: 'End of Service Date'
+      project_history:
+        consultant: 'test'
+        position_ids: 'Position(s) on Project'
+        customer_name_id: 'Government Department'
+        client_poc_name: 'Reference Name'
+        client_poc_email: 'Reference Email'
+        project_type: 'Functional Area of Focus'
+        project_type_id: 'Functional Area of Focus'
+        start_date: 'Start Date'
+        end_date: 'End Date'
+        description: 'Description of Role Performed'
+        client_company: 'Government Contractor'
+        client_poc_phone: 'Reference Phone'
+      project:
+        proposed_start: 'Engagement Start Date'
+        proposed_end: 'Engagement End Date'
+        proposed_rate: 'Negotiated Consultant''s Hourly Rate'
+        project_location: 'Work Location'
+        project_name: 'Engagement Identification'
+        travel_authorization_id: 'Travel Authorization'
+      search:
+        position_ids: 'Position'
+        q: 'Keywords'
+        customer_name_ids: 'Government Department'
+        project_type_ids: 'Functional Area of Focus'
+        clearance_level_id: 'Clearance Level'
+        address: 'Location'
+        certification_ids: 'Certifications'
+      background:
+        citizen: 'Are you a citizen of the United States?'
+        convicted: 'In the past seven (7) years have you been convicted or sentenced of a crime
+        in any court? (Including all qualifying charges convictions or sentences in any Federal,
+        state, local, military, or non-U.S. court).'
+        parole: 'In the past seven (7) years have you been or are you currently on probation or
+        parole?'
+        illegal_drug_use: 'In the last seven (7) years, have you illegally used any drugs or
+        controlled substances? Use of a drug or controlled substance includes injecting, snorting,
+        inhaling, swallowing, experimenting with or otherwise consuming any drug or controlled
+        substance.'
+        illegal_purchase: 'In the last seven (7) years, have you been involved in the illegal
+        purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving,
+         handling or sale of any drug or controlled substance?'
+        illegal_prescription: 'In the last seven (7) years have you intentionally engaged in the
+        misuse of prescription drugs, regardless of whether or not the drugs were prescribed for you
+         or someone else?'
+        information_is_correct: ' I certify that, to the best of my knowledge and belief,
+        all of the information provided by me is true and correct as of the date I provided the
+        information.'
+    hints:
+      defaults:
+        password: 'Password must be at least 8 characters long.'
+      project_history:
+        client_company: 'Identify the name of the company or organization you were responsible to, in performing this project or responsibility. You
+        may enter “proprietary” if disclosure is inappropriate at this time.'
+        client_poc_name: 'Identify the person who received your work product or that you reported to on the project.'
+        client_poc_email: 'Provide the email address of your project reference.'
+        description: 'To help the searcher find your unique experience, summarize your roles on
+        the project or responsibility and discuss specifics about the Government organization targeted or supported,
+        the name of the procurement or program pursued or supported, any processes, tools, and
+        techniques you used to achieve specific outcomes. Including results and experience
+        functioning as a “Mentor” are also appropriate in this field.Of particular interest is information that supports your value as a Subject Matter Expert in a particular field. NOTE: An entry is required.'
+        project_type: 'Identify the market and/or the functional environment where the project took place.'
+        start_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+      consultant:
+        abstract: 'This field provides a summary abstract of your career experience.  Enter
+        a brief description of your professional achievements, work history, and skills. Include
+        experience that substantiates  your qualifications to be a “Mentor”. NOTE: An entry is required. Of particular importance is discussion that reinforces your Subject Matter Expertise in a particular area.'
+        skills_list: 'Add education, training and certification requirements and separate each skill
+        with a comma.  (e.g. programming language(s), EVMA, Shipley, Illustrator, etc.)
+        Of particular interest are skills that reinforce your value as a Subject Matter Expert in a particular area.'
+      address:
+        address: 'Enter your Address, City, State, and Zip Code.  Your address is used to help
+        government contractors search for local consultants and this information will not be shown
+        publicly.'
+      phone:
+        number: 'Format xxx-xxx-xxxx'
+      military:
+        investigation_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        clearance_expiration_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        service_start_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+        service_end_date: 'Format Month DD YYYY (e.g. January 09 1990)'
+      project:
+        proposed_start: 'Format Month DD YYYY (e.g. January 09 1990)'
+        proposed_end: 'Format Month DD YYYY (e.g. January 09 1990)'
+        project_location: 'The location where the work is to be performed.'
+      search:
+        customer_name_ids: 'To search for lower level Government organization experience, enter the
+        specific Government organizations title in the Keyword search field.'
+        q: 'This field is used to find consultants who’s detailed profiles align with your specific
+        requirements, for example – unique skills, training, and tools, program names, specific
+        Government office experience, etc. You may also search for “Mentors” – senior, career
+        professional, who prefers to support special projects on a less than full time basis'
+        address: 'Please enter the address of the work location if you would like to find
+        consultants within a 50 mile radius.'
