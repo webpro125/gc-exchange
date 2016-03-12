@@ -3,11 +3,11 @@ class ReportsController < ApplicationController
   before_filter :verify_gces
   before_filter :get_date_range
 
-  def visits
+  def public
     respond_to do |format|
       format.html {}
       format.json do
-        render json: ReportBuilder.new(@from, @to, @filter).visits_metrics
+        render json: ReportBuilder.new(@from, @to, @filter).public_metrics
       end
     end
   end

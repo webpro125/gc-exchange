@@ -1,5 +1,5 @@
 reportVisitsPage = ->
-  return unless $('body').hasClass('report-visits-page')
+  return unless $('body').hasClass('report-public-page')
 
   filterType = 'today'
   $loading = $('#loading')
@@ -18,9 +18,12 @@ reportVisitsPage = ->
   loadData = ->
     startDate = startRange(filterType)
     $('#filter-types-btn').text(filterType.split('-').join(' '))
-    $dateRangeIndicator.text("#{startDate.format('ll')} - #{moment().endOf('day').format('ll')}")
+    if filterType == 'today'
+      $dateRangeIndicator.text("#{startDate.format('ll')}")
+    else
+      $dateRangeIndicator.text("#{startDate.format('ll')} - #{moment().endOf('day').format('ll')}")
     $loading.show()
-    $.ajax '/reports/visits',
+    $.ajax '/reports/public',
       dataType: 'JSON'
       data:
         from: startDate.format()

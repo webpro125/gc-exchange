@@ -75,8 +75,9 @@ class ReportBuilder
     }
   end
 
-  def visits_metrics
+  def public_metrics
     return {valid: false} unless ga_api_available?
+
     {
       pageviews: GA_API_CLIENT.pageviews(@from, @to),
       avg_session_duration: ApplicationController.helpers.distance_of_time_in_words(GA_API_CLIENT.avg_session_duration(@from, @to)),
