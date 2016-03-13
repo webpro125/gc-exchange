@@ -22,7 +22,8 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def edit?
-    gces? || user == record
+    user.consultant == record && user.consultant.wizard_step == Wicked::FINISH_STEP
+    # gces? || user == record
   end
 
   def contract?
@@ -36,15 +37,13 @@ class ConsultantPolicy < ApplicationPolicy
   alias_method :update?, :edit?
 
   def upload_resume?
-    user == record || gces?
-  end
-
-  def update_sms_notification?
-    user == record || gces?
+    # user.consultant == record || gces?
+    user.consultant == record && user.consultant.wizard_step == Wicked::FINISH_STEP
   end
 
   alias_method :upload_image?, :upload_resume?
   alias_method :consultant?, :upload_resume?
+  alias_method :update_sms_notification?, :upload_resume?
 
   private
 

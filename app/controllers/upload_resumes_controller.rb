@@ -26,11 +26,11 @@ class UploadResumesController < ApplicationController
     @consultant = Consultant.find(params[:consultant_id])
     @form = UploadResumeForm.new(@consultant)
     unless admin_signed_in?
-      if current_user.present? && current_user.gces?
-        authorize current_user, :upload_resume?
-      else
-        authorize current_consultant, :upload_resume?
-      end
+      # if current_user.present? && current_user.gces?
+      #   authorize current_user, :upload_resume?
+      # else
+        authorize current_user.consultant, :upload_resume?
+      # end
     end
   end
 end

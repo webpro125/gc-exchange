@@ -1,0 +1,13 @@
+.row
+  .small-12.columns
+    %ul.breadcrumbs
+      %li{:class => "#{create_profile_helper(:basic_information)}"}
+        = t('views.wizard.header.basic')
+      %li{:class => "#{create_profile_helper(:qualifications)}"}
+        = t('views.wizard.header.qualifications')
+      %li{:class => "#{create_profile_helper(:other_information)}"}
+        = t('views.wizard.header.other_info')
+      %li{:class => "#{create_profile_helper(:background_information)}"}
+        = t('views.wizard.header.background_information')
+      %li{:class => "#{create_profile_helper(:project_history)}"}
+        = t('views.wizard.header.project_history')

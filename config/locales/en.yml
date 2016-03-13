@@ -238,7 +238,7 @@ en:
         upload_photo_html: '<i class="fi-photo"></i> Upload Image'
     registrations:
       new:
-        title: 'Consultant Registration'
+        title: 'Registration'
     company:
       actions:
         index: 'Manage Government Contractors'

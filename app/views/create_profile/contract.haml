@@ -1,0 +1,18 @@
+= render 'header'
+.wizard
+  #progress.consultant{"data-magellan-expedition" => "fixed"}
+    .row
+      %ul
+        %li{"data-magellan-arrival" => "contract"}
+          %a.button.secondary{:href => "#contract"} Contract
+        %li{"data-magellan-arrival" => "attachment-1"}
+          %a.button.secondary{:href => "#attachment-1"} Attachment 1
+        %li{"data-magellan-arrival" => "attachment-2-part-1"}
+          %a.button.secondary{:href => "#attachment-2-part-1"} Attachment 2 - Part 1
+        %li{"data-magellan-arrival" => "attachment-2-part-2"}
+          %a.button.secondary{:href => "#attachment-2-part-2"} Attachment 2 - Part 2
+        %li{"data-magellan-arrival" => "attachment-3"}
+          %a.button.secondary{:href => "#attachment-3"} Attachment 3
+  = simple_form_for @form, url: create_profile_path(:contract), method: :put do |f|
+    = render 'consultants/contract_details'
+    = render 'footer', f: f

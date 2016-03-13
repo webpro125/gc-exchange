@@ -25,7 +25,7 @@ class CreateProfileController < ConsultantController
 
   def update
     Rails.logger.debug("STEP: #{step}")
-    current_consultant.wizard_step = next_step
+    current_user.consultant.wizard_step = next_step
     generate_update_form
 
     if step == :contract || @form.validate(form_params(step))
@@ -45,7 +45,7 @@ class CreateProfileController < ConsultantController
   private
 
   def finish_wizard_path
-    send_completed_sms current_consultant.phones.first.number.to_s unless current_consultant.phones.blank?
+    send_completed_sms current_user.consultant.phones.first.number.to_s unless current_user.consultant.phones.blank?
     profile_completed_path
   end
 
@@ -61,27 +61,27 @@ class CreateProfileController < ConsultantController
   def generate_update_form
     case step
     when :basic_information
-      @form = BasicInformationForm.new current_consultant
+      @form = BasicInformationForm.new current_user.consultant
     when :qualifications
-      @form = QualificationsForm.new current_consultant
+      @form = QualificationsForm.new current_user.consultant
     when :other_information
-      @form = OtherInformationForm.new current_consultant
+      @form = OtherInformationForm.new current_user.consultant
       send_welcome_sms(@form.phones.first.number.to_s) unless @form.phones.blank?
     when :background_information
-      @form = BackgroundInformationForm.new current_consultant
+      @form = BackgroundInformationForm.new current_user.consultant
     when :project_history
-      @form = ProjectHistoryForm.new current_consultant.project_histories.first_or_initialize
+      @form = ProjectHistoryForm.new current_user.consultant.project_histories.first_or_initialize
     when :contract
-      current_consultant.contract_effective_date = DateTime.now
-      current_consultant.contract_version = Consultant::CURRENT_CONTRACT_VERSION
-      @form = EditConsultantForm.new current_consultant
+      current_user.consultant.contract_effective_date = DateTime.now
+      current_user.consultant.contract_version = Consultant::CURRENT_CONTRACT_VERSION
+      @form = EditConsultantForm.new current_user
     end
   end
 
   def generate_show_form
     case step
     when :basic_information
-      @form = BasicInformationForm.new current_consultant
+      @form = BasicInformationForm.new current_user.consultant
     when :qualifications
       generate_qualifications_show
     when :other_information
@@ -91,49 +91,49 @@ class CreateProfileController < ConsultantController
     when :project_history
       generate_project_history
     when :contract
-      @contract = Contract.for_consultant current_consultant
-      @form = EditConsultantForm.new current_consultant
+      @contract = Contract.for_consultant current_user
+      @form = EditConsultantForm.new current_user
     end
   end
 
   def generate_other_information
-    current_consultant.build_address unless current_consultant.address.present?
-    current_consultant.build_entity unless current_consultant.entity.present?
-    current_consultant.build_military unless current_consultant.military.present?
-    @form = OtherInformationForm.new current_consultant
+    current_user.consultant.build_address unless current_user.consultant.address.present?
+    current_user.consultant.build_entity unless current_user.consultant.entity.present?
+    current_user.consultant.build_military unless current_user.consultant.military.present?
+    @form = OtherInformationForm.new current_user.consultant
   end
 
   def generate_qualifications_show
-    @form = QualificationsForm.new current_consultant
+    @form = QualificationsForm.new current_user.consultant
   end
 
   def generate_background_information
-    current_consultant.build_background unless current_consultant.background.present?
-    @form = BackgroundInformationForm.new current_consultant
+    current_user.consultant.build_background unless current_user.consultant.background.present?
+    @form = BackgroundInformationForm.new current_user.consultant
   end
 
   def generate_project_history
-    project = current_consultant.project_histories.first_or_initialize
+    project = current_user.consultant.project_histories.first_or_initialize
     project.build_phone if project.phone.nil?
 
     @form = ProjectHistoryForm.new project
   end
 
   def redirect_after_wizard
-    return unless current_consultant.wizard_step == Wicked::FINISH_STEP
+    return unless current_user.consultant.wizard_step == Wicked::FINISH_STEP
     redirect_to finish_wizard_path
     false
   end
 
   def render_background_information
     @form.save
-    ConsultantSetStatus.new(current_consultant).on_hold_and_save
+    ConsultantSetStatus.new(current_user.consultant).on_hold_and_save
     render_wizard_path
   end
 
   def render_wizard_path
     render_wizard(@form)
-    ConsultantSetStatus.new(current_consultant).pending_approval_and_save if step == :contract
+    ConsultantSetStatus.new(current_user.consultant).pending_approval_and_save if step == :contract
   end
 
   def send_welcome_sms to_phone
@@ -141,13 +141,13 @@ class CreateProfileController < ConsultantController
     account_url = host_url + '/account_setting'
     message = 'Welcome to GCES. You signed up for text notifications.
               To cancel text notifications click the following link: ' + account_url
-    send_sms to_phone, message, current_consultant
+    send_sms to_phone, message, current_user.consultant
   end
 
   def send_completed_sms to_phone
     message = 'Congratulations, you finished the profile builder.
               You are free to login at any time to change, or to add more details to your profile.'
-    send_sms to_phone, message, current_consultant
+    send_sms to_phone, message, current_user.consultant
   end
 
 end

@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = pundit_user.projects.page(params[:page])
+    @projects = pundit_user.consultant.projects.page(params[:page])
   end
 
   # GET /projects/1
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = pundit_user.projects.build
+    @project = pundit_user.consultant.projects.build
     @form    = ProjectForm.new(@project)
 
     authorize @project

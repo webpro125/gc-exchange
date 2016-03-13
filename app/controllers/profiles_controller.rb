@@ -3,11 +3,11 @@ class ProfilesController < ConsultantController
   before_action :get_box, only: [:consultant]
 
   def show
-    @consultant = current_consultant
+    @consultant = current_user.consultant
   end
 
   def update
-    @form = EditConsultantForm.new(current_consultant)
+    @form = EditConsultantForm.new(current_user)
 
     if @form.validate(consultant_params) && @form.save
       redirect_to consultant_root_path
@@ -17,11 +17,11 @@ class ProfilesController < ConsultantController
   end
 
   def edit
-    @form = EditConsultantForm.new(current_consultant)
+    @form = EditConsultantForm.new(current_user)
   end
 
   def consultant
-    @consultant = current_consultant
+    @consultant = current_user.consultant
     # @conversations = @consultant.mailbox.conversations.page(params[:page])
     if @box.eql? "inbox"
       @conversations ||= @consultant.mailbox.inbox.page(params[:page])
@@ -36,11 +36,11 @@ class ProfilesController < ConsultantController
   private
 
   def load_and_authorize_consultant
-    authorize current_consultant
-    current_consultant.build_military unless current_consultant.military.present?
+    authorize current_user.consultant
+    current_user.consultant.build_military unless current_user.consultant.military.present?
   end
 
   def consultant_params
-    params.require(:consultant)
+    params.require(:user)
   end
 end

@@ -26,11 +26,11 @@ class UploadImagesController < ApplicationController
     @consultant = Consultant.find(params[:consultant_id])
     @form = UploadImageForm.new(@consultant)
     unless admin_signed_in?
-      if current_user.present? && current_user.gces?
-        authorize current_user, :upload_image?
-      else
-        authorize current_consultant, :upload_image?
-      end
+      # if current_user.present? && current_user.gces?
+      #   authorize current_user, :upload_image?
+      # else
+        authorize current_user.consultant, :upload_image?
+      # end
     end
   end
 end

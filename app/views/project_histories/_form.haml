@@ -1,0 +1,9 @@
+= simple_form_for(@form) do |f|
+  .row
+    .large-12.columns
+      = f.error_notification
+      = render 'shared/base_error', model: @form
+  = render 'project_history_fields', f: f
+  .row
+    .large-12.columns
+      = f.button :submit

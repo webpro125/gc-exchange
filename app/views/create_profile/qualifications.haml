@@ -1,0 +1,22 @@
+= render 'header'
+= simple_form_for @form, url: create_profile_path(:qualifications), method: :put do |f|
+  = render 'shared/base_error', model: @form
+  .row
+    .large-12.columns
+      = f.error_notification
+  .wizard
+    = f.simple_fields_for :educations do |e|
+      = render 'educations/education_fields', f: e
+    .links
+      = link_to_add_association t('views.profile.actions.new_education_html'),
+        f,
+        :educations,
+        partial: 'educations/education_fields',
+        class: 'button small'
+    %hr/
+    .row
+      .medium-6.columns.skills-table.two-columns
+        = render 'profiles/certifications_fields', f: f
+      .medium-5.columns.large-label
+        = render 'profiles/skills_fields', f: f
+  = render 'footer', f: f

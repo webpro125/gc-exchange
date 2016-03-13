@@ -1,5 +1,5 @@
 class SettingsController < ApplicationController
-  before_action :authenticate_consultant!
+  before_action :authenticate_user!
   before_filter :load_and_authorize_consultant
 
   def edit
@@ -22,7 +22,7 @@ class SettingsController < ApplicationController
   private
 
   def load_and_authorize_consultant
-    authorize current_consultant
-    @consultant = current_consultant
+    authorize current_user.consultant
+    @consultant = current_user.consultant
   end
 end

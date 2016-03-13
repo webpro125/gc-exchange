@@ -1,0 +1,62 @@
+= render 'header'
+= simple_form_for @form, url: create_profile_path(:other_information), method: :put do |f|
+  .row
+    .large-12.columns
+      = f.error_notification
+      = render 'shared/base_error', model: @form
+  .wizard
+    = render 'profiles/entity_fields', f: f
+    = render 'profiles/address_fields', f: f
+    .row
+      .medium-3.columns
+        = f.input :willing_to_travel, as: :select
+      .medium-3.columns.end
+        = render 'shared/rate', f: f
+    %hr/
+    .row
+      .medium-12.columns
+        = f.simple_fields_for :phones do |p|
+          = render 'phones/phone_fields', f: p
+        .links
+          = link_to_add_association t('views.profile.actions.new_phone_html'),
+            f,
+            :phones,
+            partial: 'phones/phone_fields',
+            class:   'button small'
+        %p
+          %small.red
+            = t('simple_form.labels.consultant.phone_instruction')
+      %hr/
+      = f.simple_fields_for :military do |m|
+        .row
+          .small-12.columns
+            .medium-2.columns
+              = m.input :clearance_active, as: :select
+            .medium-3.columns.end.clearance-hidden
+              = m.input :clearance_level_id,
+                build_simple_form_dropdown(ClearanceLevel,
+                collection: ClearanceLevel.all)
+            .medium-7.columns.clearance-hidden
+              .row
+                .medium-6.columns
+                  = m.input :investigation_date, date_options
+                .medium-6.columns
+                  = m.input :clearance_expiration_date, date_options
+        %hr/
+        .row
+          .small-12.columns
+            .medium-2.columns
+              = m.input :military, as: :select
+            .medium-2.columns.military-hidden
+              = m.input :rank_id, build_simple_form_dropdown(Rank,
+                collection: Rank.all)
+            .medium-3.columns.military-hidden
+              = m.input :branch_id, build_simple_form_dropdown(Branch,
+                collection: Branch.all)
+            .medium-5.columns.military-hidden
+              .row
+                .medium-6.columns
+                  = m.input :service_start_date, date_options
+                .medium-6.columns
+                  = m.input :service_end_date, date_options
+    = render 'footer', f: f

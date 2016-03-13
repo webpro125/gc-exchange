@@ -5,17 +5,22 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable,
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :timeoutable
 
   belongs_to :company
   has_many :projects, ->() { order(updated_at: :desc) }, dependent: :destroy
   has_many :shared_contacts, dependent: :destroy
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
+  has_one :consultant, dependent: :destroy
+  has_many :phones, through: :consultant, as: :phoneable, dependent: :destroy
+  has_many :educations, through: :consultant, dependent: :destroy
 
   before_validation :company_present
-  before_validation :set_password, on: :create
+  # before_validation :set_password, on: :create
   before_create :skip_confirmation_in_staging, if: -> { Rails.env.staging? }
+  before_create :build_default_consultant
+
   before_destroy :validate_company_owner
 
   validates :first_name, length: { in: 2..24 }, presence: true,
@@ -25,21 +30,26 @@ class User < ActiveRecord::Base
             format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
   validates :email, presence: true
-  validates :company, presence: true
+  # validates :company, presence: true
 
   def company_present
     self.company = owned_company if owned_company.present?
   end
 
   def gces?
-    c = owned_company || company
-    c.company_name == Company::GLOBAL_CONSULTANT_EXCHANGE
+    if self.company.present?
+      c = owned_company || company
+      c.company_name == Company::GLOBAL_CONSULTANT_EXCHANGE
+    else false end
   end
 
   def mailboxer_email(_object)
     email
   end
 
+  def is_consultant?
+    consultant.present?
+  end
   private
 
   def validate_company_owner
@@ -53,13 +63,18 @@ class User < ActiveRecord::Base
     skip_confirmation!
   end
 
-  def set_password
-    self.password = self.password_confirmation = Devise.friendly_token.first(8)
-  end
+  # def set_password
+  #   self.password = self.password_confirmation = Devise.friendly_token.first(8)
+  # end
 
   def send_confirmation_instructions
-    set_password unless password
+    # set_password unless password
 
     super
+  end
+
+  def build_default_consultant
+    build_consultant
+    true # Always return true in callbacks as the normal 'continue' state
   end
 end

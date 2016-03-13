@@ -1,0 +1,74 @@
+class ContractorsController < CompanyController
+  before_action :load_and_authorize_company, except: [:profile]
+  before_action :load_and_authorize_user, only: [:show, :edit, :update, :destroy]
+  skip_after_action :verify_authorized, only: :profile
+  before_action :get_box, only: [:profile]
+
+  def profile
+    # @messages = current_user.mailbox.conversations.page(params[:page])
+    if @box.eql? "inbox"
+      @messages ||= current_user.mailbox.inbox.page(params[:page])
+    elsif @box.eql? "sent"
+      @messages ||= current_user.mailbox.sentbox.page(params[:page])
+    else
+      @messages ||= current_user.mailbox.trash
+    end
+    @consultants = Consultant.recent
+    @projects = current_user.projects.open.limit(3)
+  end
+
+  def index
+    @users = policy_scope(@company.users).page(params[:page])
+  end
+
+  def new
+    @user = @company.users.build
+    authorize @user
+  end
+
+  def show
+  end
+
+  def create
+    @user = @company.users.build(user_params)
+    authorize @user
+
+    if @user.save
+      redirect_to company_user_path(@company, @user), notice: t('controllers.user.create.success')
+    else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to company_user_path(@company, @user), notice: t('controllers.user.update.success')
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to company_users_path(@company), notice: t('controllers.user.destroy.success')
+  end
+
+  private
+
+  def load_and_authorize_company
+    @company = Company.find(params[:company_id])
+    authorize @company, :show?
+  end
+
+  def load_and_authorize_user
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email)
+  end
+end

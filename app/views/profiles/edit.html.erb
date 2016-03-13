@@ -6,12 +6,12 @@
         <div class="row">
           <div class="left conheader">
             <%= link_to root_path do %>
-                <%= image_tag(@current_consultant.profile_image.url(:medium), class: 'th profile-medium') %>
+                <%= image_tag(current_user.consultant.profile_image.url(:medium), class: 'th profile-medium') %>
                 <%= link_to t('views.profile.actions.upload_photo_html'),
-                            new_consultant_upload_image_path(@current_consultant),
+                            new_consultant_upload_image_path(current_user.consultant),
                             class: 'button small upload' %>
                 <%= link_to t('views.profile.actions.upload_resume_html'),
-                            new_consultant_upload_resume_path(@current_consultant),
+                            new_consultant_upload_resume_path(current_user.consultant),
                             class: 'button small upload' %>
             <% end %>
           </div>
@@ -26,12 +26,16 @@
             </div>
             <div class="row">
               <div class="small-12 columns">
-                <%= f.input :willing_to_travel, as: :select %>
+                <%= f.simple_fields_for :consultant do |c| %>
+                    <%= c.input :willing_to_travel, as: :select %>
+                <% end %>
               </div>
             </div>
             <div class="row">
               <div class="small-12 columns">
-                <%= render 'shared/rate', f: f %>
+                <%= f.simple_fields_for :consultant do |c| %>
+                    <%= render 'shared/rate', f: c %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -41,13 +45,17 @@
             <div class="row">
               <div class="large-12 columns">
                 <h3><%= t('views.profile.headers.contact') %></h3>
-                <%= render 'address_fields', f: f %>
+                <%= f.simple_fields_for :consultant do |c| %>
+                    <%= render 'address_fields', f: c %>
+                <% end %>
               </div>
             </div>
             <div class="row">
               <div class="large-12 columns">
-                <%= f.simple_fields_for :phones do |p| %>
+                <%= f.simple_fields_for :consultant do |c| %>
+                <%= c.simple_fields_for :phones do |p| %>
                     <%= render 'phones/phone_fields', f: p %>
+                <% end %>
                 <% end %>
                 <div class="links">
                   <%= link_to_add_association t('views.profile.actions.new_phone_html'),
@@ -60,13 +68,17 @@
             </div>
             <div class="row">
               <div class="columns large-12">
-                <%= render 'entity_fields', f: f, edit_only: true %>
+                <%= f.simple_fields_for :consultant do |c| %>
+                    <%= render 'entity_fields', f: c, edit_only: true %>
+                <% end %>
               </div>
             </div>
             <div class="row">
               <div class="large-12 columns">
                 <h3><%= t('simple_form.labels.consultant.abstract') %></h3>
-                <%= f.input :abstract, as: :text, input_html: { class: 'large', cols: 5, rows: 20 } %>
+                <%= f.simple_fields_for :consultant do |c| %>
+                    <%= c.input :abstract, as: :text, input_html: { class: 'large', cols: 5, rows: 20 } %>
+                <% end %>
               </div>
             </div>
             <div class="row">
@@ -84,8 +96,10 @@
         <div class="row">
           <div class="large-12 columns">
             <h4><%= t('views.profile.headers.education') %></h4>
-            <%= f.simple_fields_for :educations do |e| %>
+            <%= f.simple_fields_for :consultant do |c| %>
+            <%= c.simple_fields_for :educations do |e| %>
                 <%= render 'educations/education_fields', f: e %>
+            <% end %>
             <% end %>
             <div class="links">
               <%= link_to_add_association t('views.profile.actions.new_education_html'),
@@ -99,18 +113,23 @@
         <div class="row">
           <div class="large-12 columns skills-table two-columns">
             <h4><%= t('views.profile.headers.certification') %></h4>
-            <%= render 'certifications_fields', f: f %>
+            <%= f.simple_fields_for :consultant do |c| %>
+                <%= render 'certifications_fields', f: c %>
+            <% end %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
             <h4><%= t('views.profile.headers.expertise') %></h4>
-            <%= render 'profiles/skills_fields', f: f %>
+            <%= f.simple_fields_for :consultant do |c| %>
+                <%= render 'profiles/skills_fields', f: c %>
+            <% end %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
-            <%= f.simple_fields_for :military do |m| %>
+            <%= f.simple_fields_for :consultant do |c| %>
+            <%= c.simple_fields_for :military do |m| %>
                 <h4><%= t('views.profile.headers.clearance') %></h4>
                 <%= m.input :clearance_active, as: :select %>
                 <div id="security">
@@ -130,6 +149,7 @@
                   <%= m.input :service_start_date, date_options %>
                   <%= m.input :service_end_date, date_options %>
                 </div>
+            <% end %>
             <% end %>
           </div>
         </div>

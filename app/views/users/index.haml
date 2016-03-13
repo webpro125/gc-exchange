@@ -1,0 +1,8 @@
+%h3 Dashboard
+.row
+  .medium-12.columns
+    - if current_user.consultant.wizard_step == Wicked::FINISH_STEP
+      = link_to 'Manage Consultant Profile', consultant_root_path, class: 'button primary tiny'
+    - else
+      = link_to 'Create Consultant Profile', create_consultant_path, class: 'button primary tiny'
+    = link_to 'Create Contractor Profile', '#', class: 'button primary tiny'

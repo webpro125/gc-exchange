@@ -1,0 +1,8 @@
+= render 'header'
+= simple_form_for @form, url: create_profile_path(:project_history), method: :put do |f|
+  = render 'shared/base_error', model: @form
+  .row
+    .small-12.columns
+      = f.error_notification
+  = render 'project_histories/project_history_fields', f: f
+  = render 'footer',f: f

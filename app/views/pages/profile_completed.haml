@@ -1,34 +1,34 @@
-<h2>Congratulations, <%= current_consultant.full_name %></h2>
-<p>You successfully created your GCES profile and signed a contract to be a consultant in our global
+%h2
+  Congratulations, #{current_user.full_name}
+%p
+  You successfully created your GCES profile and signed a contract to be a consultant in our global
   network. Our network gives you access to new government contractors in need of your skills and
   expertise. Click
-  the link below to view, edit, and add more information to your profile.</p>
-<%= link_to 'Continue to Consultant Dashboard', consultant_root_path, class: 'button primary' %>
-<aside>
-  <h5>What should I do next?</h5>
-  <ol>
-    <li>You completed the Profile Builder and signed a Consulting Contract to work as a independent
+  the link below to view, edit, and add more information to your profile.
+= link_to 'Continue to Consultant Dashboard', consultant_root_path, class: 'button primary'
+%aside
+  %h5 What should I do next?
+  %ol
+    %li
+      You completed the Profile Builder and signed a Consulting Contract to work as a independent
       free-lance consultant in our GCES network. Our on-line network gives you access to
       government contractors around the world searching for highly skilled, part-time, or
       temporary work.
-    </li>
-    <li>Your personal information and profile are secure and only viewable by approved government
+    %li
+      Your personal information and profile are secure and only viewable by approved government
       contractors who have signed contracts with GCES and who agree to follow our fair,
       transparent, and standard practices.
-    </li>
-    <li>After you sign the GCES Consulting Contract, your profile becomes viewable by government
+    %li
+      After you sign the GCES Consulting Contract, your profile becomes viewable by government
       contractors searching for key words, skills, experience, and other attributes contained in
       your profile.
-    </li>
-    <li>We recommend you click on the link above to view, edit, and add additional work history and
+    %li
+      We recommend you click on the link above to view, edit, and add additional work history and
       details to your consulting profile. Remember to be specific by citing detailed examples of the
       work you performed along with the results you achieved. You improve your search results by
       identifying specific standards, processes, and tools you used in your project work history.
-    </li>
-    <li>You should always ensure your profile is update-to-date and accurate, and that your hourly
+    %li
+      You should always ensure your profile is update-to-date and accurate, and that your hourly
       billing rate is competitive with your peers. You can access and update your profile and hourly
       rate anytime in the future by logging into GCES with your email and password. Once logged-in,
       you have access to government contractor messages and community forums.
-    </li>
-  </ol>
-</aside>

@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/ClassLength
 class Consultant < ActiveRecord::Base
-  include Searchable, Nameable, Contactable
+  include Searchable, Contactable
 
   acts_as_messageable
 
@@ -12,8 +12,8 @@ class Consultant < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
+  # devise :database_authenticatable, :registerable, :confirmable,
+  #        :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   scope :approved, (lambda do
     where(approved_status: ApprovedStatus.find_by_code(ApprovedStatus::APPROVED[:code]))
@@ -37,7 +37,7 @@ class Consultant < ActiveRecord::Base
     approved.limit(3).order(created_at: :desc)
   end)
 
-  before_create :skip_confirmation!, if: -> { Rails.env.staging? }
+  # before_create :skip_confirmation!, if: -> { Rails.env.staging? }
   before_create :set_approved_status
   after_commit :update_consultant_index, on: [:update]
   after_commit :destroy_consultant_index, on: [:destroy]

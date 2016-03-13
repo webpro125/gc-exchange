@@ -3,12 +3,12 @@ class ProjectHistoriesController < ConsultantController
 
   # GET /projects
   def index
-    @projects = policy_scope(current_consultant.project_histories)
+    @projects = policy_scope(current_user.consultant.project_histories)
   end
 
   # GET /projects/new
   def new
-    project = current_consultant.project_histories.build
+    project = current_user.consultant.project_histories.build
     project.build_phone unless project.phone
     authorize project
 
@@ -21,7 +21,7 @@ class ProjectHistoriesController < ConsultantController
 
   # POST /projects
   def create
-    project = current_consultant.project_histories.build
+    project = current_user.consultant.project_histories.build
     project.build_phone
     authorize project
 

@@ -5,20 +5,23 @@ Rails.application.routes.draw do
              controllers: { sessions: 'admin/sessions'},
              :skip => [:registrations]
 
-  devise_for :consultants, path: '/', path_names: { sign_in:      'login',
-                                                    sign_out:     'logout',
-                                                    registration: 'register' },
-             controllers:        { registrations: 'registrations' }
+  # devise_for :consultants, path: '/', path_names: { sign_in:      'login',
+  #                                                   sign_out:     'logout' },
+  #            :skip => [:registrations]
+             # controllers:        { registrations: 'registrations' }
 
-  devise_for :users, path_names: { sign_in:  'login',
-                                   sign_out: 'logout' }
+  devise_for :users, path: '/', path_names: { sign_in:  'login',
+                                   sign_out: 'logout',
+                                   sign_up: 'register' },
+             controllers:        { registrations: 'registrations' }
   # Root Paths
-  authenticated :consultant do
-    root 'profiles#consultant', as: :consultant_root
-  end
+  # authenticated :consultant do
+  #   root 'profiles#consultant', as: :consultant_root
+  # end
   authenticated :user do
-    root 'users#profile', as: :user_root
+    root 'users#index', as: :user_root
   end
+
   namespace :admin do
     get '/', :to => 'dashboard#index'
     resources :dashboard
@@ -60,7 +63,7 @@ Rails.application.routes.draw do
   end
 
   root 'pages#home'
-  get :consultant_welcome, to: 'pages#consultant_welcome'
+  get :user_welcome, to: 'pages#user_welcome'
   get :company_welcome, to: 'pages#company_welcome'
   get :consultant_benefits, to: 'pages#consultant_benefits'
   get :contractor_benefits, to: 'pages#contractor_benefits'
@@ -79,6 +82,9 @@ Rails.application.routes.draw do
 
   get :search, to: 'searches#new'
   get 'search/skills', to: 'searches#skills'
+
+  get :consultant, to: 'profiles#consultant', as: :consultant_root
+  get :create_consultant, to: 'users#create_consultant'
 
   resources :create_profile, only: [:show, :update]
   resources :project_histories, path: 'projects', except: [:show]

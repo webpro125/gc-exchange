@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   # Overwriting the confirmation redirect path method
   def after_inactive_sign_up_path_for(_resource)
-    consultant_welcome_path
+    user_welcome_path
   end
 
   def configure_permitted_parameters

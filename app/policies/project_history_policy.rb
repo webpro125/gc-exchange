@@ -6,7 +6,7 @@ class ProjectHistoryPolicy < LoggedInPolicy
   end
 
   def edit?
-    user.project_histories.include?(record)
+    user.consultant.project_histories.include?(record)
   end
 
   def show?

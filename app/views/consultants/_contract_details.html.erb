@@ -2,7 +2,7 @@
   <h2>Independent Contractor Agreement<a name="contract" data-magellan-destination="contract"></a></h2>
   <p><strong>*** Auto Signed and filled out. Review &amp; click I Agree at the bottom of page to accept. ***</strong></p>
 
-  <p>This Independent Contractor Agreement (“Agreement”), made this <u><%= @contract.effective_date %></u> (“Effective Date”) by and between Global Consultant Exchange Services, LLC, a District of Columbia limited liability company, 
+  <p>This Independent Contractor Agreement (“Agreement”), made this <u><%= @contract.effective_date %></u> (“Effective Date”) by and between Global Consultant Exchange Services, LLC, a District of Columbia limited liability company,
   with offices located at 4849 Alberta Falls Way, Colorado Springs, CO 80924 and 1010 Wisconsin Avenue NW, Suite 540, Washington, DC 20007 (“GCES”), and <u><%= @contract.full_name_and_legal_name %></u>
   with offices located at <u><%= @contract.address %></u>
   (“Consultant”).</p>
@@ -327,41 +327,41 @@
   <ol>
     <li>
       <h5>INTRODUCTION</h5>
-      <p>This Statement of Work (“SOW”) as detailed in Paragraph 2 describes the services to be provided by the consultants made available by GCES to GCES clients.</p> 
+      <p>This Statement of Work (“SOW”) as detailed in Paragraph 2 describes the services to be provided by the consultants made available by GCES to GCES clients.</p>
     </li>
     <li>
       <h5>TASK DESCRIPTION</h5>
-      <p>Consultant will provide in person, and make available others to provide, business development and business operations consulting services listed in Paragraph 3 below, when requested and authorized by GCES clients in accordance with Paragraph 4 below.</p> 
+      <p>Consultant will provide in person, and make available others to provide, business development and business operations consulting services listed in Paragraph 3 below, when requested and authorized by GCES clients in accordance with Paragraph 4 below.</p>
     </li>
     <li>
       <h5>SERVICES TO BE PROVIDED</h5>
-      <p>Services to be provided include, but are not limited to, those of proposal managers, volume leads, graphic artists, technical editors, proposal writers and editors, business performance/ requirements analysts, business development strategists, integrated master planners, integrated master schedulers, and other skillsets and abilities as required, in support of various GCES client program operations and new business development efforts. (“GCES Resources”) A security clearance may be required.</p> 
+      <p>Services to be provided include, but are not limited to, those of proposal managers, volume leads, graphic artists, technical editors, proposal writers and editors, business performance/ requirements analysts, business development strategists, integrated master planners, integrated master schedulers, and other skillsets and abilities as required, in support of various GCES client program operations and new business development efforts. (“GCES Resources”) A security clearance may be required.</p>
     </li>
     <li>
       <h5>AUTHORIZATION OF SERVICES BY <%= @contract.legal_name %></h5>
-      <p>No service shall be provided except upon the specific request by the designated GCES client Point of Contact for the specific service from the specific GCES consultant for a specific GCES client Task. Such authorization shall be made either through issuance or modification of a Purchase Order, or by issuance of an Authorization to Proceed, by the designated GCES client Point of Contact. GCES and its consultants are At Risk for any services performed which have not been explicitly authorized in accordance with this Paragraph. Unless specifically approved by GCES clients in advance, the rate described in paragraph 6, below, shall not be varied.</p> 
+      <p>No service shall be provided except upon the specific request by the designated GCES client Point of Contact for the specific service from the specific GCES consultant for a specific GCES client Task. Such authorization shall be made either through issuance or modification of a Purchase Order, or by issuance of an Authorization to Proceed, by the designated GCES client Point of Contact. GCES and its consultants are At Risk for any services performed which have not been explicitly authorized in accordance with this Paragraph. Unless specifically approved by GCES clients in advance, the rate described in paragraph 6, below, shall not be varied.</p>
     </li>
     <li>
       <h5>PERIOD OF PERFORMANCE</h5>
-      <p>Period of performance begins on Effective Date of the Agreement and continues for one calendar year thereafter.  The Period of Performance will be extended additional one-year terms unless terminated by GCES or until Consultant provides thirty (30) days’ advance notice of an intention not to extend.</p> 
+      <p>Period of performance begins on Effective Date of the Agreement and continues for one calendar year thereafter.  The Period of Performance will be extended additional one-year terms unless terminated by GCES or until Consultant provides thirty (30) days’ advance notice of an intention not to extend.</p>
     </li>
     <li>
       <h5>COST AND PRICES </h5>
-      <p>Consultant shall be paid for rendered Services at rates negotiated between Consultant and GCES clients. Services will be charged on an hourly, basis as actually performed.  Unless specifically approved by GCES in advance, this rate shall not be varied by virtue of Consultant having performed work in excess of forty (40) hours per week.  Other Direct Charges (ODCs) are limited to travel expenses and conference fees incurred at the specific direction of GCES clients.  Travel expenses shall not exceed that which is authorized by GCES client for its employees.</p> 
+      <p>Consultant shall be paid for rendered Services at rates negotiated between Consultant and GCES clients. Services will be charged on an hourly, basis as actually performed.  Unless specifically approved by GCES in advance, this rate shall not be varied by virtue of Consultant having performed work in excess of forty (40) hours per week.  Other Direct Charges (ODCs) are limited to travel expenses and conference fees incurred at the specific direction of GCES clients.  Travel expenses shall not exceed that which is authorized by GCES client for its employees.</p>
     </li>
     <li>
       <h5>REPORTING</h5>
       <ol>
         <li>7.1 Activity Status Report. As requested by GCES, Consultant shall provide on a monthly basis a written status report to GCES. This report shall include summary of consultant activity for the reporting period by task description and summary of planned activity for the next reporting period. </li>
         <li>
-          <p>Expenditure Report. As requested by GCES, Consultant shall provide on a monthly basis a written expenditure report to GCES. This report shall include:</p> 
-          <p>Summary of labor hours expended by labor category during the reporting period and estimate to complete task activities. Summary of labor dollar value and other direct costs expended to date and estimate to complete task activities.</p> 
+          <p>Expenditure Report. As requested by GCES, Consultant shall provide on a monthly basis a written expenditure report to GCES. This report shall include:</p>
+          <p>Summary of labor hours expended by labor category during the reporting period and estimate to complete task activities. Summary of labor dollar value and other direct costs expended to date and estimate to complete task activities.</p>
         </li>
       </ol>
     </li>
     <li>
       <h5>WORK LOCATION</h5>
-      <p>As identified in individual GCES client purchase order(s).</p> 
+      <p>As identified in individual GCES client purchase order(s).</p>
     </li>
     <li>
       <h5>POINTS OF CONTACT</h5>
@@ -380,7 +380,7 @@
       <p><strong>For <%= @contract.legal_name %>:</strong></p>
       <p><%= @contract.full_name %>, <%= @contract.title %></p>
       <p><%= @contract.address %></p>
-      <p><%= @contract.consultant.email %></p>
+      <p><%= @contract.user.email %></p>
       <p><%= @contract.phone %></p>
     </div>
   </div>
@@ -400,7 +400,7 @@
 
   <ol>
     <li>
-      Are you now, or have you ever been, employed as: (i) an officer or employee (including as a member of the uniformed services, civilian employee or special Government employee) of the Executive Branch of the U.S. Government (including any independent agency of the United States), (ii) officer or employee of the Legislative Branch of the U.S. Government, or as a member of Congress; (iii) a Federal Reserve Bank director, officer or employee; or (iv) an officer or employee of the District of Columbia?   
+      Are you now, or have you ever been, employed as: (i) an officer or employee (including as a member of the uniformed services, civilian employee or special Government employee) of the Executive Branch of the U.S. Government (including any independent agency of the United States), (ii) officer or employee of the Legislative Branch of the U.S. Government, or as a member of Congress; (iii) a Federal Reserve Bank director, officer or employee; or (iv) an officer or employee of the District of Columbia?
       <div class="panel">
         If the answer to Question 1 is “Yes,” please answer Questions 1(a) through 1(g); if “No,” proceed to Questions 2 and 3.
       </div>
@@ -420,7 +420,7 @@
 
   <div class=panel>
     <p>If the answers to Questions 1 (including all its subparts), 2 and 3 are “NO,” please STOP HERE and sign and date this form at the bottom.</p>
-    <p>If the answer to Question 1 (or any of its subparts), 2 or 3 is “YES,” please sign and date the form at the bottom and fully complete PART II of this Certification to the extent applicable.  Before any further discussions regarding your employment or specific engagement may continue and before any work is commenced on behalf of [CLIENT NAME], your answers to Part II must be reviewed and approved by the [CLIENT NAME] Human Resources and/or Legal Department.</p> 
+    <p>If the answer to Question 1 (or any of its subparts), 2 or 3 is “YES,” please sign and date the form at the bottom and fully complete PART II of this Certification to the extent applicable.  Before any further discussions regarding your employment or specific engagement may continue and before any work is commenced on behalf of [CLIENT NAME], your answers to Part II must be reviewed and approved by the [CLIENT NAME] Human Resources and/or Legal Department.</p>
   </div>
   <br>
   <br>
@@ -521,10 +521,10 @@
   <h4 class="text-center">*** For Reference Only ***</h4>
   <p class="text-center"><em>No signature required</em></p>
 
-  <p>Consultant may not be engaged or continue to be engaged by General Dynamics Information Technology, Inc. (“GDIT”) unless he/she/it agrees to comply with GDIT’s policy prohibiting Consultants from providing consulting services to a competitor of GDIT on any procurement related to the procurement for which they will be or are engaged by GDIT following the termination of their engagement with GDIT without GDIT’s prior written consent.  The term “related procurement” means one emanating from the same procuring authority for the same category of product or services (aircraft, ship, military vehicle, construction, IT services, healthcare services, management services, etc.) and addressing the same phase of the product or service lifecycle (planning and analysis; R&D; concept development; engineering, design and testing; production, integration and deployment; operation and maintenance; etc.).  GDIT’s policy applies to efforts such as eSITE, ITEMS, SITEC, Transformers and Greenway, among others.</p>  
-  <p>I, [Consultant Name](“Consultant”), hereby agree that in consideration of GDIT’s willingness to engage my Services, I will comply with the above policy.  As such, I do warrant and represent that following the termination of my engagement with GDIT, I will not provide consulting Services to a competitor of GDIT on any procurement related to the procurement for which I was engaged to perform consulting Services.  I further represent and warrant that a “related procurement” is one emanating from the same procuring authority for the same category of product or services and addressing the same phase of the product or service lifecycle.</p>  
-  <p>I acknowledge that the injury that would be suffered by GDIT as a result of a breach of this Agreement would be irreparable, and that an award of monetary damages to GDIT for such breach would be an inadequate remedy.  Consequently, GDIT will have the right, in addition to any other rights it may have, to obtain injunctive relief to restrain any breach or threatened breach of this Agreement.</p>  
-  <p>In addition to any other indemnification obligations set forth in the Independent Contractor Agreement with GCES, I agree to further indemnify, defend and hold GCES and its officers, directors and employees, harmless from and against all expenses, costs, damages, liabilities and losses (including, without limitation, reasonable attorney’s fees) incurred by GCES in connection with a claim, demand, action or suit resulting from my breach of this Agreement.</p>  
+  <p>Consultant may not be engaged or continue to be engaged by General Dynamics Information Technology, Inc. (“GDIT”) unless he/she/it agrees to comply with GDIT’s policy prohibiting Consultants from providing consulting services to a competitor of GDIT on any procurement related to the procurement for which they will be or are engaged by GDIT following the termination of their engagement with GDIT without GDIT’s prior written consent.  The term “related procurement” means one emanating from the same procuring authority for the same category of product or services (aircraft, ship, military vehicle, construction, IT services, healthcare services, management services, etc.) and addressing the same phase of the product or service lifecycle (planning and analysis; R&D; concept development; engineering, design and testing; production, integration and deployment; operation and maintenance; etc.).  GDIT’s policy applies to efforts such as eSITE, ITEMS, SITEC, Transformers and Greenway, among others.</p>
+  <p>I, [Consultant Name](“Consultant”), hereby agree that in consideration of GDIT’s willingness to engage my Services, I will comply with the above policy.  As such, I do warrant and represent that following the termination of my engagement with GDIT, I will not provide consulting Services to a competitor of GDIT on any procurement related to the procurement for which I was engaged to perform consulting Services.  I further represent and warrant that a “related procurement” is one emanating from the same procuring authority for the same category of product or services and addressing the same phase of the product or service lifecycle.</p>
+  <p>I acknowledge that the injury that would be suffered by GDIT as a result of a breach of this Agreement would be irreparable, and that an award of monetary damages to GDIT for such breach would be an inadequate remedy.  Consequently, GDIT will have the right, in addition to any other rights it may have, to obtain injunctive relief to restrain any breach or threatened breach of this Agreement.</p>
+  <p>In addition to any other indemnification obligations set forth in the Independent Contractor Agreement with GCES, I agree to further indemnify, defend and hold GCES and its officers, directors and employees, harmless from and against all expenses, costs, damages, liabilities and losses (including, without limitation, reasonable attorney’s fees) incurred by GCES in connection with a claim, demand, action or suit resulting from my breach of this Agreement.</p>
   <p>Consultant Signature: </p>
   <hr>
 </section>

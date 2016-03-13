@@ -1,0 +1,11 @@
+.row
+  .medium-12.columns
+    %h4 Profile
+    %ul.list
+      %li= link_to t('views.account_setting.action.show'), account_setting_path
+      %li= link_to t('views.profile.actions.edit'), edit_profile_path
+      %li= link_to t('views.profile.actions.upload_photo'),
+          new_consultant_upload_image_path(current_user.consultant)
+      %li= link_to t('views.profile.actions.upload_resume'),
+          new_consultant_upload_resume_path(current_user.consultant)
+      %li= link_to t('views.project.actions.index'), project_histories_path
