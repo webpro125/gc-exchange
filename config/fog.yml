@@ -19,7 +19,7 @@ test:
 staging:
   <<: *default_settings
   fog_host: nil
-  fog_directory: 'gces-staging'
+  fog_directory: '<%= ENV['AWS_BUCKET'] %>'
   path: ':class/:attachment/:id/resume.:extension'
   fog_credentials:
     provider: 'AWS'

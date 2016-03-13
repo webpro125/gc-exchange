@@ -39,6 +39,10 @@ gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'exception_notification', '4.1.1'
+gem 'coffee-rails'
+gem 'momentjs-rails'
+gem 'google-api-client'
+gem 'groupdate'
 
 # twilio
 gem 'twilio-ruby', '~> 4.11.1'
@@ -56,6 +60,8 @@ end
 group :development do
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'coffee-rails-source-maps'
+  gem 'dotenv-rails'
   gem 'thin'
 end
 
@@ -100,5 +106,4 @@ end
 
 group :production, :staging, :sales do
   gem 'unicorn', '~> 4.8.3'
-  gem 'google-analytics-rails', '~> 0.0.6'
 end

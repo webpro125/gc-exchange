@@ -35,3 +35,5 @@ spec/results
 
 # Ignore vendor/bin
 /vendor/bin
+.env
+config/ga_api.yml

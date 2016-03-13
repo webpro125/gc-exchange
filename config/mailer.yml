@@ -23,14 +23,14 @@ test:
 staging:
   <<: *default_settings
   default_url_options:
-      host: 'staging.globalconsultantexchange.com'
+      host: <%= ENV['HOST'] %>
   smtp_settings:
-    address: 'email-smtp.us-east-1.amazonaws.com'
+    address: <%= ENV['SMTP_ADDRESS'] %>
     port: 25
     authentication: login
-    domain: 'staging.globalconsultantexchange.com'
-    user_name: <%= Rails.application.secrets.email_username %>
-    password: <%= Rails.application.secrets.email_password %>
+    domain: <%= ENV['SMTP_DOMAIN'] %>
+    user_name: <%= ENV['SMTP_USERNAME'] %>
+    password: <%= ENV['SMTP_PASS'] %>
 
 production:
   <<: *default_settings

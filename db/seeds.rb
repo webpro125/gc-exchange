@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 unless Company.find_by_company_name(Company::GLOBAL_CONSULTANT_EXCHANGE)
-  user = User.create(first_name: 'James',
-                     last_name: 'Stoup',
+  user = User.create(first_name: 'Staging',
+                     last_name: 'Tester',
                      email: 'jess@brownwebdesign.com')
 
   user.skip_confirmation!

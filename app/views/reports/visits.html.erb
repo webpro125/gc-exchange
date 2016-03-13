@@ -1,0 +1,55 @@
+<% body_class('report-visits-page') %>
+
+<h1>Visit Metrics</h1>
+
+<div class="report">
+  <% if GA_API_CLIENT.present? %>
+    <div class="small-12 report-toolbar clearfix">
+      <div class="right filter-types">
+        <button data-dropdown="drop-filter-types" data-options="align:left" class="button tiny dropdown" id="filter-types-btn">today</button><br>
+        <ul id="drop-filter-types" data-dropdown-content class="f-dropdown" aria-hidden="true">
+          <li><a href="#" data-filter="today">today</a></li>
+          <li><a href="#" data-filter="last-week">last week</a></li>
+          <li><a href="#" data-filter="last-month">last 1 month</a></li>
+          <li><a href="#" data-filter="last-2-months">last 2 months</a></li>
+          <li><a href="#" data-filter="last-3-months">last 3 months</a></li>
+        </ul>
+      </div>
+
+      <h4 id="date-range"></h4>
+    </div>
+
+    <hr>
+
+    <div class="report-data">
+      <h3 id="alert-message" class="text-center">
+        <span class="warning label">Please check google analytics configuration</span>
+      </h3>
+      <ul class="small-block-grid-3" data-equalizer>
+        <li>
+          <div class="panel text-center" data-equalizer-watch>
+            <h2 id="total-pageviews">0</h2>
+            <p>Total Pageviews</p>
+          </div>
+        </li>
+        <li>
+          <div class="panel text-center" data-equalizer-watch>
+            <h2 id="avg-session-duration">0</h2>
+            <p>Avg. Session Duration</p>
+          </div>
+        </li>
+        <li>
+          <div class="panel text-center" data-equalizer-watch>
+            <h2 id="page-per-session">0</h2>
+            <p>Pages per Session</p>
+          </div>
+        </li>
+      </ul>
+      <div id="loading" class="loading-indicator">
+        <span class="spinner"></span>
+      </div>
+    </div>
+  <% else %>
+    <h2>Please set-up google analytics to get visits metrics.</h2>
+  <% end %>
+</div>

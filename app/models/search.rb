@@ -1,13 +1,15 @@
 class Search
   include ActiveModel::Model
 
-  VALID_ATTRIBUTES = [:position_ids, :clearance_level_id, :customer_name_ids, :clearance_active,
+  VALID_ATTRIBUTES = [:position_ids, :clearance_level_id, :customer_name_ids, :clearance_active, :term_type,
                       :project_type_ids, :address, :distance, :lat, :lon, :certification_ids,
                       :q].freeze
 
+  TermTypes = { "exact" => "Exact Phrase", "all_words" => "All Words", "any_words" => "Any Words" }
+
   # q - query.  searches the whole consultant document
   attr_accessor :position_ids, :clearance_level_id, :customer_name_ids, :project_type_ids,
-                :address, :distance, :certification_ids, :q, :clearance_level_ids
+                :address, :distance, :certification_ids, :q, :clearance_level_ids, :term_type
   attr_reader :lat, :lon, :attributes, :clearance_active
 
   validates :distance, presence: true, numericality: { greater_than: 0 },
@@ -37,6 +39,14 @@ class Search
     errors[:base] << ('One field must be entered to search')
   end
 
+  def term_type
+    if attributes[:term_type].blank?
+      'all_words'
+    else
+      attributes[:term_type]
+    end
+  end
+
   def cascade_clearance_levels
     case @clearance_level_id.to_i
     when ClearanceLevel.secret.id
@@ -46,6 +56,10 @@ class Search
     when ClearanceLevel.ts_sci.id
       self.clearance_level_ids = [ClearanceLevel.ts_sci.id.to_s]
     end
+  end
+
+  def metrics
+    attributes.select { |_, value| value.present? }
   end
 
   private

@@ -1,7 +1,7 @@
 class SearchAdapter
   GEO_PARAMS = [:address, :distance]
-  MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids]
-  SHOULD_PARAMS = [:certification_ids, :clearance_level_ids, :clearance_active]
+  MUST_PARAMS = [:position_ids, :project_type_ids, :customer_name_ids, :certification_ids, :clearance_level_ids, :clearance_active]
+  SHOULD_PARAMS = []
   KEYWORD_PARAMS = [:q]
   PARAM_ID_LOCATION = { position_ids: 'project_histories.project_history_positions.position.id',
                         clearance_level_ids: 'military.clearance_level_id',
@@ -53,11 +53,21 @@ class SearchAdapter
 
     @query[:query] = {multi_match: {
       fields: search_fields,
-      operator: "and",
       query: keyword_params[:q],
-    }}
+    }.merge(term_type_option)}
 
     @query
+  end
+
+  def term_type_option
+    case @params.term_type
+    when 'all_words'
+      {operator: "and"}
+    when 'exact'
+      {type: "phrase"}
+    when 'any_words'
+      {operator: "or"}
+    end
   end
 
   def search_fields
@@ -88,13 +98,14 @@ class SearchAdapter
   def build_terms(terms)
     obj = {}
     obj.compare_by_identity
+    results = []
 
     return nil if terms.empty?
 
-    terms.to_a.each_with_object(obj) do |ele, result|
-      result['terms'] = { get_name_from_key(ele[0]) => ele[1] }
-      result
+    terms.to_a.each do |ele, result|
+      results << {terms: { get_name_from_key(ele) => result }}
     end
+    results
   end
 
   def get_name_from_key(key)

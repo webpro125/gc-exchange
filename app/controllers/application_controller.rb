@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :create_search
 
   def after_sign_in_path_for(resource)
+    Metric.log_login(resource) if resource.is_a?(Consultant) || (resource.is_a?(User) && !resource.gces?)
     if resource.respond_to?(:wizard_step) && resource.wizard_step != Wicked::FINISH_STEP
       create_profile_path(resource.wizard_step || Wicked::FIRST_STEP)
     else
@@ -36,8 +37,9 @@ class ApplicationController < ActionController::Base
     sanitize_param :clearance_level_id
     sanitize_param :address
     sanitize_param :q
+    sanitize_param :term_type
 
-    params.permit(search: [:address, :q, :clearance_level_id, position_ids: [],
+    params.permit(search: [:address, :q, :clearance_level_id, :term_type, position_ids: [],
                            customer_name_ids: [], project_type_ids: [],
                            certification_ids: []])[:search]
   end

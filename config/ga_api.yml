@@ -1,0 +1,31 @@
+development:
+  service_account_email: <%= ENV['GOOGLE_SERVICE_ACCOUNT_EMAIL'] %>
+  key_file: <%= ENV['GOOGLE_PRIVATE_KEY_FILE'] %>
+  key_secret: notasecret
+  profile_id: <%= ENV['GA_PROFILE_ID'] %>
+  app_name: "GCES Development"
+  app_version: "1.0"
+
+staging:
+  service_account_email: <%= ENV['GOOGLE_SERVICE_ACCOUNT_EMAIL'] %>
+  key_file: <%= ENV['GOOGLE_PRIVATE_KEY_FILE'] %>
+  key_secret: notasecret
+  profile_id: <%= ENV['GA_PROFILE_ID'] %>
+  app_name: "GCES Staging"
+  app_version: "1.0"
+
+sales:
+  service_account_email: <%= ENV['GOOGLE_SERVICE_ACCOUNT_EMAIL'] %>
+  key_file: <%= ENV['GOOGLE_PRIVATE_KEY_FILE'] %>
+  key_secret: notasecret
+  profile_id: <%= ENV['GA_PROFILE_ID'] %>
+  app_name: "GCES Sales"
+  app_version: "1.0"
+
+production:
+  service_account_email: <%= ENV['GOOGLE_SERVICE_ACCOUNT_EMAIL'] %>
+  key_file: <%= ENV['GOOGLE_PRIVATE_KEY_FILE'] %>
+  key_secret: notasecret
+  profile_id: <%= ENV['GA_PROFILE_ID'] %>
+  app_name: "GCES Production"
+  app_version: "1.0"

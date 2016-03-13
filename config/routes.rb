@@ -130,6 +130,13 @@ Rails.application.routes.draw do
       delete :empty_trash
     end
   end
+  resources :reports, only: [] do
+    collection do
+      get :consultant
+      get :search
+      get :visits
+    end
+  end
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.
