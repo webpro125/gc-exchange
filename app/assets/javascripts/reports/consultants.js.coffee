@@ -6,12 +6,13 @@ reportConsultantPage = ->
   $dateRangeIndicator = $('#date-range')
   $consultantAccountChart = $('#consultant-account-chart')
   $consultantLoginChart = $('#consultant-login-chart')
+  $cumulativeLoginChart = $('#cumulative-login-chart')
 
   accountChartOptions =
     chart:
       type: 'line'
     title:
-      text: 'Consultant Account Metrics'
+      text: 'Number of Discrete Consultant Account Metrics per Range'
     credits:
       enabled: false
     yAxis:
@@ -32,7 +33,7 @@ reportConsultantPage = ->
     chart:
       type: 'line'
     title:
-      text: 'Consultant Login Metrics'
+      text: 'Number of Discrete Consultant Login Metrics per Range'
     credits:
       enabled: false
     yAxis:
@@ -43,6 +44,35 @@ reportConsultantPage = ->
       gridLineWidth: 1
     tooltip:
       shared: true
+    series: [
+      {name: 'Total Logins', data: []}
+      {name: 'Uniq Logins', data: []}
+    ]
+
+  cumulativeLoginOptions =
+    chart:
+      type: 'line'
+      zoomType: 'x'
+    title:
+      text: 'Cumulative Consultant Login Metrics'
+    credits:
+      enabled: false
+    yAxis:
+      min: 0
+      allowDecimals: false
+    xAxis:
+      type: 'datetime'
+      dateTimeLabelFormats:
+        day: '%e %b %Y'
+      gridLineWidth: 1
+      maxZoom: 24 * 3600 * 1000 * 30
+    tooltip:
+      shared: true
+      dateTimeLabelFormats:
+        day: '%e %b %Y'
+    plotOptions:
+      series:
+        pointInterval: 24 * 3600 * 1000
     series: [
       {name: 'Total Logins', data: []}
       {name: 'Uniq Logins', data: []}
@@ -59,6 +89,11 @@ reportConsultantPage = ->
     accountLoginOptions.series[0].data = data.total_logins
     accountLoginOptions.series[1].data = data.uniq_logins
     $consultantLoginChart.highcharts accountLoginOptions
+
+    cumulativeLoginOptions.plotOptions.series.pointStart = moment(data.cumulative_start).unix() * 1000
+    cumulativeLoginOptions.series[0].data = data.cumulative_logins
+    cumulativeLoginOptions.series[1].data = data.cumulative_uniq_logins
+    $cumulativeLoginChart.highcharts cumulativeLoginOptions
 
   loadData = ->
     $('#filter-types-btn').text(dateRange.type)

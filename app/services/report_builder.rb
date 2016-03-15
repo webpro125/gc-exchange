@@ -35,6 +35,8 @@ class ReportBuilder
       group_options[:period], :created_at,
       range: @from..@to, format: group_options[:format]
     ).count
+    cumulative_logins = Metric.consultants.logins.group_by_day(:created_at).count
+    cumulative_uniq_logins = Metric.consultants.logins.select("DISTINCT concat(loggable_type, loggable_id)").group_by_day(:created_at).count
 
     {
       categories: user_count.keys,
@@ -42,7 +44,10 @@ class ReportBuilder
       profiles_approved: profiles_approved.values,
       profiles_pending: profiles_pending.values,
       total_logins: total_logins.values,
-      uniq_logins: uniq_logins.values
+      uniq_logins: uniq_logins.values,
+      cumulative_start: cumulative_logins.keys.first,
+      cumulative_logins: cumulative_logins.values.cumulative_sum,
+      cumulative_uniq_logins: cumulative_uniq_logins.values.cumulative_sum
     }
   end
 
