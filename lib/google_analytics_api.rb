@@ -78,4 +78,56 @@ class GoogleAnalyticsApi
       }
     ).data.rows.try(:[], 0).try(:[], 0).to_i
   end
+
+  def sessions_per_device(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:sessions',
+        'dimensions' => 'ga:deviceCategory'
+      }
+    ).data.rows
+  end
+
+  def sessions_in_bound(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:sessions',
+        'dimensions' => 'ga:channelGrouping'
+      }
+    ).data.rows
+  end
+
+  def sessions_per_browser(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:sessions',
+        'dimensions' => 'ga:browser'
+      }
+    ).data.rows
+  end
+
+  def sessions_per_country(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:sessions',
+        'dimensions' => 'ga:country'
+      }
+    ).data.rows
+  end
 end

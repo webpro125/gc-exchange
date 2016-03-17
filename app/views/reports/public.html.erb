@@ -44,7 +44,32 @@
             <p>Pages per Session</p>
           </div>
         </li>
+        <li>
+          <div class="panel text-center" data-equalizer-watch>
+            <h4 id="sessions-per-device"></h4>
+            <p>Sessions per Device</p>
+          </div>
+        </li>
+        <li>
+          <div class="panel text-center" data-equalizer-watch>
+            <h5 id="sessions-in-bound"></h5>
+            <p>Source of In-Bound</p>
+          </div>
+        </li>
+        <li>
+          <div class="panel text-center" data-equalizer-watch>
+            <h5 id="sessions-per-browser"></h5>
+            <p>Sessions per Browser</p>
+          </div>
+        </li>
+        <li>
+          <div class="panel   text-center">
+            <div id="sessions-per-country">
+            </div>
+          </div>
+        </li>
       </ul>
+
       <div id="loading" class="loading-indicator">
         <span class="spinner"></span>
       </div>
@@ -53,3 +78,6 @@
     <h2>Please set-up google analytics to get visits metrics.</h2>
   <% end %>
 </div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
