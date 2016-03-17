@@ -14,7 +14,8 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def index?
-    gces?
+    # gces?
+    user.owned_company.present?
   end
 
   def show?
@@ -22,7 +23,7 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.consultant == record && user.consultant.wizard_step == Wicked::FINISH_STEP
+    gces? || (user.consultant == record && user.consultant.wizard_step == Wicked::FINISH_STEP)
     # gces? || user == record
   end
 
@@ -38,7 +39,7 @@ class ConsultantPolicy < ApplicationPolicy
 
   def upload_resume?
     # user.consultant == record || gces?
-    user.consultant == record && user.consultant.wizard_step == Wicked::FINISH_STEP
+    gces? || (user.consultant == record && user.consultant.wizard_step == Wicked::FINISH_STEP)
   end
 
   alias_method :upload_image?, :upload_resume?

@@ -37,10 +37,10 @@ class ConsultantsDatatable
   def consultant_fields(consultant)
     [
       consultant.id,
-      link_to(consultant.first_name, consultant, target: '_blank'),
-      link_to(consultant.last_name, consultant, target: '_blank'),
+      link_to(consultant.user.first_name, consultant, target: '_blank'),
+      link_to(consultant.user.last_name, consultant, target: '_blank'),
       consultant.phones.size > 0 ? consultant.phones.first.number_with_ext : '',
-      mail_to(consultant.email),
+      mail_to(consultant.user.email),
       consultant.approved_status.label,
       consultant.created_at.to_s(:long),
       consultant.date_pending_approval ? consultant.date_pending_approval.to_s(:long) : nil,
@@ -48,9 +48,9 @@ class ConsultantsDatatable
       consultant.approval_number,
       consultant.date_on_hold ? consultant.date_on_hold.to_s(:long) : nil,
       consultant.date_rejected ? consultant.date_rejected.to_s(:long) : nil,
-      consultant.last_sign_in_at ? consultant.last_sign_in_at.to_s(:long) : nil,
+      consultant.user.last_sign_in_at ? consultant.user.last_sign_in_at.to_s(:long) : nil,
       consultant.updated_at.to_s(:long),
-      consultant.sign_in_count,
+      consultant.user.sign_in_count,
       consultant.contract_effective_date,
       consultant.contract_version
     ]

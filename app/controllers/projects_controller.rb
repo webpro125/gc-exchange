@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = pundit_user.consultant.projects.page(params[:page])
+    @projects = pundit_user.projects.page(params[:page])
   end
 
   # GET /projects/1
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = pundit_user.consultant.projects.build
+    @project = pundit_user.projects.build
     @form    = ProjectForm.new(@project)
 
     authorize @project
@@ -29,14 +29,14 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project            = current_user.projects.build
-    @project.consultant = @consultant
+    # @project.consultant = @consultant
 
     authorize @project
 
     @form = ProjectForm.new(@project)
 
     if @form.validate(project_params) && @form.save
-
+      @consultant = @project.consultant
       # send notification sms to consultant for this offer
       host_url = request.host || "drake.gces.staging.c66.me"
       off_url = host_url + '/offers/' + @project.id.to_s
@@ -102,12 +102,12 @@ class ProjectsController < ApplicationController
   end
 
   def set_consultant
-    @consultant = Consultant.find(params[:consultant_id])
+    # @consultant = Consultant.find(params[:consultant_id])
   end
 
   # Only allow a trusted parameter "white list" through.
   def project_params
-    params.require(:project).permit(:travel_authorization_id, :proposed_start, :proposed_end,
+    params.require(:project).permit(:consultant_id, :travel_authorization_id, :proposed_start, :proposed_end,
                                     :proposed_rate, :project_name, :project_location)
   end
 

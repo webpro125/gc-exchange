@@ -1,0 +1,46 @@
+%h1= @project.project_name
+.row
+  .medium-8.columns.vr
+    .row
+      .medium-8.columns
+        %h4
+        - if user_signed_in?
+          = link_to consultant_path(@project.consultant_id) do
+            %h4
+              = image_tag(@project.consultant.profile_image.url(:thumb),
+                class: 'th profile-thumb')
+              = @project.consultant.user.full_name
+      .medium-4.columns
+        %h4= @project.created_at.to_s(:month_day_and_year)
+    .row
+      .medium-12.columns
+        %table
+          %tbody
+            %tr
+              %td{:width => "200"} Client Point of Contact:
+              %td= @project.user.full_name
+            %tr
+              %td Estimated Start Date:
+              %td= @project.proposed_start.to_s(:month_day_and_year)
+            %tr
+              %td Estimated End Date:
+              %td= @project.proposed_end.to_s(:month_day_and_year)
+            %tr
+              %td Proposed Hourly Rate:
+              %td
+                $#{@project.proposed_rate}
+            %tr
+              %td Work Location:
+              %td= @project.project_location
+            %tr
+              %td Travel Expense Authorization:
+              %td= @project.travel_authorization.label
+    .row
+      .medium-12.columns
+        - case @project
+          - when :offered?.to_proc
+            = render 'offered'
+          - when :under_revision?.to_proc
+            = render 'rejected_terms'
+  .medium-4.columns.side
+    = render 'profiles/side_bar'

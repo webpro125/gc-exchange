@@ -1,0 +1,24 @@
+%h4
+  Recently Added Consultants
+  %span.viewall= link_to t('views.offer.actions.index'), consultants_path
+- consultants.each do |consultant|
+  %article.row.consultant-profile
+    .conheader
+      = link_to consultant_path(consultant) do
+        = image_tag(consultant.profile_image.url(:thumb), class: 'th profile-thumb')
+    .columns
+      %h5
+        = link_to consultant.user.full_name, consultant_path(consultant)
+      %p
+        %strong
+          = t('simple_form.labels.military.clearance_level')
+          \:
+          - if consultant.military && consultant.military.clearance_level
+            = consultant.military.clearance_level.label
+          - else
+            = t('activerecord.models.attributes.clearance_level.none')
+        %br/
+        %strong
+          = t('simple_form.labels.consultant.willing_to_travel')
+          \:
+        = boolean_to_human consultant.willing_to_travel

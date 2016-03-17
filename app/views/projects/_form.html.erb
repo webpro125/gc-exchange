@@ -1,13 +1,20 @@
-<% if @form.model.persisted?
+<%# if @form.model.persisted?
      @url = project_path(@project)
    else
      @url = consultant_projects_path(@consultant, @project)
    end %>
-<%= simple_form_for @form, url: @url do |f| %>
+<%= simple_form_for @form do |f| %>
     <%= f.error_notification %>
     <%= render 'shared/base_error', model: @form %>
 
     <div class="form-inputs">
+      <div class="row">
+        <div class="medium-12 columns">
+          <%= f.input :consultant_id,
+                      collection: Consultant.joins(:user).where('users.id !=?', current_user.id).map{|e|[e.full_name, e.id]},
+                      as: :select %>
+        </div>
+      </div>
       <div class="row">
         <div class="medium-12 columns">
           <%= f.input :project_name %>

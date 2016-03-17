@@ -3,10 +3,12 @@ require 'reform/form/coercion'
 class ProjectForm < Reform::Form
   model :project
 
+  property :consultant_id
   property :proposed_start, type: DateTime
   property :proposed_end, type: DateTime
   properties :travel_authorization_id, :project_name, :project_location, :proposed_rate
 
+  validates :consultant_id, presence: true
   validates :travel_authorization_id, presence: true
   validates :proposed_start, presence: true, date: { on_or_after: DateTime.now }
   validates :proposed_end, presence: true, date: { on_or_after: :proposed_start }

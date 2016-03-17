@@ -6,7 +6,7 @@ class ProjectPolicy < LoggedInPolicy
   end
 
   def agree_to_terms?
-    user.is_a?(Consultant) && user.projects.include?(record)
+    user.consultant.is_a?(Consultant) && user.consultant.projects.include?(record)
   end
 
   alias_method :not_interested?, :agree_to_terms?
@@ -27,6 +27,6 @@ class ProjectPolicy < LoggedInPolicy
   alias_method :update?, :edit?
 
   def show?
-    user.projects.include?(record)
+    user.projects.include?(record) || user.consultant.projects.include?(record)
   end
 end

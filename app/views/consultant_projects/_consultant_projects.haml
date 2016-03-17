@@ -1,0 +1,16 @@
+- consultant_projects.each do |project|
+  .panel
+    .row
+      .medium-9.columns
+        "#{project.user.full_name} - #{project.user.company.company_name}"
+      .medium-3.columns
+        - if project.updated_at.today?
+          = project.updated_at.strftime('%l:%M %p')
+        - else
+          = project.updated_at.strftime('%_m/%-d')
+    = link_to project.project_name, consultant_project_path(project)
+    %br/
+    %strong Start Date:
+    = project.proposed_start.to_formatted_s(:month_day_and_year)
+    %br/
+    %span.status= project.contact_status.humanize.upcase

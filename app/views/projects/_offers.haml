@@ -1,0 +1,9 @@
+%h4
+  Offers
+  - if params[:controller] == 'consultant_projects'
+    %span.viewall= link_to t('views.offer.actions.index'), consultant_projects_path
+  - else
+    %span.viewall= link_to t('views.offer.actions.index'), projects_path
+- projects.each do |project|
+  .panel
+    = render project

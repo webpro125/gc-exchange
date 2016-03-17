@@ -13,7 +13,7 @@
       <div class="medium-8 columns">
         <% message = conversation.messages.first %>
         <h5>
-          <%= if consultant_signed_in?
+          <%#= if consultant_signed_in?
                 if conversation.originator.class.name != 'Admin'
                   "#{conversation.originator.full_name} - #{conversation.originator.company
                           .company_name}"

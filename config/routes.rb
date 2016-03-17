@@ -77,29 +77,40 @@ Rails.application.routes.draw do
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
 
   # Resources
-  resource :profile, only: [:edit, :update, :show]
   resource :change_password, only: [:edit, :update]
 
   get :search, to: 'searches#new'
   get 'search/skills', to: 'searches#skills'
 
-  get :consultant, to: 'profiles#consultant', as: :consultant_root
+  get :consultant_profile, to: 'profiles#consultant', as: :consultant_root
   get :create_consultant, to: 'users#create_consultant'
 
-  resources :create_profile, only: [:show, :update]
-  resources :project_histories, path: 'projects', except: [:show]
-  resources :sales_leads, only: [:new, :create]
-  resources :projects, path: 'offers', only: [:index] do
-    member do
-      post :agree_to_terms
-      post :reject_terms
-      post :not_pursuing
-      post :not_interested
+  scope :consultant_profile do
+    resources :consultant_projects, path: 'offers', only: [:index, :show] do
+      member do
+        post :agree_to_terms
+        post :reject_terms
+        post :not_interested
+      end
     end
+
+    get 'account_setting', to: 'settings#edit'
+    patch 'account_setting/update_sms_notification', to: 'settings#update_sms_notification'
+
+    resource :profile, only: [:edit, :update, :show]
+
+    resources :project_histories, path: 'projects', except: [:show]
   end
 
-  get 'account_setting', to: 'settings#edit'
-  patch 'account_setting/update_sms_notification', to: 'settings#update_sms_notification'
+  get :contractor_profile, to: 'contractors#profile', as: :contractor_root
+
+  resources :create_profile, only: [:show, :update]
+  resources :sales_leads, only: [:new, :create]
+  resources :projects, path: 'offers', only: [:index, :new, :create] do
+    member do
+      post :not_pursuing
+    end
+  end
 
   resources :companies, path: 'contractors' do
     resources :users
@@ -113,7 +124,7 @@ Rails.application.routes.draw do
     resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
-    resources :projects, path: 'offers', shallow: true, except: [:index, :destroy]
+    resources :projects, path: 'offers', shallow: true, except: [:index, :destroy, :new, :create]
     member do
       put :approve
       put :reject

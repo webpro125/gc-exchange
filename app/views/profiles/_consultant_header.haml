@@ -1,0 +1,48 @@
+.row
+  .left.conheader
+    - if policy(@consultant).upload_image?
+      = link_to t('views.upload_image.actions.upload_photo_html'),
+        new_consultant_upload_image_path(@consultant.id),
+        class: 'button small secondary download'
+    = image_tag(@consultant.profile_image.url(:medium), class: 'th profile-medium')
+    = link_to t('views.profile.actions.download_resume_html'),
+      download_resume_path(@consultant),
+      class: 'button small secondary download'
+  .columns
+    .row
+      .small-12.columns
+        %h1
+          = @consultant.user.full_name
+    %table.consultant-header
+      - if @consultant.military.present?
+        - if @consultant.military.clearance_active
+          %tr
+            %td
+              = t('simple_form.labels.military.clearance_level')
+            %td.right-side
+              - if @consultant.military && @consultant.military.clearance_level
+                = @consultant.military.clearance_level.label
+              - else
+                = t('activerecord.models.attributes.clearance_level.none')
+      %tr
+        %td
+          = t('simple_form.labels.consultant.willing_to_travel')
+        %td.right-side
+          = boolean_to_human @consultant.willing_to_travel?
+      - if user_signed_in?
+        %tr
+          %td
+            = t('simple_form.labels.consultant.rate')
+          %td.right-side
+            = number_to_currency @consultant.rate
+      - if user_signed_in?
+        %tr
+          %td
+            = t('simple_form.labels.consultant.gces_fee')
+          %td.right-side.underline
+            +  #{number_to_currency Company::GCES_FEE}
+        %tr
+          %td
+            = t('simple_form.labels.consultant.total_rate')
+          %td.right-side
+            = number_to_currency ( @consultant.rate.to_f + Company::GCES_FEE )

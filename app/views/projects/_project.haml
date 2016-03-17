@@ -1,0 +1,23 @@
+.row
+  .medium-9.columns
+    - if params[:controller] == 'consultant_projects'
+      "#{project.user.full_name} - #{project.user.company.company_name}"
+    - else
+      = link_to consultant_path(project.consultant) do
+        = image_tag(project.consultant.profile_image.url(:thumb),
+          class: 'th profile-thumb-mini')
+        = project.consultant.user.full_name
+  .medium-3.columns
+    - if project.updated_at.today?
+      = project.updated_at.strftime('%l:%M %p')
+    - else
+      = project.updated_at.strftime('%_m/%-d')
+- if params[:controller] == 'consultant_projects'
+  = link_to project.project_name, consultant_project_path(project)
+- else
+  = link_to project.project_name, project_path(project)
+%br/
+%strong Start Date:
+= project.proposed_start.to_formatted_s(:month_day_and_year)
+%br/
+%span.status= project.contact_status.humanize.upcase

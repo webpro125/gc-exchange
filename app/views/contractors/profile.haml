@@ -1,0 +1,12 @@
+%h1 Corporate Dashboard
+.row
+  .medium-8.columns.vr
+    %h4 Inbox
+    = render 'conversations/inbox', conversations: @messages
+  .medium-4.columns.side
+    .row
+      .medium-12.columns
+        = render 'projects/offers', projects: @projects
+    .row
+      .medium-12.columns
+        = render 'shared/recent_consultants', consultants: @consultants

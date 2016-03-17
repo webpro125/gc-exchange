@@ -7,4 +7,12 @@
         %p= link_to "Update Contract", new_update_contract_path, class: 'button'
     %h4 Inbox
     = render 'conversations/inbox', conversations: @conversations
-  = render 'profiles/side_column'
+  .medium-4.columns.side
+    = render 'profiles/side_bar'
+    %h4
+      Offers
+      %span.viewall= link_to t('views.offer.actions.index'), consultant_projects_path
+
+    = render 'consultant_projects/consultant_projects', consultant_projects: @consultant_projects
+
+

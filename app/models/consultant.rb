@@ -61,6 +61,7 @@ class Consultant < ActiveRecord::Base
   has_many :certifications, through: :consultant_certifications
   has_many :educations, dependent: :destroy
   has_many :projects, ->() { order(updated_at: :desc) }, dependent: :destroy
+  belongs_to :user
 
   accepts_nested_attributes_for :educations, allow_destroy: true
 
@@ -186,6 +187,9 @@ class Consultant < ActiveRecord::Base
     end
   end
 
+  def full_name
+    user.full_name
+  end
   private
 
   def destroy_consultant_index

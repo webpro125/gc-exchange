@@ -1,0 +1,14 @@
+%h3= t('views.profile.headers.contact')
+%table.contact
+  = render @consultant.phones
+  %tr
+    %td
+      = Consultant.human_attribute_name(:email)
+    %td
+      = @consultant.user.email
+  %tr
+    %td
+      = Address.human_attribute_name(:address)
+    - if @consultant.address.present?
+      %td
+        = @consultant.address.address

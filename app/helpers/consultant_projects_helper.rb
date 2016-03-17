@@ -1,0 +1,2 @@
+module ConsultantProjectsHelper
+end

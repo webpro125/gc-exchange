@@ -30,7 +30,7 @@ class ProfilesController < ConsultantController
     else
       @conversations ||= @consultant.mailbox.trash
     end
-    @projects = @consultant.projects.open.limit(3)
+    @consultant_projects = @consultant.projects.open.limit(3)
   end
 
   private
