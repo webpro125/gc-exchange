@@ -35,7 +35,7 @@ class ConversationsController < ApplicationController
 
   def show
     @message    = Message.new
-    @consultant = conversation.consultant_recipient
+    # @consultant = conversation.consultant_recipient
     conversation.mark_as_read(pundit_user)
   end
 

@@ -24,11 +24,11 @@ class ProfilesController < ConsultantController
     @consultant = current_user.consultant
     # @conversations = @consultant.mailbox.conversations.page(params[:page])
     if @box.eql? "inbox"
-      @conversations ||= @consultant.mailbox.inbox.page(params[:page])
+      @conversations ||= current_user.mailbox.inbox.page(params[:page])
     elsif @box.eql? "sent"
-      @conversations ||= @consultant.mailbox.sentbox.page(params[:page])
+      @conversations ||= current_user.mailbox.sentbox.page(params[:page])
     else
-      @conversations ||= @consultant.mailbox.trash
+      @conversations ||= current_user.mailbox.trash
     end
     @consultant_projects = @consultant.projects.open.limit(3)
   end
