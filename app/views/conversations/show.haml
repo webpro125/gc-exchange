@@ -1,0 +1,76 @@
+- communication = @conversation
+.row
+  .medium-8.columns.vr
+    %h1= communication.subject
+    .row
+      .medium-12.columns
+        = link_to 'Back to Inbox', conversations_path, class: 'button tiny'
+        - if communication.originator.class.name != 'Admin'
+          - if (((receiver_side_conversation? communication) && !current_user.consultant.contactable(conversation.recipients.select{|r| r.is_a? User}.reject{|p| p == current_user}.first)) && !user_is_gces?)
+            = link_to 'Approve Personal Contact Information',
+              approve_personal_contact_conversation_path,
+              method: :put,
+              class: 'button tiny' if policy(current_user.consultant).contactable?
+    .row
+      .medium-12.columns
+        .panel
+          %p
+            - if receiver_side_conversation? communication
+              NOTE: As you begin this dialogue with a potential client, (1) please keep in mind
+              your
+              responsibility to maintain correct contact information within the GCES database and
+              (2) be sensitive to the possibility of latent conflicts of interests that might
+              exist
+              between you and the potential client.
+            - else
+              NOTE: As you begin this dialogue with a potential consultant, please keep in mind
+              the
+              possibility of latent conflicts of interest that might exist between your company
+              and
+              the potential consultant. GCES encourages you to address any potential conflict of
+              interest issues with the consultant early in your dialogue to avoid possible
+              confidentiality breaches.
+    .row
+      .medium-12.columns
+        %ul.right
+          %li#reply-btn
+            %i.fi-arrow-left
+            Reply
+    #reply.row{:style => "display: none; opacity: 0;"}
+      .medium-12.columns
+        = simple_form_for @message,
+          url:    reply_conversation_path(communication),
+          method: :post do |f|
+          = f.input :message, as: :text
+          = f.button :submit, 'Send Message'
+    - communication.messages.each do |message|
+      .row
+        .medium-6.columns
+          - if message.sender_type == 'Consultant'
+            = link_to consultant_path(message.sender) do
+              = image_tag(message.sender.profile_image.url(:thumb),
+                class: 'th profile-thumb-mini')
+              = message.sender.full_name
+          - else
+            = message.sender.full_name
+        .medium-6.columns
+          .right
+            = message.created_at.strftime('%B %d at %I:%M %p')
+      %hr/
+      .row
+        .medium-12.columns
+          %p
+            = message.body
+  .medium-4.columns.side
+    - if receiver_side_conversation? communication
+      = render 'profiles/side_bar'
+    - else
+      %h4
+        Offers
+        %span.viewall= link_to t('views.offer.actions.index'), projects_path
+      .row
+        .medium-12.columns
+          = link_to 'Add Engagement Offer',
+            new_project_path,
+            class: 'button tiny'
+      = render 'shared/recent_consultants', consultants: @consultants

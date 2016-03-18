@@ -24,7 +24,7 @@ class ConversationsController < ApplicationController
     @form = ConversationForm.new(Message.new)
 
     if @form.validate(conversation_form_params)
-      conversation = current_user.send_message(@consultant,
+      conversation = current_user.send_message(@consultant.user,
                                                conversation_form_params[:message],
                                                conversation_form_params[:subject]).conversation
       redirect_to conversation_path(conversation)
