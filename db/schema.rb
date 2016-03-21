@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310214510) do
+ActiveRecord::Schema.define(version: 20160319210939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,10 +146,11 @@ ActiveRecord::Schema.define(version: 20160310214510) do
     t.string   "contract_version"
     t.integer  "approval_number"
     t.boolean  "sms_notification",                                   default: true
-    t.integer  "user_id",                                            default: 0
+    t.integer  "user_id"
   end
 
   add_index "consultants", ["approved_status_id"], name: "index_consultants_on_approved_status_id", using: :btree
+  add_index "consultants", ["user_id"], name: "index_consultants_on_user_id", using: :btree
 
   create_table "customer_names", force: true do |t|
     t.string "code",  limit: 32,  null: false

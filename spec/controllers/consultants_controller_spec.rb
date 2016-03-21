@@ -211,13 +211,13 @@ describe ConsultantsController do
     describe 'as Owner' do
       let(:user) { FactoryGirl.create(:user, :as_owner) }
 
-      describe 'GET index' do
-        it 'raises error' do
-          expect do
-            get :index
-          end.to raise_error Pundit::NotAuthorizedError
-        end
-      end
+      # describe 'GET index' do
+      #   it 'raises error' do
+      #     expect do
+      #       get :index
+      #     end.to raise_error Pundit::NotAuthorizedError
+      #   end
+      # end
 
       describe 'GET show' do
         let(:consultant) { FactoryGirl.create(:consultant, :approved) }

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ProjectHistoriesController do
   let!(:project_type) { FactoryGirl.create(:project_type) }
-  let(:consultant) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
+  let(:user) { FactoryGirl.create(:user, :wicked_finish) }
   let(:position) { FactoryGirl.create(:position) }
   let(:phone) { FactoryGirl.attributes_for(:phone, phone_type_id: PhoneType.first.id) }
   let(:project_history_positions) do
@@ -11,7 +11,7 @@ describe ProjectHistoriesController do
 
   let(:valid_attributes) do
     FactoryGirl.attributes_for(:project_history,
-                               consultant:       consultant,
+                               consultant:       user.consultant,
                                project_type_id:  project_type.id,
                                position_ids:     [position.id],
                                phone_attributes: phone)
@@ -19,11 +19,11 @@ describe ProjectHistoriesController do
 
   describe 'when logged in' do
     before do
-      sign_in consultant
+      sign_in user
     end
 
     describe "GET 'index'" do
-      let!(:projects) { FactoryGirl.create_list(:project_history, 4, consultant: consultant) }
+      let!(:projects) { FactoryGirl.create_list(:project_history, 4, consultant: user.consultant) }
 
       it 'returns http success' do
         get :index
@@ -93,7 +93,7 @@ describe ProjectHistoriesController do
 
     describe "GET 'edit'" do
       describe 'with consultants project_history' do
-        let!(:project_history) { FactoryGirl.create(:project_history, consultant: consultant) }
+        let!(:project_history) { FactoryGirl.create(:project_history, consultant: user.consultant) }
 
         it 'renders #edit' do
           get :edit, id: project_history.id
@@ -117,7 +117,7 @@ describe ProjectHistoriesController do
 
     describe "PUT 'update'" do
       describe 'with valid parameters' do
-        let(:project_history) { consultant.project_histories.create!(valid_attributes) }
+        let(:project_history) { user.consultant.project_histories.create!(valid_attributes) }
 
         it 'redirects to project_histories_path' do
           put :update, project_history: project_history.attributes, id: project_history.id
@@ -136,7 +136,7 @@ describe ProjectHistoriesController do
       end
 
       describe 'with invalid parameters' do
-        let(:project_history) { consultant.project_histories.create!(valid_attributes) }
+        let(:project_history) { user.consultant.project_histories.create!(valid_attributes) }
 
         it 'renders "edit"' do
           put :update, project_history: { client_company: nil }, id: project_history.id
@@ -161,7 +161,7 @@ describe ProjectHistoriesController do
     end
 
     describe "DELETE 'destroy'" do
-      let!(:project) { consultant.project_histories.create!(valid_attributes) }
+      let!(:project) { user.consultant.project_histories.create!(valid_attributes) }
 
       describe 'with valid params' do
         it 'deletes the project_history' do
@@ -184,26 +184,26 @@ describe ProjectHistoriesController do
 
   describe 'when not logged in' do
     before do
-      sign_out consultant
+      sign_out user
     end
 
     it 'should redirect to login for "GET" requests' do
       [:new].each do |method|
         get method
-        expect(response).to redirect_to(new_consultant_session_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
 
       project_history = FactoryGirl.create(:project_history)
       [:edit].each do |method|
         get method, id: project_history.id
-        expect(response).to redirect_to(new_consultant_session_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     it 'should redirect to login for "POST" requests' do
       [:create].each do |method|
         post method, project_history: valid_attributes
-        expect(response).to redirect_to(new_consultant_session_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -212,7 +212,7 @@ describe ProjectHistoriesController do
 
       [:update].each do |method|
         put method, id: project_history.id
-        expect(response).to redirect_to(new_consultant_session_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -221,7 +221,7 @@ describe ProjectHistoriesController do
 
       [:destroy].each do |method|
         delete method, id: project_history.id
-        expect(response).to redirect_to(new_consultant_session_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end

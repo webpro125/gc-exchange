@@ -11,12 +11,12 @@ describe ConversationsController do
     end
 
     describe 'as User' do
-      let!(:consultant) { FactoryGirl.create(:consultant, :approved) }
-      let!(:user) { FactoryGirl.create(:user, :with_company) }
+      # let!(:consultant) { FactoryGirl.create(:consultant, :approved) }
+      let!(:user) { FactoryGirl.create(:user, :with_company, :approved) }
 
       describe 'conversation strong_params' do
         it do
-          consultant = FactoryGirl.create(:consultant)
+          consultant = FactoryGirl.create(:user, :with_consultant).consultant
           should permit(:subject, :message).for(:create,
                                                 params: { consultant_id:
                                                             consultant.id })
@@ -27,7 +27,7 @@ describe ConversationsController do
         let(:conversation) { Mailboxer::Conversation.first }
 
         it do
-          consultant.send_message(user, 'Test Message Body', 'Test Subject')
+          user.consultant.send_message(user, 'Test Message Body', 'Test Subject')
           should permit(:message).for(:reply,
                                       verb: :post,
                                       params: {
@@ -47,7 +47,7 @@ describe ConversationsController do
 
       describe 'GET new' do
         before do
-          get :new, consultant_id: consultant.id
+          get :new, consultant_id: user.consultant.id
         end
 
         let(:consultant) { FactoryGirl.create(:confirmed_consultant) }
@@ -65,7 +65,7 @@ describe ConversationsController do
         let(:conversation) { Mailboxer::Conversation.first }
 
         before do
-          consultant.send_message(user, 'Test Message Body', 'Test Subject')
+          user.consultant.send_message(user, 'Test Message Body', 'Test Subject')
           get :show, id: conversation.id
         end
 
@@ -82,14 +82,14 @@ describe ConversationsController do
         describe 'with valid params' do
           it 'creates a new Conversation' do
             expect do
-              post :create, conversation: valid_attributes, consultant_id: consultant.id,
+              post :create, conversation: valid_attributes, consultant_id: user.consultant.id,
                    user_id: user.id
             end.to change(Mailboxer::Conversation, :count).by(1)
           end
 
           describe do
             before do
-              post :create, conversation: valid_attributes, consultant_id: consultant.id,
+              post :create, conversation: valid_attributes, consultant_id: user.consultant.id,
                    user_id: user.id
             end
 

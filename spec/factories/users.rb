@@ -19,6 +19,29 @@ FactoryGirl.define do
         user.owned_company = create(:company, owner: user)
       end
     end
+    trait :with_consultant do
+      after(:create) do |user|
+        user.consultant = create(:consultant)
+      end
+    end
+
+    trait :wicked_finish do
+      after(:create) do |user|
+        user.consultant = create(:consultant, :wicked_finish)
+      end
+    end
+
+    trait :approved do
+      after(:build) do |user|
+        user.consultant = create(:consultant, :approved)
+      end
+    end
+
+    trait :resume_approved do
+      after(:create) do |user|
+        user.consultant = create(:consultant, :approved, :with_resume)
+      end
+    end
 
     after(:build) { |user| user.skip_confirmation! }
   end

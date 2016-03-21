@@ -2,11 +2,6 @@
 
 FactoryGirl.define do
   factory :consultant do
-    first_name            { Faker::Name.first_name }
-    last_name             { Faker::Name.last_name }
-    sequence(:email)      { |n| "#{first_name}#{n}.#{last_name}@fakeemail.com" }
-    password              { 'password' }
-    password_confirmation { 'password' }
     abstract              { Faker::Lorem.paragraph(4) }
     contract_effective_date { DateTime.now }
 
@@ -61,6 +56,6 @@ FactoryGirl.define do
   end
 
   factory :confirmed_consultant, parent: :consultant do
-    before(:create) { |consultant| consultant.skip_confirmation! }
+    # before(:create) { |consultant| consultant.skip_confirmation! }
   end
 end

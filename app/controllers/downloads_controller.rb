@@ -2,7 +2,7 @@ class DownloadsController < ApplicationController
   before_action :load_consultant, only: [:download_resume]
 
   def download_resume
-    if user_signed_in? || consultant_signed_in? || admin_signed_in?
+    if user_signed_in? || admin_signed_in?
       if Rails.env.development?
         redirect_to "/#{@consultant.resume_url}"
       else

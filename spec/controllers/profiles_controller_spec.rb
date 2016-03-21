@@ -7,7 +7,7 @@ describe ProfilesController do
       sign_in user
     end
 
-    let(:user) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
+    let(:user) { FactoryGirl.create(:user, :wicked_finish) }
 
     describe 'GET "consultant"' do
       it 'renders "consultant"' do
@@ -44,20 +44,20 @@ describe ProfilesController do
       describe 'with valid params' do
         it 'updates the profile' do
           EditConsultantForm.any_instance.should_receive(:validate).with('first_name' => 'New Name')
-          put :update, consultant: { first_name: 'New Name' }
+          put :update, user: { first_name: 'New Name' }
         end
 
         it 'updates the profile' do
           allow_any_instance_of(EditConsultantForm).to receive(:validate) { true }
           EditConsultantForm.any_instance.should_receive(:save)
-          put :update, consultant: { first_name: 'New Name' }
+          put :update, user: { first_name: 'New Name' }
         end
 
         describe do
           before do
             allow_any_instance_of(EditConsultantForm).to receive(:validate) { true }
             allow_any_instance_of(EditConsultantForm).to receive(:save) { true }
-            put :update, consultant: { first_name: 'New Name' }
+            put :update, user: { first_name: 'New Name' }
           end
 
           it 'assigns the form as @form' do
@@ -72,7 +72,7 @@ describe ProfilesController do
       describe 'with invalid params' do
         before do
           allow_any_instance_of(EditConsultantForm).to receive(:validate) { false }
-          put :update, consultant: { first_name: '' }
+          put :update, user: { first_name: '' }
         end
 
         it 'assigns the form as @form' do

@@ -1,7 +1,7 @@
 class ConsultantProjectsController < ApplicationController
   before_action :auth_a_user!
   before_action :consultants
-  before_action :set_project, except: [:index, :new, :create]
+  before_action :set_project, except: [:index]
 
   def index
     @projects = pundit_user.consultant.projects.page(params[:page])

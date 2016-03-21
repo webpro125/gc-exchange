@@ -5,12 +5,13 @@ describe CreateProfileController do
     sign_in user
   end
 
-  let!(:user) { FactoryGirl.create(:confirmed_consultant) }
+  # let!(:user) { FactoryGirl.create(:confirmed_consultant) }
+  let(:user) { FactoryGirl.create(:user, :with_consultant) }
 
   describe 'basic_information' do
     let(:m) { :basic_information }
     let(:valid_attributes) do
-      { id: m, consultant: { first_name: 'first_name' } }
+      { id: m, consultant: {rate: '123'} }
     end
 
     describe 'GET basic_information' do
@@ -42,17 +43,17 @@ describe CreateProfileController do
   describe 'qualifications' do
     let(:m) { :qualifications }
     let(:valid_attributes) do
-      { id: m, consultant: { first_name: 'first_name' } }
+      { id: m, consultant: { rate: '123' } }
     end
 
     describe 'GET qualifications' do
       before do
-        user.educations << FactoryGirl.create(:education)
+        user.consultant.educations << FactoryGirl.create(:education)
         get :show, id: :qualifications
       end
 
       it 'should create only one education fill instance' do
-        expect(user.educations).not_to receive(:build)
+        expect(user.consultant.educations).not_to receive(:build)
       end
 
       it 'assigns @form' do
@@ -79,17 +80,17 @@ describe CreateProfileController do
   describe 'other_information' do
     let(:m) { :other_information }
     let(:valid_attributes) do
-      { id: m, consultant: { first_name: 'first_name' } }
+      { id: m, consultant: { rate: '123' } }
     end
 
     describe 'GET other_information' do
       before do
-        user.phones << FactoryGirl.build(:phone)
+        user.consultant.phones << FactoryGirl.build(:phone)
         get :show, id: m
       end
 
       it 'should create only one phone fill instance' do
-        expect(user.phones).not_to receive(:build)
+        expect(user.consultant.phones).not_to receive(:build)
       end
 
       it 'assigns @form' do
@@ -119,8 +120,8 @@ describe CreateProfileController do
       { id: :background_information,
         consultant: {
           background_attributes: FactoryGirl.attributes_for(:background,
-                                                            consultant: user,
-                                                            id: user.id.to_s,
+                                                            consultant: user.consultant,
+                                                            id: user.consultant.id.to_s,
                                                             citizen: 'true',
                                                             convicted: 'false',
                                                             parole: 'false',
@@ -199,12 +200,12 @@ describe CreateProfileController do
     describe 'contract' do
       let(:m) { :contract }
       let(:valid_attributes) do
-        { id: m, consultant: { first_name: 'first_name' } }
+        { id: m, consultant: { rate: '123'} }
       end
 
       describe 'GET contract' do
         before do
-          user.entity = create(:entity, consultant: user)
+          user.consultant.entity = create(:entity, consultant: user.consultant)
           get :show, id: m
         end
 
@@ -235,9 +236,9 @@ describe CreateProfileController do
       get :show, id: :other_information
     end
 
-    let(:user) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
+    let(:user) { FactoryGirl.create(:user, :wicked_finish) }
 
-    it 'should redirect to root' do
+    it 'should redirect to profile completed' do
       expect(response).to redirect_to profile_completed_path
     end
   end
