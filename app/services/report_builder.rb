@@ -85,12 +85,13 @@ class ReportBuilder
 
     {
       pageviews: GA_API_CLIENT.pageviews(@from, @to),
-      avg_session_duration: Time.at(GA_API_CLIENT.avg_session_duration(@from, @to)).utc.strftime("%H:%M:%S"),
+      avg_session_duration: GA_API_CLIENT.avg_session_duration(@from, @to),
       pages_per_session: GA_API_CLIENT.pages_per_session(@from, @to),
       sessions_per_device: GA_API_CLIENT.sessions_per_device(@from, @to),
       sessions_in_bound: GA_API_CLIENT.sessions_in_bound(@from, @to),
       sessions_per_browser: GA_API_CLIENT.sessions_per_browser(@from, @to),
       sessions_per_country: GA_API_CLIENT.sessions_per_country(@from, @to),
+      sessions_per_city: GA_API_CLIENT.sessions_per_city(@from, @to),
       valid: true
     }
   end

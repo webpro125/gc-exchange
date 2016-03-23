@@ -50,9 +50,10 @@ class GoogleAnalyticsApi
         'ids' => "ga:#{PROFILE_ID}",
         'start-date' => from.strftime('%Y-%m-%d'),
         'end-date' => to.strftime('%Y-%m-%d'),
-        'metrics' => 'ga:pageviews'
+        'metrics' => 'ga:pageviews',
+        'dimensions' => 'ga:date'
       }
-    ).data.rows.try(:[], 0).try(:[], 0).to_i
+    ).data.rows
   end
 
   def pages_per_session(from, to)
@@ -62,9 +63,10 @@ class GoogleAnalyticsApi
         'ids' => "ga:#{PROFILE_ID}",
         'start-date' => from.strftime('%Y-%m-%d'),
         'end-date' => to.strftime('%Y-%m-%d'),
-        'metrics' => 'ga:pageviewsPerSession'
+        'metrics' => 'ga:pageviewsPerSession',
+        'dimensions' => 'ga:date'
       }
-    ).data.rows.try(:[], 0).try(:[], 0).to_i
+    ).data.rows
   end
 
   def avg_session_duration(from, to)
@@ -74,9 +76,10 @@ class GoogleAnalyticsApi
         'ids' => "ga:#{PROFILE_ID}",
         'start-date' => from.strftime('%Y-%m-%d'),
         'end-date' => to.strftime('%Y-%m-%d'),
-        'metrics' => 'ga:avgSessionDuration'
+        'metrics' => 'ga:avgSessionDuration',
+        'dimensions' => 'ga:date'
       }
-    ).data.rows.try(:[], 0).try(:[], 0).to_i
+    ).data.rows
   end
 
   def sessions_per_device(from, to)
@@ -127,6 +130,19 @@ class GoogleAnalyticsApi
         'end-date' => to.strftime('%Y-%m-%d'),
         'metrics' => 'ga:sessions',
         'dimensions' => 'ga:country'
+      }
+    ).data.rows
+  end
+
+  def sessions_per_city(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:sessions',
+        'dimensions' => 'ga:city'
       }
     ).data.rows
   end

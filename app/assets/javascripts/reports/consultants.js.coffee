@@ -62,14 +62,10 @@ reportConsultantPage = ->
       allowDecimals: false
     xAxis:
       type: 'datetime'
-      dateTimeLabelFormats:
-        day: '%e %b %Y'
       gridLineWidth: 1
       maxZoom: 24 * 3600 * 1000 * 30
     tooltip:
       shared: true
-      dateTimeLabelFormats:
-        day: '%e %b %Y'
     plotOptions:
       series:
         pointInterval: 24 * 3600 * 1000

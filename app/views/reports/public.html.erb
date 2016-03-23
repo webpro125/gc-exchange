@@ -6,7 +6,7 @@
   <% if GA_API_CLIENT.present? %>
     <div class="small-12 report-toolbar clearfix">
       <div class="right filter-types">
-        <button data-dropdown="drop-filter-types" data-options="align:left" class="button tiny dropdown" id="filter-types-btn">today</button><br>
+        <button data-dropdown="drop-filter-types" data-options="align:left" class="button tiny dropdown" id="filter-types-btn">last 1 month</button><br>
         <ul id="drop-filter-types" data-dropdown-content class="f-dropdown" aria-hidden="true">
           <li><a href="#" data-filter="today">today</a></li>
           <li><a href="#" data-filter="last-week">last week</a></li>
@@ -25,46 +25,53 @@
       <h3 id="alert-message" class="text-center">
         <span class="warning label">Please check google analytics configuration</span>
       </h3>
+      <div id="detail-session-graph" style="height: 200px; display: none;"></div>
       <ul class="small-block-grid-3" data-equalizer>
         <li>
-          <div class="panel text-center" data-equalizer-watch>
+          <div class="panel text-center expandable" data-type="pageviews" data-equalizer-watch>
             <h2 id="total-pageviews">0</h2>
             <p>Total Pageviews</p>
           </div>
         </li>
         <li>
-          <div class="panel text-center" data-equalizer-watch>
+          <div class="panel text-center expandable" data-type="avg_session_duration" data-equalizer-watch>
             <h2 id="avg-session-duration">0</h2>
             <p>Avg. Session Duration</p>
           </div>
         </li>
         <li>
-          <div class="panel text-center" data-equalizer-watch>
+          <div class="panel text-center expandable" data-type="pages_per_session" data-equalizer-watch>
             <h2 id="page-per-session">0</h2>
             <p>Pages per Session</p>
           </div>
         </li>
         <li>
           <div class="panel text-center" data-equalizer-watch>
-            <h4 id="sessions-per-device"></h4>
+            <div id="sessions-per-device" class="dimension-pie-chart"></div>
             <p>Sessions per Device</p>
           </div>
         </li>
         <li>
           <div class="panel text-center" data-equalizer-watch>
-            <h5 id="sessions-in-bound"></h5>
+            <div id="sessions-in-bound" class="dimension-pie-chart"></div>
             <p>Source of In-Bound</p>
           </div>
         </li>
         <li>
           <div class="panel text-center" data-equalizer-watch>
-            <h5 id="sessions-per-browser"></h5>
+            <div id="sessions-per-browser" class="dimension-pie-chart"></div>
             <p>Sessions per Browser</p>
           </div>
         </li>
         <li>
-          <div class="panel   text-center">
+          <div class="panel text-center">
             <div id="sessions-per-country">
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="panel text-center">
+            <div id="sessions-per-city">
             </div>
           </div>
         </li>

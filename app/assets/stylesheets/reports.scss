@@ -70,6 +70,16 @@
       font-size: 20px;
     }
   }
+
+  .panel.expandable {
+    cursor: pointer;
+  }
+
+  .dimension-pie-chart {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+  }
 }
 
 .search-metrics {
