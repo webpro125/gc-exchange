@@ -19,14 +19,12 @@ describe Consultant do
     ['text/plain', 'text/xml', 'image/tiff']
   end
 
+  let(:user) { FactoryGirl.create(:user) }
+
   subject do
     Consultant.new(
-      first_name:            'Freddy',
-      last_name:             'Kreuger',
-      email:                 'freddy.kreuger@globalconsultantexchange.com',
-      password:              'password',
-      password_confirmation: 'password',
-      abstract:              'Testing the abstract'
+      abstract:              'Testing the abstract',
+      user_id: user
     )
   end
 
@@ -67,15 +65,15 @@ describe Consultant do
     it { should respond_to(:profile_image) }
   end
 
-  describe 'full_name' do
-    it 'should container first_name' do
-      expect(subject.full_name).to include(subject.first_name)
-    end
-
-    it 'should container last_name' do
-      expect(subject.full_name).to include(subject.last_name)
-    end
-  end
+  # describe 'full_name' do
+  #   it 'should container first_name' do
+  #     expect(subject.full_name).to include(subject.first_name)
+  #   end
+  #
+  #   it 'should container last_name' do
+  #     expect(subject.full_name).to include(subject.last_name)
+  #   end
+  # end
 
   describe 'association' do
     describe 'approved_status' do

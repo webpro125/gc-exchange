@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :shared_contacts, dependent: :destroy
   has_one :owned_company, class_name: 'Company', foreign_key: :owner_id, inverse_of: :owner
   has_one :consultant, dependent: :destroy
+
   has_many :phones, through: :consultant, as: :phoneable, dependent: :destroy
   has_many :educations, through: :consultant, dependent: :destroy
 

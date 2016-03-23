@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe ProjectHistoryForm do
-  let!(:consultant) { FactoryGirl.create(:confirmed_consultant, :approved) }
+  let!(:user) { FactoryGirl.create(:user, :approved) }
 
   subject do
     ProjectHistoryForm.new(
-      ProjectHistory.new(consultant:       consultant,
+      ProjectHistory.new(consultant:       user.consultant,
                          customer_name:    FactoryGirl.create(:customer_name),
                          client_company:   'Client company',
                          client_poc_name:  'POC Name',

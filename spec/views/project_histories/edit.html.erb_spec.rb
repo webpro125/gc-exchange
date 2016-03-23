@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'project_histories/edit.html.erb' do
+describe 'project_histories/edit.haml' do
   let(:project) { FactoryGirl.build_stubbed(:project_history) }
 
   before do

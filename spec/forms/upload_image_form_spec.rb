@@ -3,6 +3,7 @@ require 'spec_helper'
 describe UploadImageForm do
   it_behaves_like 'upload_image'
 
+  let!(:user) { FactoryGirl.create(:user) }
   let(:image_types) do
     [
       'image/jpg',
@@ -17,13 +18,12 @@ describe UploadImageForm do
 
   let(:consultant) do
     Consultant.new(
-      first_name: 'Freddy',
-      last_name: 'Kreuger',
       rate: 100,
       address: FactoryGirl.build(:address),
       military: FactoryGirl.build(:military),
       phones: FactoryGirl.build_list(:phone, 2),
-      profile_image: File.new(Rails.root + 'spec/fixtures/default_profile.png')
+      profile_image: File.new(Rails.root + 'spec/fixtures/default_profile.png'),
+      user: user
     )
   end
 

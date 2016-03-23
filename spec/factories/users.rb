@@ -32,8 +32,8 @@ FactoryGirl.define do
     end
 
     trait :approved do
-      after(:build) do |user|
-        user.consultant = create(:consultant, :approved)
+      after(:create) do |user|
+        user.consultant = create(:consultant, :approved, :wicked_finish)
       end
     end
 

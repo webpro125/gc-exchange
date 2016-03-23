@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe ProjectForm do
-  let!(:consultant) { FactoryGirl.create(:confirmed_consultant, :approved) }
-  let!(:user) { FactoryGirl.create(:user, :with_company) }
+  # let!(:consultant) { FactoryGirl.create(:confirmed_consultant, :approved) }
+  let!(:user) { FactoryGirl.create(:user, :with_company, :wicked_finish) }
 
   subject do
     ProjectForm.new(
       Project.new(
-        consultant:           consultant,
+        consultant:           user.consultant,
         user:                 user,
         travel_authorization: TravelAuthorization.first,
         proposed_start:       1.month.from_now,

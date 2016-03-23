@@ -3,13 +3,13 @@ require 'spec_helper'
 describe UploadImagesController do
   describe 'logged in' do
     before do
-      sign_in consultant
+      sign_in user
     end
 
-    let(:consultant) { FactoryGirl.create(:confirmed_consultant, :wicked_finish) }
+    let(:user) { FactoryGirl.create(:user, :wicked_finish) }
     describe 'GET new' do
       before do
-        get :new, consultant_id: consultant
+        get :new, consultant_id: user.consultant
       end
 
       it { should_not redirect_to(consultant_root_path) }
@@ -25,7 +25,7 @@ describe UploadImagesController do
       describe 'successful' do
         it 'should call validate' do
           UploadImageForm.any_instance.should_receive(:validate) { true }
-          post :create, consultant_id: consultant.id,
+          post :create, consultant_id: user.consultant.id,
                         consultant: { profile_image: fixture_file_upload('default_profile.png',
                                                                          'image/png') }
         end
@@ -33,7 +33,7 @@ describe UploadImagesController do
         describe do
           before do
             allow_any_instance_of(UploadImageForm).to receive(:validate) { true }
-            post :create, consultant_id: consultant.id,
+            post :create, consultant_id: user.consultant.id,
                           consultant: { profile_image: fixture_file_upload('default_profile.png',
                                                                            'image/png') }
           end
@@ -46,7 +46,7 @@ describe UploadImagesController do
         describe do
           before do
             allow_any_instance_of(UploadImageForm).to receive(:validate) { false }
-            post :create, consultant_id: consultant.id,
+            post :create, consultant_id: user.consultant.id,
                           consultant: { profile_image: fixture_file_upload('default_profile.png',
                                                                            'image/png') }
           end

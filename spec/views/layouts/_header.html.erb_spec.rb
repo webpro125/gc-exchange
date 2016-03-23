@@ -1,6 +1,6 @@
 require 'rspec'
 
-describe 'layouts/_header.html.erb' do
+describe 'layouts/_header.haml' do
   before do
     assign(:search, Search.new)
     render

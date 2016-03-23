@@ -6,7 +6,9 @@ describe User do
   subject do
     user = User.new(first_name: 'Freddy II',
                     last_name: 'Kreuger',
-                    email: 'freddy2.kreuger@globalconsultantexchange.com'
+                    email: 'freddy2.kreuger@globalconsultantexchange.com',
+                    password: 'password',
+                    password_confirmation: 'password'
     )
     user.build_owned_company(company)
     user

@@ -14,8 +14,8 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def index?
-    # gces?
-    user.owned_company.present?
+    gces?
+    # user.owned_company.present?
   end
 
   def show?
@@ -28,7 +28,7 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def contract?
-    record.contract_effective_date.present? && (gces? || user == record)
+    record.contract_effective_date.present? && (gces? || user.consultant == record)
   end
 
   def contactable?
