@@ -24,31 +24,31 @@
     <div class="row">
       <div class="small-12 large-6 columns">
         <div class="search-metrics">
-          <h3 class="text-center">Trending Keywords</h3>
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="keywords">Trending Keywords</a></h3>
           <div id="trending-keywords" class="search-content"></div>
         </div>
       </div>
       <div class="small-12 large-6 columns">
         <div class="search-metrics">
-          <h3 class="text-center">Trending Positions</h3>
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="positions">Trending Positions</a></h3>
           <div id="trending-postions" class="search-content"></div>
         </div>
       </div>
       <div class="small-12 large-6 columns">
         <div class="search-metrics">
-          <h3 class="text-center">Trending Functional Areas</h3>
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="areas">Trending Functional Areas</a></h3>
           <div id="trending-areas" class="search-content"></div>
         </div>
       </div>
       <div class="small-12 large-6 columns">
         <div class="search-metrics">
-          <h3 class="text-center">Trending Departments</h3>
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="departments">Trending Departments</a></h3>
           <div id="trending-departments" class="search-content"></div>
         </div>
       </div>
       <div class="small-12 large-6 columns">
         <div class="search-metrics">
-          <h3 class="text-center">Trending Certifications</h3>
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="certifications">Trending Certifications</a></h3>
           <div id="trending-certs" class="search-content"></div>
         </div>
       </div>
@@ -59,4 +59,22 @@
       <span class="spinner"></span>
     </div>
   </div>
+</div>
+
+<div id="trending-table-modal" class="reveal-modal small" data-reveal aria-hidden="true" role="dialog">
+  <h3 id="modal-title" class="text-center"></h3>
+  <div>
+    <table id="top-trending-table">
+      <thead>
+        <tr>
+          <th>Trending Subject</th>
+          <th>Searched Count</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

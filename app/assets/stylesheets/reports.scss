@@ -73,12 +73,22 @@
 
   .panel.expandable {
     cursor: pointer;
+
+    &.active {
+      background-color: #B9B9B9;
+    }
   }
 
   .dimension-pie-chart {
     width: 200px;
     height: 200px;
     margin: auto;
+  }
+}
+
+#top-trending-table {
+  th, td {
+    text-align: center;
   }
 }
 

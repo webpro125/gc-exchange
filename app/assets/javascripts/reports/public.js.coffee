@@ -62,8 +62,9 @@ reportVisitsPage = ->
         record[1] = parseInt(record[1])
       data[type + '_total'] = total
 
-  renderSessionGraph = (type) ->
+  renderSessionGraph = (type, title) ->
     sessionGraphOption.series[0].data = chartData[type]
+    sessionGraphOption.title.text = title
     $('#detail-session-graph').show().highcharts sessionGraphOption
 
   renderGeoCountryMap = (id, records) ->
@@ -90,6 +91,7 @@ reportVisitsPage = ->
     $(id).highcharts pieChartOption
 
   updateReportData = (data) ->
+    $('.report-data .panel.expandable').removeClass('active')
     processData(data)
     $('#detail-session-graph').hide()
     chartData = data
@@ -137,7 +139,9 @@ reportVisitsPage = ->
 
   $('.report-data .panel.expandable').on 'click', (e) ->
     e.preventDefault()
-    renderSessionGraph($(@).data('type'))
+    $('.report-data .panel.expandable').removeClass('active')
+    $(@).addClass('active')
+    renderSessionGraph($(@).data('type'), $(@).find('p').text())
 
   $('#drop-filter-types a[data-filter]').on 'click', Foundation.utils.debounce( (e) ->
     e.preventDefault()
