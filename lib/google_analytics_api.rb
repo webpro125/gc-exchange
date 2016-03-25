@@ -82,6 +82,18 @@ class GoogleAnalyticsApi
     ).data.rows
   end
 
+  def avg_session_duration_sum(from, to)
+    @client.execute(
+      api_method: @analytics.data.ga.get,
+      parameters: {
+        'ids' => "ga:#{PROFILE_ID}",
+        'start-date' => from.strftime('%Y-%m-%d'),
+        'end-date' => to.strftime('%Y-%m-%d'),
+        'metrics' => 'ga:avgSessionDuration'
+      }
+    ).data.rows.try(:[], 0).try(:[], 0).to_i
+  end
+
   def sessions_per_device(from, to)
     @client.execute(
       api_method: @analytics.data.ga.get,

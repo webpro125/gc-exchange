@@ -25,6 +25,7 @@
       <h3 id="alert-message" class="text-center">
         <span class="warning label">Please check google analytics configuration</span>
       </h3>
+      <h3 class="text-center">Page Visit Metrics</h3>
       <div id="detail-session-graph" style="height: 200px; display: none;"></div>
       <ul class="small-block-grid-3" data-equalizer>
         <li>
@@ -45,22 +46,25 @@
             <p>Pages per Session</p>
           </div>
         </li>
+      </ul>
+      <h3 class="text-center">Session Metrics</h3>
+      <ul class="small-block-grid-3" data-equalizer>
         <li>
           <div class="panel text-center" data-equalizer-watch>
             <div id="sessions-per-device" class="dimension-pie-chart"></div>
-            <p>Sessions per Device</p>
+            <p>Sessions per Device: <strong id="sessions-per-device-total"></strong></p>
           </div>
         </li>
         <li>
           <div class="panel text-center" data-equalizer-watch>
             <div id="sessions-in-bound" class="dimension-pie-chart"></div>
-            <p>Source of In-Bound</p>
+            <p>Source of In-Bound: <strong id="sessions-in-bound-total"></strong></p>
           </div>
         </li>
         <li>
           <div class="panel text-center" data-equalizer-watch>
             <div id="sessions-per-browser" class="dimension-pie-chart"></div>
-            <p>Sessions per Browser</p>
+            <p>Sessions per Browser: <strong id="sessions-per-browser-total"></strong></p>
           </div>
         </li>
         <li>

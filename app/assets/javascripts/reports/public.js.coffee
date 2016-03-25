@@ -6,6 +6,11 @@ reportVisitsPage = ->
   $dateRangeIndicator = $('#date-range')
   chartData = {}
 
+  typeName =
+    pageviews: 'Sessions'
+    avg_session_duration: 'Avg. Session Duration'
+    pages_per_session: 'Pages Per Session'
+
   pieChartOption =
     chart:
       type: 'pie'
@@ -35,10 +40,13 @@ reportVisitsPage = ->
     yAxis:
       min: 0
       allowDecimals: false
+      labels:
+        align: 'right'
     xAxis:
       type: 'datetime'
       gridLineWidth: 1
       maxZoom: 24 * 3600 * 1000 * 30
+    tooltip: {}
     legend:
       enabled: false
     series: [
@@ -53,6 +61,9 @@ reportVisitsPage = ->
     list.push """#{record[0]}: #{record[1]}""" for record in records
     list.join("<br>")
 
+  durationFormat = (seconds) ->
+    moment.utc(seconds * 1000).format('HH:mm:ss')
+
   processData = (data) ->
     for type in ['pageviews', 'avg_session_duration', 'pages_per_session']
       total = 0
@@ -62,9 +73,27 @@ reportVisitsPage = ->
         record[1] = parseInt(record[1])
       data[type + '_total'] = total
 
+    for type in ['sessions_per_device', 'sessions_in_bound', 'sessions_per_browser']
+      total = 0
+      for record in data[type]
+        total += parseInt(record[1])
+        record[1] = parseInt(record[1])
+      data[type + '_total'] = total
+
   renderSessionGraph = (type, title) ->
+    sessionGraphOption.series[0].name = typeName[type]
     sessionGraphOption.series[0].data = chartData[type]
     sessionGraphOption.title.text = title
+    if type == 'avg_session_duration'
+      sessionGraphOption.tooltip.formatter = ->
+        """#{moment(this.x).format('MMM DD YYYY')}<br/> <span style="color:#{this.color}">\u25CF</span> #{this.series.name}: <b>#{durationFormat(this.y)}</b><br/>"""
+      sessionGraphOption.yAxis.tickInterval = 3600
+      sessionGraphOption.yAxis.labels.formatter = ->
+        durationFormat(this.value)
+    else
+      sessionGraphOption.tooltip = {}
+      sessionGraphOption.yAxis.tickInterval = undefined
+      sessionGraphOption.yAxis.labels.formatter = undefined
     $('#detail-session-graph').show().highcharts sessionGraphOption
 
   renderGeoCountryMap = (id, records) ->
@@ -83,23 +112,25 @@ reportVisitsPage = ->
       displayMode: 'markers'
     })
 
-  renderPieChart = (id, data) ->
+  renderPieChart = (id, type) ->
     records = []
+    data = chartData[type]
     for record in data
-      records.push {name: record[0], y: parseInt(record[1])}
+      records.push {name: record[0], y: record[1]}
     pieChartOption.series[0].data = records
     $(id).highcharts pieChartOption
+    $(id + '-total').text(chartData[type + '_total'])
 
   updateReportData = (data) ->
     $('.report-data .panel.expandable').removeClass('active')
     processData(data)
     $('#detail-session-graph').hide()
     chartData = data
-    renderPieChart('#sessions-per-device', data.sessions_per_device)
-    renderPieChart('#sessions-in-bound', data.sessions_in_bound)
-    renderPieChart('#sessions-per-browser', data.sessions_per_browser)
+    renderPieChart('#sessions-per-device', 'sessions_per_device')
+    renderPieChart('#sessions-in-bound', 'sessions_in_bound')
+    renderPieChart('#sessions-per-browser', 'sessions_per_browser')
     $('#total-pageviews').text(data.pageviews_total)
-    $('#avg-session-duration').text(data.avg_session_duration_total)
+    $('#avg-session-duration').text(durationFormat(data.avg_session_duration_sum))
     $('#page-per-session').text(data.pages_per_session_total)
     renderGeoCountryMap('sessions-per-country', data.sessions_per_country, 'Country')
     renderGeoCityMap('sessions-per-city', data.sessions_per_city, 'City')
