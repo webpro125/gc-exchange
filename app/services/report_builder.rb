@@ -53,6 +53,7 @@ class ReportBuilder
 
   def search_metrics
     searches = Metric.searches.where(created_at: @from..@to)
+    cumulative_searches = searches.group_by_day(:created_at).count
     keywords = searches.queries.group_by_count.map { |q, count| {text: q, weight: count} }
 
     positions = searches.positions
@@ -76,7 +77,9 @@ class ReportBuilder
       positions: positions,
       areas: areas,
       departments: departments,
-      certifications: certifications
+      certifications: certifications,
+      cumulative_searches_start: cumulative_searches.keys.first,
+      cumulative_searches: cumulative_searches.values.cumulative_sum
     }
   end
 
