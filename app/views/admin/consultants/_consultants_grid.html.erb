@@ -4,15 +4,23 @@
     data.id
   end
 
-  g.column name: 'First Name', attribute: 'first_name' do |data|
-    link_to data.first_name, admin_consultant_path(data)
+  g.column name: 'First Name', in_csv: false, assoc: :user, attribute: 'first_name' do |data|
+    link_to data.user.first_name, admin_consultant_path(data)
   end
-  g.column name: 'Last Name', attribute: 'last_name' do |data|
-    link_to data.last_name, admin_consultant_path(data)
+  g.column name: 'Last Name', in_csv: false, assoc: :user, attribute: 'last_name' do |data|
+    link_to data.user.last_name, admin_consultant_path(data)
   end
 
-  g.column name: 'Email', attribute: 'email' do |data|
-    data.email
+  g.column name: 'First Name', in_html: false do |data|
+    data.user.first_name
+  end
+
+  g.column name: 'Last Name', in_html: false do |data|
+    data.user.last_name
+  end
+
+  g.column name: 'Email', assoc: :user, attribute: 'email' do |data|
+    data.user.email
   end
 
   g.column name: 'Phone', assoc: :phones, attribute: 'number' do |data|

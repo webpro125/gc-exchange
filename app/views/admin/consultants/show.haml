@@ -115,9 +115,9 @@
               = render @consultant.phones
               %tr
                 %td.no-borders
-                  = Consultant.human_attribute_name(:email)
+                  = User.human_attribute_name(:email)
                 %td.no-borders
-                  = @consultant.email
+                  = @consultant.user.email
               %tr
                 %td
                   = Address.human_attribute_name(:address)

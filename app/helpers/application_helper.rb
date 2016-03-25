@@ -78,8 +78,6 @@ module ApplicationHelper
   def mailbox
     if user_signed_in?
       logged_user = current_user
-    elsif consultant_signed_in?
-      logged_user = current_consultant
     else
       logged_user = current_admin
     end

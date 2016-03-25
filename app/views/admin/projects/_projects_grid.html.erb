@@ -12,8 +12,8 @@
     link_to data.user.email, edit_admin_company_user_path(data.user.company, data.user)
   end
 
-  g.column name: 'Created For', assoc: :consultant, attribute: 'email' do |data|
-    link_to data.consultant.email, admin_consultant_path(data)
+  g.column name: 'Created For', assoc: [:consultant, :user], attribute: 'email' do |data|
+    link_to data.consultant.user.email, admin_consultant_path(data)
   end
 
   g.column name: 'Proposed Rate' do |data|
