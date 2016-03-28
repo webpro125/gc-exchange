@@ -1,11 +1,11 @@
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
-    %h2 Manage Contractors
+    %h2 Manage Client / Company
     %ol.breadcrumb
       %li
         %a{:href => "#"}  Home
       %li{:class => (mode == 'index' ? 'active' : '')}
-        = link_to 'Contractor', admin_companies_path
+        = link_to 'Companies', admin_companies_path
       - if mode != 'index'
         %li.active
           %strong= mode

@@ -44,14 +44,12 @@ gem 'momentjs-rails'
 gem 'google-api-client'
 gem 'groupdate'
 
-# twilio
 gem 'twilio-ruby', '~> 4.11.1'
-# slim template engine
 gem 'haml', '~> 4.0.5'
 gem "font-awesome-rails"
-# wice grid
 gem "wice_grid", '3.6.0.pre4'
 gem 'bootstrap-datepicker-rails', '~> 1.5'
+gem 'roadie-rails', '~> 1.0'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

@@ -1,3 +1,19 @@
 // Place all the styles related to the admin/companies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+*= require bootstrap-datepicker3
+*/
+.company_contract, .company_contract label {
+  border: none !important;
+  margin-right: 0;
+}
+.company_contract.file {
+  margin-bottom: 20px;
+}
+.company_contract label {
+  margin-bottom: 5px;
+}
+.file {
+  margin-bottom: 5px;
+}

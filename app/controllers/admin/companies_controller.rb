@@ -1,4 +1,5 @@
 class Admin::CompaniesController < Admin::CompanyController
+  before_action :set_company, except: [:index, :new, :create]
   def index
     @companies = Company.all
   end
@@ -23,12 +24,10 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def edit
-    @company = Company.find(params[:id])
-    @users = @company.users
+    # @users = @company.users
   end
 
   def update
-    @company = Company.find(params[:id])
 
     respond_to do |format|
       if @company.update(company_update_params)
@@ -41,15 +40,47 @@ class Admin::CompaniesController < Admin::CompanyController
     end
   end
 
+
+  def destroy
+    @company.destroy
+    redirect_to admin_companies_path, notice: t('controllers.company.destroy.success')
+  end
+
+  def invite_account_manager
+    unless @company.invite_user.present?
+      @company.build_invite_user
+    end
+  end
+
+  def send_invite
+    # @company.build_invite_user(send_invite_params)
+    if @company.update(send_invite_params)
+      CompanyMailer.invite_account_manager(@company).deliver
+
+      # 'Message was successfully sent'
+      redirect_to admin_companies_path, notice: I18n.t('controllers.sales_lead.create.success')
+    else
+      render action: "invite_account_manager", notice: @company.errors
+    end
+  end
   private
+
+  def set_company
+    @company = Company.find(params[:id])
+  end
 
   # Only allow a trusted parameter "white list" through.
   def company_create_params
-    params.require(:company).permit(:company_name, owner_attributes: [:first_name, :last_name,
-                                                                      :email])
+    params.require(:company).permit(:company_name, :first_name, :last_name,
+                                    :phone, :contract_start, :contract_end, :owner_id)
   end
 
   def company_update_params
     params.require(:company).permit(:company_name, :owner_id)
+  end
+
+  def send_invite_params
+    params.require(:company).permit(invite_user_attributes: [:first_name, :last_name,
+                                                                      :email])
   end
 end

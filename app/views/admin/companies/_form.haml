@@ -1,15 +1,32 @@
 = simple_form_for [:admin, @company],
   wrapper: :vertical_form,
-  wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, date: :vertical_form } do |f|
   = f.error_notification
-  = f.input :company_name
-  - if @company.persisted?
-    = f.association :owner, collection: @company.users, label_method: :full_name
-  - else
-    = f.simple_fields_for :owner do |o|
-      = o.input :email
-      = o.input :first_name
-      = o.input :last_name
+  - if @company.persisted? && @company.owner.present?
+    = f.association :owner, collection: User.all.select{ |f| !f.owned_company }, label_method: :full_name
+  = f.input :company_name, placeholder: 'Company Name'
+  .row
+    .col-md-12
+      %label
+        %abbr{title: "required"} *
+        Client Company Contract POC
+    .col-md-6
+      = f.input :first_name, label: false, placeholder: 'First Name'
+    .col-md-6
+      = f.input :last_name, label: false, placeholder: 'Last Name'
+  = f.input :phone, label: 'Client Company Contract POC Phone', placeholder: 'xxx-xxx-xxxx'
+  = f.input :contract,
+    as:         :file,
+    input_html: {accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}"}
+  .row
+    .col-md-12
+      %label
+        %abbr{title: "required"} *
+        Contract Term (Period of Performance)
+    .col-md-6
+      = f.input :contract_start, label: false, placeholder: 'Start', input_html: {class: 'form-control'}
+    .col-md-6
+      = f.input :contract_end, label: false, placeholder: 'End', input_html: {class: 'form-control'}
   .hr-line-dashed
   .form-group
     = button_tag(type: 'submit', class: "btn btn-primary") do

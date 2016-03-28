@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319210939) do
+ActiveRecord::Schema.define(version: 20160326194145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,10 +91,20 @@ ActiveRecord::Schema.define(version: 20160319210939) do
   end
 
   create_table "companies", force: true do |t|
-    t.string   "company_name", limit: 512
+    t.string   "company_name",           limit: 512
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name",                         default: "",    null: false
+    t.string   "last_name",                          default: "",    null: false
+    t.string   "phone",                  limit: 32,  default: "",    null: false
+    t.date     "contract_start"
+    t.date     "contract_end"
+    t.boolean  "require_contract_rider",             default: false
+    t.string   "contract_file_name"
+    t.string   "contract_content_type"
+    t.integer  "contract_file_size"
+    t.datetime "contract_updated_at"
   end
 
   add_index "companies", ["owner_id"], name: "index_companies_on_owner_id", using: :btree
@@ -192,6 +202,18 @@ ActiveRecord::Schema.define(version: 20160319210939) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "invite_users", force: true do |t|
+    t.string   "email",                 default: "", null: false
+    t.string   "first_name", limit: 24,              null: false
+    t.string   "last_name",  limit: 24,              null: false
+    t.string   "token"
+    t.integer  "company_id",                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invite_users", ["company_id"], name: "index_invite_users_on_company_id", using: :btree
 
   create_table "mailboxer_conversation_opt_outs", force: true do |t|
     t.integer "unsubscriber_id"

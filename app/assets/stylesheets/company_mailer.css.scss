@@ -1,0 +1,70 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,300,600,400:latin);
+header {
+  text-align: center;
+  color: #2983c8;
+  margin-bottom: 6rem;
+}
+h1 {
+  font-size: 3em;
+}
+section {
+  text-align: center;
+}
+header + section > h2 {
+  font-size: 1.5rem;
+  color: #2983c8;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+header + section p {
+  color: #7e7e7e;
+  text-align: left;
+}
+.type-primary {
+  color: #2983c8 !important;
+}
+strong {
+  font-weight: 700;
+}
+header + section *[class*="button-"] {
+  text-align: center;
+  margin: 3rem auto 2rem auto;
+}
+.button-alt {
+  background: #FFF;
+  border: 2px solid #2983c8 !important;
+  color: #2983c8;
+  border-radius: 0.1875rem;
+  font-size: 1.25rem;
+}
+.button-alt:hover {
+  background: #2983c8;
+  color: #FFF;
+  transition: all 0.1s ease-out;
+}
+button, *[class*="button-"] {
+  display: inline-block;
+  width: auto;
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 1.875em;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.type-intro {
+  font-size: 1.25rem;
+  line-height: 1.25em;
+  font-weight: 300;
+}

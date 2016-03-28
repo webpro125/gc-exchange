@@ -18,6 +18,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_out_path_for(resource)
+    if resource == :admin
+      new_admin_session_path
+    else super end
+
+  end
+
+
   protected
 
   def staging_or_production_or_sales?

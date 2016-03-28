@@ -33,7 +33,11 @@ Rails.application.routes.draw do
         get :contract
       end
     end
-    resources :companies, path: 'contractors' do
+    resources :companies, path: 'companies' do
+      member do
+        get :invite_account_manager
+        put :send_invite
+      end
       resources :users
     end
     resources :admins

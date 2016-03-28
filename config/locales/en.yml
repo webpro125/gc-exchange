@@ -86,7 +86,7 @@ en:
         success: 'Message was successfully sent'
     company:
       create:
-        success: 'Contractor was successfully created.'
+        success: 'Company was successfully registered.'
       update:
         success: 'Contractor was successfully updated.'
       destroy:
