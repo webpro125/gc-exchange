@@ -7,7 +7,7 @@ reportVisitsPage = ->
   chartData = {}
 
   typeName =
-    pageviews: 'Sessions'
+    pageviews: 'Page Views'
     avg_session_duration: 'Avg. Session Duration'
     pages_per_session: 'Pages Per Session'
 
@@ -23,7 +23,8 @@ reportVisitsPage = ->
         allowPointSelect: true
         cursor: 'pointer'
         dataLabels:
-          enabled: false
+          enabled: true
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
     series: [{
       name: 'Sessions'
       colorByPoint: true
