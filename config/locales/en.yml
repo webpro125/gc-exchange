@@ -130,7 +130,14 @@ en:
         success: 'The conversation was restored.'
       empty_to_trash:
         success: 'Your trash was cleaned!'
-
+    article:
+      create:
+        success: 'Question created successfully.'
+      update:
+        success: 'Question updated successfully.'
+    comment:
+      create:
+        success: 'You commented successfully.'
   views:
     consultant:
       actions:

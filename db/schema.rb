@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326194145) do
+ActiveRecord::Schema.define(version: 20160329143827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20160326194145) do
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
 
+  create_table "articles", force: true do |t|
+    t.string   "title",      limit: 128
+    t.text     "text"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "backgrounds", force: true do |t|
     t.integer  "consultant_id"
     t.boolean  "citizen",              null: false
@@ -89,6 +97,17 @@ ActiveRecord::Schema.define(version: 20160326194145) do
     t.string "code",  limit: 32,  null: false
     t.string "label", limit: 256, null: false
   end
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "article_id"
+    t.integer  "commenter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
+  add_index "comments", ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
 
   create_table "companies", force: true do |t|
     t.string   "company_name",           limit: 512

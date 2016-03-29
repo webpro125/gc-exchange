@@ -1,0 +1,17 @@
+%h2
+  %span Question and Answers
+  = link_to 'Create New Question', new_article_path, class: 'button tiny pull-right'
+%ul.articles
+  - @articles.each do |article|
+    %li.article-item
+      .article-item-cell
+        = link_to article.title, article_comments_path(article), class: 'article-title-link'
+        .article-meta
+          %span
+            opend
+            = time_ago_in_words(article.updated_at)
+            = ' ago by ' + article.user.full_name
+      .article-item-cell.comments
+        = article.comments.count
+
+= paginate @articles

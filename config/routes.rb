@@ -152,6 +152,10 @@ Rails.application.routes.draw do
       get :visits
     end
   end
+
+  resources :articles, path: 'blog' do
+    resources :comments
+  end
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.

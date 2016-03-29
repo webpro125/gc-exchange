@@ -1,0 +1,8 @@
+= simple_form_for(@article) do |f|
+  = f.error_notification
+  = render 'shared/base_error', model: @article
+  .form-inputs
+    = f.input :title
+    = f.input :text, input_html: { rows: 7, maxlength: 500 }
+  .form-actions
+    = f.button :submit

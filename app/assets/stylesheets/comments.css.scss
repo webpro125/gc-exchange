@@ -1,0 +1,77 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.timeline-comment {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.timeline-comment-wrapper:first-child {
+  margin-top: 0;
+}
+
+.timeline-comment-wrapper {
+  position: relative;
+  padding-left: 100px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+.timeline-comment-avatar {
+  float: left;
+  margin-left: -100px;
+  border-radius: 3px;
+  height: 80px;
+  width: 80px
+}
+.timeline-comment-header {
+  padding-right: 15px;
+  padding-left: 15px;
+  color: #767676;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #eee;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.timeline-comment-header-text {
+  max-width: 78%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.timeline-comment-wrapper>.timeline-comment::before, .timeline-new-comment .timeline-comment::before {
+  border-width: 8px;
+  border-right-color: #ddd;
+}
+.timeline-comment-wrapper>.timeline-comment::after,
+.timeline-comment-wrapper>.timeline-comment::before,
+.timeline-new-comment .timeline-comment::after,
+.timeline-new-comment .timeline-comment::before {
+  position: absolute;
+  top: 11px;
+  right: 100%;
+  left: -16px;
+  display: block;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  content: " ";
+  border-color: transparent;
+  border-style: solid solid outset;
+}
+.comment-body {
+  width: 100%;
+  padding: 15px;
+  overflow: visible;
+  font-size: 14px;
+}
+.discussion-timeline-actions {
+  background-color: #fff;
+}
+.timeline-comment-action {
+  display: inline-block;
+  padding: 10px 5px;
+  color: inherit;
+  float: right;
+}
