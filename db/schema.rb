@@ -471,7 +471,6 @@ ActiveRecord::Schema.define(version: 20160329143827) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                           default: 0
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
