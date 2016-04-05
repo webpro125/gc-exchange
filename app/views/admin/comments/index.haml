@@ -1,0 +1,75 @@
+= render 'admin/navbar'
+#page-wrapper.gray-bg
+  = render 'admin/topbar'
+  = render :partial => 'header', :locals => { :mode => 'index'}
+  .wrapper.wrapper-content.animated.fadeInRight.article
+    .row
+      .col-lg-10.col-lg-offset-1
+        = link_to 'Close Question', close_article_admin_article_path(@article), method: :put,
+          :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'open'
+        = link_to 'Open Question', open_article_admin_article_path(@article), method: :put,
+          :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'closed'
+
+        = link_to admin_articles_path, :class => 'btn btn-sm btn-info pull-right m-b' do
+          %i.fa.fa-long-arrow-left
+          Back
+        .ibox
+          .ibox-content
+            .pull-left
+              - if @article.status == 'open'
+                %button.btn.btn-success.btn-sm
+                  %i.fa.fa-exclamation-circle
+                  Open
+              - else
+                %button.btn.btn-danger.btn-sm
+                  %i.fa.fa-check-square-o
+                  Closed
+            - if @article.admin == current_admin
+              .pull-right
+                = link_to 'Edit', edit_admin_article_path(@article), class: 'btn btn-white btn-xs'
+            .text-center.article-title{:style => 'margin-bottom: 40px;'}
+              %span.text-muted
+                %i.fa.fa-clock-o
+                = @article.created_at.to_s(:long)
+              %h1= @article.title
+            %p= @article.text
+            %hr
+            .row
+              .col-md-6
+                %h2 Comments
+              .col-md-6
+                .small.text-right.m-t
+                  %div
+                    %i.fa.fa-comments-o
+                    = @article.comments.count
+            .row
+              .col-md-12
+                - @comments.each do |comment|
+                  .social-feed-box
+                    .social-avatar
+                      %p.pull-left
+                        = image_tag user_avatar(comment.author)
+                      .media-body
+                        %p.m-b-xs
+                          = (article_author_prefix comment.author) + comment.author.full_name
+                        %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
+                    .social-body
+                      %p= comment.body
+            - if @article.status == 'open'
+              .row
+                .col-md-12
+                  .social-feed-box
+                    .social-avatar
+                      %p.pull-left
+                        = image_tag 'missing.png'
+                      .media-body
+                        %p.m-t.m-b-none
+                          You
+                    .social-body
+                      = simple_form_for [:admin, @article, @comment], wrapper: :vertical_form do |f|
+                        = f.error_notification
+                        = render 'shared/base_error', model: @article
+                        .form-inputs
+                          = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
+                        .form-actions
+                          = f.button :submit, class: 'btn btn-primary'

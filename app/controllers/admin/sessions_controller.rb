@@ -6,6 +6,7 @@ class Admin::SessionsController < Devise::SessionsController
   end
 
   def create
+    sign_out :user
     super
   end
 end

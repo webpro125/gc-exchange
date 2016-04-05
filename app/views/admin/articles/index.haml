@@ -1,0 +1,42 @@
+= render 'admin/navbar'
+#page-wrapper.gray-bg
+  = render 'admin/topbar'
+  = render :partial => 'header', :locals => { :mode => 'index'}
+  .row.m-t-lg
+    .col-md-12
+      = link_to new_admin_article_path, :class => 'btn btn-sm btn-info pull-right m-r-sm' do
+        %i.fa.fa-plus
+        Create new Question
+
+  .wrapper.wrapper-content.animated.fadeInRight
+    .row
+      .col-md-12
+        - @articles.each do |article|
+          .ibox
+            .ibox-content
+              = link_to admin_article_comments_path(article), class: 'btn-link' do
+                %h3
+                  = article.title
+                  = link_to content_tag(:i, '', :class => 'fa fa-trash-o'), admin_article_path(article),
+                    data: { confirm: t('views.article.confirmations.delete') },
+                    method: :delete, class: 'btn btn-danger btn-xs pull-right'
+              %p= truncate(article.text, :length => 35)
+
+              .row
+                .col-md-6
+                  .small.m-b-xs
+                    - if article.status == 'open'
+                      %i.fa.fa-exclamation-circle.text-success.fa-lg{'data-toggle'=> "tooltip", 'data-placement'=> "left", 'title'=> "Open"}
+                    - else
+                      %i.fa.fa-check-square-o.text-danger.fa-lg{'data-toggle'=> "tooltip", 'data-placement'=> "left", 'title'=> "Closed"}
+                    %strong= (article_author_prefix article.author) + article.author.full_name
+                    %span.text-muted
+                      %i.fa.fa-clock-o
+                      = time_ago_in_words(article.created_at) + ' ago'
+                .col-md-6
+                  .small.text-right
+                    %div
+                      %i.fa.fa-comments-o
+                      = article.comments.count
+                      comments
+        = paginate @articles

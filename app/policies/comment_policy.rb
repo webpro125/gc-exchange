@@ -6,6 +6,7 @@ class CommentPolicy < LoggedInPolicy
   end
 
   def create?
+    record.article.status == 'open'
   end
   # def edit?
   #   user == record.user
@@ -16,3 +17,4 @@ class CommentPolicy < LoggedInPolicy
     false
   end
 end
+wo

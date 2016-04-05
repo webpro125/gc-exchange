@@ -53,6 +53,14 @@ Rails.application.routes.draw do
         delete :empty_trash
       end
     end
+
+    resources :articles, path: 'blog' do
+      resources :comments
+      member do
+        put :close_article
+        put :open_article
+      end
+    end
   end
 
   scope :admin do

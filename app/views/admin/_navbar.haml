@@ -8,7 +8,7 @@
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
             %span.clear
               %span.block.m-t-xs
-                %strong.font-bold= current_admin.first_name + ' ' + current_admin.last_name
+                %strong.font-bold= current_admin.full_name
           %ul.dropdown-menu.animated.fadeInRight.m-t-xs
             %li
               %a{:href=>"#"}  Logout
@@ -39,3 +39,7 @@
           %i.fa.fa-envelope
           %span.nav-label Messages
           %span.label.label-warning.m-l-xs= mailbox.inbox(:read => false).count(:id, :distinct => true).to_s
+      %li{:class => current_page_active('admin/articles')}
+        = link_to admin_articles_path do
+          %i.fa.fa-comments
+          %span.nav-label Blog

@@ -1,0 +1,10 @@
+= simple_form_for [:admin, @article],
+  wrapper: :vertical_form do |f|
+  = f.error_notification
+  = f.input :title
+  = f.input :text, label: 'Description', input_html: { rows: 6}
+  .hr-line-dashed
+  .form-group
+    = button_tag(type: 'submit', class: "btn btn-primary") do
+      %i.fa.fa-check-circle
+      Save  Update

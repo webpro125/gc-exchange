@@ -135,6 +135,15 @@ en:
         success: 'Question created successfully.'
       update:
         success: 'Question updated successfully.'
+        no_permission: 'You have no permission to edit this article'
+      close:
+        success: 'Question Closed.'
+        fail: 'Question was not able to closed'
+      open:
+        success: 'Question opened.'
+        fail: 'Question was not able to opened'
+      destroy:
+        success: 'Question was successfully destroyed.'
     comment:
       create:
         success: 'You commented successfully.'
@@ -257,3 +266,6 @@ en:
     conversation:
       new:
         save: 'Send Request'
+    article:
+      confirmations:
+        delete: 'Are you sure you want to delete this blog?'
