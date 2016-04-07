@@ -5,18 +5,30 @@ class CommentsController < ApplicationController
 
   def index
     @comment = Comment.new
+    @comment.comment_attachments.build
   end
 
   def create
     @comment = Comment.new(comment_params)
+
     if user_signed_in?
       @comment.commenter_id = current_user.id
     else
       @comment.admin_commenter_id = current_admin.id
     end
+
     @comment.article_id = @article.id
+
     authorize @comment
+
     if @comment.save
+
+      unless params[:comment_attachments].blank?
+        params[:comment_attachments]['attach'].each do |a|
+          @comment.comment_attachments.create!(:attach => a)
+        end
+      end
+
       redirect_to (user_signed_in? ? article_comments_path(@article) : admin_article_comments_path(@article)),
                   notice: t('controllers.comment.create.success')
     else
@@ -31,7 +43,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, comment_attachments_attributes: [:id, :comment_id, :attach, :_destroy])
   end
 
   def load_comments

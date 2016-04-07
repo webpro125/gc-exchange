@@ -9,6 +9,10 @@ class Article < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   belongs_to :user
   belongs_to :admin
+  has_many :article
+
+  has_many :article_attachments
+  accepts_nested_attributes_for :article_attachments, :allow_destroy => true
 
   def author
     user.present? ? user : admin

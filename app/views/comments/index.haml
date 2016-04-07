@@ -19,7 +19,15 @@
       .comment-content
         .comment-body
           = @article.text
-
+          .attached_files
+            - @article.article_attachments.each do |attach|
+              = link_to download_article_attachment_path(attach) do
+                - if attach.attach_content_type.start_with? 'image'
+                  = image_tag attach.attach.url(:medium)
+                - else
+                  = image_tag 'attach-icon.png'
+                %br
+                %small= attach.attach_file_name
   - @comments.each do |comment|
     .timeline-comment-wrapper
       = image_tag user_avatar(@article.author), class: 'timeline-comment-avatar'
@@ -33,6 +41,14 @@
         .comment-content
           .comment-body
             = comment.body
+            .attached_files
+              - comment.comment_attachments.each do |attach|
+                = link_to download_comment_attachment_path(attach) do
+                  - if attach.attach_content_type.start_with? 'image'
+                    = image_tag attach.attach.url(:medium)
+                  - else
+                    = image_tag 'attach-icon.png'
+                  %small= attach.attach_file_name
   - if @article.status == 'open'
     %hr
     .discussion-timeline-actions
@@ -49,6 +65,8 @@
                 = render 'shared/base_error', model: @article
                 .form-inputs
                   = f.input :body, label: false, input_html: { rows: 5, maxlength: 500 }
+                  = f.simple_fields_for :comment_attachments do |c|
+                    = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
                 .form-actions
                   = f.button :submit
 

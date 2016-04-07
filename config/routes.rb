@@ -87,6 +87,8 @@ Rails.application.routes.draw do
   get :profile_completed, to: 'pages#profile_completed'
   get :health_check, to: 'pages#health_check'
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
+  get 'article/download_attachment/:id', to: 'downloads#download_article_attachment', as: :download_article_attachment
+  get 'comment/download_attachment/:id', to: 'downloads#download_comment_attachment', as: :download_comment_attachment
 
   # Resources
   resource :change_password, only: [:edit, :update]

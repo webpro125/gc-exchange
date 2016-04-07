@@ -31,6 +31,8 @@ spec/results
 /public/uploads
 /public/images
 /public/consultants
+/public/article_attachments
+/public/comment_attachments
 /public/test/
 
 # Ignore vendor/bin

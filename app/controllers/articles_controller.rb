@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @article_attachment = @article.article_attachments.build
   end
 
   def create
@@ -19,6 +20,9 @@ class ArticlesController < ApplicationController
     end
 
     if @article.save
+
+      upload_attachment
+
       redirect_to (user_signed_in? ? articles_path : admin_articles_path), notice: t('controllers.article.create.success')
     else
       render :new
@@ -26,13 +30,17 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article_attachment = @article.article_attachments.build
     authorize_article
   end
 
   def update
-    authorize_article
     if @article.update(article_params)
-      redirect_to article_comments_path(@article), notice: t('controllers.article.update.success')
+
+      upload_attachment
+
+      redirect_to (user_signed_in? ? article_comments_path(@article) : admin_article_comments_path(@article)),
+                  notice: t('controllers.article.update.success')
     else
       render :edit
     end
@@ -41,7 +49,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, article_attachments_attributes: [:id, :article_id, :attach, :_destroy])
   end
 
   def load_and_authorize_article
@@ -52,6 +60,14 @@ class ArticlesController < ApplicationController
   def authorize_article
     if user_signed_in? && admin_signed_in?
       redirect_to articles_path, notice: t('controllers.article.update.no_permission') if current_user != @article.user
+    end
+  end
+
+  def upload_attachment
+    unless params[:article_attachments].blank?
+      params[:article_attachments]['attach'].each do |a|
+        @post_attachment = @article.article_attachments.create!(:attach => a)
+      end
     end
   end
 end

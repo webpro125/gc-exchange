@@ -3,7 +3,7 @@ class ProjectHistoriesController < ConsultantController
 
   # GET /projects
   def index
-    @projects = policy_scope(current_user.consultant.project_histories)
+    @projects = policy_scope(current_user.consultant.project_histories.order(created_at: :desc))
   end
 
   # GET /projects/new

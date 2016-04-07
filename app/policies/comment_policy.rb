@@ -17,4 +17,3 @@ class CommentPolicy < LoggedInPolicy
     false
   end
 end
-wo

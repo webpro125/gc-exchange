@@ -11,15 +11,11 @@ class Admin::ArticlesController < ArticlesController
 
   def edit
     authorize_article
+    super
   end
 
   def update
-    authorize_article
-    if @article.update(article_params)
-      redirect_to admin_article_comments_path(@article), notice: t('controllers.article.update.success')
-    else
-      render :edit
-    end
+    super
   end
 
   def create

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402034918) do
+ActiveRecord::Schema.define(version: 20160405194833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 20160402034918) do
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
 
+  create_table "article_attachments", force: true do |t|
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
+  end
+
+  add_index "article_attachments", ["article_id"], name: "index_article_attachments_on_article_id", using: :btree
+
   create_table "articles", force: true do |t|
     t.string   "title",      limit: 128
     t.text     "text"
@@ -64,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160402034918) do
     t.integer  "status",                 default: 0
     t.integer  "admin_id"
     t.integer  "views",                  default: 0
+    t.json     "attaches"
   end
 
   add_index "articles", ["admin_id"], name: "index_articles_on_admin_id", using: :btree
@@ -102,6 +115,18 @@ ActiveRecord::Schema.define(version: 20160402034918) do
     t.string "code",  limit: 32,  null: false
     t.string "label", limit: 256, null: false
   end
+
+  create_table "comment_attachments", force: true do |t|
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
+  end
+
+  add_index "comment_attachments", ["comment_id"], name: "index_comment_attachments_on_comment_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "body"
