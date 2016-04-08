@@ -1,5 +1,4 @@
 class AddUserIdToConsultant < ActiveRecord::Migration
-  require 'byebug'
   def change
     add_reference :consultants, :user, index: true, unique: true
 
