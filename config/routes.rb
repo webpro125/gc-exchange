@@ -159,7 +159,7 @@ Rails.application.routes.draw do
     collection do
       get :consultant
       get :search
-      get :visits
+      get :public
     end
   end
 

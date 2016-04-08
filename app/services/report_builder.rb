@@ -35,6 +35,8 @@ class ReportBuilder
       group_options[:period], :created_at,
       range: @from..@to, format: group_options[:format]
     ).count
+    cumulative_logins = Metric.consultants.logins.group_by_day(:created_at).count
+    cumulative_uniq_logins = Metric.consultants.logins.select("DISTINCT concat(loggable_type, loggable_id)").group_by_day(:created_at).count
 
     {
       categories: user_count.keys,
@@ -42,12 +44,16 @@ class ReportBuilder
       profiles_approved: profiles_approved.values,
       profiles_pending: profiles_pending.values,
       total_logins: total_logins.values,
-      uniq_logins: uniq_logins.values
+      uniq_logins: uniq_logins.values,
+      cumulative_start: cumulative_logins.keys.first,
+      cumulative_logins: cumulative_logins.values.cumulative_sum,
+      cumulative_uniq_logins: cumulative_uniq_logins.values.cumulative_sum
     }
   end
 
   def search_metrics
     searches = Metric.searches.where(created_at: @from..@to)
+    cumulative_searches = searches.group_by_day(:created_at).count
     keywords = searches.queries.group_by_count.map { |q, count| {text: q, weight: count} }
 
     positions = searches.positions
@@ -71,16 +77,25 @@ class ReportBuilder
       positions: positions,
       areas: areas,
       departments: departments,
-      certifications: certifications
+      certifications: certifications,
+      cumulative_searches_start: cumulative_searches.keys.first,
+      cumulative_searches: cumulative_searches.values.cumulative_sum
     }
   end
 
-  def visits_metrics
+  def public_metrics
     return {valid: false} unless ga_api_available?
+
     {
       pageviews: GA_API_CLIENT.pageviews(@from, @to),
-      avg_session_duration: ApplicationController.helpers.distance_of_time_in_words(GA_API_CLIENT.avg_session_duration(@from, @to)),
+      avg_session_duration: GA_API_CLIENT.avg_session_duration(@from, @to),
+      avg_session_duration_sum: GA_API_CLIENT.avg_session_duration_sum(@from, @to),
       pages_per_session: GA_API_CLIENT.pages_per_session(@from, @to),
+      sessions_per_device: GA_API_CLIENT.sessions_per_device(@from, @to),
+      sessions_in_bound: GA_API_CLIENT.sessions_in_bound(@from, @to),
+      sessions_per_browser: GA_API_CLIENT.sessions_per_browser(@from, @to),
+      sessions_per_country: GA_API_CLIENT.sessions_per_country(@from, @to),
+      sessions_per_city: GA_API_CLIENT.sessions_per_city(@from, @to),
       valid: true
     }
   end
