@@ -105,4 +105,19 @@ module ApplicationHelper
         conversation.messages.count.to_s + ')'
   end
 
+  def user_avatar user
+    if user.is_a? User
+      if user.consultant.wizard_step == Wicked::FINISH_STEP
+          user.consultant.profile_image.url(:medium)
+      else
+        'missing.png'
+      end
+    else
+      'missing.png'
+    end
+  end
+
+  def article_author_prefix author
+    (author.is_a? Admin) ? 'GCES Admin - ' : ''
+  end
 end

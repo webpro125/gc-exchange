@@ -25,13 +25,15 @@
                   %td= company.company_name
                   %td= company.created_at.to_date
                   %td
-                    = link_to invite_account_manager_admin_company_path(company), :class => 'btn btn-xs btn-success' do
-                      %i.fa.fa-envelope
-                      = company.invite_user.present? ? 'Re-invite' : 'Invite Account Manager'
+                    - unless company.owner.present?
+                      = link_to invite_account_manager_admin_company_path(company), :class => 'btn btn-xs btn-success' do
+                        %i.fa.fa-envelope
+                        = company.invite_user.present? ? 'Re-invite' : 'Invite Account Manager'
 
                     = link_to edit_admin_company_path(company), :class => 'btn btn-xs btn-warning' do
                       %i.fa.fa-edit
                       Edit
-                    = link_to '#', :class => 'btn btn-xs btn-danger' do
+                    = link_to admin_company_path(company), method: :delete,
+                       data: { confirm: t('views.company.confirmations.delete') }, :class => 'btn btn-xs btn-danger' do
                       %i.fa.fa-trash-o
                       Delete

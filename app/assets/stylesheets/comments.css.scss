@@ -75,3 +75,17 @@
   color: inherit;
   float: right;
 }
+.attached_files img{
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  vertical-align: top;
+}
+.attached_files a {
+  margin: 5px;
+  width: 120px;
+  display: inline-block;
+}
+.attached_files a small {
+  word-wrap: break-word;
+}

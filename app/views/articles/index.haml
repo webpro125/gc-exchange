@@ -9,8 +9,8 @@
         .article-meta
           %span
             opend
-            = time_ago_in_words(article.updated_at)
-            = ' ago by ' + article.user.full_name
+            = time_ago_in_words(article.created_at)
+            = ' ago by ' + article_author_prefix(article.author) + article.author.full_name
       .article-item-cell.comments
         = article.comments.count
 

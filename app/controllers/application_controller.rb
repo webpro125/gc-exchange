@@ -64,11 +64,15 @@ class ApplicationController < ActionController::Base
   end
 
   def pundit_user
-    current_user
+    current_user || current_admin
   end
 
   def auth_a_user!
+    if admin_signed_in?
+      true
+    else
       authenticate_user!
+    end
   end
   
   # send sms

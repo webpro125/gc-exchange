@@ -4,5 +4,10 @@
   .form-inputs
     = f.input :title
     = f.input :text, input_html: { rows: 7, maxlength: 500 }
+    = f.simple_fields_for :article_attachments do |a|
+      - if a.object.new_record?
+        = a.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "article_attachments[attach][]"}
+      - else
+        = a.input :_destroy, label: a.object.attach_file_name, as: :boolean
   .form-actions
     = f.button :submit

@@ -1,0 +1,16 @@
+// Place all the styles related to the admin/articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.article_article_attachments_attach, .article_article_attachments_attach label {
+  border: none !important;
+  margin-right: 0;
+}
+.article_article_attachments_attach.file {
+  margin-bottom: 20px;
+}
+.article_article_attachments_attach label {
+  margin-bottom: 5px;
+}
+.file {
+  margin-bottom: 5px;
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329143827) do
+ActiveRecord::Schema.define(version: 20160405194833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,13 +55,31 @@ ActiveRecord::Schema.define(version: 20160329143827) do
 
   add_index "approved_statuses", ["code"], name: "index_approved_statuses_on_code", unique: true, using: :btree
 
+  create_table "article_attachments", force: true do |t|
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
+  end
+
+  add_index "article_attachments", ["article_id"], name: "index_article_attachments_on_article_id", using: :btree
+
   create_table "articles", force: true do |t|
     t.string   "title",      limit: 128
     t.text     "text"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",                 default: 0
+    t.integer  "admin_id"
+    t.integer  "views",                  default: 0
+    t.json     "attaches"
   end
+
+  add_index "articles", ["admin_id"], name: "index_articles_on_admin_id", using: :btree
 
   create_table "backgrounds", force: true do |t|
     t.integer  "consultant_id"
@@ -98,14 +116,28 @@ ActiveRecord::Schema.define(version: 20160329143827) do
     t.string "label", limit: 256, null: false
   end
 
+  create_table "comment_attachments", force: true do |t|
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
+  end
+
+  add_index "comment_attachments", ["comment_id"], name: "index_comment_attachments_on_comment_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "body"
     t.integer  "article_id"
     t.integer  "commenter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "admin_commenter_id"
   end
 
+  add_index "comments", ["admin_commenter_id"], name: "index_comments_on_admin_commenter_id", using: :btree
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
   add_index "comments", ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
 
@@ -471,7 +503,6 @@ ActiveRecord::Schema.define(version: 20160329143827) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                           default: 0
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

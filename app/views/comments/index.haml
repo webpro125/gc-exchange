@@ -1,61 +1,74 @@
+
+%h3
+  %span.button.tiny{class: @article.status == 'open' ? '' : 'alert'}= @article.status.titleize
 %h2{:style => 'margin-bottom: 20px;'}
   %span= @article.title
   = link_to 'Create New Question', new_article_path, class: 'button tiny pull-right'
 .discussion-timeline
   .timeline-comment-wrapper
-    - if @article.user.consultant.wizard_step == Wicked::FINISH_STEP
-      = image_tag @article.user.consultant.profile_image.url(:medium), class: 'timeline-comment-avatar'
-    - else
-      = image_tag 'admin/missing.png', class: 'timeline-comment-avatar'
+    = image_tag user_avatar(@article.author), class: 'timeline-comment-avatar'
     .timeline-comment
       .timeline-comment-header
-        - if current_user == @article.user
+        - if current_user == @article.author
           = link_to 'Edit', edit_article_path(@article), class: 'timeline-comment-action'
         .timeline-comment-header-text
-          %strong= @article.user.full_name
+          %strong= @article.author.full_name
           commented
           = time_ago_in_words(@article.updated_at)
           = ' ago'
       .comment-content
         .comment-body
           = @article.text
-
+          .attached_files
+            - @article.article_attachments.each do |attach|
+              = link_to download_article_attachment_path(attach) do
+                - if attach.attach_content_type.start_with? 'image'
+                  = image_tag attach.attach.url(:medium)
+                - else
+                  = image_tag 'attach-icon.png'
+                %br
+                %small= attach.attach_file_name
   - @comments.each do |comment|
     .timeline-comment-wrapper
-      - if comment.commenter.consultant.wizard_step == Wicked::FINISH_STEP
-        = image_tag comment.commenter.consultant.profile_image.url(:medium), class: 'timeline-comment-avatar'
-      - else
-        = image_tag 'admin/missing.png', class: 'timeline-comment-avatar'
+      = image_tag user_avatar(@article.author), class: 'timeline-comment-avatar'
       .timeline-comment
         .timeline-comment-header
           .timeline-comment-header-text
-            %strong= comment.commenter.full_name
+            %strong= comment.author.full_name
             commented
             = time_ago_in_words(comment.updated_at)
             = ' ago'
         .comment-content
           .comment-body
             = comment.body
-  %hr
-  .discussion-timeline-actions
-    .timeline-comment-wrapper
-      - if current_user.consultant.wizard_step == Wicked::FINISH_STEP
-        = image_tag current_user.consultant.profile_image.url(:medium), class: 'timeline-comment-avatar'
-      - else
-        = image_tag 'admin/missing.png', class: 'timeline-comment-avatar'
-      .timeline-comment
-        .timeline-comment-header
-          .timeline-comment-header-text
-            %strong Your comment
-        .comment-content
-          .comment-body
-            = simple_form_for [@article, @comment] do |f|
-              = f.error_notification
-              = render 'shared/base_error', model: @article
-              .form-inputs
-                = f.input :body, label: false, input_html: { rows: 5, maxlength: 500 }
-              .form-actions
-                = f.button :submit
+            .attached_files
+              - comment.comment_attachments.each do |attach|
+                = link_to download_comment_attachment_path(attach) do
+                  - if attach.attach_content_type.start_with? 'image'
+                    = image_tag attach.attach.url(:medium)
+                  - else
+                    = image_tag 'attach-icon.png'
+                  %small= attach.attach_file_name
+  - if @article.status == 'open'
+    %hr
+    .discussion-timeline-actions
+      .timeline-comment-wrapper
+        = image_tag user_avatar(@article.author), class: 'timeline-comment-avatar'
+        .timeline-comment
+          .timeline-comment-header
+            .timeline-comment-header-text
+              %strong Your comment
+          .comment-content
+            .comment-body
+              = simple_form_for [@article, @comment] do |f|
+                = f.error_notification
+                = render 'shared/base_error', model: @article
+                .form-inputs
+                  = f.input :body, label: false, input_html: { rows: 5, maxlength: 500 }
+                  = f.simple_fields_for :comment_attachments do |c|
+                    = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
+                .form-actions
+                  = f.button :submit
 
 
 

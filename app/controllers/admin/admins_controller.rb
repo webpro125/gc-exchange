@@ -1,7 +1,7 @@
 class Admin::AdminsController < ApplicationController
   layout 'application_admin'
   before_action :authenticate_admin!
-
+  before_action :load_admin, only: [:edit, :update, :destroy]
   def index
     @admins = Admin.order(created_at: :desc)
   end
@@ -24,12 +24,9 @@ class Admin::AdminsController < ApplicationController
   end
 
   def edit
-    @admin = Admin.find(params[:id])
   end
 
   def update
-    @admin = Admin.find(params[:id])
-
     if params[:admin][:password].blank? && params[:admin][:password_confirmation].blank?
       params[:admin].delete(:password)
       params[:admin].delete(:password_confirmation)
@@ -47,13 +44,12 @@ class Admin::AdminsController < ApplicationController
   end
 
   def destroy
-    @admin = Admin.find(params[:id])
-
     respond_to do |format|
       if @admin.destroy
         format.html { redirect_to admin_admins_path, notice: t('controllers.admin.destroy.success') }
         format.json { render json: admin_admins_path, status: :created, location: @admin }
       else
+        @admins = Admin.order(created_at: :desc)
         format.html { render action: "index", notice: @admin.errors }
         format.json { render json: @admin.errors, status: :unprocessable_entity }
       end
@@ -64,5 +60,9 @@ class Admin::AdminsController < ApplicationController
 
   def admin_params
     params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def load_admin
+    @admin = Admin.find(params[:id])
   end
 end

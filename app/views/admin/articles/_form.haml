@@ -1,0 +1,15 @@
+= simple_form_for [:admin, @article],
+  wrapper: :vertical_form do |f|
+  = f.error_notification
+  = f.input :title
+  = f.input :text, label: 'Description', input_html: { rows: 6}
+  = f.simple_fields_for :article_attachments do |a|
+    - if a.object.new_record?
+      = a.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "article_attachments[attach][]"}
+    - else
+      = a.input :_destroy, label: a.object.attach_file_name, as: :boolean
+  .hr-line-dashed
+  .form-group
+    = button_tag(type: 'submit', class: "btn btn-primary") do
+      %i.fa.fa-check-circle
+      Save  Update

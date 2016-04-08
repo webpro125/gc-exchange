@@ -1,0 +1,30 @@
+// Place all the styles related to the admin/comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.attached_files img{
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+}
+.attached_files a {
+  margin: 5px;
+  width: 120px;
+  display: inline-block;
+}
+.attached_files a small {
+  word-wrap: break-word;
+}
+
+.comment_comment_attachments_attach, .comment_comment_attachments_attach label {
+  border: none !important;
+  margin-right: 0;
+}
+.comment_comment_attachments_attach.file {
+  margin-bottom: 20px;
+}
+.comment_comment_attachments_attach label {
+  margin-bottom: 5px;
+}
+.file {
+  margin-bottom: 5px;
+}

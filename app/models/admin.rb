@@ -15,7 +15,12 @@ class Admin < ActiveRecord::Base
             format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
 
+  has_many :admin_owned_comments, class_name: 'Comment',
+           foreign_key: :admin_commenter_id, inverse_of: :commenter,
+           dependent: :restrict_with_error
+  has_many :articles, dependent: :restrict_with_error
   def mailboxer_email(_object)
     email
   end
+
 end
