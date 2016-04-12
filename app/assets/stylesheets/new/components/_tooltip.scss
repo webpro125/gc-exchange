@@ -1,0 +1,21 @@
+*[class*="tooltip"] {
+    @extend %ui-tooltip;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 50;
+    text-indent: 0;
+    color: color(body);
+    white-space: nowrap;
+    
+    &:after {
+        @extend %ui-tooltip-pointer;
+    }
+}
+
+* {
+    &:hover > *[class*="tooltip"] {
+        display: block;
+    }
+}

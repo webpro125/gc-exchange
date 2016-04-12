@@ -1,0 +1,352 @@
+/* --------
+    
+BASE TYPOGRAPHIC STYLE DEFINITIONS: 
+
+These are shared typographic definitions, used in multiple pages and modular components.
+
+SASS extends are to be used to guarantee  consistent typographic treatment. 
+
+type-* classes make use of the @extend definitions and can be applied independently to implement those typographic styles as needed.
+
+-------- */
+
+%body-default {
+    font-family: $font-bodytext;
+	font-size: $font-size-base;
+    line-height: 1.45em;
+    font-weight: normal;
+    color: color(body);
+}
+
+%body-intro {
+	font-size: 1.25rem;
+    line-height: 1.25em;
+    font-weight: 300;
+    
+    @include responsive($media: 'phone') {
+        font-size: 1.15rem;
+        line-height: 1.075rem;
+        font-weight: normal;
+    }
+}
+
+%body-elegant {
+    font-size: 1.15rem;
+    line-height: 1.35em;
+    font-weight: 300;
+    
+    @include responsive($media: 'phone') {
+        font-size: 1.05rem;
+        line-height: 1.25rem;
+        font-weight: normal;
+    }
+}
+
+%body-emphasis {
+    color: color(primary);
+}
+
+%body-note {
+    font-style: italic;
+    font-size: 0.85rem;
+    line-height: 1.15em;
+    font-weight: normal;
+    color: color(gray-medium);
+}
+
+%body-strong {
+    font-weight: 600;
+}
+
+%body-small {
+    font-weight: normal;
+    font-size: 0.875rem;
+    line-height: 0.85rem;
+}
+
+%body-spec {
+    font-weight: normal;
+    font-size: inherit;
+    color: color(gray-light);
+}
+
+%type-ui-label {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+    
+    &.strong {
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+}
+
+%type-ui-label-small {
+    @extend %type-ui-label;
+    font-size: 0.685rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+%type-ui-label-xsmall {
+    @extend %type-ui-label-small;
+    font-size: 0.55rem;
+}
+
+%type-ui-label-form {
+    font-size: 1.15rem;
+    line-height: 1.25em;
+    font-weight: normal;
+}
+
+%type-ui-note {
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 0.85rem;
+    color: color(gray-light);
+}
+
+%type-ui-tag {
+    font-weight: 400;
+}
+
+%type-ui-navtab {
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+%type-label {
+    color: color(primary);
+    margin-bottom: 0;
+}
+
+%type-truncate-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+%type-timestamp {
+    @extend %type-ui-note;
+}
+
+%type-link {
+    color: color(primary);
+    font-weight: 500;
+    
+    &:hover {
+        font-weight: 600;
+        transition: font-weight 0.1s ease-out;
+    }    
+}
+
+%type-action {
+    @extend %type-link;
+    text-transform: uppercase;
+    font-size: 0.825rem;
+    line-height: 1.125em;
+    letter-spacing: 1px;
+    
+    &.small {
+        font-size: 0.675rem;
+    }
+}
+
+%type-location {
+    text-transform: capitalize !important;
+    font-weight: 600;
+    font-size: 0.725rem;
+    line-height: 1.15em;
+}
+
+%type-sep {
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    font-size: 1.05em;
+    font-weight: 600;
+    color: color(primary-lighter);
+    text-align: center;
+    vertical-align: middle;
+}
+
+%xsmall {
+    font-size: 0.5em;
+}
+
+%small {
+    font-size: 0.75em;
+}
+
+%medium {
+    font-size: 1.5em;
+}
+
+%large {
+    font-size: 1.75em;
+}
+
+%xlarge {
+    font-size: 2em;
+}
+
+
+%xxlarge {
+    font-size: 3em;
+}
+
+
+%display {
+    font-size: 5em;
+}
+
+.type-intro {
+    @extend %body-intro;
+}
+
+.type-elegant {
+    @extend %body-elegant;
+}
+
+.type-emphasis {
+    @extend %body-emphasis;
+}
+
+.type-note {
+    @extend %body-note;
+}
+
+.type-ui-note {
+    @extend %type-ui-note;
+}
+
+.label {
+    font-weight: 600;
+    color: color(gray-dark);
+}
+
+.tag-label {
+    display: inline-block;
+    height: auto;
+    font-size: 0.875rem;
+    line-height: 1em;
+    letter-spacing: 0;
+    color: color(gray-light);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.stat {
+    font-weight: 600;
+    
+    &.emphasis {
+        color: color(primary);
+    }
+}
+
+.type-label {
+        @extend %type-label;
+}
+
+.type-ui-label {
+    @extend %type-ui-label;
+    @extend %type-ui-label.strong;
+    display: inline-block;
+    font-size: 0.75rem;
+}
+
+.type-strong {
+    @extend %body-strong;
+}
+
+.type-spec {
+    @extend %body-spec;
+    margin-left: 1rem;
+}
+
+.type-sep {
+    @extend %type-sep;
+}
+
+.type-timestamp,
+.timestamp {
+    @extend %type-timestamp;
+}
+
+.type-link {
+    @extend %type-link;
+}
+
+.type-action,
+.action-link {
+    @extend %type-action;
+}
+
+.type-caps {
+    text-transform: uppercase;
+}
+
+.type-block {
+    display: block !important;
+}
+
+.type-location {
+    @extend %type-location;
+}
+
+.type-primary {
+    color: color(primary) !important;
+}
+
+.type-secondary {
+    color: color(secondary) !important;
+}
+
+.type-red {
+    color: color(alert-error) !important;
+}
+
+.type-yellow {
+    color: color(alert-warning) !important;
+}
+
+.type-green {
+    color: color(alert-success) !important;
+}
+
+.type-blue {
+    color: color(alert-information) !important;
+}
+
+.username {
+    color: color(primary);
+}
+
+.company {
+    @extend %type-ui-label;
+    @extend %type-ui-label.strong;
+    color: color(gray-medium);
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.sep {
+    display: inline-block;
+    padding: 0 1.5rem;
+}
+
+.air {
+    padding-top: 2rem;
+}
+

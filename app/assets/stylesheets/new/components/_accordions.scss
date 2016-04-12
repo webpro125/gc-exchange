@@ -1,0 +1,113 @@
+*[class*="ui-accordion"] {
+    ul {        
+        li {
+            list-style: none;
+            margin: 0;
+        }
+    }
+}
+
+.ui-accordion {
+    @extend %clearfix;
+    height: auto;
+    padding: 0;
+    position: relative;
+    
+    .accordion-toggle {
+        @include icon($icon: glyph(cr-plus-light), $size: 2rem, $icon-size: 1.65rem, $type: 'sq');
+        cursor: pointer;
+        
+        &:before {
+            color: color(gray-light);
+        }
+        
+        &:hover {
+            &:before {
+                color: color(primary);
+                transition: color 0.1s ease-out;
+            }
+        }
+        
+        &.fullwidth {
+            width: 100% !important;
+            height: 100% !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+
+            &:before {
+                @include translate(0,-50%);
+                width: 4rem;
+                height: 4rem;
+                line-height: 4rem;
+                font-size: 2.5rem;
+                right: 0;
+                left: auto;
+                top: 50%;
+                color: #FFF;
+            }
+            
+            &:hover {
+                &:before {
+                    color: color(gray-medium);
+                    transition: color 0.1s ease-out;
+                }
+            }
+        }
+    }
+    
+    .accordion-pocket {
+        display: block;
+        float: left;
+        padding: 2rem;
+        position: relative;
+        vertical-align: top;
+    }
+    
+    .accordion-panel {
+        display: none;
+    }
+
+    &.is-open,
+    &.open {
+        .accordion-toggle {
+            &:before {
+                content: glyph(cr-minus-light);
+                color: color(primary) !important;
+            }
+        }
+        .accordion-panel {
+            display: block;
+        }
+    }
+}
+
+
+.ui-accordion-h {
+    @extend %clearfix;
+    height: auto;
+    padding: 0;
+    
+    .accordion-pocket {
+        display: block;
+        float: left;
+        padding: 2rem;
+        position: relative;
+        vertical-align: top;
+        
+        .accordion-expansion {
+            display: none;
+        }
+        
+        &.is-open {
+            .accordion-expansion {
+                display: block;
+            }
+        }
+    }
+}
+
+.ui-accordion-simple {
+    
+}

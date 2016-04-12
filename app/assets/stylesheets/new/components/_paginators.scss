@@ -1,0 +1,76 @@
+.ui-paginator {
+    $paginator-size: rem(36px);
+    @extend %user-noselect;
+    display: block;
+    width: auto;
+    height: $paginator-size;
+    margin: 0 auto;
+    text-align: center;
+    
+    *[class*="pager-"] {
+        display: inline-block;
+        width: $paginator-size;
+        height: $paginator-size;
+        margin: 0 0.35rem;
+        font-size: 1.25rem;
+        font-weight: normal;
+        line-height: $paginator-size;
+        text-align: center;
+        vertical-align: top;
+        cursor: pointer;
+        
+        &:hover {
+            color: color(primary);
+            transition: color 0.1s ease-out;
+        }
+        
+        &.active {
+            @extend %button-primary;
+            
+            &:hover {
+                color: #FFF;
+            }
+        }
+    }
+    
+    .pager-prev,
+    .pager-next {
+        @include icon($size: $paginator-size, $icon-size: 1.5rem, $type: 'sq');
+        
+        &:before {
+            color: color(gray-light);
+        }
+        
+        &:hover {
+            &:before {
+                color: color(primary);
+                transition: color 0.1s ease-out;
+            }
+        }
+    }
+    
+    .pager-prev {
+        &:before {
+            content: glyph(arrow-left);
+        }
+    }
+    
+    .pager-next {
+        &:before {
+            content: glyph(arrow-right);
+        }
+    }
+}
+
+/*
+
+<footer class="ui-paginator">
+    <div class="pager-prev"></div>
+    <div class="pager-page active">1</div>
+    <div class="pager-page">2</div>
+    <div class="pager-page">3</div>
+    <div class="pager-page">3</div>
+    <div class="pager-next"></div>
+</footer>
+
+*/

@@ -1,0 +1,355 @@
+%ui-checkbox-base {
+    @extend %user-noselect;
+    display: inline-block;
+    width: auto;
+    height: size(input-default);
+    cursor: pointer;
+    position: relative;
+    
+        
+    input[type="checkbox"],
+    input[type="radio"] {
+        display: none;
+    }
+    
+    input[type="checkbox"] + label,
+    input[type="radio"] + label,
+    .checkmark {
+        display: inline-block;
+        margin-top: 0;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+}
+
+%ui-checkbox {
+    @extend %ui-checkbox-base;
+    
+    input[type="checkbox"] + label,
+    input[type="radio"] + label,
+    .checkmark {
+        width: auto;
+        height: size(input-default);
+        text-align: left;
+        line-height: size(input-default);
+        padding-left: size(input-default) + rem(10px);
+        font-weight: normal;
+        font-size: 1.65rem;
+        
+        &:before {
+            @include translate(0, -50%);
+            @extend %glyphs;
+            display: block;
+            content: glyph(cr-checkmark-full);
+            width: size(input-default);
+            height: size(input-default);
+            font-size: 4.15rem;
+            line-height: size(input-default);
+            background: transparent;
+            color: rgba(#FFF, 0);
+            text-align: left;
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            text-indent: -100px;
+        }
+        
+        &:after {
+            @include translate(0, -50%);
+            @extend %glyphs;
+            display: block;
+            content: "";
+            width: size(input-default);
+            height: size(input-default);
+            background: transparent;
+            box-shadow: inset 0 0 0 2px color(primary-lighter);
+            text-align: left;
+            border-radius: 100%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+        }
+        
+        &:hover {
+            color: color(primary);
+            transition: color 0.25s ease-out;
+            
+            &:after {
+                box-shadow: inset 0 0 0 2px color(primary);
+                transition: all 0.25s ease-out;
+            }
+        }
+    }
+    
+    input[type="checkbox"]:checked + label,
+    input[type="radio"]:checked + label,
+    .checkmark.checked {
+        color: color(primary);
+        
+        &:before {
+            color: color(primary);
+        }
+        
+        &:after {
+            box-shadow: inset 0 0 0 4px color(primary);
+        }
+    }
+    
+    &.no-label {
+        input[type="checkbox"] + label,
+        .checkmark {
+            text-indent: -100000px;
+        }
+    }
+    
+    &.small {
+        input[type="checkbox"] + label,
+        .checkmark {
+            height: size(input-small);
+            line-height: size(input-small);
+            padding-left: size(input-small) + rem(10px);
+
+            &:before {
+                width: size(input-small);
+                height: size(input-small);
+                font-size: size(input-small);
+            }
+        }
+    }
+    
+    &.medium {
+        input[type="checkbox"] + label,
+        input[type="radio"] + label,
+        .checkmark {
+            width: auto;
+            height: size(input-medium);
+            line-height: size(input-medium);
+            padding-left: size(input-medium) + rem(10px);
+            font-size: 1.35rem;
+
+            &:before {
+                width: size(input-medium);
+                height: size(input-medium);
+                font-size: 3rem;
+                line-height: size(input-medium);
+                left: -6px;
+                margin-top: -4px;
+                top: 50%;
+            }
+
+            &:after {
+                width: size(input-medium);
+                height: size(input-medium);
+                margin-top: -0.25rem;
+            }
+        }
+    }
+    
+    @include responsive($media: 'phone-landscape') {
+        
+        input[type="checkbox"] + label,
+        input[type="radio"] + label,
+        .checkmark {
+            width: auto;
+            height: size(input-small);
+            line-height: size(input-small);
+            padding-left: size(input-small) + rem(8px);
+            font-size: 1.5rem;
+
+            &:before {
+                width: size(input-small);
+                height: size(input-small);
+                font-size: 2.25rem;
+                line-height: size(input-small);
+                left: -4px;
+                text-indent: -100px;
+                margin-top: -8px;
+            }
+
+            &:after {
+                width: size(input-small);
+                height: size(input-small);
+                border-radius: 100%;
+                position: absolute;
+                left: 0;
+                margin-top: -0.5rem;
+            }
+        }
+        
+        &.medium {
+            input[type="checkbox"] + label,
+            input[type="radio"] + label,
+            .checkmark {
+                width: auto;
+                height: size(input-small);
+                line-height: size(input-small);
+                padding-left: size(input-small) + rem(8px);
+                font-size: 1.15rem;
+
+                &:before {
+                    width: size(input-small);
+                    height: size(input-small);
+                    font-size: 2.25rem;
+                    line-height: size(input-small);
+                    left: -4px;
+                    margin-top: -9px;
+                }
+
+                &:after {
+                    width: size(input-small);
+                    height: size(input-small);
+                    margin-top: -0.55rem;
+                }
+            }
+        }
+    }
+    
+    @include responsive($max-width: '420px') {
+        &.medium {
+            input[type="checkbox"] + label,
+            input[type="radio"] + label,
+            .checkmark {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.ui-checkbox-tag {
+    @extend %ui-checkbox-base;
+    
+    input[type="checkbox"] + label,
+    input[type="radio"] + label {
+        @extend %ui-box;
+        @extend %type-ui-navtab;
+        width: 12rem;
+        height: size(input-default);
+        line-height: size(input-default);
+        background: #FFF;
+        box-shadow: inset 0 0 0 2px color(secondary);
+        color: color(secondary);
+        text-align: center;
+        padding: 0;
+        
+        &:hover {
+            background: #FFF;
+            color: color(secondary);
+            transition: all 0.1s ease-out;
+        }
+    }
+    
+    input[type="checkbox"]:checked + label,
+    input[type="radio"]:checked + label  {
+        background: color(secondary);
+        color: #FFF;
+    }
+}
+
+
+@keyframes switch-left  {
+    from {
+        left: 1.75rem;
+    } 
+    to{
+        left: 0.25rem;
+    } 
+}
+
+@-moz-keyframes switch-left  {
+    from {
+        left: 1.75rem;
+    } 
+    to{
+        left: 0.25rem;
+    } 
+}
+
+@-webkit-keyframes switch-left  {
+    from {
+        left: 1.75rem;
+    } 
+    to{
+        left: 0.25rem;
+    } 
+}
+
+@keyframes switch-right  {
+    from {
+        left: 0.25rem;
+    } 
+    to{
+        left: 1.75rem;
+    }  
+}
+
+@-moz-keyframes switch-right  {
+    from {
+        left: 0.25rem;
+    } 
+    to{
+        left: 1.75rem;
+    } 
+}
+
+@-webkit-keyframes switch-right  {
+    from {
+        left: 0.25rem;
+    } 
+    to{
+        left: 1.75rem;
+    } 
+}
+
+.ui-switch {
+    display: inline-block;
+    width: 3.5rem;
+    height: 2rem;
+    margin: 0;
+    border-radius: 2rem;
+    box-shadow: inset 0 0 0 2px color(gray-light);
+    position: relative;
+    vertical-align: top;
+    cursor: pointer;
+    
+    &:after {        
+        @extend %before-after-absolute;
+        @extend %type-ui-label-xsmall;
+        border-radius: 100%;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        top: 0.25rem;
+        text-align: center;
+        color: #FFF;
+        background: color(primary);
+    }
+    
+    &.is-off {
+        &:after {
+            left: 1.75rem;
+            content: "Off";
+            background: color(gray-light);
+            -webkit-animation: switch-right 0.25s;
+            -moz-animation: switch-right 0.25s;
+            animation: switch-right 0.25s;
+        }
+    }
+    
+    &.is-on {
+        box-shadow: inset 0 0 0 2px color(primary);
+        
+        &:after {
+            left: 0.25rem;
+            content: "On";
+            background: color(primary);
+            -webkit-animation: switch-left 0.25s;
+            -moz-animation: switch-left 0.25s;
+            animation: switch-left 0.25s;
+        }
+    }
+    
+}
+
+.ui-checkbox {
+    @extend %ui-checkbox;
+}

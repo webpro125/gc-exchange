@@ -6,17 +6,22 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "Global Consultant Exchange" %></title>
 
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag style_path "application" %>
     <%= stylesheet_link_tag 'debug' if development? %>
     <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <!--[if lte IE 8]><%= javascript_include_tag 'jqery.flot/excanvas.min' %><![endif]-->
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag style_path "application" %>
     <%= csrf_meta_tags %>
+    <% if @new_design.nil? %>
     <%= google_webfonts_init({ google: ['Open+Sans:400italic,700italic,700,300,600,400:latin'] }) %>
+    <% else %>
+      <%= google_webfonts_init({ google: ['Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic'] }) %>
+    <% end %>
 </head>
 
 <body class="<%= yield(:body_class) %>">
+  <% if @new_design.nil? %>
     <%= render 'layouts/header' %>
     <div class="container">
         <div class="row">
@@ -29,5 +34,18 @@
     <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.js") %>
     <%= yield :js %>
     <%= render 'layouts/debug' if development? %>
+  <% else %>
+    <div id="site-wrapper">
+      <%= render 'layouts/header' %>
+      <main id="main-content" class="main">
+        <%= render 'layouts/flash' %>
+        <%= yield %>
+      </main>
+      <%= render 'layouts/footer' %>
+      <%= render 'layouts/google_analytics' unless Rails.env.test? %>
+      <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.js") %>
+      <%= yield :js %>
+    </div>
+  <% end %>
 </body>
 </html>

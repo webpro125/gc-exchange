@@ -1,0 +1,33 @@
+*[class*="ui-marker-"] {
+    &:after {
+        @extend %before-after-absolute;
+        display: block;
+        width: size(marker);
+        height: size(marker);
+        border-radius: 100%;
+    }
+}
+
+.ui-marker-alert {
+    &:after {
+        background: color(alert-error);
+    }
+}
+
+.ui-marker-live {
+    &:after {
+        background: color(alert-success);
+    }
+}
+
+.ui-marker-warning {
+    &:after {
+        background: color(alert-warning);
+    }
+}
+
+.ui-marker-information {
+    &:after {
+        background: color(alert-information);
+    }
+}

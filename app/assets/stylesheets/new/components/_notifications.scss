@@ -1,0 +1,106 @@
+.ui-notification,
+.ui-alert,
+.ui-message {
+    @extend %ui-box;
+    @extend %body-intro;
+    padding: rem(24px);
+    font-weight: normal;
+    text-align: center;
+    
+    .action-close {
+        display: block;
+        width: 1em;
+        height: 1em;
+        line-height: 1em;
+        font-size: 1em;
+        position: absolute;
+        top: 50%;
+        right: rem(20px);
+        margin-top: -0.5em;
+        cursor: pointer;
+        
+        &:hover {
+            &:before {
+                color: #FFF;
+                transition: color 0.15s ease-out;
+            }
+        }
+    }
+    
+    &[class*="icon-"] {
+        position: relative;
+        
+        &:before {
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            line-height: 1.5em;
+            font-size: 1.2em;
+            position: absolute;
+            top: 50%;
+            left: rem(20px);
+            margin-top: -0.75em;
+        }
+    }
+    
+    &[class*="alert-"] {
+        color: #FFF;
+    }
+    
+    &.alert-error {
+        background: color(alert-error);
+        
+        .action-close {
+            color: darken(color(alert-error), 20%)
+        }
+    }
+    
+    &.alert-sucess {
+        background: color(alert-success);
+        
+        .action-close {
+            color: darken(color(alert-success), 15%)
+        }
+    }
+    
+    &.alert-warning {
+        background: color(alert-warning);
+        
+        .action-close {
+            color: darken(color(alert-warning), 25%)
+        }
+    }
+    
+    & + & {
+        margin-top: 1rem;
+    }
+    
+    
+}
+
+.notification-area {
+    display: block;
+    width: 100%;
+    height: 0;
+    padding: 0 1rem;
+    background-color: color(secondary);
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+    
+    &,
+    * {
+        color: #FFF;
+        text-align: center;
+        font-weight: normal;
+        font-size: 1.05rem;
+        line-height: 2rem;
+    }
+    
+    &.is-visible {
+        opacity: 1;
+        height: 2rem;
+        transition: all 0.3s ease-out;
+    }
+}
+

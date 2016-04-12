@@ -39,3 +39,4 @@ spec/results
 /vendor/bin
 .env
 config/ga_api.yml
+/.sass-cache

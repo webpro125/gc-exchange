@@ -162,4 +162,18 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
+
+  config.wrappers :custom_input, tag: 'fieldset', class: 'section no-label', error_class: 'invalid' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.wrapper :input_wrapper, tag: 'div', class: 'input-styler' do |ba|
+      ba.use :input
+    end
+    b.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
 end

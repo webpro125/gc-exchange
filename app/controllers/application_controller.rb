@@ -34,6 +34,9 @@ class ApplicationController < ActionController::Base
   end
 
   def create_search
+    if devise_controller?
+      @new_design = true
+    end
     @search = Search.new search_params
   end
 

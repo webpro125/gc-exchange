@@ -1,0 +1,170 @@
+/*****
+
+RESPONSIVE GRID
+
+GRID TYPES - By default, 3 types of grids are defined: fifhts, twelfths, twentyfourths. Any number of grids can be defined by adding the values to the $grid-sizes variable. 
+
+COLUMNS - Columns share the same base measures, but include gutters defined by paddings.
+
+APPLYING THE GRID - The grid elements can be applied independently when you wish to set a grid-related width. Grid elements need to be wrapped on a parent element with the class of "grid" to inherit the normal grid functionality. The width of the grid elements are calculated as part of the whole, different widths can be combined in a single grid wrapper until it reaches the total. Example: .grid-2-12., .grid-2-12, .grid-8-12.
+
+******/
+
+$grid-sizes: (5, 12, 24);
+
+@each $s in $grid-sizes {
+    $size: 100%/$s;
+    @for $i from 1 through $s {
+        .grid-#{$i}-#{$s} {
+            width: unquote(fix-precision($size * $i));
+        }
+    }
+}
+
+.grid {
+    @extend %clearfix;
+    display: block;
+	position: relative;
+	box-sizing: border-box;
+    margin-left: 4px;
+    
+    /* Ensures box-sizing definition is passed to the children */
+    * {
+        box-sizing: inherit;
+    }
+    
+    *[class*="grid-"] {
+        display: inline-block;
+        *display: inline; 
+        zoom: 1;
+        vertical-align: top;
+        position: relative;
+        /* Fixes display: inline-block spacing issue */
+        margin-left: -4px;
+    }
+    
+    & > *:not(*[class*="grid-"]) {
+        vertical-align: baseline;
+    }
+    
+    
+    /* --------
+
+    RESPONSIVE:
+
+    -------- */
+
+    @include responsive('desktop') {
+        
+    }
+
+    @include responsive('laptop') {
+        
+    }
+
+    @include responsive('tablet-landscape') {
+        
+    }
+
+    @include responsive('tablet-portrait') {
+        
+
+        @each $s in $grid-sizes {
+            @for $i from 1 through $s {
+                @if $i < ($s - 3) {
+                    .grid-#{$i}-#{$s}:not([class*="no-break"]) {
+                        width: 33.333333%;
+                    }
+                } @else if  $i < ($s - 2) {
+                    .grid-#{$i}-#{$s}:not([class*="no-break"]) {
+                        width: 50%;
+                    }
+                } @else {
+                    .grid-#{$i}-#{$s}:not([class*="no-break"]) {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    @include responsive('tablet-small') {
+        
+
+        @each $s in $grid-sizes {
+            @for $i from 1 through $s {
+                @if $i < ($s - 1) {
+                    .grid-#{$i}-#{$s}:not([class*="no-break"]) {
+                        width: 50%;
+                    }
+                } @else {
+                    .grid-#{$i}-#{$s}:not([class*="no-break"]) {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    
+    /* --------
+    
+    EDITORIAL COLUMNS:
+    
+    As in the grid, there are 12 sizes of columns defined.
+
+    The gutter in the columns can be fixed or fluid. By default, gutters are defined fixed and of medium size, following the same widths described above. Fluid gutters are defined only for 2, 3, 4 and 5 columns.
+
+    -------- */
+    
+    $columns-count: (2, 3, 4, 6, 8, 12);
+    $columns-gutter: (gutter-xsmall, gutter-small, gutter-medium, gutter-large, gutter-xlarge);
+    
+    @each $g in $columns-gutter {
+        
+        $class: '.' + $g;
+        
+        @if $g == 'gutter-medium' { $class: ''; }
+        
+        $gutter: size(#{$g});
+        
+        &#{$class} {
+            @each $c in $columns-count {
+                &.columns-#{$c} {
+                    @each $s in $grid-sizes {
+                        $columns-margin-total: ($gutter * ($c - 1)) / $c;
+                        $size: 100%/$s;
+                        @for $i from 1 through $s {
+                            $width: unquote(fix-precision($size * $i));
+                            .grid-#{$i}-#{$s} {
+                                width: calc(#{$width} - #{$columns-margin-total});
+                                margin-right: $gutter;
+
+                                &:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* --------
+    
+RESPONSIVE:
+
+-------- */
+
+@include responsive('phone-landscape') {
+    *[class*="grid-"]:not([class*="no-break"]) {
+        width: 100% !important;
+    }
+}
+
+@include responsive('phone-portrait') {
+    *[class*="grid-"] {
+        
+    }    
+}

@@ -1,0 +1,62 @@
+*[class*="icon-"] {    
+    &:before {
+        display: inline;
+        color: inherit;
+        vertical-align: top;
+        line-height: inherit;
+        font-size: inherit;
+        font-family: $font-glyphs;
+        text-align: right;
+        padding-right: 0.25rem;
+    }
+    
+    &.align-right {
+        &:before {
+            padding-right: 0;
+            padding-left: 0.5rem;
+            float: right;
+        }
+    }
+    
+    &.xsmall {
+        &:before {
+            @extend %xsmall;
+        }
+    }
+    
+    &.small {
+        &:before {
+            @extend %small;
+        }
+    }
+    
+    &.medium {
+        &:before {
+            @extend %medium;
+        }
+    }
+    
+    &.large {
+        &:before {
+            @extend %large;
+        }
+    }
+    
+    &.xlarge {
+        &:before {
+            @extend %xlarge;
+        }
+    }
+    
+    &.xxlarge {
+        &:before {
+            @extend %xxlarge;
+        }
+    }
+    
+    &.display {
+        &:before {
+            @extend %display;
+        }
+    }
+}

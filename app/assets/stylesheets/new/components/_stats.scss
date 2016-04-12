@@ -1,0 +1,56 @@
+.stats-list {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    vertical-align: top;
+    
+    li {
+        width: auto;
+        height: auto;
+        margin-left: 3rem;
+
+        .title,
+        .count {
+            display: block;
+            text-align: right;
+        }
+
+        .title {
+            @extend %type-ui-label;
+            font-size: rem(12px);
+            font-weight: 500;
+            line-height: 0.85em;
+            margin: 1.5rem 0.05rem 2px 0;
+        }
+
+        .count {
+            font-size: rem(54px);
+            font-weight: 100;
+            line-height: 0.85em;
+        }
+    }
+    
+    &.small {
+        li {
+            margin-left: 1.75rem;
+            
+            .title {
+                font-size: rem(11px);
+                font-weight: 700;
+                margin-top: 0;
+                margin-bottom: 4px;
+                color: color(gray-light);
+            }
+
+            .count {
+                font-size: rem(28px);
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+.entity-count {
+    @extend %ui-count;
+    margin-left: 0.5rem;
+}

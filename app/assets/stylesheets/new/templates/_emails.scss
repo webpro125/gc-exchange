@@ -1,0 +1,47 @@
+.template-email-invite {
+    margin: 2rem auto;
+    
+    header {
+        text-align: center;
+        color: color(primary);
+        margin-bottom: 6rem;
+        
+        & > h1 {
+            font-weight: normal;
+        }
+    }
+    
+    header + section {
+        text-align: center;
+        
+        & > h1,
+        & > h2 {
+            font-size: 1.5rem;
+            color: color(primary);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        p {
+            color: color(gray-medium);
+            text-align: left;
+        }
+        
+        *[class*="button-"] {
+            text-align: center;
+            margin: 3rem auto 2rem auto;
+        }
+    }
+    
+    
+    &.email-box {
+        @extend %ui-box;
+        padding: 4rem;
+    }
+    
+    @include responsive($media: 'tablet-portrait') {
+        &.email-box {
+            padding: 3rem 2rem;
+        }
+    }
+}

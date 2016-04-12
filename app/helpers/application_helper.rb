@@ -71,7 +71,7 @@ module ApplicationHelper
 
   def current_page_active controller
     class_name = ''
-    class_name = 'active' if params[:controller].to_s == controller
+    class_name = 'active is-active' if params[:controller].to_s == controller
     class_name
   end
 
@@ -119,5 +119,13 @@ module ApplicationHelper
 
   def article_author_prefix author
     (author.is_a? Admin) ? 'GCES Admin - ' : ''
+  end
+
+  def style_path name
+    if @new_design.nil?
+      name
+    else
+      name + '_new'
+    end
   end
 end

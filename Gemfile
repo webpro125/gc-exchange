@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.7'
 gem 'pg', '~> 0.17'
 
-gem 'sass-rails', '~> 4.0.4'
+gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
-gem 'foundation-rails', '~> 5.3.1'
+gem 'foundation-rails', '~> 5.4.0'
 gem 'simple_form', '~> 3.0'
 gem 'devise', '~> 3.2'
 gem 'paperclip', '~> 4.2'
@@ -50,6 +50,7 @@ gem "font-awesome-rails"
 gem "wice_grid", '3.6.0.pre4'
 gem 'bootstrap-datepicker-rails', '~> 1.5'
 gem 'roadie-rails', '~> 1.0'
+gem 'compass-rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

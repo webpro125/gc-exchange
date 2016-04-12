@@ -1,3 +1,7 @@
 <% model.errors[:base].each do |message| %>
-    <div class="alert-box alert"><%= message %></div>
+    <% if @new_design.nil? %>
+        <div class="alert-box alert"><%= message %></div>
+    <% else %>
+        <div class="ui-notification alert"><%= message %></div>
+    <% end %>
 <% end %>

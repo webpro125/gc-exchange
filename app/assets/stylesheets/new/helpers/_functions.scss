@@ -1,0 +1,53 @@
+// MAPS: colors
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+    
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
+
+// MAPS: icons
+@function glyph($key) {
+  @if map-has-key($glyphs, $key) {
+    @return map-get($glyphs, $key);
+  }
+    
+  @warn "Unknown `#{$key}` in $icons.";
+  @return null;
+}
+
+// MAPS: sizes
+@function size($key) {
+  @if map-has-key($sizes, $key) {
+    @return map-get($sizes, $key);
+  }
+    
+  @warn "Unknown `#{$key}` in $sizes.";
+  @return null;
+}
+
+// CONVERSION: em
+@function em($px, $base: $font-size-base) {
+    @return ($px / $base) * 1em;
+}
+
+// CONVERSION: rem
+@function rem($px, $base: $font-size-base) {
+    @return ($px / $base) * 1rem;
+}
+
+// DECIMALS PRECISION FIX
+@function fix-precision ($number, $digits: 6) {
+    $n: 1;
+
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+
+    @return floor($number * $n) / $n;
+}
+
+
+

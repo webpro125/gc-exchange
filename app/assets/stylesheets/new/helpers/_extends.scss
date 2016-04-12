@@ -1,0 +1,51 @@
+%clearfix {
+	clear: both;
+
+	&:after {
+		display: block;
+		visibility: hidden;
+		clear: both;
+		height: 0;
+		content: " ";
+		font-size: 0;
+	}
+}
+
+%glyphs {
+	text-align: center;
+	text-indent: 0 !important;
+	font-style: normal;
+    font-weight: normal;
+	font-family: $font-glyphs;
+}
+
+%horizontally-center-image {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+
+%before-after-absolute {
+    display: block;
+    content: " ";
+    position: absolute;
+}
+
+%user-noselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+%hidden {
+    display: none !important;
+}
+
+.hidden {
+    @extend %hidden;
+}
+

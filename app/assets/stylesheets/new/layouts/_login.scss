@@ -1,0 +1,120 @@
+.loginbox {
+    form {
+        padding-top: 2rem;
+        text-align: center;
+    }
+    
+    input[type="text"],
+    input[type="password"] {
+        display: block;
+        width: 70%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    button {
+        display: inline-block;
+    }
+    
+    .linkedin-login {
+        @extend %rule-dotline;
+        padding-top: 3rem;
+        margin-top: 3.5rem;
+        position: relative;
+        
+        &:before {
+            @extend %before-after-absolute;
+            display: none;
+            width: 80%;
+            height: 1px;
+            background: color(gray-lighter);
+            top: 0;
+            left: 10%;
+        }
+        
+        &:after {
+            bottom: auto;
+            top: 0;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: color(secondary);
+        }
+    }
+    
+    &.register {
+        position: relative;
+        
+        input[type="text"],
+        input[type="password"] {
+            font-size: 1.25rem;
+        }
+        
+        h3 {
+            margin-bottom: 2rem;
+        }
+        
+        .icon-email {
+            color: color(secondary);
+            font-weight: normal;
+            
+            &:before {
+                line-height: 1.25em;
+            }
+        }
+        
+        .linkedin-register {
+            padding: 1.5rem 0 2rem;
+            border-bottom: 2px solid color(gray-lightest);
+            
+            .button-secondary {
+                margin-top: 0;
+            }
+        }
+        
+        form {
+            margin-top: 0;
+            padding-top: 1rem;
+        }
+        
+        .ui-checkbox-tag {
+            margin-top: 1rem;
+        }
+        
+        &.icon-linkedin_sq {
+            &:before {
+                width: 3rem;
+                height: 3rem;
+                font-size: 3rem;
+                color: color(secondary);
+                position: absolute;
+                top: 2rem;
+                right: 1rem;
+            }
+        }
+    }
+}
+
+.button-linkedin {
+    position: relative;
+    padding-left: rem(70px);
+
+    &:before {
+        width: size(input-default);
+        height: size(input-default);
+        padding-right: 5px;
+        line-height: 2.75rem;
+        font-size: 2rem;
+        box-shadow: 1px 0 0 0 #FFF;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &:hover {
+        background: darken(color(secondary), 7%);
+        transition: background 0.1s ease-out;
+    }
+}

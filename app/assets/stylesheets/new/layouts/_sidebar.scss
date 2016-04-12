@@ -1,0 +1,121 @@
+#main-sidebar {
+    *[class*="widget-"] {
+        @extend %rule-dotline;
+        padding-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .secondary-menu {
+        @extend %rule-dotline;
+        padding-bottom: 0.75rem;
+        margin-bottom: 0;
+    }
+    
+    .ui-tabs {
+        margin-top: 2.5rem;
+
+        .tab-toggle {
+            padding: 0.75rem 1.5rem;
+            color: color(gray-medium);
+            margin-right: 0;
+            font-size: 0.725rem;
+
+            &:hover {
+                background: color(gray-lighter);
+                transition: all 0.1s ease-out;
+            }
+
+            &.active {
+                border-bottom: none;
+                border-right: 3px solid color(primary);
+                color: color(gray-darker);
+                
+                &:hover {
+                    background: none;
+                }
+            }
+        }
+    }
+        
+    &.scrolled {
+        border-bottom: 1px solid color(gray-lighter);
+    }
+    
+    @include responsive($media: 'phone-tablet') {
+        .widget-articles,
+        .widget-search {
+            display: none;
+        }
+        
+        .secondary-menu {
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+
+.page-sidebar {
+    padding: 2rem 0;
+    overflow: hidden;
+    
+    .sidebar-scroller {
+        width: 22rem;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        
+        & > section {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 4.5rem 0 1.5rem;
+        }
+    }
+    
+    .advanced-search,
+    .widget-search {
+        padding: 0 1.5rem;
+    }
+    
+    .advanced-search {
+        h2,
+        h3 {
+            font-size: 1.15rem;
+            color: color(primary);
+            font-weight: normal;
+        }
+    }
+    
+    .list-articles {
+        li {
+            &:after {
+                @extend %before-after-absolute;
+                width: 0;
+                height: 100%;
+                background-color: color(gray-light);
+                left: -1.5rem;
+                top: 0;
+                transition: width 0.2s ease-out;
+            }
+            
+            &:hover {
+                &:after {
+                    width: 3px;
+                    transition: width 0.2s ease-out;
+                }
+            }
+            
+            &:hover {
+                
+            }
+            
+            &.is-active,
+            &:first-of-type {
+                &:after {
+                    width: 3px;
+                    background: color(primary);
+                }
+            } 
+        }
+    }
+}

@@ -1,43 +1,60 @@
-.sticky
-  %nav.top-bar{"data-topbar" => ""}
-    %ul.title-area
-      %li.name
-        = link_to root_path do
-          #logo
-      / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
-      %li.toggle-topbar.menu-icon
-        %a{:href => "#"}
-          %span Menu
-    %section.top-bar-section
-      / Left Nav Section
-      %ul.left
-        - if user_signed_in?
-          %li= link_to 'Home', root_path
-        - if development?
-          %li
-            %a{"data-reveal-id" => "debug-modal", :href => "#"} Debug
-        - if user_signed_in?
-          %li.has-form
-            .row.collapse
-              = render 'layouts/search'
-      / Right Nav Section
-      %ul.right
-        - if user_signed_in?
-          %li
-            = link_to conversations_path do
-              Messages
-              \#{content_tag(:span, mailbox.inbox(:read => false).count(:id, :distinct => true).to_s, class: "label label-info")}
-          %li= link_to t('views.offer.actions.menu'), projects_path
-          %li= link_to 'Blog', articles_path
-          %li= link_to 'Logout', destroy_user_session_path, method: :delete
-        - else
+- if @new_design.nil?
+  .sticky
+    %nav.top-bar{"data-topbar" => ""}
+      %ul.title-area
+        %li.name
+          = link_to root_path do
+            #logo
+        / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
+        %li.toggle-topbar.menu-icon
+          %a{:href => "#"}
+            %span Menu
+      %section.top-bar-section
+        / Left Nav Section
+        %ul.left
+          - if user_signed_in?
+            %li= link_to 'Home', root_path
+          - if development?
+            %li
+              %a{"data-reveal-id" => "debug-modal", :href => "#"} Debug
+          - if user_signed_in?
+            %li.has-form
+              .row.collapse
+                = render 'layouts/search'
+        / Right Nav Section
+        %ul.right
+          - if user_signed_in?
+            %li
+              = link_to conversations_path do
+                Messages
+                \#{content_tag(:span, mailbox.inbox(:read => false).count(:id, :distinct => true).to_s, class: "label label-info")}
+            %li= link_to t('views.offer.actions.menu'), projects_path
+            %li= link_to 'Blog', articles_path
+            %li= link_to 'Logout', destroy_user_session_path, method: :delete
+          - else
+            %li
+              = link_to 'Home', root_path
+            %li
+              = link_to 'About Us', about_us_path
+            %li.has-dropdown
+              = link_to 'Register', new_user_registration_path
+            %li.has-dropdown
+              = link_to 'Login', new_user_session_path
+            %li
+              = link_to 'Contact Us', contact_us_path
+- else
+  %header#main-header.main{:role => "banner"}
+    %a.site-brand{:href => ""} GCES
+    .head-scroller
+      .menu-vertical.main-menu
+        %ul
           %li
             = link_to 'Home', root_path
           %li
             = link_to 'About Us', about_us_path
-          %li.has-dropdown
+          %li{:class => current_page_active('registrations')}
             = link_to 'Register', new_user_registration_path
-          %li.has-dropdown
+          %li{:class => current_page_active('devise/sessions')}
             = link_to 'Login', new_user_session_path
           %li
             = link_to 'Contact Us', contact_us_path

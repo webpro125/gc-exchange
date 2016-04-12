@@ -1,0 +1,96 @@
+// UI COLORS:
+$colors: (
+    primary: rgb(41, 131, 200),
+    primary-lightest: rgb(225, 236, 241),
+    primary-lighter: rgb(184, 212, 225),
+    primary-light: rgb(87, 165, 224),
+    primary-dark: rgb(28, 100, 156),
+    primary-bg: rgb(28, 100, 156),
+    secondary: rgb(185, 75, 84),
+    secondary-light: rgb(214, 107, 116),
+    secondary-dark: rgb(166, 57, 66),
+    gray-darkest: rgb(30, 30, 30),
+    gray-darker: rgb(52, 52, 52),
+    gray-dark: rgb(80, 80, 80),
+    gray-medium: rgb(126, 126, 126),
+    gray-light: rgb(186, 186, 186),
+    gray-lighter: rgb(224, 224, 224),
+    gray-lightest: rgb(240, 240, 240),
+    body: rgb(122, 122, 122),
+    body-dark: rgb(34, 34, 34),
+    nav-main: rgb(41, 131, 200),
+    nav-secondary: rgb(28, 100, 156),
+    nav-active: rgb(185, 75, 84),
+    bg-main: rgb(255, 255, 255),
+    bg-secondary: rgb(225, 236, 241),
+    alert-error: rgb(201, 52, 52),
+    alert-warning: rgb(237, 204, 65),
+    alert-success: rgb(93, 157, 53),
+    alert-green: rgb(93, 157, 53),
+    alert-information: rgb(52, 144, 212),
+    input: rgb(224, 224, 224)
+);
+
+// TYPOGRAPHIC FAMILIES: 
+$font-bodytext: 'Roboto', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+$font-headtext: $font-bodytext;
+$font-alternate: 'Merriweather', 'Georgia', serif;
+$font-glyphs: 'glyphs';
+
+// BASE FONT SIZES:
+$font-size-base: 16px; 
+
+
+// TABLES:
+// Customizes the `.table` component with basic values, each used across all table variations.
+$table-cell-padding:            .75rem;
+$table-sm-cell-padding:         .3rem;
+$table-bg:                      #FFF;
+$table-bg-accent:               color(gray-lighter);
+$table-bg-hover:                color(gray-light);
+$table-bg-header:               color(gray-medium);
+
+
+// ICONS:
+@import "icons";
+
+
+//DEFAULTS WIDTHS & HEIGHTS
+
+$sizes: (
+    sidebar: rem(300px),
+    sidebar-tablet: rem(240px),
+    sidebar-min: rem(90px),
+    header-main: rem(320px),
+    header-main-medium: rem(280px),
+    header-main-small: rem(220px),
+    header-main-mobile: rem(100px),
+    header-page: rem(90px),
+    page-header: rem(90px),
+    header-page-min: rem(60px),
+    nav-main: rem(50px),
+    margin-page: rem(120px),
+    margin-page-medium: rem(60px),
+    margin-page-small: rem(50px),
+    margin-page-mobile: rem(20px),
+    input-default: rem(48px),
+    input-small: rem(28px),
+    input-medium: rem(36px),
+    input-large: rem(48px),
+    gutter-xsmall: 0.25rem,
+    gutter-small: 0.5rem,
+    gutter-medium: 1rem,
+    gutter-large: 1.5rem,
+    gutter-xlarge: 2rem,
+    touch: rem(60px),
+    marker: rem(12px),
+    tag: rem(36px),
+    border-radius: rem(3px)
+);
+
+//WIDTH OF MAIN CONTENT: 
+// Responsive calculations based on the width of the sidebar: see $sizes map for sidebar with reference
+// calc(100vw - 'width of sidebar')
+$main-content: calc(100vw - 18.25rem);
+$main-content-tablet: calc(100vw - 14.5rem);
+$main-content-phone: 100%;

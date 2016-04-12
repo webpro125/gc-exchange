@@ -23,7 +23,7 @@ SimpleForm.setup do |config|
   config.button_class = 'button medium'
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'alert-box alert'
+  config.error_notification_class = 'ui-notification alert'
 
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :foundation

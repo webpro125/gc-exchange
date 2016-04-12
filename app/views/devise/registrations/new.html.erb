@@ -1,5 +1,8 @@
-<div id="registration">
-  <h2 class="text-center"><%= t('views.registrations.new.title') %></h2>
-  <%= render "devise/registrations/form" %>
-  <%= render "devise/shared/links" %>
+<header class="page-header">
+    <h2><%= t('views.registrations.new.title') %></h2>
+</header>
+<div class="page-content">
+    <%= render "devise/registrations/form" %>
+
+    <%= render "devise/shared/links" %>
 </div>

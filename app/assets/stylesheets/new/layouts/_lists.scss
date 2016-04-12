@@ -1,0 +1,285 @@
+.list-blocks {
+    & > div,
+    & > li {
+        @extend %clearfix;
+        margin-left: 0;
+        margint-right: 0;
+        padding: 1rem 0;
+        border-bottom: 2px solid color(gray-lighter);
+        position: relative;
+        text-align: left;
+        
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0.35rem;
+            border-bottom: 0;
+        }
+        
+        * {
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            display: block;
+            text-align: left;
+        }
+        
+        h1,
+        h2 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+        
+        h3 {
+            @extend %type-ui-navtab;
+            font-weight: 700;
+            font-size: 0.825rem;
+            color: color(gray-light);
+            margin-top: 0.45rem;
+        }
+        
+        .ui-switch,
+        .widget-rating,
+        .stat {
+            float: right;
+        }
+        
+        .widget-rating {
+            margin-top: 0.35rem;
+        }
+        
+        .ui-switch {
+            margin-left: 2rem;
+        }
+        
+        .stat {
+            @extend %type-ui-note;
+            line-height: 0;
+        }
+        
+        .ui-label {
+            
+        }
+        
+        .tag-label {
+            margin-top: 0.55rem;
+        }
+        
+        .ui-tag {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+    
+    &.small {
+        & > div,
+        & > li {
+            padding: 0.65rem 0;
+            font-weight: normal;
+        }
+    }
+    
+    &.checkbox {
+        & > div,
+        & > li {
+            padding: 0.75rem 0;
+            padding-left: size(input-default) + 0.5rem;
+            
+            * {
+                vertical-align: middle;
+            }
+            
+            .ui-checkbox {
+                width: size(input-default);
+                height: size(input-default);
+                position: absolute;
+                top: 50%;
+                left: 0;
+                margin-top: -0.75rem;
+            }
+            
+            .menu-drop {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                margin-top: -12px;
+            }
+                        
+            .tools {
+                height: 1rem;
+                line-height: 1rem;
+                
+                & > li,
+                & > .ui-action {
+                    width: 1rem;
+                    height: 1rem;
+                    line-height: 1rem;
+                    
+                    &:before {
+                        width: 1rem;
+                        height: 1rem;
+                        line-height: 1rem;
+                        font-size: 1.275rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.list-articles {
+    & > ul > li,
+    & > li {
+        margin-bottom: 1.25rem;
+        position: relative;
+        
+        h2 {
+            font-size: 0.9375rem;
+            line-height: 1.3em;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        
+        .byline {
+            margin-top: 0.25rem;
+        }
+        
+        .timestamp {
+            margin-top: 0;
+        }
+    }
+}
+
+.list-steps {
+    counter-reset: item;
+    
+    li {
+        font-size: 1.25rem;
+        color: color(primary);
+        padding-left: 2.75rem;
+        margin-bottom: 2rem;
+        position: relative;
+        counter-increment: item;
+
+        &:before {
+            @extend %before-after-absolute;
+            width: 2.15rem;
+            height: 2.15rem;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 2px color(primary);
+            text-align: center;
+            line-height: 1.875rem;
+            font-size: 1.45rem;
+            top: -6px;
+            left: -5px;
+            content: counter(item);
+        }
+        
+        &.checked {
+            &:before {
+                color: rgba(#FFF,0.0);
+            }
+            
+            &:after {
+                font-family: $font-glyphs;
+                @extend %before-after-absolute;
+                content: glyph(cr-checkmark-full);
+                width: 2.15rem;
+                height: 2.15rem;
+                color: color(primary);
+                line-height: 1.875rem;
+                font-size: 2.975rem;
+                top: -4px;
+                left: -0.75rem;
+                z-index: 2;
+            }
+        }
+    }
+    
+    @include responsive($media: 'tablet-landscape') {
+        li {
+            font-size: 1rem;
+            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+            
+            &:before {
+                width: 1.5rem;
+                height: 1.5rem;
+                line-height: 1.5rem;
+                font-size: 1rem;
+                box-shadow: inset 0 0 0 1px color(primary);
+                left: -6px;
+                top: 0;
+            }
+            
+            &.checked {
+                
+                &:before {
+                    box-shadow: inset 0 0 0 3px color(primary);
+                }
+                
+                &:after {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    line-height: 1.5rem;
+                    font-size: 2rem;
+                    top: 0px;
+                    left: -10px;
+                }
+            }
+        }
+    }
+}
+
+.qa-list {
+    & > li {
+        font-size: 1.15rem;
+        line-height: 1.15em;
+        color: color(primary);
+        margin-bottom: 2rem;
+        position: relative;
+        
+        &.ui-toggle,
+        .ui-toggle {
+            @include icon($icon: glyph(cr-plus), $size: 1.25rem, $icon-size: 1.15rem);
+                
+            &:before {
+                position: absolute;
+                left: -1.5rem;
+                top: 0.15rem;
+                color: color(gray-light);
+            }
+            
+            &:hover {
+                &:before {
+                    color: color(secondary);
+                    content: glyph(cr-plus-full);
+                    transition: all 0.15s ease-out;
+                }
+            }
+            
+            &.is-active {
+                &:before {
+                    content: glyph(cr-minus-full);
+                    color: color(secondary);
+                }
+            }
+        }
+        
+        .qa-content {
+            padding: 1rem 0 0 0;
+            color: color(gray-medium);
+            font-style: italic;
+            font-size: 0.875rem;
+            line-height: 1.25em;
+        }
+    }
+}

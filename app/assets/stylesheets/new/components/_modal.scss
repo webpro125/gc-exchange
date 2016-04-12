@@ -1,0 +1,210 @@
+.ui-modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    background: rgba(#000,0.35);
+
+    .modal-box {
+        @include translate(-50%, -50%);
+        @extend %ui-modal;
+        display: inline-block;
+        width: 60%;
+        height: auto;
+        min-height: rem(300px);
+        max-height: 90%;
+        padding: rem(100px) 0 1.5rem 0;
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 9999999;
+        overflow: hidden;
+    }
+    
+    .modal-scroller {
+        display: block;
+        width: 120%;
+        height: auto;
+        padding-right: 20%;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+    
+    header {
+        display: block;
+        width: 100%;
+        height: rem(80px);
+        background: color(primary-bg);
+        margin: 0;
+        padding: 0 2rem;
+        border-top-left-radius: size(border-radius);
+        border-top-right-radius: size(border-radius);
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        h1 {
+            font-size: 1.35rem;
+            font-weight: normal;
+            line-height: rem(80px);
+            color: #FFF;
+        }
+        
+        .modal-tools {
+            @extend %clearfix;
+            margin-top: 2rem;
+        }
+    }
+
+	.modal-close {
+        @include icon($icon: glyph(cr-close), $size: rem(80px), $icon-size: 1.75rem, $type: 'sq');
+		position: absolute;
+		top: 0.85rem;
+		right: 0.5rem;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        cursor: pointer;
+        
+        &:before {
+            color: rgba(#FFF, 0.85);
+        }
+
+		&:hover {
+			&:before {
+				color: #FFF;
+                transition: color 0.1s ease-out;
+			}
+		}
+	}
+    
+    .modal-content {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        padding: 2rem 0.5rem 2rem 2rem;
+        margin: 0;
+        line-height: 1;
+    }
+    
+    &.is-open {
+        display: block;
+    }
+    
+    @include responsive($media: 'phone-tablet') {
+        .modal-box {
+            width: 80%;
+        }
+    }
+    
+    @include responsive($media: 'phone') {
+        .modal-box {
+            width: 85%;
+        }
+    }
+}
+
+
+/*
+
+FOR REFERENCE:
+
+<section class="ui-modal">
+    <div class="modal-box">
+        <header><h1>Modal Box Title</h1></header>
+        <div class="modal-content">
+            <p>Some content here...</p>
+        </div>
+        <footer>
+            <div class="modal-close ui-action-icon icon-cr-cross-light"></div>
+        </footer>
+    </div>
+</section>
+
+*/
+
+
+.ui-popover {
+    @extend %ui-box-popover;
+    display: none;
+    width: auto;
+    min-width: rem(200px);
+    max-width: rem(620px);
+    padding: 1.5rem;
+    font-size: 0.925rem;
+    line-height: 1.05em;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    
+    &.top {
+        margin-top: -10px;
+    }
+    
+    &.bottom {
+        margin-top: 1rem;
+    }
+    
+    &.right {
+        margin-left: -0.5rem;
+    }
+    
+    &.left {
+        margin-left: -0.5rem;
+    }
+    
+    &:after {
+        @extend %before-after-absolute;
+        font-family: $font-glyphs;
+        content: glyph(pointer-down-3);
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.85rem;
+        top: 50%;
+        left: 50%;
+        margin-left: -1rem;
+        margin-top: -6px;
+        color: #FFF;
+        z-index: 1;
+        text-shadow: 0 1px 0 color(primary-lighter);
+    }
+    
+    &.left {
+        &:after {
+            content: glyph(pointer-right-3);
+            right: -20px;
+            text-shadow: 1px 0 0 color(primary-lighter);
+        }
+    }
+    
+    &.right {
+        &:after {
+            content: glyph(pointer-left-3);
+            right: auto;
+            left: -18px;
+            text-shadow: -1px 0 0 color(primary-lighter);
+        }
+    }
+    
+    &.bottom {
+        &:after {
+            content: glyph(pointer-up-3);
+            right: 1.85rem;
+            top: -5px;
+            text-shadow: 0 -1px 0 color(primary-lighter);
+        }
+    }
+    
+}

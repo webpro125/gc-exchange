@@ -1,12 +1,16 @@
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, as: resource_name,
+                    url: session_path(resource_name), html: {class: 'theme-gces'}) do |f| %>
     <%= render 'shared/base_error', model: resource %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false, hint: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+    <%= f.input :email, required: false, autofocus: true, placeholder: 'Email', wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' } %>
+    <%= f.input :password, required: false, placeholder: 'Password', wrapper: :custom_input, input_wrapper_html: { class: 'icon-key' } %>
+    <fieldset class="section align-center air">
+      <div class="ui-checkbox medium">
+        <%= f.check_box :remember_me, {id: 'logged-remember'}, true, false if devise_mapping.rememberable? %>
+        <label for="logged-remember">Keep me logged in</label>
+      </div>
+    </fieldset>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign in" %>
-  </div>
+    <div class="align-center">
+      <%= button_tag 'Sign in', type: 'submit', class: "button-primary button-cta center" %>
+    </div>
 <% end %>

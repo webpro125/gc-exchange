@@ -1,0 +1,192 @@
+.site-brand {
+    width: 100%;
+    height: rem(80px);
+    padding-left: 1.5rem;
+    color: color(secondary);
+    background: rgba(#FFF, 0.85);
+    font-size: 1.25rem;
+    line-height: rem(80px);
+    position: absolute;
+    box-sizing: border-box;
+    top: rem(20px);
+    left: 0;
+    z-index: 5;
+    
+    @include responsive($media: 'tablet-landscape') {
+        display: inline-block;
+        width: rem(60px);
+        height: size(header-main-mobile);
+        background: none;
+        padding-left: 0.75rem;
+    }
+}
+
+.site-tagline {
+    width: rem(160px);
+    font-size: 0.9rem;
+    line-height: 1.1em;
+    position: fixed;
+    top: 2rem;
+    left: size(header-main);
+    margin-left: 2rem;
+    z-index: 600;
+    color: #FFF;
+    
+    @include responsive($media: 'laptop') {
+        left: size(header-main-medium);
+    }
+    
+    @include responsive($media: 'tablet-landscape') {
+        left: size(header-main-small);
+    }
+    
+    @include responsive($media: 'tablet-portrait') {
+        left: auto;
+        right: 2rem;
+        text-align: right;
+    }
+}
+
+#main-header {
+    h1 {
+        display: block;
+        font-size: 2.25rem;
+        line-height: 1.075em;
+        color: color(primary);
+        margin: 2rem 0 1rem 0;
+    }
+    
+    h1 + p {
+        display: block;
+        padding: 0 0.25rem;
+        font-size: 1.05rem;
+        line-height: 1.35em;
+        margin-bottom: 2rem;
+    }
+    
+    .menu-vertical {
+        padding: 0 0.5rem;
+        
+        .list-steps + .qa-list {
+            padding-top: 2.5rem;
+        }
+    }
+    
+    
+    .head-scroller {
+        width: calc(100% + 3rem);
+        height: 100%;
+        padding-left: 1.5rem;
+        padding-right: 4.5rem;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    
+    .next-steps {
+        @extend %clearfix;
+        padding-top: 3rem;
+        
+        .next-step {
+            display: inline-block;
+            color: color(secondary);
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            
+            &:before {
+                float: right;
+                padding-left: 0.5rem;
+            }
+        }
+        
+        .next-step-title {
+            display: block;
+            font-size: 2.25rem;
+            line-height: 1.075em;
+            color: color(primary);
+            margin: 1rem 0 1rem 0;
+            font-weight: 300;
+        }
+    }
+    
+    &.main {
+        .site-brand {
+            background: none;
+            color: #FFF;
+            height: rem(100px);
+            line-height: rem(100px);
+            top: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .head-scroller {
+            padding-left: 0;
+            padding-right: 2rem;
+        }
+        
+        .menu-vertical {
+            padding: 0;
+        }
+    }
+    
+    @include responsive($media: 'tablet-landscape') {
+        h1 {
+            font-size: 1.75rem;
+        }
+        
+        h1 + p {
+            font-size: 0.95rem;
+            line-height: 1.25em;
+        }
+        
+        .next-steps {
+            padding-top: 2rem;
+            
+            .next-step {
+                font-size: 1rem;
+            }
+
+            .next-step-title {
+                font-size: 1.75rem;
+                color: color(primary);
+                margin-top: 0.65rem;
+            }
+        }
+        
+        .head-scroller {
+            width: calc(100% + 2rem);
+            padding-left: 0.75rem;
+            padding-right: 3.75rem;
+        }
+    }
+    
+    @include responsive($media: 'tablet-portrait') {
+        padding-left: 5rem;
+        
+        h1 {
+            height: rem(80px);
+            text-align: right;
+            line-height: rem(70px);
+            margin: 0;
+            font-size: 4.35vw;
+            margin-top: rem(20px);
+        }
+        
+        h1 + p {
+            display: none;
+        }
+        
+        .menu-vertical {
+            display: none;
+        }
+        
+        .next-steps {
+            display: none;
+        }
+        
+        .head-scroller {
+            height: size(header-main-mobile);
+        }
+    }
+}
