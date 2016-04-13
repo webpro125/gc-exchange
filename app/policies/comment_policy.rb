@@ -16,4 +16,8 @@ class CommentPolicy < LoggedInPolicy
   def show?
     false
   end
+
+  def update?
+    record.commenter == user || record.admin_commenter == user
+  end
 end

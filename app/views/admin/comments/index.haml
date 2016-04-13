@@ -63,10 +63,11 @@
                       .media-body
                         %p.m-b-xs
                           = (article_author_prefix comment.author) + comment.author.full_name
+                          = link_to content_tag(:i, '', {class: 'fa fa-edit'}), '#', class: 'pull-right edit-comment' if comment.author == current_admin
                         %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
                     .social-body
-                      %p
-                        = comment.body
+                      .comment-content
+                        = simple_format comment.body
                         .attached_files
                           - comment.comment_attachments.each do |attach|
                             = link_to download_comment_attachment_path(attach) do
@@ -76,6 +77,15 @@
                                 = image_tag 'attach-icon.png'
                               %br/
                               %small= attach.attach_file_name
+                      - if comment.author == current_admin
+                        = simple_form_for [:admin, @article, comment], wrapper: :vertical_form,
+                          remote: true, html: {class: 'edit-comment-form'} do |f|
+                          = f.error_notification
+                          = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
+                          = f.simple_fields_for :comment_attachments do |c|
+                            = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
+                          = f.button :submit, class: 'btn btn-primary'
+                          = button_tag "Cancel", :type => 'button', class: 'btn btn-default cancel-edit'
             - if @article.status == 'open'
               .row
                 .col-md-12

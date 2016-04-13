@@ -8,4 +8,8 @@ class Admin::CommentsController < CommentsController
   def create
     super
   end
+
+  def update
+    super
+  end
 end

@@ -34,13 +34,14 @@
       .timeline-comment
         .timeline-comment-header
           .timeline-comment-header-text
-            %strong= comment.author.full_name
+            %strong= article_author_prefix(comment.author) + comment.author.full_name
             commented
             = time_ago_in_words(comment.updated_at)
             = ' ago'
+          = link_to 'Edit', '#', class: 'pull-right edit-comment' if comment.author == current_user
         .comment-content
           .comment-body
-            = comment.body
+            = simple_format comment.body
             .attached_files
               - comment.comment_attachments.each do |attach|
                 = link_to download_comment_attachment_path(attach) do
@@ -49,6 +50,15 @@
                   - else
                     = image_tag 'attach-icon.png'
                   %small= attach.attach_file_name
+          - if comment.author == current_user
+            = simple_form_for [@article, comment],
+                            remote: true, html: {class: 'edit-comment-form'} do |f|
+              = f.error_notification
+              = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
+              = f.simple_fields_for :comment_attachments do |c|
+                = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
+              = f.button :submit, class: 'btn btn-primary'
+              = button_tag "Cancel", :type => 'button', class: 'button tiny info cancel-edit'
   - if @article.status == 'open'
     %hr
     .discussion-timeline-actions

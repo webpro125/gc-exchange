@@ -36,6 +36,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+
+    authorize @comment
+
+    if @comment.update(comment_params)
+      render json: @comment, status: :ok
+    else
+      render json: @comment.errors, status: :unprocessable_entity
+    end
+  end
   private
 
   def load_article

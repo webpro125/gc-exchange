@@ -36,7 +36,12 @@
   border-top-right-radius: 3px;
 }
 .timeline-comment-header-text {
-  max-width: 78%;
+  max-width: 80%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+a.edit-comment {
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -60,9 +65,11 @@
   border-color: transparent;
   border-style: solid solid outset;
 }
+.comment-content {
+  padding: 15px;
+}
 .comment-body {
   width: 100%;
-  padding: 15px;
   overflow: visible;
   font-size: 14px;
 }
@@ -85,7 +92,11 @@
   margin: 5px;
   width: 120px;
   display: inline-block;
+  vertical-align: top;
 }
 .attached_files a small {
   word-wrap: break-word;
+}
+.edit-comment-form {
+  display: none;
 }

@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     end
 
     resources :articles, path: 'blog' do
-      resources :comments
+      resources :comments, only: [:index, :create, :update]
       member do
         put :close_article
         put :open_article
