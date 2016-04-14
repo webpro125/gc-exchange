@@ -1,6 +1,4 @@
-class ReportsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :verify_gces
+class Admin::ReportsController < Admin::BaseController
   before_filter :get_date_range
 
   def public
@@ -31,10 +29,6 @@ class ReportsController < ApplicationController
   end
 
   private
-
-  def verify_gces
-    authorize :report, :index?
-  end
 
   def get_date_range
     @from = params[:from] || Date.today.to_s

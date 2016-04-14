@@ -1,0 +1,78 @@
+<% body_class('admin-report-search-page') %>
+<% page_title 'Search Metrics' %>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="ibox-content report">
+    <h2 class="text-right">
+      <div id="report-range" style="cursor: pointer;">
+        <i class="fa fa-calendar"></i>&nbsp;
+        <span></span><b class="caret"></b>
+      </div>
+    </h2>
+
+    <hr>
+
+    <div class="row report-data">
+      <div class="col-sm-12">
+        <div id="cumulative-search-graph" style="height: 300px;"></div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="ibox-content search-metrics">
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="keywords">Trending Keywords</a></h3>
+          <div id="trending-keywords" class="search-content"></div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="ibox-content search-metrics">
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="positions">Trending Positions</a></h3>
+          <div id="trending-positions" class="search-content"></div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="ibox-content search-metrics">
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="areas">Trending Functional Areas</a></h3>
+          <div id="trending-areas" class="search-content"></div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="ibox-content search-metrics">
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="departments">Trending Departments</a></h3>
+          <div id="trending-departments" class="search-content"></div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="ibox-content search-metrics">
+          <h3 class="text-center"><a href="#" class="top-trending" data-type="certifications">Trending Certifications</a></h3>
+          <div id="trending-certs" class="search-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal inmodal fade in" id="trending-table-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">
+            <table id="top-trending-table" class="table table-bordered table-striped table-hover">
+              <thead>
+              <tr>
+                <th>Trending Subject</th>
+                <th>Searched Count</th>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

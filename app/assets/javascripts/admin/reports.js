@@ -1,8 +1,9 @@
 //= require highcharts/highcharts
 //= require jqcloud/jqcloud.min
-//= require reports/consultants
-//= require reports/public.js.coffee
-//= require reports/search
+//= require daterangepicker/daterangepicker
+//= require admin/reports/consultants
+//= require admin/reports/public.js.coffee
+//= require admin/reports/search
 
 Highcharts.setOptions({
   global: {

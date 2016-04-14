@@ -43,3 +43,12 @@
         = link_to admin_articles_path do
           %i.fa.fa-comments
           %span.nav-label Blog
+      %li{:class => current_page_active('admin/reports')}
+        = link_to '#' do
+          %i.fa.fa-bar-chart-o
+          %span.nav-label Reports
+          %span.fa.arrow
+        %ul.nav.nav-second-level
+          %li= link_to 'Public Web Metrics', public_admin_reports_path
+          %li= link_to 'Consultants Metrics', consultant_admin_reports_path
+          %li= link_to 'Trending Searches', search_admin_reports_path

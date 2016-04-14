@@ -1,0 +1,70 @@
+@import "jqcloud/jqcloud.min";
+@import "daterangepicker/daterangepicker";
+
+.report {
+  .loading-indicator {
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: progress;
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -9px;
+      margin-left: -9px;
+      width: 18px;
+      height: 18px;
+      background-image: image-url('spinner.gif');
+      background-repeat: no-repeat;
+    }
+  }
+
+  .report-data {
+    position: relative;
+
+    #alert-message {
+      display: none;
+      border: none;
+      span {
+        font-size: 20px;
+      }
+    }
+
+    .panel.expandable {
+      cursor: pointer;
+
+      &.active {
+        background-color: #B9B9B9;
+      }
+    }
+
+    .dimension-pie-chart {
+      height: 200px;
+      margin: auto;
+    }
+  }
+
+  .search-metrics {
+    width: 100%;
+    border: 1px solid #d0d0d0;
+    margin-bottom: 15px;
+
+    .search-content {
+      height: 300px;
+      width: 100%;
+    }
+  }
+}
+
+table#top-trending-table {
+  th, td {
+    text-align: center;
+  }
+}

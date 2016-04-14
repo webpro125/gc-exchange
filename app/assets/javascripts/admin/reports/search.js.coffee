@@ -1,5 +1,5 @@
 reportSearchPage = ->
-  return unless $('body').hasClass('report-search-page')
+  return unless $('body').hasClass('admin-report-search-page')
 
   filterType = 'today'
   $loading = $('#loading')
@@ -17,6 +17,22 @@ reportSearchPage = ->
   $trendingDepartments = $('#trending-departments').jQCloud([], cloudOptions)
   $trendingCerts = $('#trending-certs').jQCloud([], cloudOptions)
   $cumulativeSearchesChart = $('#cumulative-search-graph')
+
+  displayDateRange = (start, end) ->
+    $('#report-range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+  displayDateRange(moment().subtract(29, 'days'), moment());
+
+  $('#report-range').daterangepicker(
+    startDate: moment().subtract(29, 'days')
+    opens: 'left'
+    ranges:
+      'Today': [moment(), moment()],
+      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      'This Month': [moment().startOf('month'), moment().endOf('month')],
+      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  , displayDateRange)
 
   cumulativeSearchOptions =
     chart:
@@ -53,14 +69,14 @@ reportSearchPage = ->
   showTrendingModal = (type, title) ->
     $modal = $('#trending-table-modal')
     $content = $('#trending-table-modal #top-trending-table tbody')
-    $modal.find('#modal-title').text('Top 10 ' + title)
+    $modal.find('.modal-title').text('Top 10 ' + title)
     $content.html('')
     records = chartData[type][0..10]
     if records.length > 0
       $content.append("""<tr><td>#{record.text}</td><td>#{record.weight}</td></tr>""") for record in records
     else
       $content.html("<tr><td colspan='2'>No trending data.</tr>")
-    $modal.foundation('reveal', 'open')
+    $modal.modal('show')
 
   updateReportData = (data) ->
     chartData = processData(data)
@@ -74,45 +90,26 @@ reportSearchPage = ->
     $cumulativeSearchesChart.highcharts cumulativeSearchOptions
 
   loadData = ->
-    startDate = startRange(filterType)
-    $('#filter-types-btn').text(filterType.split('-').join(' '))
-    $dateRangeIndicator.text("#{startDate.format('ll')} - #{moment().endOf('day').format('ll')}")
+    $dateRangePicker = $('#report-range').data('daterangepicker')
     $loading.show()
-    $.ajax '/reports/search',
+    $.ajax '/admin/reports/search',
       dataType: 'JSON'
       data:
-        from: startDate.format()
-        to: moment().endOf('day').format()
+        from: $dateRangePicker.startDate.format()
+        to: $dateRangePicker.endDate.format()
     .done (data) ->
       updateReportData(data)
     .complete ->
       $loading.hide()
 
-  startRange = (filter) ->
-    if filter == 'today'
-      moment().startOf('day')
-    else if filter == 'last-week'
-      moment().subtract(7, 'day')
-    else if filter == 'last-month'
-      moment().subtract(1, 'month')
-    else if filter == 'last-2-months'
-      moment().subtract(2, 'month')
-    else if filter == 'last-3-months'
-      moment().subtract(3, 'month')
-
   loadData()
-
 
   $('.report-data a.top-trending').on 'click', (e) ->
     e.preventDefault()
     showTrendingModal($(@).data('type'), $(@).text())
 
-  $('#drop-filter-types a[data-filter]').on 'click', Foundation.utils.debounce( (e) ->
-    e.preventDefault()
-    filter = $(@).data('filter')
-    if filterType isnt filter
-      filterType = filter
-      loadData()
-  , 500, true)
+  $('#report-range').on 'apply.daterangepicker', (e, picker) ->
+    loadData()
+
 
 $(document).ready(reportSearchPage)
