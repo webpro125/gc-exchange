@@ -1,17 +1,15 @@
-= render :partial => 'admin/navbar'
-#page-wrapper.gray-bg
-  = render :partial => 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'index'}
-  .row
-    .wrapper.wrapper-content.animated.fadeInRight
-      .ibox.float-e-margins
-        %ul.nav.nav-tabs.custom
-          = mailbox_section 'inbox', @box
-          = mailbox_section 'sent', @box
-          = mailbox_section 'trash', @box
-        .ibox-content.custom
-          - if @box == 'trash'
-            = link_to 'Empty trash', empty_trash_admin_conversations_path, class: 'btn btn-danger', method: :delete,
-              data: {confirm: 'Are you sure?'}
-          %ul.list-group.inbox
-            = render partial: 'conversation', collection: @conversations
+- page_title 'Messages'
+
+.row
+  .wrapper.wrapper-content.animated.fadeInRight
+    .ibox.float-e-margins
+      %ul.nav.nav-tabs.custom
+        = mailbox_section 'inbox', @box
+        = mailbox_section 'sent', @box
+        = mailbox_section 'trash', @box
+      .ibox-content.custom
+        - if @box == 'trash'
+          = link_to 'Empty trash', empty_trash_admin_conversations_path, class: 'btn btn-danger', method: :delete,
+            data: {confirm: 'Are you sure?'}
+        %ul.list-group.inbox
+          = render partial: 'conversation', collection: @conversations

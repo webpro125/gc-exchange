@@ -2,10 +2,14 @@ class Admin::AdminsController < ApplicationController
   layout 'application_admin'
   before_action :authenticate_admin!
   before_action :load_admin, only: [:edit, :update, :destroy]
+  add_breadcrumb 'Admin Users', :admin_admins_path
+
   def index
     @admins = Admin.order(created_at: :desc)
   end
+
   def new
+    add_breadcrumb 'New'
     @admin = Admin.new
   end
 
@@ -24,6 +28,7 @@ class Admin::AdminsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb @admin.full_name
   end
 
   def update

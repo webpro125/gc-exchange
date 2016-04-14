@@ -1,98 +1,96 @@
-= render 'admin/navbar'
-#page-wrapper.gray-bg
-  = render 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'index'}
-  .wrapper.wrapper-content.animated.fadeInRight.article
-    .row
-      .col-lg-10.col-lg-offset-1
-        = link_to 'Close Question', close_article_admin_article_path(@article), method: :put,
-          :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'open'
-        = link_to 'Open Question', open_article_admin_article_path(@article), method: :put,
-          :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'closed'
+- page_title 'Questions and Answers'
 
-        = link_to admin_articles_path, :class => 'btn btn-sm btn-info pull-right m-b' do
-          %i.fa.fa-long-arrow-left
-          Back
-        .ibox
-          .ibox-content
-            .pull-left
-              - if @article.status == 'open'
-                %button.btn.btn-success.btn-sm
-                  %i.fa.fa-exclamation-circle
-                  Open
-              - else
-                %button.btn.btn-danger.btn-sm
-                  %i.fa.fa-check-square-o
-                  Closed
-            - if @article.admin == current_admin
-              .pull-right
-                = link_to 'Edit', edit_admin_article_path(@article), class: 'btn btn-white btn-xs'
-            .text-center.article-title{:style => 'margin-bottom: 40px;'}
-              %span.text-muted
-                %i.fa.fa-clock-o
-                = @article.created_at.to_s(:long)
-              %h1= @article.title
-            %p
-              = @article.text
-              .row
-                .attached_files.col-md-12
-                  - @article.article_attachments.each do |attach|
-                    = link_to download_article_attachment_path(attach), class: 'pull-left' do
-                      - if attach.attach_content_type.start_with? 'image'
-                        = image_tag attach.attach.url(:medium)
-                      - else
-                        = image_tag 'attach-icon.png'
-                      %br/
-                      %small= attach.attach_file_name
-            %hr
+.wrapper.wrapper-content.animated.fadeInRight.article
+  .row
+    .col-lg-10.col-lg-offset-1
+      = link_to 'Close Question', close_article_admin_article_path(@article), method: :put,
+        :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'open'
+      = link_to 'Open Question', open_article_admin_article_path(@article), method: :put,
+        :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'closed'
+
+      = link_to admin_articles_path, :class => 'btn btn-sm btn-info pull-right m-b' do
+        %i.fa.fa-long-arrow-left
+        Back
+      .ibox
+        .ibox-content
+          .pull-left
+            - if @article.status == 'open'
+              %button.btn.btn-success.btn-sm
+                %i.fa.fa-exclamation-circle
+                Open
+            - else
+              %button.btn.btn-danger.btn-sm
+                %i.fa.fa-check-square-o
+                Closed
+          - if @article.admin == current_admin
+            .pull-right
+              = link_to 'Edit', edit_admin_article_path(@article), class: 'btn btn-white btn-xs'
+          .text-center.article-title{:style => 'margin-bottom: 40px;'}
+            %span.text-muted
+              %i.fa.fa-clock-o
+              = @article.created_at.to_s(:long)
+            %h1= @article.title
+          %p
+            = @article.text
             .row
-              .col-md-6
-                %h2 Comments
-              .col-md-6
-                .small.text-right.m-t
-                  %div
-                    %i.fa.fa-comments-o
-                    = @article.comments.count
+              .attached_files.col-md-12
+                - @article.article_attachments.each do |attach|
+                  = link_to download_article_attachment_path(attach), class: 'pull-left' do
+                    - if attach.attach_content_type.start_with? 'image'
+                      = image_tag attach.attach.url(:medium)
+                    - else
+                      = image_tag 'attach-icon.png'
+                    %br/
+                    %small= attach.attach_file_name
+          %hr
+          .row
+            .col-md-6
+              %h2 Comments
+            .col-md-6
+              .small.text-right.m-t
+                %div
+                  %i.fa.fa-comments-o
+                  = @article.comments.count
+          .row
+            .col-md-12
+              - @comments.each do |comment|
+                .social-feed-box
+                  .social-avatar
+                    %p.pull-left
+                      = image_tag user_avatar(comment.author)
+                    .media-body
+                      %p.m-b-xs
+                        = (article_author_prefix comment.author) + comment.author.full_name
+                      %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
+                  .social-body
+                    %p
+                      = comment.body
+                      .attached_files
+                        - comment.comment_attachments.each do |attach|
+                          = link_to download_comment_attachment_path(attach) do
+                            - if attach.attach_content_type.start_with? 'image'
+                              = image_tag attach.attach.url(:medium)
+                            - else
+                              = image_tag 'attach-icon.png'
+                            %br/
+                            %small= attach.attach_file_name
+          - if @article.status == 'open'
             .row
               .col-md-12
-                - @comments.each do |comment|
-                  .social-feed-box
-                    .social-avatar
-                      %p.pull-left
-                        = image_tag user_avatar(comment.author)
-                      .media-body
-                        %p.m-b-xs
-                          = (article_author_prefix comment.author) + comment.author.full_name
-                        %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
-                    .social-body
-                      %p
-                        = comment.body
-                        .attached_files
-                          - comment.comment_attachments.each do |attach|
-                            = link_to download_comment_attachment_path(attach) do
-                              - if attach.attach_content_type.start_with? 'image'
-                                = image_tag attach.attach.url(:medium)
-                              - else
-                                = image_tag 'attach-icon.png'
-                              %br/
-                              %small= attach.attach_file_name
-            - if @article.status == 'open'
-              .row
-                .col-md-12
-                  .social-feed-box
-                    .social-avatar
-                      %p.pull-left
-                        = image_tag 'missing.png'
-                      .media-body
-                        %p.m-t.m-b-none
-                          You
-                    .social-body
-                      = simple_form_for [:admin, @article, @comment], wrapper: :vertical_form do |f|
-                        = f.error_notification
-                        = render 'shared/base_error', model: @article
-                        .form-inputs
-                          = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
-                          = f.simple_fields_for :comment_attachments do |c|
-                            = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
-                        .form-actions
-                          = f.button :submit, class: 'btn btn-primary'
+                .social-feed-box
+                  .social-avatar
+                    %p.pull-left
+                      = image_tag 'missing.png'
+                    .media-body
+                      %p.m-t.m-b-none
+                        You
+                  .social-body
+                    = simple_form_for [:admin, @article, @comment], wrapper: :vertical_form do |f|
+                      = f.error_notification
+                      = render 'shared/base_error', model: @article
+                      .form-inputs
+                        = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
+                        = f.simple_fields_for :comment_attachments do |c|
+                          = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
+                      .form-actions
+                        = f.button :submit, class: 'btn btn-primary'

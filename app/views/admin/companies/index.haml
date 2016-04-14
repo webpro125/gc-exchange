@@ -1,39 +1,37 @@
-= render 'admin/navbar'
-#page-wrapper.gray-bg
-  = render 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'index'}
-  .row.m-t-lg
-    = link_to new_admin_company_path, :class => 'btn btn-sm btn-info pull-right m-r-sm' do
-      %i.fa.fa-plus
-      Register New Company
+- page_title 'Manage Client / Company'
 
-  .row
-    .wrapper.wrapper-content.animated.fadeInRight
-      .ibox.float-e-margins
-        .ibox-title
-          %h5 Manage Contractors
-        .ibox-content
-          %table.table
-            %thead
+.row.m-t-lg
+  = link_to new_admin_company_path, :class => 'btn btn-sm btn-info pull-right m-r-sm' do
+    %i.fa.fa-plus
+    Register New Company
+
+.row
+  .wrapper.wrapper-content.animated.fadeInRight
+    .ibox.float-e-margins
+      .ibox-title
+        %h5 Manage Contractors
+      .ibox-content
+        %table.table
+          %thead
+            %tr
+              %th Company
+              %th Added Date
+              %th Action+
+          %tbody
+            - @companies.each do |company|
               %tr
-                %th Company
-                %th Added Date
-                %th Action
-            %tbody
-              - @companies.each do |company|
-                %tr
-                  %td= company.company_name
-                  %td= company.created_at.to_date
-                  %td
-                    - unless company.owner.present?
-                      = link_to invite_account_manager_admin_company_path(company), :class => 'btn btn-xs btn-success' do
-                        %i.fa.fa-envelope
-                        = company.invite_user.present? ? 'Re-invite' : 'Invite Account Manager'
+                %td= company.company_name
+                %td= company.created_at.to_date
+                %td
+                  - unless company.owner.present?
+                    = link_to invite_account_manager_admin_company_path(company), :class => 'btn btn-xs btn-success' do
+                      %i.fa.fa-envelope
+                      = company.invite_user.present? ? 'Re-invite' : 'Invite Account Manager'
 
-                    = link_to edit_admin_company_path(company), :class => 'btn btn-xs btn-warning' do
-                      %i.fa.fa-edit
-                      Edit
-                    = link_to admin_company_path(company), method: :delete,
-                       data: { confirm: t('views.company.confirmations.delete') }, :class => 'btn btn-xs btn-danger' do
-                      %i.fa.fa-trash-o
-                      Delete
+                  = link_to edit_admin_company_path(company), :class => 'btn btn-xs btn-warning' do
+                    %i.fa.fa-edit
+                    Edit
+                  = link_to admin_company_path(company), method: :delete,
+                     data: { confirm: t('views.company.confirmations.delete') }, :class => 'btn btn-xs btn-danger' do
+                    %i.fa.fa-trash-o
+                    Delete

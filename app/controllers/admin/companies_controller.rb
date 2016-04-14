@@ -1,10 +1,13 @@
 class Admin::CompaniesController < Admin::CompanyController
   before_action :set_company, except: [:index, :new, :create]
+  add_breadcrumb 'Companies', :admin_companies_path
+
   def index
     @companies = Company.all
   end
 
   def new
+    add_breadcrumb 'New Company'
     @company = Company.new
     @company.build_owner
   end
@@ -24,11 +27,11 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def edit
+    add_breadcrumb @company.company_name
     # @users = @company.users
   end
 
   def update
-
     respond_to do |format|
       if @company.update(company_update_params)
         format.html { redirect_to admin_companies_path, notice: t('controllers.company.update.success') }
@@ -47,9 +50,8 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def invite_account_manager
-    unless @company.invite_user.present?
-      @company.build_invite_user
-    end
+    add_breadcrumb 'Invite Account Manager'
+    @company.build_invite_user unless @company.invite_user.present?
   end
 
   def send_invite
@@ -63,6 +65,7 @@ class Admin::CompaniesController < Admin::CompanyController
       render action: "invite_account_manager", notice: @company.errors
     end
   end
+
   private
 
   def set_company
@@ -80,7 +83,6 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def send_invite_params
-    params.require(:company).permit(invite_user_attributes: [:first_name, :last_name,
-                                                                      :email])
+    params.require(:company).permit(invite_user_attributes: [:first_name, :last_name, :email])
   end
 end

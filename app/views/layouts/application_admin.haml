@@ -12,4 +12,7 @@
     - bodyClass = '' else bodyClass = 'gray-bg'
 %body{:class => bodyClass}
   #wrapper
-    = yield
+    = render 'layouts/admin/sidebar'
+    .gray-bg#page-wrapper
+      = render 'layouts/admin/header'
+      = yield

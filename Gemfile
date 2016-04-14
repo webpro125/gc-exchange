@@ -50,6 +50,7 @@ gem "font-awesome-rails"
 gem "wice_grid", '3.6.0.pre4'
 gem 'bootstrap-datepicker-rails', '~> 1.5'
 gem 'roadie-rails', '~> 1.0'
+gem 'breadcrumbs_on_rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

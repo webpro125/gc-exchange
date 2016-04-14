@@ -1,15 +1,19 @@
 class Admin::ArticlesController < ArticlesController
   layout 'application_admin'
   before_action :load_article, only:[:close_article, :open_article, :destroy]
+  add_breadcrumb 'Blog', :admin_articles_path
+
   def index
     super
   end
 
   def new
+    add_breadcrumb 'New'
     super
   end
 
   def edit
+    add_breadcrumb @article.title
     authorize_article
     super
   end

@@ -1,15 +1,13 @@
-= render :partial => 'admin/navbar'
-#page-wrapper.gray-bg
-  = render :partial => 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'index'}
-  = render :partial => 'admin/consultants/consultants_grid'
-  .row.m-t-lg
-    %button.btn.btn-default.wg-external-reset-button.btn-sm.pull-right.m-r-sm{"data-grid-name" => 'g1'} Reset
-    %button.btn.btn-primary.m-r.wg-external-submit-button.btn-sm.pull-right.m-r-md{"data-grid-name" => 'g1'} Apply filter
-    %button.btn.btn-info.wg-external-csv-export-button.btn-sm.m-l-sm{"data-grid-name"=>'g1'}
-      Export To CSV
-  .row
-    .wrapper.wrapper-content.animated.fadeInRight
-      .ibox.float-e-margins
-        .ibox-content.form-horizontal
-          = render_grid(@consultants_grid)
+- page_title 'Manage Consultants'
+
+= render :partial => 'admin/consultants/consultants_grid'
+.row.m-t-lg
+  %button.btn.btn-default.wg-external-reset-button.btn-sm.pull-right.m-r-sm{"data-grid-name" => 'g1'} Reset
+  %button.btn.btn-primary.m-r.wg-external-submit-button.btn-sm.pull-right.m-r-md{"data-grid-name" => 'g1'} Apply filter
+  %button.btn.btn-info.wg-external-csv-export-button.btn-sm.m-l-sm{"data-grid-name"=>'g1'}
+    Export To CSV
+.row
+  .wrapper.wrapper-content.animated.fadeInRight
+    .ibox.float-e-margins
+      .ibox-content.form-horizontal
+        = render_grid(@consultants_grid)
