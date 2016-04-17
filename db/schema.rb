@@ -11,11 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405194833) do
+ActiveRecord::Schema.define(version: 20160417030701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "account_managers", force: true do |t|
+    t.string   "business_unit_name", limit: 32, default: "", null: false
+    t.string   "corporate_title",    limit: 32
+    t.string   "phone",              limit: 32
+    t.string   "avatar"
+    t.string   "email",                         default: "", null: false
+    t.string   "first_name",         limit: 24,              null: false
+    t.string   "last_name",          limit: 24,              null: false
+    t.string   "access_token"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "account_managers", ["company_id"], name: "index_account_managers_on_company_id", using: :btree
+  add_index "account_managers", ["email"], name: "index_account_managers_on_email", unique: true, using: :btree
+  add_index "account_managers", ["user_id"], name: "index_account_managers_on_user_id", using: :btree
 
   create_table "addresses", force: true do |t|
     t.float    "latitude",      null: false
@@ -76,7 +95,6 @@ ActiveRecord::Schema.define(version: 20160405194833) do
     t.integer  "status",                 default: 0
     t.integer  "admin_id"
     t.integer  "views",                  default: 0
-    t.json     "attaches"
   end
 
   add_index "articles", ["admin_id"], name: "index_articles_on_admin_id", using: :btree
@@ -103,6 +121,19 @@ ActiveRecord::Schema.define(version: 20160405194833) do
   end
 
   add_index "branches", ["code"], name: "index_branches_on_code", unique: true, using: :btree
+
+  create_table "business_unit_roles", force: true do |t|
+    t.boolean  "selection_authority",   default: false
+    t.boolean  "approval_authority",    default: false
+    t.boolean  "requisition_authority", default: false
+    t.integer  "account_manager_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "business_unit_roles", ["account_manager_id"], name: "index_business_unit_roles_on_account_manager_id", using: :btree
+  add_index "business_unit_roles", ["user_id"], name: "index_business_unit_roles_on_user_id", using: :btree
 
   create_table "certifications", force: true do |t|
     t.string "code",  limit: 32,  null: false
@@ -156,8 +187,10 @@ ActiveRecord::Schema.define(version: 20160405194833) do
     t.string   "contract_content_type"
     t.integer  "contract_file_size"
     t.datetime "contract_updated_at"
+    t.string   "email",                              default: "",    null: false
   end
 
+  add_index "companies", ["email"], name: "index_companies_on_email", unique: true, using: :btree
   add_index "companies", ["owner_id"], name: "index_companies_on_owner_id", using: :btree
 
   create_table "consultant_certifications", force: true do |t|
@@ -253,18 +286,6 @@ ActiveRecord::Schema.define(version: 20160405194833) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "invite_users", force: true do |t|
-    t.string   "email",                 default: "", null: false
-    t.string   "first_name", limit: 24,              null: false
-    t.string   "last_name",  limit: 24,              null: false
-    t.string   "token"
-    t.integer  "company_id",                         null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "invite_users", ["company_id"], name: "index_invite_users_on_company_id", using: :btree
 
   create_table "mailboxer_conversation_opt_outs", force: true do |t|
     t.integer "unsubscriber_id"
@@ -510,6 +531,8 @@ ActiveRecord::Schema.define(version: 20160405194833) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
 
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
 

@@ -2,9 +2,11 @@
   wrapper: :vertical_form,
   wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, date: :vertical_form } do |f|
   = f.error_notification
-  - if @company.persisted? && @company.owner.present?
+  -#- if @company.persisted? && @company.owner.present?
     = f.association :owner, collection: User.all.select{ |f| f }, label_method: :full_name
   = f.input :company_name, placeholder: 'Company Name'
+  = f.input :email, placeholder: 'Email',
+      :url => autocomplete_user_email_admin_companies_path, :as => :autocomplete
   .row
     .col-md-12
       %label

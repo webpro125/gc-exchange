@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /*
 *= require bootstrap-datepicker3
+*= require jquery-ui/core
+*= require jquery-ui/theme
 */
 .company_contract, .company_contract label {
   border: none !important;
@@ -16,4 +18,25 @@
 }
 .file {
   margin-bottom: 5px;
+}
+.ui-autocomplete.ui-front {
+  width: 600px !important;
+  padding-left: 0;
+
+}
+.ui-autocomplete.ui-front li.ui-menu-item {
+  list-style: none;
+  padding: 5px 8px;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #293846 !important;
+  background: #293846 !important;
+  font-weight: normal;
+  color: #fff !important;
+
 }

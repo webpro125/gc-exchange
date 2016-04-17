@@ -108,3 +108,13 @@ table.wice-grid tr.wg-filter-row input[type=text] {
 .inbox .list-group-item:hover .sent-date a {
   display: block;
 }
+.ui-notification.alert{
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.ui-notification.notice{
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}

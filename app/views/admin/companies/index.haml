@@ -25,11 +25,9 @@
                   %td= company.company_name
                   %td= company.created_at.to_date
                   %td
-                    - unless company.owner.present?
-                      = link_to invite_account_manager_admin_company_path(company), :class => 'btn btn-xs btn-success' do
-                        %i.fa.fa-envelope
-                        = company.invite_user.present? ? 'Re-invite' : 'Invite Account Manager'
-
+                    = link_to invite_account_manager_admin_company_path(company), :class => 'btn btn-xs btn-success' do
+                      %i.fa.fa-envelope
+                      Invite Account manager
                     = link_to edit_admin_company_path(company), :class => 'btn btn-xs btn-warning' do
                       %i.fa.fa-edit
                       Edit

@@ -1,19 +1,39 @@
 class Admin::CompaniesController < Admin::CompanyController
-  before_action :set_company, except: [:index, :new, :create]
+  before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email]
+  autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
+
   def index
     @companies = Company.all
   end
 
   def new
     @company = Company.new
-    @company.build_owner
+    # @company.build_owner
   end
 
   def create
     @company = Company.new(company_create_params)
 
+    if @company.valid?
+      if User.where(email:@company.email).first.blank?
+        generated_password = Devise.friendly_token.first(8)
+      else
+        generated_password = ''
+      end
+      user = User.where(email:@company.email).first_or_create! do |user|
+        user.password = generated_password
+        user.first_name = @company.first_name
+        user.last_name = @company.last_name
+        user.skip_confirmation!
+      end
+      @company.owner_id = user.id
+    end
+
     respond_to do |format|
       if @company.save
+
+        CompanyMailer.company_created(@company, generated_password).deliver
+
         format.html { redirect_to admin_companies_path, notice: t('controllers.company.create.success') }
         format.json { render json: admin_companies_path, status: :created, location: @company }
       else
@@ -47,16 +67,39 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def invite_account_manager
-    unless @company.invite_user.present?
-      @company.build_invite_user
-    end
+    @account_managers = @company.account_managers
+    account_manager = @company.account_managers.build
+
+    @form = InviteAccountManagerForm.new(account_manager)
+
   end
 
   def send_invite
     # @company.build_invite_user(send_invite_params)
-    if @company.update(send_invite_params)
-      CompanyMailer.invite_account_manager(@company).deliver
+    @account_managers = @company.account_managers
+    account_manager = @company.account_managers.build
+    @form = InviteAccountManagerForm.new(account_manager)
+    random_token = SecureRandom.hex(32)
 
+    if @form.validate(send_invite_params)
+      if User.where(email:@form.email).first.blank?
+        generated_password = Devise.friendly_token.first(8)
+      else
+        generated_password = ''
+      end
+      user = User.where(email:@form.email).first_or_create! do |user|
+        user.password = generated_password
+        user.first_name = @form.first_name
+        user.last_name = @form.last_name
+        user.skip_confirmation!
+      end
+      @form.user_id = user.id
+      @form.access_token = random_token
+    end
+
+    if @form.validate(send_invite_params) && @form.save
+
+      CompanyMailer.invite_account_manager(AccountManager.find(@form.id)).deliver
       # 'Message was successfully sent'
       redirect_to admin_companies_path, notice: I18n.t('controllers.sales_lead.create.success')
     else
@@ -71,8 +114,8 @@ class Admin::CompaniesController < Admin::CompanyController
 
   # Only allow a trusted parameter "white list" through.
   def company_create_params
-    params.require(:company).permit(:company_name, :first_name, :last_name,
-                                    :phone, :contract_start, :contract_end, :owner_id)
+    params.require(:company).permit(:company_name, :phone, :contract_start, :contract_end, :owner_id,
+                                    :first_name, :last_name, :email)
   end
 
   def company_update_params
@@ -80,7 +123,8 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def send_invite_params
-    params.require(:company).permit(invite_user_attributes: [:first_name, :last_name,
-                                                                      :email])
+    # params.require(:company).permit(account_managers_attributes: [:first_name, :last_name,
+    #                                                                   :email])
+    params.require(:account_manager).permit(:first_name, :last_name, :email)
   end
 end

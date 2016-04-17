@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         get :invite_account_manager
         put :send_invite
       end
+      get :autocomplete_user_email, :on => :collection
       resources :users
     end
     resources :admins
@@ -166,6 +167,8 @@ Rails.application.routes.draw do
   resources :articles, path: 'blog' do
     resources :comments
   end
+
+  resources :account_manager_registrations
   # Non resource
 
   # The priority is based upon order of creation: first created -> highest priority.

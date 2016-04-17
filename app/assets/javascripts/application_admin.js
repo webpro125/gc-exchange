@@ -23,6 +23,8 @@
 //= require jquery-ui/position
 //= require select2
 //= require widgets
+
+
 $(document).ready(function() {
     $('select, .select2').select2Dropdown();
 });

@@ -1,15 +1,15 @@
 %header
   %h1 GCES
 %section
-  %h2 Dear #{@company.invite_user.full_name},
+  %h2 Dear #{@account_manager.full_name},
   %p
     You were referred to Global Consultand Exchange Services (GCES) to act
     in the role of Account Manager for your company
-    %strong.type-primary #{@company.company_name}.
+    %strong.type-primary #{@account_manager.company.company_name}.
     Our website, lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis urna ac semper posuere.
   %p
     Your company,
-    %strong.type-primary #{@company.company_name},
+    %strong.type-primary #{@account_manager.company.company_name},
     donec mauris purus, vulputate vel consequat non, consectetur vel enim.
     Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
     Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
