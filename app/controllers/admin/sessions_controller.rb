@@ -1,5 +1,6 @@
 class Admin::SessionsController < Devise::SessionsController
-  layout 'application_admin'
+  layout 'admin_devise'
+
   def new
     @is_login_page = true
     super

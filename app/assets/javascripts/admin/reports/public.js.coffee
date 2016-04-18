@@ -1,7 +1,6 @@
 reportVisitsPage = ->
   return unless $('body').hasClass('report-public-page')
 
-  filterType = 'last-month'
   $loading = $('#loading')
   $dateRangeIndicator = $('#date-range')
   chartData = {}
@@ -64,6 +63,22 @@ reportVisitsPage = ->
 
   durationFormat = (seconds) ->
     moment.utc(seconds * 1000).format('HH:mm:ss')
+
+  displayDateRange = (start, end) ->
+    $('#report-range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+  displayDateRange(moment().subtract(29, 'days'), moment());
+
+  $('#report-range').daterangepicker(
+    startDate: moment().subtract(29, 'days')
+    opens: 'left'
+    ranges:
+      'Today': [moment(), moment()],
+      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      'This Month': [moment().startOf('month'), moment().endOf('month')],
+      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  , displayDateRange)
 
   processData = (data) ->
     for type in ['pageviews', 'avg_session_duration', 'pages_per_session']
@@ -138,18 +153,13 @@ reportVisitsPage = ->
     if data.valid then $('#alert-message').hide() else $('#alert-message').show()
 
   loadData = ->
-    startDate = startRange(filterType)
-    $('#filter-types-btn').text(filterType.split('-').join(' '))
-    if filterType == 'today'
-      $dateRangeIndicator.text("#{startDate.format('ll')}")
-    else
-      $dateRangeIndicator.text("#{startDate.format('ll')} - #{moment().endOf('day').format('ll')}")
+    $dateRangePicker = $('#report-range').data('daterangepicker')
     $loading.show()
-    $.ajax '/reports/public',
+    $.ajax '/admin/reports/public',
       dataType: 'JSON'
       data:
-        from: startDate.format()
-        to: moment().endOf('day').format()
+        from: $dateRangePicker.startDate.format()
+        to: $dateRangePicker.endDate.format()
     .done (data) ->
       updateReportData(data)
     .complete ->
@@ -175,12 +185,7 @@ reportVisitsPage = ->
     $(@).addClass('active')
     renderSessionGraph($(@).data('type'), $(@).find('p').text())
 
-  $('#drop-filter-types a[data-filter]').on 'click', Foundation.utils.debounce( (e) ->
-    e.preventDefault()
-    filter = $(@).data('filter')
-    if filterType isnt filter
-      filterType = filter
-      loadData()
-  , 500, true)
+  $('#report-range').on 'apply.daterangepicker', (e, picker) ->
+    loadData()
 
 $(document).ready(reportVisitsPage)
