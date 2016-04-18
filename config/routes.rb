@@ -67,6 +67,8 @@ Rails.application.routes.draw do
         get :consultant
         get :search
         get :public
+        get :general_user
+        get :company
       end
     end
   end

@@ -51,6 +51,62 @@ class ReportBuilder
     }
   end
 
+  def general_user_metrics
+    group_options = FILTER_TYPES[@filter]
+    user_count = User.group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    total_logins = Metric.users.logins.group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    uniq_logins = Metric.users.logins.select("DISTINCT concat(loggable_type, loggable_id)").group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    cumulative_logins = Metric.users.logins.group_by_day(:created_at).count
+    cumulative_uniq_logins = Metric.users.logins.select('DISTINCT concat(loggable_type, loggable_id)').group_by_day(:created_at).count
+
+    {
+      categories: user_count.keys,
+      user_count: user_count.values,
+      total_logins: total_logins.values,
+      uniq_logins: uniq_logins.values,
+      cumulative_start: cumulative_logins.keys.first,
+      cumulative_logins: cumulative_logins.values.cumulative_sum,
+      cumulative_uniq_logins: cumulative_uniq_logins.values.cumulative_sum
+    }
+  end
+
+  def company_metrics
+    group_options = FILTER_TYPES[@filter]
+    company_count = Company.group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    total_logins = Metric.companies.logins.group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    uniq_logins = Metric.companies.logins.select("DISTINCT concat(loggable_type, loggable_id)").group_by_period(
+      group_options[:period], :created_at,
+      range: @from..@to, format: group_options[:format]
+    ).count
+    cumulative_logins = Metric.companies.logins.group_by_day(:created_at).count
+    cumulative_uniq_logins = Metric.companies.logins.select('DISTINCT concat(loggable_type, loggable_id)').group_by_day(:created_at).count
+
+    {
+      categories: company_count.keys,
+      company_count: company_count.values,
+      total_logins: total_logins.values,
+      uniq_logins: uniq_logins.values,
+      cumulative_start: cumulative_logins.keys.first,
+      cumulative_logins: cumulative_logins.values.cumulative_sum,
+      cumulative_uniq_logins: cumulative_uniq_logins.values.cumulative_sum
+    }
+  end
+
   def search_metrics
     searches = Metric.searches.where(created_at: @from..@to)
     cumulative_searches = searches.group_by_day(:created_at).count

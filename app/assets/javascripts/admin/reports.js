@@ -3,8 +3,10 @@
 //= require daterangepicker/daterangepicker
 //= require jquery.ba-throttle-debounce
 //= require admin/reports/consultants
-//= require admin/reports/public.js.coffee
+//= require admin/reports/public
 //= require admin/reports/search
+//= require admin/reports/general-users
+//= require admin/reports/companies
 
 Highcharts.setOptions({
   global: {

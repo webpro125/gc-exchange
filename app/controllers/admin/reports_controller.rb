@@ -19,6 +19,24 @@ class Admin::ReportsController < Admin::BaseController
     end
   end
 
+  def general_user
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: ReportBuilder.new(@from, @to, @filter).general_user_metrics
+      end
+    end
+  end
+
+  def company
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: ReportBuilder.new(@from, @to, @filter).company_metrics
+      end
+    end
+  end
+
   def search
     respond_to do |format|
       format.html {}
