@@ -1,6 +1,7 @@
 //= require highcharts/highcharts
 //= require jqcloud/jqcloud.min
 //= require daterangepicker/daterangepicker
+//= require jquery.ba-throttle-debounce
 //= require admin/reports/consultants
 //= require admin/reports/public.js.coffee
 //= require admin/reports/search

@@ -26,6 +26,17 @@
     }
   }
 
+  .report-toolbar {
+    padding: 15px;
+    border: 1px solid black;
+    text-align: center;
+
+    #date-range {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+
   .report-data {
     position: relative;
 

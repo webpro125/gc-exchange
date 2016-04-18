@@ -1,5 +1,5 @@
 reportConsultantPage = ->
-  return unless $('body').hasClass('report-consultants-page')
+  return unless $('body').hasClass('admin-report-consultants-page')
 
   dateRange = new DateRange('day')
   $loading = $('#loading')
@@ -91,11 +91,8 @@ reportConsultantPage = ->
     cumulativeLoginOptions.series[1].data = data.cumulative_uniq_logins
     $cumulativeLoginChart.highcharts cumulativeLoginOptions
 
-  loadData = ->
-    $('#filter-types-btn').text(dateRange.type)
-    $dateRangeIndicator.text(dateRange)
-    $loading.show()
-    $.ajax '/reports/consultant',
+  loadDataDebounce = $.debounce(1000, ->
+    $.ajax '/admin/reports/consultant',
       dataType: 'JSON'
       data:
         from: dateRange.from4rails()
@@ -105,25 +102,29 @@ reportConsultantPage = ->
       updateReportData(data)
     .complete ->
       $loading.hide()
+  )
+
+  loadData = ->
+    $('#filter-types-btn #filter-label').text(dateRange.type)
+    $dateRangeIndicator.text(dateRange)
+    $loading.show()
+    loadDataDebounce()
 
   loadData()
 
-  $('#drop-filter-types a[data-filter]').on 'click', Foundation.utils.debounce( (e) ->
+  $('#drop-filter-types a[data-filter]').on 'click', (e) ->
     e.preventDefault()
     filter = $(@).data('filter')
     if dateRange.type isnt filter
       dateRange.setType(filter)
       loadData()
-  , 500, true)
 
-  $('#offset-minus').on 'click', Foundation.utils.debounce( (e) ->
+  $('#offset-minus').on 'click', (e) ->
     dateRange.backward();
     loadData()
-  , 500, true)
 
-  $('#offset-plus').on 'click', Foundation.utils.debounce( (e) ->
+  $('#offset-plus').on 'click', (e) ->
     dateRange.forward()
     loadData()
-  , 500, true)
 
 $(document).ready(reportConsultantPage)
