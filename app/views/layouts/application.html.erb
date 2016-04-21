@@ -36,12 +36,12 @@
     <%= render 'layouts/debug' if development? %>
   <% else %>
     <div id="site-wrapper">
-      <%= render 'layouts/header' %>
-      <main id="main-content" class="main">
+      <%= yield :header %>
+      <main id="main-content" class="<%= yield(:main_class) %>">
         <%= render 'layouts/flash' %>
         <%= yield %>
       </main>
-      <%= render 'layouts/footer' %>
+      <%= yield :footer %>
       <%= render 'layouts/google_analytics' unless Rails.env.test? %>
       <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.js") %>
       <%= yield :js %>

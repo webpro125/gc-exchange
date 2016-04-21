@@ -1,0 +1,11 @@
+- if @new_design.nil?
+  %footer
+    .row
+      %p.copyright
+        © #{Time.now.year} Global Consultant Exchange Services, LLC. All Rights Reserved.
+        \#{link_to 'Privacy Policy', privacy_policy_path, target: '_blank'}
+        \#{link_to 'Terms of Service', terms_of_service_path, target: '_blank'}
+        \#{link_to 'GCES Admin', new_admin_session_path}
+- else
+  %footer#main-footer{:role => "contentinfo"}
+    %p.site-tagline Global Consultant Exchange Services, LLC

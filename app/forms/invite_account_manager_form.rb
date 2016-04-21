@@ -1,7 +1,6 @@
 require 'reform/form/coercion'
 
 class InviteAccountManagerForm < Reform::Form
-  # include Reform::Form::ModelReflections, Qualifications, OtherInformation
 
   model :account_manager
 

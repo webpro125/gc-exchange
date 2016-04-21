@@ -14,7 +14,14 @@
     Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
     Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
     Vestibulum ante ex, interdum sed arcu non.
+  - unless @password == ''
+    %p
+      And Your account has been created
+      Password is #{@password}
+
   %p Please click the button below to learn more and to start the registration process,
-  = link_to 'Register as Account Manager', '#', class: "button-alt"
+  = link_to 'Register as Account Manager', {:controller => "account_managers",
+    :action => "register",
+    :only_path => false, :access_token => @account_manager.access_token}, {:class => "button-alt"}
   %p We look forward to a sucessful parnership!
   %p.type-intro.type-primary Global Consultant Exchange Services (GCES)

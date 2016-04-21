@@ -305,6 +305,10 @@ type-* classes make use of the @extend definitions and can be applied independen
     color: color(secondary) !important;
 }
 
+.type-dark {
+    color: color(gray-darker) !important;
+}
+
 .type-red {
     color: color(alert-error) !important;
 }

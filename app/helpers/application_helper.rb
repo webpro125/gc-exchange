@@ -121,6 +121,10 @@ module ApplicationHelper
     (author.is_a? Admin) ? 'GCES Admin - ' : ''
   end
 
+  def notification_class_name alert_type
+    alert_type == 'notice' ? 'alert-sucess icon-bell' : 'alert-error icon-warning-full'
+
+  end
   def style_path name
     if @new_design.nil?
       name
@@ -128,4 +132,5 @@ module ApplicationHelper
       name + '_new'
     end
   end
+
 end

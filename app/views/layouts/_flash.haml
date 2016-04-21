@@ -1,0 +1,12 @@
+- if @new_design.nil?
+  - flash.each do |key, value|
+    - next if key == 'timedout'
+    %div{:class => "alert-box #{key} text-center", "data-alert" => ""}
+      = value
+      %a.close{:href => "#"} ×
+- else
+  - flash.each do |key, value|
+    - next if key == 'timedout'
+    %div{:class => "ui-notification #{notification_class_name key}"}
+      %p= value
+      .action-close.icon-cross-light

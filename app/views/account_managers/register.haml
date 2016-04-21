@@ -1,0 +1,58 @@
+- content_for :header do
+  %header#main-header{:role => "banner"}
+    .head-scroller
+      = link_to 'GCES', root_path, class: 'action-link icon-arrow-left site-brand'
+      %h1.page-title Register as Account Manager
+      %p.page-description Hi Richard, you received an invitation lorem sit amet quosque tandem set numa consect tandem.
+      .menu-vertical
+        %ul.list-steps
+          %li.step Business Unit Name
+          %li.step Corporate Title
+          %li.step Cell Phone Number
+          %li.step Verify Name
+          %li.step Verify Business Email
+        %ul.qa-list
+          %li
+            %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} What are the responsabilities of an Account Manager?
+            .qa-content.ui-target{"data-section" => "qa-1"}
+              %p This is a sample of how to include answers in this qa list. Lorem ipsum sit amet quosque tandem numa lum consecter.
+          %li Another question can be added that will point to sections of the infographics?
+          %li Lorem ipsum sit amet set quosque tandem?
+        .next-steps
+          %a.icon-arrow-right.next-step{:href => "#"} Next Step
+          %p.next-step-title Assign Business Unit Roles
+
+%header.page-header
+%section.page-content.grid-9-12
+  - if @error_message.nil?
+    = simple_form_for(@form, method: :put,
+      url: put_register_account_manager_path, html: {class: 'theme-gces'}) do |f|
+      = render 'shared/base_error', model: @form
+      %section.ui-card.profile
+        %header
+          %figure.profile-thumb
+            = image_tag 'thumb_default_profile.png'
+          .ui-uploader.mini
+            = f.input :avatar, label: false,
+              as:         :file,
+              input_html: { accept: ".jpg,.jpeg,.png,#{Consultant::PROFILE_IMAGE_TYPES.join(',')}" }
+            .ui-box-actions
+              %button.icon-cloud-down
+          %h2= @account_manager.full_name
+          %h3 Account Manager
+          %p.type-intro
+            = @account_manager.company.company_name
+            %a.ui-action-link.ui-edit.icon-edit{:href => "#"}
+          %p.type-intro.type-blue.contact-email= @account_manager.email
+
+      = f.input :business_unit_name, required: false, autofocus: true, placeholder: 'Company Business Unit Name',
+        wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
+      = f.input :corporate_title, required: false, autofocus: true, placeholder: 'Corporate Title',
+        wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
+      = f.input :phone, wrapper: :custom_input1, label: 'Cell Phone Number', required: false, placeholder: '000', as: :phone_number
+      = button_tag 'Register as Account Manager', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right"
+  - else
+    %h3= @error_message
+- content_for :footer do
+  %footer#main-footer{:role => "contentinfo"}
+    %p.site-credits &copy; 2015 Playground

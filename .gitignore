@@ -33,6 +33,7 @@ spec/results
 /public/consultants
 /public/article_attachments
 /public/comment_attachments
+/public/account_managers
 /public/test/
 
 # Ignore vendor/bin

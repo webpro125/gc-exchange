@@ -2,6 +2,10 @@
     <% if @new_design.nil? %>
         <div class="alert-box alert"><%= message %></div>
     <% else %>
-        <div class="ui-notification alert"><%= message %></div>
+        <div class="ui-notification alert">
+          <%= message %>
+          <div class="action-close icon-cross-light"></div>
+        </div>
+
     <% end %>
 <% end %>

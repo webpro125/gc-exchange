@@ -35,6 +35,7 @@
         padding-left: size(input-default) + rem(10px);
         font-weight: normal;
         font-size: 1.65rem;
+        color: darken(color(primary-lighter),3%);
         
         &:before {
             @include translate(0, -50%);
@@ -104,15 +105,28 @@
     
     &.small {
         input[type="checkbox"] + label,
+        input[type="radio"] + label,
         .checkmark {
+            width: auto;
             height: size(input-small);
             line-height: size(input-small);
             padding-left: size(input-small) + rem(10px);
+            font-size: 1.15rem;
 
             &:before {
                 width: size(input-small);
                 height: size(input-small);
-                font-size: size(input-small);
+                font-size: 2.5rem;
+                line-height: size(input-small);
+                left: -6px;
+                margin-top: 2px;
+                top: 50%;
+            }
+
+            &:after {
+                width: size(input-small);
+                height: size(input-small);
+                margin-top: 0.1rem;
             }
         }
     }

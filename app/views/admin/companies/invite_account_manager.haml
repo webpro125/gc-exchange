@@ -47,6 +47,8 @@
                     %td= am.full_name
                     %td= am.created_at.to_date
                     %td
-                      = link_to '#', :class => 'btn btn-xs btn-success' do
-                        %i.fa.fa-envelope
-                        Re-invite
+                      = link_to destroy_account_manager_admin_company_path(am), method: :delete,
+                       data: { confirm: t('views.company.confirmations.delete') },
+                       :class => 'btn btn-xs btn-danger' do
+                        %i.fa.fa-trash-o
+                        Delete

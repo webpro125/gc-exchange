@@ -412,6 +412,10 @@ figure,
 
 .page-content {
     padding-bottom: 3rem;
+    
+    &.fullwidth {
+        max-width: 80vw;
+    }
 }
 
 .page-header {

@@ -1,0 +1,520 @@
+.entity-company {
+    position: relative;
+    
+    .taxonomy-head {
+        padding: 0;
+        margin-bottom: 3.125rem;
+        position: relative;
+        z-index: 5;
+
+        .entity-head {
+            display: block;
+            width: 100%;
+            height: rem(60px);
+            text-align: center;
+            color: color(gray-darkest);
+            font-size: 2rem;
+            border-bottom: 2px solid color(primary-lightest);
+            position: relative;
+
+            h1 {
+                display: block;
+                width: 80%;
+                height: rem(60px);
+                margin: 0 auto;
+                font-size: 1.925rem;
+                line-height: rem(54px);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            *[class*="toggle"] {
+                width: 100%;
+                height: 2.5rem;
+                position: absolute;
+                top: 0.6rem;
+                right: 0;
+                margin-top: 0;
+
+                &:before {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    line-height: 2.5rem;
+                    text-align: center;
+                    color: color(primary-lighter);
+                    position: absolute;
+                    right: 0.35rem;
+                }
+
+                &:hover {
+                    &:before {
+                        color: color(secondary);
+                        transition: color 0.1s ease-out;
+                    }
+                }
+            }
+
+            &.is-open {
+                *[class*="toggle"] {
+                    &:before {
+                        color: color(secondary);
+                        content: glyph(cr-minus-full);
+                    }
+                }
+
+            }
+        }
+
+        .entity-info {
+            padding: 2rem 1rem;
+            text-align: center;
+
+            h3,
+            p {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            h3 {
+                margin-bottom: 1rem;
+            }
+
+            p {
+                margin-top: 0.5rem;
+                margin-bottom: 0;
+            }
+
+            .name {
+                font-size: 1.15rem;
+                color: color(gray-darkest);
+            }
+
+            .email {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+    
+    &.taxonomy-view {
+        h3 {
+            color: color(primary);
+            font-size: 0.925rem;
+            line-height: 1.05em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .connect-pipe,
+        .connect-down,
+        .connect-up {
+            &:before,
+            &:after {
+                @extend %before-after-absolute;
+                height: 3.125rem;
+                width: 2px;
+                background: #FFF;
+                left: 50%;
+                margin-left: -1px;
+            }
+        }
+
+        .connect-pipe {
+            &:before {
+                display: none;
+            }
+            &:after {
+                height: 100%;
+                top: 0;
+            }
+        }
+
+        .connect-up {
+            margin-top: 3.125rem;
+
+            &:after {
+                top: -3.125rem;
+            }
+        }
+
+        .connect-down {
+            margin-bottom: 3.125rem;
+
+            &:after {
+                bottom: -3.125rem;
+                left: 50%;
+                margin-left: -1px;
+            }
+        }
+
+        .connect-rule-up,
+        .connect-rule-down {
+            &:before,
+            &:after {
+                @extend %before-after-absolute;
+                width: 78%;
+                height: 2px;
+                background: #FFF;
+                left: 11%;
+            }
+        }
+
+        .connect-rule-up {
+            padding-top: 3.125rem;
+
+            &:before {
+                top: 0;
+            }
+        }
+
+        .connect-rule-down {        
+            &:before {
+                bottom: 0;
+            }
+        }
+
+        
+
+        .taxonomy-footer {
+            display: block;
+            height: auto;
+            min-height: rem(120px);
+            margin-top: 3.125rem;
+            position: relative;
+            text-align: center;
+
+            .add-unit {
+                display: inline-block;
+                margin: 0 auto;
+                width: 22%;
+                height: rem(120px);
+                background: color(primary-lightest);
+                border: 2px dashed color(primary-lighter);
+
+                &:after {
+                    @extend %before-after-absolute;
+                    height: 3.125rem;
+                    width: 2px;
+                    background: color(primary-lighter);
+                    top: -3.125rem;
+                    left: 50%;
+                    margin-left: -1px;
+                    z-index: 5;
+                    margin-top: -2px;
+                }
+
+                &:hover {
+                    background: darken(color(primary-lightest),3%);
+                    transition: all 0.1s ease-out;
+                }
+            }
+        }
+
+        .row {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-height: rem(140px);
+            padding-bottom: 3.125rem;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+
+            .entity-unit {
+                display: inline-block;
+                width: 22%;
+                margin-left: -4px;
+                vertical-align: top;
+                position: relative;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &.connect-up,
+                &.connect-down {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+
+                .unit-info {
+                    @extend %ui-box;
+                    width: 47rem;
+                    margin-top: 3.165rem;
+                    padding: 4rem 2.5rem;
+                    text-align: left;
+                    position: relative;
+                    z-index: 5;
+
+                }
+
+                .ui-panel-toggle {
+                    position: relative;
+                    z-index: 1;
+
+                    &:before {
+                        @extend %before-after-absolute;
+                        background: rgba(darken(color(primary-dark), 10%), 0.125);
+                        width: 95%;
+                        height: 2px;
+                        bottom: -2px;
+                        left: 2.5%;
+                        border-bottom-left-radius: size(border-radius);
+                        border-bottom-right-radius: size(border-radius);
+                        opacity: 0;
+                    }
+
+                    &:hover {
+                        @include translate(0,-2px);
+                        transition: all 0.1s ease-out;
+
+                        &:before {
+                            opacity: 1;
+                            transition: opacity 0.1s ease-out;
+                        }
+                    }
+
+                    &.is-open {
+                        &:hover {
+                            margin-top: 0;
+                            @include translate(0,0);
+
+                            &:before {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.set-4 {
+                .entity-unit {
+                    margin-right: 4%;
+
+                    &:nth-child(1) {
+                        .unit-info {
+                            margin-left: 0;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .unit-info {
+                            margin-left: -118%;
+                        }
+                    }
+
+                    &:nth-child(3) {
+                        .unit-info {
+                            margin-left: -236%;
+                        }
+                    }
+
+                    &:nth-child(4) {
+                        margin-right: 0;
+
+                        .unit-info {
+                            margin-left: -354%;
+                        }
+                    }
+                }
+            }
+
+            &.set-3 {
+                .entity-unit {
+                    margin-right: 4%;
+
+                    &:nth-child(1) {
+                        .unit-info {
+                            margin-left: -59.0909%;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .unit-info {
+                            margin-left: -177.27272%;
+                        }
+                    }
+
+                    &:nth-child(3) {
+                        margin-right: 0;
+
+                        .unit-info {
+                            margin-left: -295.45454%;
+                        }
+                    }
+
+                }
+
+                &.connect-rule-up {
+                    &:before {
+                        width: 52%;
+                        left: 24%;
+                    }
+                }
+            }
+
+            &:last-of-type {
+                padding-bottom: 0;
+            }
+        }
+
+        .ui-card {
+            width: 100%;
+            height: auto;
+
+            .card-title {
+                display: block;
+                width: 100%;
+                padding: 0.75rem 0.35rem;
+                height: auto;
+                margin: 0 auto;
+                font-size: 1.175rem;
+                font-weight: 300;
+                line-height: 1.1em;
+                color: color(gray-darkest);
+            }
+
+            .card-content {
+                display: table;
+                width: 100%;
+                height: rem(80px);
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                .card-title {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        &.is-open {
+            .row {
+                .entity-unit {
+                    opacity: 0.35;
+
+                    &:hover,
+                    &.is-open {
+                        opacity: 1;
+                        transition: opacity 0.1s ease-out;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.table-view {
+        .entity-unit {
+            @extend %ui-box;
+            padding: 0;
+            
+            & > header {
+                .card-footer {
+                    display: none;
+                }
+            }
+            
+            & + .entity-unit {
+                margin-top: 2rem;
+            }
+        }
+    }
+    
+    .ui-card-taxonomy {
+        .table-entity {
+            &.table-list {
+                thead {
+                    background: none;
+                    border: none;
+                    border-top: none;
+                    border-bottom: 2px solid color(primary-lighter);
+
+                    tr {
+                        th {
+                            color: color(primary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ui-panel-toggle {
+    cursor: pointer;
+}
+
+.ui-panel {
+    display: none;
+    position: relative;
+    height: auto;
+
+    & > .grid {
+        opacity: 0;
+        transition: opacity 0.35s ease-out;
+    }
+    
+    .ui-panel-close {
+        display: none;
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        
+        &:before {
+            @extend %before-after-absolute;
+            font-family: $font-glyphs;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1.75rem;
+            line-height: 2rem;
+            text-align: center;
+            content: glyph(cr-minus-full);
+            color: color(secondary);
+        }
+        
+        &:hover {
+            &:before {
+                font-size: 1.95rem;
+                transition: all 0.1s ease-out;
+            }
+        }
+        
+        &.connect-down {
+            margin: 0;
+            right: 1rem;
+            left: auto;
+            
+            &:before {
+                right: 0;
+                left: auto;
+            }
+        }
+    }
+
+    &.is-sliding {
+        display: block;
+    }
+    
+    &.is-open {
+        display: block;
+        height: auto;
+        
+        & > .grid,
+        & > *[class*="grid-"] {
+            opacity: 1;
+            transition: opacity 0.35s ease-out;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+        
+        .ui-panel-close {
+            display: block;
+        }
+    }
+}

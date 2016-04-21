@@ -26,7 +26,6 @@ $grid-sizes: (5, 12, 24);
     display: block;
 	position: relative;
 	box-sizing: border-box;
-    margin-left: 4px;
     
     /* Ensures box-sizing definition is passed to the children */
     * {
@@ -41,6 +40,10 @@ $grid-sizes: (5, 12, 24);
         position: relative;
         /* Fixes display: inline-block spacing issue */
         margin-left: -4px;
+        
+        &:first-child {
+            margin-left: 0;
+        }
     }
     
     & > *:not(*[class*="grid-"]) {

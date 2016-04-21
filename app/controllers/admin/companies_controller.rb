@@ -1,5 +1,5 @@
 class Admin::CompaniesController < Admin::CompanyController
-  before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email]
+  before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email, :destroy_account_manager]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
 
   def index
@@ -99,13 +99,21 @@ class Admin::CompaniesController < Admin::CompanyController
 
     if @form.validate(send_invite_params) && @form.save
 
-      CompanyMailer.invite_account_manager(AccountManager.find(@form.id)).deliver
+      CompanyMailer.invite_account_manager(AccountManager.find(@form.id), generated_password).deliver
       # 'Message was successfully sent'
       redirect_to admin_companies_path, notice: I18n.t('controllers.sales_lead.create.success')
     else
       render action: "invite_account_manager", notice: @company.errors
     end
   end
+
+  def destroy_account_manager
+    am = AccountManager.find(params[:id])
+    company = am.company
+    am.destroy
+    redirect_to invite_account_manager_admin_company_path(company), notice: 'Destroyed Successfully.'
+  end
+
   private
 
   def set_company

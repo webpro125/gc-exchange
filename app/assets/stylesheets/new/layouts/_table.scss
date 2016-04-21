@@ -53,6 +53,74 @@ table {
         }
     }
     
+    .table-sort {
+        cursor: pointer;
+        padding-right: 0.75rem;
+        position: relative;
+        
+        .table-sort-toggle {
+            width: 1rem;
+            height: 1rem;
+            position: absolute;
+            top: 50%;
+            right: 0.75rem;
+            margin-top: -0.5rem;
+            border-radius: 100%;
+            text-align: center;
+            
+            &:before {
+                display: block;
+                color: color(primary-lighter);
+                width: 1rem;
+                height: 1rem;
+                line-height: 1rem;
+                position: absolute;
+                top: 0;
+                right: 0;
+                text-indent: 2px;
+            }
+            
+            &:hover {
+                background: color(secondary);
+                
+                &:before {
+                    color: #FFF;
+                }
+            }
+        }
+        
+    }
+    
+    *[class*="icon-"] {
+        &:before {
+            color: color(primary);
+        }
+    }
+    
+    *[class*="table-sticker"] {
+        position: relative;
+        
+        &:after {
+            @extend %before-after-absolute;
+            background: red;
+            left: -2rem;
+            top: 0;
+        }
+    }
+    
+    .highlight {
+        color: color(secondary) !important;
+        background: rgba(color(secondary),0.15);
+        
+        &,
+        &[class*="icon-"],
+        *[class*="icon-"] {
+            &:before {
+                color: color(secondary);
+            }
+        }
+    }
+    
     &.table-default {
         tr {
             th,
@@ -155,7 +223,7 @@ table {
                     padding: 0.65rem;
                     line-height: 1.1em;
                     font-weight: 700;
-                    color: color(gray-darker);
+                    color: color(primary);
                     font-size: 0.75rem;
                     vertical-align: middle;
 
@@ -211,81 +279,6 @@ table {
         }
     }
     
-    &.table-records {
-        font-weight: normal;
-        
-        tr {
-            th,
-            td {
-                
-                &.align-center,
-                &.record-candidates,
-                &.record-saved,
-                &.record-views {
-                    text-align: center;
-                }
-                
-                &:first-child {
-                    padding-left: 2rem;
-                }
-                
-                &:last-child {
-                    padding-right: 2rem;
-                }
-            }
-        }
-        
-        thead {
-            background: color(gray-light);
-            
-            tr {
-                td {
-                    
-                }
-            }
-        }
-        
-        tbody {
-            background: color(gray-lighter);
-            
-            tr {
-                border-bottom: 2px solid #FFF;
-                
-                td {
-                    padding-top: 1.5rem;
-                    padding-bottom: 1.4rem;
-                }
-            }
-        }
-        
-        .entity-count {
-            font-size: 0.85em;
-            position: relative;
-            
-            .ui-popover {
-                color: color(body);
-                left: -350px;
-                top: -50px;
-            }
-            
-            &:hover {
-                .ui-popover {
-                    display: block;
-                }
-            }
-        }
-        
-        tbody {
-            tr:last-child {
-                .entity-count {
-                    .ui-popover {
-                        display: block;
-                    }
-                }
-            }
-        }
-    }
-    
     &.table-finance {
         margin-bottom: 2rem;
         border: 2px solid color(primary-lighter);
@@ -320,6 +313,66 @@ table {
             }
         }
     }
+    
+    &.table-entity {
+        
+        thead {
+            background: none;
+            border: none;
+            border-bottom: 2px solid color(primary-lightest);
+
+            tr {
+                th {
+                    padding: 0.65rem;
+                    line-height: 1.1em;
+                    font-weight: 700;
+                    color: color(primary);
+                    font-size: 0.75rem;
+                    vertical-align: middle;
+
+                    &:first-child {
+                        border-top-left-radius: none;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: none;
+                    }
+                }
+            }
+        }
+        
+        tbody {
+            border: none;
+            
+
+            tr {
+                border-bottom: 1px solid color(primary-lightest);
+                
+                &.highlight {
+                    color: color(primary);
+                    //border-left: 6px solid color(primary) !important;
+                    box-shadow: 6px 0 0 0 color(primary) !important;
+                }
+                
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                td {
+                    padding: 0.75rem 0.5rem;
+                    font-size: 0.9rem;
+                    line-height: 1.1em;
+                    vertical-align: middle;
+                    
+                    &:first-child{
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    
     
     @include responsive($max-width: '500px') {
         .table-mobile {

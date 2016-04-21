@@ -52,6 +52,12 @@
         line-height: 1.5rem;
         font-size: 0.675rem;
     }
+    
+    &.xsmall {
+        height: 1.25rem;
+        line-height: 1.25rem;
+        font-size: 0.65rem;
+    }
 }
 
 %ui-tag {
@@ -71,6 +77,13 @@
         height: auto;
         line-height: 1em;
         padding: 0.35rem;
+    }
+    
+    &.xsmall {
+        @extend %type-ui-label-small;
+        height: auto;
+        line-height: 0.95em;
+        padding: 0.25rem;
     }
 }
 
@@ -156,10 +169,22 @@
     }
 }
 
-.tag-list {
+.tag-role {
+    font-size: 0.825rem;
+    padding: 0 em(8px) 0 em(8px);
+    height: size(tag-small);
+    line-height: size(tag-small);
+}
+
+.tag-list,
+.tag-lists {
     .ui-tag {
         margin-bottom: 0.375rem;
         margin-right: 0.25rem;
+        
+        &.tag-role {
+            margin-right: 0.15rem;
+        }
     }
     
     &.inline-group {

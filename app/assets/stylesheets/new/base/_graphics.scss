@@ -130,6 +130,22 @@
     border-radius: size(border-radius);
 }
 
+%action-edit {
+    position: relative;
+    z-index: 5;
+    cursor: pointer;
+
+    &[class*="icon-"] {
+        &:before {
+            width: 100%;
+            height: rem(120px);
+            font-size: 3.5rem;
+            line-height: rem(120px);
+            color: color(primary-lighter);
+        }
+    }
+}
+
 %rule-dotline {
     &:after {
         @extend %before-after-absolute;
@@ -268,4 +284,8 @@
 
 .ui-count {
     @extend %ui-count;
+}
+
+.action-edit {
+    @extend %action-edit;
 }

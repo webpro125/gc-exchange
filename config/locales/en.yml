@@ -147,6 +147,9 @@ en:
     comment:
       create:
         success: 'You commented successfully.'
+    account_manager:
+      assign_role:
+        success: 'One user role was successfully assigned.'
   views:
     consultant:
       actions:

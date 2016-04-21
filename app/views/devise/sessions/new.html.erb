@@ -1,3 +1,9 @@
+<%= content_for :main_class, 'main' %>
+
+<% content_for :header do %>
+    <%= render 'layouts/header' %>
+<% end %>
+
 <header class="page-header">
   <h2>User Login</h2>
 </header>
@@ -5,3 +11,6 @@
   <%= render "devise/sessions/form" %>
   <%= render "devise/shared/links" %>
 </div>
+<% content_for :footer do %>
+    <%= render 'layouts/footer' %>
+<% end %>
