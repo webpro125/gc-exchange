@@ -8,11 +8,7 @@ class CommentPolicy < LoggedInPolicy
   def create?
     record.article.status == 'open'
   end
-  # def edit?
-  #   user == record.user
-  # end
-  #
-  # alias_method :update?, :edit?
+
   def show?
     false
   end
@@ -20,4 +16,8 @@ class CommentPolicy < LoggedInPolicy
   def update?
     record.commenter == user || record.admin_commenter == user
   end
+
+  alias_method :edit?, :update?
+  alias_method :load_comment?, :update?
+
 end

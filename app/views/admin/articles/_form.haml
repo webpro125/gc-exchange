@@ -1,15 +1,20 @@
-= simple_form_for [:admin, @article],
+= simple_form_for [:admin, @article], html: { id: 'article_form' },
   wrapper: :vertical_form do |f|
   = f.error_notification
   = f.input :title
   = f.input :text, label: 'Description', input_html: { rows: 6}
   = f.simple_fields_for :article_attachments do |a|
-    - if a.object.new_record?
-      = a.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "article_attachments[attach][]"}
-    - else
+    - unless a.object.new_record?
       = a.input :_destroy, label: a.object.attach_file_name, as: :boolean
+  #attach_file.dropzone{:data_url => upload_attachment_articles_path }
+    .dropzone-previews
   .hr-line-dashed
   .form-group
     = button_tag(type: 'submit', class: "btn btn-primary") do
       %i.fa.fa-check-circle
       Save  Update
+:coffee
+  attachment = new Attachment()
+  $ ->
+    $("div#attach_file").each (index, element) ->
+      attachment.dropzone_define(element)

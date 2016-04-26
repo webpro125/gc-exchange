@@ -1,0 +1,23 @@
+.comment-content
+  = simple_format comment.body
+  .attached_files
+    - comment.comment_attachments.each do |attach|
+      = link_to download_comment_attachment_path(attach) do
+        - if attach.attach_content_type.start_with? 'image'
+          = image_tag attach.attach.url(:medium)
+        - else
+          = image_tag 'attach-icon.png'
+        %br/
+        %small= attach.attach_file_name
+- if comment.author == current_admin
+  = simple_form_for [:admin, article, comment], wrapper: :vertical_form,
+                        remote: true, html: {class: 'edit-comment-form'} do |f|
+    = f.error_notification
+    = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
+    = f.simple_fields_for :comment_attachments do |c|
+      - unless c.object.new_record?
+        = c.input :_destroy, label: c.object.attach_file_name, as: :boolean
+    #attach_file.dropzone{:data_url => upload_attachment_articles_path }
+      .dropzone-previews
+    = f.button :submit, class: 'btn btn-primary'
+    = button_tag "Cancel", :type => 'button', class: 'btn btn-default cancel-edit'

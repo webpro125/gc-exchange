@@ -12,4 +12,8 @@ class Admin::CommentsController < CommentsController
   def update
     super
   end
+
+  def load_comment
+    super
+  end
 end

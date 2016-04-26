@@ -1,6 +1,11 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+// require dropzone/basic
+*= require dropzone/basic
+*= require dropzone/dropzone
+*/
 .articles {
   display: table;
   width: 100%;
@@ -62,4 +67,8 @@ ul.articles .article-item:before {
   font-weight: normal;
   color: #767676;
   line-height: 1.2 !important;
+}
+.dz-error-message span p {
+  font-size: 8px;
+  margin: 3px 0
 }

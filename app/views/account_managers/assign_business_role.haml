@@ -38,26 +38,66 @@
         %h3 Select One or More User Permissions
         %section.card-section
           .ui-checkbox.medium
-            = f.check_box :selection_authority, {id: 'selection-authority'}, true, false
+            = f.check_box :selection_authority, {id: 'selection-authority'}
             %label{:for => "selection-authority"} Selection Authority
           .button-circle.icon-question{"data-placement" => "bottom", "data-template" => "question-sample1b", "data-type" => "cm-popover"}
             %div{"data-type" => "template-question-sample1b"}
               %p Include explanation about this section here.
         %section.card-section
           .ui-checkbox.medium
-            = f.check_box :requisition_authority, {id: 'requisition-authority'}, true, false
+            = f.check_box :requisition_authority, {id: 'requisition-authority'}
             %label{:for => "requisition-authority"} Requisition Authority
           .button-circle.icon-question{"data-placement" => "bottom", "data-template" => "question-sample1b", "data-type" => "cm-popover"}
             %div{"data-type" => "template-question-sample1b"}
               %p Include explanation about this section here.
         %section.card-section
           .ui-checkbox.medium
-            = f.check_box :approval_authority, {id: 'approval-authority'}, true, false
+            = f.check_box :approval_authority, {id: 'approval-authority'}
             %label{:for => "approval-authority"} Approval Authority
           .button-circle.icon-question{"data-placement" => "bottom", "data-template" => "question-sample1b", "data-type" => "cm-popover"}
             %div{"data-type" => "template-question-sample1b"}
               %p Include explanation about this section here.
       = button_tag 'Add User Business Roles', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right"
+  - @unit_roles.each_with_index do |unit_role, role_index|
+    - next unless unit_role.persisted?
+    %section.ui-card.icon-profile2.profile.is-collapsible.is-close
+      %header.card-header
+        %h2= unit_role.user.full_name
+        %h3 Account Manager
+        %p.type-intro
+          = unit_role.account_manager.company.company_name
+          = link_to '', '#', class: 'ui-action-link ui-edit icon-edit'
+        %p.type-intro.type-blue.contact-email= unit_role.user.email
+        %p.user-roles Requisition Authoriy
+      = simple_form_for(unit_role, method: :put,
+        url: account_manager_update_assign_business_role_path(unit_role), html: {class: 'theme-gces'}) do |f|
+        = render 'shared/base_error', model: unit_role
+        %section.section-block.user-permissions
+          %h3 Select One or More User Permissions
+          %section.card-section
+            .ui-checkbox.medium
+              = f.check_box :selection_authority, {id: 'selection-authority' + role_index.to_s}
+              %label{:for => "selection-authority" + role_index.to_s} Selection Authority
+            .button-circle.icon-question{"data-placement" => "bottom", "data-template" => "question-sample1b", "data-type" => "cm-popover"}
+              %div{"data-type" => "template-question-sample1b"}
+                %p Include explanation about this section here.
+          %section.card-section
+            .ui-checkbox.medium
+              = f.check_box :requisition_authority, {id: 'requisition-authority' + role_index.to_s}
+              %label{:for => "requisition-authority" + role_index.to_s} Requisition Authority
+            .button-circle.icon-question{"data-placement" => "bottom", "data-template" => "question-sample1b", "data-type" => "cm-popover"}
+              %div{"data-type" => "template-question-sample1b"}
+                %p Include explanation about this section here.
+          %section.card-section
+            .ui-checkbox.medium
+              = f.check_box :approval_authority, {id: 'approval-authority' + role_index.to_s}
+              %label{:for => "approval-authority" + role_index.to_s} Approval Authority
+            .button-circle.icon-question{"data-placement" => "bottom", "data-template" => "question-sample1b", "data-type" => "cm-popover"}
+              %div{"data-type" => "template-question-sample1b"}
+                %p Include explanation about this section here.
+        = button_tag 'Update User Business Roles', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right"
+      .card-toggle
+
 
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}

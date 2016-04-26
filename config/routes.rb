@@ -64,6 +64,11 @@ Rails.application.routes.draw do
         put :open_article
       end
     end
+
+    resources :comments do
+      get :load_comment
+    end
+
   end
 
   scope :admin do
@@ -172,12 +177,24 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resource :account_managers do
+  resource :articles do
+    post :upload_attachment
+    delete :destroy_attachment
+  end
+
+  resources :comments do
+    get :load_comment
+  end
+
+  resource :account_managers, only: [] do
     member do
       get :assign_business_role
       put :do_assign_business_role
     end
     get :autocomplete_user_email, :on => :collection
+  end
+  resources :account_managers, only: [] do
+    put :update_assign_business_role
   end
   # Non resource
 

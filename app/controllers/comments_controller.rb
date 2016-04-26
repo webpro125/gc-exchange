@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :auth_a_user!
-  before_action :load_article
+  before_action :load_article, except: [:load_comment]
   before_action :load_comments, only: [:index, :create]
 
   def index
@@ -22,16 +22,11 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.save
-
-      unless params[:comment_attachments].blank?
-        params[:comment_attachments]['attach'].each do |a|
-          @comment.comment_attachments.create!(:attach => a)
-        end
-      end
-
+      store_attached
       redirect_to (user_signed_in? ? article_comments_path(@article) : admin_article_comments_path(@article)),
                   notice: t('controllers.comment.create.success')
     else
+      CommentAttachment.where(comment_id: nil).destroy_all
       render :index
     end
   end
@@ -42,10 +37,19 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.update(comment_params)
-      render json: @comment, status: :ok
+      store_attached
+      render json: @comment, include: :comment_attachments, status: :ok
     else
+      CommentAttachment.where(comment_id: nil).destroy_all
       render json: @comment.errors, status: :unprocessable_entity
     end
+  end
+
+  def load_comment
+    @comment = Comment.find(params[:comment_id])
+    @article = @comment.article
+    authorize @comment
+    render layout: false
   end
   private
 
@@ -59,5 +63,11 @@ class CommentsController < ApplicationController
 
   def load_comments
     @comments = @article.comments
+  end
+
+  def store_attached
+    unless params[:attachment_ids].blank?
+      CommentAttachment.where(:id => params[:attachment_ids].split(",")).update_all(comment_id: @comment.id)
+    end
   end
 end

@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :admin_commenter, class_name: 'Admin', inverse_of: :admin_owned_comments, dependent: :delete
   validates :body, presence: true, length: { in: 2..500 }
 
-  has_many :comment_attachments
+  has_many :comment_attachments, dependent: :destroy
   accepts_nested_attributes_for :comment_attachments, :allow_destroy => true
 
   def author

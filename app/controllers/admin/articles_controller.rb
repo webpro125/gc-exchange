@@ -53,10 +53,6 @@ class Admin::ArticlesController < ArticlesController
     end
   end
 
-  def article_params
-    params.require(:article).permit(:title, :text)
-  end
-
   def load_article
     @article = Article.find(params[:id])
     authorize @article unless user_signed_in? && admin_signed_in?

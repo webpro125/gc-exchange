@@ -4,7 +4,7 @@
   = render :partial => 'header', :locals => { :mode => 'index'}
   .wrapper.wrapper-content.animated.fadeInRight.article
     .row
-      .col-lg-10.col-lg-offset-1
+      .col-lg-12
         = link_to 'Close Question', close_article_admin_article_path(@article), method: :put,
           :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'open'
         = link_to 'Open Question', open_article_admin_article_path(@article), method: :put,
@@ -66,26 +66,7 @@
                           = link_to content_tag(:i, '', {class: 'fa fa-edit'}), '#', class: 'pull-right edit-comment' if comment.author == current_admin
                         %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
                     .social-body
-                      .comment-content
-                        = simple_format comment.body
-                        .attached_files
-                          - comment.comment_attachments.each do |attach|
-                            = link_to download_comment_attachment_path(attach) do
-                              - if attach.attach_content_type.start_with? 'image'
-                                = image_tag attach.attach.url(:medium)
-                              - else
-                                = image_tag 'attach-icon.png'
-                              %br/
-                              %small= attach.attach_file_name
-                      - if comment.author == current_admin
-                        = simple_form_for [:admin, @article, comment], wrapper: :vertical_form,
-                          remote: true, html: {class: 'edit-comment-form'} do |f|
-                          = f.error_notification
-                          = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
-                          = f.simple_fields_for :comment_attachments do |c|
-                            = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
-                          = f.button :submit, class: 'btn btn-primary'
-                          = button_tag "Cancel", :type => 'button', class: 'btn btn-default cancel-edit'
+                      = render 'admin/comments/comment', comment: comment, article: @article
             - if @article.status == 'open'
               .row
                 .col-md-12
@@ -97,12 +78,18 @@
                         %p.m-t.m-b-none
                           You
                     .social-body
-                      = simple_form_for [:admin, @article, @comment], wrapper: :vertical_form do |f|
+                      = simple_form_for [:admin, @article, @comment], html: { class: 'comment_form' },
+                        wrapper: :vertical_form do |f|
                         = f.error_notification
                         = render 'shared/base_error', model: @article
                         .form-inputs
                           = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
-                          = f.simple_fields_for :comment_attachments do |c|
-                            = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
+                          #attach_file.dropzone{:data_url => upload_attachment_articles_path }
+                            .dropzone-previews
                         .form-actions
                           = f.button :submit, class: 'btn btn-primary'
+:coffee
+  attachment = new Attachment()
+  $ ->
+    $("div#attach_file").each (index, element) ->
+      attachment.dropzone_define(element)

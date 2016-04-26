@@ -49,6 +49,15 @@ class AccountManagersController < ApplicationController
     end
   end
 
+  def update_assign_business_role
+    @new_design = true
+    unit_role = BusinessUnitRole.find(params[:account_manager_id])
+    if unit_role.update(business_role_params)
+      redirect_to assign_business_role_account_managers_path, notice: t('controllers.account_manager.assign_role.success')
+    else render :assign_business_role
+    end
+  end
+
   private
 
   def load_current_am
@@ -56,6 +65,7 @@ class AccountManagersController < ApplicationController
     if @account_manager.blank?
       redirect_to root_path, flash: {alert: 'You have no permission to access that page'}
     end
+    @unit_roles = @account_manager.business_unit_roles
   end
 
   def load_am_by_token
