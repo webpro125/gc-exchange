@@ -75,8 +75,6 @@ reportGeneralUsersPage = ->
   updateReportData = (data) ->
     accountChartOptions.xAxis.categories = data.categories
     accountChartOptions.series[0].data = data.user_count
-    accountChartOptions.series[1].data = data.profiles_approved
-    accountChartOptions.series[2].data = data.profiles_pending
     $userAccountChart.highcharts accountChartOptions
 
     accountLoginOptions.xAxis.categories = data.categories
