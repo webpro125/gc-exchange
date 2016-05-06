@@ -71,9 +71,14 @@ body {
     left: 0;
     z-index: 100;
     overflow: hidden;
-    
+      
     &.main {
         box-shadow: inset 0 rem(100px) 0 0 color(primary);
+    }
+    
+    &.version2 {
+        padding-top: rem(60px);
+        box-shadow: inset 0 rem(60px) 0 0 color(primary);
     }
     
     @include responsive($media: 'laptop') {
@@ -94,6 +99,10 @@ body {
         
         &.main {
             padding-top: 0;
+        }
+        
+        &.version2 {
+            display: none;
         }
     }
 }
@@ -116,10 +125,18 @@ body {
         left: 0;
         z-index: 50;
     }
-    
+  
     &.main {
         &:after {
             height: rem(100px);
+        }
+    }
+    
+    &.version2 {
+        padding-top: rem(130px);
+        
+        &:after {
+            height: rem(60px);
         }
     }
     
@@ -139,6 +156,10 @@ body {
             &:after {
                 display: none;
             }
+        }
+        
+         &.version2 {
+            
         }
     }
     
@@ -388,7 +409,7 @@ figure,
 .page-content,
 .page-header {
     width: 100%;
-    max-width: 62rem;
+    max-width: 90rem;
     box-sizing: border-box;
     padding-left: size(margin-page);
     padding-right: size(margin-page);
@@ -416,6 +437,68 @@ figure,
     &.fullwidth {
         max-width: 80vw;
     }
+    
+    .page-intro,
+    .section-intro {
+        @extend %clearfix;
+        height: auto;
+        min-height: rem(80px);
+        margin-bottom: 4rem;
+        position: relative;
+        
+        h1 {
+            
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            line-height: 1.25em;
+            color: color(body-dark);
+            margin-top: 2rem;
+            text-align: left !important;
+        }
+
+        .page-description,
+        .section-description {
+            width: 65%;
+        }
+
+        figure {
+            width: 28%;
+            position: absolute;
+            bottom: -2rem;
+            right: -1rem;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+            &.figure-account-manager {
+                bottom: 0;
+            }
+            
+            &.figure-business-unit {
+                width: 33% !important;
+                bottom: 2rem !important;
+                right: 0 !important;
+            }
+        }
+    }
+    
+    @include responsive($max-width: '640px') {
+        .page-intro,
+        .section-intro {
+            .page-description,
+            .section-description {
+                width: 100% !important;
+            }
+            
+            figure {
+                display: none;
+            }
+        }
+    }
 }
 
 .page-header {
@@ -426,6 +509,11 @@ figure,
     h2 {
         text-align: center;
         color: color(primary);
+    }
+    
+    &.page-tabs {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 }
 
@@ -460,4 +548,10 @@ figure,
 
 section {
     
+}
+
+.figure-process {
+    display: block;
+    width: 100%;
+    margin: 0rem auto 0  auto;
 }

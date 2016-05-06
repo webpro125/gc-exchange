@@ -2,17 +2,22 @@
          url: registration_path(resource_name), html: {class: 'theme-gces'}) do |f| %>
     <%= f.error_notification %>
     <%= render 'shared/base_error', model: resource %>
-    <%= f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' } %>
+    <%= f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, label: false,
+        input_wrapper_html: { class: 'icon-email' } %>
     <div class="grid columns-2 margin-top-1r" role="grid">
         <div class="grid-6-12" role="gridcell">
-          <%= f.input :first_name, required: false, placeholder: 'First Name', wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' } %>
+          <%= f.input :first_name, required: false, placeholder: 'First Name', label: false,
+                  wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' } %>
         </div>
         <div class="grid-6-12" role="gridcell">
-          <%= f.input :last_name, required: false, placeholder: 'Last Name', wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' } %>
+          <%= f.input :last_name, required: false, placeholder: 'Last Name', label: false,
+                      wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' } %>
         </div>
     </div>
-    <%= f.input :password, required: false, placeholder: 'Password', wrapper: :custom_input, input_wrapper_html: { class: 'icon-key' } %>
-    <%= f.input :password_confirmation, required: false, placeholder: 'Password Confirmation', wrapper: :custom_input, input_wrapper_html: { class: 'icon-key' } %>
+    <%= f.input :password, required: false, placeholder: 'Password', label: false,
+        wrapper: :custom_input, input_wrapper_html: { class: 'icon-key' } %>
+    <%= f.input :password_confirmation, required: false, label: false,
+        placeholder: 'Password Confirmation', wrapper: :custom_input, input_wrapper_html: { class: 'icon-key' } %>
 
     <fieldset class="note align-center">
       <p class="type-note">By clicking &ldquo;Sign up&rdquo;, you agree to our

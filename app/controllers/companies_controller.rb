@@ -52,6 +52,24 @@ class CompaniesController < CompanyController
     redirect_to companies_url, notice: t('controllers.company.destroy.success')
   end
 
+  # request company
+  def registration
+    @new_design = true
+    @requested_company = RequestedCompany.new
+  end
+
+  # put request company submit
+  def do_registration
+    @new_design = true
+    @requested_company = RequestedCompany.new(request_company_params)
+    @requested_company.user_id = current_user.id
+    if @requested_company.save
+      redirect_to root_path, notice: t('controllers.company.request_register.success')
+    else
+      render :registration
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -69,4 +87,10 @@ class CompaniesController < CompanyController
   def company_update_params
     params.require(:company).permit(:company_name, :owner_id)
   end
+
+  def request_company_params
+    params.require(:requested_company).permit(:company_name, :help_content, :work_area_code,
+          :work_prefix, :work_line, :cell_area_code, :cell_prefix, :cell_line, :work_phone_ext)
+  end
+
 end

@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :phones, through: :consultant, as: :phoneable, dependent: :destroy
   has_many :educations, through: :consultant, dependent: :destroy
   has_one :account_manager
+  has_many :requested_company
 
   before_validation :company_present
   # before_validation :set_password, on: :create

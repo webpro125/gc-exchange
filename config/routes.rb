@@ -39,7 +39,7 @@ Rails.application.routes.draw do
         put :send_invite
         delete :destroy_account_manager
       end
-
+      get :registration_requests, :on => :collection
       get :autocomplete_user_email, :on => :collection
       resources :users
     end
@@ -193,8 +193,17 @@ Rails.application.routes.draw do
     end
     get :autocomplete_user_email, :on => :collection
   end
-  resources :account_managers, only: [] do
+  resources :account_managers, only: [:new, :create], :path_names => { :new => "invite" } do
     put :update_assign_business_role
+  end
+
+  resource :companies, only:[] do
+    get :registration
+    put :do_registration
+  end
+
+  resource :users, only: [] do
+    get :registration_process
   end
   # Non resource
 

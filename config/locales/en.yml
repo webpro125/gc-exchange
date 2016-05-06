@@ -91,6 +91,8 @@ en:
         success: 'Contractor was successfully updated.'
       destroy:
         success: 'Contractor was successfully destroyed.'
+      request_register:
+        success: 'You requested successfully.'
     user:
       create:
         success: 'User was successfully created.'

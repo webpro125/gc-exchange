@@ -34,7 +34,7 @@ $colors: (
 // TYPOGRAPHIC FAMILIES: 
 $font-bodytext: 'Roboto', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 $font-headtext: $font-bodytext;
-$font-alternate: 'Merriweather', 'Georgia', serif;
+$font-alternate: 'Roboto Slab', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 $font-glyphs: 'glyphs';
 
 // BASE FONT SIZES:
@@ -71,7 +71,7 @@ $sizes: (
     nav-main: rem(50px),
     margin-page: rem(120px),
     margin-page-medium: rem(60px),
-    margin-page-small: rem(50px),
+    margin-page-small: rem(30px),
     margin-page-mobile: rem(20px),
     input-default: rem(48px),
     input-small: rem(28px),

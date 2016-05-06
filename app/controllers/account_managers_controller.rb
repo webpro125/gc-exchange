@@ -1,7 +1,20 @@
 class AccountManagersController < ApplicationController
   before_action :load_am_by_token, only: [:register, :do_register]
-  before_action :authenticate_user!, :load_current_am, except: [:register, :do_register]
+  before_action :authenticate_user!, except: [:register, :do_register]
+  before_action :load_current_am, except: [:register, :do_register, :new, :create]
+  before_action :load_owned_company, only: [:new, :create]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
+
+  def new
+    @new_design = true
+    account_manager = @owned_company.account_managers.build
+
+    @form = InviteAccountManagerForm.new(account_manager)
+  end
+
+  def create
+    @new_design = true
+  end
 
   def register
     @new_design = true
@@ -66,6 +79,13 @@ class AccountManagersController < ApplicationController
       redirect_to root_path, flash: {alert: 'You have no permission to access that page'}
     end
     @unit_roles = @account_manager.business_unit_roles
+  end
+
+  def load_owned_company
+    unless current_user.owned_company.present?
+      redirect_to root_path, flash: {alert: 'You have no permission to access that page'}
+    end
+    @owned_company = current_user.owned_company
   end
 
   def load_am_by_token

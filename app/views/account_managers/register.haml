@@ -49,10 +49,11 @@
         wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
       = f.input :corporate_title, required: false, autofocus: true, placeholder: 'Corporate Title',
         wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
-      = f.input :phone, wrapper: :custom_input1, label: 'Cell Phone Number', required: false, placeholder: '000', as: :phone_number
+      = f.input :phone, wrapper: :custom_grid_input, label: 'Cell Phone Number', required: false, placeholder: '000', as: :phone_number
       = button_tag 'Register as Account Manager', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right"
   - else
     %h3= @error_message
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground
+

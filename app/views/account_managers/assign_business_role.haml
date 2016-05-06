@@ -26,14 +26,16 @@
       url: do_assign_business_role_account_managers_path, html: {class: 'theme-gces'}) do |f|
     = render 'shared/base_error', model: @unit_role
     %section.ui-card.icon-profile2.profile
-      = f.input :email, required: false, placeholder: 'Email',
+      = f.input :email, required: false, placeholder: 'Email', label: false,
         :url => autocomplete_user_email_account_managers_path, :as => :autocomplete,
         wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' }
       .grid.columns-2.margin-top-1r{:role => "grid"}
         .grid-6-12{:role => "gridcell"}
-          = f.input :first_name, required: false, placeholder: 'First Name', wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' }
+          = f.input :first_name, required: false, placeholder: 'First Name', label: false,
+            wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' }
         .grid-6-12{:role => "gridcell"}
-          = f.input :last_name, required: false, placeholder: 'Last Name', wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' }
+          = f.input :last_name, required: false, placeholder: 'Last Name', label: false,
+            wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' }
       %section.section-block.user-permissions
         %h3 Select One or More User Permissions
         %section.card-section

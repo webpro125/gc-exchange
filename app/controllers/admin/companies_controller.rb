@@ -1,5 +1,6 @@
 class Admin::CompaniesController < Admin::CompanyController
-  before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email, :destroy_account_manager]
+  before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email,
+                                   :destroy_account_manager, :registration_requests]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
 
   def index
@@ -110,10 +111,16 @@ class Admin::CompaniesController < Admin::CompanyController
   def destroy_account_manager
     am = AccountManager.find(params[:id])
     company = am.company
-    am.destroy
-    redirect_to invite_account_manager_admin_company_path(company), notice: 'Destroyed Successfully.'
+    if am.destroy
+      redirect_to invite_account_manager_admin_company_path(company), notice: 'Destroyed Successfully.'
+    else
+      render :invite_account_manager
+    end
   end
 
+  def registration_requests
+   @requests = RequestedCompany.order(created_at: :desc)
+  end
   private
 
   def set_company

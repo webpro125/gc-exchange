@@ -12,6 +12,16 @@
     left: 0;
     z-index: 5;
     
+    &.version2 {
+        height: rem(60px);
+        line-height: rem(60px);
+        font-size: 1.5rem;
+        background: none;
+        color: #FFF;
+        top: 0;
+        font-weight: 600;
+    }
+    
     @include responsive($media: 'tablet-landscape') {
         display: inline-block;
         width: rem(60px);
@@ -64,12 +74,22 @@
         margin-bottom: 2rem;
     }
     
+    h2 {
+        font-size: 2rem;
+        line-height: 1.15em;
+        color: color(body-dark);
+        margin-top: 2rem;
+    }
+    
     .menu-vertical {
-        padding: 0 0.5rem;
         
         .list-steps + .qa-list {
             padding-top: 2.5rem;
         }
+    }
+    
+    .main-menu {
+        margin-top: 3rem;
     }
     
     

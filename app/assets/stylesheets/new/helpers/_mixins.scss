@@ -82,6 +82,38 @@ $desktop-large: 2200px;
           transform: $transforms;
 }
 
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
 @mixin rotate($deg) {
   @include transform(rotate(#{$deg}deg));
 }
@@ -92,6 +124,14 @@ $desktop-large: 2200px;
 
 @mixin translate($x, $y) {
    @include transform(translate($x, $y));
+}
+
+@mixin translateX($x) {
+   @include transform(translateX($x));
+}
+
+@mixin translateY($y) {
+   @include transform(translateY($y));
 }
 
 @mixin skew($x, $y) {

@@ -15,7 +15,8 @@
             correct email and check your spam folder for the password reset instructions.</p>
       </fieldset>
 
-      <%= f.input :email, required: false, autofocus: true, placeholder: 'Email', wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' } %>
+      <%= f.input :email, required: false, autofocus: true, label: false,
+          placeholder: 'Email', wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' } %>
 
       <div class="align-center air">
         <%= f.button :submit, "Send me reset password instructions", class: "button-primary button-cta center" %>

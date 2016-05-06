@@ -14,7 +14,8 @@
         <p>If you did not receive your confirmation email, be sure to enter your correct email address
         and check your spam folder for the confirmation instructions.</p>
     </fieldset>
-    <%= f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' } %>
+    <%= f.input :email, required: false, placeholder: 'Email', wrapper_html: {class: 'no-label'},
+         label:false, wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' } %>
     <div class="align-center air">
         <%= f.button :submit, "Resend confirmation instructions", class: 'button-primary button-cta center' %>
     </div>
@@ -23,4 +24,7 @@
 </div>
 <% content_for :footer do %>
     <%= render 'layouts/footer' %>
+<% end %>
+<% content_for :js do %>
+    <%= javascript_include_tag "dist_main" %>
 <% end %>

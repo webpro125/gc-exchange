@@ -16,6 +16,7 @@
             font-size: 2rem;
             border-bottom: 2px solid color(primary-lightest);
             position: relative;
+            z-index: 50;
 
             h1 {
                 display: block;
@@ -53,6 +54,10 @@
                         transition: color 0.1s ease-out;
                     }
                 }
+            }
+            
+            &.connect-down {
+                margin-bottom: 0;
             }
 
             &.is-open {
@@ -176,8 +181,6 @@
             }
         }
 
-        
-
         .taxonomy-footer {
             display: block;
             height: auto;
@@ -222,6 +225,41 @@
             text-align: center;
             position: relative;
             z-index: 5;
+            
+            .section-intro {
+                padding: 2rem;
+                
+                &:before {
+                    @extend %before-after-absolute;
+                    width: calc(100% + 3.75rem);
+                    height: 2px;
+                    background: color(primary-lightest);
+                    left: -1.875rem;
+                    bottom: 0;
+                    display: none;
+                }
+                
+                .section-title {
+                    text-align: left;
+                    line-height: 1.1em;
+                }
+                
+                .section-description {
+                    text-align: left;
+                    display: block;
+                    width: 60%;
+                }
+                
+                figure {
+                    width: 25%;
+                    bottom: 0;
+                    right: 2rem;
+                }
+                
+                @include responsive($max-width: '640px') {
+                    padding: 0;
+                }
+            }
 
             .entity-unit {
                 display: inline-block;
@@ -242,7 +280,7 @@
 
                 .unit-info {
                     @extend %ui-box;
-                    width: 47rem;
+                    width: 67.55rem;
                     margin-top: 3.165rem;
                     padding: 4rem 2.5rem;
                     text-align: left;
@@ -284,6 +322,161 @@
 
                             &:before {
                                 display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            &.single-set,
+            &.first-set,
+            &.unit-maximized {
+                @extend %ui-box;
+                position: relative;
+            }
+            
+            &.unit-maximized {
+                padding-top: rem(60px);
+                
+                .unit-head {
+                    width: 100%;
+                    height: rem(60px);
+                    line-height: rem(60px);
+                    background: color(primary);
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    border-top-left-radius: size(border-radius);
+                    border-top-right-radius: size(border-radius);
+                    
+                    input[type="text"] {
+                        display: inline-block;
+                        height: rem(60px);
+                        background: none;
+                        color: #FFF;
+                        text-align: center;
+                        font-size: 1.75rem;
+                        line-height: rem(60px);
+                        font-weight: 300;
+                        
+                        &::-webkit-input-placeholder {
+                            font-size: 1.75rem;
+                            color: #FFF;
+                        }
+
+                        &:-moz-placeholder {
+                            font-size: 1.75rem;
+                            color: #FFF;
+                        }
+
+                        &::-moz-placeholder {
+                            font-size: 1.75rem;
+                            color: #FFF;
+                        }
+
+                        &:-ms-input-placeholder {
+                            font-size: 1.75rem;
+                            color: #FFF;
+                        }
+                        
+                        &:hover,
+                        &:focus {
+                            box-shadow: none;
+                            
+                            &::-webkit-input-placeholder {
+                                color: color(primary-light);
+                                transition: color 0.1s ease-out;
+                            }
+
+                            &:-moz-placeholder {
+                                color: color(primary-light);
+                                transition: color 0.1s ease-out;
+                            }
+
+                            &::-moz-placeholder {
+                                color: color(primary-light);
+                                transition: color 0.1s ease-out;
+                            }
+
+                            &:-ms-input-placeholder {
+                                color: color(primary-light);
+                                transition: color 0.1s ease-out;
+                            }
+                        }
+                    }
+                }
+                
+                .ui-tabs {
+                    & > nav {
+                        position: relative;
+                        
+                        &:before {
+                            @extend %before-after-absolute;
+                            width: calc(100% + 3.75rem);
+                            height: 2px;
+                            background: color(primary-lightest);
+                            bottom: 0;
+                            left: -1.875rem;
+                            z-index: -1;
+                        }
+                    }
+                    
+                    .tab-panel {
+                        padding-top: 2.5rem;
+                    }
+                    
+                    .unit-roles-grid {
+                        .unit-role {
+                            @extend %ui-box;
+                            padding: 1rem;
+                            box-shadow: 0 0 0 1px color(primary-lightest);
+                            padding-top: 2rem;
+                            position: relative;
+                            
+                            &:before {
+                                width: 2.5rem;
+                                height: 2.5rem;
+                                line-height: 2.5rem;
+                                background: color(primary);
+                                color: #FFF;
+                                position: absolute;
+                                left: 50%;
+                                top: -1rem;
+                                margin-left: -1.25rem;
+                                border-radius: 100%;
+                                text-align: center;
+                                font-size: 1.5rem;
+                                text-indent: 5px;
+                                
+                            }
+                            
+                            h2 {
+                                color: color(body-dark);
+                                font-size: 1.25rem;
+                                display: block;
+                                margin-top: 0.35rem;
+                                padding-bottom: 1.5rem;
+                                margin-bottom: 1.5rem;
+                                position: relative;
+                                
+                                &:after {
+                                    @extend %before-after-absolute;
+                                    width: calc(100% + 2rem);
+                                    height: 1px;
+                                    background: color(primary-lightest);
+                                    bottom: 0;
+                                    left: -1rem;
+                                }
+                            }
+                            
+                            p {
+                                display: block;
+                                text-align: left;
+                                font-size: 0.875rem;
+                            }
+                            
+                            .button-cta {
+                                font-size: 1.15rem;
                             }
                         }
                     }
@@ -390,6 +583,30 @@
                 }
             }
         }
+        
+        .tab-panel {
+            form {
+                padding-left: 2rem;
+                padding-right: 2rem;
+                padding-bottom: 1.5rem;
+                
+                fieldset {
+                    margin-bottom: 0;
+                }
+                
+                button,
+                input[type="submit"] {
+                    margin-top: 2.5rem;
+                }
+            }
+            
+            @include responsive($max-width: '640px') {
+                form {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+            }
+        }
 
         &.is-open {
             .row {
@@ -451,10 +668,26 @@
     display: none;
     position: relative;
     height: auto;
+    z-index: 50;
 
     & > .grid {
         opacity: 0;
         transition: opacity 0.35s ease-out;
+    }
+    
+    h1,
+    h2 {
+        margin-bottom: 1.5rem;
+    }
+    
+    h1,
+    h2 {
+        color: color(primary);
+        margin-bottom: 2.5rem;
+    }
+    
+    h1 + h2 {
+        margin-top: 1.5rem;
     }
     
     .ui-panel-close {
@@ -517,4 +750,53 @@
             display: block;
         }
     }
+}
+
+
+/* Chrome, Safari, Opera */ 
+@-webkit-keyframes mymove {
+    0%   {left: -6rem;}
+    25%  {left: -5.75rem;}
+    75%  {left: -5.5rem}
+    100% {left: -5rem;}
+}
+
+.textara {
+    height: 300px;
+}
+
+.wizard-float {
+    display: block;
+    width: rem(60px);
+    height: rem(60px);
+    line-height: rem(60px);
+    background: color(secondary);
+    border-radius: size(border-radius);
+    position: absolute;
+    top: 50%;
+    left: -5rem;
+    margin-top: -1.875rem;
+    color: #FFF;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    -webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */ 
+    animation: mymove 5s infinite;
+    
+    &:after {
+        @extend %before-after-absolute;
+        font-family: $font-glyphs;
+        content: glyph(pointer-right-2);
+        color: color(secondary);
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        font-size: 2rem;
+        position: absolute;
+        top: 50%;
+        right: -1.65rem;
+        margin-top: -1.25rem;
+    }
+    
+    
 }

@@ -1,7 +1,6 @@
 .menu-vertical {
     @extend %user-noselect;
     height: 100%;
-    min-height: 100% !important;
     box-sizing: border-box;
     
     ul {
@@ -263,34 +262,31 @@
     }
 }
 
-.main-menu,
-.secondary-menu,
-.page-menu {
+.main-menu {
     width: 100%;
-    height: size(nav-main);
-    padding-left: size(margin-page-min);
+    height: auto;
     
     li {
         width: auto;
-        height: size(nav-main);
-        line-height: size(nav-main);
+        height: auto;
         padding: 0;
-        margin: 0 1.5rem 0 0;
+        margin: 0;
+        font-size: 1.25rem;
+        line-height: 1.25em;
+        margin-bottom: 1.5rem;
         
         a {
             display: block;
             width: auto;
-            height: size(nav-main);
+            color: color(primary);
             position: relative;
         }
-        
-        &:last-child {
-            margin-right: 0;
-        }
-        
+       
+        &.is-active,
         &.active,
         &:hover {
             a {
+                color: color(gray-darkest);
                 transition: color 0.2s ease-out;
                 
                 &:before {
@@ -298,49 +294,11 @@
                 }
             }
         }
-    }
-}
-
-.main-menu {
-    padding: 0;
-    
-    li {
-        width: 100%;
-        font-size: 1.25rem;
-        padding-left: 1.5rem;
-        
-        a {
-            color: color(primary);
-        }
-        
-        &.is-active,
-        &.active,
-        &:hover {
-            a {
-                color: color(gray-darkest);
-            }
-        }
         
         &.is-active,
         &.active {
             a {
                 box-shadow: inset -4px 0 0 0 color(primary);
-            }
-        }
-    }
-    
-    @include responsive($media: 'phone-landscape') {
-        li {
-            text-indent: -10000px;
-            padding: 0;
-            
-            a {
-                text-indent: -100000px;
-                
-                &:before {
-                    text-indent: 1px;
-                    opacity: 0.75;
-                }
             }
         }
     }

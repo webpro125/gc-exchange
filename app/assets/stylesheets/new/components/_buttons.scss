@@ -7,9 +7,7 @@ button,
     line-height: 1.15em;
     padding: 0.75em em(30px);
     font-size: 0.85rem;
-    letter-spacing: 1px;
     font-weight: 700;
-    text-transform: uppercase;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
@@ -36,15 +34,16 @@ button,
     &.medium {
         min-height: 40px;
         line-height: 40px;
-        font-size: rem(14px);
-        font-weight: 600;
+        font-size: 1rem;
+        font-weight: normal;
     }
     
     &.small {
         min-height: 30px;
         line-height: 30px;
-        font-size: rem(12px);
-        font-weight: 700;
+        font-size: 1rem;
+        font-weight: normal;
+        padding: 0.35em em(30px);
     }
     
     @include responsive($media: 'tablet-portrait') {
@@ -59,6 +58,8 @@ button,
 
 .button-secondary {
     background: color(secondary);
+    color: #FFF;
+    border-radius: size(border-radius);
 }
 
 .button-light {
@@ -270,7 +271,8 @@ button,
     }
     
     @include responsive($media: 'tablet-portrait') {
-        font-size: 1.75rem;
+        font-size: 1.5rem !important;
+        font-weight: normal;
         
         &:before {
             font-size: 2rem;
@@ -278,8 +280,20 @@ button,
     }
     
     @include responsive($max-width: '560px') {
-        font-size: 1.5rem;
+        font-size: 1.15rem;
         font-weight: 400;
+        
+        &:before {
+            display: none;
+        }
     }
+}
+
+.button-link {
+    color: color(primary);
+    text-transform: capitalize;
+    letter-spacing: 0;
+    font-size: 1.25rem;
+    font-weight: normal;
 }
 

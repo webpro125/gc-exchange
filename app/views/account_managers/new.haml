@@ -1,0 +1,50 @@
+- content_for :header do
+  = render 'layouts/registration_header'
+.page-content
+  %section
+    %section.entity-company.taxonomy-view
+      %header.ui-box.taxonomy-head{"data-section" => "toggle-head", "data-toggle-container" => ""}
+        .entity-head{"data-ignore-global-close" => "1", "data-target" => "toggle-head", "data-type" => "cm-toggle"}
+          %h1 Tesla Automobiles, Inc
+          .ui-panel-toggle.icon-cr-plus-full
+        .entity-info.grid.columns-3.ui-panel{"data-section" => "toggle-head", "data-slide-open" => ""}
+          .grid-4-12
+            %h3 Company Address
+            %p 1 Infinite Loop
+            %p Cupertino, California
+          .grid-4-12
+            %h3 Company Contract POC
+            %p.name Frank Smith
+            %p.email franksmithjunior@apple.com
+            %p (954) 345 9876
+          .grid-4-12
+            %h3 Company Documents
+            %ul.doc-list
+              %li
+                %a{:href => ""} General Services Contract
+              %li
+                %a{:href => ""} Contract Rider
+- content_for :footer do
+  %footer#main-footer{:role => "contentinfo"}
+    %p.site-credits &copy; 2015 Playground
+
+- content_for :js do
+  = javascript_include_tag "new/lodash.min"
+  = javascript_include_tag "new/cm.toggle"
+  = javascript_include_tag "new/main"
+  :javascript
+    (function () {
+        $(function () {
+            var eventEmitter = $(document);
+
+            eventEmitter.on('cm.toggle.close', function (event, data) {
+                $('.entity-taxonomy').removeClass('is-open');
+            });
+
+            eventEmitter.on('cm.toggle.open', function (event, data) {
+                if (data['toggle-head'] === undefined) {
+                    $('.entity-taxonomy').addClass('is-open');
+                }
+            });
+        });
+    })();

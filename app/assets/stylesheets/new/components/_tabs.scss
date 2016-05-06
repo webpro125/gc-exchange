@@ -3,10 +3,18 @@
     height: auto;
     cursor: pointer;
     
-    ul {
+    &,
+    & > ul {
         li {
+            height: rem(60px);
+            line-height: rem(60px);
             list-style: none;
+            display: inline-block;
         }
+    }
+    
+    & > ul {
+        height: rem(60px);
     }
     
     .tab-pocket {
@@ -15,7 +23,6 @@
     }
     
     .tab-toggle {
-        @extend %type-ui-navtab;
         padding: 0 0 0.5rem 0;
         color: color(gray-medium);
         margin-right: 1.5rem;
@@ -27,8 +34,13 @@
         }
         
         &.is-active {
-            border-bottom: 2px solid color(primary);
-            color: color(body);
+            border-bottom: 3px solid color(primary);
+            color: color(primary);
+        }
+        
+        &.is-disabled {
+            color: color(primary-lighter);
+            cursor: auto;
         }
     }
 
@@ -37,6 +49,16 @@
         width: 100%;
         box-sizing: border-box;
         margin-top: 0;
+        
+        form {
+            &.theme-gces {
+                fieldset {
+                    width: 85%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
         
         &.is-open {
             display: block;
@@ -186,6 +208,151 @@
 //            height: size(touch);
 //            min-height: size(touch);
 //            padding: 0;
+        }
+    }
+}
+
+.page-tabs {
+    width: calc(100% - 20rem) !important;
+    max-width: calc(100% - 20rem) !important;
+    height: rem(60px);
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    
+    &,
+    ul {
+        display: table;
+        width: 100%;
+        
+        li {
+            display: table-cell;
+            width: 25%;
+            margin-left: -4px;
+            height: rem(60px);
+            color: color(primary-light);
+            font-size: 0.925rem;
+            line-height: 0.85em;
+            font-weight: 600;
+            box-sizing: border-box;
+            vertical-align: middle;
+            box-shadow: inset 1px 0 0 0 rgba(color(primary),0.5);
+            cursor: pointer;
+            
+            
+            a {
+                display: table-cell;
+                width: 25%;
+                height: rem(60px);
+                padding-left: rem(60px);
+                position: relative;
+                vertical-align: middle;
+                
+                &:before {
+                    @extend %before-after-absolute;
+                    display: block;
+                    width: rem(60px);
+                    height: rem(60px);
+                    line-height: rem(60px);
+                    text-align: center;
+                    font-size: 1.75rem;
+                    font-weight: 600;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+            
+            &:nth-child(1) {
+                box-shadow: none;
+
+                a {
+                    &:before {
+                        content: "1";
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                a {
+                    &:before {
+                        content: "2";
+                    }
+                }
+            }
+
+            &:nth-child(3) {
+                a {
+                    &:before {
+                        content: "3";
+                    }
+                }
+            }
+
+            &:nth-child(4) {
+                a {
+                    &:before {
+                        content: "4";
+                    }
+                }
+            }
+            
+            &:hover {
+                background: rgba(color(primary), 0.5);
+                transition: all 0.05s ease-out;
+            }
+            
+            &.active,
+            &.is-open {
+                background: color(primary-lightest);
+            }
+        }
+    }
+    
+    @include responsive($media: 'laptop') {
+        width: calc(100% - 17.5rem) !important;
+        max-width: calc(100% - 17.5rem) !important;
+    }
+    
+    @include responsive($media: 'tablet-landscape') {
+        width: calc(100% - 13.75rem) !important;
+        max-width: calc(100% - 13.75rem) !important;
+    }
+    
+    @include responsive($media: 'tablet-portrait') {
+        width: 100% !important;
+        max-width: 100% !important;
+        
+        &,
+        ul {
+            li {
+                a {
+                    text-indent: -10000px;
+                    padding: 0;
+                    
+                    &:before {
+                        width: 100%;
+                        font-size: 1.75rem;
+                        font-weight: 600;
+                        text-indent: 0;
+                    }
+                }
+            } 
+        }
+    }
+    
+    @include responsive($max-width: '638px') {
+        width: 100% !important;
+        max-width: 100% !important;
+        
+        &,
+        ul {
+            li {
+                font-size: 0.825rem;
+                line-height: 0.85em;
+                font-weight: 600;
+            } 
         }
     }
 }

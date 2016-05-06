@@ -253,7 +253,7 @@
                 
             &:before {
                 position: absolute;
-                left: -1.5rem;
+                left: -1.25rem;
                 top: 0.15rem;
                 color: color(gray-light);
             }
@@ -280,6 +280,29 @@
             font-style: italic;
             font-size: 0.875rem;
             line-height: 1.25em;
+        }
+    }
+}
+
+.doc-list {
+    & > li {
+        margin-bottom: 0.5rem;
+        
+        a {
+            &:hover {
+                color: color(body-dark);
+                transition: color 0.1s ease-out;
+            }
+            
+            &:before {
+                display: inline-block;
+                width: 0.85em;
+                height: 0.85em;
+                margin-right: 0.35rem;
+                content: "";
+                background: image-url('svg/doc_color_outlines.svg') no-repeat center center;
+                background-size: contain;
+            }
         }
     }
 }

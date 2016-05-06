@@ -1,0 +1,33 @@
+= content_for :main_class, 'version2'
+%header#main-header.version2{:role => "banner"}
+  = link_to 'GCES', root_path, class: 'site-brand version2'
+  .head-scroller
+    %h2
+      = link_to '4 Steps Registration Process', registration_process_users_path
+    %nav.main-menu.menu-vertical{:role => "navigation"}
+      %ul
+        %li
+          = link_to 'Register Your Company', registration_companies_path
+        %li
+          = link_to 'Invite Account Managers', new_account_manager_path
+        %li
+          = link_to 'Create Business Units', '#'
+        %li
+          = link_to 'Assign Unit Roles', '#'
+    %ul.qa-list{:style => "margin-top: 4rem;"}
+      %li.is-active
+        %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} Why do I need to Register my Company?
+        .qa-content.ui-target.is-open{"data-section" => "qa-1"}
+          %p This is a sample of how to include answers in this qa list. Lorem ipsum sit amet quosque tandem numa lum consecter.
+      %li What steps are involved in company registration?
+      %li Lorem ipsum sit amet set quosque tandem?
+%header.page-header.page-tabs
+  %ul
+    %li{class: current_page_active('companies')}
+      = link_to 'Register New Company', registration_companies_path
+    %li{class: current_page_active('account_managers')}
+      = link_to 'Invite Account Managers', new_account_manager_path
+    %li
+      = link_to 'Create Business Units', '#'
+    %li
+      = link_to 'Assign Roles', '#'

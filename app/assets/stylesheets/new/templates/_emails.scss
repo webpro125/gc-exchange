@@ -1,5 +1,7 @@
 .template-email-invite {
     margin: 2rem auto;
+    border: 1px solid color(gray-lighter);
+    background: rgba(color(gray-lighter),0.35) !important;
     
     header {
         text-align: center;

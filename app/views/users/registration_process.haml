@@ -1,0 +1,65 @@
+= content_for :main_class, 'version2'
+- content_for :header do
+  %header#main-header.version2{:role => "banner"}
+    = link_to 'GCES', root_path, class: 'site-brand version2'
+    .head-scroller
+      %nav.main-menu.menu-vertical{:role => "navigation"}
+        %ul
+          %li
+            %a{:href => ""} What we do
+          %li
+            %a{:href => ""} Join the Exchange
+          %li
+            %a{:href => ""} Community Forum
+          %li
+            %a{:href => ""} Tutorials
+          %li
+            %a{:href => ""} Education
+          %li
+            %a{:href => ""} Articles
+.page-content
+  %section.feature-content.four-steps-process
+    %header
+      %h1.page-title Get Started
+      %p.type-description Registration Process
+    %article.ui-box.step-one
+      = link_to registration_companies_path do
+        .content
+          %h2 Register Company
+          %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
+        %figure
+          = image_tag 'infographics_buildings_company.png'
+    .connector-down
+    %article.ui-box.step-two
+      = link_to new_account_manager_path do
+        .content
+          %h2 Invite Account Manager
+          %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
+        %figure
+          = image_tag 'infographics_business_person_manager.png'
+    .connector-down
+    %article.ui-box.step-three
+      = link_to '#' do
+        .content
+          %h2 Create Business Unit
+          %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
+        %figure
+          = image_tag 'infographics_business_team_unit.png'
+    .connector-down
+    %article.ui-box.step-four
+      = link_to '#' do
+        .content
+          %h2 Assign Unit Roles
+          %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
+        %figure
+          = image_tag 'infographics_unit_role2.png'
+    .connector-down
+    %footer
+      %h1 Registration Complete!
+      %p.type-description Start Hiring Consultants
+- content_for :footer do
+  %footer#main-footer{:role => "contentinfo"}
+    %p.site-credits &copy; 2015 Playground
+
+- content_for :js do
+  = javascript_include_tag "new/main"

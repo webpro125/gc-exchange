@@ -203,6 +203,8 @@ type-* classes make use of the @extend definitions and can be applied independen
     font-size: 5em;
 }
 
+
+
 .type-intro {
     @extend %body-intro;
 }
@@ -245,6 +247,20 @@ type-* classes make use of the @extend definitions and can be applied independen
     &.emphasis {
         color: color(primary);
     }
+}
+
+%type-description {
+    font-size: 1.35rem;
+    line-height: 1.1em;
+}
+
+.type-description {
+    @extend %type-description;
+}
+
+.type-large {
+    font-size: 1.35rem;
+    line-height: 1.1em;
 }
 
 .type-label {
@@ -325,6 +341,11 @@ type-* classes make use of the @extend definitions and can be applied independen
     color: color(alert-information) !important;
 }
 
+.type-black,
+.type-dark {
+    color: color(body-dark);
+}
+
 .username {
     color: color(primary);
 }
@@ -342,7 +363,15 @@ strong {
 }
 
 .align-center {
-    text-align: center;
+    text-align: center !important;
+}
+
+.align-left {
+    text-align: left !important;
+}
+
+.align-right {
+    text-align: right !important;
 }
 
 .sep {
@@ -350,7 +379,37 @@ strong {
     padding: 0 1.5rem;
 }
 
+
 .air {
     padding-top: 2rem;
+}
+
+.air-top-bottom {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+//Specific Typographic Styles
+
+%page-title {
+    font-size: 3rem;
+    line-height: 1.125em;
+    color: color(primary);
+    font-weight: 300;
+}
+.page-title,
+.section-title {
+    @extend %page-title;
+}
+
+.page-description,
+.section-description {
+    font-size: 1.15rem;
+    line-height: 1.5em;
+}
+
+.page-title + .page-description,
+.section-title + .section-description {
+    margin-top: 3rem;
 }
 

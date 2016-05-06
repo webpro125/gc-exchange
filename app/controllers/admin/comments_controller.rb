@@ -1,5 +1,6 @@
 class Admin::CommentsController < CommentsController
   layout 'application_admin'
+  before_action :authenticate_admin!
 
   def index
     super

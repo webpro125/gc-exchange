@@ -1,6 +1,8 @@
 class Admin::ArticlesController < ArticlesController
   layout 'application_admin'
   before_action :load_article, only:[:close_article, :open_article, :destroy]
+  before_action :authenticate_admin!
+
   def index
     super
   end

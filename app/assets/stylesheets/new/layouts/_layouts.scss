@@ -1,0 +1,254 @@
+//General Layouts
+
+.feature-content {
+    & > header {
+        text-align: center;
+        
+        & > h1 {
+            @extend %page-title;
+        }
+        
+        & > h1 + p {
+            color: color(body-dark);
+            margin-top: 0.5rem;
+        }
+    }
+    
+    & > header + article {
+        margin-top: 3rem;
+    }
+    
+    & > article {        
+        & > h1,
+        & > h2 {
+            color: color(primary);
+        }
+        
+        figure {
+            width: 35%;
+            height: auto;
+            
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    
+    article + article {
+        margin-top: 4rem;
+    }
+}
+
+
+//Specific Layouts 
+
+.four-steps-process {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    .connector-down {
+        width: 100%;
+        height: 5rem;
+        margin: 2rem 0 4rem 0;
+        position: relative;
+        
+        &:before,
+        &:after {
+            @extend %before-after-absolute;
+        }
+        
+        &:before {
+            width: 4px;
+            height: 100%;
+            background: #FFF;
+            top: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        &:after {
+            @include rotate(45);
+            width: 2rem;
+            height: 2rem;
+            left: 50%;
+            bottom: 0.5rem;
+            margin-left: -1rem;
+            box-shadow: 4px 4px 0 0 #FFF;
+        }
+    }
+    
+    .ui-box {
+        padding: 4rem 3rem;
+        position: relative;
+        margin-top: 0;
+        transition: all 0.25s ease-out;
+        transition-delay: 0.1s;
+        cursor: pointer;
+        
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .content {
+            display: inline-block;
+            width: 40%;
+            height: auto;
+
+            h2 {
+                color: color(primary);
+                line-height: 1.1em;
+            }
+
+            p {
+                line-height: 1.5em;
+            }
+        }
+        
+        figure {
+            position: absolute;
+        }
+        
+        &:before {
+            @extend %before-after-absolute;
+        }
+        
+        &:before {
+            width: 4rem;
+            height: 4rem;
+            line-height: 4rem;
+            text-align: center;
+            color: #FFF;
+            border-radius: 100%;
+            background: color(primary);
+            top: -2rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+            left: 50%;
+            margin-left: -2rem;
+        }
+        
+        &.step-one {
+            margin-top: 6rem;
+            
+            figure {
+                width: 36%;
+                top: -3rem;
+                right: 2rem;
+            }
+            
+            &:before {
+                content: "1";
+            }
+        }
+        
+        &.step-two {
+            text-align: right;
+            
+            figure {
+                bottom: 2rem;
+                left: 3rem;
+            }
+            
+            .content {
+                text-align: left;
+            }
+            
+            &:before {
+                content: "2";
+            }
+        }
+        
+        &.step-three {
+            
+            figure {
+                width: 48%;
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            &:before {
+                content: "3";
+            }
+        }
+        
+        &.step-four {
+            text-align: right;
+            
+            figure {
+                width: 47%;
+                bottom: -1rem;
+                left: -2rem;
+            }
+            
+            .content {
+                text-align: left;
+            }
+            
+            &:before {
+                content: "4";
+            }
+        }
+        
+        &:hover {
+            @include scale(1.1);
+            transition: transform 0.3s ease-out;
+            box-shadow: 0 3px 1px 0 rgba(color(primary-dark),0.125);
+        }
+    }   
+    
+    footer {
+        margin-top: -2rem;
+        text-align: center;
+        
+        h1 {
+            @extend %page-title;
+        }
+        
+        h1 + p {
+            color: color(body-dark);
+            margin-top: 0.5rem;
+        }
+    }
+    
+    @include responsive($max-width: '1440px') {
+        width: 100%;
+    }
+    
+    @include responsive($max-width: '1280px') {
+        width: 100%;
+        
+        .ui-box {
+            &.step-one {
+                figure {
+                    width: 42%;
+                    top: 2rem;
+                }
+            }
+            
+            &.step-two {
+                figure {
+                    width: 40%;
+                    bottom: 2rem;
+                }
+            }
+            
+            &.step-three {
+                figure {
+                    width: 53%;
+                    right: 0;
+                }
+            }
+            
+            &.step-four {
+                figure {
+                    width: 52%;
+                    bottom: 1rem;
+                }
+            }
+        }
+    }
+}
