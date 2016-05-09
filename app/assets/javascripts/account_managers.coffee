@@ -6,13 +6,6 @@
 #= require autocomplete-rails
 
 $ ->
-  smallObj = $('fieldset.account_manager_phone div.grid-3-12 small')
-  errorObj = "<small class='form-validation message error no-padding'>must be a valid phone number</small>"
-  if smallObj.length
-    smallObj.remove()
-    $('fieldset.account_manager_phone').append(errorObj)
-    $('fieldset.account_manager_phone').addClass('invalid')
-
   $("input#account_manager_avatar").change ->
     read_image(this, 'profile-thumb')
 
@@ -24,6 +17,19 @@ $ ->
     if $(this).val() == ''
       $('input#business_unit_role_first_name').val('')
       $('input#business_unit_role_last_name').val('')
+
+  $('input#account_manager_email').bind 'autocompleteselect', (event, ui) ->
+#    console.log(ui.item.id)
+    $('input#account_manager_first_name').val(ui.item.first_name)
+    $('input#account_manager_last_name').val(ui.item.last_name)
+  .on "change paste keyup", ->
+    if $(this).val() == ''
+      $('input#account_manager_first_name').val('')
+      $('input#account_manager_last_name').val('')
+
+  $('div.icon-email-full').click ->
+    $('div.preview-email-input').fadeToggle('slow')
+  return
 
 read_image = (input, wrapClass) ->
   if input.files && input.files[0]

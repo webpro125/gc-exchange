@@ -1,0 +1,8 @@
+<%= @account_manager.email_content.gsub(/\n/, '<br/>').html_safe %>
+<% unless @password == '' %>
+  And Your account has been created
+  Password is #{@password}
+<% end %>
+<br/>
+<br/>
+Global Consultant Exchange Services (GCES)

@@ -94,8 +94,8 @@ Rails.application.routes.draw do
   get :privacy_policy, to: 'pages#privacy_policy'
   get :profile_completed, to: 'pages#profile_completed'
   get :health_check, to: 'pages#health_check'
-  get 'account_manager_registration/:access_token', to: 'account_managers#register'
-  put 'account_manager_registration/:access_token', to: 'account_managers#do_register', as: :put_register_account_manager
+  get 'create_business_unit/:access_token', to: 'users#register_account_manager'
+  put 'create_business_unit/:access_token', to: 'users#put_account_manager', as: :put_register_account_manager
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
   get 'article/download_attachment/:id', to: 'downloads#download_article_attachment', as: :download_article_attachment
   get 'comment/download_attachment/:id', to: 'downloads#download_comment_attachment', as: :download_comment_attachment

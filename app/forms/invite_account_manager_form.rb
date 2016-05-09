@@ -9,6 +9,7 @@ class InviteAccountManagerForm < Reform::Form
   property :email
   property :user_id
   property :access_token
+  property :email_content
 
   validates :first_name, length: { in: 2..64 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
@@ -21,4 +22,5 @@ class InviteAccountManagerForm < Reform::Form
             :uniqueness => { :case_sensitive => false },
             format: { with: RegexConstants::EMAIL,
                       message: I18n.t('activerecord.errors.messages.regex.email') }
+  validates :email_content, presence: true
 end
