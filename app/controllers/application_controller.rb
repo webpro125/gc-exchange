@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def create_search
+    @new_design ||= false
     if devise_controller?
       @new_design = true
     end

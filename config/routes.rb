@@ -189,7 +189,7 @@ Rails.application.routes.draw do
   resource :account_managers, only: [] do
     member do
       get :assign_business_role
-      put :do_assign_business_role
+      match :do_assign_business_role, via: :all
     end
     get :autocomplete_user_email, :on => :collection
   end

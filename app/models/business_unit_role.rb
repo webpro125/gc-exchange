@@ -10,7 +10,7 @@ class BusinessUnitRole < ActiveRecord::Base
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
 
   validates :email, length: { in: 3..128 }, presence: true,
-            :uniqueness => { :case_sensitive => false },
+            :uniqueness => { :case_sensitive => false,:scope => :account_manager_id },
             format: { with: RegexConstants::EMAIL,
                       message: I18n.t('activerecord.errors.messages.regex.email') }
 end

@@ -1,5 +1,5 @@
 <% model.errors[:base].each do |message| %>
-    <% if @new_design.nil? %>
+    <% if !@new_design %>
         <div class="alert-box alert"><%= message %></div>
     <% else %>
         <div class="ui-notification alert">

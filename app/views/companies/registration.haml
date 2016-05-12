@@ -4,7 +4,7 @@
   %section
     %header.page-intro
       %h1.page-title Register Your Company
-      %h2 Hello Billy!
+      %h2 Hello #{current_user.full_name.split.map(&:capitalize).join(' ')}!
       %p.page-description
         Add brief description here lorem ipsum sit amet quosque tandem set numa consect.
         Ipsum sit amet quosque tandem set numa consect, lorem ipsum sit amet quosque tandem set numa consect..

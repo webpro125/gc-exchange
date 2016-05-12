@@ -25,9 +25,9 @@
   %ul
     %li{class: current_page_active('companies')}
       = link_to 'Register New Company', registration_companies_path
-    %li{class: current_page_active('account_managers')}
-      = link_to 'Invite Account Managers', new_account_manager_path
+    %li{class: current_page_active('account_managers', 'new')}
+      = link_to 'Invite Account Managers', (current_user.owned_company.present? ? new_account_manager_path : '#')
     %li{class: current_page_active('users')}
       = link_to 'Create Business Units', '#'
-    %li
-      = link_to 'Assign Roles', '#'
+    %li{class: current_page_active('account_managers', 'assign_business_role')}
+      = link_to 'Assign Roles', (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '')

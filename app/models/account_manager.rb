@@ -22,4 +22,7 @@ class AccountManager < ActiveRecord::Base
     end
   end
 
+  def is_account_manager?
+    business_unit_name.exists?
+  end
 end

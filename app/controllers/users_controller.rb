@@ -21,13 +21,13 @@ class UsersController < ApplicationController
   def put_account_manager
     @new_design = true
     if @form.validate(register_am_params) && @form.save
-      sign_in(@account_manager.user)
 
       redirect_to assign_business_role_account_managers_path
     else
       render :register_account_manager
     end
   end
+
   private
 
   def load_am_by_token
@@ -36,6 +36,8 @@ class UsersController < ApplicationController
     if @account_manager.blank?
       @error_message = 'Invalid Token'
     elsif @account_manager.phone.blank?
+      sign_in(@account_manager.user)
+
       @form = RegisterAccountManagerForm.new(@account_manager)
     else
       @error_message = 'You already registered'
@@ -45,5 +47,10 @@ class UsersController < ApplicationController
   def register_am_params
     params.require(:account_manager).permit(:business_unit_name, :phone, :cell_area_code,
                                             :cell_prefix, :cell_line)
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
   end
 end

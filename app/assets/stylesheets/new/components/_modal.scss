@@ -6,17 +6,17 @@
     top: 0;
     left: 0;
     z-index: 9999999;
-    background: rgba(#000,0.35);
+    background: rgba(#000,0.45);
 
     .modal-box {
         @include translate(-50%, -50%);
         @extend %ui-modal;
-        display: inline-block;
+        display: table-cell;
         width: 60%;
         height: auto;
         min-height: rem(300px);
         max-height: 90%;
-        padding: rem(100px) 0 1.5rem 0;
+        padding: rem(120px) 3rem 3rem 3rem;
         box-sizing: border-box;
         position: absolute;
         top: 50%;
@@ -27,9 +27,11 @@
     
     .modal-scroller {
         display: block;
-        width: 120%;
+        width: 115%;
         height: auto;
-        padding-right: 20%;
+        max-height: 80vh;
+        padding-right: 15%;
+        padding-bottom: 6rem;
         overflow-y: auto;
         box-sizing: border-box;
     }
@@ -89,24 +91,57 @@
         width: 100%;
         height: auto;
         box-sizing: border-box;
-        padding: 2rem 0.5rem 2rem 2rem;
         margin: 0;
         line-height: 1;
-    }
-    
-    &.is-open {
-        display: block;
-    }
-    
-    @include responsive($media: 'phone-tablet') {
-        .modal-box {
-            width: 80%;
+        
+        .ui-card {
+            padding: 0;
+            background: none;
         }
     }
     
-    @include responsive($media: 'phone') {
+    &.is-open {
+        display: table;
+    }
+    
+    @include responsive($media: 'tablet-portrait') {
+        .modal-box {
+            width: 80%;
+            padding: rem(120px) 2.5rem 2.5rem 2.5rem;
+        }
+        
+        header {
+            padding: 0 1.5rem;
+        }
+    }
+    
+    @include responsive($media: 'tablet-small') {
         .modal-box {
             width: 85%;
+            padding: rem(90px) 2.25rem 2.25rem 2.25rem;
+        }
+        
+         header {
+            height: rem(60px);
+            padding: 0 1.25rem;
+
+            h1 {
+                font-size: 1.125rem;
+                line-height: rem(60px);
+            }
+        }
+    }
+    
+    @include responsive($media: 'phone-landscape') {
+        .modal-box {
+            width: 90%;
+            padding: rem(90px) 2rem 2rem 2rem;
+        }
+    }
+    
+    @include responsive($media: 'phone-portrait') {
+        .modal-box {
+            width: 100%;
         }
     }
 }

@@ -31,7 +31,7 @@
           = image_tag 'infographics_buildings_company.png'
     .connector-down
     %article.ui-box.step-two
-      = link_to new_account_manager_path do
+      = link_to (current_user.owned_company.present? ? new_account_manager_path : '#') do
         .content
           %h2 Invite Account Manager
           %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
@@ -47,7 +47,7 @@
           = image_tag 'infographics_business_team_unit.png'
     .connector-down
     %article.ui-box.step-four
-      = link_to '#' do
+      = link_to (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '') do
         .content
           %h2 Assign Unit Roles
           %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.

@@ -69,9 +69,13 @@ module ApplicationHelper
     wizard_path == create_profile_path(wizard_step) ? 'current' : 'unavailable'
   end
 
-  def current_page_active controller
+  def current_page_active controller, action = ''
     class_name = ''
-    class_name = 'active is-active' if params[:controller].to_s == controller
+    if action == ''
+      class_name = 'active is-active' if params[:controller].to_s == controller
+    else
+      class_name = 'active is-active' if params[:controller].to_s == controller && action == params[:action]
+    end
     class_name
   end
 
@@ -126,7 +130,7 @@ module ApplicationHelper
 
   end
   def style_path name
-    if @new_design.nil?
+    if !@new_design
       name
     else
       name + '_new'

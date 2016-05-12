@@ -1,5 +1,5 @@
 class AccountManagersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:autocomplete_user_email]
   before_action :load_current_am, except: [:new, :create]
   before_action :load_owned_company, only: [:new, :create]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
@@ -68,10 +68,13 @@ class AccountManagersController < ApplicationController
       end
       @unit_role.user_id = user.id
     end
-
-    if @unit_role.save
-      redirect_to assign_business_role_account_managers_path, notice: t('controllers.account_manager.assign_role.success')
-    else render :assign_business_role
+      if @unit_role.save
+        # format.html { redirect_to assign_business_role_account_managers_path, notice: t('controllers.account_manager.assign_role.success') }
+        flash[:notice] = t('controllers.account_manager.assign_role.success')
+        render json: @unit_role, status: :ok, notice: t('controllers.account_manager.assign_role.success')
+      else
+        # format.html { render :assign_business_role }
+        render json: @unit_role.errors, status: :unprocessable_entity
     end
   end
 
@@ -88,10 +91,11 @@ class AccountManagersController < ApplicationController
 
   def load_current_am
     @account_manager = current_user.account_manager
-    if @account_manager.blank?
+    unless @account_manager.present?
       redirect_to root_path, flash: {alert: 'You have no permission to access that page'}
     end
     @unit_roles = @account_manager.business_unit_roles
+    @owned_company = @account_manager.company
   end
 
   def load_owned_company

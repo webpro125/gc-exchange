@@ -28,4 +28,17 @@
 //= require date-range
 //= require widgets
 //= require entities
-//= require bootstrap.min
+//= require new/bootstrap.min
+//= require new/lodash.min
+//= require new/cm.accordian
+//= require new/cm.input
+//= require new/cm.popover
+//= require new/cm.toggle
+//= require new/cm.workflow
+//= require new/main
+
+$(function() {
+    $('.action-close').click(function() {
+        $(this).closest('div.ui-notification').remove();
+    })
+});
