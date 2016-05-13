@@ -61,6 +61,7 @@ GEM
       sass (~> 3.0)
       slim (>= 1.3.6, < 3.0)
       terminal-table (~> 1.4)
+    breadcrumbs_on_rails (2.3.1)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -549,6 +550,7 @@ DEPENDENCIES
   binding_of_caller (~> 0.7.2)
   bootstrap-datepicker-rails (~> 1.5)
   brakeman (~> 2.6.2)
+  breadcrumbs_on_rails
   byebug (~> 3.5)
   capybara (~> 2.4)
   carrierwave (~> 0.10.0)

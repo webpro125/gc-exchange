@@ -53,6 +53,7 @@ gem 'roadie-rails', '~> 1.0'
 gem 'compass-rails'
 gem 'rails-jquery-autocomplete', '~> 1.0', '>= 1.0.3'
 
+gem 'breadcrumbs_on_rails'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

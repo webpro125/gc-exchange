@@ -21,9 +21,10 @@
 //= require jquery-ui/widget
 //= require jquery-ui/mouse
 //= require jquery-ui/position
+//= require moment
+//= require date-range
 //= require select2
 //= require widgets
-
 
 $(document).ready(function() {
     $('select, .select2').select2Dropdown();

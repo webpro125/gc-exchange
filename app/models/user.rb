@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   # validates :company, presence: true
 
+  scope :consultants, -> { joins(consultant: :approved_status).merge(ApprovedStatus.where(code: ApprovedStatus::APPROVED[:code])) }
+  scope :client_companies, -> { joins(:owned_company) }
+
   def company_present
     self.company = owned_company if owned_company.present?
   end

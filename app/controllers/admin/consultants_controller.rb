@@ -1,6 +1,8 @@
 class Admin::ConsultantsController < ApplicationController
   layout 'application_admin'
   before_action :authenticate_admin!
+  add_breadcrumb 'Consultants', :admin_consultants_path
+
   def index
     @consultants_grid = initialize_grid(Consultant,
                                        order: 'created_at',
@@ -19,6 +21,7 @@ class Admin::ConsultantsController < ApplicationController
 
   def show
     @consultant = Consultant.find(params[:id])
+    add_breadcrumb @consultant.full_name
     @form = UploadResumeForm.new(@consultant)
   end
 

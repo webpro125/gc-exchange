@@ -1,0 +1,33 @@
+- body_class('admin-report-users-page')
+- page_title 'General User Metrics'
+
+.wrapper.wrapper-content.animated.fadeInRight
+  .ibox-content.report
+    #cumulative-login-chart{:style => "height: 300px;"}
+    .report-toolbar.clearfix
+      .btn-group.pull-left
+        %button#offset-minus.btn.btn-primary ←
+        %button#offset-plus.btn.btn-primary →
+      .pull-right.filter-types
+        .dropdown
+          %button#filter-types-btn.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
+            %span#filter-label day
+            %span.caret
+          %ul#drop-filter-types.dropdown-menu.pull-right{"aria-hidden" => "true"}
+            %li
+              %a{"data-filter" => "day", :href => "#"} day
+            %li
+              %a{"data-filter" => "week", :href => "#"} week
+            %li
+              %a{"data-filter" => "month", :href => "#"} month
+            %li
+              %a{"data-filter" => "quarter", :href => "#"} quarter
+            %li
+              %a{"data-filter" => "year", :href => "#"} year
+      %h2#date-range
+    %hr/
+    .report-data
+      #user-login-chart{:style => "height: 300px;"}
+      #user-account-chart{:style => "height: 300px;"}
+      #loading.loading-indicator
+        %span.spinner

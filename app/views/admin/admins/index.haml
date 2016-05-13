@@ -1,36 +1,34 @@
-= render :partial => 'admin/navbar'
-#page-wrapper.gray-bg
-  = render :partial => 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'index'}
-  .row.m-t-lg
-    = link_to new_admin_admin_path, :class => 'btn btn-sm btn-info pull-right m-r-sm' do
-      %i.fa.fa-plus
-      Add Admin
+- page_title 'Manage Admin Users'
 
-  .row
-    .wrapper.wrapper-content.animated.fadeInRight
-      .ibox.float-e-margins
-        .ibox-title
-          %h5 Manage Admin Users
-        .ibox-content
-          %table.table
-            %thead
+.row.m-t-lg
+  = link_to new_admin_admin_path, :class => 'btn btn-sm btn-info pull-right m-r-sm' do
+    %i.fa.fa-plus
+    Add Admin
+
+.row
+  .wrapper.wrapper-content.animated.fadeInRight
+    .ibox.float-e-margins
+      .ibox-title
+        %h5 Manage Admin Users
+      .ibox-content
+        %table.table
+          %thead
+            %tr
+              %th Full Name
+              %th Email
+              %th Added Date
+              %th Action
+          %tbody
+            - @admins.each do |admin|
               %tr
-                %th Full Name
-                %th Email
-                %th Added Date
-                %th Action
-            %tbody
-              - @admins.each do |admin|
-                %tr
-                  %td= admin.full_name
-                  %td= admin.email
-                  %td= admin.created_at.to_date
-                  %td
-                    = link_to edit_admin_admin_path(admin), :class => 'btn btn-xs btn-warning' do
-                      %i.fa.fa-edit
-                      Edit
-                    = link_to admin_admin_path(admin), method: :delete, :class => 'btn btn-xs btn-danger',
-                      data: { confirm: t('views.company.confirmations.delete') } do
-                      %i.fa.fa-trash-o
-                      Delete
+                %td= admin.full_name
+                %td= admin.email
+                %td= admin.created_at.to_date
+                %td
+                  = link_to edit_admin_admin_path(admin), :class => 'btn btn-xs btn-warning' do
+                    %i.fa.fa-edit
+                    Edit
+                  = link_to admin_admin_path(admin), method: :delete, :class => 'btn btn-xs btn-danger',
+                    data: { confirm: t('views.company.confirmations.delete') } do
+                    %i.fa.fa-trash-o
+                    Delete

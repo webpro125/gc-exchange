@@ -1,6 +1,7 @@
 class Admin::ProjectsController < ApplicationController
   layout 'application_admin'
   before_action :authenticate_admin!
+  add_breadcrumb 'Offers', :admin_projects_path
 
   def index
     @projects = Project.order(created_at: :desc)

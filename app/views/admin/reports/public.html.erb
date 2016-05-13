@@ -1,0 +1,98 @@
+<% body_class('report-public-page') %>
+<% page_title 'Public Web Page Metrics Captured from Traffic External of Portal' %>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="ibox-content report">
+    <% if GA_API_CLIENT.present? %>
+      <h2 class="text-right">
+        <div id="report-range" style="cursor: pointer;">
+          <i class="fa fa-calendar"></i>&nbsp;
+          <span></span><b class="caret"></b>
+        </div>
+      </h2>
+
+      <hr>
+
+      <div class="row report-data">
+        <h3 id="alert-message" class="text-center">
+          <span class="warning label">Please check google analytics configuration</span>
+        </h3>
+        <h2 class="text-center">Page Visit Metrics</h2>
+        <div id="detail-session-graph" style="height: 200px; display: none;"></div>
+        <div class="col-sm-4">
+          <div class="panel panel-primary text-center expandable" data-type="pageviews">
+            <div class="panel-body">
+              <h2 id="total-pageviews">0</h2>
+              <p>Total Page Views</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="panel panel-primary text-center expandable" data-type="avg_session_duration">
+            <div class="panel-body">
+              <h2 id="avg-session-duration">0</h2>
+              <p>Avg. Session Duration</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="panel panel-primary text-center expandable" data-type="pages_per_session">
+            <div class="panel-body">
+              <h2 id="page-per-session">0</h2>
+              <p>Pages per Session</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-center">Session Metrics</h2>
+        <div class="col-sm-4">
+          <div class="panel panel-primary text-center">
+            <div class="panel-body">
+              <div id="sessions-per-device" class="dimension-pie-chart"></div>
+              <p>Sessions per Device: <strong id="sessions-per-device-total"></strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="panel panel-primary text-center">
+            <div class="panel-body">
+              <div id="sessions-in-bound" class="dimension-pie-chart"></div>
+              <p>Source of In-Bound: <strong id="sessions-in-bound-total"></strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="panel panel-primary text-center">
+            <div class="panel-body">
+              <div id="sessions-per-browser" class="dimension-pie-chart"></div>
+              <p>Sessions per Browser: <strong id="sessions-per-browser-total"></strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="panel panel-primary text-center">
+            <div class="panel-body">
+              <div id="sessions-per-country"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="panel panel-primary text-center">
+            <div class="panel-body">
+              <div id="sessions-per-city"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="loading" class="loading-indicator">
+          <span class="spinner"></span>
+        </div>
+      </div>
+    <% else %>
+      <h2>Please set-up google analytics to get visits metrics.</h2>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>

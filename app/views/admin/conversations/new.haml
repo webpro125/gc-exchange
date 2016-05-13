@@ -1,14 +1,12 @@
-= render 'admin/navbar'
-#page-wrapper.gray-bg
-  = render 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'add'}
-  .row
-    .wrapper.wrapper-content.animated.fadeInRight
-      = link_to admin_consultant_path(@consultant), :class => 'btn btn-sm btn-info pull-right m-b' do
-        %i.fa.fa-long-arrow-left
-        Back
-      .ibox.float-e-margins
-        .ibox-title
-          %h5 New Message
-        .ibox-content
-          = render :partial => 'form'
+- page_title 'New Message'
+
+.row
+  .wrapper.wrapper-content.animated.fadeInRight
+    = link_to admin_consultant_path(@consultant), :class => 'btn btn-sm btn-info pull-right m-b' do
+      %i.fa.fa-long-arrow-left
+      Back
+    .ibox.float-e-margins
+      .ibox-title
+        %h5 New Message
+      .ibox-content
+        = render :partial => 'form'

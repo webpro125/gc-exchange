@@ -5,6 +5,7 @@ class Metric < ActiveRecord::Base
   scope :logins, -> { where(metric_type: LOGIN) }
   scope :searches, -> { where(metric_type: SEARCH) }
   scope :consultants, -> { where(loggable_type: 'Consultant') }
+  scope :companies, -> { where(loggable_type: 'Company') }
   scope :users, -> { where(loggable_type: 'User') }
 
   QUERY_METRICS = {
@@ -32,7 +33,13 @@ class Metric < ActiveRecord::Base
 
   def self.log_login(user)
     metric = Metric.new metric_type: LOGIN
-    metric.loggable = user
+    if user.consultant && user.consultant.approved?
+      metric.loggable = user.consultant
+    elsif user.owned_company
+      metric.loggable = user.owned_company
+    else
+      metric.loggable = user
+    end
     metric.save
   end
 

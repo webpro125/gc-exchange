@@ -1,13 +1,11 @@
-class ReportsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :verify_gces
+class Admin::ReportsController < Admin::BaseController
   before_filter :get_date_range
 
-  def visits
+  def public
     respond_to do |format|
       format.html {}
       format.json do
-        render json: ReportBuilder.new(@from, @to, @filter).visits_metrics
+        render json: ReportBuilder.new(@from, @to, @filter).public_metrics
       end
     end
   end
@@ -17,6 +15,24 @@ class ReportsController < ApplicationController
       format.html {}
       format.json do
         render json: ReportBuilder.new(@from, @to, @filter).consultant_metrics
+      end
+    end
+  end
+
+  def general_user
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: ReportBuilder.new(@from, @to, @filter).general_user_metrics
+      end
+    end
+  end
+
+  def company
+    respond_to do |format|
+      format.html {}
+      format.json do
+        render json: ReportBuilder.new(@from, @to, @filter).company_metrics
       end
     end
   end
@@ -31,10 +47,6 @@ class ReportsController < ApplicationController
   end
 
   private
-
-  def verify_gces
-    authorize :report, :index?
-  end
 
   def get_date_range
     @from = params[:from] || Date.today.to_s

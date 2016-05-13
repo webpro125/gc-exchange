@@ -1,0 +1,58 @@
+%nav.navbar-default.navbar-static-side{"role"=> "navigation"}
+  .sidebar-collapse
+    %ul#side-menu.nav
+      - if admin_signed_in?
+        %li.nav-header
+          .dropdown.profile-element
+            %span
+              = image_tag 'missing.png', :class => 'img-circle'
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.clear
+                %span.block.m-t-xs
+                  %strong.font-bold= current_admin.full_name
+            %ul.dropdown-menu.animated.fadeInRight.m-t-xs
+              %li
+                %a{:href=>"#"}  Logout
+          .logo-element
+            | IN+
+      %li{:class => current_page_active('admin/dashboard')}
+        = link_to admin_dashboard_index_path do
+          %i.fa.fa-th-large
+          %span.nav-label Dashboard
+      %li{:class => current_page_active('admin/consultants')}
+        = link_to admin_consultants_path do
+          %i.fa.fa-user
+          %span.nav-label Consultants
+      %li{:class => current_page_active('admin/companies')}
+        = link_to admin_companies_path do
+          %i.fa.fa-building
+          %span.nav-label Companies
+      %li{:class => current_page_active('admin/admins')}
+        = link_to admin_admins_path do
+          %i.fa.fa-sitemap
+          %span.nav-label Admin Users
+      %li{:class => current_page_active('admin/projects')}
+        = link_to admin_projects_path do
+          %i.fa.fa-delicious
+          %span.nav-label Offers
+      - if admin_signed_in?
+        %li{:class => current_page_active('admin/conversations')}
+          = link_to admin_conversations_path do
+            %i.fa.fa-envelope
+            %span.nav-label Messages
+            %span.label.label-warning.m-l-xs= mailbox.inbox(:read => false).count(:id, :distinct => true).to_s
+      %li{:class => current_page_active('admin/articles')}
+        = link_to admin_articles_path do
+          %i.fa.fa-comments
+          %span.nav-label Blog
+      %li{:class => current_page_active('admin/reports')}
+        = link_to '#' do
+          %i.fa.fa-bar-chart-o
+          %span.nav-label Reports
+          %span.fa.arrow
+        %ul.nav.nav-second-level
+          %li= link_to 'Public Web Metrics', public_admin_reports_path
+          %li= link_to 'General User Metrics', general_user_admin_reports_path
+          %li= link_to 'Consultants Metrics', consultant_admin_reports_path
+          %li= link_to 'Client Company Metrics', company_admin_reports_path
+          %li= link_to 'Trending Searches', search_admin_reports_path

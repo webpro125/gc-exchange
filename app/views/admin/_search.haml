@@ -1,6 +1,0 @@
-= simple_form_for @search, url: admin_search_path, method: :get, html: { class: "navbar-form-custom no-margins"},
-  wrapper: :vertical_form,
-  wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
-    = f.input :q, label: false, hint: false, placeholder: 'Search Cosultants'
-    .form-group.submit-wrap
-        = f.button :submit, class: 'search-submit-button btn btn-default'

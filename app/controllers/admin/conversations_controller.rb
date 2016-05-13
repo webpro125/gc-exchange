@@ -6,6 +6,8 @@ class Admin::ConversationsController < ApplicationController
   helper_method :mailbox, :conversation
   layout 'application_admin'
 
+  add_breadcrumb 'Messages', :admin_conversations_path
+
   def index
     if @box.eql? "inbox"
       @conversations ||= mailbox.inbox.page(params[:page])
@@ -17,6 +19,7 @@ class Admin::ConversationsController < ApplicationController
   end
 
   def new
+    add_breadcrumb 'New Message'
     @form = ConversationForm.new(Message.new)
   end
 
@@ -37,6 +40,7 @@ class Admin::ConversationsController < ApplicationController
     @message    = Message.new
     # @consultant = conversation.consultant_recipient
     conversation
+    add_breadcrumb @conversation.subject
     @conversation.mark_as_read(current_admin)
   end
 

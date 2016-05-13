@@ -1,0 +1,43 @@
+<% body_class('admin-report-consultants-page') %>
+<% page_title 'Consultant Metrics' %>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="ibox-content report">
+    <div id="cumulative-login-chart" style="height: 300px;"></div>
+
+    <div class="report-toolbar clearfix">
+      <div class="btn-group pull-left">
+        <button class="btn btn-primary" id="offset-minus">&#8592;</button>
+        <button class="btn btn-primary" id="offset-plus">&#8594;</button>
+      </div>
+
+      <div class="pull-right filter-types">
+        <div class="dropdown">
+          <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" id="filter-types-btn">
+            <span id="filter-label">day</span>
+            <span class="caret"></span>
+          </button>
+          <ul id="drop-filter-types" class="dropdown-menu pull-right" aria-hidden="true">
+            <li><a href="#" data-filter="day">day</a></li>
+            <li><a href="#" data-filter="week">week</a></li>
+            <li><a href="#" data-filter="month">month</a></li>
+            <li><a href="#" data-filter="quarter">quarter</a></li>
+            <li><a href="#" data-filter="year">year</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 id="date-range"></h2>
+    </div>
+
+    <hr>
+
+    <div class="report-data">
+      <div id="consultant-login-chart" style="height: 300px;"></div>
+      <div id="consultant-account-chart" style="height: 300px;"></div>
+      <div id="loading" class="loading-indicator">
+        <span class="spinner"></span>
+      </div>
+    </div>
+  </div>
+</div>

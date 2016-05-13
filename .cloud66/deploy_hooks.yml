@@ -3,8 +3,24 @@ production: # Environment
     - snippet: cloud66/wkhtmltopdf # Hook type
       target: rails # Hook fields
       execute: true
+  after_symlink:
+    - source: /.cloud66/sym_links.sh
+      destination: /tmp/sym_links.sh
+      target: rails
+      execute: true
+      sudo: true
+      apply_during: all
+      run_on: all_servers
 staging: # Environment
   first_thing: # Hook point
     - snippet: cloud66/wkhtmltopdf # Hook type
       target: rails # Hook fields
       execute: true
+  after_symlink:
+    - source: /.cloud66/sym_links.sh
+      destination: /tmp/sym_links.sh
+      target: rails
+      execute: true
+      sudo: true
+      apply_during: all
+      run_on: all_servers

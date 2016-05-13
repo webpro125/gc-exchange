@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 = render 'admin/navbar'
 #page-wrapper.gray-bg
   = render 'admin/topbar'
@@ -52,3 +53,35 @@
                        :class => 'btn btn-xs btn-danger' do
                         %i.fa.fa-trash-o
                         Delete
+=======
+- page_title 'Invite Account Manager'
+
+.row
+  .wrapper.wrapper-content.animated.fadeInRight
+    = link_to admin_companies_path, :class => 'btn btn-sm btn-info pull-right m-b' do
+      %i.fa.fa-long-arrow-left
+      Back
+    .ibox.float-e-margins
+      .ibox-title
+        %h5.m-b Invite Account Manager
+      .ibox-content
+        = simple_form_for [:admin, @company],
+          wrapper: :vertical_form, url: send_invite_admin_company_path(@company), method: :put do |f|
+          - if @company.first_name.blank?
+            .alert.alert-danger
+              Please fill out all required fields of company
+          = f.error_notification
+          %h3 Company Name: #{@company.company_name}
+          = f.simple_fields_for :invite_user do |e|
+            .row
+              .col-md-6
+                = e.input :first_name, label: false, placeholder: 'First Name'
+              .col-md-6
+                = e.input :last_name, label: false, placeholder: 'Last Name'
+            = e.input :email, label:false, placeholder: 'Email'
+          .hr-line-dashed
+          .form-group
+            = button_tag(type: 'submit', class: "btn btn-primary") do
+              %i.fa.fa-check-circle
+              Send Invite
+>>>>>>> origin/staging

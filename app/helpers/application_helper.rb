@@ -82,11 +82,11 @@ module ApplicationHelper
   def mailbox
     if user_signed_in?
       logged_user = current_user
-    else
+    elsif admin_signed_in?
       logged_user = current_admin
     end
 
-    @mailbox ||= logged_user.mailbox
+    @mailbox ||= logged_user.mailbox if logged_user
   end
 
   def pundit_user
