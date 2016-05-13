@@ -64,6 +64,9 @@ class CompaniesController < CompanyController
     @requested_company = RequestedCompany.new(request_company_params)
     @requested_company.user_id = current_user.id
     if @requested_company.save
+      Admin.all.each {|admin|
+        CompanyMailer.company_requested(@requested_company, admin).deliver
+      }
       redirect_to root_path, notice: t('controllers.company.request_register.success')
     else
       render :registration

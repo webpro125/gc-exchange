@@ -28,7 +28,8 @@ class CompanyMailer < ActionMailer::Base
     mail(subject: 'Company Account is created', to:company.owner.email)
   end
 
-  def company_requested(company)
-    @company = company
+  def company_requested(requested_company, admin)
+    @requested_company = requested_company
+    mail(subject: 'Company Creation is Requested', to:admin.email)
   end
 end
