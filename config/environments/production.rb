@@ -1,4 +1,5 @@
 require 'uglifier'
+require 'pry'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -64,7 +65,7 @@ Rails.application.configure do
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   config.assets.precompile << proc do |path|
     if path =~ /\.(css|js)\z/
-      full_path = Rails.application.assets.resolve(path).to_path
+      full_path = Rails.application.assets.resolve(path)
       app_assets_path = Rails.root.join('app', 'assets').to_path
       vendor_assets_path = Rails.root.join('vendor', 'assets').to_path
 
