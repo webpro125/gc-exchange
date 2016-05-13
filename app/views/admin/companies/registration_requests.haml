@@ -1,29 +1,26 @@
-= render 'admin/navbar'
-#page-wrapper.gray-bg
-  = render 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'Registration Requests of General user'}
-  .row
-    .wrapper.wrapper-content.animated.fadeInRight
-      = link_to admin_companies_path, :class => 'btn btn-sm btn-info pull-right m-b' do
-        %i.fa.fa-long-arrow-left
-        Back
-      .ibox.float-e-margins
-        .ibox-title
-          %h5 Requests
-        .ibox-content
-          %table.table
-            %thead
+- page_title 'Registration Requests of General user'
+.row
+  .wrapper.wrapper-content.animated.fadeInRight
+    = link_to admin_companies_path, :class => 'btn btn-sm btn-info pull-right m-b' do
+      %i.fa.fa-long-arrow-left
+      Back
+    .ibox.float-e-margins
+      .ibox-title
+        %h5 Requests
+      .ibox-content
+        %table.table
+          %thead
+            %tr
+              %th User Name
+              %th Company Name
+              %th Work Phone
+              %th Cell Phone
+              %th Requested Date
+          %tbody
+            - @requests.each do |request|
               %tr
-                %th User Name
-                %th Company Name
-                %th Work Phone
-                %th Cell Phone
-                %th Requested Date
-            %tbody
-              - @requests.each do |request|
-                %tr
-                  %td= request.user.full_name
-                  %td= request.company_name
-                  %td= request.work_phone
-                  %td= request.cell_phone
-                  %td= request.created_at.to_date
+                %td= request.user.full_name
+                %td= request.company_name
+                %td= request.work_phone
+                %td= request.cell_phone
+                %td= request.created_at.to_date

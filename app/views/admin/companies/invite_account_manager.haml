@@ -1,59 +1,4 @@
-= render 'admin/navbar'
-#page-wrapper.gray-bg
-  = render 'admin/topbar'
-  = render :partial => 'header', :locals => { :mode => 'Invite Account Manager'}
-  .row
-    .wrapper.wrapper-content.animated.fadeInRight
-      = link_to admin_companies_path, :class => 'btn btn-sm btn-info pull-right m-b' do
-        %i.fa.fa-long-arrow-left
-        Back
-      .ibox.float-e-margins
-        .ibox-title
-          %h5.m-b Invite Account Manager
-        .ibox-content
-          = simple_form_for [:admin, @form],
-            wrapper: :vertical_form, url: send_invite_admin_company_path(@company), method: :put do |f|
-            - if @company.first_name.blank?
-              .alert.alert-danger
-                Please fill out all required fields of company
-            = f.error_notification
-            %h3 Company Name: #{@company.company_name}
-            = f.input :email, label:false, placeholder: 'Email',
-               :url => autocomplete_user_email_admin_companies_path, :as => :autocomplete
-            .row
-              .col-md-6
-                = f.input :first_name, label: false, placeholder: 'First Name'
-              .col-md-6
-                = f.input :last_name, label: false, placeholder: 'Last Name'
-            .hr-line-dashed
-            .form-group
-              = button_tag(type: 'submit', class: "btn btn-primary") do
-                %i.fa.fa-check-circle
-                Send Invite
-      .ibox.float-e-margins
-        .ibox-title
-          %h5 Account Managers
-        .ibox-content
-          %table.table
-            %thead
-              %tr
-                %th Full Name
-                %th Added Date
-                %th Action
-            %tbody
-              - @account_managers.each do |am|
-                - if am.persisted?
-                  %tr
-                    %td= am.full_name
-                    %td= am.created_at.to_date
-                    %td
-                      = link_to destroy_account_manager_admin_company_path(am), method: :delete,
-                       data: { confirm: t('views.company.confirmations.delete') },
-                       :class => 'btn btn-xs btn-danger' do
-                        %i.fa.fa-trash-o
-                        Delete
 - page_title 'Invite Account Manager'
-
 .row
   .wrapper.wrapper-content.animated.fadeInRight
     = link_to admin_companies_path, :class => 'btn btn-sm btn-info pull-right m-b' do
@@ -63,22 +8,44 @@
       .ibox-title
         %h5.m-b Invite Account Manager
       .ibox-content
-        = simple_form_for [:admin, @company],
+        = simple_form_for [:admin, @form],
           wrapper: :vertical_form, url: send_invite_admin_company_path(@company), method: :put do |f|
           - if @company.first_name.blank?
             .alert.alert-danger
               Please fill out all required fields of company
           = f.error_notification
           %h3 Company Name: #{@company.company_name}
-          = f.simple_fields_for :invite_user do |e|
-            .row
-              .col-md-6
-                = e.input :first_name, label: false, placeholder: 'First Name'
-              .col-md-6
-                = e.input :last_name, label: false, placeholder: 'Last Name'
-            = e.input :email, label:false, placeholder: 'Email'
+          = f.input :email, label:false, placeholder: 'Email',
+             :url => autocomplete_user_email_admin_companies_path, :as => :autocomplete
+          .row
+            .col-md-6
+              = f.input :first_name, label: false, placeholder: 'First Name'
+            .col-md-6
+              = f.input :last_name, label: false, placeholder: 'Last Name'
           .hr-line-dashed
           .form-group
             = button_tag(type: 'submit', class: "btn btn-primary") do
               %i.fa.fa-check-circle
               Send Invite
+    .ibox.float-e-margins
+      .ibox-title
+        %h5 Account Managers
+      .ibox-content
+        %table.table
+          %thead
+            %tr
+              %th Full Name
+              %th Added Date
+              %th Action
+          %tbody
+            - @account_managers.each do |am|
+              - if am.persisted?
+                %tr
+                  %td= am.full_name
+                  %td= am.created_at.to_date
+                  %td
+                    = link_to destroy_account_manager_admin_company_path(am), method: :delete,
+                     data: { confirm: t('views.company.confirmations.delete') },
+                     :class => 'btn btn-xs btn-danger' do
+                      %i.fa.fa-trash-o
+                      Delete

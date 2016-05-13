@@ -1,11 +1,8 @@
 class Admin::CompaniesController < Admin::CompanyController
   before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email,
                                    :destroy_account_manager, :registration_requests]
-  autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
-  before_action :set_company, except: [:index, :new, :create]
   add_breadcrumb 'Companies', :admin_companies_path
-
-
+  autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
   def index
     @companies = Company.all
   end
@@ -78,7 +75,6 @@ class Admin::CompaniesController < Admin::CompanyController
     @form = InviteAccountManagerForm.new(account_manager)
 
     add_breadcrumb 'Invite Account Manager'
-    @company.build_invite_user unless @company.invite_user.present?
   end
 
   def send_invite

@@ -152,6 +152,9 @@ en:
     account_manager:
       assign_role:
         success: 'One user role was successfully assigned.'
+      business_unit:
+        create:
+          success: 'You created Business Unit successfully.'
   views:
     consultant:
       actions:
