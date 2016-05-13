@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 = render 'admin/navbar'
 #page-wrapper.gray-bg
   = render 'admin/topbar'
@@ -10,9 +9,7 @@
           :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'open'
         = link_to 'Open Question', open_article_admin_article_path(@article), method: :put,
           :class => 'btn btn-sm btn-success pull-left m-b' if @article.status == 'closed'
-=======
 - page_title 'Questions and Answers'
->>>>>>> origin/staging
 
 .wrapper.wrapper-content.animated.fadeInRight.article
   .row
@@ -91,7 +88,6 @@
           - if @article.status == 'open'
             .row
               .col-md-12
-<<<<<<< HEAD
                 - @comments.each do |comment|
                   .social-feed-box
                     .social-avatar
@@ -130,22 +126,3 @@
   $ ->
     $("div#attach_file").each (index, element) ->
       attachment.dropzone_define(element)
-=======
-                .social-feed-box
-                  .social-avatar
-                    %p.pull-left
-                      = image_tag 'missing.png'
-                    .media-body
-                      %p.m-t.m-b-none
-                        You
-                  .social-body
-                    = simple_form_for [:admin, @article, @comment], wrapper: :vertical_form do |f|
-                      = f.error_notification
-                      = render 'shared/base_error', model: @article
-                      .form-inputs
-                        = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
-                        = f.simple_fields_for :comment_attachments do |c|
-                          = c.input :attach, label: 'Attach Files', input_html: {:multiple => true, name: "comment_attachments[attach][]"}
-                      .form-actions
-                        = f.button :submit, class: 'btn btn-primary'
->>>>>>> origin/staging

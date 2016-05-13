@@ -1,11 +1,9 @@
 class Admin::ArticlesController < ArticlesController
   layout 'application_admin'
   before_action :load_article, only:[:close_article, :open_article, :destroy]
-<<<<<<< HEAD
   before_action :authenticate_admin!
-=======
   add_breadcrumb 'Blog', :admin_articles_path
->>>>>>> origin/staging
+
 
   def index
     super

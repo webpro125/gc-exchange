@@ -65,12 +65,10 @@ Rails.application.routes.draw do
       end
     end
 
-<<<<<<< HEAD
     resources :comments do
       get :load_comment
     end
 
-=======
     resources :reports, only: [] do
       collection do
         get :consultant
@@ -80,7 +78,6 @@ Rails.application.routes.draw do
         get :company
       end
     end
->>>>>>> origin/staging
   end
 
   scope :admin do

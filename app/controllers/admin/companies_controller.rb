@@ -1,12 +1,10 @@
 class Admin::CompaniesController < Admin::CompanyController
-<<<<<<< HEAD
   before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email,
                                    :destroy_account_manager, :registration_requests]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
-=======
   before_action :set_company, except: [:index, :new, :create]
   add_breadcrumb 'Companies', :admin_companies_path
->>>>>>> origin/staging
+
 
   def index
     @companies = Company.all
@@ -74,16 +72,13 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def invite_account_manager
-<<<<<<< HEAD
     @account_managers = @company.account_managers
     account_manager = @company.account_managers.build
 
     @form = InviteAccountManagerForm.new(account_manager)
 
-=======
     add_breadcrumb 'Invite Account Manager'
     @company.build_invite_user unless @company.invite_user.present?
->>>>>>> origin/staging
   end
 
   def send_invite
@@ -119,7 +114,6 @@ class Admin::CompaniesController < Admin::CompanyController
     end
   end
 
-<<<<<<< HEAD
   def destroy_account_manager
     am = AccountManager.find(params[:id])
     company = am.company
@@ -133,8 +127,7 @@ class Admin::CompaniesController < Admin::CompanyController
   def registration_requests
    @requests = RequestedCompany.order(created_at: :desc)
   end
-=======
->>>>>>> origin/staging
+
   private
 
   def set_company
@@ -152,12 +145,8 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def send_invite_params
-<<<<<<< HEAD
     # params.require(:company).permit(account_managers_attributes: [:first_name, :last_name,
     #                                                                   :email])
     params.require(:account_manager).permit(:first_name, :last_name, :email)
-=======
-    params.require(:company).permit(invite_user_attributes: [:first_name, :last_name, :email])
->>>>>>> origin/staging
   end
 end
