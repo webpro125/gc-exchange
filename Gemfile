@@ -43,6 +43,7 @@ gem 'coffee-rails'
 gem 'momentjs-rails'
 gem 'google-api-client'
 gem 'groupdate'
+gem 'jbuilder'
 
 gem 'twilio-ruby', '~> 4.11.1'
 gem 'haml', '~> 4.0.5'
