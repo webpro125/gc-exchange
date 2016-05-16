@@ -1,7 +1,7 @@
 class AddEmailToCompany < ActiveRecord::Migration
   def change
     drop_table :invite_users if ActiveRecord::Base.connection.table_exists? :invite_users
-    add_column :companies, :email, :string, null: false, default: ""
+    add_column :companies, :email, :string
     add_index :companies, :email,                unique: true
     Company.find_each do |c|
       user = User.find(c.owner_id)
