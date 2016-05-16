@@ -16,13 +16,13 @@
 *= require_self
 *= require select2
 *= require select2-bootstrap
-*= require common
-*= require _top-bar
-*= require _side_column
+*= require shared/common
+*= require shared/_top-bar
+*= require shared/_side_column
 *= require dataTables/jquery.dataTables.foundation
 */
 @import 'foundation-icons';
-@import 'skills_table';
+@import 'sections/skills_table';
 .row .message-inbox .row {
   padding: 15px 0;
   margin: 0;
