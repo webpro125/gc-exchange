@@ -8,7 +8,6 @@ json.features @consultants do |consultant|
       json.last_name consultant.user.last_name
       json.title "Government Contractor"
       json.image consultant.profile_image.url(:medium)
-      json.profile consultant.profile_image.url(:thumb)
     end
     if consultant.address.present?
       json.geometry do
