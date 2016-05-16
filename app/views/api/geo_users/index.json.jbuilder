@@ -6,7 +6,7 @@ json.features @consultants do |consultant|
       json.key_format! camelize: :lower
       json.first_name consultant.user.first_name
       json.last_name consultant.user.last_name
-      json.title "Government Contractor"
+      json.title consultant.title
       json.image consultant.profile_image.url(:medium)
     end
     if consultant.address.present?
