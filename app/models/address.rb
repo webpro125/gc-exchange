@@ -12,6 +12,10 @@ class Address < ActiveRecord::Base
   # Geocoder
   geocoded_by :address
 
+  def coordinates
+    [lat, lon]
+  end
+
   def lat
     latitude
   end
