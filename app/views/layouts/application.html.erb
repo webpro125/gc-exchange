@@ -45,7 +45,7 @@
       </main>
       <%= yield :footer %>
       <%= render 'layouts/google_analytics' unless Rails.env.test? %>
-      <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.js") %>
+      <%= javascript_include_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets.find_asset("sections/#{controller_name}.js") %>
       <%= yield :js %>
     </div>
   <% end %>
