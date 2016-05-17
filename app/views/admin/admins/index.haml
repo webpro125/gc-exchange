@@ -26,9 +26,8 @@
                 %td= admin.created_at.to_date
                 %td
                   = link_to edit_admin_admin_path(admin), :class => 'btn btn-xs btn-warning' do
-                    %i.fa.fa-edit
-                    Edit
+                    %i.fa.fa-edit Edit 
                   = link_to admin_admin_path(admin), method: :delete, :class => 'btn btn-xs btn-danger',
                     data: { confirm: t('views.company.confirmations.delete') } do
-                    %i.fa.fa-trash-o
-                    Delete
+                    %i.fa.fa-trash-o Delete 
+
