@@ -35,9 +35,9 @@
             .row
               .attached_files.col-md-12
                 - @article.article_attachments.each do |attach|
-                  = link_to download_article_attachment_path(attach), class: 'pull-left' do
+                  = link_to download_article_attachment_path(attach), class: 'pull-left', target: '_blank' do
                     - if attach.attach_content_type.start_with? 'image'
-                      = image_tag attach.attach.url(:medium)
+                      = image_tag attach.attach.url
                     - else
                       = image_tag 'attach-icon.png'
                     %br/
@@ -61,34 +61,10 @@
                     .media-body
                       %p.m-b-xs
                         = (article_author_prefix comment.author) + comment.author.full_name
+                        = link_to content_tag(:i, '', {class: 'fa fa-edit'}), '#', class: 'pull-right edit-comment' if comment.author == current_admin
                       %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
                   .social-body
-                    %p
-                      = comment.body
-                      .attached_files
-                        - comment.comment_attachments.each do |attach|
-                          = link_to download_comment_attachment_path(attach) do
-                            - if attach.attach_content_type.start_with? 'image'
-                              = image_tag attach.attach.url(:medium)
-                            - else
-                              = image_tag 'attach-icon.png'
-                            %br/
-                            %small= attach.attach_file_name
-          - if @article.status == 'open'
-            .row
-              .col-md-12
-                - @comments.each do |comment|
-                  .social-feed-box
-                    .social-avatar
-                      %p.pull-left
-                        = image_tag user_avatar(comment.author)
-                      .media-body
-                        %p.m-b-xs
-                          = (article_author_prefix comment.author) + comment.author.full_name
-                          = link_to content_tag(:i, '', {class: 'fa fa-edit'}), '#', class: 'pull-right edit-comment' if comment.author == current_admin
-                        %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
-                    .social-body
-                      = render 'admin/comments/comment', comment: comment, article: @article
+                    = render 'admin/comments/comment', comment: comment, article: @article
             - if @article.status == 'open'
               .row
                 .col-md-12
