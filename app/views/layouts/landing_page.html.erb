@@ -8,8 +8,7 @@
 
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag 'debug' if development? %>
-    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets
-    .find_asset("#{controller_name}.css") %>
+    <%= stylesheet_link_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets .find_asset("sections/#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= analytics_init if Rails.env.production? %>
     <%= csrf_meta_tags %>
@@ -120,8 +119,7 @@
         <%= render 'layouts/footer' %>
     </div>
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets
-    .find_asset("#{controller_name}.js") %>
+    <%= javascript_include_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets .find_asset("sections/#{controller_name}.js") %>
     <%= render 'layouts/debug' if development? %>
   </body>
 </html>

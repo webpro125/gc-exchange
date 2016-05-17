@@ -190,6 +190,11 @@ class Consultant < ActiveRecord::Base
   def full_name
     user.full_name
   end
+
+  def title
+    project_histories.order(start_date: :desc).first.positions.first.label
+  end
+
   private
 
   def destroy_consultant_index

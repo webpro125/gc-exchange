@@ -25,7 +25,7 @@
 //= require select2
 //= require foundation-datetimepicker
 //= require moment
-//= require date-range
+//= require shared/date-range
 //= require widgets
 //= require entities
 //= require new/bootstrap.min

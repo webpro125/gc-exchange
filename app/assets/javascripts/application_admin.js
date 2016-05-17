@@ -22,9 +22,10 @@
 //= require jquery-ui/mouse
 //= require jquery-ui/position
 //= require moment
-//= require date-range
+//= require shared/date-range
 //= require select2
 //= require widgets
+//= require_tree ./admin
 
 $(document).ready(function() {
     $('select, .select2').select2Dropdown();

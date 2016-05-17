@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag style_path "application" %>
     <%= stylesheet_link_tag 'debug' if development? %>
-    <%= stylesheet_link_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.css") %>
+    <%= stylesheet_link_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets.find_asset("sections/#{controller_name}.css") %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <!--[if lte IE 8]><%= javascript_include_tag 'jqery.flot/excanvas.min' %><![endif]-->
     <%= javascript_include_tag style_path "application" %>
@@ -31,7 +31,7 @@
     </div>
     <%= render 'layouts/footer' %>
     <%= render 'layouts/google_analytics' unless Rails.env.test? %>
-    <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.js") %>
+    <%= javascript_include_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets.find_asset("sections/#{controller_name}.js") %>
     <%= yield :js %>
     <%= render 'layouts/debug' if development? %>
   <% else %>
@@ -45,7 +45,7 @@
       </main>
       <%= yield :footer %>
       <%= render 'layouts/google_analytics' unless Rails.env.test? %>
-      <%= javascript_include_tag controller_name if GlobalConsultantExchange::Application.assets.find_asset("#{controller_name}.js") %>
+      <%= javascript_include_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets.find_asset("sections/#{controller_name}.js") %>
       <%= yield :js %>
     </div>
   <% end %>

@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     root 'users#index', as: :user_root
   end
 
+  namespace :api do
+    resources :geo_users, only: :index
+  end
+
   namespace :admin do
     get '/', :to => 'dashboard#index'
     resources :dashboard

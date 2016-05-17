@@ -267,7 +267,7 @@ GEM
     guard-rubocop (1.2.0)
       guard (~> 2.0)
       rubocop (~> 0.20)
-    haml (4.0.6)
+    haml (4.0.7)
       tilt
     hashie (3.3.1)
     highline (1.6.21)
@@ -275,6 +275,9 @@ GEM
     ice_nine (0.11.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
+    jbuilder (2.4.1)
+      activesupport (>= 3.0.0, < 5.1)
+      multi_json (~> 1.2)
     jquery-datatables-rails (3.2.0)
       actionpack (>= 3.1)
       jquery-rails
@@ -583,6 +586,7 @@ DEPENDENCIES
   guard-rspec (~> 4.3)
   guard-rubocop (~> 1.2.0)
   haml (~> 4.0.5)
+  jbuilder
   jquery-datatables-rails (~> 3.2.0)
   jquery-rails (~> 3.1.0)
   jquery-ui-rails (~> 5.0)
@@ -628,6 +632,3 @@ DEPENDENCIES
   wicked_pdf
   wkhtmltopdf-binary
   yarjuf
-
-BUNDLED WITH
-   1.11.2
