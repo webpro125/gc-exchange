@@ -1,5 +1,5 @@
 class CompanyMailer < ActionMailer::Base
-  include Roadie::Rails::Automatic
+  # include Roadie::Rails::Automatic
 
   def company_registration_request(sales_lead)
     @sales_lead = sales_lead

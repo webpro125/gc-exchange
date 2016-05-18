@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @account_manager = AccountManager.find_by_access_token(access_token)
     if @account_manager.blank?
       @error_message = 'Invalid Token'
-    elsif @account_manager.phone.blank?
+    elsif @account_manager.business_unit_name.blank?
       sign_in(@account_manager.user)
 
       @form = RegisterAccountManagerForm.new(@account_manager)

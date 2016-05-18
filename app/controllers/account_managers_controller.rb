@@ -1,6 +1,6 @@
 class AccountManagersController < ApplicationController
   before_action :authenticate_user!, except: [:autocomplete_user_email]
-  before_action :load_current_am, except: [:new, :create]
+  before_action :load_current_am, except: [:new, :create, :autocomplete_user_email]
   before_action :load_owned_company, only: [:new, :create]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
 
