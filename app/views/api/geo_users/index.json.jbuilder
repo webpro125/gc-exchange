@@ -7,6 +7,7 @@ json.features @consultants do |consultant|
       json.first_name consultant.user.first_name
       json.last_name consultant.user.last_name
       json.title consultant.title
+      json.profile root_url
       json.image consultant.profile_image.url(:medium)
     end
     if consultant.address.present?
