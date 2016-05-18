@@ -21,9 +21,9 @@
           = @article.text
           .attached_files
             - @article.article_attachments.each do |attach|
-              = link_to download_article_attachment_path(attach) do
+              = link_to download_article_attachment_path(attach), target: '_blank' do
                 - if attach.attach_content_type.start_with? 'image'
-                  = image_tag attach.attach.url(:medium)
+                  = image_tag attach.attach.url
                 - else
                   = image_tag 'attach-icon.png'
                 %br

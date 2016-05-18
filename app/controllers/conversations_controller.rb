@@ -1,18 +1,18 @@
 class ConversationsController < ApplicationController
   before_action :recent_consultants
   before_filter :load_consultant, only: [:create]
-  before_action :auth_a_user!
+  before_action :authenticate_user!
   helper_method :mailbox, :conversation
   before_action :get_box, only: [:index]
 
   def index
     # @messages ||= pundit_user.mailbox.conversations.page(params[:page])
     if @box.eql? "inbox"
-      @messages ||= pundit_user.mailbox.inbox.page(params[:page])
+      @messages ||= current_user.mailbox.inbox.page(params[:page])
     elsif @box.eql? "sent"
-      @messages ||= pundit_user.mailbox.sentbox.page(params[:page])
+      @messages ||= current_user.mailbox.sentbox.page(params[:page])
     else
-      @messages ||= pundit_user.mailbox.trash.page(params[:page])
+      @messages ||= current_user.mailbox.trash.page(params[:page])
     end
   end
 

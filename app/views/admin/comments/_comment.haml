@@ -2,9 +2,9 @@
   = simple_format comment.body
   .attached_files
     - comment.comment_attachments.each do |attach|
-      = link_to download_comment_attachment_path(attach) do
+      = link_to download_comment_attachment_path(attach), target: '_blank' do
         - if attach.attach_content_type.start_with? 'image'
-          = image_tag attach.attach.url(:medium)
+          = image_tag attach.attach.url
         - else
           = image_tag 'attach-icon.png'
         %br/

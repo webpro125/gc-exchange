@@ -6,17 +6,17 @@
       %nav.main-menu.menu-vertical{:role => "navigation"}
         %ul
           %li
-            %a{:href => ""} What we do
+            = link_to 'What we do', '#'
           %li
-            %a{:href => ""} Join the Exchange
+            = link_to 'Join the Exchange', '#'
           %li
-            %a{:href => ""} Community Forum
+            = link_to 'Community Forum', '#'
           %li
-            %a{:href => ""} Tutorials
+            = link_to 'Tutorials', '#'
           %li
-            %a{:href => ""} Education
+            = link_to 'Education', '#'
           %li
-            %a{:href => ""} Articles
+            = link_to 'Articles', '#'
 .page-content
   %section.feature-content.four-steps-process
     %header
@@ -47,7 +47,7 @@
           = image_tag 'infographics_business_team_unit.png'
     .connector-down
     %article.ui-box.step-four
-      = link_to (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '') do
+      = link_to (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '#') do
         .content
           %h2 Assign Unit Roles
           %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.

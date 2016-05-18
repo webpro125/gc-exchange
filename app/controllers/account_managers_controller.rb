@@ -92,7 +92,7 @@ class AccountManagersController < ApplicationController
   def load_current_am
     @account_manager = current_user.account_manager
     unless @account_manager.present?
-      redirect_to root_path, flash: {alert: 'You have no permission to access that page'}
+      redirect_to registration_process_users_path, flash: {alert: 'You have no permission to access that page'}
     end
     @unit_roles = @account_manager.business_unit_roles
     @owned_company = @account_manager.company
@@ -100,7 +100,7 @@ class AccountManagersController < ApplicationController
 
   def load_owned_company
     unless current_user.owned_company.present?
-      redirect_to root_path, flash: {alert: 'You have no permission to access that page'}
+      redirect_to registration_process_users_path, flash: {alert: 'You have no permission to access that page'}
     end
     @owned_company = current_user.owned_company
   end

@@ -2,7 +2,7 @@
 
 class CommentUploader < CarrierWave::Uploader::Base
 
-  include  CarrierWave::MiniMagick, CarrierWave::Compatibility::Paperclip
+  include CarrierWave::Compatibility::Paperclip
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -48,12 +48,12 @@ class CommentUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
   # Create different versions of your uploaded files:
-  version :thumb do
-    process resize_to_fill: [80, 80]
-  end
-  version :medium do
-    process resize_to_fill: [200, 200]
-  end
+  # version :thumb do
+  #   process resize_to_fill: [80, 80]
+  # end
+  # version :medium do
+  #   process resize_to_fill: [200, 200]
+  # end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]

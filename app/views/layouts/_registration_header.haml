@@ -9,11 +9,11 @@
         %li
           = link_to 'Register Your Company', registration_companies_path
         %li
-          = link_to 'Invite Account Managers', new_account_manager_path
+          = link_to 'Invite Account Managers', (current_user.owned_company.present? ? new_account_manager_path : '#')
         %li
           = link_to 'Create Business Units', '#'
         %li
-          = link_to 'Assign Unit Roles', '#'
+          = link_to 'Assign Unit Roles', (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '#')
     %ul.qa-list{:style => "margin-top: 4rem;"}
       %li.is-active
         %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} Why do I need to Register my Company?
@@ -30,4 +30,4 @@
     %li{class: current_page_active('users')}
       = link_to 'Create Business Units', '#'
     %li{class: current_page_active('account_managers', 'assign_business_role')}
-      = link_to 'Assign Roles', (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '')
+      = link_to 'Assign Roles', (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '#')
