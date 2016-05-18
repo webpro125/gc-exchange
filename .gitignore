@@ -41,4 +41,3 @@ spec/results
 .env
 config/ga_api.yml
 /.sass-cache
-/.cloud66

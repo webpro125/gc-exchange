@@ -14,3 +14,6 @@
     %h2= yield(:page_title)
     %ol.breadcrumb
       = render_breadcrumbs tag: :li, separator: ''
+.row.m-t-lg
+  .col-md-12
+    = render 'layouts/admin/flash'
