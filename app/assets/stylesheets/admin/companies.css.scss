@@ -6,14 +6,14 @@
 *= require jquery-ui/core
 *= require jquery-ui/theme
 */
-.company_contract, .company_contract label {
+.company_contract, .company_contract label, .company_gsc, .company_gsc label {
   border: none !important;
   margin-right: 0;
 }
-.company_contract.file {
+.company_contract.file, .company_gsc.file {
   margin-bottom: 20px;
 }
-.company_contract label {
+.company_contract label, .company_gsc label {
   margin-bottom: 5px;
 }
 .file {

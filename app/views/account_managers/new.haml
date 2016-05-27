@@ -33,6 +33,9 @@
               = image_tag "infographics_business_person_manager.png"
           = simple_form_for(@form, html: {class: 'theme-gces style-alternate'}) do |f|
             = render 'shared/base_error', model: @form
+            = f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, label: false,
+              :url => autocomplete_user_email_account_managers_path, :as => :autocomplete,
+              input_wrapper_html: { class: 'icon-email' }
             .grid.columns-2.margin-top-1r{:role => "grid" }
               .grid-6-12{:role => "gridcell" }
                 = f.input :first_name, required: false, placeholder: 'First Name', label: false,
@@ -40,9 +43,6 @@
               .grid-6-12{:role => "gridcell" }
                 = f.input :last_name, required: false, placeholder: 'Last Name', label: false,
                 wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' }
-            = f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, label: false,
-              :url => autocomplete_user_email_account_managers_path, :as => :autocomplete,
-              input_wrapper_html: { class: 'icon-email' }
             .button-link.icon-email-full.air-top
               Preview Email
             .preview-email-input.hide

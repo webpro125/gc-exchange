@@ -20,18 +20,19 @@
 .page-content
   %section.feature-content.four-steps-process
     %header
-      %h1.page-title Get Started
+      %h1.page-title
+        = link_to ' Get Started', registration_companies_path
       %p.type-description Registration Process
-    %article.ui-box.step-one
-      = link_to registration_companies_path do
+    = link_to registration_companies_path do
+      %article.ui-box.step-one
         .content
           %h2 Register Company
           %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
         %figure
           = image_tag 'infographics_buildings_company.png'
     .connector-down
-    %article.ui-box.step-two
-      = link_to (current_user.owned_company.present? ? new_account_manager_path : '#') do
+    = link_to (current_user.owned_company.present? ? new_account_manager_path : '#') do
+      %article.ui-box.step-two
         .content
           %h2 Invite Account Manager
           %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
@@ -46,8 +47,8 @@
         %figure
           = image_tag 'infographics_business_team_unit.png'
     .connector-down
-    %article.ui-box.step-four
-      = link_to (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '#') do
+    = link_to (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '#') do
+      %article.ui-box.step-four
         .content
           %h2 Assign Unit Roles
           %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.

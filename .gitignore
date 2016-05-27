@@ -35,6 +35,7 @@ spec/results
 /public/comment_attachments
 /public/account_managers
 /public/test/
+/public/companies/
 
 # Ignore vendor/bin
 /vendor/bin

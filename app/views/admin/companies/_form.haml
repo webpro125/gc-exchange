@@ -17,9 +17,16 @@
     .col-md-6
       = f.input :last_name, label: false, placeholder: 'Last Name'
   = f.input :phone, label: 'Client Company Contract POC Phone', placeholder: 'xxx-xxx-xxxx'
-  = f.input :contract,
-    as:         :file,
-    input_html: {accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}"}
+  .row
+    .col-md-6
+      = f.input :gsc,
+        as:         :file, label: 'General Service Contract',
+        input_html: {accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}"}
+    .col-md-2
+      - if @company.persisted? and !@company.gsc.blank?
+        = link_to download_gsc_path(@company) do
+          = image_tag 'pdf_download.png', class: 'img-responsive'
+          %small= @company.gsc_file_name
   .row
     .col-md-12
       %label
@@ -29,8 +36,18 @@
       = f.input :contract_start, label: false, placeholder: 'Start', input_html: {class: 'form-control'}
     .col-md-6
       = f.input :contract_end, label: false, placeholder: 'End', input_html: {class: 'form-control'}
+  .row
+    .col-md-6
+      = f.input :contract,
+        as:         :file, label: 'Contract Rider',
+        input_html: {accept: ".pdf,#{Consultant::RESUME_MIME_TYPES.join(',')}"}
+    .col-md-2
+      - if @company.persisted? and !@company.contract.blank?
+        = link_to download_gsc_path(@company) do
+          = image_tag 'pdf_download.png', class: 'img-responsive'
+          %small= @company.gsc_file_name
   .hr-line-dashed
   .form-group
     = button_tag(type: 'submit', class: "btn btn-primary") do
       %i.fa.fa-check-circle
-      Save  Update
+      Save & Update

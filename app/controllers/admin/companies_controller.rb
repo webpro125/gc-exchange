@@ -2,7 +2,8 @@ class Admin::CompaniesController < Admin::CompanyController
   before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email,
                                    :destroy_account_manager, :registration_requests]
   add_breadcrumb 'Companies', :admin_companies_path
-  autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
+  helper_method :mailbox, :conversation
+
   def index
     @companies = Company.all
   end
@@ -52,7 +53,7 @@ class Admin::CompaniesController < Admin::CompanyController
 
   def update
     respond_to do |format|
-      if @company.update(company_update_params)
+      if @company.update(company_create_params)
         format.html { redirect_to admin_companies_path, notice: t('controllers.company.update.success') }
         format.json { render json: admin_companies_path, status: :created, location: @company }
       else
@@ -133,7 +134,7 @@ class Admin::CompaniesController < Admin::CompanyController
   # Only allow a trusted parameter "white list" through.
   def company_create_params
     params.require(:company).permit(:company_name, :phone, :contract_start, :contract_end, :owner_id,
-                                    :first_name, :last_name, :email)
+                                    :first_name, :last_name, :email, :contract, :gsc)
   end
 
   def company_update_params
@@ -144,5 +145,13 @@ class Admin::CompaniesController < Admin::CompanyController
     # params.require(:company).permit(account_managers_attributes: [:first_name, :last_name,
     #                                                                   :email])
     params.require(:account_manager).permit(:first_name, :last_name, :email)
+  end
+
+  def mailbox
+    @mailbox ||= current_admin.mailbox
+  end
+
+  def conversation
+    @conversation ||= current_admin.mailbox.conversations.find(params[:id])
   end
 end

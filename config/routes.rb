@@ -112,6 +112,7 @@ Rails.application.routes.draw do
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
   get 'article/download_attachment/:id', to: 'downloads#download_article_attachment', as: :download_article_attachment
   get 'comment/download_attachment/:id', to: 'downloads#download_comment_attachment', as: :download_comment_attachment
+  get 'download_gsc/:id', to: 'downloads#gsc', as: :download_gsc
 
   # Resources
   resource :change_password, only: [:edit, :update]

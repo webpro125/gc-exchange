@@ -40,5 +40,12 @@
 $(function() {
     $('.action-close').click(function() {
         $(this).closest('div.ui-notification').remove();
-    })
+    });
+
+    $("input.work_area_code, input.work_prefix, input.work_line, input.cell_area_code, input.cell_prefix, input.cell_line").keyup(function () {
+        next_obj = $(this).closest('div.input-styler').next().next('div.input-styler');
+        if (this.value.length == this.maxLength && next_obj.length) {
+            next_obj.find("input").focus();
+        }
+    });
 });

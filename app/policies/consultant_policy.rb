@@ -14,7 +14,7 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def index?
-    gces?
+    true
     # user.owned_company.present?
   end
 
