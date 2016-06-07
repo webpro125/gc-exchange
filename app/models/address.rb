@@ -16,6 +16,10 @@ class Address < ActiveRecord::Base
     [lat, lon]
   end
 
+  def geo_json_coordinates
+    [lon, lat]
+  end
+
   def lat
     latitude
   end

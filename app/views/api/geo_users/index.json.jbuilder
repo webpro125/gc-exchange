@@ -13,7 +13,7 @@ json.features @consultants do |consultant|
     if consultant.address.present?
       json.geometry do
         json.type "Point"
-        json.coordinates consultant.address.coordinates 
+        json.coordinates consultant.address.geo_json_coordinates
       end
     end
   end
