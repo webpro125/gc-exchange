@@ -4,6 +4,13 @@
     padding: 6rem 4rem;
     
     
+    &.internal {
+        padding-top: 2rem;
+        padding-bottom: 0;
+        @include scale(0.9);
+    }
+    
+    
     .illustration-wrapper {
         display: block;
         width: 100%;
@@ -171,19 +178,26 @@
         }
         
         .community-label {
-            display: none;
+            display: block;
             width: 60%;
             position: absolute;
             left: 10%;
-            bottom: 1.25rem;
+            bottom: 10%;
             
             h2 {
-                font-size: 1.05rem;
+                display: block;
+                width: auto;
+                max-width: rem(150px);
+                font-size: 1.25rem;
                 line-height: 1.2em;
                 font-weight: 600;
                 color: color(primary);
                 opacity: 0;
                 transition: opacity 0.1s ease-out;
+            }
+            
+            @include responsive($max-width: '1480px') {
+                bottom: -4%;
             }
         }
         
@@ -284,7 +298,7 @@
                 }
                 
                 .frame-circle {
-                    box-shadow: 0 0 0 3px color(alert-success);
+                    box-shadow: 0 0 0 3px color(primary);
                     
                     .pending-label {
                         display: none;
@@ -390,7 +404,7 @@
         }
     }
     
-    @include responsive($max-width: '1020px') {
+    @include responsive($max-width: '1300px') {
         .illustration-wrapper {
             width: 50%;
             height: auto;
@@ -431,21 +445,12 @@
 
                 p {
                     display: block;
-                    width: 50%;
+                    width: 40%;
                     margin: 0 ;
                     font-size: 0.95rem;
                     line-height: 1.35em;
                     opacity: 0;
                     transition: opacity 0.1s ease-out;
-                }
-            }
-            
-            &.is-visited {
-                .illustration-content-bottom {
-                    h2 {
-                        margin-left: 10%;
-                        transition: all 0.2s ease-out;
-                    }
                 }
             }
             
@@ -489,24 +494,33 @@
             .all-consultants-on {
                 opacity: 0;
             }
-
+            
+            .community-label {
+                bottom: 12%;
+                left: -20.5%;
+                text-align: left;
+            }
         }
 
         .box-selection {
-            left: 18%;
+            left: 20%;
+            margin-top: -10%;
 
         }
 
         .box-requisition {
-            left: 18%;
+            left: 20%;
+            margin-top: 15%;
         }
 
         .box-approval {
-            left: 18%;
+            left: 20%;
+            margin-top: 15%;
         }
 
         .box-work {
-            left: 18%;
+            left: 20%;
+            margin-top: 15%;
 
             .illustration-frame {
                 .pending-label {
@@ -541,12 +555,12 @@
                     }
 
                     .frame-circle {
-                        box-shadow: 0 0 0 3px color(alert-success);
+                        box-shadow: 0 0 0 3px color(primary);
                     }
                 }
                 
                 .illustration-content-bottom {
-                    left: -15.5%;
+                    left: -40%;
                 }
             }
         }
@@ -556,15 +570,15 @@
         .connection-three,
         .connection-four {
             width: 4px;
-            height: 16%;
+            height: 19%;
             position: absolute;
-            left: 68%;
+            left: 70%;
             margin-left: -2px;
             box-shadow: none;
-            background: color(primary);
+            background: #c4e6f8;
             
             &.is-on {
-                background: color(alert-success);
+                background: color(primary);
             }
         }
         
@@ -572,9 +586,8 @@
             display: block;
             box-shadow: 0;
             border-top-left-radius: 0;
-            top: 18.85%;
+            top: 15.85%;
             transform: skewX(-0);
-            background: color(primary);
 
             &.is-on {
                 box-shadow: none;
@@ -582,16 +595,26 @@
         }
 
         .connection-two {
-            top: 40%;
+            top: 30%;
         }
 
         .connection-three {
-            top: 59%;
+            top: 46%;
         }
 
         .connection-four {
-            top: 76%;
             background: color(primary-lighter);
+            width: 4px;
+            height: 0;
+            padding: 0;
+            top: 68%;
+            transition: height 0.2s ease-out;
+
+            &.is-on {
+                width: 4px;
+                height: 16%;
+                transition: height 0.5s ease-out;
+            }
             
         }
         
@@ -608,21 +631,21 @@
             }
 
             &.position-one {
-                top: 34%;
+                top: 27.5%;
                 left: 100%;
                 opacity: 1;
                 transition: all 0.65s ease-out;
             }
 
             &.position-two {
-                top: 51%;
+                top: 46.75%;
                 left: 100%;
                 opacity: 1;
                 transition: all 0.65s ease-out;
             }
 
             &.position-three {
-                top: 67%;
+                top: 66.5%;
                 left: 100%;
                 opacity: 1;
                 transition: all 0.65s ease-out;
@@ -637,8 +660,37 @@
     }
     
     @include responsive($max-width: '460px') {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        
         .illustration-wrapper {
-            width: 95%;
+            width: 75%;
+        }
+        
+        *[class*="box-"] {
+            
+            .illustration-content-bottom {
+
+                h2 {
+                    font-size:1rem;
+                    line-height: 1.2em;
+                }
+
+                p {
+                    font-size: 0.85rem;
+                    line-height: 1.35em;
+                }
+            }
+        }
+        
+        .box-community {
+            .community-label {
+                bottom: 8%;
+
+                h2 {
+                    font-size: 0.95rem;
+                }
+            }
         }
     }
 }
@@ -854,6 +906,108 @@
                 figure {
                     width: 52%;
                     bottom: 1rem;
+                }
+            }
+        }
+    }
+    
+    @include responsive($max-width: '960px') {
+        .ui-box {
+            .content {
+                width: 100%;
+                
+                h2 {
+                    font-size: 2rem;
+                    text-align: center;
+                }
+            }
+            
+            &.step-one {
+                figure {
+                    width: 28%;
+                    top: -3rem;
+                    right: 2rem;
+                }
+            }
+            
+            &.step-two {
+                text-align: left;
+
+                figure {
+                    bottom: auto;
+                    left: auto;
+                    width: 28%;
+                    top: -3.5rem;
+                    right: 2rem;
+                }
+
+                .content {
+                    text-align: left;
+                }
+            }
+            
+            &.step-three {
+            
+                figure {
+                    bottom: auto;
+                    left: auto;
+                    width: 35%;
+                    top: -3.5rem;
+                    right: 0;
+                }
+            }
+            
+            &.step-four {
+            
+                figure {
+                    bottom: auto;
+                    left: auto;
+                    width: 32%;
+                    top: -3.5rem;
+                    right: 1rem;
+                }
+            }
+        }
+    }
+    
+    @include responsive($max-width: '520px') {
+        .ui-box {
+            padding: 11rem 1.5rem 2rem 1.5rem;
+            
+            &.step-one {
+                figure {
+                    width: 32%;
+                    top: 3.5rem;
+                    right: 50%;
+                    margin-right: -16%;
+                }
+
+            }
+
+            &.step-two {
+                figure {
+                    width: 32%;
+                    top: 3.5rem;
+                    right: 50%;
+                    margin-right: -16%;
+                }
+            }
+
+            &.step-three {
+                figure {
+                    width: 36%;
+                    top: 3.5rem;
+                    right: 50%;
+                    margin-right: -18%;
+                }
+            }
+
+            &.step-four {
+                figure {
+                    width: 36%;
+                    top: 3rem;
+                    right: 50%;
+                    margin-right: -18%;
                 }
             }
         }

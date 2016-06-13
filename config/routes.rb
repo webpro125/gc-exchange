@@ -123,28 +123,11 @@ Rails.application.routes.draw do
   get :consultant_profile, to: 'profiles#consultant', as: :consultant_root
   get :create_consultant, to: 'users#create_consultant'
 
-  scope :consultant_profile do
-    resources :consultant_projects, path: 'offers', only: [:index, :show] do
-      member do
-        post :agree_to_terms
-        post :reject_terms
-        post :not_interested
-      end
-    end
-
-    get 'account_setting', to: 'settings#edit'
-    patch 'account_setting/update_sms_notification', to: 'settings#update_sms_notification'
-
-    resource :profile, only: [:edit, :update, :show]
-
-    resources :project_histories, path: 'projects', except: [:show]
-  end
-
   get :contractor_profile, to: 'contractors#profile', as: :contractor_root
 
   resources :create_profile, only: [:show, :update]
   resources :sales_leads, only: [:new, :create]
-  resources :projects, path: 'offers', only: [:index, :new, :create] do
+  resources :projects, path: 'drafts', only: [:index] do
     member do
       post :not_pursuing
     end
@@ -162,13 +145,32 @@ Rails.application.routes.draw do
     resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
-    resources :projects, path: 'offers', shallow: true, except: [:index, :destroy, :new, :create]
+    resources :projects, path: 'drafts', shallow: true, except: [:index, :destroy]
     member do
       put :approve
       put :reject
       get :contract
     end
   end
+
+  namespace :consultant_profile do
+    # resources :consultant_projects, path: 'offers', only: [:index, :show] do
+    #   member do
+    #     post :agree_to_terms
+    #     post :reject_terms
+    #     post :not_interested
+    #   end
+    # end
+
+    resources :projects, path: 'drafts' do
+      resources :project_agreements, path: 'reviews'
+    end
+  end
+
+  get 'account_setting', to: 'settings#edit'
+  patch 'account_setting/update_sms_notification', to: 'settings#update_sms_notification'
+  resources :project_histories, path: 'projects', except: [:show]
+  resource :profile, only: [:edit, :update, :show]
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
@@ -200,7 +202,7 @@ Rails.application.routes.draw do
     end
     get :autocomplete_user_email, :on => :collection
   end
-  resources :account_managers, only: [:new, :create], :path_names => { :new => "invite" } do
+  resources :account_managers, only: [:new, :create], :path_names => { :new => "invite", :create => 'create' } do
     put :update_assign_business_role
   end
 

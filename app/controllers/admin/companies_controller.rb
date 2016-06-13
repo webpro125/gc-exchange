@@ -83,6 +83,7 @@ class Admin::CompaniesController < Admin::CompanyController
     @account_managers = @company.account_managers
     account_manager = @company.account_managers.build
     @form = InviteAccountManagerForm.new(account_manager)
+    @form.email_content = AccountManager::DEFAULT_EMAIL_CONTENT
     random_token = SecureRandom.hex(32)
 
     if @form.validate(send_invite_params)

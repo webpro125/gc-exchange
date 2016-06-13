@@ -109,7 +109,7 @@ table {
     }
     
     .highlight {
-        color: color(secondary) !important;
+        color: color(secondary);
         background: rgba(color(secondary),0.15);
         
         &,
@@ -372,7 +372,94 @@ table {
         }
     }
     
-    
+    &.table-blocks {
+        width: 100%;
+        margin-top: 1.5rem;
+        
+        tr {
+            td {
+                vertical-align: middle;
+            }
+        }
+        
+        thead {
+            tr {
+                border-bottom: 1px solid color(primary-lighter);
+                
+                th {
+                    color: color(primary-lighter);
+                    text-transform: uppercase;
+                    font-size: 0.825rem;
+                    line-height: 1.25em;
+                    text-align: center;
+                }
+            }
+        }
+        
+        tbody {
+            tr {
+                border-bottom: 1px solid color(primary-lighter);
+                border-left: 1px solid color(primary-lighter);
+                border-right: 1px solid color(primary-lighter);
+                
+                td {
+                    padding-top: 0.15rem;
+                    padding-bottom: 0.15rem;
+                    
+                    .user-thumbnail {
+                        display: none;
+                    }
+                    
+                    &.role-info {
+                        padding-left: 1.25rem;
+                    }
+                    
+                    &.role-requisition,
+                    &.role-selection,
+                    &.role-approval {
+                        text-align: center;
+                        
+                        .ui-checkbox {
+                            margin-top: 0.5rem;
+                        }
+                    }
+                }
+                
+                &.highlight {
+                    color: color(primary);
+                    background: none;
+                    border: 2px solid color(primary);
+
+                    &,
+                    &[class*="icon-"],
+                    *[class*="icon-"] {
+                        &:before {
+                            color: color(primary);
+                        }
+                    }
+                    
+                   
+                    
+                    td {
+                        .ui-tag {
+                            margin-left: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+        
+        tfoot {
+            
+            tr {
+                td {
+                    .add-block {
+                        margin-top: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
     
     @include responsive($max-width: '500px') {
         .table-mobile {

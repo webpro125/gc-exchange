@@ -1,0 +1,40 @@
+%h1 Consultants
+%p
+  Download:
+  = link_to 'Excel', consultants_path(format: 'xls')
+  = link_to 'CSV', consultants_path(format: 'csv')
+%table#consultants{"data-source" => "#{consultants_url(format: "json")}", :style => "overflow: auto"}
+  %thead
+    %td UID #
+    %td First Name
+    %td Last Name
+    %td Phone
+    %td Email
+    %td Status
+    %td Created Date
+    %td Pending Approval Date
+    %td Approved Date
+    %td Consultant #
+    %td On Hold Date
+    %td Rejected Date
+    %td Last Sign in Date
+    %td Modified Date
+    %td Sign in Count
+    %td Contract Effective Date
+    %td Contract Version
+    %td Rate
+    %td Download Resume
+    %td Download Contract
+    %td 1st Project Positions
+    %td 1st Project POC Name
+    %td 1st Project POC Email
+    %td 1st Project POC Phone Number
+    %td 2nd Project Positions
+    %td 2nd Project POC Name
+    %td 2nd Project POC Email
+    %td 2nd Project POC Phone Number
+    %td 3rd Project Positions
+    %td 3rd Project POC Name
+    %td 3rd Project POC Email
+    %td 3rd Project POC Phone Number
+  %tbody

@@ -1,7 +1,7 @@
 class ConsultantPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.where(wizard_step: Wicked::FINISH_STEP)
     end
   end
 
@@ -19,7 +19,8 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def show?
-    edit? || record.approved?
+    # edit? || record.approved?
+    true
   end
 
   def edit?

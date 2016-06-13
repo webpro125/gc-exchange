@@ -38,9 +38,7 @@
     <div id="site-wrapper">
       <%= yield :header %>
       <main id="main-content" class="<%= yield(:main_class) %>">
-        <div class="page-content">
-            <%= render 'layouts/flash' %>
-        </div>
+        <%= render 'layouts/flash' %>
         <%= yield %>
       </main>
       <%= yield :footer %>

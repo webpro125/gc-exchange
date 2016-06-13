@@ -59,6 +59,11 @@
           = link_to t('views.profile.actions.contact'),
             new_consultant_conversation_path(@consultant.id),
             class: 'button small secondary download'
+      - if current_user.selection_authorities.any?
+        .small-12.columns
+          = link_to t('views.profile.actions.hire_me'),
+            new_consultant_project_path(@consultant),
+            class: 'button small secondary download'
     .row
       .small-12.columns
         - if user_signed_in? && (user_is_gces? || current_user.contactable(@consultant))

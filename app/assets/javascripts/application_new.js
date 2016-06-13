@@ -36,6 +36,7 @@
 //= require new/cm.toggle
 //= require new/cm.workflow
 //= require new/main
+//= require new/common
 
 $(function() {
     $('.action-close').click(function() {

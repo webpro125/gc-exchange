@@ -29,12 +29,12 @@
               %td Proposed Hourly Rate:
               %td
                 $#{@project.proposed_rate}
+            -#%tr
+            -#  %td Consultant Location:
+            -#  %td= @project.consultant_location
             %tr
-              %td Work Location:
-              %td= @project.project_location
-            %tr
-              %td Travel Expense Authorization:
-              %td= @project.travel_authorization.label
+              %td Travel Authorization:
+              %td= @project.travel_authorization
     .row
       .medium-12.columns
         - case @project

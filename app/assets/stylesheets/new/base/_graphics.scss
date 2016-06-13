@@ -1,6 +1,6 @@
 %ui-user-thumbnail {
     display: inline-block;
-    background: #FFF;
+    background: color(primary);
     border-radius: 100%;
     overflow: hidden;
     padding: 1rem;
@@ -15,9 +15,9 @@
     }
 }
 
-.user-thumbnail {
+.user-thumbnail,
+.profile-thumbnail {
     @extend %ui-user-thumbnail;
-    @extend %ui-user-thumbnail.embossed;
 }
 
 %ui-box-style {
@@ -292,4 +292,40 @@
 
 .air-top {
     margin-top: 1.5rem !important;
+}
+
+.air-bottom {
+    margin-bottom: 1.5rem !important;
+}
+
+.add-block {
+    @extend %action-edit;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 0.65rem 0 !important;
+    border: 2px dashed color(primary-lighter);
+    box-shadow: none;
+    text-align: center;
+    color: color(primary-lighter);
+
+    &:before {
+        display: block;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-family: $font-glyphs;
+        content: glyph(plus);
+        font-size: 2rem;
+        line-height: 1.5rem;
+        color: color(primary-lighter);
+        position: absolute;
+        top: 50%;
+        left: 0.5rem;
+        margin-top: -0.75rem;
+    }
+
+    &:hover {
+        background: rgba(color(primary-lightest),0.75);
+        transition: all 0.1s ease-out;
+    }
 }

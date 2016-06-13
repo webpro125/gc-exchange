@@ -11,8 +11,8 @@
     = render 'profiles/side_bar'
     %h4
       Offers
-      %span.viewall= link_to t('views.offer.actions.index'), consultant_projects_path
+      %span.viewall= link_to t('views.offer.actions.index'), consultant_profile_projects_path
 
-    = render 'consultant_projects/consultant_projects', consultant_projects: @consultant_projects
+    -#= render 'consultant_projects/consultant_projects', consultant_projects: @consultant_projects
 
 

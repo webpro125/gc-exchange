@@ -213,13 +213,13 @@
 }
 
 .page-tabs {
-    width: calc(100% - 20rem) !important;
-    max-width: calc(100% - 20rem) !important;
-    height: rem(60px);
+    @extend %content-width;
+    height: size(page-header);
     position: fixed;
     top: 0;
     right: 0;
     z-index: 100;
+    transition: width 0.2s ease-out;
     
     &,
     ul {
@@ -230,7 +230,7 @@
             display: table-cell;
             width: 25%;
             margin-left: -4px;
-            height: rem(60px);
+            height: size(page-header);
             color: color(primary-light);
             font-size: 0.925rem;
             line-height: 0.85em;
@@ -244,17 +244,18 @@
             a {
                 display: table-cell;
                 width: 25%;
-                height: rem(60px);
+                height: size(page-header);
                 padding-left: rem(60px);
                 position: relative;
                 vertical-align: middle;
+                color: #FFF;
                 
                 &:before {
                     @extend %before-after-absolute;
                     display: block;
                     width: rem(60px);
-                    height: rem(60px);
-                    line-height: rem(60px);
+                    height: size(page-header);
+                    line-height: size(page-header);
                     text-align: center;
                     font-size: 1.75rem;
                     font-weight: 600;
@@ -306,24 +307,15 @@
             &.active,
             &.is-open {
                 background: color(primary-lightest);
+                
+                a {
+                    color: color(primary-dark);
+                }
             }
         }
     }
     
-    @include responsive($media: 'laptop') {
-        width: calc(100% - 17.5rem) !important;
-        max-width: calc(100% - 17.5rem) !important;
-    }
-    
-    @include responsive($media: 'tablet-landscape') {
-        width: calc(100% - 13.75rem) !important;
-        max-width: calc(100% - 13.75rem) !important;
-    }
-    
     @include responsive($media: 'tablet-portrait') {
-        width: 100% !important;
-        max-width: 100% !important;
-        
         &,
         ul {
             li {
@@ -343,9 +335,6 @@
     }
     
     @include responsive($max-width: '638px') {
-        width: 100% !important;
-        max-width: 100% !important;
-        
         &,
         ul {
             li {

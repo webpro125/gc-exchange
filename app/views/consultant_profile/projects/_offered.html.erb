@@ -1,0 +1,36 @@
+<%= button_to 'Not Interested',
+              not_interested_consultant_project_path(@project),
+              method: :post,
+              class:  'button tiny',
+              data:   {
+                  confirm: {
+                          body: 'Are you sure that you are not interested in this project?
+                      By clicking confirm, you will not be accept this engagement.  If
+                      you would like to have modifications made to the offer, please
+                      select "Reject Terms".'
+                  }
+              } %>
+<%= button_to 'Agree to Terms',
+              agree_to_terms_consultant_project_path(@project),
+              method: :post,
+              class:  'button tiny',
+              data:   {
+                  confirm: {
+                          body: 'Are you sure that you want to agree to these terms?  By
+                      clicking confirm, you will start the process to start work on the
+                      specified start date.'
+                  }
+              } %>
+<%= button_to 'Reject Terms',
+              reject_terms_consultant_project_path(@project),
+              method: :post,
+              class:  'button tiny',
+              data:   {
+                  confirm: {
+                          body: 'Are you sure that you want to reject these terms?  By
+                          clicking confirm, you are informing the point of contact that
+                          the terms are not acceptable, but that you would like to
+                          negotiate the terms.  Be sure to communicate with the point of
+                          contact to fix any issues in the terms.'
+                  }
+              } %>

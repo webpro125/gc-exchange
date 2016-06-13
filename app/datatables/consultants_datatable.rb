@@ -86,7 +86,7 @@ class ConsultantsDatatable
   end
 
   def fetch_consultants
-    result = Consultant.order("#{sort_column} #{sort_direction}")
+    result = Consultant.where(wizard_step: Wicked::FINISH_STEP).order("#{sort_column} #{sort_direction}")
                        .page(page)
                        .per(per)
 

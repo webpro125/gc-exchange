@@ -1,0 +1,28 @@
+%content-width {
+    width: calc(100% - 17.5rem) !important;
+    max-width: calc(100% - 17.5rem) !important;
+    transition: width 0.2s ease-out;
+    
+    @include responsive($media: 'laptop') {
+        width: calc(100% - 15.625rem) !important;
+        max-width: calc(100% - 15.625rem) !important;
+        transition: width 0.2s ease-out;
+    }
+    
+    @include responsive($media: 'tablet-landscape') {
+        width: calc(100% - 12.5rem) !important;
+        max-width: calc(100% - 12.5rem) !important;
+        transition: width 0.2s ease-out;
+    }
+    
+    @include responsive($media: 'tablet-portrait') {
+        width: 100% !important;
+        max-width: 100% !important;
+        transition: width 0.2s ease-out;
+        
+    }
+}
+
+.content-width {
+    @extend %content-width;
+}

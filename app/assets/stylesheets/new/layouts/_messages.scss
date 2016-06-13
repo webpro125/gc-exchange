@@ -1,0 +1,44 @@
+.thread-messages {
+    margin-top: 1.5rem;
+    
+    .message-item {
+        padding: 1rem 1rem 0.35rem 1rem;
+        
+        .byline {
+            font-size: 0.85rem;
+            line-height: 1.05em;
+            font-style: italic;
+        }
+        
+        p {
+            font-size: 0.85rem;
+            line-height: 1.25em;
+            margin-top: 0.35rem;
+        }
+        
+        &.style-default {
+            .byline {
+                color: color(alert-success);
+            }
+        }        
+        
+        &.style-box {
+            border-radius: size(border-radius);
+            background: rgba(color(alert-success),0.35);
+            color: darken(color(alert-success), 10%);
+            
+            .byline {
+                color: #FFF;
+            }
+        }
+    }
+    
+    .message-item.style-default + .message-item.style-default {
+        padding-top: 1rem;
+        border-top: 1px solid rgba(color(alert-success),0.35);
+    }
+    
+    .message-item.style-box + .message-item.style-box {
+        margin-top: 0.75rem;
+    }
+}

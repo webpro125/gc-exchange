@@ -17,7 +17,8 @@ class ProjectPolicy < LoggedInPolicy
   end
 
   def new?
-    user.is_a?(User) && user.projects.include?(record)
+    # user.is_a?(User) && user.projects.include?(record)
+    user.selection_authorities.any?
   end
 
   alias_method :not_pursuing?, :new?

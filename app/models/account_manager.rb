@@ -8,7 +8,7 @@ class AccountManager < ActiveRecord::Base
 
     Please click the button below to learn more and to start the registration process.{link}'
 
-  belongs_to :user
+  belongs_to :user, autosave: true
   belongs_to :company
   has_many :business_unit_roles, dependent: :destroy
 
@@ -25,4 +25,5 @@ class AccountManager < ActiveRecord::Base
   def is_account_manager?
     business_unit_name.exists?
   end
+
 end

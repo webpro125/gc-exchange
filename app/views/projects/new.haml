@@ -1,2 +1,150 @@
-%h1 New Engagement Offer
-= render 'form'
+- content_for :header do
+  %header#main-header{:role => "banner"}
+    = link_to 'GCES', root_path, class: 'site-brand'
+    .head-scroller
+      %nav.main-menu.menu-vertical{:role => "navigation"}
+        %ul
+          %li
+            %a{:href => ""} What we do
+          %li
+            %a{:href => ""} Join the Exchange
+          %li
+            %a{:href => ""} Community Forum
+          %li
+            %a{:href => ""} Tutorials
+          %li
+            %a{:href => ""} Education
+          %li
+            %a{:href => ""} Articles
+      %ul.qa-list{:style => "margin-top: 4rem;"}
+        %li.is-active
+          %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} What is a Draft Consultant Work Agreement?
+          .qa-content.ui-target.is-open{"data-section" => "qa-1"}
+            %p This is a sample of how to include answers in this qa list. Lorem ipsum sit amet quosque tandem numa lum consecter.
+        %li What is a Statement of Work?
+
+%header.page-header.dashboard-header
+  %nav.dashboard-menu{:role => "navigation"}
+    %ul.menu-horizontal
+      %li.active
+        %a{:href => "index-2.html"} Company
+      %li
+        %a{:href => ""} Projects
+      %li
+        %a{:href => ""} Reports
+      %li
+        %a{:href => ""} Account
+.page-content
+  %header.page-subheader
+    %h1 Create Draft Consultant Work Agreement
+    %p.type-intro Brief introduction sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+  = simple_form_for [@consultant, @form], html: {class: 'theme-gces project-form'} do |f|
+    %section.ui-card.no-padding.sleeve.is-animated
+      %header.card-header.card-bookmarks
+        %nav
+          %ol.menu-horizontal
+            %li
+              %a{:href => "#project-name"} Project Name
+            %li
+              %a{:href => "#performance"} Period of Performance
+            %li
+              %a{:href => "#location"} Work Location
+            %li
+              %a{:href => "#travel-expenses"} Travel Expenses
+            %li
+              %a{:href => "#rate"} Consultant Rate
+            %li
+              %a{:href => "#sow"} Statement of Work
+      %section.card-section
+        %h3 1. Name of Project
+        = f.input :project_name, required: false, autofocus: true, label: false,
+          wrapper: :custom_input, html: { class: 'no-label' }
+      %section.card-section
+        %h3 2. PROJECT PERIOD OF PERFORMANCE
+        .grid.columns-3
+          = f.input :proposed_start, required: false, html: {class: 'grid-4-12'}, label: 'Start:',
+              wrapper: :customer_grid_range_input
+          = f.input :proposed_end, required: false, label: 'End:',
+              wrapper: :customer_grid_range_input, html: { class: 'grid-4-12' }
+      %section.card-section
+        %h3 3. Consultant's Work Location
+        .grid.columns-4
+          = f.input :consultant_location,
+            wrapper: :custom_radio_buttons, html: {class: 'columns-4'},
+            collection: [['On-Site', 'On-Site'], ['Remote', 'Remote'], ['Both', 'Both']],
+            :item_wrapper_class => 'grid-3-12 ui-checkbox',
+            required: false,
+            :item_wrapper_tag => 'div',
+            label_method: :last,
+            value_method: :first,
+            item_label_tag: false,
+            as: :radio_buttons
+          = f.simple_fields_for :work_location_address do |w|
+            %section.ui-panel.air-top
+              %fieldset.section.no-label
+                %label Work Location Address:
+                .fieldgroup.grid.columns-2.air-bottom
+                  = w.input :address1, wrapper: :custom_div_wrapper_input, required: false, placeholder: 'Address1',
+                          label: false, wrapper_html: { class: 'fieldgroup grid-6-12' }, div_wrapper_html: { class: 'medium'}
+                  = w.input :address2, wrapper: :custom_div_wrapper_input, required: false, placeholder: 'Address2',
+                          label: false, wrapper_html: { class: 'fieldgroup grid-6-12' }, div_wrapper_html: { class: 'medium'}
+                .fieldgroup.grid.columns-2
+                  = w.input :city, wrapper: :custom_div_wrapper_input, required: false, placeholder: 'City',
+                          label: false, wrapper_html: { class: 'fieldgroup grid-6-12' }, div_wrapper_html: { class: 'medium'}
+                  = w.input :st, wrapper: :custom_div_wrapper_input, required: false, placeholder: 'ST',
+                          label: false, wrapper_html: { class: 'fieldgroup grid-2-12' }, div_wrapper_html: { class: 'medium'}
+                  = w.input :zip_code, wrapper: :custom_div_wrapper_input, required: false, placeholder: 'Zip Code',
+                          label: false, wrapper_html: { class: 'fieldgroup grid-4-12' }, div_wrapper_html: { class: 'medium'}
+      %section.card-section
+        %h3 4. TRAVEL AND EXPENSES
+        = f.input :travel_authorization,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4'},
+          collection: [[true, 'Yes Authorized'], [false, 'Not Authorized']],
+          :item_wrapper_class => 'grid-4-12 ui-checkbox',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+      %section.card-section
+        %h3 5. Consultant Rate
+        %table.table-finance
+          %tbody
+            %tr
+              %td{:width => "65"} Consultant Hourly Rate
+              %td.type-strong.align-right{:width => "35"}= number_to_currency @consultant.rate, precision: 2
+            %tr
+              %td{:width => "65"} Fixed GCES Fee
+              %td.type-strong.align-right.type-dark{:width => "35"}
+                %span.icon-plus.type-dark>
+                $10.00
+          %tfoot
+            %tr
+              %td{:width => "65"} Total Bill Rate:
+              %td.style-strong.align-right{:width => "35"}= number_to_currency (@consultant.rate + 10), precision: 2
+        = f.input :rate_approve,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4'},
+          collection: [[true, 'Approve Consultant Rate'], [false, 'Negotiate Alternative Rate']],
+          :item_wrapper_class => 'medium ui-checkbox',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+        = f.input :proposed_rate, required: false, placeholder: '$0.00', label: false,
+          wrapper: :custom_input, input_wrapper_html: { class: 'grid-3-12' }, wrapper_html: {class: 'grid columns-3 air-top'}
+      %section.card-section
+        %h3 6. Project Statement of Work (SOW)
+        %label Upload File Containing Statement of Work
+        .ui-uploader
+          %ul.upload-list
+          = f.input :sow, required: false, label: 'Click to Browse your computer for a file',
+              wrapper: :project_file_upload, as: :file, input_html: { id: 'sow_file'}
+          = f.input :summarize_statement, required: false, label: 'Or Summarize Statement of Work',
+            wrapper: :custom_no_wrapper_input, as: :text
+    = button_tag 'Submit Draft Work Agreement to Consultant', type: 'submit', class: "button-primary button-cta"
+- content_for :footer do
+  %footer#main-footer{:role => "contentinfo"}
+    %p.site-credits &copy; 2015 Playground

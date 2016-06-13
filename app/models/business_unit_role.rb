@@ -1,5 +1,6 @@
 class BusinessUnitRole < ActiveRecord::Base
-  belongs_to :user
+
+  belongs_to :user, inverse_of: :business_unit_roles
   belongs_to :account_manager
 
   validates :first_name, length: { in: 2..64 }, presence: true,
@@ -13,4 +14,5 @@ class BusinessUnitRole < ActiveRecord::Base
             :uniqueness => { :case_sensitive => false,:scope => :account_manager_id },
             format: { with: RegexConstants::EMAIL,
                       message: I18n.t('activerecord.errors.messages.regex.email') }
+
 end

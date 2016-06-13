@@ -52,24 +52,38 @@ class AccountManagersController < ApplicationController
   def do_assign_business_role
 
     @new_design = true
-    @unit_role = @account_manager.business_unit_roles.build(business_role_params)
 
-    if @unit_role.valid?
-      if User.where(email:@unit_role.email).first.blank?
-        generated_password = Devise.friendly_token.first(8)
-      else
-        generated_password = ''
+    @unit_role = BusinessUnitRole.where(email: params[:business_unit_role][:email], account_manager_id: @account_manager.id).first
+    generated_password = Devise.friendly_token.first(8)
+
+    if @unit_role.blank?
+      @unit_role = @account_manager.business_unit_roles.build(business_role_params)
+      user = User.where(email:@unit_role.email).first
+
+      if @unit_role.valid?
+        if user.blank?
+          user = User.create! do |u|
+            u.password = generated_password
+            u.first_name = @unit_role.first_name
+            u.last_name = @unit_role.last_name
+            u.skip_confirmation!
+          end
+        else
+          generated_password = ''
+        end
+        @unit_role.user_id = user.id
       end
-      user = User.where(email:@unit_role.email).first_or_create! do |user|
-        user.password = generated_password
-        user.first_name = @unit_role.first_name
-        user.last_name = @unit_role.last_name
-        user.skip_confirmation!
-      end
-      @unit_role.user_id = user.id
+
+      save_result = @unit_role.save
+    else
+      save_result = @unit_role.update_attributes(business_role_params)
+      user = @unit_role.user
+      generated_password = ''
     end
-      if @unit_role.save
+
+    if save_result
         # format.html { redirect_to assign_business_role_account_managers_path, notice: t('controllers.account_manager.assign_role.success') }
+        AccountManagerMailer.assigned_role(user, generated_password).deliver
         flash[:notice] = t('controllers.account_manager.assign_role.success')
         render json: @unit_role, status: :ok, notice: t('controllers.account_manager.assign_role.success')
       else

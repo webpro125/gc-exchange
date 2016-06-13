@@ -1,0 +1,202 @@
+- content_for :header do
+  %header#main-header{:role => "banner"}
+    = link_to 'GCES', root_path, class: 'site-brand'
+    .head-scroller
+      %nav.main-menu.menu-vertical{:role => "navigation"}
+        %ul
+          %li
+            %a{:href => ""} What we do
+          %li
+            %a{:href => ""} Join the Exchange
+          %li
+            %a{:href => ""} Community Forum
+          %li
+            %a{:href => ""} Tutorials
+          %li
+            %a{:href => ""} Education
+          %li
+            %a{:href => ""} Articles
+      %ul.qa-list{:style => "margin-top: 4rem;"}
+        %li.is-active
+          %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} What is a Draft Consultant Work Agreement?
+          .qa-content.ui-target.is-open{"data-section" => "qa-1"}
+            %p This is a sample of how to include answers in this qa list. Lorem ipsum sit amet quosque tandem numa lum consecter.
+        %li What is a Statement of Work?
+
+%header.page-header.dashboard-header
+  %nav.dashboard-menu{:role => "navigation"}
+    %ul.menu-horizontal
+      %li.active
+        %a{:href => "index-2.html"} Company
+      %li
+        %a{:href => ""} Projects
+      %li
+        %a{:href => ""} Reports
+      %li
+        %a{:href => ""} Account
+.page-content
+  %header.page-subheader
+    %h1 Review and Accept Draft Consultant Work Agreement
+    %p.type-intro
+      Brief introduction sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+      totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+  = simple_form_for [:consultant_profile, @project, @agreement],
+    html: {class: 'theme-gces project-agreement-form'} do |f|
+    %section.ui-card.no-padding.sleeve.is-animated
+      %header.card-header.card-bookmarks
+        %nav
+          %ol.menu-horizontal
+            %li
+              %a{:href => "#project-name"} Project Name
+            %li
+              %a{:href => "#performance"} Period of Performance
+            %li
+              %a{:href => "#location"} Work Location
+            %li
+              %a{:href => "#travel-expenses"} Travel Expenses
+            %li
+              %a{:href => "#rate"} Consultant Rate
+            %li
+              %a{:href => "#sow"} Statement of Work
+      %section.card-section
+        %h3 1. Name of Project
+        %p.type-display= @project.project_name
+        = f.input :project_name_agreement,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4 air-top'},
+          collection: [[true, 'Agree'], [false, 'Reject']],
+          :item_wrapper_class => 'grid-3-12 ui-checkbox small',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+        .section-thread.grid-12-12{style:'display: none'}
+          .thread-message
+            = f.input :project_name_reason,label: false, wrapper: :custom_no_wrapper_input, as: :text,
+                placeholder: 'Please, provide a reason for declining this section',
+                input_html: { rows: 3 }
+      %section.card-section
+        %h3 2. PROJECT PERIOD OF PERFORMANCE
+        %p.type-display
+          %span
+            %strong Start:
+            = @project.proposed_start.to_formatted_s(:month_day_and_year) + ' - '
+          %span
+            %strong End:
+            = @project.proposed_end.to_formatted_s(:month_day_and_year)
+        = f.input :project_period_agreement,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4 air-top'},
+          collection: [[true, 'Agree'], [false, 'Reject']],
+          :item_wrapper_class => 'grid-3-12 ui-checkbox small',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+        .section-thread.grid-12-12{style:'display: none'}
+          .thread-message
+            = f.input :project_period_reason,label: false, wrapper: :custom_no_wrapper_input, as: :text,
+                placeholder: 'Please, provide a reason for declining this section',
+                input_html: { rows: 3 }
+      %section.card-section
+        %h3 3. CONSULTANT'S WORK LOCATION
+        %p.type-display= @project.consultant_location
+        = f.input :consultant_location_agreement,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4 air-top'},
+          collection: [[true, 'Agree'], [false, 'Reject']],
+          :item_wrapper_class => 'grid-3-12 ui-checkbox small',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+        .section-thread.grid-12-12{style:'display: none'}
+          .thread-message
+            = f.input :consultant_location_reason,label: false, wrapper: :custom_no_wrapper_input, as: :text,
+                placeholder: 'Please, provide a reason for declining this section',
+                input_html: { rows: 3 }
+      %section.card-section
+        %h3 4. TRAVEL AND EXPENSES
+        %p.type-display= @project.travel_authorization ? 'Authorized' : 'Not Authorized'
+        = f.input :travel_authorization_agreement,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4 air-top'},
+          collection: [[true, 'Agree'], [false, 'Reject']],
+          :item_wrapper_class => 'grid-3-12 ui-checkbox small',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+        .section-thread.grid-12-12{style:'display: none'}
+          .thread-message
+            = f.input :travel_authorization_reason,label: false, wrapper: :custom_no_wrapper_input, as: :text,
+                placeholder: 'Please, provide a reason for declining this section',
+                input_html: { rows: 3 }
+      %section.card-section
+        %h3 5. CONSULTANT RATE
+        %table.table-finance
+          %tbody
+            %tr
+              %td{:width => "65"} Consultant Hourly Rate
+              %td.type-strong.align-right{:width => "35"}= number_to_currency @project.proposed_rate, precision: 2
+            %tr
+              %td{:width => "65"} Fixed GCES Fee
+              %td.type-strong.align-right.type-dark{:width => "35"}
+                %span.icon-plus.type-dark>
+                $10.00
+          %tfoot
+            %tr
+              %td{:width => "65"} Total Bill Rate:
+              %td.style-strong.align-right{:width => "35"}= number_to_currency (@project.proposed_rate.to_i + 10), precision: 2
+        = f.input :consultant_rate_agreement,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4 air-top'},
+          collection: [[true, 'Agree'], [false, 'Reject']],
+          :item_wrapper_class => 'grid-3-12 ui-checkbox small',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+        .section-thread.grid-12-12{style:'display: none'}
+          .thread-message
+            = f.input :consultant_rate_reason,label: false, wrapper: :custom_no_wrapper_input, as: :text,
+                placeholder: 'Please, provide a reason for declining this section',
+                input_html: { rows: 3 }
+      %section.card-section
+        %h3 6. PROJECT STATEMENT OF WORK (SOW)
+        - unless @project.sow_file_name.blank?
+          %fieldset.section
+            %label Upload File Containing Statement of Work
+            .ui-uploader
+              %ul.upload-list
+                %li.upload-item
+                  %span
+                  %button.icon-cloud-down
+        - unless @project.summarize_statement.blank?
+          %fieldset.section
+            %label Statement of Work
+            %p= @project.summarize_statement
+        = f.input :sow_agreement,
+          wrapper: :custom_radio_buttons, html: {class: 'columns-4 air-top'},
+          collection: [[true, 'Agree'], [false, 'Reject']],
+          :item_wrapper_class => 'grid-3-12 ui-checkbox small',
+          required: false,
+          :item_wrapper_tag => 'div',
+          label_method: :last,
+          value_method: :first,
+          item_label_tag: false,
+          as: :radio_buttons
+        .section-thread.grid-12-12{style:'display: none'}
+          .thread-message
+            = f.input :sow_reason,label: false, wrapper: :custom_no_wrapper_input, as: :text,
+                placeholder: 'Please, provide a reason for declining this section',
+                input_html: { rows: 3 }
+    = button_tag 'Accept Draft Work Agreement', type: 'submit', class: "button-primary button-cta"
+- content_for :footer do
+  %footer#main-footer{:role => "contentinfo"}
+    %p.site-credits &copy; 2015 Playground

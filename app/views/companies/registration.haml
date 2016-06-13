@@ -16,9 +16,9 @@
 
       = f.input :company_name, required: false, autofocus: true, placeholder: 'Company Name',
         wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
-      = f.input :work_phone, wrapper: :custom_grid_input, label: 'Work Phone Number', required: false,
+      = f.input :work_phone, wrapper: :custom_phone_grid_input, label: 'Work Phone Number', required: false,
         placeholder: '000', as: :work_phone_number
-      = f.input :cell_phone, wrapper: :custom_grid_input, label: 'Cell Phone Number', required: false,
+      = f.input :cell_phone, wrapper: :custom_phone_grid_input, label: 'Cell Phone Number', required: false,
         placeholder: '000', as: :cell_phone_number
       = f.input :help_content, required: false, label: 'Tell us how we can help you?',
         wrapper: :custom_no_wrapper_input, as: :text

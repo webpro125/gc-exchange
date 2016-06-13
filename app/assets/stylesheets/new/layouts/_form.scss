@@ -407,6 +407,8 @@ fieldset + textarea {
     margin-top: 1rem;
 }
 
+
+
 input[type="hidden"] + label {
     margin-top: 0;
 }
@@ -676,19 +678,135 @@ input[type="hidden"] + label {
             
         }
         
+        &.medium {
+            height: 2.5rem;
+            
+            input[type="text"],
+            input[type="search"],
+            input[type="password"],
+            input[type="email"],
+            input[type="phone"],
+            input[type="address"],
+            input[type="search"],
+            input[type="date"],
+            input[type="month"],
+            input[type="number"],
+            input[type="url"],
+            input[type="tel"],
+            input[type="range"],
+            input[type="datetime"],
+            input[type="week"] {
+                height: 2.5rem;
+                font-size: 1rem
+            }
+        }
+        
         & + .input-styler {
             margin-top: 1rem;
         }
     }
     
+    .input-style-linear {
+        display: table;
+        height: 2.75rem;
+        padding-left: 0;
+        box-shadow: inset 0 -2px 0 0 color(primary-lightest);
+        position: relative;
+        
+        &[class*="grid-"] {
+            float: left;
+            margin-left: 0;
+        }
+        
+        &:after {
+            @extend %before-after-absolute;
+            width: 0;
+            height: 2px;
+            background: color(primary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        input[type="text"],
+        input[type="search"],
+        input[type="password"],
+        input[type="email"],
+        input[type="phone"],
+        input[type="address"],
+        input[type="search"],
+        input[type="date"],
+        input[type="month"],
+        input[type="number"],
+        input[type="url"],
+        input[type="tel"],
+        input[type="range"],
+        input[type="datetime"],
+        input[type="week"] {
+            width: 100%;
+            height: 2.75rem;
+            background: transparent;
+            margin: 0;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        
+        label {
+            display: table-cell;
+            width: auto;
+            color: color(primary-lighter);
+        }
+        
+        .input-wrap {
+            display: table-cell;
+            width: auto;
+            height: 2.75rem;
+        }
+        
+        &:hover {
+            &[class*="icon-"] {
+                &:before {
+                    color: color(primary);
+                    transition: color 0.15s ease-out;
+                }
+            }
+            
+            &:after {
+                width: 100%;
+                transition: width 0.5s ease-out;
+            }
+        }
+        
+        &.ready,
+        &.focus {
+            &:after {
+                width: 100%;
+                transition: width 0.3s ease-out;
+            }
+            
+            &[class*="icon-"] {
+                &:before {
+                    color: color(primary);
+                }
+            }
+        }
+        
+        &.valid {
+            
+        }
+    }
+    
     label {
-        color: color(primary);
+        color: color(primary-lighter);
         font-size: 1.125rem;
         margin-bottom: 1rem;
         
         &.large {
             font-size: 1.45rem;
         }
+        
+        
     }
     
     fieldset {
@@ -854,6 +972,58 @@ input[type="hidden"] + label {
         }
     }
     
+    .textarea-toggle {
+        position: relative;
+        
+        &.is-open {
+            &:before {
+                @extend %before-after-absolute;
+                width: 2rem;
+                height: 2rem;
+                font-size: 2rem;
+                line-height: 2rem;
+                font-family: $font-glyphs;
+                content: glyph(pointer-up-2);
+                position: absolute;
+                left: 0;
+                bottom: -2.15rem;
+                color: rgba(color(alert-success), 0.25);
+            }
+        }
+    }
+    
+    .thread-message {
+        textarea {
+            background: rgba(color(alert-success), 0.25);
+            color: darken(color(alert-success), 8%);
+            
+            &::-webkit-input-placeholder {
+                color: darken(color(alert-success), 8%);
+                font-style: italic;
+            }
+
+            &:-moz-placeholder {
+                color: darken(color(alert-success), 8%);
+                font-style: italic;
+            }
+
+            &::-moz-placeholder {
+                color: darken(color(alert-success), 8%);
+                font-style: italic;
+            }
+
+            &:-ms-input-placeholder {
+                color: darken(color(alert-success), 8%);
+                font-style: italic;
+            }
+            
+            &:hover,
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+    
     @include responsive($media: 'tablet-portrait') {
         input[type="text"],
         input[type="search"],
@@ -979,46 +1149,107 @@ input[type="hidden"] + label {
     position: relative;
     width: 100%;
     height: auto;
-    min-height: rem(200px);
+    min-height: rem(60px);
     box-sizing: border-box;
-    padding: 0 0 rem(100px) 0;
+    padding: 0;
     overflow: hidden;
     cursor: pointer;
     
-    input[type="file"] {
-        width: 100%;
-        height: 50%;
-        opacity: 0;
-        position: absolute;
-        bottom: rem(100px);
-        left: 0;
-    }
-    
-    button {
-        width: 90%;
-        height: rem(100px);
-        background-color: transparent;
-        margin-top: 2.5rem;
-        margin-bottom: 0;
-        border-top: 2px solid color(primary-lightest);
-        position: absolute;
-        left: 5%;
-        bottom: 0;
-        cursor: pointer;
+    .upload-list {
+        margin-top: 1rem;
         
-        &:before {
-            color: color(primary);
-            font-size: 3rem;
-        }
-        
-        &:hover {
-            &:before {
-                font-size: 4rem;
-                transition: all 0.15s ease-out;
+        .upload-item {
+            width: 100%;
+            height: 2.5rem;
+            padding-left: 2.75rem;
+            background: image-url('file-doc.png') no-repeat center left;
+            background-size: contain;
+            line-height: 2.5rem;
+            
+            span,
+            button {
+                color: color(primary);
+            }
+            
+            span {
+                font-weight: 500;
+                margin-left: 1.5rem;
+                
+            }
+            
+            button {
+                display: inline-block;
+                background: none;
+                margin-top: 0;
+                font-weight: 500;
             }
         }
     }
-
+    
+    .upload-file {
+        width: 100%;
+        height: auto;
+        padding: 1.5rem 0;
+        background-color: transparent;
+        border: 2px dashed color(primary-lighter);
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        cursor: pointer;
+        position: relative;
+        box-sizing: border-box;
+        
+        &:before {
+            display: block;
+            width: 2rem;
+            height: 2rem;
+            font-size: 2rem;
+            line-height: 2rem;
+            text-align: center;
+            color: color(primary-lightest);
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            margin-top: -1rem;
+        }
+        
+        label {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 1.125rem;
+            line-height: 1.25em;
+            margin: 0;
+            color: color(primary-lightest);
+        }
+        
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        &:hover {
+            border: 2px dashed color(primary);
+            transition: all 0.2s ease-out;
+            
+            &:before {
+                color: color(primary);
+                transition: all 0.2s ease-out;
+            }
+            
+            label {
+                color: color(primary);
+                transition: all 0.2s ease-out;
+            }
+        }
+    }
+    
     &.mini {
         width: 3.75rem;
         min-height: 3.75rem;
@@ -1044,84 +1275,49 @@ input[type="hidden"] + label {
     }
 }
 
-.datepicker-toggle {
+.datepicker-toggle,
+.ui-card .datepicker-toggle {
     height: auto;
     padding: 0;
-    
+    margin-top: 0;
+    background: rgba(color(bg-secondary), 0.5);
+
     label {
-        @extend %type-ui-navtab;
         display: block;
-        height: 2rem;
-        line-height: 2rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.025rem;
         border-top-left-radius: size(border-radius);
         border-top-right-radius: size(border-radius);
         background: color(primary-lighter);
-        color: #FFF !important;
+        color: #FFF;
         text-align: center;
+        text-transform: uppercase;
         margin-bottom: 0;
-        margin-left: -1px;
     }
-    
+
     input[type="text"],
     input[type="date"] {
+        background: rgba(color(bg-secondary), 0.5);
+        height: 3rem;
         text-align: center;
-        font-size: 1.65rem;
-        height: rem(80px);
-        line-height: 1em;
-        padding: 0;
         text-indent: 0;
+        padding: 0;
     }
     
+    &:hover,
     &.focus {
+        box-shadow: none;
+
         label {
             background: color(primary);
             transition: all 0.15s ease-out;
         }
     }
-    
-    @include responsive($max-width: '800px') {
-        width: 35% !important;
-    }
 }
 
-.ui-card {
-    .datepicker-toggle {
-        height: auto;
-        padding: 0;
-        margin-top: 0;
-        background: rgba(color(bg-secondary), 0.5);
-
-        label {
-            display: block;
-            height: 2rem;
-            line-height: 2rem;
-            border-top-left-radius: size(border-radius);
-            border-top-right-radius: size(border-radius);
-            background: color(primary-lighter);
-            color: #FFF !important;
-            text-align: center;
-            margin-bottom: 0;
-        }
-
-        input[type="text"],
-        input[type="date"] {
-           background: rgba(color(bg-secondary), 0.5);
-        }
-
-        &:hover {
-            box-shadow: inset 0 0 0 2px rgba(color(bg-secondary),0.85);
-        }
-
-        &.focus {
-            box-shadow: inset 0 0 0 2px color(bg-secondary);
-            
-            label {
-                background: color(primary);
-                transition: all 0.15s ease-out;
-            }
-        }
-    }
-}
 
 .contract-rider {
     text-align: center;

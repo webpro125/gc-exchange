@@ -1,0 +1,406 @@
+#map {
+    background: color(map-water) !important;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.map-details {
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    color: #000;
+    padding: 10px 15px;
+    z-index: 2;
+}
+
+.map-details span {
+    float: right;
+}
+
+.map-details p,
+.map-details span {
+    font-size: 0.85rem;
+}
+
+.leaflet-marker-icon {
+    &.marker-cluster {
+        display: block;
+        width: 2.25rem !important;
+        height: 2.25rem !important;
+        margin-left: -1.125rem !important;
+        margin-top: -1.125rem !important;
+        box-shadow: none;
+        border: none;
+        background: color(secondary);
+        color: #FFF;
+        border-radius: 100%;
+        
+        &.marker-cluster-small,
+        &.marker-cluster-medium,
+        &.marker-cluster-large  {
+            background: color(secondary);
+            
+            div {
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                background: color(secondary);
+                margin: 0;
+                padding: 0;
+                
+                span {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    font-family: $font-bodytext;
+                    font-weight: 900;
+                    font-size: 0.85rem !important;
+                    line-height: 2rem !important;
+                }
+            }
+        }
+        
+        &.marker-cluster-small {
+            width: 2.25rem !important;
+            height: 2.25rem !important;
+            margin-left: -1.125rem !important;
+            margin-top: -1.125rem !important;
+            
+            div {
+                span {
+                    font-size: 0.85rem !important;
+                    line-height: 2.25rem !important;
+                }
+            }
+        }
+        
+        &.marker-cluster-medium {
+            width: 2.85rem !important;
+            height: 2.85rem !important;
+            margin-left: -1.425rem !important;
+            margin-top: -1.425rem !important;
+            
+            div {
+                span {
+                    font-size: 1rem !important;
+                    line-height: 2.85rem !important;
+                }
+            }
+        }
+        
+        &.marker-cluster-large {
+            width: 3.35rem !important;
+            height: 3.35rem !important;
+            margin-left: -1.675rem !important;
+            margin-top: -1.675rem !important;
+            
+            div {
+                span {
+                    font-size: 1.125rem !important;
+                    line-height: 3.35rem !important;
+                }
+            }
+        }
+    }
+}
+
+.leaflet-popup {
+    .leaflet-popup-close-button {
+        display: block;
+        background: none;
+        color: rgba(#FFF, 0) !important;
+        margin: 4px 4px 0 0;
+        
+        &:before {
+            display: block;
+            font-family: $font-glyphs;
+            content: glyph(cross-light);
+            width: rem(20px);
+            height: rem(20px);
+            line-height: rem(20px);
+            font-size: 1rem;
+            font-weight: bold;
+            color: color(primary-light) !important;
+            text-indent: 0 !important
+        }
+        
+        &:hover {
+            &:before {
+                color: color(body-dark) !important;
+                transition: color 0.1s ease-out;
+            }
+        }
+    }
+    
+    .leaflet-popup-content-wrapper {
+        box-shadow: 2px 2px 1px 0 rgba(#003550, 0.35);
+        
+        .leaflet-popup-content {
+            font-family: $font-bodytext;
+            font-size: 0.925rem;
+            line-height: 1.45em;
+            padding: 1.25rem 1.75rem !important;
+            
+            .consultant-wrapper {
+                width: auto;
+                min-width: rem(300px);
+                max-width: rem(420px);
+                margin-bottom: 1rem;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                
+                .consultant-thumbnail {
+                    display: inline-block;
+                    width: rem(40px);
+                    height: rem(40px);
+                    background: color(primary);
+                    position: relative;
+                    border-radius: 100%;
+                    vertical-align: top;
+                    
+                    &:before {
+                        display: block;
+                        width: rem(40px);
+                        height: rem(40px);
+                        line-height: rem(40px);
+                        font-size: rem(22px);
+                        text-align: center;
+                        color: #FFF;
+                        position: absolute;
+                        top: 0;
+                        left: 2px;
+                    }
+                }
+                
+                .consultant-info {
+                    display: inline-block;
+                    margin-left: 0.75rem;
+                    margin-top: -0.05rem;
+                    width: auto;
+                    font-size: 0.925rem;
+                    vertical-align: top;
+
+                    .consultant-name {
+                        font-size: 1.25rem;
+                    }
+                    
+                    .consultant-title {
+                        margin-bottom: 0 !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main-content {
+    &.page-landing {
+        &:before {
+            display: block;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: rgba(color(primary-darker), 0.5);
+            //background: rgba(color(primary-lighter), 0.55);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            pointer-events: none;
+        }
+    }
+}   
+    
+.landing-site-brand {
+    width: 15.625rem;
+    height: 3.125rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -15rem 0 0 -7.8125rem;
+    z-index: 100;
+
+    h1 {
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-size: 4.5rem;
+        font-weight: 800;
+        color: #FFF;
+        //color: color(primary-darker);
+        text-align: center;
+    }
+}
+
+.landing-content {
+    display: block;
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    color: #FFF;
+    //color: color(primary-darker);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin: -6rem 0 0 0;
+    z-index: 100;
+
+    h2 {
+        
+        font-size: 3.5rem;
+        line-height: 1.25em;
+        font-weight: normal;
+        
+    }
+    
+    a {
+        
+    }
+}
+
+.landing-search {
+    display: block;
+    width: 30%;
+    min-width: rem(280px);
+    max-width: rem(320px);
+    height: 2.5rem;
+    box-shadow: inset 0 0 0 1px rgba(color(primary-light), 0.5);
+    border-radius: size(border-radius);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    padding-right: 2.75rem;
+    
+    input[type="text"] {
+        background: none;
+        height: 2.5rem;
+        color: color(primary);
+        letter-spacing: 1px;
+        
+        &::-webkit-input-placeholder {
+            color: color(primary-light);
+        }
+
+        &:-moz-placeholder {
+            color: color(primary-light);
+        }
+
+        &::-moz-placeholder {
+            color: color(primary-light);
+        }
+
+        &:-ms-input-placeholder {
+            color: color(primary-light);
+        }
+        
+        &:hover,
+        &:focus {
+            box-shadow: none;
+            border: none;
+        }
+    }
+    
+    button {
+        width: 2.5rem;
+        height: 2.5rem;
+        background: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        
+        &:before {
+            width: 2.5rem;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            font-size: 1.45rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            text-align: center;
+            color: color(primary-light);
+        }
+    }
+    
+    &:hover {
+        background: #FFF;
+        box-shadow: none;
+        transition: background 0.15s ease-out;
+        
+        input[type="text"] {
+            
+        }
+        
+        button {
+            &:before {
+                color: color(primary);
+                transition: color 0.25s ease-out;
+            }
+        }
+    }
+}
+
+.button-landing {
+    @include scale(1);
+    display: inline-block;
+    background: color(primary-darker);
+    //background: #FFF;
+    padding: 0.75rem 3.5rem;
+    border-radius: size(border-radius);
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    text-align: center;
+    transition: scale 0.75s ease-out;
+    margin-top: 2.5rem;
+    //color: color(primary-darker);
+    
+    .subline {
+        display: block;
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 0.875rem;
+        letter-spacing: 1px;
+        color: color(primary-light);
+    }
+    
+    &.consultants {
+        margin-right: 2rem;
+    }
+    
+    
+    &:hover {
+        @include scale(1.125);
+        transition: scale 0.5s ease-out;
+    }
+}
+
+/*
+
+<section class="page-landing">
+        <header>
+            <h1>GCES</h1>
+        </header>
+        <article>
+            <h2>Join Our Community of 253 Members</h2>
+            <a class="button-landing consultants" href="">
+                <span>Consultants</span>
+                <span class="subline">Sell Your Services</span>
+            </a>
+            <a class="button-landing companies" href="">
+                <span>Companies</span>
+                <span class="subline">Buy Services</span>
+            </a>
+        </article>
+    </section>
+
+*/

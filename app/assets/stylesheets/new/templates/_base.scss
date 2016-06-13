@@ -25,9 +25,14 @@ body {
     @extend %clearfix;
     position: relative;
 	width: 100%;
-    height: 100% !important;
+    height: auto !important;
 	min-height: 100% !important;
     position: relative;
+    
+    &.page-landing {
+        background: color(map-water);
+        height: 100% !important;
+    }
     
     @include responsive($media: 'phone-tablet') {
         
@@ -64,29 +69,31 @@ body {
     width: size(header-main);
     height: 100%;
     background: color(bg-main);
-    box-shadow: inset 0 20px 0 0 color(primary);
-    padding-top: 5rem;
+    box-shadow: inset 0 rem(60px) 0 0 color(primary);
+    padding-top: rem(60px);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
     overflow: hidden;
+    transition: width 0.2s ease-out;
       
     &.main {
         box-shadow: inset 0 rem(100px) 0 0 color(primary);
     }
     
-    &.version2 {
-        padding-top: rem(60px);
-        box-shadow: inset 0 rem(60px) 0 0 color(primary);
+    &.page-landing {
+        box-shadow: none;
     }
     
     @include responsive($media: 'laptop') {
         width: size(header-main-medium);
+        transition: width 0.2s ease-out;
     }
     
     @include responsive($media: 'tablet-landscape') {
         width: size(header-main-small);
+        transition: width 0.2s ease-out;
     }
     
     @include responsive($media: 'tablet-portrait') {
@@ -96,6 +103,7 @@ body {
         padding-top: 0;
         padding-bottom: 0;
         position: static;
+        transition: width 0.2s ease-out;
         
         &.main {
             padding-top: 0;
@@ -113,17 +121,21 @@ body {
     min-height: 100% !important;
     background: color(bg-secondary);
     padding-left: size(header-main);
+    padding-top: rem(130px);
     position: relative;
+    transition: width 0.2s ease-out;
+    transition: padding 0.2s ease-out;
     
     &:after {
         @extend %before-after-absolute;
         width: 100%;
-        height: 1.25rem;
+        height: rem(60px);
         background: color(primary-dark);
         position: fixed;
         top: 0;
         left: 0;
         z-index: 50;
+        transition: width 0.2s ease-out;
     }
   
     &.main {
@@ -132,34 +144,30 @@ body {
         }
     }
     
-    &.version2 {
-        padding-top: rem(130px);
+    &.page-landing {
         
-        &:after {
-            height: rem(60px);
-        }
     }
     
     @include responsive($media: 'laptop') {
         padding-left: size(header-main-medium);
+        transition: padding 0.2s ease-out;
+        
     }
     
     @include responsive($media: 'tablet-landscape') {
         padding-left: size(header-main-small);
+        transition: padding 0.2s ease-out;
     }
     
     @include responsive($media: 'tablet-portrait') {
         padding-left: 0;
         box-shadow: none;
+        transition: padding 0.2s ease-out;
         
         &.main {
             &:after {
                 display: none;
             }
-        }
-        
-         &.version2 {
-            
         }
     }
     
@@ -173,7 +181,7 @@ body {
 }
 
 #main-footer {
-    
+    display: none;
 }
 
 *[data-type^="template-"] {
@@ -187,14 +195,11 @@ Space relationships between editorial elements
 --- */
 * {
     h1 + &,
-    h2 + & {
-        margin-top: 1.5rem;
-    }
-    
+    h2 + &,
     h3 + &,
     h4 + &,
     h5 + & {
-        margin-top: 1.25rem;
+        margin-top: 1em;
     }
     
     p + &:not(div, section, article),
@@ -221,18 +226,20 @@ Space relationships between editorial elements
 
 h1, h2, h3 {
     font-weight: 300;
+    line-height: 1.25em;
 }
 
 h1 {
-	font-size: 3em;
+	font-size: 2.25em;
+    color: color(primary);
 }
 
 h2 {
-	font-size: 2.25em;
+	font-size: 1.85em;
 }
 
 h3 {
-	font-size: 1.5em;
+	font-size: 1.35em;
 }
 
 h4 {
@@ -352,20 +359,19 @@ ul.list {
 	}
 }
 
-ol.list {
+ol {
 	counter-reset: item;
 
 	& > li {
 		&:before {
 			content: counter(item) ".";
 			counter-increment: item;
+            display: inline;
 		}
 	}
 }
 
-figure,
-.asset-frame {
-    border-radius: size(border-radius);
+figure {
     overflow: hidden;
     
     img {
@@ -373,21 +379,9 @@ figure,
         height: auto;
     }
     
-    &.video {
-        @include aspect-ratio(16,9);
-    }
-    
-    &.old-video {
-        @include aspect-ratio(4,3);
-    }
-    
     &.square {
         @include aspect-ratio(1,1);
     }
-}
-
-.asset-frame {
-    border-radius: size(border-radius);
 }
 
 .place-right {
@@ -413,7 +407,6 @@ figure,
     box-sizing: border-box;
     padding-left: size(margin-page);
     padding-right: size(margin-page);
-    
     
     @include responsive($media: 'laptop') {
         padding-left: size(margin-page-medium);
@@ -484,6 +477,18 @@ figure,
                 right: 0 !important;
             }
         }
+        
+        &.align-center {
+            h1,
+            h2,
+            h3,
+            .page-description,
+            .section-description {
+                text-align: center !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
     }
     
     @include responsive($max-width: '640px') {
@@ -511,19 +516,49 @@ figure,
         color: color(primary);
     }
     
-    &.page-tabs {
+    &.page-tabs,
+    &.dashboard-header {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
-}
-
-.section-header {
     
+    &.dashboard-header {
+        @extend %content-width;
+        height: size(page-header);
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 500;
+    }
 }
 
 .page-subheader {
     
 }
+
+.page-section {
+    padding-bottom: 1.5rem;
+    
+    & > h1,
+    & > h2,
+    & > h3 {
+        color: color(primary);
+        margin-bottom: 1em;
+    }
+    
+    & + & {
+        border-top: 2px solid #FFF;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+}
+
+
+
+.section-header {
+    
+}
+
 
 .page-actions,
 .page-tools {

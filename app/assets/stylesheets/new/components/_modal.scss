@@ -14,7 +14,7 @@
         display: table-cell;
         width: 60%;
         height: auto;
-        min-height: rem(300px);
+        min-height: rem(260px);
         max-height: 90%;
         padding: rem(120px) 3rem 3rem 3rem;
         box-sizing: border-box;
@@ -31,7 +31,6 @@
         height: auto;
         max-height: 80vh;
         padding-right: 15%;
-        padding-bottom: 6rem;
         overflow-y: auto;
         box-sizing: border-box;
     }
@@ -40,7 +39,7 @@
         display: block;
         width: 100%;
         height: rem(80px);
-        background: color(secondary);
+        background: color(primary);
         margin: 0;
         padding: 0 2rem;
         border-top-left-radius: size(border-radius);
@@ -65,10 +64,6 @@
 
 	.modal-close {
         @include icon($icon: glyph(cr-close), $size: rem(80px), $icon-size: 1.75rem, $type: 'sq');
-		position: absolute;
-		top: 0.85rem;
-		right: 0.5rem;
-        cursor: pointer;
         position: absolute;
         top: 0;
         right: 0;
@@ -97,6 +92,44 @@
         .ui-card {
             padding: 0;
             background: none;
+        }
+        
+        
+    }
+    
+    &.no-head {
+        & > header {
+            display: none;
+        }
+        
+        .modal-box {
+            padding-top: 3rem;
+        }
+        
+        .modal-close {
+            &:before {
+                color: color(primary-lighter);
+            }
+
+            &:hover {
+                &:before {
+                    color: color(primary);
+                    transition: color 0.1s ease-out;
+                }
+            }
+        }
+    }
+    
+    &.flash,
+    &[data-modal-flash] {
+        .modal-content {
+            text-align: center;
+            
+            .type-description {
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
     }
     
@@ -130,6 +163,17 @@
                 line-height: rem(60px);
             }
         }
+        
+        .modal-close {
+            top: -0.75rem;
+            right: -0.65rem;
+        }
+        
+        .modal-content {
+            .type-description {
+                width: 90%;
+            }
+        }
     }
     
     @include responsive($media: 'phone-landscape') {
@@ -151,14 +195,34 @@
 
 FOR REFERENCE:
 
-<section class="ui-modal">
+<div class="modal-toggle" data-type="cm-modal" data-modal-target="unique-name">Modal Toggle</div>
+
+<section class="ui-modal" data-name="unique-name">
     <div class="modal-box">
         <header><h1>Modal Box Title</h1></header>
         <div class="modal-content">
             <p>Some content here...</p>
         </div>
         <footer>
-            <div class="modal-close ui-action-icon icon-cr-cross-light"></div>
+            <div data-modal-close class="modal-close ui-action-icon icon-cr-cross-light"></div>
+        </footer>
+    </div>
+</section>
+
+
+Use of the modal as flash message from the system to the user:
+
+<section class="ui-modal no-head flash"  data-name="unique-name" data-modal-flash>
+    <div class="modal-box">
+        <div class="modal-content">
+            <div class="modal-scroller">
+                <h1>Congratulations!</h1>
+                <p class="type-display">You have sucessfully assign a new role. John Doe will receive an email to lorem ipsum sit amet quosque tandem.</p>
+                <a data-modal-close href="" class="button-primary small">Ok</a>
+            </div>
+        </div>
+        <footer>
+            <div data-modal-close class="modal-close ui-action-icon icon-cr-cross-light"></div>
         </footer>
     </div>
 </section>

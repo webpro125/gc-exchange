@@ -68,9 +68,9 @@
       %h4
         Offers
         %span.viewall= link_to t('views.offer.actions.index'), projects_path
-      .row
-        .medium-12.columns
-          = link_to 'Add Engagement Offer',
-            new_project_path,
-            class: 'button tiny'
+      -#.row
+      -#  .medium-12.columns
+      -#    = link_to 'Add Engagement Offer',
+      -#      new_project_path,
+      -#      class: 'button tiny'
       = render 'shared/recent_consultants', consultants: @consultants

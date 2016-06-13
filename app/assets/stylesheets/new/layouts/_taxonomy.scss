@@ -215,6 +215,137 @@
                 }
             }
         }
+        
+        .section-intro {
+            padding: 2rem;
+
+            &:before {
+                @extend %before-after-absolute;
+                width: calc(100% + 3.75rem);
+                height: 2px;
+                background: color(primary-lightest);
+                left: -1.875rem;
+                bottom: 0;
+                display: none;
+            }
+
+            .section-title {
+                text-align: left;
+                line-height: 1.1em;
+            }
+
+            .section-description {
+                text-align: left;
+                display: block;
+                width: 60%;
+            }
+
+            figure {
+                width: 25%;
+                bottom: 0;
+                right: 2rem;
+            }
+
+            @include responsive($max-width: '640px') {
+                padding: 0;
+            }
+        }
+
+        .entity-unit {
+            display: inline-block;
+            width: 22%;
+            margin-left: -4px;
+            vertical-align: top;
+            position: relative;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &.connect-up,
+            &.connect-down {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .unit-info {
+                @extend %ui-box;
+                margin-top: 3.165rem;
+                padding: 4rem 2.5rem;
+                text-align: left;
+                position: relative;
+                z-index: 5;
+
+                width: calc(100vw - 32.5rem);
+                max-width: 75rem;
+
+                @include responsive($media: 'laptop') {
+                    width: calc(100vw - 23.125rem);
+                }
+
+                @include responsive($media: 'tablet-landscape') {
+                    width: calc(100vw - 16.25rem);
+                }
+
+                @include responsive($media: 'tablet-portrait') {
+                    width: calc(100vw - 2.5rem);
+                }
+                
+                &.ui-tabs {
+                    padding-top: 5rem;
+                    
+                    .unit-info-header {
+                        display: block;
+                        width: 100%;
+                        height: 3.85rem;
+                        padding-left: 2.5rem;
+                        padding-right: 2.5rem;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        border-bottom: 2px solid color(primary-lightest);
+                    }
+                }
+            }
+
+            .ui-panel-toggle {
+                position: relative;
+                z-index: 1;
+
+                &:before {
+                    @extend %before-after-absolute;
+                    background: rgba(darken(color(primary-dark), 10%), 0.125);
+                    width: 95%;
+                    height: 2px;
+                    bottom: -2px;
+                    left: 2.5%;
+                    border-bottom-left-radius: size(border-radius);
+                    border-bottom-right-radius: size(border-radius);
+                    opacity: 0;
+                }
+
+                &:hover {
+                    @include translate(0,-2px);
+                    transition: all 0.1s ease-out;
+
+                    &:before {
+                        opacity: 1;
+                        transition: opacity 0.1s ease-out;
+                    }
+                }
+
+                &.is-open {
+                    &:hover {
+                        margin-top: 0;
+                        @include translate(0,0);
+
+                        &:before {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
 
         .row {
             display: block;
@@ -226,107 +357,7 @@
             position: relative;
             z-index: 5;
             
-            .section-intro {
-                padding: 2rem;
-                
-                &:before {
-                    @extend %before-after-absolute;
-                    width: calc(100% + 3.75rem);
-                    height: 2px;
-                    background: color(primary-lightest);
-                    left: -1.875rem;
-                    bottom: 0;
-                    display: none;
-                }
-                
-                .section-title {
-                    text-align: left;
-                    line-height: 1.1em;
-                }
-                
-                .section-description {
-                    text-align: left;
-                    display: block;
-                    width: 60%;
-                }
-                
-                figure {
-                    width: 25%;
-                    bottom: 0;
-                    right: 2rem;
-                }
-                
-                @include responsive($max-width: '640px') {
-                    padding: 0;
-                }
-            }
-
-            .entity-unit {
-                display: inline-block;
-                width: 22%;
-                margin-left: -4px;
-                vertical-align: top;
-                position: relative;
-
-                &:first-child {
-                    margin-left: 0;
-                }
-
-                &.connect-up,
-                &.connect-down {
-                    margin-top: 0;
-                    margin-bottom: 0;
-                }
-
-                .unit-info {
-                    @extend %ui-box;
-                    width: 67.55rem;
-                    margin-top: 3.165rem;
-                    padding: 4rem 2.5rem;
-                    text-align: left;
-                    position: relative;
-                    z-index: 5;
-
-                }
-
-                .ui-panel-toggle {
-                    position: relative;
-                    z-index: 1;
-
-                    &:before {
-                        @extend %before-after-absolute;
-                        background: rgba(darken(color(primary-dark), 10%), 0.125);
-                        width: 95%;
-                        height: 2px;
-                        bottom: -2px;
-                        left: 2.5%;
-                        border-bottom-left-radius: size(border-radius);
-                        border-bottom-right-radius: size(border-radius);
-                        opacity: 0;
-                    }
-
-                    &:hover {
-                        @include translate(0,-2px);
-                        transition: all 0.1s ease-out;
-
-                        &:before {
-                            opacity: 1;
-                            transition: opacity 0.1s ease-out;
-                        }
-                    }
-
-                    &.is-open {
-                        &:hover {
-                            margin-top: 0;
-                            @include translate(0,0);
-
-                            &:before {
-                                display: none;
-                            }
-                        }
-                    }
-                }
-            }
+            
             
             &.single-set,
             &.first-set,
@@ -404,6 +435,13 @@
                             }
                         }
                     }
+                    
+                    h2 {
+                        font-size: 1.75rem;
+                        line-height: rem(60px);
+                        font-weight: normal;
+                        color: #FFF;
+                    }
                 }
                 
                 .ui-tabs {
@@ -477,6 +515,22 @@
                             
                             .button-cta {
                                 font-size: 1.15rem;
+                            }
+                        }
+                        
+                        @include responsive($max-width: '860px') {
+                            margin-left: 0;
+                            
+                            .unit-role,
+                            .grid-4-12 {
+                                display: block;
+                                width: 100%;
+                                margin-left: 0;
+                                margin-bottom: 1.5rem;
+                                
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
                             }
                         }
                     }
@@ -586,8 +640,7 @@
         
         .tab-panel {
             form {
-                padding-left: 2rem;
-                padding-right: 2rem;
+                
                 padding-bottom: 1.5rem;
                 
                 fieldset {

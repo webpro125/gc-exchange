@@ -3,7 +3,6 @@ button,
     display: inline-block;
     width: auto;
     height: auto;
-    min-height: size(input-default);
     line-height: 1.15em;
     padding: 0.75em em(30px);
     font-size: 0.85rem;
@@ -287,6 +286,12 @@ button,
             display: none;
         }
     }
+}
+
+p + .button-cta,
+p + .button-primary,
+a + .button-cta {
+    margin-top: 1.5rem;
 }
 
 .button-link {

@@ -205,6 +205,7 @@ en:
         download_resume_html: '<i class="fi-download"></i> Download Resume'
         edit_projects_html: '<i class="fi-widget"></i> Manage Projects'
         contact: 'Contact'
+        hire_me: 'Hire Me'
       headers:
         contact: 'Contact Information'
         projects: 'Project History'

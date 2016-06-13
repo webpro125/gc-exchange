@@ -177,7 +177,7 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
-  config.wrappers :custom_grid_input, tag: 'fieldset', class: 'section no-label', error_class: 'invalid' do |a|
+  config.wrappers :custom_phone_grid_input, tag: 'fieldset', class: 'section no-label', error_class: 'invalid' do |a|
     a.wrapper :div_wrapper, tag: 'div', class: 'grid' do |b|
       b.use :html5
       b.use :placeholder
@@ -190,6 +190,23 @@ SimpleForm.setup do |config|
     end
     a.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
     a.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  config.wrappers :customer_grid_range_input, tag: 'div', class: 'grid-4-12', error_class: 'invalid' do |b|
+    b.wrapper :div_wrapper, tag: 'div', class: 'input-style-linear' do |a|
+      a.use :label
+      a.wrapper :input_wrapper, tag: 'div', class: 'input-wrap' do |c|
+        c.use :html5
+        c.use :placeholder
+        c.optional :maxlength
+        c.optional :pattern
+        c.optional :min_max
+        c.optional :readonly
+        c.use :input
+      end
+    end
+    b.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 
   config.wrappers :phone_input, tag: 'div', class: 'input-styler no-break' do |b|
@@ -215,5 +232,54 @@ SimpleForm.setup do |config|
     b.use :input
     b.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  config.wrappers :custom_radio_buttons, tag: 'div', class: 'grid', error_class: 'invalid' do |b|
+      b.use :html5
+      b.optional :readonly
+      b.use :input
+
+      b.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
+      b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  config.wrappers :project_file_upload, tag: 'div', class: 'upload-file icon-cloud-up', error_class: 'invalid' do |b|
+    b.use :html5
+    b.optional :readonly
+    b.use :label
+    b.use :input
+
+    b.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  config.wrappers :custom_grid_input, tag: 'fieldset', class: 'section no-label', error_class: 'invalid' do |a|
+    a.wrapper :grid_wrapper, tag: 'div', class: 'grid' do |b|
+      b.use :html5
+      b.use :placeholder
+      b.optional :maxlength
+      b.optional :pattern
+      b.optional :min_max
+      b.optional :readonly
+      b.use :label
+      b.use :input
+    end
+    a.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
+    a.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  config.wrappers :custom_div_wrapper_input, tag: 'div', class: '', error_class: 'invalid' do |a|
+    a.wrapper :div_wrapper, tag: 'div', class: 'input-styler' do |b|
+      b.use :html5
+      b.use :placeholder
+      b.optional :maxlength
+      b.optional :pattern
+      b.optional :min_max
+      b.optional :readonly
+      b.use :label
+      b.use :input
+    end
+    a.use :error, wrap_with: { tag: 'small', class: 'form-validation message error no-padding' }
+    a.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
 end

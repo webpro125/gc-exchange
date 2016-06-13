@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520212010) do
+ActiveRecord::Schema.define(version: 20160611174030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20160520212010) do
   end
 
   add_index "business_unit_roles", ["account_manager_id"], name: "index_business_unit_roles_on_account_manager_id", using: :btree
-  add_index "business_unit_roles", ["email"], name: "index_business_unit_roles_on_email", unique: true, using: :btree
+  add_index "business_unit_roles", ["email", "account_manager_id"], name: "index_business_unit_roles_on_email_and_account_manager_id", unique: true, using: :btree
   add_index "business_unit_roles", ["user_id"], name: "index_business_unit_roles_on_user_id", using: :btree
 
   create_table "certifications", force: true do |t|
@@ -215,6 +215,29 @@ ActiveRecord::Schema.define(version: 20160520212010) do
   add_index "consultant_certifications", ["certification_id"], name: "index_consultant_certifications_on_certification_id", using: :btree
   add_index "consultant_certifications", ["consultant_id", "certification_id"], name: "consultant_certifications_uniqueness", unique: true, using: :btree
   add_index "consultant_certifications", ["consultant_id"], name: "index_consultant_certifications_on_consultant_id", using: :btree
+
+  create_table "consultant_project_agreements", force: true do |t|
+    t.boolean  "project_name_agreement",         default: true
+    t.text     "project_name_reason"
+    t.boolean  "project_period_agreement",       default: true
+    t.text     "project_period_reason"
+    t.boolean  "consultant_location_agreement",  default: true
+    t.text     "consultant_location_reason"
+    t.boolean  "travel_authorization_agreement", default: true
+    t.text     "travel_authorization_reason"
+    t.boolean  "consultant_rate_agreement",      default: true
+    t.text     "consultant_rate_reason"
+    t.boolean  "sow_agreement",                  default: true
+    t.text     "sow_reason"
+    t.integer  "status",                         default: 0
+    t.integer  "consultant_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultant_project_agreements", ["consultant_id"], name: "index_consultant_project_agreements_on_consultant_id", using: :btree
+  add_index "consultant_project_agreements", ["project_id"], name: "index_consultant_project_agreements_on_project_id", using: :btree
 
   create_table "consultant_skills", force: true do |t|
     t.integer  "consultant_id", null: false
@@ -418,6 +441,42 @@ ActiveRecord::Schema.define(version: 20160520212010) do
 
   add_index "positions", ["code"], name: "index_positions_on_code", unique: true, using: :btree
 
+  create_table "project_agreements", force: true do |t|
+    t.boolean  "project_name_agreement",         default: true
+    t.text     "project_name_reason"
+    t.boolean  "project_period_agreement",       default: true
+    t.text     "project_period_reason"
+    t.boolean  "consultant_location_agreement",  default: true
+    t.text     "consultant_location_reason"
+    t.boolean  "travel_authorization_agreement", default: true
+    t.text     "travel_authorization_reason"
+    t.boolean  "consultant_rate_agreement",      default: true
+    t.text     "consultant_rate_reason"
+    t.boolean  "sow_agreement",                  default: true
+    t.text     "sow_reason"
+    t.integer  "status",                         default: 0
+    t.integer  "consultant_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_agreements", ["consultant_id"], name: "index_project_agreements_on_consultant_id", using: :btree
+  add_index "project_agreements", ["project_id"], name: "index_project_agreements_on_project_id", using: :btree
+
+  create_table "project_files", force: true do |t|
+    t.string   "sow"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "sow_file_name"
+    t.string   "sow_content_type"
+    t.integer  "sow_file_size"
+    t.datetime "sow_updated_at"
+  end
+
+  add_index "project_files", ["project_id"], name: "index_project_files_on_project_id", using: :btree
+
   create_table "project_histories", force: true do |t|
     t.integer  "consultant_id",                null: false
     t.string   "client_company",   limit: 512
@@ -453,22 +512,28 @@ ActiveRecord::Schema.define(version: 20160520212010) do
   add_index "project_types", ["code"], name: "index_project_types_on_code", unique: true, using: :btree
 
   create_table "projects", force: true do |t|
-    t.integer  "consultant_id",                                                           null: false
-    t.integer  "user_id",                                                                 null: false
-    t.integer  "travel_authorization_id",                                                 null: false
+    t.integer  "consultant_id",                                                        null: false
+    t.integer  "user_id",                                                              null: false
     t.date     "proposed_start"
     t.date     "proposed_end"
-    t.decimal  "proposed_rate",                       precision: 8, scale: 2
-    t.integer  "contact_status",                                              default: 0
-    t.string   "project_name",            limit: 128
-    t.text     "project_location"
+    t.decimal  "proposed_rate",                    precision: 8, scale: 2
+    t.integer  "contact_status",                                           default: 0
+    t.string   "project_name",         limit: 128
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "travel_authorization"
+    t.integer  "consultant_location"
+    t.text     "summarize_statement"
+    t.boolean  "rate_approve"
+    t.string   "sow"
+    t.string   "sow_file_name"
+    t.string   "sow_content_type"
+    t.integer  "sow_file_size"
+    t.datetime "sow_updated_at"
   end
 
   add_index "projects", ["consultant_id"], name: "index_projects_on_consultant_id", using: :btree
   add_index "projects", ["project_name"], name: "index_projects_on_project_name", unique: true, using: :btree
-  add_index "projects", ["travel_authorization_id"], name: "index_projects_on_travel_authorization_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "ranks", force: true do |t|
@@ -563,6 +628,17 @@ ActiveRecord::Schema.define(version: 20160520212010) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "work_location_addresses", force: true do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "st"
+    t.string   "zip_code"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
 

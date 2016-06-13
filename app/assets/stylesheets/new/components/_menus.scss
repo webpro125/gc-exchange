@@ -3,7 +3,8 @@
     height: 100%;
     box-sizing: border-box;
     
-    ul {
+    ul,
+    ol {
         display: block;
         width: 100%;
         height: auto;
@@ -37,7 +38,8 @@
     box-sizing: border-box;
     
     &,
-    ul {
+    ul,
+    ol {
         display: block;
         width: 100%;
         height: auto;
@@ -49,14 +51,10 @@
             box-sizing: border-box;
             position: relative;
             margin-left: -rem(4px);
-            white-space: nowrap;
+            vertical-align: top;
              
-            * {
-                white-space: normal;
-            }
-
             a {
-                display: block;
+                display: inline-block;
                 width: 100%;
                 height: 100%;
             }
@@ -85,6 +83,22 @@
                 &:after {
                     display: none;
                 }
+            }
+        }
+    }
+    
+    &.flex {
+        display: table;
+        width: 100%;
+        
+        & > li {
+            display: table-cell;
+            vertical-align: middle;
+            
+            a {
+                display: table-cell;
+                vertical-align: middle;
+                height: 100%;
             }
         }
     }
@@ -271,26 +285,27 @@
         height: auto;
         padding: 0;
         margin: 0;
-        font-size: 1.25rem;
+        font-size: 1.125rem;
         line-height: 1.25em;
         margin-bottom: 1.5rem;
         
         a {
             display: block;
             width: auto;
-            color: color(primary);
+            color: darken(color(primary-lighter), 20%);
+            text-align: left;
             position: relative;
         }
-       
+        
         &.is-active,
         &.active,
         &:hover {
             a {
-                color: color(gray-darkest);
-                transition: color 0.2s ease-out;
+                color: color(primary-bg);
+                transition: all 0.2s ease-out;
                 
                 &:before {
-                    transition: color 0.2s ease-out;
+                    transition: all 0.2s ease-out;
                 }
             }
         }
@@ -298,8 +313,23 @@
         &.is-active,
         &.active {
             a {
-                box-shadow: inset -4px 0 0 0 color(primary);
+                &:after {
+                    @extend %before-after-absolute;
+                    @include rotate(45);
+                    width: 2rem;
+                    height: 2rem;
+                    background: color(primary-lightest);
+                    top: 0;
+                    right: -3rem;
+                    z-index: 2;
+                }
             }
+        }
+        
+        @include responsive($max-width: '1024px') {
+            font-size: 1.05rem;
+            line-height: 1.125em;
+            margin-bottom: 1.25rem;
         }
     }
 }
@@ -520,6 +550,44 @@
         .sign-out,
         .support {
             display: block;
+        }
+    }
+}
+
+.dashboard-menu {
+    display: inline-block;
+    width: auto;
+    padding-left: 2rem;
+    
+    &,
+    & > ul {
+        width: auto;
+        height: size(page-header);
+        
+        & > li {
+            height: size(page-header);
+            line-height: size(page-header);
+            color: color(primary-light);
+            margin-right: 2rem;
+            
+            &:last-child {
+                margin-right: 0;
+            }
+            
+            &:hover,
+            &.active {
+                color: #FFF;
+                transition: color 0.2s ease-out;
+            }
+        }
+    }
+    
+    @include responsive($max-width: '1024px') {
+        &,
+        & > ul {
+            & > li {
+                margin-right: 1.5rem;
+            }
         }
     }
 }
