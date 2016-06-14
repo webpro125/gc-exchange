@@ -28,8 +28,8 @@ class AddUserIdToConsultant < ActiveRecord::Migration
             VALUES ('#{consultant.email}', '#{consultant.encrypted_password}',
                     '#{consultant.first_name}', '#{consultant.last_name}',
                     '#{consultant.sign_in_count}',
-                    '#{consultant.last_sign_in_at}', '#{consultant.current_sign_in_ip}',
-                    '#{consultant.last_sign_in_ip}')"
+                    '#{consultant.last_sign_in_at || DateTime.now}', '#{consultant.current_sign_in_ip || "192.168.254.254"}',
+                    '#{consultant.last_sign_in_ip || "192.168.254.254"}')"
         user = User.where(email: consultant.email).first
         user.skip_confirmation!
         user.save
