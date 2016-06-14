@@ -192,7 +192,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def title
-    project_histories.order(start_date: :desc).first.positions.first.label
+    project_histories.order(start_date: :desc).first.positions.first.label if project_histories.present?
   end
 
   private
