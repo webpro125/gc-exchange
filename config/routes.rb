@@ -145,7 +145,7 @@ Rails.application.routes.draw do
     resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
-    resources :projects, path: 'drafts', shallow: true, except: [:index, :destroy]
+    resources :projects, path: 'drafts', except: [:index, :destroy]
     member do
       put :approve
       put :reject
@@ -215,5 +215,7 @@ Rails.application.routes.draw do
     get :registration_process
   end
   # Non resource
-
+  resources :project_agreements, only: [:index] do
+    resources :ra_reviews, path: 'review_drafts_for_ra', only: [:new, :create]
+  end
 end

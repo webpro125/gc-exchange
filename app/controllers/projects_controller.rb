@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
     @new_design = true
     @project = pundit_user.projects.build
     @project.build_work_location_address
+
     @form    = ProjectForm.new(@project)
 
     authorize @project
@@ -25,7 +26,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    @new_design = true
     @form = ProjectForm.new(@project)
+    @consultant = @project.consultant
   end
 
   # POST /projects
@@ -49,7 +52,7 @@ class ProjectsController < ApplicationController
       # message = 'You just recieved an offer to support a consulting project assignment.
       #         Please login to GCES to view your offer: ' + off_url
       # send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
-
+      ProjectAgreementMailer.delay.created_draft(@project)
       redirect_to @project, notice: 'Engagement Offer was successfully created.'
     else
       render :new
@@ -58,10 +61,12 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
+    @new_design = true
     @form = ProjectForm.new(@project)
+    @consultant = @project.consultant
 
     if @form.validate(project_params) && ProjectSetStatus.new(@form).offer_and_save
-      redirect_to @project, notice: 'Engagement Offer was successfully updated.'
+      redirect_to consultant_project_path(@consultant, @project), notice: 'Engagement Offer was successfully updated.'
     else
       render :edit
     end
@@ -113,7 +118,7 @@ class ProjectsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def project_params
-    params.require(:project).permit(:consultant_id, :travel_authorization, :proposed_start, :proposed_end,
+    params.require(:project).permit(:business_unit_role_id, :consultant_id, :travel_authorization, :proposed_start, :proposed_end,
                                     :proposed_rate, :project_name, :consultant_location, :sow,
                                     :rate_approve, :summarize_statement,
       work_location_address_attributes:[:address1, :address2, :city, :st, :zip_code])

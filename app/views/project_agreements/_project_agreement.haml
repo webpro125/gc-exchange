@@ -1,0 +1,19 @@
+.row
+  .medium-9.columns
+    = link_to consultant_path(project_agreement.project.consultant) do
+      = image_tag(project_agreement.project.consultant.profile_image.url(:thumb),
+        class: 'th profile-thumb-mini')
+      = project_agreement.project.consultant.user.full_name
+  .medium-3.columns
+    - if project_agreement.project.updated_at.today?
+      = project_agreement.project.updated_at.strftime('%l:%M %p')
+    - else
+      = project_agreement.project.updated_at.strftime('%_m/%-d')
+= link_to project_agreement.project.project_name, consultant_profile_project_path(project_agreement.project)
+%br/
+%strong Start Date:
+= project_agreement.project.proposed_start.to_formatted_s(:month_day_and_year)
+%br/
+%span.status= project_agreement.project.contact_status.humanize.upcase
+- if !project_agreement.ra_project_agreement.present? && project_agreement.project.offered?
+  = link_to 'Review Draft', new_project_agreement_ra_review_path(project_agreement), class: 'button primary tiny'

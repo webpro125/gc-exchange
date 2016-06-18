@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   before_action :create_search
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   def after_sign_in_path_for(resource)
     Metric.log_login(resource) if resource.is_a?(User)
     if resource.respond_to?(:wizard_step) && resource.wizard_step != Wicked::FINISH_STEP
@@ -112,4 +114,10 @@ class ApplicationController < ActionController::Base
     @box = params[:box]
   end
 
+  private
+
+  def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to(request.referrer || root_path)
+  end
 end

@@ -4,7 +4,7 @@ class ConsultantProfile::ProjectsController < ApplicationController
   before_action :set_project, except: [:index]
 
   def index
-    @projects = pundit_user.consultant.projects.page(params[:page])
+    @projects = pundit_user.consultant.projects.offered.page(params[:page])
   end
 
   def show

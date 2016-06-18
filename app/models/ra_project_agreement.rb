@@ -1,12 +1,7 @@
-class ProjectAgreement < ActiveRecord::Base
+class RaProjectAgreement < ActiveRecord::Base
   enum status: [:accept, :reject]
 
-  belongs_to :project
-  belongs_to :business_unit_role
-  has_one :ra_project_agreement, dependent: :destroy
-  after_create :save_project_status
-  # scope :for_ra_users, -> (user) { where(business_unit_role_id: true, user_id: user_id) }
-
+  belongs_to :project_agreement
   validates :project_name_agreement, :inclusion => {:in => [true, false]}
   validates :project_period_agreement, :consultant_location_agreement,
             :travel_authorization_agreement, :consultant_rate_agreement, :sow_agreement, :inclusion => {:in => [true, false]}
@@ -14,9 +9,8 @@ class ProjectAgreement < ActiveRecord::Base
             :travel_authorization_reason, :consultant_rate_reason, :sow_reason,
             length: { in: 2..500 }, allow_blank: true
 
-
   validates_presence_of :project_name_reason,
-                        :if => lambda { !project_name_agreement }
+    :if => lambda { !project_name_agreement }
   validates_presence_of :project_period_reason,
                         :if => lambda { !project_period_agreement }
   validates_presence_of :consultant_location_reason,
@@ -27,23 +21,29 @@ class ProjectAgreement < ActiveRecord::Base
                         :if => lambda { !consultant_rate_agreement }
   validates_presence_of :sow_reason,
                         :if => lambda { !sow_agreement }
+
   validate :commit_available
+  after_create :save_project_status
+
+  def project
+    project_agreement.project
+  end
 
   def accept_available?
-    project_name_agreement && project_period_agreement && consultant_location_agreement && travel_authorization_agreement &&
-        consultant_rate_agreement && sow_agreement
+    project_name_agreement && project_period_agreement && consultant_location_agreement &&
+      travel_authorization_agreement && consultant_rate_agreement && sow_agreement
   end
 
   private
 
   def commit_available
     if status == 'reject' && accept_available?
-      errors.add(:commit, "You cannot reject since you agreed all agreements!")
+      errors.add(:commit, "You cannot reject since you agreed all agreement!")
     end
 
     if status != 'reject' && !accept_available?
       # flash[:alert] = "You cannot accept since you disagreed all agreements"
-      errors.add(:commit, "You cannot accept since you disagreed even one agreement!")
+      errors.add(:commit, "You cannot accept since you disagreed even one agreements")
     end
   end
 

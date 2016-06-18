@@ -21,10 +21,12 @@ class ProjectPolicy < LoggedInPolicy
     user.selection_authorities.any?
   end
 
+  def edit?
+    new? && record.rejected?
+  end
   alias_method :not_pursuing?, :new?
   alias_method :offer?, :new?
   alias_method :create?, :new?
-  alias_method :edit?, :new?
   alias_method :update?, :edit?
 
   def show?

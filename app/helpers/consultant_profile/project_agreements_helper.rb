@@ -1,2 +1,0 @@
-module ConsultantProfile::ProjectAgreementsHelper
-end

@@ -40,7 +40,7 @@
     %p.type-intro
       Brief introduction sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
       totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-  = simple_form_for [:consultant_profile, @project, @agreement],
+  = simple_form_for [@project_agreement, @agreement], url: project_agreement_ra_reviews_path(@project_agreement),
     html: {class: 'theme-gces project-agreement-form'} do |f|
     %section.ui-card.no-padding.sleeve.is-animated
       %header.card-header.card-bookmarks

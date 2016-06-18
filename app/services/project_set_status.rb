@@ -13,7 +13,7 @@ class ProjectSetStatus
   end
 
   def offer_and_save
-    return false unless hireable?
+    # return false unless hireable?
 
     if @project.respond_to? :offered!
       @project.offered!
@@ -22,7 +22,9 @@ class ProjectSetStatus
     end
 
     return unless @project.save
-    ProjectStatusMailer.delay.consultant_new_offer(@project.id)
+    @project.project_agreement.destroy if @project.project_agreement.present?
+
+    ProjectAgreementMailer.delay.resubmitted_draft(@project)
     true
   end
 

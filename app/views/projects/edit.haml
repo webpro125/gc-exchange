@@ -1,2 +1,44 @@
-%h1 Editing Engagement Offer
-= render 'form'
+- content_for :header do
+  %header#main-header{:role => "banner"}
+    = link_to 'GCES', root_path, class: 'site-brand'
+    .head-scroller
+      %nav.main-menu.menu-vertical{:role => "navigation"}
+        %ul
+          %li
+            %a{:href => ""} What we do
+          %li
+            %a{:href => ""} Join the Exchange
+          %li
+            %a{:href => ""} Community Forum
+          %li
+            %a{:href => ""} Tutorials
+          %li
+            %a{:href => ""} Education
+          %li
+            %a{:href => ""} Articles
+      %ul.qa-list{:style => "margin-top: 4rem;"}
+        %li.is-active
+          %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} What is a Draft Consultant Work Agreement?
+          .qa-content.ui-target.is-open{"data-section" => "qa-1"}
+            %p This is a sample of how to include answers in this qa list. Lorem ipsum sit amet quosque tandem numa lum consecter.
+        %li What is a Statement of Work?
+
+%header.page-header.dashboard-header
+  %nav.dashboard-menu{:role => "navigation"}
+    %ul.menu-horizontal
+      %li.active
+        %a{:href => "index-2.html"} Company
+      %li
+        %a{:href => ""} Projects
+      %li
+        %a{:href => ""} Reports
+      %li
+        %a{:href => ""} Account
+.page-content
+  %header.page-subheader
+    %h1 Resubmit Draft Consultant Work Agreement
+    %p.type-intro Brief introduction sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+  = render 'form'
+- content_for :footer do
+  %footer#main-footer{:role => "contentinfo"}
+    %p.site-credits &copy; 2015 Playground

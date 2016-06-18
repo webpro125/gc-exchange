@@ -1,0 +1,9 @@
+<% if @agreement.status == 'accept' -%>
+Requisition Authority User Accepted your draft
+Requisition Authority User name: <%= @ra_user.full_name -%>
+<% else -%>
+    Requisition Authority User Rejected your draft
+    Please resubmit again
+<% end -%>
+
+Link

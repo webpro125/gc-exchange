@@ -2,6 +2,10 @@ class ConsultantProfile::ProjectAgreementsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_project
 
+  def index
+
+  end
+
   def new
     @new_design = true
     @agreement = @project.build_project_agreement
@@ -11,10 +15,15 @@ class ConsultantProfile::ProjectAgreementsController < ApplicationController
   def create
     @new_design = true
     @agreement = @project.build_project_agreement(agreement_params)
+    @agreement.status = 'reject' if params[:reject_draft]
+
     authorize @agreement
+
     @agreement.consultant_id = current_user.consultant.id
     if @agreement.save
-      redirect_to consultant_profile_projects_path
+
+      ProjectAgreementMailer.consultant_reviewed_draft(@agreement, current_user).deliver
+      redirect_to consultant_profile_projects_path, notice: t('controllers.project_agreements.create.accept')
     else render :new
     end
   end
@@ -23,6 +32,7 @@ class ConsultantProfile::ProjectAgreementsController < ApplicationController
 
   def load_project
     @project = Project.find(params[:project_id])
+    redirect_to consultant_profile_projects_path, alert: 'You already submitted' if @project.project_agreement.present?
   end
 
   def agreement_params

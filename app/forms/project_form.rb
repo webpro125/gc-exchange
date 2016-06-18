@@ -3,6 +3,7 @@ require 'reform/form/coercion'
 class ProjectForm < Reform::Form
   model :project
 
+  property :business_unit_role_id
   property :consultant_id
   property :proposed_start, type: DateTime
   property :proposed_end, type: DateTime
@@ -20,7 +21,7 @@ class ProjectForm < Reform::Form
     #   :if => lambda { self.mode.project.consultant_location.present? && self.model.project.consultant_location != 'Remote'}
   end
 
-  validates :consultant_id, presence: true
+  validates :consultant_id, :business_unit_role_id, presence: true
   validates :travel_authorization, presence: true
   validates :proposed_start, presence: true, date: { on_or_after: DateTime.now }
   validates :proposed_end, presence: true, date: { on_or_after: :proposed_start }

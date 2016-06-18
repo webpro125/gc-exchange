@@ -12,13 +12,13 @@
       = project.updated_at.strftime('%l:%M %p')
     - else
       = project.updated_at.strftime('%_m/%-d')
-- if params[:controller] == 'consultant_projects'
-  = link_to project.project_name, consultant_project_path(project)
-- else
-  = link_to project.project_name, project_path(project)
+= link_to project.project_name, consultant_profile_project_path(project)
 %br/
 %strong Start Date:
 = project.proposed_start.to_formatted_s(:month_day_and_year)
 %br/
 %span.status= project.contact_status.humanize.upcase
-= link_to 'Review Draft', new_consultant_profile_project_project_agreement_path(project), class: 'button primary tiny'
+- if project.project_agreement.present?
+  %span.status You submitted already.
+- else
+  = link_to 'Review Draft', new_consultant_profile_project_project_agreement_path(project), class: 'button primary tiny'

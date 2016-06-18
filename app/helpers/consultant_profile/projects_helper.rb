@@ -1,2 +1,0 @@
-module ConsultantProfile::ProjectsHelper
-end

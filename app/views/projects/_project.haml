@@ -15,9 +15,11 @@
 - if params[:controller] == 'consultant_projects'
   = link_to project.project_name, consultant_project_path(project)
 - else
-  = link_to project.project_name, project_path(project)
+  = project.project_name
 %br/
 %strong Start Date:
 = project.proposed_start.to_formatted_s(:month_day_and_year)
 %br/
 %span.status= project.contact_status.humanize.upcase
+- if project.contact_status == 'rejected'
+  = link_to 'Resubmit Draft', edit_consultant_project_path(project.consultant, project), class: 'button primary tiny'

@@ -11,4 +11,5 @@
       = link_to 'Create Contractor Profile', '#', class: 'button primary tiny'
     = link_to 'Go To Company Registration', registration_process_users_path, class: 'button primary tiny'
     = link_to 'View All Consultants', consultants_path, class: 'button primary tiny'
-
+    - unless BusinessUnitRole.own_requisition_authorities(current_user).empty?
+      = link_to 'Review Consultants Work Agreements', project_agreements_path, class: 'button primary tiny'
