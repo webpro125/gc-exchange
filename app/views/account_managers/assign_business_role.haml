@@ -103,6 +103,8 @@
                 .button-circle.icon-question{"data-placement" => "bottom", "data-template" => "question-sample1b", "data-type" => "cm-popover"}
                   %div{"data-type" => "template-question-sample1b"}
                     %p Include explanation about this section here.
+              %section.card-section
+                = hidden_field_tag 'business_unit_role[authority_required]'
             = f.submit 'Add Unit Roles', class: 'button-primary button-cta'
     %footer
       .modal-close.ui-action-icon.icon-cr-cross-light

@@ -74,14 +74,23 @@ read_image = (input, wrapClass) ->
     $.each errors, (field, messages) ->
       $input = $('input[name="' + model + '[' + field + ']"]')
       tmpHtml = "<small class='form-validation message error'>" + messages[0] + "</small>"
-      $input.closest('fieldset').addClass('invalid').append tmpHtml
+      if $input.closest('fieldset').length
+        $input.closest('fieldset').find('small.form-validation').remove()
+        $input.closest('fieldset').addClass('invalid').append tmpHtml
+      else
+        $input.closest('section').find('small.form-validation').remove()
+        $input.closest('section').addClass('invalid').append tmpHtml
       return
     return
 
   $.fn.clear_previous_errors = ->
-    $('.form-group.has-error', this).each ->
-      $('.help-block', $(this)).html ''
-      $(this).removeClass 'has-error'
+    $('section.invalid').each ->
+      $(this).find('small.form-validation').remove()
+      $(this).removeClass 'invalid'
+      return
+    $('fieldset.invalid').each ->
+      $(this).find('small.form-validation').remove()
+      $(this).removeClass 'invalid'
       return
     return
 
