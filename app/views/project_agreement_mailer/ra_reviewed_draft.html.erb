@@ -5,5 +5,9 @@ Requisition Authority User name: <%= @ra_user.full_name -%>
     Requisition Authority User Rejected your draft
     Please resubmit again
 <% end -%>
-
-Link
+<br/>
+<br/>
+Please click
+<%= link_to 'here', {:controller => "projects", :action => "show", :consultant_id => @user.consultant.id,
+                     :id => @project_agreement.project.id, :only_path => false} %>
+to review project

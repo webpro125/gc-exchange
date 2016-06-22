@@ -4,7 +4,7 @@ class ConsultantProfile::ProjectsController < ApplicationController
   before_action :set_project, except: [:index]
 
   def index
-    @projects = pundit_user.consultant.projects.offered.page(params[:page])
+    @projects = pundit_user.projects.offered.page(params[:page])
   end
 
   def show
@@ -44,5 +44,9 @@ class ConsultantProfile::ProjectsController < ApplicationController
   def set_project
     @project = Project.find(params[:id])
     authorize @project
+  end
+
+  def pundit_user
+    current_user.consultant
   end
 end

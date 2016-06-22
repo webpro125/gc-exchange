@@ -30,6 +30,7 @@ class ProjectPolicy < LoggedInPolicy
   alias_method :update?, :edit?
 
   def show?
-    user.projects.include?(record) || user.consultant.projects.include?(record)
+    # if namespace is consultant_profile, user = user.consultant
+    user.projects.include?(record)
   end
 end

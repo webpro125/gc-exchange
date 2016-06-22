@@ -1,0 +1,17 @@
+<p style="margin-bottom: 20px;">Engagement Project offered to you</p>
+
+<p style="margin-bottom: 10px;">In accordance with your and <%= @user.full_name %> agreement with GCES, <%= @user.full_name %>
+desires to engage you as described below:</p>
+<br/>
+• Engagement Name: <%= @project.project_name %>
+• Estimated Start Date: <%= @project.proposed_start %>
+• Estimated End Date: <%= @project.proposed_end %>
+• Hourly Rate: <%= @project.proposed_rate %>
+• Work Location: <%= @project.consultant_location %>
+• Travel Expense Authorization: <%= @project.travel_authorization %>
+<br/>
+<br/>
+Please click
+<%= link_to 'here', {:controller => "consultant_profile/projects",
+:action => "show", :id => @project.id, :only_path => false} %>
+ to review project

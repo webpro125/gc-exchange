@@ -53,7 +53,7 @@ class ProjectsController < ApplicationController
       #         Please login to GCES to view your offer: ' + off_url
       # send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
       ProjectAgreementMailer.delay.created_draft(@project)
-      redirect_to @project, notice: 'Engagement Offer was successfully created.'
+      redirect_to consultant_project_path(@consultant, @project), notice: 'Engagement Offer was successfully created.'
     else
       render :new
     end

@@ -2,15 +2,15 @@ class ProjectAgreementMailer < ActionMailer::Base
   # include Roadie::Rails::Automatic
 
   def created_draft(project)
-    @user = project.consultant
+    @user = project.consultant.user
     @project = project
-    mail(subject: 'Created Draft', to: user.email)
+    mail(subject: 'Created Draft', to: @user.email)
   end
 
   def resubmitted_draft project
-    @user = project.consultant
+    @user = project.consultant.user
     @project = project
-    mail(subject: 'Resubmitted Draft', to: user.email)
+    mail(subject: 'Resubmitted Draft', to: @user.email)
   end
   def consultant_reviewed_draft project_agreement, user
     @project_agreement = project_agreement

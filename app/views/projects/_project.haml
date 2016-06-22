@@ -15,7 +15,7 @@
 - if params[:controller] == 'consultant_projects'
   = link_to project.project_name, consultant_project_path(project)
 - else
-  = project.project_name
+  = link_to project.project_name, consultant_project_path(current_user.consultant, project)
 %br/
 %strong Start Date:
 = project.proposed_start.to_formatted_s(:month_day_and_year)

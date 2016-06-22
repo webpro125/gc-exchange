@@ -31,16 +31,16 @@
                 $#{@project.proposed_rate}
             %tr
               %td Work Location:
-              %td= @project.project_location
+              %td= @project.consultant_location
             %tr
               %td Travel Expense Authorization:
-              %td= @project.travel_authorization.label
+              %td= @project.travel_authorization
     .row
       .medium-12.columns
-        - case @project
-          - when :offered?.to_proc
-            = render 'offered'
-          - when :under_revision?.to_proc
-            = render 'rejected_terms'
+        %span.status= @project.contact_status.humanize.upcase
+        - if @project.project_agreement.present?
+          %span.status You submitted already.
+        - else
+          = link_to 'Review Draft', new_consultant_profile_project_project_agreement_path(@project), class: 'button primary tiny'
   .medium-4.columns.side
     = render 'profiles/side_bar'

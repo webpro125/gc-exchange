@@ -22,5 +22,5 @@ class InviteAccountManagerForm < Reform::Form
             :uniqueness => { :case_sensitive => false },
             format: { with: RegexConstants::EMAIL,
                       message: I18n.t('activerecord.errors.messages.regex.email') }
-  validates :email_content, presence: true
+        validates :email_content, presence: true
 end
