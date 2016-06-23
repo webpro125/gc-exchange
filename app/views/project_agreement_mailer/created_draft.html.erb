@@ -1,13 +1,18 @@
 <p style="margin-bottom: 20px;">Engagement Project offered to you</p>
 
-<p style="margin-bottom: 10px;">In accordance with your and <%= @user.full_name %> agreement with GCES, <%= @user.full_name %>
+<p style="margin-bottom: 10px;">In accordance with your and <%= @user.full_name -%> agreement with GCES, <%= @user.full_name -%>
 desires to engage you as described below:</p>
 <br/>
 • Engagement Name: <%= @project.project_name %>
+<br/>
 • Estimated Start Date: <%= @project.proposed_start %>
+<br/>
 • Estimated End Date: <%= @project.proposed_end %>
+<br/>
 • Hourly Rate: <%= @project.proposed_rate %>
+<br/>
 • Work Location: <%= @project.consultant_location %>
+<br/>
 • Travel Expense Authorization: <%= @project.travel_authorization %>
 <br/>
 <br/>

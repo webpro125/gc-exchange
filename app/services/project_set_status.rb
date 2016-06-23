@@ -24,7 +24,7 @@ class ProjectSetStatus
     return unless @project.save
     @project.project_agreement.destroy if @project.project_agreement.present?
 
-    ProjectAgreementMailer.delay.resubmitted_draft(@project)
+    ProjectAgreementMailer.resubmitted_draft(@project).deliver
     true
   end
 

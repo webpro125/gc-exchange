@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
     @form = ProjectForm.new(@project)
     @consultant = @project.consultant
 
-    if @form.validate(project_params) && ProjectSetStatus.new(@form).offer_and_save
+    if @form.validate(project_params) && ProjectSetStatus.new(@project).offer_and_save
       redirect_to consultant_project_path(@consultant, @project), notice: 'Engagement Offer was successfully updated.'
     else
       render :edit

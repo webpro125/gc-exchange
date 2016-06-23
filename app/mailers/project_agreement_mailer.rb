@@ -1,7 +1,7 @@
 class ProjectAgreementMailer < ActionMailer::Base
   # include Roadie::Rails::Automatic
 
-  def created_draft(project)
+  def created_draft project
     @user = project.consultant.user
     @project = project
     mail(subject: 'Created Draft', to: @user.email)

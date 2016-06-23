@@ -3,6 +3,26 @@ Consultant Accepted your draft
 Consultant name: <%= @user.full_name -%>
 <% else -%>
     Consultant Rejected your draft
+    Consultant name: <%= @user.full_name -%>
+    <h4>Rejected Points</h4>
+    <% unless @project_agreement.project_name_agreement? -%>
+        <p><strong>Project Name Reject Reason: </strong><%= @project_agreement.project_name_reason -%></p>
+    <% end -%>
+    <% unless @project_agreement.project_period_agreement? -%>
+        <p><strong>Project Period Reject Reason: </strong><%= @project_agreement.project_period_reason -%></p>
+    <% end -%>
+    <% unless @project_agreement.consultant_location_agreement? -%>
+        <p><strong>Consultant Location Reject Reason: </strong><%= @project_agreement.consultant_location_reason -%></p>
+    <% end -%>
+    <% unless @project_agreement.travel_authorization_agreement? -%>
+        <p><strong>Travel Authorization Reject Reason: </strong><%= @project_agreement.travel_authorization_reason -%></p>
+    <% end -%>
+    <% unless @project_agreement.consultant_rate_agreement? -%>
+        <p><strong>Consultant Rate Reject Reason: </strong><%= @project_agreement.consultant_rate_reason -%></p>
+    <% end -%>
+    <% unless @project_agreement.sow_agreement? -%>
+        <p><strong>SOW Reject Reason: </strong><%= @project_agreement.sow_reason -%></p>
+    <% end -%>
     Please resubmit again
 <% end -%>
 <br/>

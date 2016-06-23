@@ -2,12 +2,32 @@
 Requisition Authority User Accepted your draft
 Requisition Authority User name: <%= @ra_user.full_name -%>
 <% else -%>
-    Requisition Authority User Rejected your draft
-    Please resubmit again
+    <p>Requisition Authority User Rejected your draft.</p>
+    <p>Requisition Authority User name: <%= @ra_user.full_name -%></p>
+    <h4>Rejected Points</h4>
+    <% unless @agreement.project_name_agreement? -%>
+        <p><strong>Project Name Reject Reason: </strong><%= @agreement.project_name_reason -%></p>
+    <% end -%>
+    <% unless @agreement.project_period_agreement? -%>
+        <p><strong>Project Period Reject Reason: </strong><%= @agreement.project_period_reason -%></p>
+    <% end -%>
+    <% unless @agreement.consultant_location_agreement? -%>
+        <p><strong>Consultant Location Reject Reason: </strong><%= @agreement.consultant_location_reason -%></p>
+    <% end -%>
+    <% unless @agreement.travel_authorization_agreement? -%>
+        <p><strong>Travel Authorization Reject Reason: </strong><%= @agreement.travel_authorization_reason -%></p>
+    <% end -%>
+    <% unless @agreement.consultant_rate_agreement? -%>
+        <p><strong>Consultant Rate Reject Reason: </strong><%= @agreement.consultant_rate_reason -%></p>
+    <% end -%>
+    <% unless @agreement.sow_agreement? -%>
+        <p><strong>SOW Reject Reason: </strong><%= @agreement.sow_reason -%></p>
+    <% end -%>
+    <p>Please resubmit again</p>
 <% end -%>
 <br/>
 <br/>
 Please click
-<%= link_to 'here', {:controller => "projects", :action => "show", :consultant_id => @user.consultant.id,
-                     :id => @project_agreement.project.id, :only_path => false} %>
+<%= link_to 'here', {:controller => "projects", :action => "show", :consultant_id => @agreement.project.consultant.id,
+                     :id => @agreement.project.id, :only_path => false} %>
 to review project
