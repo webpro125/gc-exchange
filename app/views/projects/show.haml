@@ -1,6 +1,6 @@
 %h1= @project.project_name
 .row
-  .medium-8.columns.vr
+  .medium-12.columns.vr
     .row
       .medium-8.columns
         %h4
@@ -42,5 +42,5 @@
             = render 'offered'
           - when :under_revision?.to_proc
             = render 'rejected_terms'
-  .medium-4.columns.side
-    = render 'shared/recent_consultants', consultants: @consultants if user_signed_in?
+  -#.medium-4.columns.side
+  -#  = render 'shared/recent_consultants', consultants: @consultants if user_signed_in?

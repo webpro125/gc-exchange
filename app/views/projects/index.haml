@@ -1,8 +1,8 @@
 %h1 Engagement Offers
 -#= link_to 'Create Offer', new_project_path, class: 'button primary tiny'
 .row
-  .medium-8.columns.vr
+  .medium-12.columns.vr
     = render @projects
     = paginate @projects
-  .medium-4.columns.side
-    = render 'shared/recent_consultants', consultants: @consultants if user_signed_in?
+  -#.medium-4.columns.side
+  -#  = render 'shared/recent_consultants', consultants: @consultants if user_signed_in?
