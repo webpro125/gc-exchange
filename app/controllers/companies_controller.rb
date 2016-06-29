@@ -65,7 +65,7 @@ class CompaniesController < CompanyController
     @requested_company.user_id = current_user.id
     if @requested_company.save
       email_content = Company::COMPANY_CREATED_EMAIL
-      email_content["{full_name}"] = @requested_company.user.full_name
+      # email_content["{full_name}"] = @requested_company.user.full_name
       Mailboxer.uses_emails = false
       Admin.all.each {|admin|
         CompanyMailer.company_requested(@requested_company, admin).deliver

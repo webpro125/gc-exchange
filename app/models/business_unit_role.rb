@@ -5,7 +5,7 @@ class BusinessUnitRole < ActiveRecord::Base
 
   scope :own_selection_authorities, -> (user_id) { where(selection_authority: true, user_id: user_id) }
   scope :own_requisition_authorities, -> (user) { where(requisition_authority: true, user_id: user.id) }
-  has_many :projects
+  has_many :projects, dependent: :destroy
 
   validates :first_name, length: { in: 2..64 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,

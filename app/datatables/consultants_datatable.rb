@@ -86,7 +86,7 @@ class ConsultantsDatatable
   end
 
   def fetch_consultants
-    result = Consultant.where(wizard_step: Wicked::FINISH_STEP).order("#{sort_column} #{sort_direction}")
+    result = Consultant.joins(:user).where(wizard_step: Wicked::FINISH_STEP).order("#{sort_column} #{sort_direction}")
                        .page(page)
                        .per(per)
 
@@ -110,7 +110,7 @@ class ConsultantsDatatable
   end
 
   def sort_column
-    columns = %w(id first_name last_name phone email approved_status_id created_at
+    columns = %w(id users.first_name users.last_name phone users.email approved_status_id created_at
                  date_pending_approval date_approved approval_number date_on_hold date_rejected last_sign_in_at
                  updated_at sign_in_count rate resume contract_effective_date positions.label
                  project_histories.client_poc_name project_histories.client_poc_email id

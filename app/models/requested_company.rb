@@ -6,9 +6,12 @@ class RequestedCompany < ActiveRecord::Base
   before_save :store_phone
 
   validates :company_name, length: { in: 2..512 }, presence: true
-  validates :work_area_code, :work_prefix, :cell_area_code, :cell_prefix,
+  validates :work_area_code, :work_prefix,
             length: { is: 3 }, presence: true,  :numericality => true
-  validates :work_line, :cell_line, length: { is: 4 }, presence: true,  :numericality => true
+  validates :cell_area_code, :cell_prefix,
+            length: { is: 3 }, allow_blank: true,  :numericality => true
+  validates :work_line, length: { is: 4 }, presence: true,  :numericality => true
+  validates :cell_line, length: { is: 4 }, allow_blank: true,  :numericality => true
   validates :help_content, presence: true, length: { in: 2..500 }
 =begin
   validates :work_phone,
@@ -25,7 +28,9 @@ class RequestedCompany < ActiveRecord::Base
     unless @work_area_code.blank? && @work_prefix.blank? && @work_line.blank?
       self.work_phone = "#{@work_area_code}-#{@work_prefix}-#{@work_line}"
     end
-    unless @cell_area_code.blank? && @cell_prefix.blank? && @cell_line.blank?
+    if @cell_area_code.blank? && @cell_prefix.blank? && @cell_line.blank?
+      self.cell_phone = ''
+    else
       self.cell_phone = "#{@cell_area_code}-#{@cell_prefix}-#{@cell_line}"
     end
   end
