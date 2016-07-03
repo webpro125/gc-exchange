@@ -5,29 +5,3 @@
 *= require jquery-ui/core
 *= require jquery-ui/theme
 */
-
-.ui-card .profile-thumb img {
-  width: 7.75rem;
-  height: 7.75rem;
-}
-.ui-autocomplete.ui-front {
-  width: 600px !important;
-  padding-left: 0;
-  z-index: 9999999;
-}
-.ui-autocomplete.ui-front li.ui-menu-item {
-  list-style: none;
-  padding: 5px 8px;
-}
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus {
-  border: 1px solid #293846 !important;
-  background: #293846 !important;
-  font-weight: normal;
-  color: #fff !important;
-
-}

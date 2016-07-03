@@ -1,8 +1,6 @@
 class Company < ActiveRecord::Base
 
-  COMPANY_CREATED_EMAIL = 'One User Requested Company Creation
-
-  Requested User information.'
+  CREATED_EMAIL_SUBJECT = 'User Requested Company Creation.'
   GLOBAL_CONSULTANT_EXCHANGE = 'Global Consultant Exchange'
   GCES_FEE = 10
 

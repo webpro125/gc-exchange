@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @new_design = true
     if @form.validate(register_am_params) && @form.save
 
-      redirect_to assign_business_role_account_managers_path, notice: t('controllers.account_manager.business_unit.create.success')
+      redirect_to new_business_unit_role_path, notice: t('controllers.account_manager.business_unit.create.success')
     else
       render :register_account_manager
     end

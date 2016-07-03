@@ -109,6 +109,8 @@ Rails.application.routes.draw do
   get :health_check, to: 'pages#health_check'
   get 'create_business_unit/:access_token', to: 'users#register_account_manager'
   put 'create_business_unit/:access_token', to: 'users#put_account_manager', as: :put_register_account_manager
+  get 'business_unit_roles/accept_role/:accept_token', to: 'business_unit_roles#accept_role', as: :accept_business_role
+  put 'business_unit_roles/put_accept_role/:accept_token', to: 'business_unit_roles#put_accept_role', as: :put_accept_business_role
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
   get 'article/download_attachment/:id', to: 'downloads#download_article_attachment', as: :download_article_attachment
   get 'comment/download_attachment/:id', to: 'downloads#download_comment_attachment', as: :download_comment_attachment
@@ -141,7 +143,7 @@ Rails.application.routes.draw do
       get :skip
     end
   end
-  resources :consultants, only: [:index, :show] do
+  resources :consultants, only: [:show] do
     resources :conversations, only: [:new, :create]
     resources :upload_images, only: [:new, :create]
     resources :upload_resumes, only: [:new, :create]
@@ -195,15 +197,15 @@ Rails.application.routes.draw do
     get :load_comment
   end
 
-  resource :account_managers, only: [] do
-    member do
-      get :assign_business_role
-      match :do_assign_business_role, via: :all
-    end
+  resources :account_managers, only: [:new, :create], :path_names => { :new => "invite", :create => 'create' } do
+    put :update_assign_business_role # not used yet
     get :autocomplete_user_email, :on => :collection
   end
-  resources :account_managers, only: [:new, :create], :path_names => { :new => "invite", :create => 'create' } do
-    put :update_assign_business_role
+
+  resources :business_unit_roles, only: [:new, :create] do
+    collection do
+      get :autocomplete_user_email
+    end
   end
 
   resource :companies, only:[] do

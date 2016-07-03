@@ -90,7 +90,7 @@ module ApplicationHelper
   end
 
   def pundit_user
-    current_consultant || current_user
+    current_user
   end
 
   def mailbox_section(title, current_box, opts = {})

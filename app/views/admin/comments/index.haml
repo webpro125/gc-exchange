@@ -65,27 +65,27 @@
                       %small.text-muted= time_ago_in_words(comment.created_at) + ' ago'
                   .social-body
                     = render 'admin/comments/comment', comment: comment, article: @article
-            - if @article.status == 'open'
-              .row
-                .col-md-12
-                  .social-feed-box
-                    .social-avatar
-                      %p.pull-left
-                        = image_tag 'missing.png'
-                      .media-body
-                        %p.m-t.m-b-none
-                          You
-                    .social-body
-                      = simple_form_for [:admin, @article, @comment], html: { class: 'comment_form' },
-                        wrapper: :vertical_form do |f|
-                        = f.error_notification
-                        = render 'shared/base_error', model: @article
-                        .form-inputs
-                          = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
-                          #attach_file.dropzone{:data_url => upload_attachment_articles_path }
-                            .dropzone-previews
-                        .form-actions
-                          = f.button :submit, class: 'btn btn-primary'
+          - if @article.status == 'open'
+            .row
+              .col-md-12
+                .social-feed-box
+                  .social-avatar
+                    %p.pull-left
+                      = image_tag 'missing.png'
+                    .media-body
+                      %p.m-t.m-b-none
+                        You
+                  .social-body
+                    = simple_form_for [:admin, @article, @comment], html: { class: 'comment_form' },
+                      wrapper: :vertical_form do |f|
+                      = f.error_notification
+                      = render 'shared/base_error', model: @article
+                      .form-inputs
+                        = f.input :body, label: false, input_html: { rows: 4, maxlength: 500 }
+                        #attach_file.dropzone{:data_url => upload_attachment_articles_path }
+                          .dropzone-previews
+                      .form-actions
+                        = f.button :submit, class: 'btn btn-primary'
 :coffee
   attachment = new Attachment()
   $ ->

@@ -35,8 +35,12 @@
 //= require new/cm.popover
 //= require new/cm.toggle
 //= require new/cm.workflow
+//= require new/cm.modal
+//= require new/handlebars.min
 //= require new/main
 //= require new/common
+//= require rails.validations
+//= require rails.validations.simple_form
 
 $(function() {
     $('.action-close').click(function() {
@@ -49,4 +53,13 @@ $(function() {
             next_obj.find("input").focus();
         }
     });
+    var modals = $('[data-name~="notice-modal"]');
+    if (modals.length) {
+        //modals.slideDown("slow");
+        modals.fadeIn('slow');
+        setTimeout(function () {
+            //modals.slideUp();
+            modals.hide();
+        }, 4000);
+    }
 });

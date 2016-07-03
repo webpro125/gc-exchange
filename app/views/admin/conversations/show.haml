@@ -48,5 +48,4 @@
               .text-right
                 = message.created_at.strftime('%B %d at %I:%M %p')
           %hr/
-          %p
-            = message.body
+          = simple_format message.body

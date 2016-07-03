@@ -1,19 +1,18 @@
-= content_for :main_class, 'version2'
 %header#main-header.version2{:role => "banner"}
   = link_to 'GCES', root_path, class: 'site-brand version2'
   .head-scroller
-    %h2
-      = link_to '4 Steps Registration Process', registration_process_users_path
     %nav.main-menu.menu-vertical{:role => "navigation"}
       %ul
+        %li{class: current_page_active('companies')}
+          = link_to '4 Steps Registration Process', registration_process_users_path
         %li
           = link_to 'Register Your Company', registration_companies_path
-        %li
+        %li{class: current_page_active('account_managers', 'new')}
           = link_to 'Invite Account Managers', (current_user.owned_company.present? ? new_account_manager_path : '#')
-        %li
+        %li{class: current_page_active('users')}
           = link_to 'Create Business Units', '#'
-        %li
-          = link_to 'Assign Unit Roles', (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '#')
+        %li{class: current_page_active('business_unit_roles', 'new')}
+          = link_to 'Assign Unit Roles', (current_user.account_manager.present? ? new_business_unit_role_path  : '#')
     %ul.qa-list{:style => "margin-top: 4rem;"}
       %li.is-active
         %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} Why do I need to Register my Company?
@@ -29,5 +28,5 @@
       = link_to 'Invite Account Managers', (current_user.owned_company.present? ? new_account_manager_path : '#')
     %li{class: current_page_active('users')}
       = link_to 'Create Business Units', '#'
-    %li{class: current_page_active('account_managers', 'assign_business_role')}
-      = link_to 'Assign Roles', (current_user.account_manager.present? ? assign_business_role_account_managers_path  : '#')
+    %li{class: current_page_active('business_unit_roles', 'new')}
+      = link_to 'Assign Roles', (current_user.account_manager.present? ? new_business_unit_role_path  : '#')

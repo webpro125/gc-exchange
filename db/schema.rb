@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614191404) do
+ActiveRecord::Schema.define(version: 20160701035053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,11 @@ ActiveRecord::Schema.define(version: 20160614191404) do
     t.string   "email",                            default: "",    null: false
     t.string   "first_name",            limit: 24,                 null: false
     t.string   "last_name",             limit: 24,                 null: false
+    t.boolean  "ra_accept",                        default: false
+    t.boolean  "sa_accept",                        default: false
+    t.boolean  "aa_accept",                        default: false
+    t.string   "phone",                 limit: 32
+    t.string   "accept_token"
   end
 
   add_index "business_unit_roles", ["account_manager_id"], name: "index_business_unit_roles_on_account_manager_id", using: :btree
@@ -530,13 +535,13 @@ ActiveRecord::Schema.define(version: 20160614191404) do
     t.text     "sow_reason"
     t.integer  "status",                         default: 0
     t.integer  "project_agreement_id"
-    t.integer  "business_unit_role_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "ra_project_agreements", ["business_unit_role_id"], name: "index_ra_project_agreements_on_business_unit_role_id", using: :btree
   add_index "ra_project_agreements", ["project_agreement_id"], name: "index_ra_project_agreements_on_project_agreement_id", using: :btree
+  add_index "ra_project_agreements", ["user_id"], name: "index_ra_project_agreements_on_business_unit_role_id", using: :btree
 
   create_table "ranks", force: true do |t|
     t.string "code",  limit: 32,  null: false

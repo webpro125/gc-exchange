@@ -65,13 +65,12 @@
       %h1 Assign Selection Authority Role
     .modal-content
       .modal-scroller
-        = simple_form_for @unit_role, method: :put,
-          remote: true, html: { data: { modal: true, type: :json }, class: 'theme-gces', id: 'unit_role_form' },
-          url: do_assign_business_role_account_managers_path do |f|
+        = simple_form_for @unit_role, url: business_unit_roles_path,
+          remote: true, html: { data: { modal: true, type: :json }, class: 'theme-gces', id: 'unit_role_form' } do |f|
           = render 'shared/base_error', model: @unit_role
           %section.ui-card
             = f.input :email, required: false, placeholder: 'Email', label: false,
-            :url => autocomplete_user_email_account_managers_path, :as => :autocomplete,
+            :url => autocomplete_user_email_business_unit_roles_path, :as => :autocomplete,
             wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' }
             .grid.columns-2.margin-top-1r{:role => "grid"}
               .grid-6-12{:role => "gridcell"}

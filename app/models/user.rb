@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :requested_company
   has_many :business_unit_roles, inverse_of: :user
   has_many :selection_authorities,  -> () {
-    where("selection_authority = ?", true)
+    where("selection_authority = ? and sa_accept = ?", true, true)
   },  class_name: 'BusinessUnitRole', foreign_key: :user_id
 
   before_validation :company_present
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   def gces?
     if self.company.present?
       c = owned_company || company
-      c.company_name == Company::GLOBAL_CONSULTANT_EXCHANGE
+      # c.company_name == Company::GLOBAL_CONSULTANT_EXCHANGE
     else false end
   end
 

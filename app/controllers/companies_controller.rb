@@ -64,16 +64,24 @@ class CompaniesController < CompanyController
     @requested_company = RequestedCompany.new(request_company_params)
     @requested_company.user_id = current_user.id
     if @requested_company.save
-      email_content = Company::COMPANY_CREATED_EMAIL
+      email_content =
+          "One User Requested Company Creation  \n
+           Email: #{current_user.email}
+           Full Name: #{current_user.full_name}  \n
+           Company Name: #{@requested_company.company_name}
+           Work Phone: #{@requested_company.work_phone}
+           Cell Phone: #{@requested_company.cell_phone}
+           Message: #{@requested_company.help_content}
+      "
       # email_content["{full_name}"] = @requested_company.user.full_name
       Mailboxer.uses_emails = false
       Admin.all.each {|admin|
         CompanyMailer.company_requested(@requested_company, admin).deliver
         conversation = current_user.send_message(admin,
                                      email_content,
-                                     'One user requested company registration').conversation
+                                     Company::CREATED_EMAIL_SUBJECT).conversation
       }
-      redirect_to root_path, notice: t('controllers.company.request_register.success')
+      redirect_to registration_companies_path, notice: t('controllers.company.request_register.success')
     else
       render :registration
     end

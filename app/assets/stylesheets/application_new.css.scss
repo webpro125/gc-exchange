@@ -31,3 +31,75 @@
   width: 35%;
   height: auto;
 }
+.show {
+  display: block;
+}
+
+/* ui autocomplete custom css start */
+.ui-card .profile-thumb img {
+  width: 7.75rem;
+  height: 7.75rem;
+}
+.ui-autocomplete.ui-front {
+  width: 600px !important;
+  padding-left: 0;
+  z-index: 9999999;
+}
+.ui-autocomplete.ui-front li.ui-menu-item {
+  list-style: none;
+  padding: 5px 8px;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #293846 !important;
+  background: #293846 !important;
+  font-weight: normal;
+  color: #fff !important;
+
+}
+/* ui autocomplete custom css end */
+
+.animation-drop-header {
+  -moz-animation-name: dropHeader;
+  -moz-animation-iteration-count: 1;
+  -moz-animation-timing-function: ease-out;
+  -moz-animation-duration: 0.6s;
+
+  -webkit-animation-name: dropHeader;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.6s;
+
+  animation-name: dropHeader;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+  animation-duration: 0.6s;
+}
+@-moz-keyframes dropHeader {
+  0% {
+    -moz-transform: translateY(-80px);
+  }
+  100% {
+    -moz-transform: translateY(0);
+  }
+}
+@-webkit-keyframes dropHeader {
+  0% {
+    -webkit-transform: translateY(-80px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes dropHeader {
+  0% {
+    transform: translateY(-80px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
