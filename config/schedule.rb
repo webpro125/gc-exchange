@@ -18,3 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+every 3.days do
+  rake "update_bur_accept"
+end

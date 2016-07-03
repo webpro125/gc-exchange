@@ -47,7 +47,7 @@ class BusinessUnitRolesController < ApplicationController
     end
 
     if save_result
-      AccountManagerMailer.assigned_role(user, generated_password, accept_token).deliver
+      AccountManagerMailer.delay.assigned_role(user, generated_password, accept_token)
       assigned_role_text = ''
       if @unit_role.selection_authority
         assigned_role_text += 'Selection Authority  '

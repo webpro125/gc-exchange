@@ -76,10 +76,15 @@ class CompaniesController < CompanyController
       # email_content["{full_name}"] = @requested_company.user.full_name
       Mailboxer.uses_emails = false
       Admin.all.each {|admin|
-        CompanyMailer.company_requested(@requested_company, admin).deliver
+        CompanyMailer.delay.company_requested(@requested_company, admin)
         conversation = current_user.send_message(admin,
                                      email_content,
                                      Company::CREATED_EMAIL_SUBJECT).conversation
+        # host_url = request.host || "drake.gces.staging.c66.me"
+        # profile_url = host_url + '/profile/edit'
+        # message = 'Your profile has been approved by GCES and is viewable by our Client Companies.
+        #           Please remember to keep your profile updated at: ' + profile_url
+        # send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
       }
       redirect_to registration_companies_path, notice: t('controllers.company.request_register.success')
     else

@@ -2,6 +2,8 @@ class Project < ActiveRecord::Base
   enum contact_status: [:offered, :rejected, :not_pursuing, :agreed_to_terms, :under_revision]
   enum consultant_location: ['On-Site', :Remote, :Both]
 
+  CREATED_EMAIL_SUBJECT = 'Created Draft'
+
   scope :open,
         (lambda do
           where(arel_table[:contact_status].eq(Project.contact_statuses[:offered])
