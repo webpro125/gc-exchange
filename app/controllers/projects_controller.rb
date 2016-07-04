@@ -52,7 +52,11 @@ class ProjectsController < ApplicationController
       # message = 'You just recieved an offer to support a consulting project assignment.
       #         Please login to GCES to view your offer: ' + off_url
       # send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
+      email_content = "Draft Name: #{@project.project_name}"
       ProjectAgreementMailer.delay.created_draft(@project)
+      conversation = current_user.send_message(@consultant.user,
+                                               email_content,
+                                               Project::CREATED_EMAIL_SUBJECT).conversation
       redirect_to consultant_project_path(@consultant, @project), notice: 'Engagement Offer was successfully created.'
     else
       render :new

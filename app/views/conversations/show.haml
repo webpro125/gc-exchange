@@ -5,31 +5,32 @@
     .row
       .medium-12.columns
         = link_to 'Back to Inbox', conversations_path, class: 'button tiny'
-        - if communication.originator.class.name != 'Admin'
-          - if (((receiver_side_conversation? communication) && !current_user.consultant.contactable(conversation.recipients.select{|r| r.is_a? User}.reject{|p| p == current_user}.first)) && !user_is_gces?)
-            = link_to 'Approve Personal Contact Information',
-              approve_personal_contact_conversation_path,
-              method: :put,
-              class: 'button tiny' if policy(current_user.consultant).contactable?
-    .row
-      .medium-12.columns
-        .panel
-          %p
-            - if receiver_side_conversation? communication
-              NOTE: As you begin this dialogue with a potential client, (1) please keep in mind
-              your
-              responsibility to maintain correct contact information within the GCES database and
-              (2) be sensitive to the possibility of latent conflicts of interests that might
-              exist
-              between you and the potential client.
-            - else
-              NOTE: As you begin this dialogue with a potential consultant, please keep in mind
-              the
-              possibility of latent conflicts of interest that might exist between your company
-              and
-              the potential consultant. GCES encourages you to address any potential conflict of
-              interest issues with the consultant early in your dialogue to avoid possible
-              confidentiality breaches.
+        -#- if communication.originator.class.name != 'Admin'
+        -#  - if (((receiver_side_conversation? communication) && !current_user.consultant.contactable(conversation.recipients.select{|r| r.is_a? User}.reject{|p| p == current_user}.first)) && !user_is_gces?)
+        -#    = link_to 'Approve Personal Contact Information',
+        -#      approve_personal_contact_conversation_path,
+        -#      method: :put,
+        -#      class: 'button tiny' if policy(current_user.consultant).contactable?
+    - if communication.subject == Project::CREATED_EMAIL_SUBJECT
+      .row
+        .medium-12.columns
+          .panel
+            %p
+              - if receiver_side_conversation? communication
+                NOTE: As you begin this dialogue with a potential client, (1) please keep in mind
+                your
+                responsibility to maintain correct contact information within the GCES database and
+                (2) be sensitive to the possibility of latent conflicts of interests that might
+                exist
+                between you and the potential client.
+              - else
+                NOTE: As you begin this dialogue with a potential consultant, please keep in mind
+                the
+                possibility of latent conflicts of interest that might exist between your company
+                and
+                the potential consultant. GCES encourages you to address any potential conflict of
+                interest issues with the consultant early in your dialogue to avoid possible
+                confidentiality breaches.
     .row
       .medium-12.columns
         %ul.right
