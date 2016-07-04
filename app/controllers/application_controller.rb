@@ -83,7 +83,15 @@ class ApplicationController < ActionController::Base
   
   # send sms
   def send_sms to_phone, message, consultant
-    if consultant.sms_notification
+    if !consultant
+      send_available = true
+    elsif !consultant.blank? && consultant.sms_notification
+      send_available = true
+    else
+      send_available = false
+    end
+
+    if send_available
       if to_phone[0] == "0"
         to_phone.sub!("0", '')
       end

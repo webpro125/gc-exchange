@@ -80,11 +80,8 @@ class CompaniesController < CompanyController
         conversation = current_user.send_message(admin,
                                      email_content,
                                      Company::CREATED_EMAIL_SUBJECT).conversation
-        # host_url = request.host || "drake.gces.staging.c66.me"
-        # profile_url = host_url + '/profile/edit'
-        # message = 'Your profile has been approved by GCES and is viewable by our Client Companies.
-        #           Please remember to keep your profile updated at: ' + profile_url
-        # send_sms(@consultant.phones.first.number.to_s, message, @consultant) unless @consultant.phones.blank?
+        host_url = request.host || "drake.gces.staging.c66.me"
+        send_sms(admin.phone.to_s, email_content) unless admin.phone.blank?
       }
       redirect_to registration_companies_path, notice: t('controllers.company.request_register.success')
     else

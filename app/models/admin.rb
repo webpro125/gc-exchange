@@ -14,6 +14,12 @@ class Admin < ActiveRecord::Base
   validates :last_name, length: { in: 2..24 }, presence: true,
             format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
+  validates :phone,
+            presence: true,
+            format:   {
+                with:    RegexConstants::Phone::PHONE_NUMBER,
+                message: I18n.t('activerecord.errors.messages.regex.phone')
+            }
 
   has_many :admin_owned_comments, class_name: 'Comment',
            foreign_key: :admin_commenter_id, inverse_of: :commenter,
