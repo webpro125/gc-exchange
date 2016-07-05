@@ -82,7 +82,7 @@ class ApplicationController < ActionController::Base
   end
   
   # send sms
-  def send_sms to_phone, message, consultant
+  def send_sms to_phone, message, consultant = false
     if !consultant
       send_available = true
     elsif !consultant.blank? && consultant.sms_notification

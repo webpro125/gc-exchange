@@ -27,7 +27,9 @@
             %li
               = link_to conversations_path do
                 Messages
-                \#{content_tag(:span, mailbox.inbox(:read => false).count(:id, :distinct => true).to_s, class: "label label-info")}
+                - mailbox_unread_count = mailbox.inbox(:read => false).count(:id, :distinct => true)
+                - if mailbox_unread_count > 0
+                  #{content_tag(:span, mailbox_unread_count, class: "label label-info")}
             %li= link_to t('views.offer.actions.menu'), projects_path
             %li= link_to 'Blog', articles_path
             %li= link_to 'Logout', destroy_user_session_path, method: :delete

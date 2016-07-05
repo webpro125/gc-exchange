@@ -40,7 +40,9 @@
           = link_to admin_conversations_path do
             %i.fa.fa-envelope
             %span.nav-label Messages
-            %span.label.label-warning.m-l-xs= mailbox.inbox(:read => false).count(:id, :distinct => true).to_s
+            - mailboxer_unread_count = mailbox.inbox(:read => false).count(:id, :distinct => true)
+            - if mailboxer_unread_count > 0
+              %span.label.label-warning.m-l-xs= mailboxer_unread_count
       %li{:class => current_page_active('admin/articles')}
         = link_to admin_articles_path do
           %i.fa.fa-comments
