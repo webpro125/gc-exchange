@@ -38,7 +38,7 @@
             <% if current_user.consultant && current_user.consultant.wizard_step == Wicked::FINISH_STEP %>
             <a class="button-landing consultants" href="<%= consultant_root_path %>">
                 <span>Consultants</span>
-                <span class="subline">Create Consultant Profile</span>
+                <span class="subline">Manage Consultant Profile</span>
             </a>
             <% else %>
             <a class="button-landing consultants" href="<%= create_consultant_path %>">
