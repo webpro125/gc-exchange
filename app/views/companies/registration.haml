@@ -11,7 +11,7 @@
       %figure
         = image_tag 'infographics_buildings_company.png'
     = simple_form_for(@requested_company, method: :put,
-      url: do_registration_companies_path, html: {class: 'theme-gces'}) do |f|
+      url: do_registration_companies_path, html: {class: 'theme-gces', id: 'reg_company_form'}) do |f|
       = render 'shared/base_error', model: @requested_company
 
       = f.input :company_name, required: false, autofocus: true, placeholder: 'Company Name',
@@ -23,7 +23,7 @@
       = f.input :help_content, required: false, label: 'Tell us how we can help you?',
         wrapper: :custom_no_wrapper_input, as: :text
       = button_tag 'Register New Company', type: 'submit',
-        class: "button-cta button-primary icon-cr-arrow-right"
+        class: "button-cta button-primary icon-cr-arrow-right register-button"
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground

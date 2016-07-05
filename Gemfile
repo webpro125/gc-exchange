@@ -53,8 +53,6 @@ gem 'bootstrap-datepicker-rails', '~> 1.5'
 gem 'roadie-rails', '~> 1.0'
 gem 'compass-rails'
 gem 'rails-jquery-autocomplete', '~> 1.0', '>= 1.0.3'
-gem 'client_side_validations', '4.2.4'
-gem 'client_side_validations-simple_form'
 gem 'whenever', '~> 0.9.7'
 
 gem 'breadcrumbs_on_rails'

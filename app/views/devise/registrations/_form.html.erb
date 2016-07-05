@@ -1,5 +1,5 @@
-<%= simple_form_for(resource, as: resource_name, validate: true,
-         url: registration_path(resource_name), html: {class: 'theme-gces'}) do |f| %>
+<%= simple_form_for(resource, as: resource_name,
+         url: registration_path(resource_name), html: {class: 'theme-gces', id: 'registration_form'}) do |f| %>
     <%= f.error_notification %>
     <%= render 'shared/base_error', model: resource %>
     <%= f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, label: false,
@@ -29,6 +29,6 @@
       </p>
     </fieldset>
     <div class="align-center">
-      <%= button_tag 'Sign up', type: 'submit', class: "button-primary button-cta center" %>
+      <%= button_tag 'Sign up', type: 'submit', class: "button-primary button-cta center register-button" %>
     </div>
 <% end %>

@@ -1,5 +1,10 @@
 - content_for :header do
   = render 'layouts/registration_header'
+- content_for :css do
+  :css
+    #am_form .form-validation {
+      text-align: left
+    }
 .page-content
   %section
     %section.entity-company.taxonomy-view
@@ -31,7 +36,7 @@
             %p.section-description Add brief description here lorem ipsum sit amet quosque tandem set numa consect. Ipsum sit amet quosque tandem set numa consect, lorem ipsum sit amet quosque tandem set numa consect..
             %figure.figure-account-manager
               = image_tag "infographics_business_person_manager.png"
-          = simple_form_for(@form, html: {class: 'theme-gces style-alternate'}) do |f|
+          = simple_form_for(@form, html: {class: 'theme-gces style-alternate', id: 'am_form'}) do |f|
             = render 'shared/base_error', model: @form
             = f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, label: false,
               :url => autocomplete_user_email_account_managers_path, :as => :autocomplete,
@@ -48,7 +53,7 @@
             .preview-email-input.hide
               = f.input :email_content,label: false, wrapper: :custom_no_wrapper_input, as: :text,
                 input_html: { value: AccountManager::DEFAULT_EMAIL_CONTENT, rows: 3 }
-            = button_tag 'Send Invite to Account Manager', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right"
+            = button_tag 'Send Invite to Account Manager', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right am-button"
         %section.row.hidden
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}

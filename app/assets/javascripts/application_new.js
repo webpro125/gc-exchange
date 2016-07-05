@@ -37,10 +37,10 @@
 //= require new/cm.workflow
 //= require new/cm.modal
 //= require new/handlebars.min
+//= require new/jquery.validate
+//= require new/additional-methods
 //= require new/main
 //= require new/common
-//= require rails.validations
-//= require rails.validations.simple_form
 
 $(function() {
     $('.action-close').click(function() {
