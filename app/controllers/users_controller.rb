@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :load_am_by_token, only: [:register_account_manager, :put_account_manager]
 
   def index
-
+    render layout: 'mapbox'
   end
 
   def create_consultant

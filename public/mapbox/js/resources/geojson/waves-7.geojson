@@ -1,0 +1,6 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-94.4, 42.37]}, "properties": {"icon": {"iconUrl": "/mapbox/images/svg/waves-8.svg", "iconSize": [8000, 4746], "className": "wave"}}}
+    ]
+}

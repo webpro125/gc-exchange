@@ -1,0 +1,114 @@
+<div id="site-wrapper" class="page-landing">
+    <div class="landing-menu-toggle"></div>
+    <header id="main-header" class="page-landing landing-header" role="banner">
+        <div class="head-scroller">
+            <nav class="main-menu menu-vertical float-menu" role="navigation">
+                <ul>
+                    <li><a href="">What we do</a></li>
+                    <li data-type="display-overlay"><a href="">Join the Exchange</a></li>
+                    <li><a href="">Community Forum</a></li>
+                    <li><a href="">Tutorials</a></li>
+                    <li><a href="">Education</a></li>
+                    <li><a href="">Articles</a></li>
+                    <% unless BusinessUnitRole.own_requisition_authorities(current_user).empty? %>
+                      <li><%= link_to 'Review Consultants Work Agreements', project_agreements_path %></li>
+                    <% end %>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main-content page-landing">
+        <header class="landing-site-brand">
+            <h1 data-type="display-overlay">GCES</h1>
+        </header>
+        
+        <div class="landing-search" data-focus-target="search">
+            <form class="search-form">
+                <input type="text" data-type="cm-search cm-focus" data-focus="search" placeholder="Search the Community">
+                <button type="submit" class="icon-search"></button>
+            </form>
+
+            <div class="search-results">
+            </div>
+        </div>
+        
+        <article class="landing-content">
+            <h2>Join Our Community of 4 Members</h2>
+            <% if current_user.consultant && current_user.consultant.wizard_step == Wicked::FINISH_STEP %>
+            <a class="button-landing consultants" href="<%= consultant_root_path %>">
+                <span>Consultants</span>
+                <span class="subline">Create Consultant Profile</span>
+            </a>
+            <% else %>
+            <a class="button-landing consultants" href="<%= create_consultant_path %>">
+                <span>Consultants</span>
+                <span class="subline">Register to Sell Your Services</span>
+            </a>
+            <% end %>
+            <a class="button-landing companies" href="<%= registration_process_users_path %>">
+                <span>Companies</span>
+                <span class="subline">Register to Buy Services</span>
+            </a>
+            <br>
+            <a href="#" class="explore-map">Explore Map</a>
+        </article>
+    
+        <section id="map" data-type="cm-map">
+            <div class="map-details hidden">
+                <p>Map Center: <span class="map-center"></span></p>
+                <p>Map Mouse: <span class="map-mouse"></span></p>
+                <p>Map Zoom: <span class="map-zoom"></span></p>
+            </div>
+        </section>
+    </main>
+
+    <script id="map-search-results" type="text/template">
+        {{#if empty}}
+        <div class="empty">{{ empty }}</div>
+        {{/if}}
+        <div class="search-results-scroller">
+        <div class="close-search-results icon-cross"></div>
+        {{#each results}}
+        <div class="consultant-wrapper" data-location="{{ location }}" data-uid="{{ uid }}">
+            <figure class="consultant-thumbnail{{#unless image}} icon-profile2{{/unless}}">
+                <img src="{{ image }}" width="" height="">
+            </figure>
+            <div class="consultant-info">
+                <p class="consultant-name">{{ name }}</p>
+                <p class="consultant-title">{{ title }}</p>
+            </div>
+        </div>
+        {{/each}}
+        </div>
+    </script>
+
+    <script id="map-cluster-popup" type="text/template">
+        <div class="map-cluster-popup" data-section="pager-container">
+            <div data-section="pager-content"></div>
+            <div class="pager-navigation" data-section="pager-navigation">
+                <a href="#" class="prev" data-section="pager-prev"></a>
+                <div class="page-count">Page <span class="page-number" data-section="page-current">1</span> of <span class="page-number" data-section="page-last">8</span></div>
+                <a href="#" class="next" data-section="pager-next"></a>
+            </div>
+        </div>
+    </script>
+
+    <script id="map-cluster-popup-users" type="text/template">
+        {{#each users}}
+        {{{ content }}}
+        {{/each}}
+    </script>
+
+    <script id="map-cluster-user" type="text/template">
+        <div class="consultant-wrapper">
+            <figure class="consultant-thumbnail{{#unless image}} icon-profile2{{/unless}}">
+                <img src="{{ image }}" width="" height="">
+            </figure>
+            <div class="consultant-info">
+                <a href="{{ profile }}" class="consultant-name">{{ name }}</a>
+                <p class="consultant-title">{{ title }}</p>
+            </div>
+        </div>
+    </script>
+</div>
