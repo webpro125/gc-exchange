@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /*
 *= require bootstrap-datepicker3
+*= require wice_grid
 */
-
-@import "wice_grid";
+.remaining-positions {
+  display: none;
+}
+//@import "wice_grid";

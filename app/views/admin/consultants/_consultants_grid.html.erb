@@ -43,4 +43,22 @@
     data.date_approved ? data.date_approved.to_date : nil
   end
 
+  g.column name: 'Sign In Count', assoc: :user, attribute: 'sign_in_count' do |data|
+    data.user.sign_in_count
+  end
+
+  g.column name: 'Rate', attribute: 'rate' do |data|
+    data.rate
+  end
+
+  g.column name: 'Resume', attribute: 'resume_file_name', filter: false do |data|
+    link_to_if(data.resume_file_name.present?,
+               'Download Resume',
+               download_resume_path(data), target: '_blank') {}
+  end
+  g.column name: 'Contract',  filter: false do |data|
+    link_to_if(policy(data).contract?,
+             'Download Contract',
+             contract_consultant_path(data), target: '_blank') {}
+  end
 end -%>

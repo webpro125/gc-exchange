@@ -47,7 +47,7 @@ class DownloadsController < ApplicationController
 
   def gsc
     @company = Company.find(params[:id])
-    if admin_signed_in?
+    if admin_signed_in? || user_signed_in?
       if Rails.env.development?
         send_file Rails.root.join("public/" + @company.gsc.path),
                   :type => @company.gsc_content_type.to_s,
@@ -55,6 +55,22 @@ class DownloadsController < ApplicationController
                   :url_based_filename => true
       else
         redirect_to @company.gsc_url
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
+  def contract_rider
+    @company = Company.find(params[:id])
+    if admin_signed_in? || user_signed_in?
+      if Rails.env.development?
+        send_file Rails.root.join("public/" + @company.contract.path),
+                  :type => @company.contract_content_type.to_s,
+                  :filename => @company.contract_file_name,
+                  :url_based_filename => true
+      else
+        redirect_to @company.contract_url
       end
     else
       redirect_to root_path

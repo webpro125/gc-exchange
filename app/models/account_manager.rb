@@ -6,7 +6,7 @@ class AccountManager < ActiveRecord::Base
     in the role of Account Manager for your company {company_name}.
 
 
-    Please click the button below to learn more and to start the registration process.{link}'
+    Please click the button below to learn more and to start the registration process.'
 
   belongs_to :user, autosave: true
   belongs_to :company

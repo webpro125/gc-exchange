@@ -5,25 +5,24 @@
     %section.entity-company.taxonomy-view
       %header.ui-box.taxonomy-head{"data-section" => "toggle-head", "data-toggle-container" => ""}
         .entity-head{"data-ignore-global-close" => "1", "data-target" => "toggle-head", "data-type" => "cm-toggle"}
-          %h1 Tesla Automobiles, Inc
+          %h1= @owned_company.company_name
           .ui-panel-toggle.icon-cr-plus-full
         .entity-info.grid.columns-3.ui-panel{"data-section" => "toggle-head", "data-slide-open" => ""}
           .grid-4-12
             %h3 Company Address
-            %p 1 Infinite Loop
-            %p Cupertino, California
+            %p= @owned_company.address
           .grid-4-12
             %h3 Company Contract POC
-            %p.name Frank Smith
-            %p.email franksmithjunior@apple.com
-            %p (954) 345 9876
+            %p.name= @owned_company.owner.full_name.split.map(&:capitalize).join(' ')
+            %p.email= @owned_company.owner.email
+            %p= @owned_company.work_phone
           .grid-4-12
             %h3 Company Documents
             %ul.doc-list
               %li
-                %a{:href => ""} General Services Contract
+                = link_to_if(@owned_company.gsc.present?, @owned_company.gsc_file_name, download_gsc_path(@owned_company), target: '_blank') {}
               %li
-                %a{:href => ""} Contract Rider
+                = link_to_if(@owned_company.contract.present?, @owned_company.contract_file_name, download_contract_rider_path(@owned_company), target: '_blank') {}
       %section.taxonomy-units
         %section.row.unit-maximized.connect-rule-up
           %section

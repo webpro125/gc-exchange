@@ -23,8 +23,15 @@ class Company < ActiveRecord::Base
             format: { with: RegexConstants::Words::AND_SPECIAL,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }
 
-  validates :phone,
+  validates :work_phone,
             presence: true,
+            format:   {
+                with:    RegexConstants::Phone::PHONE_NUMBER,
+                message: I18n.t('activerecord.errors.messages.regex.phone')
+            }
+
+  validates :cell_phone,
+            allow_blank: true,
             format:   {
                 with:    RegexConstants::Phone::PHONE_NUMBER,
                 message: I18n.t('activerecord.errors.messages.regex.phone')

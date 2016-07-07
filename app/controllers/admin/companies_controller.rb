@@ -17,12 +17,12 @@ class Admin::CompaniesController < Admin::CompanyController
   def create
     @company = Company.new(company_create_params)
 
+    generated_password = ''
+
     if @company.valid?
-      if User.where(email:@company.email).first.blank?
-        generated_password = Devise.friendly_token.first(8)
-      else
-        generated_password = ''
-      end
+
+      generated_password = Devise.friendly_token.first(8) if User.where(email:@company.email).first.blank?
+
       user = User.where(email:@company.email).first_or_create! do |user|
         user.password = generated_password
         user.first_name = @company.first_name
@@ -36,6 +36,11 @@ class Admin::CompaniesController < Admin::CompanyController
       if @company.save
 
         CompanyMailer.company_created(@company, generated_password).deliver
+
+        sms_content = 'Thank you for signing a contract with GCES.
+                      Please log into the site and start assigning Business Unit Account Managers.'
+
+        send_sms(@company.cell_phone, sms_content) unless @company.cell_phone.blank?
 
         format.html { redirect_to admin_companies_path, notice: t('controllers.company.create.success') }
         format.json { render json: admin_companies_path, status: :created, location: @company }
@@ -134,8 +139,8 @@ class Admin::CompaniesController < Admin::CompanyController
 
   # Only allow a trusted parameter "white list" through.
   def company_create_params
-    params.require(:company).permit(:company_name, :phone, :contract_start, :contract_end, :owner_id,
-                                    :first_name, :last_name, :email, :contract, :gsc)
+    params.require(:company).permit(:company_name, :work_phone, :cell_phone, :contract_start, :contract_end, :owner_id,
+                                    :first_name, :last_name, :email, :contract, :gsc, :address)
   end
 
   def company_update_params

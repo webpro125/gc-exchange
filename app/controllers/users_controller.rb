@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   def load_am_by_token
     access_token = params[:access_token]
     @account_manager = AccountManager.find_by_access_token(access_token)
+    @owned_company = @account_manager.company
     if @account_manager.blank?
       @error_message = 'Invalid Token'
     elsif @account_manager.business_unit_name.blank?

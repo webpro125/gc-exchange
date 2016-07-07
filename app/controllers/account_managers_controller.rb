@@ -7,6 +7,9 @@ class AccountManagersController < ApplicationController
   def new
     @new_design = true
     account_manager = @owned_company.account_managers.build
+    # email_content = AccountManager::DEFAULT_EMAIL_CONTENT
+    account_manager.email_content = AccountManager::DEFAULT_EMAIL_CONTENT
+    account_manager.email_content.gsub!("{company_name}", @owned_company.company_name)
 
     @form = InviteAccountManagerForm.new(account_manager)
   end
