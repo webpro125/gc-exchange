@@ -2,6 +2,8 @@ class Admin::CompaniesController < Admin::CompanyController
   before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email,
                                    :destroy_account_manager, :registration_requests]
   add_breadcrumb 'Companies', :admin_companies_path
+  before_action :authenticate_admin!, except: [:autocomplete_user_email]
+  autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
   helper_method :mailbox, :conversation
 
   def index

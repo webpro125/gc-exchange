@@ -12,6 +12,7 @@ class WorkPhoneNumberInput < SimpleForm::Inputs::Base
         out << "<span class='grid-2-24 type-sep no-break'>ext</span>".html_safe
         out << @builder.input(:work_phone_ext, wrapper: :phone_input, required: false, placeholder: '0000',
               wrapper_html: { class: 'grid-3-12' }, input_html: {class: 'work_ext'})
+        out << "<input type='text' name='tmp_work_phone_number' id='tmp_work_phone_number' class='hide'>".html_safe
     end
     # ActiveSupport::SafeBuffer.new.tap do |out|
     #   @builder.simple_fields_for attribute_name, number do |ff|

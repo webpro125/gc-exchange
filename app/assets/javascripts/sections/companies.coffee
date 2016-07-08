@@ -20,7 +20,8 @@ $ ->
     smallObj3.remove() && smallObj4.remove()
     $('fieldset.requested_company_cell_phone').append(errorObj)
     $('fieldset.requested_company_cell_phone').addClass('invalid')
-
+  $('input#tmp_cell_phone_number').val('+1-'+ $('input#requested_company_cell_area_code').val() + '-' + $('input#requested_company_cell_prefix').val() + '-' + $('input#requested_company_cell_line').val())
+  $('input#tmp_work_phone_number').val('+1-'+ $('input#requested_company_work_area_code').val() + '-' + $('input#requested_company_work_prefix').val() + '-' + $('input#requested_company_work_line').val())
 
   form_obj = $('form#reg_company_form')
   if form_obj.length
@@ -33,20 +34,19 @@ $ ->
 ##      else return false
 #      field_1.valid() && field_2.valid()
 #    ), 'Enter the number of persons (including yourself)'
-    $('form#reg_company_form').validate
+    company_form_validate = $('form#reg_company_form').validate
+      ignore: ""
       errorClass: 'form-validation message error no-padding'
       errorElement: 'small'
-      onkeyup: false
-      onfocusout: false
       errorPlacement: (error, element) ->
-        if element.attr("name") == "requested_company[work_area_code]" || element.attr("name") == "requested_company[work_prefix]" || element.attr("name") == "requested_company[work_line]"
-          if element.closest('fieldset').find('small.form-validation').length
-            element.closest('fieldset').find('small.form-validation').text(error.text())
-          else error.appendTo(element.closest('fieldset'))
-        else error.appendTo(element.closest('fieldset'))
+#        if element.attr("name") == "requested_company[work_area_code]" || element.attr("name") == "requested_company[work_prefix]" || element.attr("name") == "requested_company[work_line]"
+#          if element.closest('fieldset').find('small.form-validation').length
+#            element.closest('fieldset').find('small.form-validation').text(error.text())
+#          else error.appendTo(element.closest('fieldset'))
+        error.appendTo(element.closest('fieldset'))
         return
       highlight: (e) ->
-        $(e).closest('fieldset').removeClass('invalid').addClass 'invalid'
+        $(e).closest('fieldset').addClass 'invalid'
 #        $(e).closest('.form-validation').remove()
         return
       success: (e) ->
@@ -57,33 +57,23 @@ $ ->
         'requested_company[company_name]':
           required: true
           maxlength: 128
-        'requested_company[work_area_code]':
-          required: true
-          number: true
-          minlength: 3
-          maxlength: 3
-        'requested_company[work_prefix]':
-          required: true
-          number: true
-          minlength: 3
-          maxlength: 3
-        'requested_company[work_line]':
-          required: true
-          minlength: 4
-          maxlength: 4
-          number: true
-        'requested_company[cell_area_code]':
-          number: true
-          minlength: 3
-          maxlength: 3
-        'requested_company[cell_prefix]':
-          number: true
-          minlength: 3
-          maxlength: 3
-        'requested_company[cell_line]':
-          number: true
-          minlength: 4
-          maxlength: 4
+        'tmp_work_phone_number':
+          required:true
+          phoneUS: true
+        'tmp_cell_phone_number':
+          phoneUS: true
+#        'requested_company[cell_area_code]':
+#          number: true
+#          minlength: 3
+#          maxlength: 3
+#        'requested_company[cell_prefix]':
+#          number: true
+#          minlength: 3
+#          maxlength: 3
+#        'requested_company[cell_line]':
+#          number: true
+#          minlength: 4
+#          maxlength: 4
         'requested_company[help_content]':
           required: true
           minlength: 2
@@ -92,43 +82,56 @@ $ ->
         'requested_company[company_name]':
           required: 'Can\'t be blank'
           maxlength: 128
-        'requested_company[work_area_code]':
-          required: 'Can\'t be blank'
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
-        'requested_company[work_prefix]':
-          required: 'Can\'t be blank'
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
-        'requested_company[work_line]':
-          required: 'Can\'t be blank'
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
-        'requested_company[cell_area_code]':
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
-        'requested_company[cell_prefix]':
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone numbe1234r'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
-        'requested_company[cell_line]':
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
+#        'requested_company[work_area_code]':
+#          required: 'Can\'t be blank'
+#          number: 'must be a valid phone number'
+#          totalCheck: 'must be a valid phone number'
+#          minlength: 'must be a valid phone number'
+#          maxlength: 'must be a valid phone number'
+#        'requested_company[work_prefix]':
+#          required: 'Can\'t be blank'
+#          number: 'must be a valid phone number'
+#          totalCheck: 'must be a valid phone number'
+#          minlength: 'must be a valid phone number'
+#          maxlength: 'must be a valid phone number'
+#        'requested_company[work_line]':
+#          required: 'Can\'t be blank'
+#          number: 'must be a valid phone number'
+#          totalCheck: 'must be a valid phone number'
+#          minlength: 'must be a valid phone number'
+#          maxlength: 'must be a valid phone number'
+#        'requested_company[cell_area_code]':
+#          number: 'must be a valid phone number'
+#          totalCheck: 'must be a valid phone number'
+#          minlength: 'must be a valid phone number'
+#          maxlength: 'must be a valid phone number'
+#        'requested_company[cell_prefix]':
+#          number: 'must be a valid phone number'
+#          totalCheck: 'must be a valid phone numbe1234r'
+#          minlength: 'must be a valid phone number'
+#          maxlength: 'must be a valid phone number'
+#        'requested_company[cell_line]':
+#          number: 'must be a valid phone number'
+#          totalCheck: 'must be a valid phone number'
+#          minlength: 'must be a valid phone number'
+#          maxlength: 'must be a valid phone number'
         'requested_company[help_content]':
           required: 'Can\'t be blank'
-      groups:
-        nameGroup: "requested_company_work_area_code requested_company_work_prefix requested_company_work_line"
+        'tmp_work_phone_number':
+          required: 'Can\'t be blank'
+          phoneUS: 'must be a valid phone number'
+        'tmp_cell_phone_number':
+          phoneUS: 'must be a valid phone number'
+#      groups:
+#        nameGroup: "requested_company_work_area_code requested_company_work_prefix requested_company_work_line"
+    $('input#requested_company_work_area_code, input#requested_company_work_prefix, input#requested_company_work_line').on 'input', ->
+      $('input#tmp_work_phone_number').val('+1-'+ $('input#requested_company_work_area_code').val() + '-' + $('input#requested_company_work_prefix').val() + '-' + $('input#requested_company_work_line').val())
+      $('input#tmp_work_phone_number').valid()
+      return
+    $('input#requested_company_cell_area_code, input#requested_company_cell_prefix, input#requested_company_cell_line').on 'input', ->
+      $('input#tmp_cell_phone_number').val('+1-'+ $('input#requested_company_cell_area_code').val() + '-' + $('input#requested_company_cell_prefix').val() + '-' + $('input#requested_company_cell_line').val())
+      $('input#tmp_cell_phone_number').valid()
+      return
   $('button.register-button').on 'click', (e) ->
     e.preventDefault()
     if form_obj.valid()
