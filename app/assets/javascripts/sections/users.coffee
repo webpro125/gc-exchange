@@ -50,6 +50,8 @@ $ ->
       return false
     return
   $('input#account_manager_cell_area_code, input#account_manager_cell_prefix, input#account_manager_cell_line').on 'input', ->
-    $('input#tmp_cell_phone_number').val('+1-'+ $('input#account_manager_cell_area_code').val() + '-' + $('input#account_manager_cell_prefix').val() + '-' + $('input#account_manager_cell_line').val())
+    if $('input#account_manager_cell_area_code').val() != '' || $('input#account_manager_cell_prefix').val() != '' ||  $('input#account_manager_cell_line').val()
+      $('input#tmp_cell_phone_number').val('+1-'+ $('input#account_manager_cell_area_code').val() + '-' + $('input#account_manager_cell_prefix').val() + '-' + $('input#account_manager_cell_line').val())
+    else $('input#tmp_cell_phone_number').val('')
     $('input#tmp_cell_phone_number').valid()
     return

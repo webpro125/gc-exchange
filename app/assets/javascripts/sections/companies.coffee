@@ -20,7 +20,8 @@ $ ->
     smallObj3.remove() && smallObj4.remove()
     $('fieldset.requested_company_cell_phone').append(errorObj)
     $('fieldset.requested_company_cell_phone').addClass('invalid')
-  $('input#tmp_cell_phone_number').val('+1-'+ $('input#requested_company_cell_area_code').val() + '-' + $('input#requested_company_cell_prefix').val() + '-' + $('input#requested_company_cell_line').val())
+  if $('input#requested_company_cell_area_code').val() != '' || $('input#requested_company_cell_prefix').val() != '' ||  $('input#requested_company_cell_line').val()
+    $('input#tmp_cell_phone_number').val('+1-'+ $('input#requested_company_cell_area_code').val() + '-' + $('input#requested_company_cell_prefix').val() + '-' + $('input#requested_company_cell_line').val())
   $('input#tmp_work_phone_number').val('+1-'+ $('input#requested_company_work_area_code').val() + '-' + $('input#requested_company_work_prefix').val() + '-' + $('input#requested_company_work_line').val())
 
   form_obj = $('form#reg_company_form')
@@ -52,6 +53,7 @@ $ ->
           required:true
           phoneUS: true
         'tmp_cell_phone_number':
+          required: false
           phoneUS: true
 #        'requested_company[cell_area_code]':
 #          number: true
@@ -120,7 +122,9 @@ $ ->
       $('input#tmp_work_phone_number').valid()
       return
     $('input#requested_company_cell_area_code, input#requested_company_cell_prefix, input#requested_company_cell_line').on 'input', ->
-      $('input#tmp_cell_phone_number').val('+1-'+ $('input#requested_company_cell_area_code').val() + '-' + $('input#requested_company_cell_prefix').val() + '-' + $('input#requested_company_cell_line').val())
+      if $('input#requested_company_cell_area_code').val() != '' || $('input#requested_company_cell_prefix').val() != '' ||  $('input#requested_company_cell_line').val()
+        $('input#tmp_cell_phone_number').val('+1-'+ $('input#requested_company_cell_area_code').val() + '-' + $('input#requested_company_cell_prefix').val() + '-' + $('input#requested_company_cell_line').val())
+      else $('input#tmp_cell_phone_number').val('')
       $('input#tmp_cell_phone_number').valid()
       return
   $('button.register-button').on 'click', (e) ->
