@@ -15,11 +15,11 @@ $ ->
     ), 'Enter the number of persons (including yourself)'
 
     $('form#reg_am_form').validate
+      ignore: ''
       errorClass: 'form-validation message error no-padding'
       errorElement: 'small'
       errorPlacement: (error, e) ->
-        if !e.parents('fieldset').find('small.form-validation').length
-          e.parents('fieldset').append error
+        e.parents('fieldset').append error
         return
       highlight: (e) ->
         $(e).closest('fieldset').removeClass('invalid').addClass 'invalid'
@@ -34,47 +34,22 @@ $ ->
           required: true
           maxlength: 64
           minlength: 2
-        'account_manager[cell_area_code]':
+        'tmp_cell_phone_number':
           required: true
-          totalCheck: ['account_manager[cell_prefix]', 'account_manager[cell_line]']
-          number: true
-          minlength: 3
-          maxlength: 3
-        'account_manager[cell_prefix]':
-          required: true
-          totalCheck: ['account_manager[cell_line]', 'account_manager[cell_area_code]']
-          number: true
-          minlength: 3
-          maxlength: 3
-        'account_manager[cell_line]':
-          required: true
-          totalCheck: ['account_manager[cell_prefix]', 'account_manager[cell_area_code]']
-          number: true
-          minlength: 4
-          maxlength: 4
+          phoneUS: true
       messages:
         'account_manager[business_unit_name]': required: 'Can\'t be blank'
-        'account_manager[cell_area_code]':
+        'tmp_cell_phone_number':
           required: 'Can\'t be blank'
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
-        'account_manager[cell_prefix]':
-          required: 'Can\'t be blank'
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
-        'account_manager[cell_line]':
-          required: 'Can\'t be blank'
-          number: 'must be a valid phone number'
-          totalCheck: 'must be a valid phone number'
-          minlength: 'must be a valid phone number'
-          maxlength: 'must be a valid phone number'
+          phoneUS: 'must be a valid phone number'
   $('button.register-button').on 'click', (e) ->
     e.preventDefault()
     if form_obj.valid()
       form_obj.submit()
     else
       return false
+    return
+  $('input#account_manager_cell_area_code, input#account_manager_cell_prefix, input#account_manager_cell_line').on 'input', ->
+    $('input#tmp_cell_phone_number').val('+1-'+ $('input#account_manager_cell_area_code').val() + '-' + $('input#account_manager_cell_prefix').val() + '-' + $('input#account_manager_cell_line').val())
+    $('input#tmp_cell_phone_number').valid()
+    return

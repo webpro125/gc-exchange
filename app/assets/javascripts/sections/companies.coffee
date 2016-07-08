@@ -25,15 +25,6 @@ $ ->
 
   form_obj = $('form#reg_company_form')
   if form_obj.length
-#    $.validator.addMethod 'totalCheck', ((value, element, params) ->
-#      field_1 = $('input[name="' + params[0] + '"]')
-#      field_2 = $('input[name="' + params[1] + '"]')
-#
-##      if field_1 != '' || field_2 != ''
-##        parseInt(field_1) && parseInt(field_2) && $(element).val().toString().length == 3
-##      else return false
-#      field_1.valid() && field_2.valid()
-#    ), 'Enter the number of persons (including yourself)'
     company_form_validate = $('form#reg_company_form').validate
       ignore: ""
       errorClass: 'form-validation message error no-padding'
