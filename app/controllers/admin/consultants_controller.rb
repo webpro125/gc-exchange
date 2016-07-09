@@ -20,6 +20,12 @@ class Admin::ConsultantsController < ApplicationController
     @q = Consultant.search(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @consultants = @q.result.page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.csv  { send_data Consultant.to_csv }
+      format.xls  { send_data Consultant.to_csv(col_sep: "\t") }
+    end
   end
 
   def show

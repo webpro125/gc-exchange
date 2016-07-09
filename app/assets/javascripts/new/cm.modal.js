@@ -40,12 +40,12 @@
                 }
             });
 
-            target.on('click', function (event) {
-                if (!$(event.target).closest('[data-modal-box]').length) {
-                    clearTimeout(timer);
-                    target.hide();
-                }
-            });
+            //target.on('click', function (event) {
+            //    if (!$(event.target).closest('[data-modal-box]').length) {
+            //        clearTimeout(timer);
+            //        target.hide();
+            //    }
+            //});
 
             close.on('click', function (event) {
                 event.preventDefault();

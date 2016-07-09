@@ -19,24 +19,35 @@
   .wrapper.wrapper-content.animated.fadeInRight
     .ibox.float-e-margins
       .ibox-content
+        .row.m-b
+          .col-md-12
+            = link_to 'Download Excel', admin_consultants_path(format: 'xls'), class: 'btn btn-primary pull-right btn-sm'
+            = link_to 'Download CSV', admin_consultants_path(format: 'csv'), class: 'btn btn-primary m-r-xs pull-right btn-sm'
         .table-responsive
           %table.table.table-bordered.table-striped
             %thead
               %tr
-                %th{width: 50}= sort_link(@q, :id, 'ID')
+                %th{width: 50}= sort_link(@q, :id, 'UID')
                 %th= sort_link(@q, :user_first_name, 'First Name')
                 %th= sort_link(@q, :user_last_name, 'Last Name')
                 %th= sort_link(@q, :user_email, 'Email')
                 %th= sort_link(@q, :phones_number, 'Phone')
+                %th= sort_link(@q, :approved_status_label, 'Status')
                 %th= sort_link(@q, :sms_notification, 'SMS')
-                %th= sort_link(@q, :approved, 'Approved')
                 %th= sort_link(@q, :created_at, 'Created Date')
+                %th= sort_link(@q, :date_pending_approval, 'Pending Approval Date')
                 %th= sort_link(@q, :date_approved, 'Approved Date')
-                %th= sort_link(@q, :user_sign_in_count, 'Sign In Count')
+                %th= sort_link(@q, :approval_number, 'Consultant #')
+                %th= sort_link(@q, :date_on_hold, 'On Hold Date')
+                %th= sort_link(@q, :date_rejected, 'Rejected Date')
                 %th= sort_link(@q, :user_last_sign_in_at, 'Last Sign in Date')
                 %th= sort_link(@q, :user_updated_at, 'Modified Date')
+                %th= sort_link(@q, :user_sign_in_count, 'Sign In Count')
+                %th= sort_link(@q, :contract_effective_date, 'Contract Effective Date')
+                %th= sort_link(@q, :contract_version, 'Contract Version')
                 %th= sort_link(@q, :rate, 'Rate')
-                %th Resume
+                %th Download Resume
+                %th Download Contract
                 %th.text-nowrap{style: 'width: 200px;'} 1st Project Positions
                 %th 1st Project POC Name
                 %th{style: 'width: 100px'} 1st Project POC Email
@@ -57,15 +68,23 @@
                   %td= consultant.user.last_name
                   %td= consultant.user.email
                   %td= consultant.phones.size > 0 ? consultant.phones.first.number_with_ext : ''
+                  %td=  consultant.approved_status.label
                   %td= boolean_to_human(consultant.sms_notification)
-                  %td= 'Yes' if consultant.approved?
-                  %td= consultant.created_at.to_date
-                  %td= consultant.date_approved ? consultant.date_approved.to_date : ''
-                  %td= consultant.user.sign_in_count
-                  %td= number_to_currency(consultant.rate)
+                  %td= consultant.created_at.to_s(:long)
+                  %td= consultant.date_pending_approval ? consultant.date_pending_approval.to_s(:long) : nil
+                  %td= consultant.date_approved ? consultant.date_approved.to_s(:long) : nil
+                  %td= consultant.approval_number
+                  %td= consultant.date_on_hold ? consultant.date_on_hold.to_s(:long) : nil
+                  %td= consultant.date_rejected ? consultant.date_rejected.to_s(:long) : nil
                   %td= consultant.user.last_sign_in_at ? consultant.user.last_sign_in_at.to_s(:long) : nil
-                  %td= consultant.updated_at.to_date
+                  %td= consultant.updated_at.to_s(:long)
+                  %td= consultant.user.sign_in_count
+                  %td= consultant.contract_effective_date
+                  %td= consultant.contract_version
+                  %td= number_to_currency(consultant.rate)
                   %td= link_to_if(consultant.resume.present?, 'Download Resume', download_resume_path(consultant), target: '_blank') {}
+                  -#%td= link_to_if(policy(consultant).contract?, 'Download Contract', contract_consultant_path(consultant), target: '_blank') {}
+                  %td= ''
                   %td{style: 'padding-left: 20px; width: 200px;'}= project_history_fields(consultant.project_histories[0])[0].html_safe
                   %td= project_history_fields(consultant.project_histories[0])[1]
                   %td= project_history_fields(consultant.project_histories[0])[2]

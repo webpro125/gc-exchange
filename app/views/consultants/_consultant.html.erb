@@ -1,9 +1,9 @@
 <tr>
   <td>
-    <%= link_to consultant.full_name, consultant_path(consultant) %>
+    <%= link_to consultant.user.full_name, consultant_path(consultant) %>
   </td>
   <td>
-    <%= mail_to consultant.email, "Send Email" %>
+    <%= mail_to consultant.user.email, "Send Email" %>
   </td>
   <td>
     <%= consultant.approved_status.label %>

@@ -16,11 +16,6 @@ class BusinessUnitRolesController < ApplicationController
     generated_password = Devise.friendly_token.first(8)
     accept_token = SecureRandom.hex(32)
 
-    @unit_role.accept_token = accept_token
-    @unit_role.sa_accept = false
-    @unit_role.ra_accept = false
-    @unit_role.aa_accept = false
-
     if @unit_role.blank?
       @unit_role = @account_manager.business_unit_roles.build(business_role_params)
       user = User.where(email:@unit_role.email).first
@@ -39,8 +34,19 @@ class BusinessUnitRolesController < ApplicationController
         @unit_role.user_id = user.id
       end
 
+      @unit_role.accept_token = accept_token
+      @unit_role.sa_accept = false
+      @unit_role.ra_accept = false
+      @unit_role.aa_accept = false
+
       save_result = @unit_role.save
     else
+
+      @unit_role.accept_token = accept_token
+      @unit_role.sa_accept = false
+      @unit_role.ra_accept = false
+      @unit_role.aa_accept = false
+
       save_result = @unit_role.update_attributes(business_role_params)
       user = @unit_role.user
       generated_password = ''
@@ -63,6 +69,7 @@ class BusinessUnitRolesController < ApplicationController
           Assigned Role: #{assigned_role_text}
           "
       Admin.all.each {|admin|
+        Mailboxer.uses_emails = false
         conversation = current_user.send_message(admin,
                                                  email_content,
                                                  BusinessUnitRole::ASSIGNED_EMAIL_SUBJECT).conversation

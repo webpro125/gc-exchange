@@ -47,17 +47,17 @@
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Selection Authorities
                   %p Searches and selects consultants to work on projects, documents draft statement of work and other work agreement terms with consultant.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Requisition Authority
                   %p Receives the draft SOW and preliminary terms from the Selection Authority. Then authors a Requisition to for Consultant to support the Client Company.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Approval Authority
                   %p Approves the Statement of Work and other consulting terms resulting from the negotiation process, the issues PO authorizing work to start.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
 
-%section.ui-modal
+%section.ui-modal{'data-name'=>"assign-modal"}
   .modal-box
     %header
       %h1 Assign Selection Authority Role
@@ -104,7 +104,7 @@
                 = hidden_field_tag 'business_unit_role[authority_required]'
             = f.submit 'Add Unit Roles', class: 'button-primary button-cta'
     %footer
-      .modal-close.ui-action-icon.icon-cr-cross-light
+      .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}
 
 
 
