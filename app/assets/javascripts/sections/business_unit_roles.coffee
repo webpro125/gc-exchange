@@ -6,21 +6,65 @@
 #= require autocomplete-rails
 
 $ ->
+  form_obj = $('form#unit_role_form')
   $('input#business_unit_role_email').bind 'autocompleteselect', (event, ui) ->
 #    console.log(ui.item.id)
     $('input#business_unit_role_first_name').val(ui.item.first_name)
     $('input#business_unit_role_last_name').val(ui.item.last_name)
+    form_obj.valid()
   .on "change paste keyup", ->
     if $(this).val() == ''
       $('input#business_unit_role_first_name').val('')
       $('input#business_unit_role_last_name').val('')
-
+      form_obj.valid()
   $('form#unit_role_form').on("ajax:success", (e, data, status, xhr) ->
     window.location.reload()
   ).on("ajax:error", (e, data, status, xhr) ->
     $(event.data).render_form_errors( $.parseJSON(data.responseText) );
     return
   )
+
+  if form_obj.length
+    $('form#unit_role_form').validate
+      errorClass: 'form-validation message error no-padding'
+      errorElement: 'small'
+      errorPlacement: (error, e) ->
+        e.parents('fieldset').append error
+        return
+      highlight: (e) ->
+        $(e).closest('fieldset').removeClass('invalid').addClass 'invalid'
+        $(e).closest('.form-validation').remove()
+        return
+      success: (e) ->
+        e.closest('fieldset').removeClass 'invalid'
+        e.closest('.form-validation').remove()
+        return
+      rules:
+        'business_unit_role[email]':
+          required: true
+          email: true
+          maxlength: 128
+          minlength: 3
+        'business_unit_role[first_name]':
+          required: true
+          maxlength: 64
+          minlength: 2
+        'business_unit_role[last_name]':
+          required: true
+          maxlength: 64
+          minlength: 2
+      messages:
+        'business_unit_role[email]': required: 'Can\'t be blank'
+        'business_unit_role[first_name]': required: 'Can\'t be blank'
+        'business_unit_role[last_name]': required: 'Can\'t be blank'
+
+    $('button.submit-button').on 'click', (e) ->
+      e.preventDefault()
+      if form_obj.valid()
+        form_obj.submit()
+      else
+        return false
+      return
 
   errorObj = "<small class='form-validation message error no-padding'>must be a valid phone number</small>"
   smallObj3 = $('fieldset.business_unit_role_phone div.grid-3-12 small')
