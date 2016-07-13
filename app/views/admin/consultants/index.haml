@@ -1,22 +1,22 @@
 - page_title 'Manage Consultants'
-.ibox.float-e-margins
-  .ibox-content
-    = search_form_for @q, url: admin_consultants_path do |f|
-      .row.m-b
-        .col-md-6
-          = f.label 'Consultant ID'
-          = f.search_field :id_eq, class: 'form-control'
-        .col-md-6
-          = f.label 'Email'
-          = f.search_field :user_email_cont, class: 'form-control'
-      %hr
-      = f.submit 'Search', class: 'btn btn-info'
-      -#%button.btn.btn-default.wg-external-reset-button.btn-sm.pull-right.m-r-sm{"data-grid-name" => 'g1'} Reset
-      -#%button.btn.btn-primary.m-r.wg-external-submit-button.btn-sm.pull-right.m-r-md{"data-grid-name" => 'g1'} Apply filter
-      -#%button.btn.btn-info.wg-external-csv-export-button.btn-sm.m-l-sm{"data-grid-name"=>'g1'}
-      -#  Export To CSV
+-#%button.btn.btn-default.wg-external-reset-button.btn-sm.pull-right.m-r-sm{"data-grid-name" => 'g1'} Reset
+-#%button.btn.btn-primary.m-r.wg-external-submit-button.btn-sm.pull-right.m-r-md{"data-grid-name" => 'g1'} Apply filter
+-#%button.btn.btn-info.wg-external-csv-export-button.btn-sm.m-l-sm{"data-grid-name"=>'g1'}
+-#  Export To CSV
 .row
   .wrapper.wrapper-content.animated.fadeInRight
+    .ibox.float-e-margins
+      .ibox-content
+        = search_form_for @q, url: admin_consultants_path do |f|
+          .row.m-b
+            .col-md-6
+              = f.label 'Consultant ID'
+              = f.search_field :id_eq, class: 'form-control'
+            .col-md-6
+              = f.label 'Email'
+              = f.search_field :user_email_cont, class: 'form-control'
+          %hr
+          = f.submit 'Search', class: 'btn btn-info'
     .ibox.float-e-margins
       .ibox-content
         .row.m-b

@@ -1,8 +1,19 @@
 - page_title 'Manage Offers'
 
-.row.m-t-lg
 .row
   .wrapper.wrapper-content.animated.fadeInRight
+    .ibox.float-e-margins
+      .ibox-content
+        = search_form_for @q, url: admin_projects_path do |f|
+          .row.m-b
+            .col-md-6
+              = f.label 'Consultant Email'
+              = f.search_field :consultant_user_email_cont, class: 'form-control'
+            .col-md-6
+              %label SA User Email
+              = f.search_field :user_email_cont, class: 'form-control'
+          %hr
+          = f.submit 'Search', class: 'btn btn-info'
     .ibox.float-e-margins
       .ibox-content.form-horizontal
         .table-responsive
