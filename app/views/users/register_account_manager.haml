@@ -32,7 +32,7 @@
                 %h2 Hello #{current_user.full_name}
                 %p.section-description
                   You were invited by
-                  %span.type-primary= @account_manager.user.full_name
+                  %span.type-primary= @account_manager.company.owner.full_name
                   to be an
                   = succeed "." do
                     %span.type-primary Account Manager

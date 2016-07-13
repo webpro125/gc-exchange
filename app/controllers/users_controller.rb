@@ -20,14 +20,23 @@ class UsersController < ApplicationController
 
   def put_account_manager
     @new_design = true
-    email_content = AccountManager::BUSINESS_CREATED_EMAIL_CONTENT
+    email_content = AccountManager::BUR_CREATED_EMAIL_CONTENT1
+    email_content_for_admin = AccountManager::BUR_CREATED_EMAIL_CONTENT2
     if @form.validate(register_am_params) && @form.save
       AccountManagerMailer.created_business_role_name(@account_manager, current_user).deliver
-      @account_manager.email_content.gsub!("{user_name}", current_user.full_name)
-      @account_manager.email_content.gsub!("{busienss_name}", @account_manager.business_unit_name)
-      # conversation = current_user.send_message(admin,
-      #                                          email_content,
-      #                                          Company::CREATED_EMAIL_SUBJECT).conversation
+      email_content.gsub!("{user_name}", current_user.full_name)
+      email_content.gsub!("{business_unit_name}", @account_manager.business_unit_name)
+      email_content_for_admin.gsub!("{company_name}", @owned_company.company_name)
+      email_content_for_admin.gsub!("{business_unit_name}", @account_manager.business_unit_name)
+      email_content_for_admin.gsub!("{account_manager_name}", @account_manager.company.owner.full_name)
+
+      Admin.all.each {|admin|
+        Mailboxer.uses_emails = false
+        conversation = current_user.send_message(admin,
+                                                 email_content_for_admin,
+                                                 'One user registered Account Manager').conversation
+        send_sms(admin.phone, email_content_for_admin) unless admin.phone.blank?
+      }
       send_sms(@form.phone, email_content) unless @form.phone.blank?
 
       redirect_to new_business_unit_role_path, notice: t('controllers.account_manager.business_unit.create.success')

@@ -83,8 +83,7 @@
                   %td= consultant.contract_version
                   %td= number_to_currency(consultant.rate)
                   %td= link_to_if(consultant.resume.present?, 'Download Resume', download_resume_path(consultant), target: '_blank') {}
-                  -#%td= link_to_if(policy(consultant).contract?, 'Download Contract', contract_consultant_path(consultant), target: '_blank') {}
-                  %td= ''
+                  %td= link_to_if(policy(consultant).contract?, 'Download Contract', contract_consultant_path(consultant), target: '_blank') {}
                   %td{style: 'padding-left: 20px; width: 200px;'}= project_history_fields(consultant.project_histories[0])[0].html_safe
                   %td= project_history_fields(consultant.project_histories[0])[1]
                   %td= project_history_fields(consultant.project_histories[0])[2]
