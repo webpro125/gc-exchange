@@ -1,13 +1,47 @@
 - page_title 'Manage Offers'
 
-= render :partial => 'admin/projects/projects_grid'
 .row.m-t-lg
-  %button.btn.btn-default.wg-external-reset-button.btn-sm.pull-right.m-r-sm{"data-grid-name" => 'g1'} Reset
-  %button.btn.btn-primary.m-r.wg-external-submit-button.btn-sm.pull-right.m-r-md{"data-grid-name" => 'g1'} Apply filter
-  %button.btn.btn-info.wg-external-csv-export-button.btn-sm.m-l-sm{"data-grid-name"=>'g1'}
-    Export To CSV
 .row
   .wrapper.wrapper-content.animated.fadeInRight
     .ibox.float-e-margins
       .ibox-content.form-horizontal
-        = render_grid(@projects_grid)
+        .table-responsive
+          %table.table.table-bordered.table-striped
+            %thead
+              %tr
+                %th= sort_link(@q, :consultant_user_first_name, 'Consultant Name')
+                %th= sort_link(@q, :consultant_user_email, 'Consultant Email')
+                %th= sort_link(@q, :project_name, 'Project Name')
+                %th= sort_link(@q, :proposed_start, 'Start Date')
+                %th= sort_link(@q, :proposed_end, 'End Date')
+                %th= sort_link(@q, :proposed_rate, 'Consultant Rate')
+                %th= sort_link(@q, :consultant_location, 'Consultant Location')
+                %th= sort_link(@q, :travel_authorization, 'Travel and Expenses')
+                %th= sort_link(@q, :created_at, 'SA Submitted Date(to Consultant)')
+                %th= sort_link(@q, :user_first_name, 'SA Name Submitted ')
+                %th= sort_link(@q, :project_agreement_status, 'Consultant Reviewed')
+                %th= sort_link(@q, :project_agreement_created_at, 'Consultant Reviewed Date')
+                %th= sort_link(@q, :ra_project_agreement_status, 'RA Reviewed')
+                %th= sort_link(@q, :ra_project_agreement_created_at, 'RA Reviewed Date')
+                %th SOW
+            %tbody
+              - @projects.each do |project|
+                - next unless project.consultant.present? || project.user.present?
+                %tr
+                  %td= project.consultant.user.full_name
+                  %td= project.consultant.user.email
+                  %td= truncate(project.project_name, length: 20)
+                  %td= project.proposed_start
+                  %td= project.proposed_end
+                  %td= number_to_currency(project.proposed_rate)
+                  %td= project.consultant_location
+                  %td= project.travel_authorization ? 'Yes Authorized' : 'Not Authorized'
+                  %td= project.created_at.to_date
+                  %td= project.user.full_name
+                  %td= project.project_agreement.present? ? boolean_to_human(project.project_agreement.status) : 'Not yet'
+                  %td= project.project_agreement.present? ? project.project_agreement.created_at.to_date : 'Not yet'
+                  %td= project.ra_project_agreement.present? ? boolean_to_human(project.ra_project_agreement.status) : 'Not yet'
+                  %td= project.ra_project_agreement.present? ? project.ra_project_agreement.created_at.to_date : 'Not yet'
+                  %td= project.summarize_statement.blank? ? "#{link_to 'Download SOW', download_sow_path(project), targe: '_blank'}".html_safe : truncate(project.summarize_statement, length: 25)
+        .text-right
+          = paginate @projects

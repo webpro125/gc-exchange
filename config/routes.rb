@@ -116,6 +116,7 @@ Rails.application.routes.draw do
   get 'comment/download_attachment/:id', to: 'downloads#download_comment_attachment', as: :download_comment_attachment
   get 'download_gsc/:id', to: 'downloads#gsc', as: :download_gsc
   get 'download_contract_rider/:id', to: 'downloads#contract_rider', as: :download_contract_rider
+  get 'download_sow/:id', to: 'downloads#sow', as: :download_sow
 
   # Resources
   resource :change_password, only: [:edit, :update]

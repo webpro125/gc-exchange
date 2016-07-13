@@ -77,6 +77,22 @@ class DownloadsController < ApplicationController
     end
   end
 
+  def sow
+    @project = Project.find(params[:id])
+    if admin_signed_in?
+      if Rails.env.development?
+        send_file Rails.root.join("public/" + @project.sow.path),
+                  :type => @project.sow_content_type.to_s,
+                  :filename => @project.sow_file_name,
+                  :url_based_filename => true
+      else
+        redirect_to @project.sow_url
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def load_consultant
