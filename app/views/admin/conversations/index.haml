@@ -12,4 +12,11 @@
           = link_to 'Empty trash', empty_trash_admin_conversations_path, class: 'btn btn-danger', method: :delete,
             data: {confirm: 'Are you sure?'}
         %ul.list-group.inbox
+          %li.list-group-item.clearfix.title.read
+            .full-name
+              %strong Sender Name
+            .last-message
+              %strong Last Message
+            %span.pull-right.sent-date
+              %strong Sent Date
           = render partial: 'conversation', collection: @conversations

@@ -29,15 +29,14 @@
             %article.tab-panel.is-open
               .section-intro
                 %h1.section-title Create Business Unit
-                %h2 Hello Richard!
+                %h2 Hello #{current_user.full_name}
                 %p.section-description
                   You were invited by
-                  %span.type-primary Frank Smith
+                  %span.type-primary= @account_manager.user.full_name
                   to be an
                   = succeed "." do
                     %span.type-primary Account Manager
-                    To accept your role, you must create the Business Unit you will be supervising.
-                    Lpsum sit amet quosque tandem set numa consect, lorem ipsum sit amet quosque tandem set numa consect..
+                    for #{@owned_company.company_name}. To accept your role, you must register the Business Unit you plan to supervise online with GCES.
                 %figure.figure-business-unit
                   = image_tag "infographics_business_team_unit.png"
               - if @error_message.nil?

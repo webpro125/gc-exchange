@@ -1,3 +1,16 @@
 // Place all the styles related to the admin/conversations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.inbox .list-group-item .full-name {
+  width: 200px;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.inbox .list-group-item .last-message {
+  width: 400px;
+}
+.inbox .list-group-item.title {
+  padding: 15px;
+
+}

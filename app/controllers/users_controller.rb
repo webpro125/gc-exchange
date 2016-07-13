@@ -20,12 +20,24 @@ class UsersController < ApplicationController
 
   def put_account_manager
     @new_design = true
+    email_content = AccountManager::BUSINESS_CREATED_EMAIL_CONTENT
     if @form.validate(register_am_params) && @form.save
+      AccountManagerMailer.created_business_role_name(@account_manager, current_user).deliver
+      @account_manager.email_content.gsub!("{user_name}", current_user.full_name)
+      @account_manager.email_content.gsub!("{busienss_name}", @account_manager.business_unit_name)
+      # conversation = current_user.send_message(admin,
+      #                                          email_content,
+      #                                          Company::CREATED_EMAIL_SUBJECT).conversation
+      send_sms(@form.phone, email_content) unless @form.phone.blank?
 
       redirect_to new_business_unit_role_path, notice: t('controllers.account_manager.business_unit.create.success')
     else
       render :register_account_manager
     end
+  end
+
+  def workflow
+    @new_design = true
   end
 
   private

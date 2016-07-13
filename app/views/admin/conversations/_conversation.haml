@@ -1,6 +1,7 @@
 %li.list-group-item.clearfix{:class=> (conversation.is_unread?(current_admin) ? '' : 'read')}
-  = link_to participant_names(conversation), admin_conversation_path(conversation), class: 'pull-left'
-  %div.last-message= conversation.last_message.body
+  .full-name
+    = link_to participant_names(conversation), admin_conversation_path(conversation), class: 'pull-left'
+  .last-message= conversation.last_message.body
   %span.pull-right.sent-date
     = conversation.last_message.created_at.to_s(:long)
     - if conversation.is_trashed?(current_admin)

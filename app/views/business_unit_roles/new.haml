@@ -30,17 +30,17 @@
               %input{:placeholder => "Concept Design", :type => "text", :value => "#{@account_manager.business_unit_name}"}/
           %section.ui-tabs
             %article.tab-panel.is-open
-              .section-intro
+              .section-intro.align-left
                 %h1.section-title Assign Unit Roles
                 %p.section-description.grid-8-12
                   Add brief description here lorem ipsum sit amet quosque tandem set numa consect. Ipsum sit amet quosque tandem set numa consect. Click on the button below if you want to learn more about
-                  %a{:href => "", :style => "color: #7a7a7a;"}
+                  = link_to workflow_users_path, style: "color: #7a7a7a;", target: '_blank' do
                     our systems automated workflows for
                     = succeed "." do
-                      %strong.type-primaryk work authorizations
+                      %strong.type-primary work authorizations
                   %br/
-                  %a.type-primary.hidden{:href => ""} Learn More About Work Authorization Automated Workflow
-                  %a.button-primary.small{:href => ""} Learn More
+                = link_to 'Learn More', workflow_users_path, class: 'button-primary small align-left', target: '_blank'
+                %a.type-primary.hidden{:href => ""} Learn More About Work Authorization Automated Workflow
                 %figure.figure-business-unit
                   = image_tag 'infographics_unit_role2.png'
               .grid.columns-3.unit-roles-grid
@@ -56,7 +56,7 @@
                   %h2 Approval Authority
                   %p Approves the Statement of Work and other consulting terms resulting from the negotiation process, the issues PO authorizing work to start.
                   %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
-
+        %section.hidden
 %section.ui-modal{'data-name'=>"assign-modal"}
   .modal-box
     %header
