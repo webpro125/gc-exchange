@@ -7,6 +7,7 @@
 
 $ ->
   form_obj = $('form#unit_role_form')
+  accept_role_form = $('form#accept_role_form')
   $('input#business_unit_role_email').bind 'autocompleteselect', (event, ui) ->
 #    console.log(ui.item.id)
     $('input#business_unit_role_first_name').val(ui.item.first_name)
@@ -66,6 +67,38 @@ $ ->
         return false
       return
 
+  if accept_role_form.length
+    $('form#accept_role_form').validate
+      errorClass: 'form-validation message error no-padding'
+      errorElement: 'small'
+      ignore: ''
+      errorPlacement: (error, e) ->
+        e.parents('fieldset').append error
+        return
+      highlight: (e) ->
+        $(e).closest('fieldset').removeClass('invalid').addClass 'invalid'
+        $(e).closest('.form-validation').remove()
+        return
+      success: (e) ->
+        e.closest('fieldset').removeClass 'invalid'
+        e.closest('.form-validation').remove()
+        return
+      rules:
+        'tmp_cell_phone_number':
+          required: true
+          phoneUS: true
+      messages:
+        'tmp_cell_phone_number':
+          required: 'Can\'t be blank'
+          phoneUS: 'must be a valid phone number'
+
+    $('button.accept-role-button').on 'click', (e) ->
+      e.preventDefault()
+      if accept_role_form.valid()
+        accept_role_form.submit()
+      else
+        return false
+      return
   errorObj = "<small class='form-validation message error no-padding'>must be a valid phone number</small>"
   smallObj3 = $('fieldset.business_unit_role_phone div.grid-3-12 small')
   smallObj4 = $('fieldset.business_unit_role_phone div.grid-2-12 small')
@@ -74,6 +107,12 @@ $ ->
     $('fieldset.business_unit_role_phone').append(errorObj)
     $('fieldset.business_unit_role_phone').addClass('invalid')
 
+  $('input#business_unit_role_cell_area_code, input#business_unit_role_cell_prefix, input#business_unit_role_cell_line').on 'input', ->
+    if $('input#business_unit_role_cell_area_code').val() != '' || $('input#business_unit_role_cell_prefix').val() != '' ||  $('input#business_unit_role_cell_line').val()
+      $('input#tmp_cell_phone_number').val('+1-'+ $('input#business_unit_role_cell_area_code').val() + '-' + $('input#business_unit_role_cell_prefix').val() + '-' + $('input#business_unit_role_cell_line').val())
+    else $('input#tmp_cell_phone_number').val('')
+    $('input#tmp_cell_phone_number').valid()
+    return
   return
 
 (($) ->

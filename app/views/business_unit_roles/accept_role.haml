@@ -123,21 +123,21 @@
                   .connection-four
               .section-intro.align-center
                 %h2.section-title Accept Business Unit Role
-                %h3.align-center Hello Richard!
+                %h3.align-center Hello #{current_user.full_name}
                 %p.section-description
                   You were invited by
-                  %span.type-primary Frank Smith
+                  %span.type-primary= @owned_company.owner.full_name
                   to be an
-                  %span.type-primary Requisition Authority.
+                  %span.type-primary #{get_unit_name(@unit_role)}.
                   To accept your role, please click the button below. If you want to receive text notifications from GCES, please provide your cellphone number below.
               = simple_form_for(@form, method: :put,
-                url: put_accept_business_role_path, html: {class: 'theme-gces style-alternate align-left'}) do |f|
+                url: put_accept_business_role_path, html: {class: 'theme-gces style-alternate align-left', id: 'accept_role_form'}) do |f|
                 = render 'shared/base_error', model: @form
 
                 = f.input :phone, wrapper: :custom_phone_grid_input, label: 'Provide your Cell Phone Number:', required: false,
                   placeholder: '000', as: :cell_phone_number
                 = button_tag 'Accept Role', type: 'submit',
-                  class: "button-cta button-primary icon-cr-arrow-right"
+                  class: "button-cta button-primary icon-cr-arrow-right accept-role-button"
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground

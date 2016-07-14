@@ -1,6 +1,6 @@
 class BusinessUnitRolesController < ApplicationController
   before_action :authenticate_user!, except: [:autocomplete_user_email, :accept_role, :put_accept_role]
-  before_action :load_current_am, except: [:autocomplete_user_email]
+  before_action :load_current_am, only: [:new, :create]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
   before_action :load_bur_by_token, only: [:accept_role, :put_accept_role]
 
@@ -106,7 +106,7 @@ class BusinessUnitRolesController < ApplicationController
 
   def load_current_am
     @account_manager = current_user.account_manager
-    unless @account_manager.present?
+    if @account_manager.blank?
       redirect_to registration_process_users_path, flash: {alert: 'You have no permission to access that page'}
     end
     @unit_roles = @account_manager.business_unit_roles
@@ -124,6 +124,8 @@ class BusinessUnitRolesController < ApplicationController
     if @unit_role.blank?
       redirect_to root_path, flash: {alert: 'You are not authorized to access this page'}
     else
+      @account_manager = @unit_role.account_manager
+      @owned_company = @account_manager.company
       sign_in(@unit_role.user)
       @form = BurAcceptForm.new(@unit_role)
     end
