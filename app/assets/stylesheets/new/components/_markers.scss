@@ -1,33 +1,24 @@
-*[class*="ui-marker-"] {
-    &:after {
-        @extend %before-after-absolute;
-        display: block;
-        width: size(marker);
-        height: size(marker);
-        border-radius: 100%;
-    }
-}
-
-.ui-marker-alert {
-    &:after {
+*[class*="ui-marker"] {
+    display: block;
+    width: size(marker);
+    height: size(marker);
+    border-radius: 100%;
+    
+    &.ui-marker-alert {
         background: color(alert-error);
     }
-}
 
-.ui-marker-live {
-    &:after {
+    &.ui-marker-live {
         background: color(alert-success);
     }
-}
 
-.ui-marker-warning {
-    &:after {
+    &.ui-marker-warning {
         background: color(alert-warning);
     }
-}
 
-.ui-marker-information {
-    &:after {
+    &.ui-marker-information,
+    &.unread {
         background: color(alert-information);
     }
 }
+

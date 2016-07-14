@@ -8,28 +8,24 @@
             font-size: 0.85rem;
             line-height: 1.05em;
             font-style: italic;
+            color: color(body-dark);
         }
         
         p {
             font-size: 0.85rem;
             line-height: 1.25em;
             margin-top: 0.35rem;
+            color: color(alert-success);
         }
         
         &.style-default {
-            .byline {
-                color: color(alert-success);
-            }
+           
         }        
         
         &.style-box {
             border-radius: size(border-radius);
             background: rgba(color(alert-success),0.35);
             color: darken(color(alert-success), 10%);
-            
-            .byline {
-                color: #FFF;
-            }
         }
     }
     
@@ -40,5 +36,271 @@
     
     .message-item.style-box + .message-item.style-box {
         margin-top: 0.75rem;
+    }
+}
+
+.message-center {
+    .message-center-header,
+    .page-content {
+        display: inline-block;
+        vertical-align: top;
+        box-sizing: border-box;
+        position: relative;
+    }
+    
+    .message-center-header {
+        width: 17.5rem;
+        padding: 2.125rem;
+        
+        &:after {
+            @extend %before-after-absolute;
+            width: 2px;
+            height: 100%;
+            background: #FFF;
+            position: fixed;
+            top: 0;
+            left: calc(17.5rem - 1px);
+            
+        }
+    }
+    
+    .page-content {
+        width: calc(100% - 17.5rem);
+        max-width: calc(100% - 17.5rem);
+        margin-left: -0.25rem;
+        padding-left: 0;
+        padding-right: 0;
+        
+        .message-selection,
+        .message-thread {
+            display: inline-block;
+            vertical-align: top;
+            box-sizing: border-box;
+            
+            & > header {
+                display: 100%;
+                height: 4.85rem;
+                position: relative;
+                
+                .mini-search {
+                    height: 4.85rem;
+                    
+                    &:before {
+                        width: 4rem;
+                        height: 4.85rem;
+                        line-height: 4.85rem;
+                        font-size: 1.375rem;
+                        text-align: center;
+                        color: color(primary-lighter-2);
+                    }
+                    
+                    form {
+                        height: 4rem;
+                        padding-right: 4rem;
+                    }
+                }
+            }
+        }
+        
+        .message-selection {
+            width: 20rem;
+            
+            & > header {
+                box-shadow: inset 0 -2px 0 0 #FFF;
+            }
+            
+            .list-messages {
+                margin-top: 0;
+                
+                & > li {
+                    border-bottom: none;
+                    box-shadow: inset 0 -2px 0 0 #FFF;
+                    position: relative;
+                    padding: 2rem 2rem 2rem 3.25rem;
+                    position: relative;
+                    font-size: 0.875rem;
+                    color: color(primary-lighter-2);
+                    cursor: pointer;
+                    
+                    .message-from {
+                        display: block;
+                        width: 100%;
+                        font-weight: 600;
+                        color: color(body-dark);
+                        margin-bottom: 1rem;
+                    }
+                    
+                    .message-timestamp {
+                        position: absolute;
+                        display: inline-block;
+                        width: auto;
+                        height: auto;
+                        text-align: right;
+                        top: 2rem;
+                        right: 2rem;
+                    }
+                    
+                    .message-subject {
+                        font-weight: 600;
+                    }
+                    
+                    .message-summary {
+                        font-size: 0.825rem;
+                    }
+                    
+                    .message-markers {
+                        width: 2rem;
+                        height: auto;
+                        position: absolute;
+                        top: 2.4rem;
+                        left: 1.5rem;
+                        
+                        .ui-markers {
+                            display: block;
+                        }
+                        
+                        .attachment {
+                            position: absolute;
+                            left: 0;
+                            top: 1.9rem;
+                        }
+                    }
+                    
+                    &:hover {
+                        background: rgba(color(primary-lighter),0.3);
+                        transition: color 0.25s ease-out;
+                    }
+                    
+                    &.active,
+                    &.is-active {
+                        background: #FFF;
+                        box-shadow: 0 0 0 -3px #FFF, 0 3px 4px 0 rgba(color(primary-dark), 0.125);
+                        z-index: 5;
+                        
+                        &:before {
+                            @extend %before-after-absolute;
+                            display: block;
+                            width: 4px;
+                            height: 100%;
+                            background: color(primary);
+                            top: 0;
+                            left: -1px;
+                            z-index: 6;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .message-thread {
+            width: calc(100% - 20rem);
+            margin-left: -0.25rem;
+            background: #FFF;
+            padding: 0 5rem;
+            
+            & > header,
+            .message-thread-container {
+                position: relative;
+                z-index: 5;
+            }
+            
+            & > header {
+                box-shadow: inset 0 -2px 0 0 color(primary-lightest);
+                
+                .menu-horizontal {
+                    height:  4.85rem;
+                    margin-left: 4rem;
+                    
+                    li {
+                        height:  4.85rem;
+                        line-height:  4.85rem;
+                        
+                        a {
+                            display: block;
+                            width: 4.85rem;
+                            height: 4.85rem;
+                            font-size: 0;
+                            padding: 0;
+                            text-align: center;
+                            
+                            &:before {
+                                display: block;
+                                width: 4.85rem;
+                                height: 4.85rem;
+                                font-size: 1.875rem;
+                                color: color(primary);
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+                
+                .mini-search {
+                    right: 3rem;
+                }
+            }
+            
+            .message-thread-container {
+                padding: 3rem 5rem;
+            }
+            
+            .message-subject {
+                font-family: $font-alternate;
+                font-size: 1.85rem;
+                color: color(body-dark);
+                margin-bottom: 2rem;
+            }
+            
+            .message-attachment {
+                margin-top: 2rem;
+                
+                ul {
+                    li { 
+                        position: relative;
+                        
+                        &:before {
+                            position: absolute;
+                            top: 0;
+                            left: -1.5rem;
+                            color: color(primary-light);
+                        }
+                        
+                        a {
+                            color: color(primary-light);
+                        }
+                    }
+                }
+            }
+            
+            .user-thumbnail {
+                width: 3rem;
+                height: 3rem;
+                position: absolute;
+                top: 1.25rem;
+                left: 0.25rem;
+                background: none;
+                box-shadow: 0 0 0 1px color(primary-lightest);
+                
+                img {
+                    width: 3rem;
+                    height: auto;
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    margin-left: -1.5rem;
+                }
+                
+            }
+            
+            &:after {
+                @extend %before-after-absolute;
+                width: calc(100% - 37.5rem);
+                height: 100%;
+                position: fixed;
+                top: 0;
+                right: 0;
+                background: #FFF;
+            }
+        }
     }
 }

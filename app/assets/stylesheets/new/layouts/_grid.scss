@@ -171,3 +171,89 @@ RESPONSIVE:
         
     }    
 }
+
+
+/*****
+
+MASONRY GRID
+
+Used in the blog layout.
+
+******/
+
+$block-height: rem(416px);
+
+.grid-masonry {
+    position: relative;
+    height: auto;
+    
+    *[class*="grid-"] {
+        display: inline-block;
+        height: 100%;
+        font-size: 0;
+    }
+    
+    .grid-1-2 {
+        width: 50%;
+    }
+    
+    .grid-1-3 {
+        width: 33.333333%;
+    }
+    
+    .grid-2-3 {
+        width: 66.666666%;
+    }
+    
+    .grid-3-3 {
+        width: 100%;
+    }
+    
+    .grid-section {
+    }
+    
+    .row-single,
+    .row-double,
+    .row-triple {
+        display: block;
+        width: 100%;
+        position: relative;
+        box-sizing: border-box;
+    }
+    
+    .row-single {
+        height: $block-height;
+    }
+    
+    .row-double {
+        height: $block-height*2;
+    }
+    
+    .row-triple {
+        height: $block-height*3;
+    }
+}
+
+
+/*
+
+<section class="page-content grid-masonry">
+                <section class="row-double">
+                    <section class="grid-2-3">
+                        <div class="row-single">
+                            <article class="post-box"></article>
+                            <article class="post-box"></article>
+                        </div>
+                        <div class="row-single">
+                            <article class="post-box"></article>
+                        </div>
+                    </section>
+                    <section class="grid-1-3">
+                        <div class="row-double">
+                            <article class="post-box">
+                        
+                            </article>
+                        </div>
+                    </section>
+                </section>
+*/

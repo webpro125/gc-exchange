@@ -430,3 +430,20 @@ strong {
     margin-top: 3rem;
 }
 
+.previous-page,
+.next-page {
+    color: color(primary);
+    font-weight: 500;
+    
+    &:hover {
+        color: color(body-dark);
+        transition: color 0.35s ease-out;
+    }
+}
+
+.byline {
+    display: block;
+    font-style: italic;
+    
+}
+

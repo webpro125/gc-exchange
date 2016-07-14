@@ -3,6 +3,7 @@ $colors: (
     primary: rgb(41, 131, 200),
     primary-lightest: rgb(225, 236, 241),
     primary-lighter: rgb(184, 212, 225),
+    primary-lighter-2: rgb(107, 140, 155),
     primary-light: rgb(87, 165, 224),
     primary-dark: rgb(28, 100, 156),
     primary-darker: rgb(0, 43, 77),
@@ -10,6 +11,7 @@ $colors: (
     secondary: rgb(185, 75, 84),
     secondary-light: rgb(214, 107, 116),
     secondary-dark: rgb(166, 57, 66),
+    accent: rgb(255, 188, 0),
     gray-darkest: rgb(30, 30, 30),
     gray-darker: rgb(52, 52, 52),
     gray-dark: rgb(80, 80, 80),
@@ -37,7 +39,8 @@ $colors: (
 // TYPOGRAPHIC FAMILIES: 
 $font-bodytext: 'Roboto', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 $font-headtext: $font-bodytext;
-$font-alternate: 'Roboto Slab', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+$font-alternate: 'Cargan', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+$font-fira: 'Fira Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 $font-glyphs: 'glyphs';
 
 // BASE FONT SIZES:
@@ -86,7 +89,7 @@ $sizes: (
     gutter-large: 1.5rem,
     gutter-xlarge: 2rem,
     touch: rem(60px),
-    marker: rem(12px),
+    marker: rem(8px),
     tag: rem(36px),
     tag-small: rem(24px),
     border-radius: rem(3px)

@@ -104,46 +104,88 @@
     }
 }
 
+.menu-style-2 {
+    & > ul > li,
+    & > li {
+        @extend %clearfix;
+        margin-bottom: 1.75rem;
+        
+        a {
+            color: color(primary-lighter-2);
+        }
+        
+        .stat-count,
+        .count {
+            display: inline-block;
+            float: right;
+            color: color(primary-light);
+            font-family: $font-alternate;
+            font-weight: 600;
+        }
+        
+        &.active,
+        &.is-active {
+            a {
+                color: #000;
+            }
+        }
+    }
+}
+
 .menu-drop {
+    position: relative;
+    
     .menu-toggle {
-        @include icon($icon: glyph(menu-bars), $icon-size: rem(24px), $size: size(touch), $type: 'sq');
+        @include icon($icon: glyph(menu-bars), $icon-size: rem(24px), $size: size(touch));
         cursor: pointer;
         
-         &:before {
-            color: color(gray-light);
+        &:before {
+            color: color(primary-light);
+            left: auto;
+            right: 0;
         }
 
         &:hover {
             &:before {
-                color: color(primary);
+                color: #FFF;
                 transition: color 0.2s ease-out;
             }
         }
     }
     
-    .menu-container {
+    .menu-panel {
         @extend %ui-box-float;
         display: none;
         width: auto;
+        min-width: rem(220px);
+        max-width: rem(320px);
         padding: 1.25rem;
+        margin: 0;
         position: absolute;
-        top: 0;
-        right: size(touch) + 3rem;
+        top: size(touch);
+        right: 0;
         z-index: 100;
-        margin-right: -100%;
-        white-space: nowrap;
+        background: color(bg-secondary);
         
-        .menu-option {
-            @extend %type-ui-label;
-            margin-bottom: 1em;
-            text-align: left;
-            
-            &:last-child {
-                margin-bottom: 0;
-            }
-            
-            &:hover {
+        &,
+        & > ul {
+            & > li {
                 color: color(primary);
+                margin-bottom: 1rem;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                
+                a {
+                    color: color(primary);
+                    
+                    
+                    &:hover {
+                        color: color(primary-darker);
+                        transition: color 0.2s ease-out;
+                    }
+                }
             }
         }
     }
@@ -155,12 +197,14 @@
             }
         }
         
+        .menu-panel,
         .menu-container {
             display: inline-block;
         }
     }
     
     &.horizontal {
+        .menu-panel,
         .menu-container {            
             .menu-option {
                 margin-bottom: 0;
@@ -183,6 +227,7 @@
             }
         }
         
+        .menu-panel,
         .menu-container {
             top: rem(24px)/2;
             right: rem(24px)*2;
@@ -554,6 +599,7 @@
     }
 }
 
+.main-menu.menu-horizontal,
 .dashboard-menu {
     display: inline-block;
     width: auto;
@@ -567,8 +613,11 @@
         & > li {
             height: size(page-header);
             line-height: size(page-header);
-            color: color(primary-light);
             margin-right: 2rem;
+            
+            a {
+                color: color(primary-light);
+            }
             
             &:last-child {
                 margin-right: 0;
@@ -576,8 +625,10 @@
             
             &:hover,
             &.active {
-                color: #FFF;
-                transition: color 0.2s ease-out;
+                a {
+                    color: #FFF;
+                    transition: color 0.2s ease-out;
+                }
             }
         }
     }

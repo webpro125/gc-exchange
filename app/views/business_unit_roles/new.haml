@@ -77,8 +77,20 @@
               .grid-6-12{:role => "gridcell"}
                 = f.input :last_name, required: false, placeholder: 'Last Name', label: false,
                   wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' }
-            .section-block.user-permissions
-              %h3 You can assign this person to one role or all of them
+            .section-block.user-permissions.align-left
+              %h3 Notes:
+              %ul.list
+                %li.type-intro You can assign this person to one or all three roles listed below.
+                %li.type-intro
+                  An unlimited number of people may perform the
+                  %span.type-primary Selection Authority
+                  role.
+                %li.type-intro
+                  Only one person may perform the
+                  %span.type-primary Requisition Authority
+                  and
+                  %span.type-primary Approval Authority
+                  roles.
               %section.card-section
                 .ui-checkbox.medium
                   = f.check_box :selection_authority, {id: 'selection-authority'}
