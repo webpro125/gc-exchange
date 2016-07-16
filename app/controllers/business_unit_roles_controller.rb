@@ -119,7 +119,7 @@ class BusinessUnitRolesController < ApplicationController
   private
 
   def load_business_unit_name
-    authorize current_user
+    authorize :user, :load_business_unit_name?
     @account_manager = current_user.account_manager
     @unit_roles = @account_manager.business_unit_roles
     @owned_company = @account_manager.company
