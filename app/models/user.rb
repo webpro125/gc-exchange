@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :phones, through: :consultant, as: :phoneable, dependent: :destroy
   has_many :educations, through: :consultant, dependent: :destroy
   has_one :account_manager
+  has_many :business_unit_names, through: :account_manager
   has_many :requested_company
   has_many :business_unit_roles, inverse_of: :user
   has_many :selection_authorities,  -> () {

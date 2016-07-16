@@ -1,8 +1,7 @@
 <%= @account_manager.email_content.gsub(/\n/, '<br/>').html_safe %>
 
 <%= link_to 'Register as Account Manager',
-{:controller => 'users', :action => 'register_account_manager', :only_path => false,
-:access_token => @account_manager.access_token} -%>
+{:controller => 'business_unit+names', :action => 'new', :only_path => false} -%>
 <% unless @password == '' %>
   And Your account has been created
   Password is #{@password}

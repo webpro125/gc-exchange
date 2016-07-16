@@ -15,7 +15,9 @@ class AccountManager < ActiveRecord::Base
   {business_unit_name}. The Account Manager for this Business Unit is {account_manager_name}'
   belongs_to :user, autosave: true
   belongs_to :company
-  has_many :business_unit_roles, dependent: :destroy
+  has_many :business_unit_names, dependent: :destroy
+  accepts_nested_attributes_for :business_unit_names
+  has_many :business_unit_roles, through: :business_unit_names
 
   attr_accessor :cell_area_code, :cell_prefix, :cell_line
 
@@ -25,10 +27,6 @@ class AccountManager < ActiveRecord::Base
     unless @cell_area_code.blank? && @cell_prefix.blank? && @cell_line.blank?
       self.phone = "#{@cell_area_code}-#{@cell_prefix}-#{@cell_line}"
     end
-  end
-
-  def is_account_manager?
-    business_unit_name.exists?
   end
 
 end

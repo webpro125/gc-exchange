@@ -107,8 +107,7 @@ Rails.application.routes.draw do
   get :privacy_policy, to: 'pages#privacy_policy'
   get :profile_completed, to: 'pages#profile_completed'
   get :health_check, to: 'pages#health_check'
-  get 'create_business_unit/:access_token', to: 'users#register_account_manager'
-  put 'create_business_unit/:access_token', to: 'users#put_account_manager', as: :put_register_account_manager
+
   get 'business_unit_roles/accept_role/:accept_token', to: 'business_unit_roles#accept_role', as: :accept_business_role
   put 'business_unit_roles/put_accept_role/:accept_token', to: 'business_unit_roles#put_accept_role', as: :put_accept_business_role
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
@@ -202,6 +201,10 @@ Rails.application.routes.draw do
   resources :account_managers, only: [:new, :create], :path_names => { :new => "invite", :create => 'create' } do
     put :update_assign_business_role # not used yet
     get :autocomplete_user_email, :on => :collection
+  end
+
+  resources :business_unit_names, only: [:new, :create] do
+
   end
 
   resources :business_unit_roles, only: [:new, :create] do

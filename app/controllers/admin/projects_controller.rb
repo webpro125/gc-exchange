@@ -18,7 +18,7 @@ class Admin::ProjectsController < ApplicationController
     # export_grid_if_requested('g1' => 'projects_grid') do
     #   # usual render or redirect code executed if the request is not a CSV export request
     # end
-    @q = Project.search(params[:q])
+    @q = Project.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @projects = @q.result.page(params[:page]).per(10)
   end

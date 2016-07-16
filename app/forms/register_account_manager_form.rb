@@ -2,14 +2,15 @@ require 'reform/form/coercion'
 
 class RegisterAccountManagerForm < Reform::Form
 
-  model :account_manager
+  model :business_unit_name
 
-  property :business_unit_name
   property :cell_area_code
   property :cell_prefix
   property :cell_line
-  property :phone
-  validates :business_unit_name, length: { in: 2..64 }, presence: true,
+
+  property :name
+
+  validates :name, length: { in: 2..128 }, presence: true,
             :uniqueness => { :case_sensitive => false },
             format: { with: RegexConstants::Letters::AND_NUMBERS,
                       message: I18n.t('activerecord.errors.messages.regex.only_letters_numbers') }

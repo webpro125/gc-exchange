@@ -39,18 +39,15 @@
                     for #{@owned_company.company_name}. To accept your role, you must register the Business Unit you plan to supervise online with GCES.
                 %figure.figure-business-unit
                   = image_tag "infographics_business_team_unit.png"
-              - if @error_message.nil?
-                = simple_form_for(@form, method: :put,
-                  url: put_register_account_manager_path, html: {class: 'theme-gces style-alternate align-left', id: 'reg_am_form'}) do |f|
-                  = render 'shared/base_error', model: @form
-                  = f.input :business_unit_name, required: false, autofocus: true, placeholder: 'Company Business Unit Name',
-                    label: 'Enter Your Business Unit Name:', wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
+              = simple_form_for(@form, method: :post,
+                url: business_unit_names_path, html: {class: 'theme-gces style-alternate align-left', id: 'reg_am_form'}) do |f|
+                = render 'shared/base_error', model: @form
+                = f.input :name, required: false, autofocus: true, placeholder: 'Company Business Unit Name',
+                  label: 'Enter Your Business Unit Name:', wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
+                - if @account_manager.phone.blank?
                   = f.input :phone, wrapper: :custom_phone_grid_input, label: 'Provide your Cell Phone Number:', required: false,
                     placeholder: '000', as: :cell_phone_number
-                  = button_tag 'Create Business Unit', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right register-button"
-              - else
-                .ui-notification.alert-error
-                  = @error_message
+                = button_tag 'Create Business Unit', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right register-button"
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground

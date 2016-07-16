@@ -31,4 +31,12 @@ class UserPolicy < LoggedInPolicy
   def update_password?
     user == record
   end
+
+  def load_am?
+    user.account_manager.present?
+  end
+
+  def load_business_unit_name?
+    user.business_unit_names.any?
+  end
 end

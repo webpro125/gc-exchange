@@ -17,7 +17,7 @@ class Admin::ConsultantsController < ApplicationController
     # export_grid_if_requested('g1' => 'consultants_grid') do
     #   # usual render or redirect code executed if the request is not a CSV export request
     # end
-    @q = Consultant.search(params[:q])
+    @q = Consultant.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @consultants = @q.result.page(params[:page]).per(10)
 

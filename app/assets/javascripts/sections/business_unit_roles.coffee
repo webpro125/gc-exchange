@@ -6,6 +6,11 @@
 #= require autocomplete-rails
 
 $ ->
+  # set business unit id on modal form in business unit role new page
+  $('select#business_unit_names').change ->
+    $('input#business_unit_role_business_unit_name_id').val($(this).val())
+    return
+
   form_obj = $('form#unit_role_form')
   accept_role_form = $('form#accept_role_form')
   $('input#business_unit_role_email').bind 'autocompleteselect', (event, ui) ->
