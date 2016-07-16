@@ -11,7 +11,7 @@
                     <li><a href="">Articles</a></li>
                     <li><%= link_to "Custom Search", search_path %></li>
                     <% if current_user.consultant && current_user.consultant.wizard_step == Wicked::FINISH_STEP %>
-                      <%= link_to "My Consultant Profile", consultant_root_path %>
+                      <li><%= link_to "My Consultant Profile", consultant_root_path %></li>
                     <% end %>
                     <%= render "shared/messages_link" %>
                     <% unless BusinessUnitRole.own_requisition_authorities(current_user).empty? %>
