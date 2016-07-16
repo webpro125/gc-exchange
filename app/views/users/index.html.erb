@@ -8,8 +8,12 @@
                     <li data-type="display-overlay"><a href="">Join the Exchange</a></li>
                     <li><a href="">Community Forum</a></li>
                     <li><a href="">Tutorials</a></li>
-                    <li><a href="">Education</a></li>
                     <li><a href="">Articles</a></li>
+                    <li><%= link_to "Custom Search", search_path %></li>
+                    <% if current_user.consultant && current_user.consultant.wizard_step == Wicked::FINISH_STEP %>
+                      <%= link_to "My Consultant Profile", consultant_root_path %>
+                    <% end %>
+                    <%= render "shared/messages_link" %>
                     <% unless BusinessUnitRole.own_requisition_authorities(current_user).empty? %>
                       <li><%= link_to 'Review Consultants Work Agreements', project_agreements_path %></li>
                     <% end %>

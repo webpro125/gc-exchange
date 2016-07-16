@@ -1,0 +1,7 @@
+- if user_signed_in?
+  %li
+    = link_to conversations_path do
+      Messages
+      - mailbox_unread_count = mailbox.inbox(:read => false).count(:id, :distinct => true)
+      - if mailbox_unread_count > 0
+        #{content_tag(:span, mailbox_unread_count, class: "label label-info")}

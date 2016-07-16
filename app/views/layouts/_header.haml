@@ -24,12 +24,7 @@
         / Right Nav Section
         %ul.right
           - if user_signed_in?
-            %li
-              = link_to conversations_path do
-                Messages
-                - mailbox_unread_count = mailbox.inbox(:read => false).count(:id, :distinct => true)
-                - if mailbox_unread_count > 0
-                  #{content_tag(:span, mailbox_unread_count, class: "label label-info")}
+            = render 'shared/messages_link'
             %li= link_to t('views.offer.actions.menu'), projects_path
             %li= link_to 'Blog', articles_path
             %li= link_to 'Logout', destroy_user_session_path, method: :delete
