@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706183236) do
+ActiveRecord::Schema.define(version: 20160715212444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
   create_table "account_managers", force: true do |t|
-    t.string   "business_unit_name",  limit: 32, default: "", null: false
     t.string   "corporate_title",     limit: 32
     t.string   "phone",               limit: 32
     t.string   "avatar"
@@ -129,11 +128,20 @@ ActiveRecord::Schema.define(version: 20160706183236) do
 
   add_index "branches", ["code"], name: "index_branches_on_code", unique: true, using: :btree
 
+  create_table "business_unit_names", force: true do |t|
+    t.integer  "account_manager_id"
+    t.string   "name",               limit: 128, default: "", null: false
+    t.string   "string",             limit: 128, default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "business_unit_names", ["account_manager_id"], name: "index_business_unit_names_on_account_manager_id", using: :btree
+
   create_table "business_unit_roles", force: true do |t|
     t.boolean  "selection_authority",              default: false
     t.boolean  "approval_authority",               default: false
     t.boolean  "requisition_authority",            default: false
-    t.integer  "account_manager_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -145,10 +153,10 @@ ActiveRecord::Schema.define(version: 20160706183236) do
     t.boolean  "aa_accept",                        default: false
     t.string   "phone",                 limit: 32
     t.string   "accept_token"
+    t.integer  "business_unit_name_id"
   end
 
-  add_index "business_unit_roles", ["account_manager_id"], name: "index_business_unit_roles_on_account_manager_id", using: :btree
-  add_index "business_unit_roles", ["email", "account_manager_id"], name: "index_business_unit_roles_on_email_and_account_manager_id", unique: true, using: :btree
+  add_index "business_unit_roles", ["business_unit_name_id"], name: "business_name_role_index", using: :btree
   add_index "business_unit_roles", ["user_id"], name: "index_business_unit_roles_on_user_id", using: :btree
 
   create_table "certifications", force: true do |t|

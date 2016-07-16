@@ -1,7 +1,7 @@
 <% if @password == '' %>
     <p>Dear <%= @company.owner.full_name %>,  </p>
     <p style="margin-bottom: 20px;">Thank you for executing a contract with GCES to buy consulting services.
-    We have successfully registered your Company <%= @company.company_name -%>> on our network. </p>
+    We have successfully registered your Company <%= @company.company_name -%> on our network. </p>
 
 
     <p>Please click  <%= link_to 'here', {:controller => "sessions",

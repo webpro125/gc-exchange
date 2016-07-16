@@ -27,7 +27,11 @@
         %section.row.unit-maximized.connect-rule-up
           %header.unit-head.invalid
             %form
-              %input{:placeholder => "Concept Design", :type => "text", :value => "#{@account_manager.business_unit_name}"}/
+              - if @account_manager.business_unit_names.count == 1
+                %input{placeholder: "Concept Design", type: "text", value: "#{@account_manager.business_unit_names.first.name}", id: 'business_unit_name'}
+              - else
+                = select_tag "business_unit_names",
+                  options_from_collection_for_select(@account_manager.business_unit_names.order(id: :asc), "id", "name")
           %section.ui-tabs
             %article.tab-panel.is-open
               .section-intro.align-left
@@ -67,6 +71,9 @@
           remote: true, html: { data: { modal: true, type: :json }, class: 'theme-gces', id: 'unit_role_form' } do |f|
           = render 'shared/base_error', model: @unit_role
           %section.ui-card
+            .hide
+              = f.input :business_unit_name_id, required: false, placeholder: 'Email', label: false,
+                input_html: {value: @account_manager.business_unit_names.first.id}
             = f.input :email, required: false, placeholder: 'Email', label: false,
             :url => autocomplete_user_email_business_unit_roles_path, :as => :autocomplete,
             wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' }

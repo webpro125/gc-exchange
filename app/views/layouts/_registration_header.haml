@@ -9,10 +9,10 @@
           = link_to 'Register Your Company', registration_companies_path
         %li{class: current_page_active('account_managers', 'new')}
           = link_to 'Invite Account Managers', (current_user.owned_company.present? ? new_account_manager_path : '#')
-        %li{class: current_page_active('users')}
-          = link_to 'Create Business Units', '#'
+        %li{class: current_page_active('business_unit_names')}
+          = link_to 'Create Business Units', (current_user.account_manager.present? ? new_business_unit_name_path : '#')
         %li{class: current_page_active('business_unit_roles', 'new')}
-          = link_to 'Assign Unit Roles', (current_user.account_manager.present? ? new_business_unit_role_path  : '#')
+          = link_to 'Assign Unit Roles', (current_user.business_unit_names.any? ? new_business_unit_role_path  : '#')
     %ul.qa-list{:style => "margin-top: 4rem;"}
       %li.is-active
         %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} Why do I need to Register my Company?
@@ -26,7 +26,7 @@
       = link_to 'Register New Company', registration_companies_path
     %li{class: current_page_active('account_managers', 'new')}
       = link_to 'Invite Account Managers', (current_user.owned_company.present? ? new_account_manager_path : '#')
-    %li{class: current_page_active('users')}
-      = link_to 'Create Business Units', '#'
+    %li{class: current_page_active('business_unit_names')}
+      = link_to 'Create Business Units', (current_user.account_manager.present? ? new_business_unit_name_path : '#')
     %li{class: current_page_active('business_unit_roles', 'new')}
-      = link_to 'Assign Roles', (current_user.account_manager.present? ? new_business_unit_role_path  : '#')
+      = link_to 'Assign Roles', (current_user.business_unit_names.any? ? new_business_unit_role_path  : '#')

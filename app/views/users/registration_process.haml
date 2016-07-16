@@ -22,8 +22,8 @@
     %header
       %h1.page-title
         = link_to ' Get Started', registration_companies_path
-      %p.type-description Registration Process
-    = link_to registration_companies_path do
+      %p.type-description 4 Step Registration Process
+    = link_to registration_companies_path, class: 'company-registration' do
       %article.ui-box.step-one
         .content
           %h2 Register Company
@@ -31,7 +31,7 @@
         %figure
           = image_tag 'infographics_buildings_company.png'
     .connector-down
-    = link_to (current_user.owned_company.present? ? new_account_manager_path : '#') do
+    = link_to (current_user.owned_company.present? ? new_account_manager_path : '#'), class: 'company-registration' do
       %article.ui-box.step-two
         .content
           %h2 Invite Account Manager
@@ -39,15 +39,15 @@
         %figure
           = image_tag 'infographics_business_person_manager.png'
     .connector-down
-    %article.ui-box.step-three
-      = link_to '#' do
+    = link_to (current_user.account_manager.present? ? new_business_unit_name_path : '#'), class: 'company-registration' do
+      %article.ui-box.step-three
         .content
           %h2 Create Business Unit
           %p Sed ut perspiciats unde omnis iste natus lorem ipsum sit volut tandem quosque nostra accus antiuem laud totam.
         %figure
           = image_tag 'infographics_business_team_unit.png'
     .connector-down
-    = link_to (current_user.account_manager.present? ? new_business_unit_role_path  : '#') do
+    = link_to (current_user.business_unit_names.any? ? new_business_unit_role_path  : '#'), class: 'company-registration' do
       %article.ui-box.step-four
         .content
           %h2 Assign Unit Roles
@@ -61,3 +61,11 @@
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground
+  %section.ui-modal.no-head.flash.registration-fail-modal{"data-type"=>"cm-modal", style: 'display: none', 'data-name'=>'fail'}
+    .modal-box
+      .modal-content
+        .modal-scroller
+          %p.type-description I am sorry. You must complete Step 1 first. Please register your company first.
+          = link_to 'Ok', '#', class: 'button-primary small', "data-modal-close" => ""
+      %footer
+        .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}

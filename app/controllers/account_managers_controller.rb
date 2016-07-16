@@ -1,6 +1,6 @@
 class AccountManagersController < ApplicationController
   before_action :authenticate_user!, except: [:autocomplete_user_email]
-  before_action :load_current_am, except: [:new, :create, :autocomplete_user_email]
+  before_action :load_am, except: [:new, :create, :autocomplete_user_email]
   before_action :load_owned_company, only: [:new, :create]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
 
@@ -40,7 +40,7 @@ class AccountManagersController < ApplicationController
     if @form.validate(send_invite_params) && @form.save
 
       # 'Message was successfully sent'
-      CompanyMailer.invite_account_manager(AccountManager.find(@form.id), generated_password).deliver
+      CompanyMailer.delay.invite_account_manager(AccountManager.find(@form.id), generated_password)
 
       redirect_to root_path, notice: I18n.t('controllers.sales_lead.create.success')
     else
@@ -59,11 +59,9 @@ class AccountManagersController < ApplicationController
 
   private
 
-  def load_current_am
+  def load_am
+    authorize current_user
     @account_manager = current_user.account_manager
-    unless @account_manager.present?
-      redirect_to registration_process_users_path, flash: {alert: 'You have no permission to access that page'}
-    end
     @unit_roles = @account_manager.business_unit_roles
     @owned_company = @account_manager.company
   end
