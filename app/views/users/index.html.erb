@@ -34,7 +34,7 @@
         </div>
         
         <article class="landing-content">
-            <h2>Join Our Community of 4 Members</h2>
+            <h2>Join Our Community of <%= @user_count %> Members</h2>
             <% if current_user.consultant && current_user.consultant.wizard_step == Wicked::FINISH_STEP %>
             <a class="button-landing consultants" href="<%= consultant_root_path %>">
                 <span>Consultants</span>
