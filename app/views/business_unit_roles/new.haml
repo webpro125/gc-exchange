@@ -10,21 +10,19 @@
         .entity-info.grid.columns-3.ui-panel{"data-section" => "toggle-head", "data-slide-open" => ""}
           .grid-4-12
             %h3 Company Address
-            %p 1 Infinite Loop
-            %p Cupertino, California
+            %p= @owned_company.address
           .grid-4-12
             %h3 Company Contract POC
             %p.name= @owned_company.owner.full_name.split.map(&:capitalize).join(' ')
             %p.email= @owned_company.owner.email
-            %p= @owned_company.phone
+            %p= @owned_company.work_phone
           .grid-4-12
             %h3 Company Documents
-            - if !@owned_company.contract_file_name.blank? && @owned_company.contract.file.exists?
-              %ul.doc-list
-                %li
-                  %a{:href => ""} General Services Contract
-                %li
-                  %a{:href => ""} Contract Rider
+            %ul.doc-list
+              %li
+                = link_to_if(@owned_company.gsc.present?, @owned_company.gsc_file_name, download_gsc_path(@owned_company), target: '_blank') {}
+              %li
+                = link_to_if(@owned_company.contract.present?, @owned_company.contract_file_name, download_contract_rider_path(@owned_company), target: '_blank') {}
       %section.taxonomy-units
         %section.row.unit-maximized.connect-rule-up
           %header.unit-head.invalid
@@ -32,34 +30,34 @@
               %input{:placeholder => "Concept Design", :type => "text", :value => "#{@account_manager.business_unit_name}"}/
           %section.ui-tabs
             %article.tab-panel.is-open
-              .section-intro
+              .section-intro.align-left
                 %h1.section-title Assign Unit Roles
                 %p.section-description.grid-8-12
                   Add brief description here lorem ipsum sit amet quosque tandem set numa consect. Ipsum sit amet quosque tandem set numa consect. Click on the button below if you want to learn more about
-                  %a{:href => "", :style => "color: #7a7a7a;"}
+                  = link_to workflow_users_path, style: "color: #7a7a7a;", target: '_blank' do
                     our systems automated workflows for
                     = succeed "." do
-                      %strong.type-primaryk work authorizations
+                      %strong.type-primary work authorizations
                   %br/
-                  %a.type-primary.hidden{:href => ""} Learn More About Work Authorization Automated Workflow
-                  %a.button-primary.small{:href => ""} Learn More
+                = link_to 'Learn More', workflow_users_path, class: 'button-primary small align-left', target: '_blank'
+                %a.type-primary.hidden{:href => ""} Learn More About Work Authorization Automated Workflow
                 %figure.figure-business-unit
                   = image_tag 'infographics_unit_role2.png'
               .grid.columns-3.unit-roles-grid
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Selection Authorities
                   %p Searches and selects consultants to work on projects, documents draft statement of work and other work agreement terms with consultant.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Requisition Authority
                   %p Receives the draft SOW and preliminary terms from the Selection Authority. Then authors a Requisition to for Consultant to support the Client Company.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Approval Authority
                   %p Approves the Statement of Work and other consulting terms resulting from the negotiation process, the issues PO authorizing work to start.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal"} Assign Role
-
-%section.ui-modal
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
+        %section.hidden
+%section.ui-modal{'data-name'=>"assign-modal"}
   .modal-box
     %header
       %h1 Assign Selection Authority Role
@@ -79,8 +77,20 @@
               .grid-6-12{:role => "gridcell"}
                 = f.input :last_name, required: false, placeholder: 'Last Name', label: false,
                   wrapper: :custom_input, input_wrapper_html: { class: 'icon-profile' }
-            .section-block.user-permissions
-              %h3 You can assign this person to one role or all of them
+            .section-block.user-permissions.align-left
+              %h3 Notes:
+              %ul.list
+                %li.type-intro You can assign this person to one or all three roles listed below.
+                %li.type-intro
+                  An unlimited number of people may perform the
+                  %span.type-primary Selection Authority
+                  role.
+                %li.type-intro
+                  Only one person may perform the
+                  %span.type-primary Requisition Authority
+                  and
+                  %span.type-primary Approval Authority
+                  roles.
               %section.card-section
                 .ui-checkbox.medium
                   = f.check_box :selection_authority, {id: 'selection-authority'}
@@ -104,9 +114,9 @@
                     %p Include explanation about this section here.
               %section.card-section
                 = hidden_field_tag 'business_unit_role[authority_required]'
-            = f.submit 'Add Unit Roles', class: 'button-primary button-cta'
+            = f.submit 'Add Unit Roles', class: 'button-primary button-cta submit-button'
     %footer
-      .modal-close.ui-action-icon.icon-cr-cross-light
+      .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}
 
 
 

@@ -1,0 +1,13 @@
+<p>Hello <%= @user.full_name -%>, </p>
+<p>
+  Thank you for registering your Business Unit <%= @account_manager.business_unit_name -%> on GCES.
+  To complete the set up process, please assign users to one or more of the 3 Business Unit roles on the system:
+  Selection Authority, Requisition Authority, and Approval Authority.
+  This will allow you to hire consultant in the GCES network.
+</p>
+<p>Click
+  <%= link_to 'here', {:controller => "sessions",
+                       :action => "new",
+                       :only_path => false}, {:class => "button-alt"} %>
+  to login
+</p>

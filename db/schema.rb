@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704133956) do
+ActiveRecord::Schema.define(version: 20160706183236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20160704133956) do
     t.datetime "updated_at"
     t.string   "first_name",                         default: "",    null: false
     t.string   "last_name",                          default: "",    null: false
-    t.string   "phone",                  limit: 32,  default: "",    null: false
+    t.string   "cell_phone",             limit: 32,  default: "",    null: false
     t.date     "contract_start"
     t.date     "contract_end"
     t.boolean  "require_contract_rider",             default: false
@@ -209,6 +209,8 @@ ActiveRecord::Schema.define(version: 20160704133956) do
     t.string   "gsc_content_type"
     t.integer  "gsc_file_size"
     t.datetime "gsc_updated_at"
+    t.string   "work_phone",             limit: 32,  default: ""
+    t.string   "address",                limit: 128
   end
 
   add_index "companies", ["owner_id"], name: "index_companies_on_owner_id", using: :btree

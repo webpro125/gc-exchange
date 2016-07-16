@@ -48,15 +48,13 @@ gem 'jbuilder'
 gem 'twilio-ruby', '~> 4.11.1'
 gem 'haml', '~> 4.0.5'
 gem "font-awesome-rails"
-gem "wice_grid", '3.6.0.pre4'
+gem 'wice_grid', '~> 3.6', '>= 3.6.2'
 gem 'bootstrap-datepicker-rails', '~> 1.5'
 gem 'roadie-rails', '~> 1.0'
 gem 'compass-rails'
 gem 'rails-jquery-autocomplete', '~> 1.0', '>= 1.0.3'
-gem 'client_side_validations', '4.2.4'
-gem 'client_side_validations-simple_form'
 gem 'whenever', '~> 0.9.7'
-
+gem 'ransack', '~> 1.7.0'
 gem 'breadcrumbs_on_rails'
 
 group :doc do

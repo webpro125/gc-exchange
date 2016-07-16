@@ -80,6 +80,24 @@
             
         }
     }
+    
+    &.white-tabs {
+        .tab-toggle {
+            padding: 0 1rem;
+            margin-right: 0;
+            
+            &.is-active {
+                background: #FFF;
+                border-bottom: none;
+            }
+        }
+        
+        .tab-panel {
+            &.is-open {
+                background: #FFF;
+            }
+        }
+    }
 
     &.is-open {
         .tab-toggle {

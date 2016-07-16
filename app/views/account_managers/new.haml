@@ -1,5 +1,10 @@
 - content_for :header do
   = render 'layouts/registration_header'
+- content_for :css do
+  :css
+    #am_form .form-validation {
+      text-align: left
+    }
 .page-content
   %section
     %section.entity-company.taxonomy-view
@@ -10,20 +15,19 @@
         .entity-info.grid.columns-3.ui-panel{"data-section" => "toggle-head", "data-slide-open" => ""}
           .grid-4-12
             %h3 Company Address
-            %p 1 Infinite Loop
-            %p Cupertino, California
+            %p= @owned_company.address
           .grid-4-12
             %h3 Company Contract POC
             %p.name= @owned_company.owner.full_name.split.map(&:capitalize).join(' ')
             %p.email= @owned_company.owner.email
-            %p= @owned_company.phone
+            %p= @owned_company.work_phone
           .grid-4-12
             %h3 Company Documents
             %ul.doc-list
               %li
-                %a{:href => ""} General Services Contract
+                = link_to_if(@owned_company.gsc.present?, @owned_company.gsc_file_name, download_gsc_path(@owned_company), target: '_blank') {}
               %li
-                %a{:href => ""} Contract Rider
+                = link_to_if(@owned_company.contract.present?, @owned_company.contract_file_name, download_contract_rider_path(@owned_company), target: '_blank') {}
       %section.taxonomy-units
         %section.row.first-set.connect-rule-up
           %header.section-intro
@@ -31,7 +35,7 @@
             %p.section-description Add brief description here lorem ipsum sit amet quosque tandem set numa consect. Ipsum sit amet quosque tandem set numa consect, lorem ipsum sit amet quosque tandem set numa consect..
             %figure.figure-account-manager
               = image_tag "infographics_business_person_manager.png"
-          = simple_form_for(@form, html: {class: 'theme-gces style-alternate'}) do |f|
+          = simple_form_for(@form, html: {class: 'theme-gces style-alternate', id: 'am_form'}) do |f|
             = render 'shared/base_error', model: @form
             = f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, label: false,
               :url => autocomplete_user_email_account_managers_path, :as => :autocomplete,
@@ -48,7 +52,7 @@
             .preview-email-input.hide
               = f.input :email_content,label: false, wrapper: :custom_no_wrapper_input, as: :text,
                 input_html: { value: AccountManager::DEFAULT_EMAIL_CONTENT, rows: 3 }
-            = button_tag 'Send Invite to Account Manager', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right"
+            = button_tag 'Send Invite to Account Manager', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right am-button"
         %section.row.hidden
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}

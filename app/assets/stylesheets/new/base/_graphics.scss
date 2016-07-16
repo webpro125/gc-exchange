@@ -69,8 +69,8 @@
 }
 
 %ui-box-float {
-    @extend %ui-box;
-    box-shadow: inset 0 0 0 1px lighten(color(gray-light), 4%), 2px 2px 1px 0 rgba(color(gray-darker), 0.125);
+    background: #FFF;
+    padding: 1.25rem;
 }
 
 %ui-box-popover {

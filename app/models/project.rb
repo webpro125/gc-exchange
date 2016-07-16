@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :business_unit_role
   has_one :project_agreement, dependent: :destroy
+  has_one :ra_project_agreement, through: :project_agreement
   has_one :work_location_address, dependent: :destroy
   # accepts_nested_attributes_for :work_location_address, allow_destroy: true
   validates :consultant, presence: true

@@ -29,7 +29,11 @@ class ConsultantPolicy < ApplicationPolicy
   end
 
   def contract?
-    record.contract_effective_date.present? && (gces? || user.consultant == record)
+    if user.is_a?(Admin)
+      record.contract_effective_date.present?
+    else
+      record.contract_effective_date.present? && (gces? || user.consultant == record)
+    end
   end
 
   def contactable?

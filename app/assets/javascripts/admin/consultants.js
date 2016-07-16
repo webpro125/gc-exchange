@@ -9,3 +9,15 @@ $(function() {
         $(this).closest('form').submit();
     });
 });
+$(document).on("click",".consultant-positions",function() {
+    remaining_positions = $(this).parents("td").find(".remaining-positions")
+    if(remaining_positions.is(":visible")) {
+        $(this).text("More");
+        remaining_positions.hide()
+    }
+    else{
+        $(this).text("Less");
+        remaining_positions.show()
+    }
+    return false;
+});

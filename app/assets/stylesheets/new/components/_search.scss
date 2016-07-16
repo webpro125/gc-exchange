@@ -1,0 +1,123 @@
+.main-search {
+    display: block;
+    height: rem(60px);
+    padding: 0 0 0 rem(60px);
+    position: relative;
+    
+    form {
+        display: block;
+        width: 100%;
+        height: rem(60px);
+        padding: 0;
+        
+        input[type="text"],
+        input[type="search"] {
+            width: 100%;
+            height: rem(60px);
+            box-shadow: none;
+            background: none;
+            border-radius: 0;
+            color: #FFF;
+            font-size: 1.125rem;
+        }
+        
+        button,
+        input[type="submit"] {
+            display: none;
+        }
+    }
+    
+    &:before {
+        @extend %before-after-absolute;
+        font-family: $font-glyphs;
+        width: rem(60px);
+        height: rem(60px);
+        line-height: rem(60px);
+        font-size: 1.75rem;
+        text-align: center;
+        content: glyph(search);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        color: color(primary-light);
+    }
+    
+    &:hover {
+        &:before {
+            color: #FFF;
+            transition: color 0.1s ease-out;
+        }
+    }
+}
+
+.mini-search {
+    display: block;
+    width: 100%;
+    height: 3rem;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &:before {
+        @extend %before-after-absolute;
+        width: 3rem;
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1.5rem;
+        color: color(primary);
+        font-family: $font-glyphs;
+        content: glyph(search);
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 2px;
+    }
+
+    form {
+        width: 100%;
+        height: 3rem;
+        padding-right: 3rem;
+        box-sizing: border-box;
+
+        input[type="text"],
+        input[type="search"] {
+            height: 3rem;
+            line-height: 3rem;
+            background: none;
+            border: none;
+            box-shadow: none;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: color(body-dark);
+
+            &::-webkit-input-placeholder {
+                color: color(primary);
+            }
+
+            &:-moz-placeholder {
+                color: color(primary);
+            }
+
+            &::-moz-placeholder {
+                color: color(primary);
+            }
+
+            &:-ms-input-placeholder {
+                color: color(primary);
+            }
+
+            &:hover,
+            &:focus {
+                border: none;
+                box-shadow: none;
+            }
+        }
+
+        input[type="submit"],
+        button {
+            display: none;
+        }
+    }
+}

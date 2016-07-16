@@ -1,5 +1,5 @@
 <%= simple_form_for(resource, as: resource_name,
-                    url: session_path(resource_name), html: {class: 'theme-gces'}) do |f| %>
+                    url: session_path(resource_name), html: {class: 'theme-gces', id: 'login_form'}) do |f| %>
     <%= render 'shared/base_error', model: resource %>
     <%= f.input :email, required: false, autofocus: true, placeholder: 'Email', label: false,
             wrapper: :custom_input, input_wrapper_html: { class: 'icon-email' } %>
@@ -13,6 +13,6 @@
     </fieldset>
 
     <div class="align-center">
-      <%= button_tag 'Sign in', type: 'submit', class: "button-primary button-cta center" %>
+      <%= button_tag 'Sign in', type: 'submit', class: "button-primary button-cta center login-button" %>
     </div>
 <% end %>

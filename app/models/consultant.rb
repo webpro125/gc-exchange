@@ -83,6 +83,12 @@ class Consultant < ActiveRecord::Base
         values = export_columns.map do |col|
           if col =~ /_project_/
             consultant.project_history_info for_column: col
+          elsif col == 'first_name'
+            consultant.user.first_name
+          elsif col == 'last_name'
+            consultant.user.last_name
+          elsif col == 'email'
+            consultant.user.email
           else
             consultant.send(col)
           end
@@ -124,7 +130,7 @@ class Consultant < ActiveRecord::Base
   end
 
   def date_last_signed_in
-    last_sign_in_at
+    user.last_sign_in_at
   end
 
   def date_modified
@@ -167,6 +173,9 @@ class Consultant < ActiveRecord::Base
     contract_version.present? && contract_effective_date.present?
   end
 
+  def sign_in_count
+    user.sign_in_count
+  end
   def skills_list
     skills.pluck(:code).join(', ')
   end

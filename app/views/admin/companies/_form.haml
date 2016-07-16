@@ -16,7 +16,12 @@
       = f.input :first_name, label: false, placeholder: 'First Name'
     .col-md-6
       = f.input :last_name, label: false, placeholder: 'Last Name'
-  = f.input :phone, label: 'Client Company Contract POC Phone', placeholder: 'xxx-xxx-xxxx'
+  .row
+    .col-md-6
+      = f.input :work_phone, label: 'Client Company Contract POC Work Phone', placeholder: 'xxx-xxx-xxxx', required: true
+    .col-md-6
+      = f.input :cell_phone, label: 'Client Company Contract POC Cell Phone', placeholder: 'xxx-xxx-xxxx'
+  = f.input :address
   .row
     .col-md-6
       = f.input :gsc,
