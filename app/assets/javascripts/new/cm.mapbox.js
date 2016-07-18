@@ -10,7 +10,7 @@
                 maxZoom: 9,
                 zoom: 7,
                 zoomControl: false,
-                center: [30, -85],
+                center: [34, -96],
                 maxBounds: [[70, -159], [3, -43]]
             },
             users: {
@@ -53,6 +53,8 @@
         L.mapbox.accessToken = 'pk.eyJ1IjoiZ2NlcyIsImEiOiJjaW5hZHZjMGwwaDc3djBrcTVtZDB4dTB6In0.CNlYH0qbhmfn46jOgWnuNg';
 
         var map = L.mapbox.map('map', 'gces.707d3d74', options.map);
+
+        map.setZoom(5);
 
         new L.Control.Zoom({position: 'bottomright'}).addTo(map);
 
