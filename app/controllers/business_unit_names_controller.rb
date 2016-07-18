@@ -44,7 +44,7 @@ class BusinessUnitNamesController < ApplicationController
   private
 
   def load_am
-    authorize current_user
+    authorize :user, :load_am?
     @account_manager = current_user.account_manager
     @owned_company = @account_manager.company
     @new_design = true
