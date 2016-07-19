@@ -51,7 +51,7 @@
               Preview Email
             .preview-email-input.hide
               = f.input :email_content,label: false, wrapper: :custom_no_wrapper_input, as: :text,
-                input_html: { value: AccountManager::DEFAULT_EMAIL_CONTENT, rows: 3 }
+                input_html: { rows: 3 }
             = button_tag 'Send Invite to Account Manager', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right am-button"
         %section.row.hidden
 - content_for :footer do

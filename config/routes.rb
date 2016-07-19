@@ -137,7 +137,7 @@ Rails.application.routes.draw do
   end
 
   resources :companies, path: 'contractors' do
-    resources :users
+    # resources :users
   end
   resources :update_contracts, only: [:new, :update] do
     member do

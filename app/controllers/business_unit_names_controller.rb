@@ -16,15 +16,10 @@ class BusinessUnitNamesController < ApplicationController
       @business_name.cell_line = phone_array[2]
     end
     @form = RegisterAccountManagerForm.new(@business_name)
-    email_content = AccountManager::BUR_CREATED_EMAIL_CONTENT1
-    email_content_for_admin = AccountManager::BUR_CREATED_EMAIL_CONTENT2
+    email_content = @form.model.created_email(current_user)
+    email_content_for_admin = @form.model.created_email_for_admin(current_user)
     if @form.validate(register_am_params) && @form.save
       AccountManagerMailer.created_business_role_name( @form.model, current_user).deliver
-      email_content.gsub!("{user_name}", current_user.full_name)
-      email_content.gsub!("{business_unit_name}", @form.model.name)
-      email_content_for_admin.gsub!("{company_name}", @owned_company.company_name)
-      email_content_for_admin.gsub!("{business_unit_name}", @form.model.name)
-      email_content_for_admin.gsub!("{account_manager_name}", @account_manager.company.owner.full_name)
 
       Admin.all.each {|admin|
         Mailboxer.uses_emails = false

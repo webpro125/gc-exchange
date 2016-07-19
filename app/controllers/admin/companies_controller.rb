@@ -130,7 +130,7 @@ class Admin::CompaniesController < Admin::CompanyController
   end
 
   def registration_requests
-   @requests = RequestedCompany.order(created_at: :desc)
+   @requests = RequestedCompany.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   private
