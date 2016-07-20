@@ -1,18 +1,17 @@
-<% if @password == '' %>
-    <p>Dear <%= @company.owner.full_name %>,  </p>
-    <p style="margin-bottom: 20px;">Thank you for executing a contract with GCES to buy consulting services.
-    We have successfully registered your Company <%= @company.company_name -%> on our network. </p>
+<p>Dear <%= @company.owner.full_name %>,  </p>
+<p style="margin-bottom: 20px;">Thank you for executing a contract with GCES to buy consulting services.
+We have successfully registered your Company <%= @company.company_name -%> on our network. </p>
 
 
-    <p>Please click  <%= link_to 'here', {:controller => "sessions",
-                                          :action => "new",
-                                          :only_path => false}, {:class => "button-alt"} %>
-      to login our site and assign corporate Account Manager roles. You may assign an unlimited number of the corporate Account Manager in our system. 
-    Account Managers are responsible for managing corporate Business Units and issuing consultant work authorizations.</p>
+<p>Please click  <%= link_to 'here', {:controller => "sessions",
+                                      :action => "new",
+                                      :only_path => false}, {:class => "button-alt"} %>
+  to login our site and assign corporate Account Manager roles. You may assign an unlimited number of the corporate Account Manager in our system. 
+Account Managers are responsible for managing corporate Business Units and issuing consultant work authorizations.</p>
 
-<% else %>
+<% if @password != '' %>
 
-  Your Company Account and login account have been created.
+  <p>And you account is created</p>
 
-  Password is <%= @password %>
+  <p>Password is <%= @password %></p>
 <% end %>

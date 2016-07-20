@@ -13,14 +13,16 @@ class RequestedCompany < ActiveRecord::Base
   validates :work_line, length: { is: 4 }, presence: true,  :numericality => true
   validates :cell_line, length: { is: 4 }, allow_blank: true,  :numericality => true
   validates :help_content, presence: true, length: { in: 2..500 }
-=begin
-  validates :work_phone,
-            presence: true,
-            format:   {
-                with:    RegexConstants::Phone::PHONE_NUMBER,
-                message: I18n.t('activerecord.errors.messages.regex.phone')
-            }
-=end
+
+  def created_email user
+    email_text = '
+      {user_full_name}, thank you for your request to register {company_name}.
+      A GCES Representative will be contacting you shortly to help you complete the registration process.'
+    email_text.gsub!("{user_full_name}", user.full_name)
+    email_text.gsub!("{company_name}", self.company_name)
+    email_text
+  end
+
 
   private
 

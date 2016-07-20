@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic" rel="stylesheet" type="text/css">
     <%= javascript_include_tag 'application_new' %>
     <%= stylesheet_link_tag 'application_new' %>
-
+    <%= csrf_meta_tags %>
     <!-- Mapbox Specific -->
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
@@ -20,6 +20,11 @@
 </head>
 <body>
 <%= yield %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/flash' %>
+  </div>
+</div>
 </body>
 </html>
 

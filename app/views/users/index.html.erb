@@ -17,6 +17,7 @@
                     <% unless BusinessUnitRole.own_requisition_authorities(current_user).empty? %>
                       <li><%= link_to 'Review Consultants Work Agreements', project_agreements_path %></li>
                     <% end %>
+                    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
                 </ul>
             </nav>
         </div>

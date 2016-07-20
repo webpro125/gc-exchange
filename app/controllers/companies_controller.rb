@@ -83,6 +83,8 @@ class CompaniesController < CompanyController
         host_url = request.host || "drake.gces.staging.c66.me"
         send_sms(admin.phone.to_s, email_content) unless admin.phone.blank?
       }
+      sms_txt = @requested_company.created_email(current_user)
+      send_sms(@requested_company.cell_phone, sms_txt) unless @requested_company.cell_phone.blank?
       redirect_to registration_companies_path, notice: t('controllers.company.request_register.success')
     else
       render :registration
