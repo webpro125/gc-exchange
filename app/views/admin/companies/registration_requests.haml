@@ -17,6 +17,7 @@
               %th Work Phone
               %th Cell Phone
               %th Requested Date
+              %th Action+
           %tbody
             - @requests.each do |request|
               %tr
@@ -26,4 +27,10 @@
                 %td= request.work_phone
                 %td= request.cell_phone
                 %td= request.created_at.to_date
+                %td
+                  = link_to destroy_requested_company_admin_company_path(request), method: :delete,
+                     data: { confirm: t('views.company.confirmations.delete_requested') },
+                     :class => 'btn btn-xs btn-danger' do
+                    %i.fa.fa-trash-o
+                    Delete
         = paginate(@requests)

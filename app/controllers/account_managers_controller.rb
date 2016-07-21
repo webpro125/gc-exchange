@@ -1,6 +1,6 @@
 class AccountManagersController < ApplicationController
-  before_action :authenticate_user!, except: [:autocomplete_user_email]
-  before_action :load_am, except: [:new, :create, :autocomplete_user_email]
+  before_action :authenticate_user!, except: [:autocomplete_user_email, :accept]
+  before_action :load_am, except: [:new, :create, :autocomplete_user_email, :accept]
   before_action :load_owned_company, only: [:new, :create]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
 
@@ -8,7 +8,7 @@ class AccountManagersController < ApplicationController
     @new_design = true
     account_manager = @owned_company.account_managers.build
     # email_content = AccountManager::DEFAULT_EMAIL_CONTENT
-    account_manager.email_content = account_manager.invite_am_email(current_user)
+    account_manager.email_content = account_manager.invite_am_email(current_user, @owned_company)
 
     @form = InviteAccountManagerForm.new(account_manager)
   end
@@ -55,6 +55,18 @@ class AccountManagersController < ApplicationController
     end
   end
 
+  def accept
+    @account_manager = AccountManager.find_by_access_token(params[:access_token])
+
+    raise Pundit::NotAuthorizedError if @account_manager.blank?
+
+    sign_in(@account_manager.user)
+
+    @account_manager.update_attributes(access_token: '')
+    redirect_to new_business_unit_name_path, notice: 'Please Create Your Business Unit Name'
+
+  end
+
   private
 
   def load_am
@@ -65,9 +77,7 @@ class AccountManagersController < ApplicationController
   end
 
   def load_owned_company
-    unless current_user.owned_company.present?
-      redirect_to registration_process_users_path, flash: {alert: 'You have no permission to access that page'}
-    end
+    raise Pundit::NotAuthorizedError unless current_user.owned_company.present?
     @owned_company = current_user.owned_company
   end
 

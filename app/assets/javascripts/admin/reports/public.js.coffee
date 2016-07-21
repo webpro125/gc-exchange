@@ -161,6 +161,7 @@ reportVisitsPage = ->
         from: $dateRangePicker.startDate.format()
         to: $dateRangePicker.endDate.format()
     .done (data) ->
+      console.log(data)
       updateReportData(data)
     .complete ->
       $loading.hide()

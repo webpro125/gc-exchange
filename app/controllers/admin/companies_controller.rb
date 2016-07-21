@@ -1,6 +1,6 @@
 class Admin::CompaniesController < Admin::CompanyController
   before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email,
-                                   :destroy_account_manager, :registration_requests]
+                                   :destroy_account_manager, :registration_requests, :destroy_requested_company]
   add_breadcrumb 'Companies', :admin_companies_path
   before_action :authenticate_admin!, except: [:autocomplete_user_email]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
@@ -89,14 +89,17 @@ class Admin::CompaniesController < Admin::CompanyController
     # @company.build_invite_user(send_invite_params)
     @account_managers = @company.account_managers
     account_manager = @company.account_managers.build
+    account_manager.email_content = account_manager.invite_am_email(current_admin, @company)
+
     @form = InviteAccountManagerForm.new(account_manager)
-    @form.email_content = AccountManager::DEFAULT_EMAIL_CONTENT
+
     random_token = SecureRandom.hex(32)
+    generated_password = Devise.friendly_token.first(8)
 
     if @form.validate(send_invite_params)
-      if User.where(email:@form.email).first.blank?
-        generated_password = Devise.friendly_token.first(8)
-      else
+      user = User.find_by_email(@form.email)
+
+      if user.blank?
         generated_password = ''
       end
       user = User.where(email:@form.email).first_or_create! do |user|
@@ -133,6 +136,14 @@ class Admin::CompaniesController < Admin::CompanyController
    @requests = RequestedCompany.order(created_at: :desc).page(params[:page]).per(10)
   end
 
+  def destroy_requested_company
+    company = RequestedCompany.find(params[:id])
+    if company.destroy
+      redirect_to registration_requests_admin_companies_path, notice: t('controllers.company.destroy.success')
+    else
+      render :invite_account_manager
+    end
+  end
   private
 
   def set_company

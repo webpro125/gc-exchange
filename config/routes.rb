@@ -42,6 +42,7 @@ Rails.application.routes.draw do
         get :invite_account_manager
         put :send_invite
         delete :destroy_account_manager
+        delete :destroy_requested_company
       end
       get :registration_requests, :on => :collection
       get :autocomplete_user_email, :on => :collection
@@ -108,8 +109,6 @@ Rails.application.routes.draw do
   get :profile_completed, to: 'pages#profile_completed'
   get :health_check, to: 'pages#health_check'
 
-  get 'business_unit_roles/accept_role/:accept_token', to: 'business_unit_roles#accept_role', as: :accept_business_role
-  put 'business_unit_roles/put_accept_role/:accept_token', to: 'business_unit_roles#put_accept_role', as: :put_accept_business_role
   get 'download_resume/:id', to: 'downloads#download_resume', as: :download_resume
   get 'article/download_attachment/:id', to: 'downloads#download_article_attachment', as: :download_article_attachment
   get 'comment/download_attachment/:id', to: 'downloads#download_comment_attachment', as: :download_comment_attachment
@@ -117,6 +116,10 @@ Rails.application.routes.draw do
   get 'download_contract_rider/:id', to: 'downloads#contract_rider', as: :download_contract_rider
   get 'download_sow/:id', to: 'downloads#sow', as: :download_sow
 
+  get 'business_unit_roles/accept_role/:accept_token', to: 'business_unit_roles#accept_role', as: :accept_business_role
+  put 'business_unit_roles/put_accept_role/:accept_token', to: 'business_unit_roles#put_accept_role', as: :put_accept_business_role
+  get 'account_managers/accept/:access_token', to: 'account_managers#accept', as: :accept_am
+  get 'business_unit_names/accept/:access_token', to: 'business_unit_names#accept_by_token', as: :accept_bum
   # Resources
   resource :change_password, only: [:edit, :update]
 

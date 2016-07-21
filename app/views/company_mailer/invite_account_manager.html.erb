@@ -1,11 +1,9 @@
 <%= @account_manager.email_content.gsub(/\n/, '<br/>').html_safe %>
 
-Please <%= link_to 'login',
-{:controller => 'sessions', :action => 'new', :only_path => false} -%> to Register as Account Manager
-<% unless @password == '' %>
-  And Your account has been created
-  Password is #{@password}
-<% end %>
+Please click<%= link_to 'here',
+{:controller => 'account_managers', :action => 'accept',
+    :access_token => @account_manager.access_token, :only_path => false} -%> to create Business Unit Name
+
 <br/>
 <br/>
 Global Consultant Exchange Services (GCES)
