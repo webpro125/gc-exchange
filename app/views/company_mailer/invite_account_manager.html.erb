@@ -1,6 +1,6 @@
 <%= @account_manager.email_content.gsub(/\n/, '<br/>').html_safe %>
 
-Please click<%= link_to 'here',
+Please click <%= link_to 'here',
 {:controller => 'account_managers', :action => 'accept',
     :access_token => @account_manager.access_token, :only_path => false} -%> to create Business Unit Name
 

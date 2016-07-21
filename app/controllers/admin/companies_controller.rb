@@ -72,8 +72,11 @@ class Admin::CompaniesController < Admin::CompanyController
 
 
   def destroy
-    @company.destroy
-    redirect_to admin_companies_path, notice: t('controllers.company.destroy.success')
+    if @company.destroy
+      redirect_to admin_companies_path, notice: t('controllers.company.destroy.success')
+    else
+      redirect_to admin_companies_path, alert: t('controllers.company.destroy.fail')
+    end
   end
 
   def invite_account_manager
@@ -116,7 +119,7 @@ class Admin::CompaniesController < Admin::CompanyController
 
       CompanyMailer.invite_account_manager(AccountManager.find(@form.id), generated_password).deliver
       # 'Message was successfully sent'
-      redirect_to admin_companies_path, notice: I18n.t('controllers.sales_lead.create.success')
+      redirect_to admin_companies_path, notice: I18n.t('controllers.account_manager.invite.success')
     else
       render action: "invite_account_manager", notice: @company.errors
     end
@@ -144,6 +147,7 @@ class Admin::CompaniesController < Admin::CompanyController
       render :invite_account_manager
     end
   end
+
   private
 
   def set_company

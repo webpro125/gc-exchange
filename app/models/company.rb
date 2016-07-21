@@ -5,13 +5,15 @@ class Company < ActiveRecord::Base
   GCES_FEE = 10
 
   belongs_to :owner, class_name: 'User', inverse_of: :owned_company
-  has_many :users, dependent: :destroy
+  has_many :users
   accepts_nested_attributes_for :owner
 
   has_many :account_managers, dependent: :destroy
 
   mount_uploader :contract, ResumeUploader, mount_on: :contract_file_name
   mount_uploader :gsc, ResumeUploader, mount_on: :gsc_file_name
+
+  before_create :store_default_values
 
   validates :company_name, length: { in: 2..512 }, presence: true
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i},
@@ -44,4 +46,10 @@ class Company < ActiveRecord::Base
   validates :gsc, presence: true, on: :create,
             file_size: { less_than: 10.megabytes },
             file_content_type: { allow: RegexConstants::FileTypes::AS_DOCUMENTS }
+
+  private
+
+  def store_default_values
+    self.access_token = SecureRandom.hex(32)
+  end
 end
