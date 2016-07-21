@@ -121,8 +121,9 @@ Rails.application.routes.draw do
   get 'account_managers/accept/:access_token', to: 'account_managers#accept', as: :accept_am
   get 'business_unit_names/accept/:access_token', to: 'business_unit_names#accept_by_token', as: :accept_bum
   get 'companies/accept/:access_token', to: 'companies#accept_by_token', as: :accept_company
+
   # Resources
-  resource :change_password, only: [:edit, :update]
+  resource :change_password
 
   get :search, to: 'searches#new'
   get 'search/skills', to: 'searches#skills'

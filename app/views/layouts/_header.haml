@@ -49,9 +49,12 @@
             = link_to 'Home', root_path
           %li
             = link_to 'About Us', about_us_path
-          %li{:class => current_page_active('registrations')}
-            = link_to 'Register', new_user_registration_path
-          %li{:class => current_page_active('devise/sessions')}
-            = link_to 'Login', new_user_session_path
           %li
             = link_to 'Contact Us', contact_us_path
+          - if user_signed_in?
+            %li= link_to 'Logout', destroy_user_session_path, method: :delete
+          - else
+            %li{:class => current_page_active('registrations')}
+              = link_to 'Register', new_user_registration_path
+            %li{:class => current_page_active('devise/sessions')}
+              = link_to 'Login', new_user_session_path

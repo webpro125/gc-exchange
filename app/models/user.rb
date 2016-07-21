@@ -62,6 +62,19 @@ class User < ActiveRecord::Base
   def is_consultant?
     consultant.present?
   end
+
+  def self.create_user data
+    user = User.create! do |user|
+      user.email = data.email
+      user.password = Devise.friendly_token.first(8)
+      user.first_name = data.first_name
+      user.last_name = data.last_name
+      user.system_created = true
+      user.skip_confirmation!
+    end
+    user
+  end
+
   private
 
   def validate_company_owner

@@ -1,0 +1,17 @@
+= content_for :main_class, 'main'
+- content_for :header do
+  = render 'layouts/header'
+%header.page-header
+  %h2 Set your password
+.page-content
+  = simple_form_for(@user, method: :post,
+    url: change_password_path(referrer: @referrer, token: @token), html: {class: 'theme-gces', id: 'change_password_form'}) do |f|
+    = render 'shared/base_error', model: @user
+    = f.input :password, required: false, placeholder: 'Password', label: false,
+      wrapper: :custom_input, input_wrapper_html: { class: 'icon-key' }
+    = f.input :password_confirmation, required: false, label: false,
+      placeholder: 'Password Confirmation', wrapper: :custom_input, input_wrapper_html: { class: 'icon-key' }
+    .align-center
+      = button_tag 'Update Password', type: 'submit', class: "button-primary button-cta center login-button"
+- content_for :footer do
+  = render 'layouts/footer'

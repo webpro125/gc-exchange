@@ -99,10 +99,16 @@ class CompaniesController < CompanyController
 
     raise Pundit::NotAuthorizedError if company.blank?
 
-    sign_in(company.owner)
+    user = company.owner
 
-    company.update_attributes(access_token: '')
-    redirect_to new_account_manager_path, notice: 'Please Invite Account Manager for your company'
+    sign_in(user)
+
+    if user.system_created
+      redirect_to new_change_password_path(referrer: 'company', token: params[:access_token])
+    else
+      company.update_attributes(access_token: '')
+      redirect_to new_account_manager_path, notice: 'Please Invite Account Manager for your company'
+    end
   end
   private
 

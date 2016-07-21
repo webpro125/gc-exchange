@@ -1,8 +1,8 @@
 class Admin::CompaniesController < Admin::CompanyController
+  before_action :authenticate_admin!, except: [:autocomplete_user_email]
   before_action :set_company, except: [:index, :new, :create, :autocomplete_user_email,
                                    :destroy_account_manager, :registration_requests, :destroy_requested_company]
   add_breadcrumb 'Companies', :admin_companies_path
-  before_action :authenticate_admin!, except: [:autocomplete_user_email]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
   helper_method :mailbox, :conversation
 
@@ -19,25 +19,20 @@ class Admin::CompaniesController < Admin::CompanyController
   def create
     @company = Company.new(company_create_params)
 
-    generated_password = ''
-
     if @company.valid?
+      user = User.find_by_email(@company.email)
 
-      generated_password = Devise.friendly_token.first(8) if User.where(email:@company.email).first.blank?
-
-      user = User.where(email:@company.email).first_or_create! do |user|
-        user.password = generated_password
-        user.first_name = @company.first_name
-        user.last_name = @company.last_name
-        user.skip_confirmation!
+      if user.blank?
+        user = User.create_user(@company)
       end
+
       @company.owner_id = user.id
     end
 
     respond_to do |format|
       if @company.save
 
-        CompanyMailer.company_created(@company, generated_password).deliver
+        CompanyMailer.company_created(@company).deliver
 
         sms_content = 'Thank you for signing a contract with GCES.
                       Please log into the site and start assigning Business Unit Account Managers.'
