@@ -91,6 +91,7 @@ en:
         success: 'Contractor was successfully updated.'
       destroy:
         success: 'Company was successfully destroyed.'
+        fail: 'Company is not be able to destroyed.'
       request_register:
         success: 'You requested successfully.'
     user:
@@ -150,6 +151,8 @@ en:
       create:
         success: 'You commented successfully.'
     account_manager:
+      invite:
+        success: 'One user has been invited as Account Manager.'
       assign_role:
         success: 'One user role was successfully assigned.'
       business_unit:

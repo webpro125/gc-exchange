@@ -48,8 +48,11 @@ class CompaniesController < CompanyController
 
   # DELETE /companies/1
   def destroy
-    @company.destroy
-    redirect_to companies_url, notice: t('controllers.company.destroy.success')
+    if @company.destroy
+      redirect_to companies_url, notice: t('controllers.company.destroy.success')
+    else
+      redirect_to companies_url, alert: t('controllers.company.destroy.fail')
+    end
   end
 
   # request company
@@ -91,6 +94,16 @@ class CompaniesController < CompanyController
     end
   end
 
+  def accept_by_token
+    company = Company.find_by_access_token(params[:access_token])
+
+    raise Pundit::NotAuthorizedError if company.blank?
+
+    sign_in(company.owner)
+
+    company.update_attributes(access_token: '')
+    redirect_to new_account_manager_path, notice: 'Please Invite Account Manager for your company'
+  end
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -120,6 +120,7 @@ Rails.application.routes.draw do
   put 'business_unit_roles/put_accept_role/:accept_token', to: 'business_unit_roles#put_accept_role', as: :put_accept_business_role
   get 'account_managers/accept/:access_token', to: 'account_managers#accept', as: :accept_am
   get 'business_unit_names/accept/:access_token', to: 'business_unit_names#accept_by_token', as: :accept_bum
+  get 'companies/accept/:access_token', to: 'companies#accept_by_token', as: :accept_company
   # Resources
   resource :change_password, only: [:edit, :update]
 

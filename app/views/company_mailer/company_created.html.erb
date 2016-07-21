@@ -3,8 +3,8 @@
 We have successfully registered your Company <%= @company.company_name -%> on our network. </p>
 
 
-<p>Please click  <%= link_to 'here', {:controller => "sessions",
-                                      :action => "new",
+<p>Please click  <%= link_to 'here', {:controller => "companies",
+                                      :action => "accept_by_token", :access_token => @company.access_token,
                                       :only_path => false}, {:class => "button-alt"} %>
   to login our site and assign corporate Account Manager roles. You may assign an unlimited number of the corporate Account Manager in our system. 
 Account Managers are responsible for managing corporate Business Units and issuing consultant work authorizations.</p>
