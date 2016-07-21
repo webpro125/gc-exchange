@@ -19,9 +19,8 @@ class CompanyMailer < ActionMailer::Base
     mail(subject: 'Invite Account Manager', to:account_manager.email)
   end
 
-  def company_created(company, password)
+  def company_created(company)
     @company = company
-    @password = password
     mail(subject: 'Company Account is created', to:company.owner.email)
   end
 
