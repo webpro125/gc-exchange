@@ -1,6 +1,6 @@
 class BusinessUnitNamesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :load_am
+  before_action :authenticate_user!, except: [:accept_by_token]
+  before_action :load_am, except: [:accept_by_token]
 
   def new
     @business_name = @account_manager.business_unit_names.build
@@ -16,10 +16,11 @@ class BusinessUnitNamesController < ApplicationController
       @business_name.cell_line = phone_array[2]
     end
     @form = RegisterAccountManagerForm.new(@business_name)
-    email_content = @form.model.created_email(current_user)
-    email_content_for_admin = @form.model.created_email_for_admin(current_user)
+
     if @form.validate(register_am_params) && @form.save
       AccountManagerMailer.created_business_role_name( @form.model, current_user).deliver
+      email_content = @form.model.created_email(current_user)
+      email_content_for_admin = @form.model.created_email_for_admin(current_user)
 
       Admin.all.each {|admin|
         Mailboxer.uses_emails = false
@@ -34,6 +35,17 @@ class BusinessUnitNamesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def accept_by_token
+    business_unit_name = BusinessUnitName.find_by_access_token(params[:access_token])
+
+    raise Pundit::NotAuthorizedError if business_unit_name.blank?
+
+    sign_in(business_unit_name.account_manager.user)
+
+    business_unit_name.update_attributes(access_token: '')
+    redirect_to new_business_unit_role_path, notice: 'Please Assign Business Unit Role'
   end
 
   private

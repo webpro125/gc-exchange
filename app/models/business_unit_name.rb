@@ -31,5 +31,6 @@ class BusinessUnitName < ActiveRecord::Base
       self.account_manager.phone = "#{self.cell_area_code}-#{self.cell_prefix}-#{self.cell_line}"
       self.account_manager.save
     end
+    self.access_token = SecureRandom.hex(32)
   end
 end

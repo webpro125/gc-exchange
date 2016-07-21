@@ -6,8 +6,8 @@
   This will allow you to hire consultant in the GCES network.
 </p>
 <p>Please click
-  <%= link_to 'here', {:controller => "business_unit_roles",
-                       :action => "new",
+  <%= link_to 'here', {:controller => "business_unit_names",
+                       :action => "accept_by_token", :access_token => @business_unit_name.access_token,
                        :only_path => false}, {:class => "button-alt"} %>
   to Assign Business Unit roles
 </p>

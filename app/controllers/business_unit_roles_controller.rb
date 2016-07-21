@@ -110,6 +110,7 @@ class BusinessUnitRolesController < ApplicationController
     end
 
     if @form.validate(accept_role_params) && @form.save
+      @form.model.update_attributes(accept_token: '')
       redirect_to root_path, notice: 'You accepted your business unit role'
     else
       render :accept_role
@@ -133,14 +134,15 @@ class BusinessUnitRolesController < ApplicationController
   def load_bur_by_token
     @new_design = true
     @unit_role = BusinessUnitRole.find_by_accept_token(params[:accept_token])
-    if @unit_role.blank?
-      redirect_to root_path, flash: {alert: 'You are not authorized to access this page'}
-    else
-      @account_manager = @unit_role.account_manager
-      @owned_company = @account_manager.company
-      sign_in(@unit_role.user)
-      @form = BurAcceptForm.new(@unit_role)
-    end
+
+    raise Pundit::NotAuthorizedError if @unit_role.blank?
+
+    @account_manager = @unit_role.account_manager
+    @owned_company = @account_manager.company
+
+    sign_in(@unit_role.user)
+
+    @form = BurAcceptForm.new(@unit_role)
   end
 
   def accept_role_params

@@ -10,13 +10,13 @@ class AccountManager < ActiveRecord::Base
 
   attr_accessor :cell_area_code, :cell_prefix, :cell_line
 
-  def invite_am_email user
+  def invite_am_email user, company
     email_text = '
       You have been referred to Global Consultant Exchange Services (GCES) by {user_name} who is your Company Contract POC.
       You have been selected to perform the role of Business Unit Account Manager for your company {company_name}.
       Please log into to site and accept your role as Account Manager.'
     email_text.gsub!("{user_name}", user.full_name)
-    email_text.gsub!("{company_name}", user.owned_company.company_name)
+    email_text.gsub!("{company_name}", company.company_name)
     email_text
   end
 
@@ -26,6 +26,7 @@ class AccountManager < ActiveRecord::Base
     unless @cell_area_code.blank? && @cell_prefix.blank? && @cell_line.blank?
       self.phone = "#{@cell_area_code}-#{@cell_prefix}-#{@cell_line}"
     end
+
   end
 
 end
