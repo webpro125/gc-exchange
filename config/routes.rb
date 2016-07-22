@@ -208,9 +208,7 @@ Rails.application.routes.draw do
     get :autocomplete_user_email, :on => :collection
   end
 
-  resources :business_unit_names, only: [:new, :create] do
-
-  end
+  resources :business_unit_names
 
   resources :business_unit_roles, only: [:new, :create] do
     collection do
