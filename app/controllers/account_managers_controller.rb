@@ -19,18 +19,13 @@ class AccountManagersController < ApplicationController
     @form = InviteAccountManagerForm.new(account_manager)
     random_token = SecureRandom.hex(32)
 
-    generated_password = ''
-
     if @form.validate(send_invite_params)
+      user =  User.find_by_email(@form.email)
 
-      generated_password = Devise.friendly_token.first(8) if User.where(email:@form.email).first.blank?
-
-      user = User.where(email:@form.email).first_or_create! do |user|
-        user.password = generated_password
-        user.first_name = @form.first_name
-        user.last_name = @form.last_name
-        user.skip_confirmation!
+      if user.blank?
+        user = User.create_user(@form)
       end
+
       @form.user_id = user.id
       @form.access_token = random_token
     end
@@ -38,7 +33,7 @@ class AccountManagersController < ApplicationController
     if @form.validate(send_invite_params) && @form.save
 
       # 'Message was successfully sent'
-      CompanyMailer.delay.invite_account_manager(AccountManager.find(@form.id), generated_password)
+      CompanyMailer.delay.invite_account_manager(@form.model)
 
       redirect_to root_path, notice: I18n.t('controllers.sales_lead.create.success')
     else
@@ -60,10 +55,16 @@ class AccountManagersController < ApplicationController
 
     raise Pundit::NotAuthorizedError if @account_manager.blank?
 
-    sign_in(@account_manager.user)
+    user = @account_manager.user
 
-    @account_manager.update_attributes(access_token: '')
-    redirect_to new_business_unit_name_path, notice: 'Please Create Your Business Unit Name'
+    sign_in(user)
+
+    if user.system_created
+      redirect_to new_change_password_path(referrer: 'account_manager', token: params[:access_token])
+    else
+      @account_manager.update_attributes(access_token: '')
+      redirect_to new_business_unit_name_path, notice: 'Please Create Your Business Unit Name'
+    end
 
   end
 

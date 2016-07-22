@@ -9,12 +9,14 @@ class BusinessUnitNamesController < ApplicationController
 
   def create
     @business_name = @account_manager.business_unit_names.build
+
     unless @account_manager.phone.blank?
       phone_array = @account_manager.phone.to_s.split('-')
       @business_name.cell_area_code = phone_array[0]
       @business_name.cell_prefix = phone_array[1]
       @business_name.cell_line = phone_array[2]
     end
+
     @form = RegisterAccountManagerForm.new(@business_name)
 
     if @form.validate(register_am_params) && @form.save
