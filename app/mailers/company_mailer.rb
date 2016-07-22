@@ -6,10 +6,9 @@ class CompanyMailer < ActionMailer::Base
     mail(subject: 'New Company Registration Request')
   end
 
-  def invite_account_manager(account_manager, password)
+  def invite_account_manager(account_manager)
     @account_manager = account_manager
 
-    @password = password
     # mail(subject: 'Invite Account Manager', to:account_manager.email) do |format|
     #   format.html {
     #     render layout: 'company_mailer'

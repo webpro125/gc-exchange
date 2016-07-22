@@ -92,27 +92,21 @@ class Admin::CompaniesController < Admin::CompanyController
     @form = InviteAccountManagerForm.new(account_manager)
 
     random_token = SecureRandom.hex(32)
-    generated_password = Devise.friendly_token.first(8)
 
     if @form.validate(send_invite_params)
       user = User.find_by_email(@form.email)
 
       if user.blank?
-        generated_password = ''
+        user = User.create_user(@form)
       end
-      user = User.where(email:@form.email).first_or_create! do |user|
-        user.password = generated_password
-        user.first_name = @form.first_name
-        user.last_name = @form.last_name
-        user.skip_confirmation!
-      end
+
       @form.user_id = user.id
       @form.access_token = random_token
     end
 
     if @form.validate(send_invite_params) && @form.save
 
-      CompanyMailer.invite_account_manager(AccountManager.find(@form.id), generated_password).deliver
+      CompanyMailer.invite_account_manager(@form.model).deliver
       # 'Message was successfully sent'
       redirect_to admin_companies_path, notice: I18n.t('controllers.account_manager.invite.success')
     else

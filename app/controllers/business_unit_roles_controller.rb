@@ -12,8 +12,7 @@ class BusinessUnitRolesController < ApplicationController
 
   def create
     @new_design = true
-    # @unit_role = BusinessUnitRole.where(email: params[:business_unit_role][:email]).first
-    generated_password = Devise.friendly_token.first(8)
+
     accept_token = SecureRandom.hex(32)
 
     # if @unit_role.blank?
@@ -33,17 +32,10 @@ class BusinessUnitRolesController < ApplicationController
         end
       end
 
-      user = User.where(email:@unit_role.email).first
+      user = User.find_by_email(@unit_role.email)
+
       if user.blank?
-        user = User.create! do |u|
-          u.password = generated_password
-          u.first_name = @unit_role.first_name
-          u.last_name = @unit_role.last_name
-          u.email = @unit_role.email
-          u.skip_confirmation!
-        end
-      else
-        generated_password = ''
+        user = User.create_user(@unit_role)
       end
 
       @unit_role.user_id = user.id
@@ -53,20 +45,8 @@ class BusinessUnitRolesController < ApplicationController
       @unit_role.ra_accept = false
       @unit_role.aa_accept = false
 
-    # else
-    #
-    #   @unit_role.accept_token = accept_token
-    #   @unit_role.sa_accept = false
-    #   @unit_role.ra_accept = false
-    #   @unit_role.aa_accept = false
-    #
-    #   save_result = @unit_role.update_attributes(business_role_params)
-    #   user = @unit_role.user
-    #   generated_password = ''
-    # end
-
     if @unit_role1.valid? && @unit_role.save
-      AccountManagerMailer.delay.assigned_role(user, generated_password, accept_token)
+      AccountManagerMailer.assigned_role(user, accept_token).deliver
       assigned_role_text = ''
       if @unit_role.selection_authority
         assigned_role_text += 'Selection Authority  '
@@ -140,7 +120,13 @@ class BusinessUnitRolesController < ApplicationController
     @account_manager = @unit_role.account_manager
     @owned_company = @account_manager.company
 
-    sign_in(@unit_role.user)
+    user = @unit_role.user
+
+    sign_in(user)
+
+    if user.system_created
+      redirect_to new_change_password_path(referrer: 'business_unit_role', token: params[:accept_token])
+    end
 
     @form = BurAcceptForm.new(@unit_role)
   end
