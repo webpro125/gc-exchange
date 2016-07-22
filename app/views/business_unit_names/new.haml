@@ -23,6 +23,22 @@
                 = link_to_if(@owned_company.gsc.present?, @owned_company.gsc_file_name, download_gsc_path(@owned_company), target: '_blank') {}
               %li
                 = link_to_if(@owned_company.contract.present?, @owned_company.contract_file_name, download_contract_rider_path(@owned_company), target: '_blank') {}
+      - if @business_unit_names.length > 1
+        %section.taxonomy-units.air-bottom
+          %section.row.unit-maximized.connect-rule-up
+            %h2 Business Unit Names List
+            #bun_form_wrapper{style: 'display: none'}
+            %table.table-list.table-finance
+              %thead
+                %tr
+                  %th Business Unit Name
+                  %th Added Date
+                  %th Action+
+              %tbody#buns
+                - @business_unit_names.each do |bun|
+                  - next unless bun.persisted?
+                  = render 'business_unit_names/business_unit_name', business_unit_name: bun
+          %section.row.hidden
       %section.taxonomy-units
         %section.row.unit-maximized.connect-rule-up
           %section
@@ -39,15 +55,7 @@
                     for #{@owned_company.company_name}. To accept your role, you must register the Business Unit you plan to supervise online with GCES.
                 %figure.figure-business-unit
                   = image_tag "infographics_business_team_unit.png"
-              = simple_form_for(@form, method: :post,
-                url: business_unit_names_path, html: {class: 'theme-gces style-alternate align-left', id: 'reg_am_form'}) do |f|
-                = render 'shared/base_error', model: @form
-                = f.input :name, required: false, autofocus: true, placeholder: 'Company Business Unit Name',
-                  label: 'Enter Your Business Unit Name:', wrapper: :custom_input, input_wrapper_html: { class: 'icon-building' }
-                - if @account_manager.phone.blank?
-                  = f.input :phone, wrapper: :custom_phone_grid_input, label: 'Provide your Cell Phone Number:', required: false,
-                    placeholder: '000', as: :cell_phone_number
-                = button_tag 'Create Business Unit', type: 'submit', class: "button-cta button-primary icon-cr-arrow-right register-button"
+              = render 'business_unit_names/form', remote: false
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground
