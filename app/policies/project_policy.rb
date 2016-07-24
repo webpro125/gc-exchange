@@ -18,7 +18,7 @@ class ProjectPolicy < LoggedInPolicy
 
   def new?
     # user.is_a?(User) && user.projects.include?(record)
-    user.selection_authorities.any?
+    user.selection_authorities.any? && record.consultant.wizard_step == Wicked::FINISH_STEP
   end
 
   def edit?

@@ -19,7 +19,7 @@ class ChangePasswordsController < ApplicationController
         redirect_to new_account_manager_path, notice: 'Please Invite Account Manager for Your Company'
       elsif params[:referrer] == 'account_manager'
         AccountManager.find_by_access_token(params[:token]).update_attributes(access_token: '')
-        redirect_to new_business_unit_name_path, notice: 'Please Create Your Business Unit Name'
+        redirect_to new_business_unit_name_path
       elsif @referrer == 'business_unit_role'
         redirect_to accept_business_role_path(params[:token]), notice: 'Please Accept Your Business Unit Role'
       end

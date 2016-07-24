@@ -93,7 +93,7 @@ en:
         success: 'Company was successfully destroyed.'
         fail: 'Company is not be able to destroyed.'
       request_register:
-        success: 'You requested successfully.'
+        success: 'Thank you. <br/> Your request has been submitted.'
     user:
       create:
         success: 'User was successfully created.'
@@ -281,6 +281,7 @@ en:
       confirmations:
         delete: 'Are you sure you want to delete this government contractor?'
         delete_requested: 'Are you sure you want to delete this Requested Company?'
+      registration_request: 'Summary of User Requests to Register Client Companies'
     user:
       confirmations:
         delete: 'Are you sure you want to delete this user?'
@@ -290,3 +291,6 @@ en:
     article:
       confirmations:
         delete: 'Are you sure you want to delete this blog?'
+    change_password:
+      header: 'Please Create your Password'
+      submit_button: 'Establish Password'

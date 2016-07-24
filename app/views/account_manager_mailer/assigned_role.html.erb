@@ -1,6 +1,11 @@
-<p style="margin-bottom: 20px;">You are Invited to one Business Unit Role.</p>
+<p style="margin-bottom: 10px;">
+  Hello <%= @unit_role.user.full_name %>,
+  <br/>
+  Your Company Account Manager <%= @unit_role.account_manager.user.full_name %> has invited you join
+  the Business Unit <%= @unit_role.business_unit_name.name %>.
+</p>
 
-<p>Click <%= link_to 'here', {:controller => "business_unit_roles",
+<p>Please, Click <%= link_to 'here', {:controller => "business_unit_roles",
   :action => "accept_role",
-  :only_path => false, :accept_token => @accept_token}, {:class => "button-alt"} %> to login and Accept your role.
+  :only_path => false, :accept_token => @accept_token}, {:class => "button-alt"} %> to login and accept your new role on Global Consultant Exchange..
 </p>

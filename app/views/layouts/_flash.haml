@@ -18,7 +18,7 @@
             .modal-content
               .modal-scroller
                 %h1 Congratulations!
-                %p.type-description= value
+                %p.type-description= value.html_safe
                 = link_to 'Ok', '#', class: 'button-primary small', "data-modal-close" => ""
             %footer
               .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}

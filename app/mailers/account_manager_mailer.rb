@@ -1,8 +1,8 @@
 class AccountManagerMailer < ActionMailer::Base
   # include Roadie::Rails::Automatic
 
-  def assigned_role(user, accept_token)
-    @user = user
+  def assigned_role(unit_role, accept_token)
+    @unit_role = unit_role
     @accept_token = accept_token
     mail(subject: 'You are assigned', to: user.email)
   end

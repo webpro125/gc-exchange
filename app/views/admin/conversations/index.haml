@@ -20,3 +20,4 @@
             %span.pull-right.sent-date
               %strong Sent Date
           = render partial: 'conversation', collection: @conversations
+        = paginate @conversations

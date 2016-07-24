@@ -20,8 +20,12 @@ class BusinessUnitName < ActiveRecord::Base
       {business_unit_name}. The Account Manager for this Business Unit is {account_manager_name}'
     email_text.gsub!("{company_name}", self.account_manager.company.company_name)
     email_text.gsub!("{business_unit_name}", self.name)
-    email_text.gsub!("{account_manager_name}", self.account_manager.company.owner.full_name)
+    email_text.gsub!("{account_manager_name}", self.account_manager.user.full_name)
     email_text
+  end
+
+  def company
+    account_manager.company
   end
 
   private

@@ -28,11 +28,11 @@ class AccountManagersController < ApplicationController
 
       @form.user_id = user.id
       @form.access_token = random_token
+      @form.email_content.gsub!("<invited_user_name>", user.full_name)
     end
 
     if @form.validate(send_invite_params) && @form.save
 
-      # 'Message was successfully sent'
       CompanyMailer.delay.invite_account_manager(@form.model)
 
       redirect_to root_path, notice: I18n.t('controllers.sales_lead.create.success')

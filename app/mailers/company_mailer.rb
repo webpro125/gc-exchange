@@ -15,7 +15,7 @@ class CompanyMailer < ActionMailer::Base
     #   }
     #   format.text
     # end
-    mail(subject: 'Invite Account Manager', to:account_manager.email)
+    mail(subject: 'Invitation for Account Manager role in Global Consultant Exchange', to:account_manager.email)
   end
 
   def company_created(company)
