@@ -22,6 +22,7 @@ class BusinessUnitRole < ActiveRecord::Base
             # :uniqueness => { :case_sensitive => false, :scope => :business_unit_name_id },
             format: { with: RegexConstants::EMAIL,
                       message: I18n.t('activerecord.errors.messages.regex.email') }
+  # validates :business_unit_roles, uniqueness: { scope: [:email, :company_id] }
 
   validates :requisition_authority,
             :uniqueness => { :scope => :business_unit_name_id}, if: :requisition_authority
@@ -32,11 +33,19 @@ class BusinessUnitRole < ActiveRecord::Base
   def account_manager
     business_unit_name.account_manager
   end
+
+  def company
+    account_manager.company
+  end
+
   private
 
   def authority_required
     if !requisition_authority && !approval_authority && !selection_authority
       errors.add(:authority_required, "You need to assign at least one authority!")
+    end
+    if BusinessUnitRole.exists? ["company_id != ? AND email = ? AND id != ?", company_id, email, id.to_i]
+      errors.add( :email, 'already has been taken')
     end
   end
 

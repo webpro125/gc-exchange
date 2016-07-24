@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720212537) do
+ActiveRecord::Schema.define(version: 20160723233945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,9 +155,11 @@ ActiveRecord::Schema.define(version: 20160720212537) do
     t.string   "phone",                 limit: 32
     t.string   "accept_token"
     t.integer  "business_unit_name_id"
+    t.integer  "company_id"
   end
 
   add_index "business_unit_roles", ["business_unit_name_id"], name: "business_name_role_index", using: :btree
+  add_index "business_unit_roles", ["email", "company_id"], name: "index_business_unit_roles_on_email_and_company_id", using: :btree
   add_index "business_unit_roles", ["user_id"], name: "index_business_unit_roles_on_user_id", using: :btree
 
   create_table "certifications", force: true do |t|

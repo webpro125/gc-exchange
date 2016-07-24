@@ -35,6 +35,8 @@
           %thead
             %tr
               %th Full Name
+              %th Email
+              %th Phone Number
               %th Added Date
               %th Action
           %tbody
@@ -42,6 +44,8 @@
               - if am.persisted?
                 %tr
                   %td= am.full_name
+                  %td= am.email
+                  %td= am.phone
                   %td= am.created_at.to_date
                   %td
                     = link_to destroy_account_manager_admin_company_path(am), method: :delete,

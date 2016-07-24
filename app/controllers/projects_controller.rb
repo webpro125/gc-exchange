@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     @new_design = true
     @project = pundit_user.projects.build
     @project.build_work_location_address
-
+    @project.consultant_id = @consultant.id
     @form    = ProjectForm.new(@project)
 
     authorize @project

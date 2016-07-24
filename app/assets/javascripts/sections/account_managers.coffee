@@ -59,6 +59,10 @@ $ ->
       form_obj.submit()
     else
       return false
+  $('[data-name="invite-am-modal"] a.button-primary').click (e) ->
+    window.location.href = $(this).attr('data-target')
+  $('[data-name="invite-am-modal"] a.button-secondary').click (e) ->
+    window.location.href = $(this).attr('data-target')
   return
 
 read_image = (input, wrapClass) ->

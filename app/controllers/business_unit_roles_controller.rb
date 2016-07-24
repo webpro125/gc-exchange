@@ -17,6 +17,7 @@ class BusinessUnitRolesController < ApplicationController
 
     # if @unit_role.blank?
       @unit_role1 = BusinessUnitRole.new(business_role_params)
+      @unit_role1.company_id = @owned_company.id
 
       @unit_role = BusinessUnitRole.where(email: @unit_role1.email, business_unit_name_id: @unit_role1.business_unit_name_id).first unless @unit_role1.email.blank? && @unit_role1.business_unit_name_id.blank?
 
@@ -46,7 +47,7 @@ class BusinessUnitRolesController < ApplicationController
       @unit_role.aa_accept = false
 
     if @unit_role1.valid? && @unit_role.save
-      AccountManagerMailer.assigned_role(user, accept_token).deliver
+      AccountManagerMailer.assigned_role(@unit_role, accept_token).deliver
       assigned_role_text = ''
       if @unit_role.selection_authority
         assigned_role_text += 'Selection Authority  '
@@ -91,6 +92,10 @@ class BusinessUnitRolesController < ApplicationController
 
     if @form.validate(accept_role_params) && @form.save
       @form.model.update_attributes(accept_token: '')
+      sms_text = 'Thank you ' + current_user.full_name + ', \n ' +
+                 'You have successfully accepted your new Business Unit Role on Global Consultant Exchange.
+                 This will allow you to receive automated notifications about work authorizations in the future.'
+      send_sms(@form.model.phone, sms_text) unless @form.model.phone.blank?
       redirect_to root_path, notice: 'You accepted your business unit role'
     else
       render :accept_role

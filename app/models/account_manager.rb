@@ -12,6 +12,7 @@ class AccountManager < ActiveRecord::Base
 
   def invite_am_email user, company
     email_text = '
+      Hello <invited_user_name>,
       You have been referred to Global Consultant Exchange Services (GCES) by {user_name} who is your Company Contract POC.
       You have been selected to perform the role of Business Unit Account Manager for your company {company_name}.
       Please log into to site and accept your role as Account Manager.'

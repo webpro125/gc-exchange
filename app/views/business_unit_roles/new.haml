@@ -51,15 +51,15 @@
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Selection Authorities
                   %p Searches and selects consultants to work on projects, documents draft statement of work and other work agreement terms with consultant.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-refer'=> 'selection', 'data-modal-target'=> "assign-modal"} Assign Role
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Requisition Authority
                   %p Receives the draft SOW and preliminary terms from the Selection Authority. Then authors a Requisition to for Consultant to support the Client Company.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-refer'=> 'requisition', 'data-modal-target'=> "assign-modal"} Assign Role
                 .grid-4-12.unit-role.icon-profile2
                   %h2 Approval Authority
                   %p Approves the Statement of Work and other consulting terms resulting from the negotiation process, the issues PO authorizing work to start.
-                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-modal-target'=> "assign-modal"} Assign Role
+                  %a.button-cta.button-primary.small.modal-toggle{"data-type" => "cm-modal", 'data-refer'=> 'approval', 'data-modal-target'=> "assign-modal"} Assign Role
         %section.hidden
 %section.ui-modal{'data-name'=>"assign-modal"}
   .modal-box
