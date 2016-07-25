@@ -36,12 +36,13 @@ class ProjectsController < ApplicationController
     @new_design = true
     @project            = pundit_user.projects.build
     @project.build_work_location_address
+    @project.consultant = @consultant
     # @project.consultant = @consultant
 
     authorize @project
 
     @form = ProjectForm.new(@project)
-    @form.consultant_id = @consultant.id
+    # @form.consultant_id = @consultant.id
 
 
     if @form.validate(project_params) && @form.save

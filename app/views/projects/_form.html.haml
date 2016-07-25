@@ -19,7 +19,7 @@
       %h3 0. Select Business Unit Role
       = f.input :business_unit_role_id, label: false, as: :select, required: false,
           collection: BusinessUnitRole.own_selection_authorities(current_user.id),
-          label_method: :business_unit_name, value_method: :id, include_blank: false
+          label_method: :bun, value_method: :id, include_blank: false
     %section.card-section
       %h3 1. Name of Project
       = f.input :project_name, required: false, autofocus: true, label: false,
