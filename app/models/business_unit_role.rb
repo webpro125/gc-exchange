@@ -38,6 +38,10 @@ class BusinessUnitRole < ActiveRecord::Base
     account_manager.company
   end
 
+  def bun
+    business_unit_name.name
+  end
+
   private
 
   def authority_required
