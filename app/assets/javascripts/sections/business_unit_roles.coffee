@@ -9,7 +9,6 @@ $ ->
   # set business unit id on modal form in business unit role new page
   $('select#business_unit_names').change ->
     $('input#business_unit_role_business_unit_name_id').val($(this).val())
-
     return
 
   $('[data-modal-target="assign-modal"]').click ->
@@ -35,7 +34,7 @@ $ ->
   $('form#unit_role_form').on("ajax:success", (e, data, status, xhr) ->
     window.location.reload()
   ).on("ajax:error", (e, data, status, xhr) ->
-    $(event.data).render_form_errors( $.parseJSON(data.responseText) );
+    $(event.data).render_form_errors( $.parseJSON(data.responseText), 'business_unit_role' );
     return
   )
 
@@ -127,4 +126,12 @@ $ ->
     else $('input#tmp_cell_phone_number').val('')
     $('input#tmp_cell_phone_number').valid()
     return
+
+  $('a.show-workflow').click (e) ->
+    e.preventDefault()
+    $.get($(this).attr('href'), (response, status) ->
+      $('[data-name="assign-modal"] div.modal-scroller').html(response)
+      $('[data-name="assign-modal"]').show()
+      return
+    )
   return

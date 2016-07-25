@@ -35,7 +35,7 @@
             %p.section-description Add brief description here lorem ipsum sit amet quosque tandem set numa consect. Ipsum sit amet quosque tandem set numa consect, lorem ipsum sit amet quosque tandem set numa consect..
             %figure.figure-account-manager
               = image_tag "infographics_business_person_manager.png"
-          = simple_form_for(@form, html: {class: 'theme-gces style-alternate', id: 'am_form'}) do |f|
+          = simple_form_for(@form, remote: true, html: {class: 'theme-gces style-alternate', id: 'am_form'}) do |f|
             = render 'shared/base_error', model: @form
             = f.input :email, required: false, placeholder: 'Email', wrapper: :custom_input, label: false,
               :url => autocomplete_user_email_account_managers_path, :as => :autocomplete,
@@ -57,6 +57,21 @@
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground
+
+%section.ui-modal{"data-type"=>"cm-modal", "data-name" => "invite-am-modal", "data-modal-target"=>"invite-am-modal"}
+  .modal-box
+    %header
+      %h1 Congratulations!
+    .modal-content
+      .modal-scroller.align-center.p-b
+        %p.type-description
+          Thank you
+          %br
+          Would you like  to invite another Account Manager?
+        = link_to 'Yes', '#', class: 'button-primary small', 'data-target' => "#{new_account_manager_path}"
+        = link_to 'No', '#', class: 'button-secondary small', 'data-target' => "#{root_path}"
+    %footer
+      .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}
 
 - content_for :js do
   :javascript

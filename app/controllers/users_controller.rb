@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def workflow
     @new_design = true
+    render layout: false
   end
 
   private

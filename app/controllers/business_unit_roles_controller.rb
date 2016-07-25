@@ -1,6 +1,6 @@
 class BusinessUnitRolesController < ApplicationController
   before_action :authenticate_user!, except: [:autocomplete_user_email, :accept_role, :put_accept_role]
-  before_action :load_business_unit_name, only: [:new, :create]
+  before_action :load_business_unit_name, only: [:new, :create, :destroy]
   autocomplete :user, :email, :full => true, :extra_data => [:first_name, :last_name]
   before_action :load_bur_by_token, only: [:accept_role, :put_accept_role]
 
@@ -102,12 +102,19 @@ class BusinessUnitRolesController < ApplicationController
     end
   end
 
+  def destroy
+    @business_unit_role = BusinessUnitRole.find(params[:id])
+    unless @business_unit_role.destroy
+      render json: @business_unit_role.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def load_business_unit_name
     authorize :user, :load_business_unit_name?
     @account_manager = current_user.account_manager
-    @unit_roles = @account_manager.business_unit_roles
+    @business_unit_roles = @account_manager.business_unit_roles
     @owned_company = @account_manager.company
   end
 

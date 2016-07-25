@@ -6,6 +6,13 @@
 #= require autocomplete-rails
 
 $ ->
+  $('form#am_form').on("ajax:success", (e, data, status, xhr) ->
+    $('[data-name="invite-am-modal"]').show()
+  ).on("ajax:error", (e, data, status, xhr) ->
+    $(event.data).render_form_errors( $.parseJSON(data.responseText), 'account_manager' );
+    return
+  )
+
   $('input#account_manager_email').bind 'autocompleteselect', (event, ui) ->
 #    console.log(ui.item.id)
     $('input#account_manager_first_name').val(ui.item.first_name)

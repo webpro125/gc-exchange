@@ -34,10 +34,10 @@ class AccountManagersController < ApplicationController
     if @form.validate(send_invite_params) && @form.save
 
       CompanyMailer.delay.invite_account_manager(@form.model)
-
-      redirect_to root_path, notice: I18n.t('controllers.sales_lead.create.success')
+      render json: @form.model, status: :ok
+      # redirect_to root_path, notice: I18n.t('controllers.sales_lead.create.success')
     else
-      render :new, notice: @form.errors
+      render json: @form.errors, status: :unprocessable_entity
     end
   end
 

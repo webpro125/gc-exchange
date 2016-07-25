@@ -1,82 +1,61 @@
-- content_for :header do
-  %header#main-header{:role => "banner"}
-    = link_to 'GCES', root_path, class: 'site-brand'
-    .head-scroller
-      %nav.main-menu.menu-vertical{:role => "navigation"}
-        %ul
-          %li
-            %a{:href => ""} What we do
-          %li
-            %a{:href => ""} Join the Exchange
-          %li
-            %a{:href => ""} Community Forum
-          %li
-            %a{:href => ""} Tutorials
-          %li
-            %a{:href => ""} Education
-          %li
-            %a{:href => ""} Articles
-
-.page-content
-  %section.ui-box.automated-workflow-process
-    %header
-    .illustration-wrapper
-      .box-community
-        = image_tag 'svg/infographics/consultant.png', class: 'selected-consultant'
-        = image_tag 'svg/infographics/community.png', class: 'all-consultants'
-        = image_tag 'svg/infographics/community_on.png', class: 'all-consultants-on'
-        .community-label
-          %h2 Network of Consultants
-      .box-selection
-        .illustration-frame
-          = image_tag 'svg/infographics/person_sa.png'
-          .frame-circle
-        .illustration-content-bottom
-          %h2
-            Selection
-            %br/
-            Authority
-          %p Identifies &amp; Selects Best Consultant, then Creates Draft Work Agreement.
-      .box-requisition
-        .illustration-frame
-          = image_tag 'svg/infographics/person_ra.png'
-          .frame-circle
-        .illustration-content-bottom
-          %h2
-            Requisition
-            %br/
-            Authority
-          %p Creates Requisition &amp; Processes Draft Work Agreement
-      .box-approval
-        .illustration-frame
-          = image_tag 'svg/infographics/person_aa.png'
-          .frame-circle
-        .illustration-content-bottom
-          %h2
-            Approval
-            %br/
-            Authority
-          %p Reviews Project Requirements &amp; Approves Work Agreement
-      .box-work
-        .illustration-frame
-          = image_tag 'svg/infographics/doc_checked.png'
-          .frame-circle
-            .pending-label Work Pending
-        .illustration-content-bottom
-          %h2
-            Work
-            %br/
-            Authorized
-          %p
-            Consultant receives
-            %br/
-            approval to start work
-      .doc-draft
-        = image_tag 'svg/infographics/doc.svg'
-      .connection-one
-      .connection-two
-      .connection-three
-      .connection-four
-- content_for :footer do
-  %footer#main-footer{:role => "contentinfo"}
-    %p.site-credits &copy; 2015 Playground
+%section.ui-box.automated-workflow-process
+  .illustration-wrapper
+    .box-community
+      = image_tag 'svg/infographics/consultant.png', class: 'selected-consultant'
+      = image_tag 'svg/infographics/community.png', class: 'all-consultants'
+      = image_tag 'svg/infographics/community_on.png', class: 'all-consultants-on'
+      .community-label
+        %h2 Network of Consultants
+    .box-selection
+      .illustration-frame
+        = image_tag 'svg/infographics/person_sa.png'
+        .frame-circle
+      .illustration-content-bottom
+        %h2
+          Selection
+          %br/
+          Authority
+        %p Identifies &amp; Selects Best Consultant, then Creates Draft Work Agreement.
+    .box-requisition
+      .illustration-frame
+        = image_tag 'svg/infographics/person_ra.png'
+        .frame-circle
+      .illustration-content-bottom
+        %h2
+          Requisition
+          %br/
+          Authority
+        %p Creates Requisition &amp; Processes Draft Work Agreement
+    .box-approval
+      .illustration-frame
+        = image_tag 'svg/infographics/person_aa.png'
+        .frame-circle
+      .illustration-content-bottom
+        %h2
+          Approval
+          %br/
+          Authority
+        %p Reviews Project Requirements &amp; Approves Work Agreement
+    .box-work
+      .illustration-frame
+        = image_tag 'svg/infographics/doc_checked.png'
+        .frame-circle
+          .pending-label Work Pending
+      .illustration-content-bottom
+        %h2
+          Work
+          %br/
+          Authorized
+        %p
+          Consultant receives
+          %br/
+          approval to start work
+    .doc-draft
+      = image_tag 'svg/infographics/doc.svg'
+    .connection-one
+    .connection-two
+    .connection-three
+    .connection-four
+-#- content_for :footer do
+-#  %footer#main-footer{:role => "contentinfo"}
+-#    %p.site-credits &copy; 2015 Playground
