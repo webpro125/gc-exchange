@@ -130,8 +130,8 @@ $ ->
   $('a.show-workflow').click (e) ->
     e.preventDefault()
     $.get($(this).attr('href'), (response, status) ->
-      $('[data-name="assign-modal"] div.modal-scroller').html(response)
-      $('[data-name="assign-modal"]').show()
+      $('[data-name="workflow-modal"] div.modal-scroller').html(response)
+      $('[data-name="workflow-modal"]').show()
       return
     )
   return

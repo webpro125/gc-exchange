@@ -63,4 +63,8 @@ $(function() {
             modals.hide();
         }, 4000);
     }
+    $('section.ui-modal div.modal-close').click(function() {
+        $(this).closest('section.ui-modal').hide();
+    })
+
 });
