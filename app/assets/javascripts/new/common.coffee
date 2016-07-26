@@ -9,11 +9,11 @@
     @clear_previous_errors()
     return
 
-  $.fn.render_form_errors = (errors) ->
+  $.fn.render_form_errors = (errors, model) ->
     $form = this
     @clear_previous_errors()
     #model = @data('model')
-    model = 'business_unit_role'
+#    model = 'business_unit_role'
     # show error messages in input form-group help-block
     $.each errors, (field, messages) ->
       $input = $('input[name="' + model + '[' + field + ']"]')

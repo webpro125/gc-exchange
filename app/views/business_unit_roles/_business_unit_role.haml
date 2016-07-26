@@ -1,0 +1,16 @@
+%tr
+  %td{align: 'left'}= business_unit_role.user.full_name
+  %td{align: 'left'}= business_unit_role.user.email
+  %td{align: 'left'}= business_unit_role.business_unit_name.name
+  %td{align: 'left'}= business_unit_role.selection_authority
+  %td{align: 'left'}= business_unit_role.requisition_authority
+  %td{align: 'left'}= business_unit_role.approval_authority
+  %td{align: 'left'}= business_unit_role.sa_accept
+  %td{align: 'left'}= business_unit_role.ra_accept
+  %td{align: 'left'}= business_unit_role.aa_accept
+  %td{align: 'left'}= business_unit_role.created_at.to_date
+  %td{align: 'left'}
+    -#= link_to 'Edit', edit_business_unit_role_path(business_unit_role), remote: true, class: 'button-primary'
+    = link_to 'Remove', business_unit_role_path(business_unit_role),
+      remote: true, method: :delete, class: 'button-secondary',
+      data: { confirm: 'Are you sure you want to delete this Business Unit Role?' }

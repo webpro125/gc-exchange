@@ -23,6 +23,30 @@
                 = link_to_if(@owned_company.gsc.present?, @owned_company.gsc_file_name, download_gsc_path(@owned_company), target: '_blank') {}
               %li
                 = link_to_if(@owned_company.contract.present?, @owned_company.contract_file_name, download_contract_rider_path(@owned_company), target: '_blank') {}
+      - if @business_unit_roles.length > 1
+        %section.taxonomy-units.air-bottom
+          %section.row.unit-maximized.connect-rule-up
+            %h2 Business Unit Roles List
+            #bur_form_wrapper{style: 'display: none'}
+            %table.table-list.table-finance
+              %thead
+                %tr
+                  %th User Name
+                  %th User Email
+                  %th Business Unit Name
+                  %th SA
+                  %th RA
+                  %th AA
+                  %th SA Accepted
+                  %th RA Accepted
+                  %th AA Accepted
+                  %th Added Date
+                  %th Action+
+              %tbody#burs
+                - @business_unit_roles.each do |bur|
+                  - next unless bur.persisted?
+                  = render 'business_unit_roles/business_unit_role', business_unit_role: bur
+          %section.row.hidden
       %section.taxonomy-units
         %section.row.unit-maximized.connect-rule-up
           %header.unit-head.invalid
@@ -38,12 +62,12 @@
                 %h1.section-title Assign Unit Roles
                 %p.section-description.grid-8-12
                   Add brief description here lorem ipsum sit amet quosque tandem set numa consect. Ipsum sit amet quosque tandem set numa consect. Click on the button below if you want to learn more about
-                  = link_to workflow_users_path, style: "color: #7a7a7a;", target: '_blank' do
+                  = link_to workflow_users_path, style: "color: #7a7a7a;", target: '_blank', class: 'show-workflow' do
                     our systems automated workflows for
                     = succeed "." do
                       %strong.type-primary work authorizations
                   %br/
-                = link_to 'Learn More', workflow_users_path, class: 'button-primary small align-left', target: '_blank'
+                = link_to 'Learn More', workflow_users_path, class: 'show-workflow button-primary small align-left', target: '_blank'
                 %a.type-primary.hidden{:href => ""} Learn More About Work Authorization Automated Workflow
                 %figure.figure-business-unit
                   = image_tag 'infographics_unit_role2.png'
@@ -125,7 +149,14 @@
     %footer
       .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}
 
-
+%section.ui-modal{'data-name'=>"assign-modal"}
+  .modal-box
+    %header
+      %h1 Workflow
+    .modal-content
+      .modal-scroller
+    %footer
+      .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}
 
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}

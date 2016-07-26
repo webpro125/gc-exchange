@@ -210,7 +210,7 @@ Rails.application.routes.draw do
 
   resources :business_unit_names
 
-  resources :business_unit_roles, only: [:new, :create] do
+  resources :business_unit_roles, only: [:new, :create, :destroy] do
     collection do
       get :autocomplete_user_email
     end
