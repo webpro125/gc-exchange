@@ -22,6 +22,10 @@ class UsersController < ApplicationController
 
   def taxonomy
     @new_design = true
+    @user = current_user
+    authorize @user
+
+    @company = @user.company
   end
 
   private

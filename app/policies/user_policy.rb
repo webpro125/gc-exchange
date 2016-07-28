@@ -41,6 +41,6 @@ class UserPolicy < LoggedInPolicy
   end
 
   def taxonomy?
-
+    user.company.present?
   end
 end

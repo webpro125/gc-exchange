@@ -10,7 +10,9 @@ class AddCompanyDataToUser < ActiveRecord::Migration
       if user.owned_company.present?
         user.company_id = user.owned_company.id
       end
-      user.save!
+      if user.valid?
+        user.save!
+      end
     end
   end
 end
