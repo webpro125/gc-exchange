@@ -23,7 +23,7 @@
                 = link_to_if(@owned_company.gsc.present?, @owned_company.gsc_file_name, download_gsc_path(@owned_company), target: '_blank') {}
               %li
                 = link_to_if(@owned_company.contract.present?, @owned_company.contract_file_name, download_contract_rider_path(@owned_company), target: '_blank') {}
-      - if @business_unit_roles.length > 1
+      - if @business_unit_roles.length > 0
         %section.taxonomy-units.air-bottom
           %section.row.unit-maximized.connect-rule-up
             %h2 Business Unit Roles List
