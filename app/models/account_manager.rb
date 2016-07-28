@@ -1,6 +1,7 @@
 class AccountManager < ActiveRecord::Base
   include Nameable
-  before_save :store_phone
+  before_save :store_phone, prepend: true
+  before_destroy :check_user_company
 
   belongs_to :user, autosave: true
   belongs_to :company
@@ -27,7 +28,12 @@ class AccountManager < ActiveRecord::Base
     unless @cell_area_code.blank? && @cell_prefix.blank? && @cell_line.blank?
       self.phone = "#{@cell_area_code}-#{@cell_prefix}-#{@cell_line}"
     end
-
+    self.user.company_id = self.company_id
   end
 
+  def check_user_company
+    unless self.user.owned_company.present?
+      self.user.update_attributes(company_id: nil)
+    end
+  end
 end

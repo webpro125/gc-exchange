@@ -4,7 +4,7 @@ class Company < ActiveRecord::Base
   GLOBAL_CONSULTANT_EXCHANGE = 'Global Consultant Exchange'
   GCES_FEE = 10
 
-  belongs_to :owner, class_name: 'User', inverse_of: :owned_company
+  belongs_to :owner, class_name: 'User', inverse_of: :owned_company, autosave: true
   has_many :users
   accepts_nested_attributes_for :owner
 
@@ -14,6 +14,7 @@ class Company < ActiveRecord::Base
   mount_uploader :gsc, ResumeUploader, mount_on: :gsc_file_name
 
   before_create :store_default_values
+  before_destroy :check_user_company
 
   validates :company_name, length: { in: 2..512 }, presence: true
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i},
@@ -46,10 +47,27 @@ class Company < ActiveRecord::Base
   validates :gsc, presence: true, on: :create,
             file_size: { less_than: 10.megabytes },
             file_content_type: { allow: RegexConstants::FileTypes::AS_DOCUMENTS }
+  validate :authorize_company
 
   private
 
   def store_default_values
     self.access_token = SecureRandom.hex(32)
+    self.owner.update_attributes(company_id: owner_id)
+  end
+
+  def check_user_company
+    self.users.each do |user|
+      user.update_attributes(company_id: nil)
+    end
+  end
+
+  def authorize_company
+    if AccountManager.exists? ["email = ?", email]
+      errors.add( :email, 'already has been taken')
+    end
+    if BusinessUnitRole.exists? ["email = ?", email]
+      errors.add(:email, 'already has been taken')
+    end
   end
 end

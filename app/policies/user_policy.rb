@@ -39,4 +39,8 @@ class UserPolicy < LoggedInPolicy
   def load_business_unit_name?
     user.business_unit_names.any?
   end
+
+  def taxonomy?
+
+  end
 end
