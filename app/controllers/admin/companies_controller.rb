@@ -35,10 +35,10 @@ class Admin::CompaniesController < Admin::CompanyController
         CompanyMailer.company_created(@company).deliver
 
 
-        page_url = request.host || "drake.gces.staging.c66.me" + '/account_managers/invite'
-        sms_content = 'Thank you for signing a contract with GCES.
-                      Please log into the site and start assigning Business Unit Account Managers.'
-                      + " \n Link: " + page_url
+        page_url = (request.host || "drake.gces.staging.c66.me") + '/account_managers/invite'
+        sms_content = "Thank you for signing a contract with GCES.
+                      Please log into the site and start assigning Business Unit Account Managers.  \n
+                      Link: " + page_url
         send_sms(@company.cell_phone, sms_content) unless @company.cell_phone.blank?
 
         format.html { redirect_to admin_companies_path, notice: t('controllers.company.create.success') }

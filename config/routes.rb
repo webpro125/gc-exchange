@@ -224,6 +224,7 @@ Rails.application.routes.draw do
   resource :users, only: [] do
     get :registration_process
     get :workflow
+    get :taxonomy
   end
   # Non resource
   resources :project_agreements, only: [:index] do

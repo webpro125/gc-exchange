@@ -1,7 +1,7 @@
 class BusinessUnitRole < ActiveRecord::Base
 
   ASSIGNED_EMAIL_SUBJECT = 'Assigned Business Unit Role'
-  belongs_to :user, inverse_of: :business_unit_roles
+  belongs_to :user, inverse_of: :business_unit_roles, autosave: true
   belongs_to :business_unit_name
 
   scope :own_selection_authorities, -> (user_id) { where(selection_authority: true, user_id: user_id, sa_accept: true) }
@@ -9,7 +9,8 @@ class BusinessUnitRole < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   attr_accessor :cell_area_code, :cell_prefix, :cell_line
 
-  before_save :store_phone
+  before_save :store_phone, prepend: true
+  before_destroy :check_user_company
 
   validates :first_name, length: { in: 2..64 }, presence: true,
             format: { with: RegexConstants::Letters::AND_NUMBERS,
@@ -48,14 +49,27 @@ class BusinessUnitRole < ActiveRecord::Base
     if !requisition_authority && !approval_authority && !selection_authority
       errors.add(:authority_required, "You need to assign at least one authority!")
     end
-    if BusinessUnitRole.exists? ["company_id != ? AND email = ? AND id != ?", company_id, email, id.to_i]
-      errors.add( :email, 'already has been taken')
+    if BusinessUnitRole.exists? ["company_id != ? AND email = ? AND id != ?", company_id.to_i, email, id.to_i]
+      errors.add(:email, 'already has been taken')
+    end
+    if AccountManager.exists? ["company_id != ? AND email = ?", company_id.to_i, email]
+      errors.add(:email, 'already has been taken')
+    end
+    if Company.exists? ["id != ? AND email = ?", company_id.to_i, email]
+      errors.add(:email, 'already has been taken')
     end
   end
 
   def store_phone
     unless @cell_area_code.blank? && @cell_prefix.blank? && @cell_line.blank?
       self.phone = "#{@cell_area_code}-#{@cell_prefix}-#{@cell_line}"
+    end
+    self.user.company_id = self.company_id
+  end
+
+  def check_user_company
+    unless self.user.owned_company.present? && self.user.account_manager.present?
+      self.user.update_attributes(company_id: nil)
     end
   end
 end
