@@ -26,14 +26,16 @@
         - @company.business_unit_names.limit(4).each do |bun|
           - account_manager_assigned = false
           %section.entity-unit.connect-up{'data-section'=>"toggle-unit-#{bun.id}", 'data-toggle-container' => ''}
-            %header.ui-card.ui-card-taxonomy.has-label.ui-panel-toggle{"data-target" => "toggle-unit-#{bun.id}", "data-type" => "cm-toggle"}
+            %header.ui-card.ui-card-taxonomy.has-label.ui-panel-toggle{"data-target" => "toggle-unit-#{bun.id}",
+              "data-type" => "cm-toggle", class: (bur_exists(bun) ? '' : 'incomplete')}
               .card-label Business Unit
               .card-content
                 %h2.card-title= bun.name
               .card-footer.unit-stats
                 .unit-stat.icon-profile 5
                 .unit-stat.icon-doc 17
-            %article.unit-info.ui-panel.ui-tabs.is-open{'data-section'=>"toggle-unit-#{bun.id}", 'data-slide-open' => ''}
+            %article.unit-info.ui-panel.ui-tabs{'data-section'=>"toggle-unit-#{bun.id}",
+              'data-slide-open' => ''}
               %header.unit-info-header
                 %nav
                   %ul.menu-horizontal
