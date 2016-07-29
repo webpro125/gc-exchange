@@ -47,7 +47,7 @@ class BusinessUnitRolesController < ApplicationController
       @unit_role.aa_accept = false
 
     if @unit_role1.valid? && @unit_role.save
-      AccountManagerMailer.assigned_role(@unit_role, accept_token).deliver
+      AccountManagerMailer.delay.assigned_role(@unit_role, accept_token)
       assigned_role_text = ''
       if @unit_role.selection_authority
         assigned_role_text += 'Selection Authority  '

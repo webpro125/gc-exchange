@@ -9,7 +9,7 @@ class Company < ActiveRecord::Base
   accepts_nested_attributes_for :owner
 
   has_many :account_managers, dependent: :destroy
-
+  has_many :business_unit_names, through: :account_managers
   mount_uploader :contract, ResumeUploader, mount_on: :contract_file_name
   mount_uploader :gsc, ResumeUploader, mount_on: :gsc_file_name
 

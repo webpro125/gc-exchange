@@ -37,6 +37,7 @@
 //= require new/cm.workflow
 //= require new/cm.modal
 //= require new/cm.mapbox
+//= require new/cm.focus
 //= require new/handlebars.min
 //= require new/jquery.validate
 //= require new/additional-methods

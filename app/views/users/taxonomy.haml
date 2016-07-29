@@ -1,39 +1,4 @@
-- content_for :header do
-  %header#main-header{:role => "banner"}
-    = link_to 'GCES', root_path, class: 'site-brand'
-    .head-scroller
-      %nav.main-menu.menu-vertical{:role => "navigation"}
-        %ul
-          %li
-            %a{:href => ""} What we do
-          %li
-            %a{:href => ""} Join the Exchange
-          %li
-            %a{:href => ""} Community Forum
-          %li
-            %a{:href => ""} Tutorials
-          %li
-            %a{:href => ""} Education
-          %li
-            %a{:href => ""} Articles
-      %ul.qa-list{:style => "margin-top: 4rem;"}
-        %li.is-active
-          %span.ui-toggle{"data-target" => "qa-1", "data-type" => "cm-toggle"} What is a Draft Consultant Work Agreement?
-          .qa-content.ui-target.is-open{"data-section" => "qa-1"}
-            %p This is a sample of how to include answers in this qa list. Lorem ipsum sit amet quosque tandem numa lum consecter.
-        %li What is a Statement of Work?
-
-%header.page-header.dashboard-header
-  %nav.dashboard-menu{:role => "navigation"}
-    %ul.menu-horizontal
-      %li.active
-        %a{:href => "index-2.html"} Company
-      %li
-        %a{:href => ""} Projects
-      %li
-        %a{:href => ""} Reports
-      %li
-        %a{:href => ""} Account
+= render 'layouts/header'
 .page-content
   %section.entity-company.taxonomy-view
     %header.ui-box.taxonomy-head{"data-section" => "toggle-head", "data-toggle-container" => ""}
@@ -58,8 +23,104 @@
               = link_to_if(@company.contract.present?, @company.contract_file_name, download_contract_rider_path(@company), target: '_blank') {}
     %section.taxonomy-units
       %section.row.set-4.connect-rule-up
-        %section.entity-unit.connect-up{'data-section'=>"toggle-unit-1", 'data-toggle-containe' => ''}
-
+        - @company.business_unit_names.limit(4).each do |bun|
+          - account_manager_assigned = false
+          %section.entity-unit.connect-up{'data-section'=>"toggle-unit-#{bun.id}", 'data-toggle-container' => ''}
+            %header.ui-card.ui-card-taxonomy.has-label.ui-panel-toggle{"data-target" => "toggle-unit-#{bun.id}", "data-type" => "cm-toggle"}
+              .card-label Business Unit
+              .card-content
+                %h2.card-title= bun.name
+              .card-footer.unit-stats
+                .unit-stat.icon-profile 5
+                .unit-stat.icon-doc 17
+            %article.unit-info.ui-panel.ui-tabs.is-open{'data-section'=>"toggle-unit-#{bun.id}", 'data-slide-open' => ''}
+              %header.unit-info-header
+                %nav
+                  %ul.menu-horizontal
+                    %li.is-active.tab-toggle
+                      %a{:href => ""} Unit Roles
+                    %li.tab-toggle
+                      %a{:href => ""} Consultant
+                    %li.tab-toggle
+                      %a{:href => ""} Activity
+                    %li.tab-toggle
+                      %a{:href => ""} Projects
+                    %li.tab-toggle
+                      %a{:href => ""} Reports
+              .tab-panel
+                %table.table-blocks.bur-table{width: '100%'}
+                  %thead
+                    %tr
+                      %th{:width => "50%"}
+                      %th.permission-selection.align-center{:width => "7%"}
+                        .ui-tag.tag-role SA
+                      %th.permission-selection.align-center{:width => "7%"}
+                        .ui-tag.tag-role RA
+                      %th.permission-selection.align-center{:width => "7%"}
+                        .ui-tag.tag-role AA
+                  %tbody
+                    - bun.business_unit_roles.each do |bur|
+                      - if bur.user.id == bun.account_manager.user.id
+                        - account_manager_assigned = true
+                      %tr{class: (account_manager_assigned ? 'highlight' : '')}
+                        %td.role-info
+                          %span.user-thumbnail.icon-profile2
+                          %span= bur.user.full_name
+                        %td.role-selection
+                          .ui-checkbox.small
+                            = check_box_tag 'sa', '', (bur.selection_authority ? true : false), disabled: true
+                            %label{:for => "test04"}
+                        %td.role-requisition
+                          .ui-checkbox.small
+                            = check_box_tag 'ra', '', (bur.requisition_authority ? true : false), disabled: true
+                            %label{:for => "test05"}
+                        %td.role-approval
+                          .ui-checkbox.small
+                            = check_box_tag 'aa', '', (bur.approval_authority ? true : false), disabled: true
+                            %label{:for => "test06"}
+                    - unless account_manager_assigned
+                      %tr.highlight
+                        %td.role-info
+                          %span.user-thumbnail.icon-profile2
+                          %span= bun.account_manager.user.full_name
+                          %span.ui-tag.xsmall Account Manager
+                        %td.role-selection
+                          .ui-checkbox.small
+                            = check_box_tag 'sa', '', false, disabled: true
+                            %label{:for => "test01"}
+                        %td.role-requisition
+                          .ui-checkbox.small
+                            = check_box_tag 'ra', '', false, disabled: true
+                            %label{:for => "test02"}
+                        %td.role-approval
+                          .ui-checkbox.small
+                            = check_box_tag 'aa', '', false, disabled: true
+                            %label{:for => "test03"}
+                  %tfoot
+                    %tr
+                      %td{:colspan => "4"}
+                        = link_to 'Assign New Business Role', new_business_unit_role_path(bun_id: bun.id), class: 'add-block'
+    %footer.taxonomy-footer
+      = link_to new_business_unit_name_path do
+        .add-unit.action-edit.icon-plus
+    .connect-pipe
 - content_for :footer do
   %footer#main-footer{:role => "contentinfo"}
     %p.site-credits &copy; 2015 Playground
+- content_for :js do
+  :javascript
+    (function () {
+      $(function () {
+        var eventEmitter = $(document);
+
+        eventEmitter.on('cm.toggle.close', function (event, data) {
+          $('.entity-taxonomy').removeClass('is-open');
+        });
+
+        eventEmitter.on('cm.toggle.open', function (event, data) {
+          if (data['toggle-head'] === undefined) {
+            $('.entity-taxonomy').addClass('is-open');
+          }
+        });
+      });
+    })();
