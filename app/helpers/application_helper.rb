@@ -137,4 +137,11 @@ module ApplicationHelper
     end
   end
 
+  def bur_exists bun
+    burs = bun.business_unit_roles
+    if burs.find_by_selection_authority(true) && burs.find_by_requisition_authority(true) && burs.find_by_approval_authority(true)
+      true
+    else false
+    end
+  end
 end
