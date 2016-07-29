@@ -10,13 +10,13 @@
                 maxZoom: 9,
                 zoom: 7,
                 zoomControl: false,
-                center: [34, -96],
+                center: [30, -85],
                 maxBounds: [[70, -159], [3, -43]]
             },
             users: {
-                endpoint: '/api/geo_users.json',
+                endpoint: 'https://drake.gces.staging.c66.me/api/geo_users.json',
                 icon: {
-                    iconUrl: 'mapbox/images/svg/pin.svg',
+                    iconUrl: 'images/svg/pin.svg',
                     iconSize: [40, 40],
                     className: 'single-pin'
                 },
@@ -27,9 +27,9 @@
             },
             waves: {
                 endpoint: {
-                    9: 'mapbox/js/resources/geojson/waves-9.geojson',
-                    8: 'mapbox/js/resources/geojson/waves-8.geojson',
-                    7: 'mapbox/js/resources/geojson/waves-7.geojson'
+                    9: 'js/resources/geojson/waves-9.geojson',
+                    8: 'js/resources/geojson/waves-8.geojson',
+                    7: 'js/resources/geojson/waves-7.geojson'
                 }
             }
         };
@@ -53,8 +53,6 @@
         L.mapbox.accessToken = 'pk.eyJ1IjoiZ2NlcyIsImEiOiJjaW5hZHZjMGwwaDc3djBrcTVtZDB4dTB6In0.CNlYH0qbhmfn46jOgWnuNg';
 
         var map = L.mapbox.map('map', 'gces.707d3d74', options.map);
-
-        map.setZoom(5);
 
         new L.Control.Zoom({position: 'bottomright'}).addTo(map);
 
