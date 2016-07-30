@@ -53,7 +53,6 @@ class Company < ActiveRecord::Base
 
   def store_default_values
     self.access_token = SecureRandom.hex(32)
-    self.owner.update_attributes(company_id: owner_id)
   end
 
   def check_user_company
