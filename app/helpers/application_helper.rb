@@ -139,9 +139,10 @@ module ApplicationHelper
 
   def bur_exists bun
     burs = bun.business_unit_roles
-    if burs.find_by_selection_authority(true) && burs.find_by_requisition_authority(true) && burs.find_by_approval_authority(true)
+    if burs.exists?(selection_authority: true, sa_accept: true) &&
+        burs.exists?(requisition_authority: true, ra_accept: true) &&
+        burs.exists?(approval_authority: true, aa_accept: true)
       true
-    else false
-    end
+    else false end
   end
 end
