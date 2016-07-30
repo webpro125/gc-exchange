@@ -31,7 +31,7 @@ class Admin::CompaniesController < Admin::CompanyController
 
     respond_to do |format|
       if @company.save
-
+        @company.owner.update_attributes(company_id: @company.id)
         CompanyMailer.company_created(@company).deliver
 
 
