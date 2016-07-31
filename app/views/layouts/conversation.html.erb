@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Global Consultant Exchange" %></title>
+
+    <%= stylesheet_link_tag style_path "application" %>
+    <%= stylesheet_link_tag 'debug' if development? %>
+    <%= stylesheet_link_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets.find_asset("sections/#{controller_name}.css") %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <!--[if lte IE 8]><%= javascript_include_tag 'jqery.flot/excanvas.min' %><![endif]-->
+    <%= javascript_include_tag style_path "application" %>
+    <%= csrf_meta_tags %>
+    <%= google_webfonts_init({ google: ['Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic'] }) %>
+    <%= yield :css %>
+</head>
+
+<body class="<%= yield(:body_class) %>">
+    <div id="site-wrapper">
+      <%= yield :header %>
+      <main id="main-content" class="message-center">
+        <%= render 'layouts/flash' %>
+        <%= yield %>
+      </main>
+      <%= yield :footer %>
+      <%= render 'layouts/google_analytics' unless Rails.env.test? %>
+      <%= javascript_include_tag "sections/#{controller_name}" if GlobalConsultantExchange::Application.assets.find_asset("sections/#{controller_name}.js") %>
+      <%= yield :js %>
+    </div>
+</body>
+</html>

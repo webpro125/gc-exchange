@@ -123,6 +123,13 @@
             font-weight: 600;
         }
         
+        &:hover {
+            a {
+                color: #000;
+                transition: color 0.2s ease-out;
+            }
+        }
+        
         &.active,
         &.is-active {
             a {

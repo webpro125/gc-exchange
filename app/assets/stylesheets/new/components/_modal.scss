@@ -64,7 +64,7 @@
     }
 
 	.modal-close {
-        @include icon($icon: glyph(cr-close), $size: rem(80px), $icon-size: 1.75rem, $type: 'sq');
+        @include icon($icon: glyph(cr-cross-light), $size: rem(80px), $icon-size: 1.75rem, $type: 'sq');
         position: absolute;
         top: 0;
         right: 0;

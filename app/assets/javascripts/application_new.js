@@ -42,6 +42,7 @@
 //= require new/jquery.validate
 //= require new/additional-methods
 //= require new/main
+//= require new/cm.message-center
 //= require new/common
 
 $(function() {

@@ -14,6 +14,9 @@ class ConversationsController < ApplicationController
     else
       @messages ||= current_user.mailbox.trash.page(params[:page])
     end
+    @new_design = true
+    render layout: 'conversation'
+
   end
 
   def new

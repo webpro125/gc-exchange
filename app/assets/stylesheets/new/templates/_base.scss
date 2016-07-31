@@ -117,6 +117,18 @@ body {
         &.version2 {
             display: none;
         }
+        
+        &.dashboard {
+            height: 3.75rem;
+            min-height: 3.75rem !important;
+            position: absolute;
+        }
+    }
+    
+    @include responsive($max-width: 661px) {
+        &.dashboard {
+            position: fixed;
+        }
     }
 }
 
