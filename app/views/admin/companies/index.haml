@@ -16,12 +16,16 @@
           %thead
             %tr
               %th Company
+              %th Client Company POC
+              %th Email Address
               %th Added Date
               %th Action+
           %tbody
             - @companies.each do |company|
               %tr
                 %td= company.company_name
+                %td= company.owner.full_name
+                %td= company.owner.email
                 %td= company.created_at.to_date
                 %td
                   = link_to invite_account_manager_admin_company_path(company), :class => 'btn btn-xs btn-success' do

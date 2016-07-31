@@ -52,7 +52,7 @@
           %header.unit-head.invalid
             %form
               - if @account_manager.business_unit_names.count == 1
-                %input{placeholder: "Concept Design", type: "text", value: "#{@account_manager.business_unit_names.first.name}", id: 'business_unit_name'}
+                %input{placeholder: "Concept Design", type: "text", value: "#{@account_manager.business_unit_names.first.name}", id: 'business_unit_name', disabled: true}
               - else
                 = select_tag "business_unit_names",
                   options_from_collection_for_select(@account_manager.business_unit_names.order(id: :asc), "id", "name")

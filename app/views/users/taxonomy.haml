@@ -54,12 +54,9 @@
                   %thead
                     %tr
                       %th{:width => "50%"}
-                      %th.permission-selection.align-center{:width => "7%"}
-                        .ui-tag.tag-role SA
-                      %th.permission-selection.align-center{:width => "7%"}
-                        .ui-tag.tag-role RA
-                      %th.permission-selection.align-center{:width => "7%"}
-                        .ui-tag.tag-role AA
+                      %th{:width => "12.5%"} Selection Authority
+                      %th{:width => "12.5%"} Requisition Authority
+                      %th{:width => "12.5%"} Approval Authority
                   %tbody
                     - bun.business_unit_roles.each do |bur|
                       - if bur.user.id == bun.account_manager.user.id
