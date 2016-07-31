@@ -1,41 +1,49 @@
-- if @box == 'trash'
-  = link_to 'Empty trash', empty_trash_conversations_path, class: 'button tiny alert',
-    method: :delete, data: {confirm: 'Are you sure?'}
-%ul.nav.nav-tabs.custom
-  = mailbox_section 'inbox', @box
-  = mailbox_section 'sent', @box
-  = mailbox_section 'trash', @box
-.message-inbox
-  - conversations.each do |conversation|
-    %div{:class => "row #{conversation.is_unread?(pundit_user) ? '' : 'read'}"}
-      .medium-8.columns
-        - message = conversation.messages.first
-        %h5
-          -#- if receiver_side_conversation? conversation
-          - if @box == 'inbox'
-            - if conversation.originator.class.name != 'Admin'
-              = "#{conversation.originator.full_name} #{conversation.originator.company.present? ? ' - ' + conversation.originator.company.company_name : ''}"
-            - else
-              = "#{conversation.originator.full_name + ' - Admin'}"
-          - else
-            -#- user = conversation.recipients.select { |r| r.is_a? User }.reject { |p| p == current_user }.first
-            - user = conversation.recipients.reject { |p| p == current_user }.first
-            -#= link_to consultant_path(consultant) do
-            -#  = image_tag(consultant.profile_image.url(:thumb),
-            -#    class: 'th profile-thumb-mini')
-            = user.full_name
-        %h6
-          = link_to conversation.subject, conversation_path(conversation)
-        %p
-          = link_to truncate(conversation.messages.last.body, length: 100),
-            conversation_path(conversation)
-      .medium-4.columns
-        %p.right
-          = conversation.updated_at.strftime("%B %d")
-        %p.right
-          - if conversation.is_trashed?(pundit_user)
-            = link_to 'Restore', restore_conversation_path(conversation), class: 'button primary tiny', method: :post
-          - else
-            = link_to 'Move to Trash', conversation_path(conversation), class: 'button alert tiny',
-              method: :delete, data: {confirm: 'Are you sure?'}
-  = paginate conversations
+-#- if @box == 'trash'
+-#  = link_to 'Empty trash', empty_trash_conversations_path, class: 'button tiny alert',
+-#    method: :delete, data: {confirm: 'Are you sure?'}
+-#%ul.nav.nav-tabs.custom
+-#  = mailbox_section 'inbox', @box
+-#  = mailbox_section 'sent', @box
+-#  = mailbox_section 'trash', @box
+-#.message-inbox
+-#  - conversations.each do |conversation|
+-#    %div{:class => "row #{conversation.is_unread?(pundit_user) ? '' : 'read'}"}
+-#      .medium-8.columns
+-#        - message = conversation.messages.first
+-#        %h5
+-#          -#- if receiver_side_conversation? conversation
+-#          - if @box == 'inbox'
+-#            - if conversation.originator.class.name != 'Admin'
+-#              = "#{conversation.originator.full_name} #{conversation.originator.company.present? ? ' - ' + conversation.originator.company.company_name : ''}"
+-#            - else
+-#              = "#{conversation.originator.full_name + ' - Admin'}"
+-#          - else
+-#            -#- user = conversation.recipients.select { |r| r.is_a? User }.reject { |p| p == current_user }.first
+-#            - user = conversation.recipients.reject { |p| p == current_user }.first
+-#            -#= link_to consultant_path(consultant) do
+-#            -#  = image_tag(consultant.profile_image.url(:thumb),
+-#            -#    class: 'th profile-thumb-mini')
+-#            = user.full_name
+-#        %h6
+-#          = link_to conversation.subject, conversation_path(conversation)
+-#        %p
+-#          = link_to truncate(conversation.messages.last.body, length: 100),
+-#            conversation_path(conversation)
+-#      .medium-4.columns
+-#        %p.right
+-#          = conversation.updated_at.strftime("%B %d")
+-#        %p.right
+-#          - if conversation.is_trashed?(pundit_user)
+-#            = link_to 'Restore', restore_conversation_path(conversation), class: 'button primary tiny', method: :post
+-#          - else
+-#            = link_to 'Move to Trash', conversation_path(conversation), class: 'button alert tiny',
+-#              method: :delete, data: {confirm: 'Are you sure?'}
+-#  = paginate conversations
+- conversations.each do |conversation|
+  %li.message-entity-preview.is-active{"data-message-target-id" => "1"}
+    .message-from Robert Smith
+    .message-timestamp 06/15
+    .message-subject Job Offer
+    .message-summary Lorem ipsum sit amet quosque tandem num set const set perspiciatis ipsum...
+    .message-markers
+    .ui-marker.unread

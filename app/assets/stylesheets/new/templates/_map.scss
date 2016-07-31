@@ -52,9 +52,20 @@
         position: relative;
         border-radius: 100%;
         vertical-align: top;
+        
+        img[src*="medium_default_profile"] {
+            display: none;
+        }
+        
+        img {
+            z-index: 5;
+            position: relative;
+        }
 
         &:before {
             display: block;
+            font-family: $font-glyphs;
+            content: glyph(profile);
             width: rem(40px);
             height: rem(40px);
             line-height: rem(40px);
@@ -63,7 +74,8 @@
             color: #FFF;
             position: absolute;
             top: 0;
-            left: 2px;
+            left: 1px;
+            z-index: 1;
         }
     }
 
@@ -210,9 +222,14 @@
     }
 }
 
+img {
+    &.leaflet-tile.leaflet-tile-loaded {
+        margin-top: 16px;
+    }
+}
+
 .main-content {
     &.page-landing {
-        
         &:before {
             display: block;
             content: "";
@@ -225,7 +242,7 @@
             z-index: 50;
             pointer-events: none;
         }
-        
+
         .landing-site-brand {
             width: 15.625rem;
             height: 3.125rem;
@@ -271,12 +288,12 @@
 
             }
         }
-        
+
         &.map-on {
             &:before {
                 display: none;
             }
-            
+
             .landing-site-brand {
                 width: 15.625rem;
                 height: 3.125rem;
@@ -288,12 +305,12 @@
                     font-size: 2.25rem;
                 }
             }
-            
+
             .landing-content {
                 display: none;
             }
         }
-        
+
     }
 }
 
@@ -313,7 +330,7 @@
         content: glyph(menu);
         font-size: 1.35rem;
     }
-    
+
     &.is-active {
         &:before {
             content: glyph(cross);
@@ -340,7 +357,7 @@
     padding-top: 1.125rem;
     margin-top: 1.125rem;
     position: relative;
-    
+
     .page-count {
         display: block;
         width: calc(98% - 2.5rem);
@@ -351,12 +368,12 @@
         position: absolute;
         bottom: 0;
         left: 1.25rem;
-        
+
         .page-number {
             font-weight: 600;
         }
     }
-    
+
     .prev,
     .next {
         display: block;
@@ -365,7 +382,7 @@
         position: absolute;
         bottom: 0;
         text-align: center;
-        
+
         &:before {
             display: block;
             width: 1.25rem;
@@ -375,7 +392,7 @@
             font-size: 1.25rem;
             color: color(primary-light);
         }
-        
+
         &:hover {
             &:before {
                 color: color(primary-darker);
@@ -383,18 +400,18 @@
             }
         }
     }
-    
+
     .prev {
         left: 0;
-        
+
         &:before {
             content: glyph(arrow-left);
         }
     }
-    
+
     .next {
         right: 0;
-        
+
         &:before {
             content: glyph(arrow-right);
         }
@@ -406,19 +423,19 @@
     width: 30%;
     height: 2.5rem;
     padding: 0 2.5rem;
-    
+
     box-sizing: border-box;
     position: absolute;
     top: 1rem;
     right: 0;
     z-index: 100;
-    
+
     .search-form {
         padding-right: 3rem;
         position: relative;
         box-shadow: inset 0 0 0 1px rgba(color(primary-light), 0.5);
         border-radius: size(border-radius);
-        
+
         input[type="text"] {
             background: none;
             height: 2.5rem;
@@ -471,17 +488,17 @@
             }
         }
     }
-    
+
     &.focus,
     &:hover {
-        
+
         .search-form {
             background: #FFF;
             box-shadow: none;
             transition: background 0.15s ease-out;
 
             input[type="text"] {
-            
+
             }
 
             button {
@@ -492,14 +509,14 @@
             }
         }
     }
-    
+
     &.is-on {
         .search-form {
             margin-bottom: 1.25rem;
             padding-bottom: 1.25rem;
             border-bottom: 2px solid rgba(color(primary-light), 0.5);
         }
-        
+
         .search-results {
             display: block;
             width: 30%;
@@ -512,21 +529,21 @@
             right: 0;
             z-index: -1;
             box-shadow: -16px 0 8px 0 rgba(color(primary-darker), 0.125);
-            
+
             .consultant-info {
                 cursor: pointer;
-                
+
                 .consultant-name {
                     color: color(primary);
                 }
             }
-            
+
             .search-results-scroller {
                 display: block;
                 width: 100%;
                 height: 100%;
                 overflow-y: scroll;
-                
+
                 &:before {
                     display: block;
                     content: "";
@@ -539,16 +556,16 @@
                     z-index: 10;
                     box-shadow: 0 20px 8px 0 rgba(#FFF,0.9);
                 }
-                
+
                 .consultant-wrapper {
                     margin-top: 1rem;
-                    
+
                     &:first-of-type {
                         margin-top: 3rem;
                     }
                 }
             }
-            
+
             .close-search-results {
                 display: block;
                 width: 2.5rem;
@@ -560,7 +577,7 @@
                 background: #FFF;
                 border-radius: size(border-radius);
                 cursor: pointer;
-                
+
                 &:before {
                     width: 2.5rem;
                     height: 2.5rem;
@@ -570,7 +587,7 @@
                     text-align: center;
                     margin-left: 0.75rem;
                 }
-                
+
                 &:hover {
                     &:before {
                         color: color(primary-darker);
@@ -578,7 +595,7 @@
                     }
                 }
             }
-        }        
+        }
     }
 }
 
@@ -595,7 +612,7 @@
     transition: scale 0.75s ease-out;
     margin-top: 2.5rem;
     //color: color(primary-darker);
-    
+
     .subline {
         display: block;
         text-transform: capitalize;
@@ -604,12 +621,12 @@
         letter-spacing: 1px;
         color: color(primary-light);
     }
-    
+
     &.consultants {
         margin-right: 2rem;
     }
-    
-    
+
+
     &:hover {
         @include scale(1.125);
         transition: scale 0.5s ease-out;
@@ -624,24 +641,3 @@
     margin-left: 2rem;
     margin-top: 1rem;
 }
-
-/*
-
-<section class="page-landing">
-        <header>
-            <h1>GCES</h1>
-        </header>
-        <article>
-            <h2>Join Our Community of 253 Members</h2>
-            <a class="button-landing consultants" href="">
-                <span>Consultants</span>
-                <span class="subline">Sell Your Services</span>
-            </a>
-            <a class="button-landing companies" href="">
-                <span>Companies</span>
-                <span class="subline">Buy Services</span>
-            </a>
-        </article>
-    </section>
-
-*/

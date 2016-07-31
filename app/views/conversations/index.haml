@@ -1,2 +1,51 @@
-%h1 Inbox
-= render 'conversations/inbox', conversations: @messages
+- content_for :header do
+  %header#main-header.dashboard{:role => "banner"}
+    = link_to 'GCES', root_path, class: 'site-brand version2'
+    %nav.main-menu.menu-horizontal{:role => "navigation"}
+      %ul
+        %li
+          %a{:href => ""} Main Link
+        %li
+          %a{:href => ""} Main Link
+        %li
+          %a{:href => ""} Main Link
+        %li
+          %a{:href => ""} Main Link
+
+%header.message-center-header
+  %nav
+    %ul.menu-vertical.menu-style-2
+      = mailbox_section 'inbox', @box
+      -#%li.active
+      -#  %a{:href => ""}
+      -#    Inbox
+      -#    %span.stat-count 32
+      %li
+        %a{:href => ""} Sent
+      %li
+        %a{:href => ""} Flagged
+      %li
+        %a{:href => ""} Trash
+    %a.message-write.icon-write{:href => "", :title => "Create Message"} Create Message
+    .go-back.icon-arrow-left Back
+%section.page-content.message-center-content
+  %section.message-selection
+    %header
+      .sort-by
+        Sort by
+        %span.dropdown-toggle.type-dark.icon-arrow-down Date
+      .mini-search
+        %form
+          %input{:type => "text"}
+          %input{:type => "submit"}
+    %ul.list-blocks.list-messages
+      = render 'conversations/inbox', conversations: @messages
+  %section.message-thread
+    %header
+      %ul.menu-horizontal
+        %li
+          %a.message-reply.icon-reply-3{:href => ""} Reply
+        %li
+          %a.message-flag.icon-flag-2{:href => ""} Flag
+        %li
+          %a.message-delete.icon-trashbin-full{:href => ""} Delete
