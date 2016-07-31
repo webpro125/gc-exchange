@@ -4,7 +4,9 @@ class AccountManagerMailer < ActionMailer::Base
   def assigned_role(unit_role, accept_token)
     @unit_role = unit_role
     @accept_token = accept_token
-    mail(subject: 'You are assigned', to: @unit_role.user.email)
+    @account_manager = @unit_role.account_manager
+    subject = @account_manager.user.full_name + ' has invited you to join his Business Unit on Global Consultant Exchange'
+    mail(subject: subject, to: @unit_role.user.email)
   end
 
   def created_business_role_name(business_unit_name, user)

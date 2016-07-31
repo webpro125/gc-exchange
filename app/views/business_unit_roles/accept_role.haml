@@ -91,7 +91,7 @@
                 %h3.align-center Hello #{current_user.full_name}
                 %p.section-description
                   You were invited by
-                  %span.type-primary= @owned_company.owner.full_name
+                  %span.type-primary= @account_manager.user.full_name
                   to be an
                   %span.type-primary #{get_unit_name(@unit_role)}.
                   To accept your role, please click the button below. If you want to receive text notifications from GCES, please provide your cellphone number below.
