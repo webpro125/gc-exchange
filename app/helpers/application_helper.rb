@@ -93,20 +93,38 @@ module ApplicationHelper
     current_user
   end
 
-  def mailbox_section(title, current_box, opts = {})
+  def mailbox_section(title, current_box, opts = {}, unread_count = 0)
     opts[:class] = opts.fetch(:class, '')
     opts[:class] += ' active' if title.downcase == current_box
     if admin_signed_in?
-      content_tag :li, link_to(title.capitalize, admin_conversations_path(box: title.downcase)), opts
+      content_tag :li, opts do
+        if unread_count == 0
+          link_to(title.capitalize, admin_conversations_path(box: title.downcase))
+        else
+          link_to (title.capitalize + (content_tag :span, unread_count, class: 'stat-count')).html_safe, admin_conversations_path(box: title.downcase)
+        end
+      end
     else
-      content_tag :li, link_to(title.capitalize, conversations_path(box: title.downcase)), opts
+      content_tag :li, opts do
+        if unread_count == 0
+          link_to(title.capitalize, conversations_path(box: title.downcase))
+        else
+          link_to (title.capitalize + (content_tag :span, unread_count, class: 'stat-count')).html_safe, conversations_path(box: title.downcase)
+        end
+      end
     end
   end
 
   def participant_names(conversation)
-    conversation.receipts.reject { |p| p.receiver == current_admin }
+    if user_signed_in?
+      conversation.receipts.reject { |p| p.receiver == current_user }
+          .collect {|p| p.receiver.class == Admin ? p.receiver.full_name + ' - Admin' : p.receiver.full_name }.uniq.join(", ") + ' (' +
+          conversation.messages.count.to_s + ')'
+    else
+      conversation.receipts.reject { |p| p.receiver == current_admin }
         .collect {|p| p.receiver.full_name }.uniq.join(" ,") + ' (' +
         conversation.messages.count.to_s + ')'
+    end
   end
 
   def user_avatar user
