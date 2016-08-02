@@ -35,16 +35,20 @@
     %ul.list-blocks.list-messages
       = render 'conversations/inbox', conversations: @messages
   %section.message-thread
-    %header
-      %ul.menu-horizontal
-        %li
-          %a.message-reply.icon-reply-3{:href => ""} Reply
-        %li
-          %a.message-flag.icon-flag-2{:href => ""} Flag
-        %li
-          %a.message-delete.icon-trashbin-full{:href => ""} Delete
     - @messages.each do |conversation|
       %section.message-thread-container{'data-message-id'=>conversation.id, class: (params[:active_id].to_i == conversation.id ? 'is-active' : '')}
+        %header.message-thread-head
+          %ul.menu-horizontal
+            %li
+              %a.message-reply.icon-reply-3{:href => ""} Reply
+            %li
+              %a.message-flag.icon-flag-2{:href => ""} Flag
+            %li
+              - if conversation.is_trashed?(pundit_user)
+                = link_to 'Restore', restore_conversation_path(conversation), class: 'button primary tiny', method: :post
+              - else
+                = link_to 'Move to Trash', conversation_path(conversation), class: 'message-delete icon-trashbin-full',
+                  method: :delete, data: {confirm: 'Are you sure?'}
         - conversation.messages.each_with_index do |message, key|
           %article.message-entity
             %header.message-head
