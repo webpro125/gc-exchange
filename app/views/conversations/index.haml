@@ -4,28 +4,22 @@
     %nav.main-menu.menu-horizontal{:role => "navigation"}
       %ul
         %li
-          %a{:href => ""} Main Link
+          %a{:href => "index-2.html"} Company
         %li
-          %a{:href => ""} Main Link
+          = link_to 'Projects', projects_path
         %li
-          %a{:href => ""} Main Link
+          %a{:href => ""} Reports
         %li
-          %a{:href => ""} Main Link
+          %a{:href => ""} Account
+        %li
+          = link_to 'Taxonomy', taxonomy_users_path
 
 %header.message-center-header
   %nav
     %ul.menu-vertical.menu-style-2
-      = mailbox_section 'inbox', @box
-      -#%li.active
-      -#  %a{:href => ""}
-      -#    Inbox
-      -#    %span.stat-count 32
-      %li
-        %a{:href => ""} Sent
-      %li
-        %a{:href => ""} Flagged
-      %li
-        %a{:href => ""} Trash
+      = mailbox_section 'inbox', @box, {} , @mailbox_unread_count
+      = mailbox_section 'sent', @box
+      = mailbox_section 'trash', @box
     %a.message-write.icon-write{:href => "", :title => "Create Message"} Create Message
     .go-back.icon-arrow-left Back
 %section.page-content.message-center-content
@@ -49,3 +43,37 @@
           %a.message-flag.icon-flag-2{:href => ""} Flag
         %li
           %a.message-delete.icon-trashbin-full{:href => ""} Delete
+    - @messages.each do |conversation|
+      %section.message-thread-container{'data-message-id'=>conversation.id, class: (params[:active_id].to_i == conversation.id ? 'is-active' : '')}
+        - conversation.messages.each_with_index do |message, key|
+          %article.message-entity
+            %header.message-head
+              .message-meta
+                - if message.sender_type == 'Admin'
+                  %span.message-from= message.sender.full_name + ' - Admin'
+                - else
+                  %span.message-from= message.sender.full_name
+                -#to
+                -#%span.message-to Aime Menendez
+              %h2.message-subject= conversation.subject
+              %figure.user-thumbnail
+                - if message.sender_type == 'Consultant'
+                  = image_tag(message.sender.profile_image.url(:thumb), class: '')
+                - elsif message.sender_type == 'User'
+                  = image_tag(message.sender.consultant.profile_image.url(:thumb), class: '')
+                - else
+                  = image_tag('missing.png', class: '')
+              .message-timestamp= message.created_at.strftime('%B %d at %I:%M %p')
+            .message-body
+              = simple_format message.body
+            -#.message-attachment
+            -#  %ul
+            -#    %li.icon-attachment
+            -#      %a{:href => ""} Sustainable_Community_Project_Brief.pdf
+            - if key == conversation.messages.size - 1
+              .message-reply-form
+                = simple_form_for @message,
+                  url:    reply_conversation_path(conversation),
+                  method: :post do |f|
+                  = f.input :message, as: :text, label: false, required: false, input_html: {class: 'm-b-xs'}
+                  = f.button :submit, 'Send Message'

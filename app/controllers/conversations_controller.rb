@@ -15,6 +15,8 @@ class ConversationsController < ApplicationController
       @messages ||= current_user.mailbox.trash.page(params[:page])
     end
     @new_design = true
+    @mailbox_unread_count = current_user.mailbox.inbox(:read => false).count(:id, :distinct => true)
+    @message    = Message.new
     render layout: 'conversation'
 
   end
@@ -44,7 +46,8 @@ class ConversationsController < ApplicationController
 
   def reply
     pundit_user.reply_to_conversation(conversation, message_params[:message])
-    redirect_to conversation_path(conversation)
+    # redirect_to conversation_path(conversation)
+    redirect_to conversations_path(active_id: conversation.id)
   end
 
   def approve_personal_contact
@@ -74,6 +77,11 @@ class ConversationsController < ApplicationController
       conversation.receipts_for(pundit_user).update_all(deleted: true)
     end
     redirect_to conversations_path, notice: t('controllers.conversation.empty_to_trash.success')
+  end
+
+  def read_conversation
+    conversation.mark_as_read(pundit_user)
+    render json: @conversation, status: :ok
   end
 
   private
