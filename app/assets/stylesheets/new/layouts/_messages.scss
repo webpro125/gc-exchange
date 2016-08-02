@@ -410,47 +410,48 @@
             background: #FFF;
             padding: 0 5rem;
             
-            & > header,
             .message-thread-container {
                 position: relative;
                 z-index: 5;
-            }
-            
-            & > header {
-                box-shadow: inset 0 -2px 0 0 color(primary-lightest);
-                
-                .menu-horizontal {
-                    height:  4.85rem;
-                    
-                    li {
-                        height:  4.85rem;
-                        line-height:  4.85rem;
-                        
-                        a {
-                            display: block;
-                            width: 4.85rem;
-                            height: 4.85rem;
-                            font-size: 0;
-                            padding: 0;
-                            text-align: center;
-                            
-                            &:before {
-                                display: block;
-                                width: 4.85rem;
-                                height: 4.85rem;
-                                font-size: 1.875rem;
-                                color: color(primary);
-                                text-align: center;
-                            }
-                        }
-                    }
-                }
             }
             
             .message-thread-container {
                 display: none;
                 padding: 0 5rem 3rem 5rem;
                 transition: all 0.2s ease-out;
+                
+                .message-thread-head {
+                    position: relative;
+                    z-index: 5;
+                    box-shadow: inset 0 -2px 0 0 color(primary-lightest);
+
+                    .menu-horizontal {
+                        height:  4.85rem;
+
+                        li {
+                            height:  4.85rem;
+                            line-height:  4.85rem;
+
+                            a {
+                                display: block;
+                                width: 4.85rem;
+                                height: 4.85rem;
+                                font-size: 0;
+                                padding: 0;
+                                text-align: center;
+
+                                &:before {
+                                    display: block;
+                                    width: 4.85rem;
+                                    height: 4.85rem;
+                                    font-size: 1.875rem;
+                                    color: color(primary);
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 .message-entity {
                     position: relative;
