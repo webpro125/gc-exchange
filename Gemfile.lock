@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:henrybraun125/mailboxer125_custom.git
+  remote: https://github.com/henrybraun125/mailboxer125_custom.git
   revision: c074723c014221ef2d489b45fb7e78c8aa9f6c66
   specs:
     mailboxer (0.12.5)
