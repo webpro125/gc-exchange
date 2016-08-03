@@ -28,7 +28,8 @@
                 method: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    this_obj.addClass('is-read')
+                    this_obj.addClass('is-read');
+                    this_obj.find('div.message-markers').remove();
                 }
             })
         }

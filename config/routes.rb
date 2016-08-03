@@ -184,6 +184,7 @@ Rails.application.routes.draw do
       post :reply
       put :approve_personal_contact
       post :restore
+      post :mark_flag
       post :read_conversation
     end
     collection do

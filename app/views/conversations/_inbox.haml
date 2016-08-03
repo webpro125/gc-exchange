@@ -45,6 +45,6 @@
     .message-timestamp= conversation.updated_at.strftime("%B/%d")
     .message-subject= conversation.subject
     .message-summary= conversation.last_message.body
-    .message-markers
     - if conversation.is_unread?(pundit_user)
-      .ui-marker.unread
+      .message-markers
+        .ui-marker.unread
