@@ -34,8 +34,8 @@ gem 'mini_magick', '~> 4.0.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'google-webfonts-rails', '~> 0.0.4'
 gem 'cocoon', '~> 1.2.6'
-# gem 'mailboxer', '~> 0.12.5'
-gem 'mailboxer', '~> 0.12.5', :path => "app/gems/mailboxer-0.12.5"
+gem 'mailboxer', '~> 0.12.5'
+# gem 'mailboxer', '~> 0.12.5', :path => "app/gems/mailboxer-0.12.5"
 gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
