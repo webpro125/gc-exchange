@@ -11,6 +11,8 @@ class ConversationsController < ApplicationController
       @messages ||= current_user.mailbox.inbox.page(params[:page])
     elsif @box.eql? "sent"
       @messages ||= current_user.mailbox.sentbox.page(params[:page])
+    elsif @box.eql? "flagged"
+      @messages ||= current_user.mailbox.flag.page(params[:page])
     else
       @messages ||= current_user.mailbox.trash.page(params[:page])
     end
@@ -84,6 +86,10 @@ class ConversationsController < ApplicationController
     render json: @conversation, status: :ok
   end
 
+  def mark_flag
+    conversation.mark_as_flag(pundit_user)
+    redirect_to conversations_path, notice: t('controllers.conversation.flag.success')
+  end
   private
 
   def mailbox

@@ -133,6 +133,8 @@ en:
         success: 'The conversation was restored.'
       empty_to_trash:
         success: 'Your trash was cleaned!'
+      flag:
+        success: 'The conversation was moved to Flagged'
     article:
       create:
         success: 'Question created successfully.'

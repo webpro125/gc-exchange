@@ -6,19 +6,19 @@
       %a.close{:href => "#"} ×
 - else
   - flash.each do |key, value|
-    .page-content
-      - if key != 'notice'
-        - next if key == 'timedout'
+    - if key != 'notice'
+      - next if key == 'timedout'
+      .page-content
         %div{:class => "ui-notification #{notification_class_name key}"}
           %p= value
           .action-close.icon-cross-light
-      - else
-        %section.ui-modal.no-head.flash{"data-type"=>"cm-modal", "data-modal-target"=>"notice-modal", "data-modal-flash" => "", "data-name" => "notice-modal"}
-          .modal-box
-            .modal-content
-              .modal-scroller
-                %h1 Congratulations!
-                %p.type-description= value.html_safe
-                = link_to 'Ok', '#', class: 'button-primary small', "data-modal-close" => ""
-            %footer
-              .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}
+    - else
+      %section.ui-modal.no-head.flash{"data-type"=>"cm-modal", "data-modal-target"=>"notice-modal", "data-modal-flash" => "", "data-name" => "notice-modal"}
+        .modal-box
+          .modal-content
+            .modal-scroller
+              %h1 Congratulations!
+              %p.type-description= value.html_safe
+              = link_to 'Ok', '#', class: 'button-primary small', "data-modal-close" => ""
+          %footer
+            .modal-close.ui-action-icon.icon-cr-cross-light{"data-modal-close" => ""}
