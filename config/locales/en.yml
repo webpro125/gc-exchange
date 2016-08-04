@@ -134,7 +134,9 @@ en:
       empty_to_trash:
         success: 'Your trash was cleaned!'
       flag:
-        success: 'The conversation was moved to Flagged'
+        success: 'The conversation was moved to Flagged.'
+      unflag:
+        success: 'The conversation was removed from Flagged.'
     article:
       create:
         success: 'Question created successfully.'

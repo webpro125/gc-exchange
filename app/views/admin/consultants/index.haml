@@ -62,6 +62,7 @@
                 %th 3rd Project POC Phone Number
             %tbody
               - @consultants.each do |consultant|
+                - next unless consultant.user.present?
                 %tr
                   %td= consultant.id
                   %td= consultant.user.first_name

@@ -145,6 +145,12 @@ textarea {
     &.large {
         min-height: rem(320px);
     }
+    
+    &.style-line {
+        background: none;
+        transition: background 0.15s ease-out;
+        box-shadow: inset 0 0 0 1px color(input);
+    }
 }
 
 select {
@@ -384,6 +390,36 @@ fieldset {
         
     }
     
+    &.style-line {
+        height: 2.75rem;
+        border-bottom: 1px solid color(input);
+        
+        label {
+            display: inline-block;
+            width: auto;
+            height: 2.75rem;
+            margin-right: 0.25rem;
+            line-height: 2.75rem;
+            vertical-align: top;
+            color: color(primary-light);
+        }
+        
+        input:not([type="checkbox"], [type="radio"], [type="submit"]) {
+            width: 90%;
+            height: 2.75rem;
+            line-height: 2.75rem;
+            display: inline-block;
+            background: none;
+            border: none;
+            box-shadow: none;
+            vertical-align: top;
+        }
+    }
+    
+    &.style-line + &.style-line {
+        margin-top: 0.25rem;
+    }
+    
     @include responsive($media: 'phone-landscape') {
         &.section {
             margin-bottom: 1.5rem;
@@ -407,7 +443,11 @@ fieldset + textarea {
     margin-top: 1rem;
 }
 
-
+.style-line {
+    textarea {
+        background: none;
+    }
+}
 
 input[type="hidden"] + label {
     margin-top: 0;

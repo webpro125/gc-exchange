@@ -43,11 +43,16 @@
             %li
               %a.message-reply.icon-reply-3{:href => ""} Reply
             %li
-              = link_to 'Move to Flag', mark_flag_conversation_path(conversation), class: 'message-flag icon-flag-2',
-                  method: :post
+              - unless conversation.is_trashed?(pundit_user)
+                - if conversation.is_flagged?(pundit_user)
+                  = link_to 'Move to UnFlag', remove_mark_flag_conversation_path(conversation), class: 'message-flag icon-flag-remove',
+                    method: :post
+                - else
+                  = link_to 'Move to Flag', mark_flag_conversation_path(conversation), class: 'message-flag icon-flag-2',
+                    method: :post
             %li
               - if conversation.is_trashed?(pundit_user)
-                = link_to 'Restore', restore_conversation_path(conversation), class: 'button primary tiny', method: :post
+                = link_to 'Restore', restore_conversation_path(conversation), class: 'icon-reload', method: :post
               - else
                 = link_to 'Move to Trash', conversation_path(conversation), class: 'message-delete icon-trashbin-full',
                   method: :delete, data: {confirm: 'Are you sure?'}
