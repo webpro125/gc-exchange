@@ -36,6 +36,7 @@ gem 'google-webfonts-rails', '~> 0.0.4'
 gem 'cocoon', '~> 1.2.6'
 # gem 'mailboxer', '~> 0.12.5'
 gem 'mailboxer', '~> 0.12.5', :git => "https://github.com/henrybraun125/mailboxer125_custom.git"
+# gem 'mailboxer', '~> 0.12.5', path: '/home/henry/Documents/gces/gems/mailboxer-0.12.5'
 gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

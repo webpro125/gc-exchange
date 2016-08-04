@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/henrybraun125/mailboxer125_custom.git
-  revision: c074723c014221ef2d489b45fb7e78c8aa9f6c66
+  revision: 2b9964b00af0049784a0ab3ad90b4e0e7e1b190a
   specs:
     mailboxer (0.12.5)
       carrierwave (>= 0.5.8)

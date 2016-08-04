@@ -90,6 +90,12 @@ class ConversationsController < ApplicationController
     conversation.mark_as_flag(pundit_user)
     redirect_to conversations_path, notice: t('controllers.conversation.flag.success')
   end
+
+  def remove_mark_flag
+    conversation.mark_as_unflag(pundit_user)
+    redirect_to conversations_path, notice: t('controllers.conversation.unflag.success')
+  end
+
   private
 
   def mailbox
