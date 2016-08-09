@@ -8,17 +8,27 @@ class ConversationsController < ApplicationController
   def index
     # @messages ||= pundit_user.mailbox.conversations.page(params[:page])
     if @box.eql? "inbox"
-      @messages ||= current_user.mailbox.inbox.page(params[:page])
+      @q ||= current_user.mailbox.inbox.ransack(params[:q])
+      @messages ||= @q.result.page(params[:page])
     elsif @box.eql? "sent"
-      @messages ||= current_user.mailbox.sentbox.page(params[:page])
+      @q ||= current_user.mailbox.sentbox.ransack(params[:q])
+      @messages ||= @q.result.page(params[:page])
     elsif @box.eql? "flagged"
-      @messages ||= current_user.mailbox.flag.page(params[:page])
+      @q ||= current_user.mailbox.flag.ransack(params[:q])
+      @messages ||= @q.result.page(params[:page])
     else
-      @messages ||= current_user.mailbox.trash.page(params[:page])
+      @q = current_user.mailbox.trash.ransack(params[:q])
+      @messages ||= @q.result.page(params[:page])
+    end
+
+    # @q.sorts = 'id asc' if @q.sorts.empty?
+    unless params[:keyword].blank?
+      @messages = conversations_for(params[:keyword])
     end
     @new_design = true
     @mailbox_unread_count = current_user.mailbox.inbox(:read => false).count(:id, :distinct => true)
     @message    = Message.new
+
     render layout: 'conversation'
 
   end
@@ -47,9 +57,9 @@ class ConversationsController < ApplicationController
   end
 
   def reply
-    pundit_user.reply_to_conversation(conversation, message_params[:message])
+    pundit_user.reply_to_conversation(conversation, message_params[:message], nil, true, true, message_params[:attachment])
     # redirect_to conversation_path(conversation)
-    redirect_to conversations_path(active_id: conversation.id)
+    redirect_to conversations_path(active_id: conversation.id, box: 'sent')
   end
 
   def approve_personal_contact
@@ -107,7 +117,7 @@ class ConversationsController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:message)
+    params.require(:message).permit(:message, :attachment)
   end
 
   def conversation_form_params
@@ -120,5 +130,25 @@ class ConversationsController < ApplicationController
 
   def recent_consultants
     @consultants = Consultant.recent
+  end
+
+  def conversations_for(query)
+    wildcarded_query = "%#{query}%"
+    user_ids = User.where('CONCAT(first_name,  last_name) LIKE :query', query: wildcarded_query).pluck(:id)
+    conv_ids = current_user.mailbox.conversations.
+        joins(:messages).
+        references('mailboxer_conversations, mailboxer_notifications, mailboxer_receipts, messages_mailboxer_conversations, mr, mn'). # To get rid of warnings
+    select('mailboxer_conversations.*, mailbox_type, trashed').
+        where("mailboxer_notifications.subject LIKE :query
+                              OR mailboxer_notifications.body LIKE :query
+                              OR mailboxer_notifications.sender_id IN (:user_ids)
+                              OR EXISTS ( SELECT * FROM mailboxer_receipts mr
+                                                   INNER JOIN mailboxer_notifications mn ON mn.id = mr.notification_id
+                                                   WHERE mn.conversation_id = mailboxer_conversations.id
+                                                   AND mr.notification_id IN ( SELECT id FROM mailboxer_notifications
+                                                                                           WHERE sender_id = :current_user_id )
+                                                   AND mr.receiver_id IN (:user_ids))",
+              query: wildcarded_query, user_ids: user_ids, current_user_id: current_user.id).map(&:id).uniq
+    pundit_user.mailbox.conversations.find(conv_ids)
   end
 end

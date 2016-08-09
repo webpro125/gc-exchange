@@ -34,7 +34,6 @@ gem 'mini_magick', '~> 4.0.0'
 gem 'foundation-icons-sass-rails', '~> 3.0.0'
 gem 'google-webfonts-rails', '~> 0.0.4'
 gem 'cocoon', '~> 1.2.6'
-# gem 'mailboxer', '~> 0.12.5'
 gem 'mailboxer', '~> 0.12.5', :git => "https://github.com/henrybraun125/mailboxer125_custom.git"
 # gem 'mailboxer', '~> 0.12.5', path: '/home/henry/Documents/gces/gems/mailboxer-0.12.5'
 gem 'jquery-datatables-rails', '~> 3.2.0'
