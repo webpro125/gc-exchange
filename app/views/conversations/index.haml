@@ -26,13 +26,17 @@
 %section.page-content.message-center-content
   %section.message-selection
     %header
-      .sort-by
-        Sort by
-        %span.dropdown-toggle.type-dark.icon-arrow-down Date
+      .ui-sort{"data-toggle-container" => ""}
+        .sort-by.dropdown-toggle{"data-target" => "sort-options", "data-type" => "cm-toggle"}
+          Sort by
+          %span.type-dark.icon-arrow-down Date
+        %ul.dropdown-menu{"data-section" => "sort-options"}
+          %li.dropdown-option= sort_link(@q, :updated_at, 'Date')
+          %li.dropdown-option= sort_link(@q, :notification_sender_first_name, 'Name')
+          %li.dropdown-option= sort_link(@q, :subject, 'Subject')
       .mini-search
-        %form
-          %input{:type => "text"}
-          %input{:type => "submit"}
+        = form_tag conversations_path, method: :get do
+          = text_field_tag :keyword, params[:keyword]
     %ul.list-blocks.list-messages
       = render 'conversations/inbox', conversations: @messages
   %section.message-thread
@@ -77,14 +81,16 @@
               .message-timestamp= message.created_at.strftime('%B %d at %I:%M %p')
             .message-body
               = simple_format message.body
-            -#.message-attachment
-            -#  %ul
-            -#    %li.icon-attachment
-            -#      %a{:href => ""} Sustainable_Community_Project_Brief.pdf
+              - unless message.attachment.blank?
+                .message-attachment
+                  %ul
+                    %li.icon-attachment
+                      = link_to File.basename(message.attachment.url), message.attachment.url, target: '_blank'
             - if key == conversation.messages.size - 1
               .message-reply-form
-                = simple_form_for @message,
+                = simple_form_for @message, html: { multipart: true },
                   url:    reply_conversation_path(conversation),
                   method: :post do |f|
                   = f.input :message, as: :text, label: false, required: false, input_html: {class: 'm-b-xs'}
+                  = f.input :attachment, as: :file, label: false, required: false
                   = f.button :submit, 'Send Message'
