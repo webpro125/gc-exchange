@@ -1,7 +1,7 @@
 class Message
   extend ActiveModel::Naming
 
-  attr_accessor :subject, :message, :attachment
+  attr_accessor :user_id, :subject, :message, :attachment
 
   def persisted?
     false

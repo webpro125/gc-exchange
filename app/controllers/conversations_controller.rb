@@ -6,7 +6,8 @@ class ConversationsController < ApplicationController
   before_action :get_box, only: [:index]
 
   def index
-    # @messages ||= pundit_user.mailbox.conversations.page(params[:page])
+    @new_design = true
+
     if @box.eql? "inbox"
       @q ||= current_user.mailbox.inbox.ransack(params[:q])
       @messages ||= @q.result.page(params[:page])
@@ -25,7 +26,6 @@ class ConversationsController < ApplicationController
     unless params[:keyword].blank?
       @messages = conversations_for(params[:keyword])
     end
-    @new_design = true
     @mailbox_unread_count = current_user.mailbox.inbox(:read => false).count(:id, :distinct => true)
     @message    = Message.new
 
@@ -34,6 +34,7 @@ class ConversationsController < ApplicationController
   end
 
   def new
+    @new_design = true
     @form = ConversationForm.new(Message.new)
   end
 

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get '/', :to => 'dashboard#index'
     resources :dashboard
     resources :consultants do
-      resources :conversations, only: [:new, :create]
+      resources :conversations, only: []
       member do
         put :approve
         put :reject
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     resources :admins
     resources :projects, path: 'offers'
 
-    resources :conversations, only: [:index, :show, :destroy] do
+    resources :conversations, only: [:index, :show, :destroy, :new, :create] do
       member do
         post :reply
         put :approve_personal_contact
