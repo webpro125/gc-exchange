@@ -45,7 +45,7 @@ group :doc do
 end
 
 group :development do
-  gem 'better_errors', '~> 2.0.0'
+  gem 'better_errors', '~> 2.9.1'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'thin'
 end
